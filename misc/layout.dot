@@ -3,7 +3,10 @@ digraph layout {
     size="8,5"
     "Sensor Interface" -> "Task Supervisor";
     "Task Supervisor" -> "Navigation";
-    "Navigation" -> "Actuator Control";
-    "Task Supervisor" -> "Actuator Control";
-    "Task Supervisor" -> "Info Output";
+    "Navigation" -> "Line Following";
+    "Line Following" -> "Actuator Control";
+    "Task Supervisor" -> "Clamp Control";
+    "Clamp Control" -> "Actuator Control";
+    "Task Supervisor" -> "Debug Output";
+    "Task Supervisor" -> "Status LEDs";
 }
