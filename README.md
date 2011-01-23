@@ -1,6 +1,6 @@
-## The CUED Integrated Design Project - Lent 2011 - Team L108
+# The CUED Integrated Design Project - Lent 2011 - Team L108
 
-# Building:  
+## Building:  
 
 `$ mkdir build`  
 `$ cd build`  
