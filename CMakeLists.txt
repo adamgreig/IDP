@@ -38,7 +38,6 @@ endfunction(googletest)
 include_directories(
     "${IDP_SOURCE_DIR}/lib/gmock/gmock/include"
     "${IDP_SOURCE_DIR}/lib/gmock/gmock/gtest/include"
-    "${IDP_SOURCE_DIR}/lib/yaml-cpp/include"
     "${IDP_SOURCE_DIR}/src"
 )
 
