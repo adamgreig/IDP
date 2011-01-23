@@ -1,12 +1,12 @@
 digraph layout {
     rankdir=LR;
     size="8,5"
-    "Sensor Interface" -> "Task Supervisor";
-    "Task Supervisor" -> "Navigation";
+    "Sensor Interface" -> "Mission Supervisor";
+    "Mission Supervisor" -> "Navigation";
     "Navigation" -> "Line Following";
     "Line Following" -> "Actuator Control";
-    "Task Supervisor" -> "Clamp Control";
+    "Mission Supervisor" -> "Clamp Control";
     "Clamp Control" -> "Actuator Control";
-    "Task Supervisor" -> "Debug Output";
-    "Task Supervisor" -> "Status LEDs";
+    "Mission Supervisor" -> "Debug Output";
+    "Mission Supervisor" -> "Status LEDs";
 }
