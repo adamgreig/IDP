@@ -1,0 +1,9 @@
+digraph layout {
+    rankdir=LR;
+    size="8,5"
+    "Sensor Interface" -> "Task Supervisor";
+    "Task Supervisor" -> "Navigation";
+    "Navigation" -> "Actuator Control";
+    "Task Supervisor" -> "Actuator Control";
+    "Task Supervisor" -> "Info Output";
+}
