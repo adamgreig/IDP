@@ -2,7 +2,11 @@
 
 ## Building:  
 
-`$ mkdir build`  
-`$ cd build`  
-`$ cmake ..`  
-`$ make -j8`  
+    IDP/ $ mkdir build
+    IDP/ $ cd build
+    IDP/build/ $ cmake ..
+    IDP/build/ $ make -j8
+
+## Running:
+
+    IDP/build/ $ bin/idpbin
