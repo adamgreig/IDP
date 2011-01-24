@@ -4,7 +4,7 @@
 project(libidp CXX)
 cmake_minimum_required(VERSION 2.6)
 
-# Build libmarssimulation
+# Build libidp
 file(GLOB srcs "*.cc")
 add_library(idp SHARED ${srcs})
 

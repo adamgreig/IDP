@@ -1,5 +1,5 @@
-# MarsLander CMake Configuration File
-# Copyright 2010 Adam Greig
+# IDP CMake Configuration File
+# Copyright 2011 Adam Greig & Jon Sowman
 
 project(gmock CXX)
 cmake_minimum_required(VERSION 2.6)
