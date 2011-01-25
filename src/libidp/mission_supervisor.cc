@@ -7,9 +7,11 @@
 #include "mission_supervisor.h"
 
 #include <iostream>
+
 #include <robot_instr.h>
 #include <robot_link.h>
 #include <stopwatch.h>
+#include <delay.h>
 
 namespace IDP {
     MissionSupervisor::MissionSupervisor()
@@ -22,19 +24,23 @@ namespace IDP {
             return;
         }
 
-        // Time many iterations of the test instruction
-        int i;
-        stopwatch sw;
-        sw.start();
-        for(i=0; i<1024; i++) {
-            rlink.request(TEST_INSTRUCTION);
-        }
-        int time = sw.stop();
+        // Clear the I²C error bit
+        std::cout << "Clearing the I²C error bit..." << std::endl;
+        rlink.request(STATUS);
 
-        std::cout << "Ran 1024 iterations of TEST_INSTRUCTION:" << std::endl;
-        std::cout << "\tTotal time: " << time << "ms" << std::endl;
-        std::cout << "\tTime per instruction: " << time / 1024 << "ms";
-        std::cout << std::endl;
+        // Sequence some LEDs
+        std::cout << "Party time!" << std::endl;
+        int i, j;
+        for(j = 0; j < 5; j++) {
+            for(i = 0; i < 8; i++) {
+                rlink.command(WRITE_PORT_0, 1<<i);
+                delay(50);
+            }
+            for(i = 7; i >= 0; i--) {
+                rlink.command(WRITE_PORT_0, 1<<i);
+                delay(50);
+            }
+        }
     }
 }
 
