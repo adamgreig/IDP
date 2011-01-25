@@ -1,0 +1,34 @@
+digraph state_machine {
+    "Waiting" [shape=Msquare];
+    "Emergency Stop" [shape=box];
+    "Analysing" [shape=box];
+    "Picking Up" [shape=box];
+    "Putting Down" [shape=box];
+    "Navigating" [shape=box];
+
+    "Emergency Stop" -> "Waiting" [label="Reset"];
+    "Emergency Stop" -> "Navigating" [label="Button Not Held"];
+    "Navigating" -> "Picking Up" [label="Found Bobbin"];
+    "Navigating" -> "Picking Up" [label="Found Box"];
+    "Navigating" -> "Putting Down" [label="Placing Bobbin"];
+    "Navigating" -> "Putting Down" [label="Placing Box"];
+    "Navigating" -> "Emergency Stop" [label="Collision or Reset"];
+    "Picking Up" -> "Analysing" [label="Picked Up Bobbin"];
+    "Picking Up" -> "Analysing" [label="Picked Up Box"];
+    "Picking Up" -> "Emergency Stop" [label="Reset"];
+    "Putting Down" -> "Navigating" [label="Placed Bobbin"];
+    "Putting Down" -> "Navigating" [label="Rejected Bobbin"];
+    "Putting Down" -> "Navigating" [label="Placed Box"];
+    "Putting Down" -> "Waiting" [label="Delivered Two Boxes"];
+    "Putting Down" -> "Emergency Stop" [label="Reset"];
+    "Putting Down" -> "Picking Up" [label="Filled Box"];
+    "Analysing" -> "Putting Down" [label="Bad Bobbin"];
+    "Analysing" -> "Putting Down" [label="Unwanted Bobbin"];
+    "Analysing" -> "Putting Down" [label="Checked Box Colour"];
+    "Analysing" -> "Putting Down" [label="Box Not Full"];
+    "Analysing" -> "Navigating" [label="Found Wanted Bobbin"];
+    "Analysing" -> "Navigating" [label="Box Full"];
+    "Analysing" -> "Emergency Stop" [label="Reset"];
+    "Waiting" -> "Navigating" [label="Go"];
+
+}
