@@ -1,5 +1,4 @@
 digraph layout {
-    rankdir=LR;
     "STATUS register" -> "Mission Supervisor";
     "Mission Supervisor" -> "Navigation";
     "Navigation" -> "Line Following";
@@ -10,7 +9,8 @@ digraph layout {
     "Mission Supervisor" -> "Status LEDs";
     "Motor Control" -> "Hardware Interface";
     "Sensor Platform" -> "Clamp Control";
-    "Indication LEDs" -> "Clamp Control";
+    "Clamp Control" -> "Indication LEDs";
+    "Indication LEDs" -> "Hardware Interface";
     "Clamp Control" -> "Hardware Interface";
     "Status LEDs" -> "Hardware Interface";
     "Hardware Interface" -> "Sensor Platform";
