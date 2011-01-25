@@ -6,10 +6,12 @@ digraph layout {
     "Find a bobbin" -> "Pick up bobbin";
     "Pick up bobbin" -> "Is bobbin bad?";
     "Is bobbin bad?" [shape=diamond];
-    "Is bobbin bad?" -> "Drop bobbin" [label="Yes"];
+    "Is bobbin bad?" -> "Put bobbin back" [label="Yes"];
+    "Put bobbin back" -> "Note position of unwanted bobbin";
+    "Note position of unwanted bobbin" -> "Find a bobbin";
     "Is bobbin bad?" -> "Is bobbin a desired colour?" [label="No"];
     "Is bobbin a desired colour?" [shape=diamond];
-    "Is bobbin a desired colour?" -> "Drop bobbin" [label="No"];
+    "Is bobbin a desired colour?" -> "Put bobbin back" [label="No"];
     "Is bobbin a desired colour?" -> "Take to box" [label="Yes"];
     "Take to box" -> "Drop in box";
     "Drop in box" -> "Have we filled the box?";
@@ -20,8 +22,10 @@ digraph layout {
     "Go to delivery zone" -> "Drop box";
     "Drop box" -> "Have we delivered two boxes?";
     "Have we delivered two boxes?" [shape=diamond];
-    "Have we delivered two boxes?" -> "Find a box" [label="No"];
-    "Have we delivered two boxes?" -> "Finish" [label="Yes"];
+    "Have we delivered two boxes?" -> 
+        "Clear unwanted bobbin positions" [label="No"];
+    "Clear unwanted bobbin positions" -> "Find a box";
+    "Have we delivered two boxes?" -> "Stop" [label="Yes"];
     "Stop" [shape=box];
 
     "Does STATUS indicate an emergency stop?" [shape=diamond];
