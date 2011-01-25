@@ -1,4 +1,4 @@
-digraph layout {
+digraph logic_flow {
     "Start" [shape=box];
     "Start" -> "Find a box";
     "Find a box" -> "Check box starting colour";
