@@ -1,0 +1,31 @@
+digraph layout {
+    rankdir=LR;
+    "Start" [shape=box];
+    "Start" -> "Find a box";
+    "Find a box" -> "Check box starting colour";
+    "Check box starting colour" -> "Find a bobbin";
+    "Find a bobbin" -> "Pick up bobbin";
+    "Pick up bobbin" -> "Is bobbin bad?";
+    "Is bobbin bad?" [shape=diamond];
+    "Is bobbin bad?" -> "Drop bobbin" [label="Yes"];
+    "Is bobbin bad?" -> "Is bobbin a desired colour?" [label="No"];
+    "Is bobbin a desired colour?" [shape=diamond];
+    "Is bobbin a desired colour?" -> "Drop bobbin" [label="No"];
+    "Is bobbin a desired colour?" -> "Take to box" [label="Yes"];
+    "Take to box" -> "Drop in box";
+    "Have we filled the box?" [shape=diamond];
+    "Have we filled the box?" -> "Pick up box" [label="Yes"];
+    "Pick up box" -> "Go to delivery zone";
+    "Go to delivery zone" -> "Drop box";
+    "Have we delivered two boxes?" [shape=diamond];
+    "Have we delivered two boxes?" -> "Find a box" [label="No"];
+    "Have we delivered two boxes?" -> "Finish" [label="No"];
+    "Finish" [shape=box];
+
+    "Does STATUS indicate an emergency stop?" [shape=diamond];
+    "Does STATUS indicate an emergency stop?"
+        -> "Reverse slightly" [label="Yes"];
+    "Reverse slightly" -> "Is the stop button still pressed?"
+    "Is the stop button still pressed?" [shape=diamond];
+    "Is the stop button still pressed?" -> "Start" [label="Yes"];
+}
