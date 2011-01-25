@@ -28,12 +28,24 @@ namespace IDP {
         std::cout << "Clearing the status register..." << std::endl;
         rlink.request(STATUS);
 
-        // Spin motor one
-        std::cout << "Spinning up motor one..." << std::endl;
-        rlink.command(RAMP_TIME, 0);
-        rlink.command(MOTOR_3_GO, 127);
+        // Set emergency stop to pin 0 of chip 0
+        rlink.command(WRITE_PORT_0, 0xFF);
+        rlink.command(STOP_IF_HIGH, (1<<0));
+        rlink.command(STOP_SELECT, 0);
 
-        for(;;);
+        // Turn some motors on
+        rlink.command(RAMP_TIME, 0);
+        rlink.command(MOTOR_1_GO, 127);
+
+        // Wait for stop
+        for(;;) {
+            // Read status
+            int status = rlink.request(STATUS);
+            if(status & (1<<2)) {
+                std::cout << "Emergency stop triggered!" << std::endl;
+                break;
+            }
+        }
     }
 }
 
