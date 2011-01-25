@@ -1,5 +1,4 @@
 digraph layout {
-    rankdir=LR;
     "Start" [shape=box];
     "Start" -> "Find a box";
     "Find a box" -> "Check box starting colour";
@@ -13,14 +12,17 @@ digraph layout {
     "Is bobbin a desired colour?" -> "Drop bobbin" [label="No"];
     "Is bobbin a desired colour?" -> "Take to box" [label="Yes"];
     "Take to box" -> "Drop in box";
+    "Drop in box" -> "Have we filled the box?";
     "Have we filled the box?" [shape=diamond];
     "Have we filled the box?" -> "Pick up box" [label="Yes"];
+    "Have we filled the box?" -> "Find a bobbin" [label="No"];
     "Pick up box" -> "Go to delivery zone";
     "Go to delivery zone" -> "Drop box";
+    "Drop box" -> "Have we delivered two boxes?";
     "Have we delivered two boxes?" [shape=diamond];
     "Have we delivered two boxes?" -> "Find a box" [label="No"];
-    "Have we delivered two boxes?" -> "Finish" [label="No"];
-    "Finish" [shape=box];
+    "Have we delivered two boxes?" -> "Finish" [label="Yes"];
+    "Stop" [shape=box];
 
     "Does STATUS indicate an emergency stop?" [shape=diamond];
     "Does STATUS indicate an emergency stop?"
