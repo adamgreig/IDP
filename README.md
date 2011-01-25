@@ -9,4 +9,4 @@
 
 ## Running:
 
-    IDP/build/ $ bin/idpbin
+    IDP/build/ $ ./bin/idpbin
