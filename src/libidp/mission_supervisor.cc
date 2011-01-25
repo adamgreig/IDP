@@ -24,23 +24,16 @@ namespace IDP {
             return;
         }
 
-        // Clear the I²C error bit
-        std::cout << "Clearing the I²C error bit..." << std::endl;
+        // Clear the status register
+        std::cout << "Clearing the status register..." << std::endl;
         rlink.request(STATUS);
 
-        // Sequence some LEDs
-        std::cout << "Party time!" << std::endl;
-        int i, j;
-        for(j = 0; j < 5; j++) {
-            for(i = 0; i < 8; i++) {
-                rlink.command(WRITE_PORT_0, 1<<i);
-                delay(50);
-            }
-            for(i = 7; i >= 0; i--) {
-                rlink.command(WRITE_PORT_0, 1<<i);
-                delay(50);
-            }
-        }
+        // Spin motor one
+        std::cout << "Spinning up motor one..." << std::endl;
+        rlink.command(RAMP_TIME, 0);
+        rlink.command(MOTOR_3_GO, 127);
+
+        for(;;);
     }
 }
 
