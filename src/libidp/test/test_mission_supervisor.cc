@@ -18,8 +18,8 @@ class TestMissionSupervisor : public ::testing::Test
         }
 };
 
-TEST_F(TestMissionSupervisor, Fail)
+TEST_F(TestMissionSupervisor, Pass)
 {
-    // just fail
-    EXPECT_EQ(1, 0);
+    // just pass
+    EXPECT_EQ(1, 1);
 }

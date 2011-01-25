@@ -8,3 +8,5 @@ cmake_minimum_required(VERSION 2.6)
 add_subdirectory("gmock")
 enable_testing()
 
+# Add librobot library
+add_subdirectory("librobot")

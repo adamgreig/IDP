@@ -15,6 +15,8 @@ namespace IDP {
 
     class MissionSupervisor
     {
+        public:
+            MissionSupervisor();
     };
 }
 

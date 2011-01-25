@@ -6,7 +6,9 @@ cmake_minimum_required(VERSION 2.6)
 
 # Build libidp
 file(GLOB srcs "*.cc")
-add_library(idp SHARED ${srcs})
+add_library(idp STATIC ${srcs})
+
+target_link_libraries(idp "${IDP_SOURCE_DIR}/lib/librobot/librobot.a")
 
 # Build test executable
 file(GLOB test_srcs "test/*.cc")
