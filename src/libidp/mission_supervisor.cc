@@ -24,28 +24,21 @@ namespace IDP {
             return;
         }
 
-        // Clear the status register
-        std::cout << "Clearing the status register..." << std::endl;
-        rlink.request(STATUS);
+        // Low ramping
+        rlink.command(RAMP_TIME, 64);
 
-        // Set emergency stop to pin 0 of chip 0
-        rlink.command(WRITE_PORT_0, 0xFF);
-        rlink.command(STOP_IF_HIGH, (1<<0));
-        rlink.command(STOP_SELECT, 0);
-
-        // Turn some motors on
-        rlink.command(RAMP_TIME, 0);
-        rlink.command(MOTOR_1_GO, 127);
-
-        // Wait for stop
         for(;;) {
-            // Read status
-            int status = rlink.request(STATUS);
-            if(status & (1<<2)) {
-                std::cout << "Emergency stop triggered!" << std::endl;
-                break;
-            }
+            // Drive forward a bit
+            std::cout << "Driving forward a bit..." << std::endl;
+            rlink.command(MOTOR_1_GO, (1<<7) | 63);
+            rlink.command(MOTOR_2_GO, (1<<7) | 127);
+            delay(5000);
+            std::cout << "Turning a bit..." << std::endl;
+            rlink.command(MOTOR_1_GO, (1<<7) | 63);
+            rlink.command(MOTOR_2_GO, (0<<7) | 127);
+            delay(3000);
         }
+
     }
 }
 
