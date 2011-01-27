@@ -5,7 +5,6 @@ digraph layout {
     "Line Following" -> "Motor Control";
     "Navigation" -> "Motor Control";
     "Mission Supervisor" -> "Clamp Control";
-    "Mission Supervisor" -> "Debug Output";
     "Motor Control" -> "Hardware Abstraction Layer";
     "Sensor Platform" -> "Clamp Control";
     "Sensor Platform" -> "Line Following";
