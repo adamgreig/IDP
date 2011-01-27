@@ -1,17 +1,15 @@
 digraph layout {
-    "STATUS register" -> "Mission Supervisor";
+    "Status Register Watchdog" -> "Mission Supervisor";
     "Mission Supervisor" -> "Navigation";
     "Navigation" -> "Line Following";
     "Line Following" -> "Motor Control";
     "Navigation" -> "Motor Control";
     "Mission Supervisor" -> "Clamp Control";
-    "Mission Supervisor" -> "Debug Output";
-    "Mission Supervisor" -> "Status LEDs";
-    "Motor Control" -> "Hardware Interface";
+    "Motor Control" -> "Hardware Abstraction Layer";
     "Sensor Platform" -> "Clamp Control";
-    "Clamp Control" -> "Indication LEDs";
-    "Indication LEDs" -> "Hardware Interface";
-    "Clamp Control" -> "Hardware Interface";
-    "Status LEDs" -> "Hardware Interface";
-    "Hardware Interface" -> "Sensor Platform";
+    "Sensor Platform" -> "Line Following";
+    "Sensor Platform" -> "Navigation";
+    "Clamp Control" -> "Hardware Abstraction Layer";
+    "Hardware Abstraction Layer" -> "Sensor Platform";
+    "Hardware Abstraction Layer" -> "Status Register Watchdog";
 }
