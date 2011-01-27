@@ -11,12 +11,19 @@
 #ifndef LIBIDP_MISSION_SUPERVISOR_H
 #define LIBIDP_MISSION_SUPERVISOR_H
 
+#include <robot_link.h>
+
 namespace IDP {
 
     class MissionSupervisor
     {
         public:
-            MissionSupervisor();
+            MissionSupervisor(int robot);
+            void drive_forward();
+            void drive_backward();
+            void stop();
+        private:
+            robot_link* rlink;
     };
 }
 

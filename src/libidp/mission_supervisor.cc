@@ -9,36 +9,72 @@
 #include <iostream>
 
 #include <robot_instr.h>
-#include <robot_link.h>
-#include <stopwatch.h>
-#include <delay.h>
 
 namespace IDP {
-    MissionSupervisor::MissionSupervisor()
+    /**
+     * Construct the MissionSupervisor.
+     * Initialises a link to the specified robot number, or 0 if running
+     * embedded.
+     * \param robot Which robot to link to, or 0 if embedded
+     */
+    MissionSupervisor::MissionSupervisor(int robot = 0)
     {
+        int status;
+        this->rlink = new robot_link;
+
         // Initialise link
-        std::cout << "Initialising a MissionSupervisor..." << std::endl;
-        robot_link rlink;
-        if(!rlink.initialise(39)) {
-            std::cout << "Error initialising rlink" << std::endl;
+        std::cout << "[MisSup] Initialising" << std::endl;
+        if(robot == 0) {
+            status = this->rlink->initialise();
+        } else {
+            status = this->rlink->initialise(robot);
+        }
+
+        // Check link
+        if(!status) {
+            std::cerr << "[MisSup] ERROR: Initialising rlink" << std::endl;
+            std::cerr << "[MisSup] Not initialising" << std::endl;
             return;
         }
+    }
+
+    /**
+     * Set both motors driving forwards.
+     */
+    void MissionSupervisor::drive_forward()
+    {
 
         // Low ramping
-        rlink.command(RAMP_TIME, 64);
+        rlink->command(RAMP_TIME, 64);
 
-        for(;;) {
-            // Drive forward a bit
-            std::cout << "Driving forward a bit..." << std::endl;
-            rlink.command(MOTOR_1_GO, (1<<7) | 63);
-            rlink.command(MOTOR_2_GO, (1<<7) | 127);
-            delay(5000);
-            std::cout << "Turning a bit..." << std::endl;
-            rlink.command(MOTOR_1_GO, (1<<7) | 63);
-            rlink.command(MOTOR_2_GO, (0<<7) | 127);
-            delay(3000);
-        }
+        std::cout << "[MisSup] Driving forward" << std::endl;
+        rlink->command(MOTOR_1_GO, (0<<7) | 127);
+        rlink->command(MOTOR_2_GO, (1<<7) | 127);
+    }
 
+    /**
+     * Set both motors driving backwards.
+     */
+    void MissionSupervisor::drive_backward()
+    {
+
+        // Low ramping
+        rlink->command(RAMP_TIME, 64);
+
+        std::cout << "[MisSup] Driving backwards" << std::endl;
+        rlink->command(MOTOR_1_GO, (1<<7) | 127);
+        rlink->command(MOTOR_2_GO, (0<<7) | 127);
+    }
+
+    /**
+     * Stop all motors.
+     */
+    void MissionSupervisor::stop() {
+        std::cout << "[MisSup] Stopping" << std::endl;
+        rlink->command(MOTOR_1_GO, 0);
+        rlink->command(MOTOR_2_GO, 0);
+        rlink->command(MOTOR_3_GO, 0);
+        rlink->command(MOTOR_4_GO, 0);
     }
 }
 
