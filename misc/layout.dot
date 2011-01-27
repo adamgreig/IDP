@@ -1,5 +1,5 @@
 digraph layout {
-    "Status Register" -> "Mission Supervisor";
+    "Status Register Watchdog" -> "Mission Supervisor";
     "Mission Supervisor" -> "Navigation";
     "Navigation" -> "Line Following";
     "Line Following" -> "Motor Control";
@@ -11,5 +11,5 @@ digraph layout {
     "Sensor Platform" -> "Navigation";
     "Clamp Control" -> "Hardware Abstraction Layer";
     "Hardware Abstraction Layer" -> "Sensor Platform";
-    "Hardware Abstraction Layer" -> "Status Register";
+    "Hardware Abstraction Layer" -> "Status Register Watchdog";
 }
