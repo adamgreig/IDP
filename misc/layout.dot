@@ -9,6 +9,8 @@ digraph layout {
     "Mission Supervisor" -> "Status LEDs";
     "Motor Control" -> "Hardware Interface";
     "Sensor Platform" -> "Clamp Control";
+    "Sensor Platform" -> "Line Following";
+    "Sensor Platform" -> "Navigation";
     "Clamp Control" -> "Indication LEDs";
     "Indication LEDs" -> "Hardware Interface";
     "Clamp Control" -> "Hardware Interface";
