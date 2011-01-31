@@ -25,6 +25,7 @@ namespace IDP {
             void drive_backward();
             void stop();
             void test_line_sensor();
+            void test_line_following();
         private:
             HardwareAbstractionLayer* hal;
     };

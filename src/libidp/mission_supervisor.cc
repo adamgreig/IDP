@@ -83,5 +83,17 @@ namespace IDP {
                 std::cout << "no line          \r";
         }
     }
+
+    /**
+     * Test line following on a straight line
+     */
+    void MissionSupervisor::test_line_following()
+    {
+        std::cout << "[MisSup] Testing line following" << std::endl;
+        lf = LineFollowing();
+        for(;;) {
+            lf.follow_line();
+        }
+    }
 }
 
