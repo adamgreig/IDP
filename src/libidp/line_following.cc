@@ -64,6 +64,7 @@ namespace IDP {
         else
         {
             // No adjustments are required
+            motors_forward(64);
         }
     }
 }
