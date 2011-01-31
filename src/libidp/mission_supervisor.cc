@@ -7,8 +7,9 @@
 #include "mission_supervisor.h"
 
 #include <iostream>
-
 #include <robot_instr.h>
+
+#include "hal.h"
 
 namespace IDP {
     /**
@@ -19,23 +20,8 @@ namespace IDP {
      */
     MissionSupervisor::MissionSupervisor(int robot = 0)
     {
-        int status;
-        this->rlink = new robot_link;
-
-        // Initialise link
-        std::cout << "[MisSup] Initialising" << std::endl;
-        if(robot == 0) {
-            status = this->rlink->initialise();
-        } else {
-            status = this->rlink->initialise(robot);
-        }
-
-        // Check link
-        if(!status) {
-            std::cerr << "[MisSup] ERROR: Initialising rlink" << std::endl;
-            std::cerr << "[MisSup] Not initialising" << std::endl;
-            return;
-        }
+        // Construct the hardware abstraction layer
+        this->hal = new HardwareAbstractionLayer(robot);
     }
 
     /**
@@ -43,13 +29,8 @@ namespace IDP {
      */
     void MissionSupervisor::drive_forward()
     {
-
-        // Low ramping
-        rlink->command(RAMP_TIME, 64);
-
         std::cout << "[MisSup] Driving forward" << std::endl;
-        rlink->command(MOTOR_1_GO, (0<<7) | 127);
-        rlink->command(MOTOR_2_GO, (1<<7) | 127);
+        this->hal->motors_forward(127);
     }
 
     /**
@@ -57,24 +38,50 @@ namespace IDP {
      */
     void MissionSupervisor::drive_backward()
     {
-
-        // Low ramping
-        rlink->command(RAMP_TIME, 64);
-
-        std::cout << "[MisSup] Driving backwards" << std::endl;
-        rlink->command(MOTOR_1_GO, (1<<7) | 127);
-        rlink->command(MOTOR_2_GO, (0<<7) | 127);
+        std::cout << "[MisSup] Driving backward" << std::endl;
+        this->hal->motors_backward(127);
     }
 
     /**
      * Stop all motors.
      */
-    void MissionSupervisor::stop() {
+    void MissionSupervisor::stop()
+    {
         std::cout << "[MisSup] Stopping" << std::endl;
-        rlink->command(MOTOR_1_GO, 0);
-        rlink->command(MOTOR_2_GO, 0);
-        rlink->command(MOTOR_3_GO, 0);
-        rlink->command(MOTOR_4_GO, 0);
+        this->hal->motors_stop();
+    }
+
+    /**
+     * Attempt to read the line sensor status
+     */
+    void MissionSupervisor::test_line_sensor()
+    {
+        std::cout << "[MisSup] Testing line sensor" << std::endl;
+        for(;;) {
+            this->hal->clear_status_register();
+            LineSensors sensors = this->hal->line_following_sensors();
+            std::cout << "[MisSup] Sensors: ";
+            
+            if(sensors.outer_left == LINE)
+                std::cout << "line, ";
+            else
+                std::cout << "no line, ";
+
+            if(sensors.line_left == LINE)
+                std::cout << "line, ";
+            else
+                std::cout << "no line, ";
+
+            if(sensors.line_right == LINE)
+                std::cout << "line, ";
+            else
+                std::cout << "no line, ";
+
+            if(sensors.outer_right == LINE)
+                std::cout << "line\r";
+            else
+                std::cout << "no line\r";
+        }
     }
 }
 

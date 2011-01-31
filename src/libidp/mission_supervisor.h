@@ -15,6 +15,8 @@
 
 namespace IDP {
 
+    class HardwareAbstractionLayer;
+
     class MissionSupervisor
     {
         public:
@@ -22,8 +24,9 @@ namespace IDP {
             void drive_forward();
             void drive_backward();
             void stop();
+            void test_line_sensor();
         private:
-            robot_link* rlink;
+            HardwareAbstractionLayer* hal;
     };
 }
 
