@@ -78,9 +78,9 @@ namespace IDP {
                 std::cout << "no line, ";
 
             if(sensors.outer_right == LINE)
-                std::cout << "line\r";
+                std::cout << "line             \r";
             else
-                std::cout << "no line\r";
+                std::cout << "no line          \r";
         }
     }
 }
