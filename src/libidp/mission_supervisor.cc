@@ -10,6 +10,7 @@
 #include <robot_instr.h>
 
 #include "hal.h"
+#include "line_following.h"
 
 namespace IDP {
     /**
@@ -90,7 +91,7 @@ namespace IDP {
     void MissionSupervisor::test_line_following()
     {
         std::cout << "[MisSup] Testing line following" << std::endl;
-        lf = LineFollowing();
+        LineFollowing lf;
         for(;;) {
             lf.follow_line();
         }
