@@ -22,6 +22,9 @@ namespace IDP {
         public:
             LineFollowing();
             void correct_steering(int error);
+
+        private:
+            int error;
     };
 }
 

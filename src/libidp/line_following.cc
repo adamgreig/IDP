@@ -19,7 +19,14 @@ namespace IDP {
     LineFollowing::LineFollowing()
     {
         // Accumulator
-        int error;
+        error = 0;
+        
+    }
+
+    /**
+     * Call this function many times to follow a line
+     */
+    void LineFollowing::follow_line() {
 
         if (LineSensors.line_left == LINE && LineSensors.line_right == LINE)
         {
@@ -28,11 +35,11 @@ namespace IDP {
         else if (LineSensors.line_left == LINE && LineSensors.line_right == NO_LINE)
         {
             // Need to turn left
-            e--;
+            error--;
         }
         else if (LineSensors.line_left == NO_LINE && LineSensors.line_right == LINE)
             // Need to turn right
-            e++;
+            error++;
         }
         else if (LineSensors.line_left == NO_LINE && LineSensors.line_right == NO_LINE)
         {
@@ -41,7 +48,6 @@ namespace IDP {
 
         // Call correct_steering to carry out any required adjustments
         correct_steering(error);
-        
     }
 
     /**
