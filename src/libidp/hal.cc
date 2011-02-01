@@ -47,7 +47,7 @@ namespace IDP {
      * \param speed The speed to drive at, 0 to 127
      */
     void HardwareAbstractionLayer::motors_forward(
-        const unsigned short int speed)
+        const unsigned short int speed) const
     {
         std::cout << "[HAL] Driving motors forward, speed " << speed;
         std::cout << std::endl;
@@ -64,7 +64,7 @@ namespace IDP {
      * \param speed The speed to drive at, 0 to 127
      */
     void HardwareAbstractionLayer::motors_backward(
-        const unsigned short int speed)
+        const unsigned short int speed) const
     {
         std::cout << "[HAL] Driving motors backward, speed " << speed;
         std::cout << std::endl;
@@ -81,7 +81,7 @@ namespace IDP {
      * \param speed The speed to drive at, 0 to 127
      */
     void HardwareAbstractionLayer::motors_turn_left(
-        const unsigned short int speed)
+        const unsigned short int speed) const
     {
         std::cout << "[HAL] Turning motors left, speed " << speed;
         std::cout << std::endl;
@@ -98,7 +98,7 @@ namespace IDP {
      * \param speed The speed to drive at, 0 to 127
      */
     void HardwareAbstractionLayer::motors_turn_right(
-        const unsigned short int speed)
+        const unsigned short int speed) const
     {
         std::cout << "[HAL] Turning motors right, speed " << speed;
         std::cout << std::endl;
@@ -113,7 +113,7 @@ namespace IDP {
     /**
      * Stop all motors.
      */
-    void HardwareAbstractionLayer::motors_stop()
+    void HardwareAbstractionLayer::motors_stop() const
     {
         std::cout << "[HAL] Stopping all motors" << std::endl;
         this->rlink->command(MOTOR_1_GO, 0);
@@ -127,7 +127,7 @@ namespace IDP {
      * return a struct with their current state.
      * \return A LineSensors struct containing the current state of the sensors
      */
-    LineSensors HardwareAbstractionLayer::line_following_sensors()
+    LineSensors HardwareAbstractionLayer::line_following_sensors() const
     {
         //std::cout << "[HAL] Reading line following sensors" << std::endl;
 
@@ -163,7 +163,7 @@ namespace IDP {
     /**
      * Read the status register, discarding its value.
      */
-    void HardwareAbstractionLayer::clear_status_register()
+    void HardwareAbstractionLayer::clear_status_register() const
     {
         this->rlink->request(STATUS);
     }
@@ -174,8 +174,8 @@ namespace IDP {
      * \param speed The speed to check
      * \return true if the speed is too high, false if okay
      */
-    bool HardwareAbstractionLayer::check_max_speed(
-        const unsigned short int speed)
+    const bool HardwareAbstractionLayer::check_max_speed(
+        const unsigned short int speed) const
     {
         if(speed > MOTOR_MAX_SPEED) {
             std::cerr << "[HAL] ERROR: Motor speed too high, not setting";

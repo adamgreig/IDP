@@ -26,8 +26,9 @@ namespace IDP {
             void stop();
             void test_line_sensor();
             void test_line_following();
+            const HardwareAbstractionLayer* hal() const;
         private:
-            HardwareAbstractionLayer* hal;
+            HardwareAbstractionLayer* _hal;
     };
 }
 

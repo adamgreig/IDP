@@ -22,7 +22,7 @@ namespace IDP {
     MissionSupervisor::MissionSupervisor(int robot = 0)
     {
         // Construct the hardware abstraction layer
-        this->hal = new HardwareAbstractionLayer(robot);
+        this->_hal = new HardwareAbstractionLayer(robot);
     }
 
     /**
@@ -31,7 +31,7 @@ namespace IDP {
     void MissionSupervisor::drive_forward()
     {
         std::cout << "[MisSup] Driving forward" << std::endl;
-        this->hal->motors_forward(127);
+        this->_hal->motors_forward(127);
     }
 
     /**
@@ -40,7 +40,7 @@ namespace IDP {
     void MissionSupervisor::drive_backward()
     {
         std::cout << "[MisSup] Driving backward" << std::endl;
-        this->hal->motors_backward(127);
+        this->_hal->motors_backward(127);
     }
 
     /**
@@ -49,7 +49,7 @@ namespace IDP {
     void MissionSupervisor::stop()
     {
         std::cout << "[MisSup] Stopping" << std::endl;
-        this->hal->motors_stop();
+        this->_hal->motors_stop();
     }
 
     /**
@@ -59,8 +59,8 @@ namespace IDP {
     {
         std::cout << "[MisSup] Testing line sensor" << std::endl;
         for(;;) {
-            this->hal->clear_status_register();
-            LineSensors sensors = this->hal->line_following_sensors();
+            this->_hal->clear_status_register();
+            LineSensors sensors = this->_hal->line_following_sensors();
             std::cout << "[MisSup] Sensors: ";
             
             if(sensors.outer_left == LINE)
@@ -91,10 +91,18 @@ namespace IDP {
     void MissionSupervisor::test_line_following()
     {
         std::cout << "[MisSup] Testing line following" << std::endl;
-        LineFollowing lf;
+        LineFollowing lf(this->hal());
         for(;;) {
             lf.follow_line();
         }
+    }
+
+    /**
+     * Const accessor for the HAL
+     */
+    const HardwareAbstractionLayer* MissionSupervisor::hal() const
+    {
+        return static_cast<const HardwareAbstractionLayer*> (this->_hal);
     }
 }
 
