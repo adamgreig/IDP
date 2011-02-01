@@ -16,9 +16,12 @@ namespace IDP {
     /**
      * Construct the Line Follower
      */
-    LineFollowing::LineFollowing(const HardwareAbstractionLayer* _hal)
+    LineFollowing::LineFollowing(const HardwareAbstractionLayer* hal)
+        : _hal(hal)
     {
-        std::cout << "[LineFollowing] Initialising a Line Follower" << std::endl;
+        std::cout << "[LineFollowing] Initialising a Line Follower";
+        std::cout << std::endl;
+
         // Accumulator
         _error = 0;
         
@@ -36,25 +39,36 @@ namespace IDP {
 
         if (sensors.line_left == LINE && sensors.line_right == LINE)
         {
-            // Junction
-            _hal->motors_stop();
+            std::cout << "[LineFollowing] On the line" << std::endl;
+
+            // We are on the line so reset the error and continue
+            this->_error = 0;
         }
         else if (sensors.line_left == LINE && sensors.line_right == NO_LINE)
         {
+            std::cout << "[LineFollowing] Too far right" << std::endl;
+
             // Need to turn left
-            _error--;
+            this->_error--;
         }
         else if (sensors.line_left == NO_LINE && sensors.line_right == LINE)
+        {
+            std::cout << "[LineFollowing] Too far left" << std::endl;
+
             // Need to turn right
-            _error++;
+            this->_error++;
         }
         else if (sensors.line_left == NO_LINE && sensors.line_right == NO_LINE)
         {
+            std::cout << "[LineFollowing] Lost the line, stopping";
+            std::cout << std::endl;
+
             // On the line, continue
+            // this->_hal->motors_stop();
         }
 
         // Call correct_steering to carry out any required adjustments
-        correct_steering(_error);
+        this->correct_steering(_error);
     }
 
     /**
@@ -64,22 +78,34 @@ namespace IDP {
      */
     void LineFollowing::correct_steering(int _error)
     {
-        std::cout << "[LineFollowing] Correcting steering with error " << _error
-            << std::endl;
-        if (_error < 0)
-        {
-            // We are too far right, so turn left
-            _hal->motors_turn_left(ki * _error);
-        }
-        else if (_error > 0)
+        std::cout << "[LineFollowing] Correcting steering with error ";
+        std::cout << _error << std::endl;
+
+        short int correction = static_cast<short int>(ki) 
+            * static_cast<short int>(_error);
+
+        // Clip correction to the motors' max speed
+        if (correction > MOTOR_MAX_SPEED)
+            correction = MOTOR_MAX_SPEED;
+        if (correction < -MOTOR_MAX_SPEED)
+            correction = -MOTOR_MAX_SPEED;
+
+        if (correction < 0)
         {
             // We are too far left, so turn right
-            _hal->motors_turn_right(ki * _error);
+            this->_hal->motor_left_go(64);
+            this->_hal->motor_right_go(64 - correction);
+        }
+        else if (correction > 0)
+        {
+            // We are too far right, so turn left 
+            this->_hal->motor_right_go(64);
+            this->_hal->motor_left_go(64 + correction);
         }
         else
         {
             // No adjustments are required
-            _hal->motors_forward(64);
+            this->_hal->motors_forward(64);
         }
     }
 }

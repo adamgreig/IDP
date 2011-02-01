@@ -94,6 +94,40 @@ namespace IDP {
     }
 
     /**
+     * Drive the left motor at the given speed
+     * \param speed The speed at which to drive the motor
+     */
+    void HardwareAbstractionLayer::motor_left_go(
+        const unsigned short int speed) const
+    {
+        std::cout << "[HAL] Setting left motor to speed ";
+        std::cout << speed << std::endl;
+
+        if (this->check_max_speed(speed)) {
+            return;
+        }
+
+        this->rlink->command(MOTOR_1_GO, speed);
+    }
+
+    /**
+     * Drive the right motor at the given speed
+     * \param speed The speed at which to drive the motor
+     */
+    void HardwareAbstractionLayer::motor_right_go(
+        const unsigned short int speed) const
+    {
+        std::cout << "[HAL] Setting right motor to speed ";
+        std::cout << speed << std::endl;
+
+        if (this->check_max_speed(speed)) {
+            return;
+        }
+
+        this->rlink->command(MOTOR_2_GO, speed);
+    }
+
+    /**
      * Drive the motors to steer the robot to the right.
      * \param speed The speed to drive at, 0 to 127
      */
@@ -127,7 +161,7 @@ namespace IDP {
      * return a struct with their current state.
      * \return A LineSensors struct containing the current state of the sensors
      */
-    LineSensors HardwareAbstractionLayer::line_following_sensors() const
+    const LineSensors HardwareAbstractionLayer::line_following_sensors() const
     {
         //std::cout << "[HAL] Reading line following sensors" << std::endl;
 
@@ -174,7 +208,7 @@ namespace IDP {
      * \param speed The speed to check
      * \return true if the speed is too high, false if okay
      */
-    const bool HardwareAbstractionLayer::check_max_speed(
+    bool HardwareAbstractionLayer::check_max_speed(
         const unsigned short int speed) const
     {
         if(speed > MOTOR_MAX_SPEED) {

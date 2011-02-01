@@ -16,7 +16,7 @@
 namespace IDP {
 
     static const int MOTOR_MAX_SPEED = 127;
-    static const int MOTOR_RAMP_TIME = 64;
+    static const int MOTOR_RAMP_TIME = 16;
     static const bool LINE = true;
     static const bool NO_LINE = false;
     
@@ -34,6 +34,8 @@ namespace IDP {
             HardwareAbstractionLayer(const int robot);
             void motors_forward(const unsigned short int speed) const;
             void motors_backward(const unsigned short int speed) const;
+            void motor_left_go(const unsigned short int speed) const;
+            void motor_right_go(const unsigned short int speed) const;
             void motors_turn_left(const unsigned short int speed) const;
             void motors_turn_right(const unsigned short int speed) const;
             void motors_stop() const;
