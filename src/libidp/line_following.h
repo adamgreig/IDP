@@ -14,17 +14,21 @@
 
 namespace IDP {
 
+    class HardwareAbstractionLayer;
+
     // Constant for integral control in line following
     const int ki = 10;
 
     class LineFollowing 
     {
         public:
-            LineFollowing();
+            LineFollowing(const HardwareAbstractionLayer* hal);
             void correct_steering(int error);
+            void follow_line();
 
         private:
-            int error;
+            int _error;
+            HardwareAbstractionLayer* _hal; 
     };
 }
 

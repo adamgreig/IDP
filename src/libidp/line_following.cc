@@ -10,16 +10,17 @@
 
 #include <robot_instr.h>
 
-#include <hal.h>
+#include "hal.h"
 
 namespace IDP {
     /**
      * Construct the Line Follower
      */
-    LineFollowing::LineFollowing()
+    LineFollowing::LineFollowing(const HardwareAbstractionLayer* _hal)
     {
+        std::cout << "[LineFollowing] Initialising a Line Follower" << std::endl;
         // Accumulator
-        error = 0;
+        _error = 0;
         
     }
 
@@ -28,49 +29,57 @@ namespace IDP {
      */
     void LineFollowing::follow_line() {
 
-        if (LineSensors.line_left == LINE && LineSensors.line_right == LINE)
+        std::cout << "[LineFollowing] Reading IR sensors" << std::endl;
+
+        // Read the state of the IR sensors from hal
+        const LineSensors sensors = _hal->line_following_sensors();
+
+        if (sensors.line_left == LINE && sensors.line_right == LINE)
         {
             // Junction
+            _hal->motors_stop();
         }
-        else if (LineSensors.line_left == LINE && LineSensors.line_right == NO_LINE)
+        else if (sensors.line_left == LINE && sensors.line_right == NO_LINE)
         {
             // Need to turn left
-            error--;
+            _error--;
         }
-        else if (LineSensors.line_left == NO_LINE && LineSensors.line_right == LINE)
+        else if (sensors.line_left == NO_LINE && sensors.line_right == LINE)
             // Need to turn right
-            error++;
+            _error++;
         }
-        else if (LineSensors.line_left == NO_LINE && LineSensors.line_right == NO_LINE)
+        else if (sensors.line_left == NO_LINE && sensors.line_right == NO_LINE)
         {
             // On the line, continue
         }
 
         // Call correct_steering to carry out any required adjustments
-        correct_steering(error);
+        correct_steering(_error);
     }
 
     /**
      * Correct the steering of the robot
-     * \param error A signed integer where negative is too far left, and
+     * \param _error A signed integer where negative is too far left, and
      * positive is too far right
      */
-    void LineFollowing::correct_steering(int error)
+    void LineFollowing::correct_steering(int _error)
     {
-        if (error < 0)
+        std::cout << "[LineFollowing] Correcting steering with error " << _error
+            << std::endl;
+        if (_error < 0)
         {
             // We are too far right, so turn left
-            motors_turn_left(ki * error);
+            _hal->motors_turn_left(ki * _error);
         }
-        else if (error > 0)
+        else if (_error > 0)
         {
             // We are too far left, so turn right
-            motors_turn_right(ki * error);
+            _hal->motors_turn_right(ki * _error);
         }
         else
         {
             // No adjustments are required
-            motors_forward(64);
+            _hal->motors_forward(64);
         }
     }
 }
