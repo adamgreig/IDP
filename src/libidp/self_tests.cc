@@ -37,6 +37,13 @@ namespace IDP {
     }
 
     /**
+     * Stop all of the robot's motors
+     */
+    void SelfTests::stop()
+    {
+    }
+
+    /**
      * Drive motors in opposite directions to turn the robot left on
      * the spot
      */
@@ -140,7 +147,7 @@ namespace IDP {
      * Turn on each of the status LEDs (used for indicating bobbin
      * colour) in turn
      */
-    void SelfTests::status_leds()
+    void SelfTests::status_LEDs()
     {
     }
 
@@ -148,7 +155,14 @@ namespace IDP {
      * Turn on each of the coloured LEDs used for colour detection
      * in turn
      */
-    void SelfTests::colour_sensor_leds()
+    void SelfTests::colour_sensor_LEDs()
+    {
+    }
+
+    /**
+     * Turn on the LED used for detecting bad bobbins
+     */
+    void SelfTests::badness_LED(void)
     {
     }
 }

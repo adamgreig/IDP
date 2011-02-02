@@ -24,15 +24,16 @@ namespace IDP {
             void stop(void);
             void line_sensors(void);
             void microswitches(void);
-            void ldrs(void);
+            void LDRs(void);
             void actuators(void);
             void line_following(void);
             void clamp_control(void);
             void bobbin_analyse(void);
             void navigate(void);
             void position(void);
-            void status_leds(void);
-            void colour_sensor_leds(void);
+            void status_LEDs(void);
+            void colour_sensor_LEDs(void);
+            void badness_LED(void);
     };
 }
 
