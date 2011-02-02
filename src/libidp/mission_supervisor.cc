@@ -4,11 +4,10 @@
 // mission_supervisor.cc
 // Mission Supervisor class implementation
 
-#include "mission_supervisor.h"
-
 #include <iostream>
 #include <robot_instr.h>
 
+#include "mission_supervisor.h"
 #include "hal.h"
 #include "line_following.h"
 
@@ -23,6 +22,13 @@ namespace IDP {
     {
         // Construct the hardware abstraction layer
         this->_hal = new HardwareAbstractionLayer(robot);
+    }
+
+    /**
+     * Commence running the main task
+     */
+    void MissionSupervisor::run_task()
+    {
     }
 
     /**

@@ -12,6 +12,6 @@ namespace IDP {
      * Read the STATUS register of the microcontroller and return the value
      * \returns The error encountered, if any 
      */
-    const int check() const {
+    const int StatusWatchdog::check() const {
     }
 }

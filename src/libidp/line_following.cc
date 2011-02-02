@@ -4,13 +4,11 @@
 // line_following.cc
 // Line Following class implementation
 
-#include "line_following.h"
-
 #include <iostream>
-
 #include <robot_instr.h>
 
 #include "hal.h"
+#include "line_following.h"
 
 namespace IDP {
     /**
@@ -24,11 +22,10 @@ namespace IDP {
 
         // Accumulator
         _error = 0;
-        
     }
 
     /**
-     * Call this function many times to follow a line
+     * Follow a line forwards, stopping when a junction is reached
      */
     void LineFollowing::follow_line() {
 
@@ -107,6 +104,30 @@ namespace IDP {
             // No adjustments are required
             this->_hal->motors_forward(64);
         }
+    }
+
+    /**
+     * Turn the robot left on the spot until the sensors encounter another
+     * line
+     */
+    void LineFollowing::turn_left()
+    {
+    }
+
+    /**
+     * Turn the robot right on the spot until the sensors detect another
+     * line
+     */
+    void LineFollowing::turn_right()
+    {
+    }
+
+    /**
+     * Spin the robot 180 degrees, using the line behind to detect when
+     * the correct amount of rotation has been reached
+     */
+    void LineFollowing::turn_around()
+    {
     }
 }
 

@@ -1,4 +1,5 @@
 <map id="G" name="G">
-<area shape="rect" id="node3" href="$libidp_8h.html" title="libidp/libidp.h" alt="" coords="5,83,120,111"/>
-<area shape="rect" id="node5" href="$mission__supervisor_8cc.html" title="libidp/mission_supervisor.cc" alt="" coords="144,83,355,111"/>
+<area shape="rect" id="node3" href="$libidp_8h.html" title="libidp/libidp.h" alt="" coords="5,86,101,117"/>
+<area shape="rect" id="node5" href="$mission__supervisor_8cc.html" title="libidp/mission_supervisor.cc" alt="" coords="125,86,312,117"/>
+<area shape="rect" id="node7" href="$self__tests_8cc.html" title="libidp/self_tests.cc" alt="" coords="336,86,467,117"/>
 </map>

@@ -8,11 +8,19 @@
 
 
 
-Collaboration diagram for IDP::MissionSupervisor:
+Collaboration diagram for IDP::MissionSupervisor:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=232pt]{classIDP_1_1MissionSupervisor__coll__graph}
+\end{center}
+\end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \hyperlink{classIDP_1_1MissionSupervisor_afc6a54e04718d919b2b48458a47304b2}{MissionSupervisor} (int robot)
+\item 
+void \hyperlink{classIDP_1_1MissionSupervisor_a06fc1fcf6272651d50938fd94306ac24}{run\_\-task} ()
 \item 
 void \hyperlink{classIDP_1_1MissionSupervisor_af8c6a3073190a4479211753fe5f50a36}{drive\_\-forward} ()
 \item 
@@ -40,9 +48,7 @@ const \hyperlink{classIDP_1_1HardwareAbstractionLayer}{HardwareAbstractionLayer}
 \label{classIDP_1_1MissionSupervisor_afc6a54e04718d919b2b48458a47304b2}
 Construct the \hyperlink{classIDP_1_1MissionSupervisor}{MissionSupervisor}. Initialises a link to the specified robot number, or 0 if running embedded. 
 \begin{DoxyParams}{Parameters}
-{\em robot} & Which robot to link to, or 0 if embedded \\
-\hline
-\end{DoxyParams}
+\item[{\em robot}]Which robot to link to, or 0 if embedded \end{DoxyParams}
 
 
 \subsection{Member Function Documentation}
@@ -73,7 +79,16 @@ Set both motors driving forwards. \hypertarget{classIDP_1_1MissionSupervisor_ae1
 \end{DoxyParamCaption}
 ) const}}
 \label{classIDP_1_1MissionSupervisor_ae19d0c2123fda158cc45e649128fbc09}
-Const accessor for the HAL \hypertarget{classIDP_1_1MissionSupervisor_ad11e444b6be1d51c3339bd6397d45fd4}{
+Const accessor for the HAL \hypertarget{classIDP_1_1MissionSupervisor_a06fc1fcf6272651d50938fd94306ac24}{
+\index{IDP::MissionSupervisor@{IDP::MissionSupervisor}!run\_\-task@{run\_\-task}}
+\index{run\_\-task@{run\_\-task}!IDP::MissionSupervisor@{IDP::MissionSupervisor}}
+\subsubsection[{run\_\-task}]{\setlength{\rightskip}{0pt plus 5cm}void IDP::MissionSupervisor::run\_\-task (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{classIDP_1_1MissionSupervisor_a06fc1fcf6272651d50938fd94306ac24}
+Commence running the main task \hypertarget{classIDP_1_1MissionSupervisor_ad11e444b6be1d51c3339bd6397d45fd4}{
 \index{IDP::MissionSupervisor@{IDP::MissionSupervisor}!stop@{stop}}
 \index{stop@{stop}!IDP::MissionSupervisor@{IDP::MissionSupervisor}}
 \subsubsection[{stop}]{\setlength{\rightskip}{0pt plus 5cm}void IDP::MissionSupervisor::stop (

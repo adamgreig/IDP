@@ -21,6 +21,7 @@ namespace IDP {
     {
         public:
             MissionSupervisor(int robot);
+            void run_task();
             void drive_forward();
             void drive_backward();
             void stop();

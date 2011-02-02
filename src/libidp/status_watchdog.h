@@ -12,7 +12,10 @@
 #include <robot_link.h>
 
 namespace IDP {
-
+    class StatusWatchdog {
+        public:
+            const int check() const;
+    }
 }
 
 #endif /* LIBIDP_H */
