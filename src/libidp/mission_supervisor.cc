@@ -31,7 +31,8 @@ namespace IDP {
     void MissionSupervisor::drive_forward()
     {
         std::cout << "[MisSup] Driving forward" << std::endl;
-        this->_hal->motors_forward(127);
+        this->_hal->motor_left_go(127);
+        this->_hal->motor_right_go(127);
     }
 
     /**

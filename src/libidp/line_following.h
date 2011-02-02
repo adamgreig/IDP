@@ -17,7 +17,7 @@ namespace IDP {
     class HardwareAbstractionLayer;
 
     // Constant for integral control in line following
-    const double ki = 2.0;
+    const double ki = 4.0;
 
     class LineFollowing 
     {

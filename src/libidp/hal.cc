@@ -107,7 +107,7 @@ namespace IDP {
             return;
         }
 
-        this->rlink->command(MOTOR_1_GO, speed);
+        this->rlink->command(MOTOR_1_GO, (1<<7) | speed);
     }
 
     /**
