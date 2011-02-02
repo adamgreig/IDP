@@ -43,33 +43,33 @@
 <a name="l00014"></a>00014     
 <a name="l00015"></a>00015     <span class="keyword">class </span>HardwareAbstrationLayer;
 <a name="l00016"></a>00016 
-<a name="l00017"></a><a class="code" href="namespaceIDP.html#a1a96e566e4d675fdf20780cc96d92283">00017</a>     <span class="keyword">enum</span> <a class="code" href="namespaceIDP.html#a1a96e566e4d675fdf20780cc96d92283">NavigationStatus</a> {
-<a name="l00018"></a><a class="code" href="namespaceIDP.html#a1a96e566e4d675fdf20780cc96d92283a9f52fe7970aefcb1b74e9aea3798f39d">00018</a>         NAVIGATION_ENROUTE,
-<a name="l00019"></a><a class="code" href="namespaceIDP.html#a1a96e566e4d675fdf20780cc96d92283ab9e83c995cb23a5782b23b198dcbabcb">00019</a>         NAVIGATION_ARRIVED,
-<a name="l00020"></a><a class="code" href="namespaceIDP.html#a1a96e566e4d675fdf20780cc96d92283ad75d1c5522e0a38dbe62266912d411ba">00020</a>         <a class="code" href="namespaceIDP.html#a1a96e566e4d675fdf20780cc96d92283ad75d1c5522e0a38dbe62266912d411ba">NAVIGATION_LOST</a>
-<a name="l00021"></a>00021     };
-<a name="l00022"></a>00022 
-<a name="l00023"></a><a class="code" href="namespaceIDP.html#ab9c412f0fd539b5d70385066c30465a0">00023</a>     <span class="keyword">enum</span> <a class="code" href="namespaceIDP.html#ab9c412f0fd539b5d70385066c30465a0">NavigationLocation</a> {
-<a name="l00024"></a><a class="code" href="namespaceIDP.html#ab9c412f0fd539b5d70385066c30465a0a0cfb642ce5e4133706998843eb3c8da1">00024</a>         NAVIGATION_BOXES,
-<a name="l00025"></a><a class="code" href="namespaceIDP.html#ab9c412f0fd539b5d70385066c30465a0af1bde0912725a75705d0fb74637f20c1">00025</a>         NAVIGATION_RACK,
-<a name="l00026"></a><a class="code" href="namespaceIDP.html#ab9c412f0fd539b5d70385066c30465a0a10e09a3f2969d951f0dc233cb76eb4bf">00026</a>         <a class="code" href="namespaceIDP.html#ab9c412f0fd539b5d70385066c30465a0a10e09a3f2969d951f0dc233cb76eb4bf">NAVIGATION_DELIVERY</a>
-<a name="l00027"></a>00027     };
-<a name="l00028"></a>00028 
-<a name="l00033"></a><a class="code" href="classIDP_1_1Navigation.html">00033</a>     <span class="keyword">class </span><a class="code" href="classIDP_1_1Navigation.html" title="Find a route from one place to another on the board, and maintain an estimate of the current position...">Navigation</a>
-<a name="l00034"></a>00034     {
-<a name="l00035"></a>00035         <span class="keyword">public</span>:
-<a name="l00036"></a>00036             <a class="code" href="classIDP_1_1Navigation.html#a028ddc27093e3d5de2dfac886c15d478" title="Initialise the class, storing the const pointer to the HAL.">Navigation</a>(<span class="keyword">const</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html" title="Provide a hardware agnostic interface to the required hardware functionality.">HardwareAbstractionLayer</a>* hal);
-<a name="l00037"></a>00037             <span class="keyword">const</span> <a class="code" href="namespaceIDP.html#a1a96e566e4d675fdf20780cc96d92283">NavigationStatus</a> <a class="code" href="classIDP_1_1Navigation.html#ab5cf30dd7a21c90d2ae58309ce0ddfa6" title="Go to a location.">go</a>(<span class="keyword">const</span> <a class="code" href="namespaceIDP.html#ab9c412f0fd539b5d70385066c30465a0">NavigationLocation</a> location);
-<a name="l00038"></a>00038         <span class="keyword">private</span>:
-<a name="l00039"></a>00039             <span class="keyword">const</span> HardwareAbstrationLayer* _hal;
-<a name="l00040"></a>00040     };
-<a name="l00041"></a>00041 }
-<a name="l00042"></a>00042 
-<a name="l00043"></a>00043 <span class="preprocessor">#endif </span><span class="comment">/* LIBIDP_NAVIGATION_H */</span>
-<a name="l00044"></a>00044 
+<a name="l00020"></a><a class="code" href="namespaceIDP.html#a1a96e566e4d675fdf20780cc96d92283">00020</a>     <span class="keyword">enum</span> <a class="code" href="namespaceIDP.html#a1a96e566e4d675fdf20780cc96d92283" title="Current navigation status.">NavigationStatus</a> {
+<a name="l00021"></a><a class="code" href="namespaceIDP.html#a1a96e566e4d675fdf20780cc96d92283a9f52fe7970aefcb1b74e9aea3798f39d">00021</a>         NAVIGATION_ENROUTE,
+<a name="l00022"></a><a class="code" href="namespaceIDP.html#a1a96e566e4d675fdf20780cc96d92283ab9e83c995cb23a5782b23b198dcbabcb">00022</a>         NAVIGATION_ARRIVED,
+<a name="l00023"></a><a class="code" href="namespaceIDP.html#a1a96e566e4d675fdf20780cc96d92283ad75d1c5522e0a38dbe62266912d411ba">00023</a>         <a class="code" href="namespaceIDP.html#a1a96e566e4d675fdf20780cc96d92283ad75d1c5522e0a38dbe62266912d411ba">NAVIGATION_LOST</a>
+<a name="l00024"></a>00024     };
+<a name="l00025"></a>00025 
+<a name="l00029"></a><a class="code" href="namespaceIDP.html#ab9c412f0fd539b5d70385066c30465a0">00029</a>     <span class="keyword">enum</span> <a class="code" href="namespaceIDP.html#ab9c412f0fd539b5d70385066c30465a0" title="Navigation&amp;#39;s current position estimate.">NavigationLocation</a> {
+<a name="l00030"></a><a class="code" href="namespaceIDP.html#ab9c412f0fd539b5d70385066c30465a0a0cfb642ce5e4133706998843eb3c8da1">00030</a>         NAVIGATION_BOXES,
+<a name="l00031"></a><a class="code" href="namespaceIDP.html#ab9c412f0fd539b5d70385066c30465a0af1bde0912725a75705d0fb74637f20c1">00031</a>         NAVIGATION_RACK,
+<a name="l00032"></a><a class="code" href="namespaceIDP.html#ab9c412f0fd539b5d70385066c30465a0a10e09a3f2969d951f0dc233cb76eb4bf">00032</a>         <a class="code" href="namespaceIDP.html#ab9c412f0fd539b5d70385066c30465a0a10e09a3f2969d951f0dc233cb76eb4bf">NAVIGATION_DELIVERY</a>
+<a name="l00033"></a>00033     };
+<a name="l00034"></a>00034 
+<a name="l00039"></a><a class="code" href="classIDP_1_1Navigation.html">00039</a>     <span class="keyword">class </span><a class="code" href="classIDP_1_1Navigation.html" title="Find a route from one place to another on the board, and maintain an estimate of the current position...">Navigation</a>
+<a name="l00040"></a>00040     {
+<a name="l00041"></a>00041         <span class="keyword">public</span>:
+<a name="l00042"></a>00042             <a class="code" href="classIDP_1_1Navigation.html#a028ddc27093e3d5de2dfac886c15d478" title="Initialise the class, storing the const pointer to the HAL.">Navigation</a>(<span class="keyword">const</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html" title="Provide a hardware agnostic interface to the required hardware functionality.">HardwareAbstractionLayer</a>* hal);
+<a name="l00043"></a>00043             <span class="keyword">const</span> <a class="code" href="namespaceIDP.html#a1a96e566e4d675fdf20780cc96d92283" title="Current navigation status.">NavigationStatus</a> <a class="code" href="classIDP_1_1Navigation.html#ab5cf30dd7a21c90d2ae58309ce0ddfa6" title="Go to a location.">go</a>(<span class="keyword">const</span> <a class="code" href="namespaceIDP.html#ab9c412f0fd539b5d70385066c30465a0" title="Navigation&amp;#39;s current position estimate.">NavigationLocation</a> location);
+<a name="l00044"></a>00044         <span class="keyword">private</span>:
+<a name="l00045"></a>00045             <span class="keyword">const</span> HardwareAbstrationLayer* _hal;
+<a name="l00046"></a>00046     };
+<a name="l00047"></a>00047 }
+<a name="l00048"></a>00048 
+<a name="l00049"></a>00049 <span class="preprocessor">#endif </span><span class="comment">/* LIBIDP_NAVIGATION_H */</span>
+<a name="l00050"></a>00050 
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Wed Feb 2 2011 19:20:24 for IDPL108 by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Feb 2 2011 19:21:39 for IDPL108 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

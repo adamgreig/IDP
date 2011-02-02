@@ -93,7 +93,7 @@ namespace IDP {
     /**
      * Display the current ADC read from the light dependent resistor
      */
-    void SelfTests::ldrs()
+    void SelfTests::LDRs()
     {
     }
 
