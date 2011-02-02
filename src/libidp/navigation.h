@@ -14,12 +14,18 @@ namespace IDP {
     
     class HardwareAbstrationLayer;
 
+    /**
+     * Current navigation status
+     */
     enum NavigationStatus {
         NAVIGATION_ENROUTE,
         NAVIGATION_ARRIVED,
         NAVIGATION_LOST
     };
 
+    /**
+     * Navigation's current position estimate
+     */
     enum NavigationLocation {
         NAVIGATION_BOXES,
         NAVIGATION_RACK,

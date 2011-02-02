@@ -15,12 +15,18 @@ namespace IDP {
 
     class HardwareAbstrationLayer;
 
+    /**
+     * Bobbin colours
+     */
     enum BobbinColour {
         BOBBIN_RED,
         BOBBIN_GREEN,
         BOBBIN_WHITE
     };
 
+    /**
+     * Bobbin good or bad
+     */
     enum BobbinBadness {
         BOBBIN_GOOD,
         BOBBIN_BAD
