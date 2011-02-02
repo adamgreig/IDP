@@ -38,6 +38,9 @@
 </div>
 <div class="contents">
 <!-- doxytag: class="IDP::StatusWatchdog" -->
+<p>Polls the STATUS register of the microcontroller any handles any errors that may arise.  
+<a href="#_details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="status__watchdog_8h_source.html">status_watchdog.h</a>&gt;</code></p>
 
 <p><a href="classIDP_1_1StatusWatchdog-members.html">List of all members.</a></p>
@@ -45,7 +48,10 @@
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1StatusWatchdog.html#a62cf3c72abdba9a57a84179aa2089364">check</a> () const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Read the STATUS register of the microcontroller and return the value.  <a href="#a62cf3c72abdba9a57a84179aa2089364"></a><br/></td></tr>
 </table>
+<hr/><a name="_details"></a><h2>Detailed Description</h2>
+<p>Polls the STATUS register of the microcontroller any handles any errors that may arise. </p>
 <hr/><h2>Member Function Documentation</h2>
 <a class="anchor" id="a62cf3c72abdba9a57a84179aa2089364"></a><!-- doxytag: member="IDP::StatusWatchdog::check" ref="a62cf3c72abdba9a57a84179aa2089364" args="() const " -->
 <div class="memitem">
@@ -61,7 +67,8 @@ Public Member Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>Read the STATUS register of the microcontroller and return the value </p>
+
+<p>Read the STATUS register of the microcontroller and return the value. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The error encountered, if any </dd></dl>
 
 </div>
@@ -71,7 +78,7 @@ Public Member Functions</h2></td></tr>
 <li>libidp/<a class="el" href="status__watchdog_8cc.html">status_watchdog.cc</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Wed Feb 2 2011 19:07:40 for IDPL108 by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Feb 2 2011 19:20:24 for IDPL108 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

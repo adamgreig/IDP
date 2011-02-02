@@ -26,6 +26,10 @@ namespace IDP {
         BOBBIN_BAD
     };
     
+    /**
+     * Manage the actuation of the clamp, as well as the detection
+     * and analysis of bobbins for their colour and badness
+     */
     class ClampControl
     {
         public:

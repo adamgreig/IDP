@@ -19,6 +19,10 @@ namespace IDP {
     // Constant for integral control in line following
     const double ki = 4.0;
 
+    /**
+     * Maintain the robot position correctly with respect to the white
+     * line markers, during driving and manouvering
+     */
     class LineFollowing 
     {
         public:

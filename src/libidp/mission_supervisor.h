@@ -17,6 +17,10 @@ namespace IDP {
 
     class HardwareAbstractionLayer;
 
+    /**
+     * Control the overall robot behaviour and objective
+     * fulfillment
+     */
     class MissionSupervisor
     {
         public:

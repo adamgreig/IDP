@@ -26,6 +26,10 @@ namespace IDP {
         NAVIGATION_DELIVERY
     };
 
+    /**
+     * Find a route from one place to another on the board, and
+     * maintain an estimate of the current position
+     */
     class Navigation
     {
         public:

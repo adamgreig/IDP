@@ -4,56 +4,64 @@
 }
 
 
+Provide a hardware agnostic interface to the required hardware functionality.  
+
+
+
+
 {\ttfamily \#include $<$hal.h$>$}
 
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \hyperlink{classIDP_1_1HardwareAbstractionLayer_a424d40bbaed459f571b46dbb45bb8576}{HardwareAbstractionLayer} (const int robot)
-\item 
+\begin{DoxyCompactList}\small\item\em Initialise the HAL class. \item\end{DoxyCompactList}\item 
 void \hyperlink{classIDP_1_1HardwareAbstractionLayer_a0c5a7c42e881c0b4bf8b3f5497c1e4ca}{motors\_\-forward} (const unsigned short int speed) const 
-\item 
+\begin{DoxyCompactList}\small\item\em Drive both motors forwards at a given speed. \item\end{DoxyCompactList}\item 
 void \hyperlink{classIDP_1_1HardwareAbstractionLayer_a43a8ac2e89e101cd8976ce10401e6142}{motors\_\-backward} (const unsigned short int speed) const 
-\item 
+\begin{DoxyCompactList}\small\item\em Drive both motors backwards at a given speed. \item\end{DoxyCompactList}\item 
 void \hyperlink{classIDP_1_1HardwareAbstractionLayer_a164279a4dd6b8cbbc32f6b2bc3f27577}{motor\_\-left\_\-forward} (const unsigned short int speed) const 
-\item 
+\begin{DoxyCompactList}\small\item\em Drive the left motor forward at the given speed. \item\end{DoxyCompactList}\item 
 void \hyperlink{classIDP_1_1HardwareAbstractionLayer_a2b0e3948f124ba41ef711a83e79cd5a3}{motor\_\-right\_\-forward} (const unsigned short int speed) const 
-\item 
+\begin{DoxyCompactList}\small\item\em Drive the right motor forward at the given speed. \item\end{DoxyCompactList}\item 
 void \hyperlink{classIDP_1_1HardwareAbstractionLayer_a2e804836935e0d66e813f68c09ca3cd1}{motor\_\-left\_\-backward} (const unsigned short int speed) const 
-\item 
+\begin{DoxyCompactList}\small\item\em Drive the left motor backward at the given speed. \item\end{DoxyCompactList}\item 
 void \hyperlink{classIDP_1_1HardwareAbstractionLayer_ae7253b2277bc9252c1477e6b71bb0122}{motor\_\-right\_\-backward} (const unsigned short int speed) const 
-\item 
+\begin{DoxyCompactList}\small\item\em Drive the right motor backward at the given speed. \item\end{DoxyCompactList}\item 
 void \hyperlink{classIDP_1_1HardwareAbstractionLayer_adeb07393ffab83877500183162c0bed2}{motors\_\-turn\_\-left} (const unsigned short int speed) const 
-\item 
+\begin{DoxyCompactList}\small\item\em Drive the motors to steer the robot to the left. \item\end{DoxyCompactList}\item 
 void \hyperlink{classIDP_1_1HardwareAbstractionLayer_abf4317f045b498e7e67aff208fa8d519}{motors\_\-turn\_\-right} (const unsigned short int speed) const 
-\item 
+\begin{DoxyCompactList}\small\item\em Drive the motors to steer the robot to the right. \item\end{DoxyCompactList}\item 
 void \hyperlink{classIDP_1_1HardwareAbstractionLayer_a186e188450a83ec4174670e1eb6c40bb}{motors\_\-stop} () const 
-\item 
+\begin{DoxyCompactList}\small\item\em Stop all motors. \item\end{DoxyCompactList}\item 
 const char \hyperlink{classIDP_1_1HardwareAbstractionLayer_a466af55473ec6b65d1f5069cfc88e774}{status\_\-register} () const 
-\item 
+\begin{DoxyCompactList}\small\item\em Read the status register and return it. \item\end{DoxyCompactList}\item 
 void \hyperlink{classIDP_1_1HardwareAbstractionLayer_a1902d9260758777966ab362e21f3be42}{clear\_\-status\_\-register} () const 
-\item 
+\begin{DoxyCompactList}\small\item\em Read the status register, discarding its value. \item\end{DoxyCompactList}\item 
 const \hyperlink{structIDP_1_1LineSensors}{LineSensors} \hyperlink{classIDP_1_1HardwareAbstractionLayer_aca143d627de2ff9942069ad922d17ee5}{line\_\-following\_\-sensors} () const 
-\item 
+\begin{DoxyCompactList}\small\item\em Read the I/O port connected to the line following sensors, then return a struct with their current state. \item\end{DoxyCompactList}\item 
 bool \hyperlink{classIDP_1_1HardwareAbstractionLayer_a4ce4bec948d6449e7cab3cfcd0de513f}{reset\_\-switch} () const 
-\item 
+\begin{DoxyCompactList}\small\item\em Read the reset switch and return its status. \item\end{DoxyCompactList}\item 
 bool \hyperlink{classIDP_1_1HardwareAbstractionLayer_a82ef6744041c174edb7f8982f44685b7}{grabber\_\-switch} () const 
-\item 
+\begin{DoxyCompactList}\small\item\em Read the switch mounted on the grabber arm and return its status. \item\end{DoxyCompactList}\item 
 const unsigned short int \hyperlink{classIDP_1_1HardwareAbstractionLayer_a0bc4534c003bb3cb91bd9b42e80ea8a7}{colour\_\-ldr} () const 
-\item 
+\begin{DoxyCompactList}\small\item\em Get the analogue reading from the LDR used to detect colour. \item\end{DoxyCompactList}\item 
 const unsigned short int \hyperlink{classIDP_1_1HardwareAbstractionLayer_a152c44415559cfe4e74a5560bbe92105}{bad\_\-bobbin\_\-ldr} () const 
-\item 
+\begin{DoxyCompactList}\small\item\em Get the analogue reading from the LDR used to detect the bad bobbin. \item\end{DoxyCompactList}\item 
 void \hyperlink{classIDP_1_1HardwareAbstractionLayer_af776086df3d861a8bec53637c91b84ab}{indication\_\-LEDs} (const bool led\_\-0, const bool led\_\-1, const bool led\_\-2) const 
-\item 
+\begin{DoxyCompactList}\small\item\em Set the bobbin colour indication LEDs. \item\end{DoxyCompactList}\item 
 void \hyperlink{classIDP_1_1HardwareAbstractionLayer_a6034826727571aec7d30999d8c88fa80}{colour\_\-leds} (const bool red, const bool green) const 
-\item 
+\begin{DoxyCompactList}\small\item\em Turn on and off the LEDs used to light up the bobbin for colour detection. \item\end{DoxyCompactList}\item 
 void \hyperlink{classIDP_1_1HardwareAbstractionLayer_a7e687c2254a9bfba55ff99ce191c27ae}{bad\_\-bobbin\_\-led} (const bool status) const 
-\item 
+\begin{DoxyCompactList}\small\item\em Turn on and off the LED used to light up the top of the bobbin, for bad bobbin detection. \item\end{DoxyCompactList}\item 
 void \hyperlink{classIDP_1_1HardwareAbstractionLayer_a577c1794c61814c3b23f5017437aba97}{grabber\_\-jaw} (const bool status) const 
-\item 
+\begin{DoxyCompactList}\small\item\em Turn the grabber jaw actuator on or off. \item\end{DoxyCompactList}\item 
 void \hyperlink{classIDP_1_1HardwareAbstractionLayer_a0bf933820024212953433404e981be16}{grabber\_\-lift} (const bool status) const 
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Turn the grabber lift mechanism actuator on or off. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
+
+\subsection{Detailed Description}
+Provide a hardware agnostic interface to the required hardware functionality. 
 
 \subsection{Constructor \& Destructor Documentation}
 \hypertarget{classIDP_1_1HardwareAbstractionLayer_a424d40bbaed459f571b46dbb45bb8576}{
@@ -65,7 +73,11 @@ void \hyperlink{classIDP_1_1HardwareAbstractionLayer_a0bf933820024212953433404e9
 \end{DoxyParamCaption}
 )}}
 \label{classIDP_1_1HardwareAbstractionLayer_a424d40bbaed459f571b46dbb45bb8576}
-Initialise the HAL class. Establishes the link to the robot. 
+
+
+Initialise the HAL class. 
+
+Establishes the link to the robot. 
 
 \subsection{Member Function Documentation}
 \hypertarget{classIDP_1_1HardwareAbstractionLayer_a152c44415559cfe4e74a5560bbe92105}{
@@ -77,7 +89,11 @@ Initialise the HAL class. Establishes the link to the robot.
 \end{DoxyParamCaption}
 ) const}}
 \label{classIDP_1_1HardwareAbstractionLayer_a152c44415559cfe4e74a5560bbe92105}
-Get the analogue reading from the LDR used to detect the bad bobbin. \begin{DoxyReturn}{Returns}
+
+
+Get the analogue reading from the LDR used to detect the bad bobbin. 
+
+\begin{DoxyReturn}{Returns}
 The analogue reading value 
 \end{DoxyReturn}
 \hypertarget{classIDP_1_1HardwareAbstractionLayer_a7e687c2254a9bfba55ff99ce191c27ae}{
@@ -89,7 +105,11 @@ The analogue reading value
 \end{DoxyParamCaption}
 ) const}}
 \label{classIDP_1_1HardwareAbstractionLayer_a7e687c2254a9bfba55ff99ce191c27ae}
+
+
 Turn on and off the LED used to light up the top of the bobbin, for bad bobbin detection. 
+
+
 \begin{DoxyParams}{Parameters}
 \item[{\em status}]Whether the LED should be on or off (true=on) \end{DoxyParams}
 \hypertarget{classIDP_1_1HardwareAbstractionLayer_a1902d9260758777966ab362e21f3be42}{
@@ -101,7 +121,11 @@ Turn on and off the LED used to light up the top of the bobbin, for bad bobbin d
 \end{DoxyParamCaption}
 ) const}}
 \label{classIDP_1_1HardwareAbstractionLayer_a1902d9260758777966ab362e21f3be42}
-Read the status register, discarding its value. \hypertarget{classIDP_1_1HardwareAbstractionLayer_a0bc4534c003bb3cb91bd9b42e80ea8a7}{
+
+
+Read the status register, discarding its value. 
+
+\hypertarget{classIDP_1_1HardwareAbstractionLayer_a0bc4534c003bb3cb91bd9b42e80ea8a7}{
 \index{IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}!colour\_\-ldr@{colour\_\-ldr}}
 \index{colour\_\-ldr@{colour\_\-ldr}!IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}}
 \subsubsection[{colour\_\-ldr}]{\setlength{\rightskip}{0pt plus 5cm}const unsigned short int IDP::HardwareAbstractionLayer::colour\_\-ldr (
@@ -110,7 +134,11 @@ Read the status register, discarding its value. \hypertarget{classIDP_1_1Hardwar
 \end{DoxyParamCaption}
 ) const}}
 \label{classIDP_1_1HardwareAbstractionLayer_a0bc4534c003bb3cb91bd9b42e80ea8a7}
-Get the analogue reading from the LDR used to detect colour. \begin{DoxyReturn}{Returns}
+
+
+Get the analogue reading from the LDR used to detect colour. 
+
+\begin{DoxyReturn}{Returns}
 The analogue reading value 
 \end{DoxyReturn}
 \hypertarget{classIDP_1_1HardwareAbstractionLayer_a6034826727571aec7d30999d8c88fa80}{
@@ -123,7 +151,11 @@ The analogue reading value
 \end{DoxyParamCaption}
 ) const}}
 \label{classIDP_1_1HardwareAbstractionLayer_a6034826727571aec7d30999d8c88fa80}
+
+
 Turn on and off the LEDs used to light up the bobbin for colour detection. 
+
+
 \begin{DoxyParams}{Parameters}
 \item[{\em red}]Whether the red LED should be on or off (true=on) \item[{\em green}]Whether the green LED should be on or off (true=on) \end{DoxyParams}
 \hypertarget{classIDP_1_1HardwareAbstractionLayer_a577c1794c61814c3b23f5017437aba97}{
@@ -135,7 +167,11 @@ Turn on and off the LEDs used to light up the bobbin for colour detection.
 \end{DoxyParamCaption}
 ) const}}
 \label{classIDP_1_1HardwareAbstractionLayer_a577c1794c61814c3b23f5017437aba97}
+
+
 Turn the grabber jaw actuator on or off. 
+
+
 \begin{DoxyParams}{Parameters}
 \item[{\em status}]Jaw actuator status (true=on) \end{DoxyParams}
 \hypertarget{classIDP_1_1HardwareAbstractionLayer_a0bf933820024212953433404e981be16}{
@@ -147,7 +183,11 @@ Turn the grabber jaw actuator on or off.
 \end{DoxyParamCaption}
 ) const}}
 \label{classIDP_1_1HardwareAbstractionLayer_a0bf933820024212953433404e981be16}
+
+
 Turn the grabber lift mechanism actuator on or off. 
+
+
 \begin{DoxyParams}{Parameters}
 \item[{\em status}]Lift actuator status (true=on) \end{DoxyParams}
 \hypertarget{classIDP_1_1HardwareAbstractionLayer_a82ef6744041c174edb7f8982f44685b7}{
@@ -159,7 +199,11 @@ Turn the grabber lift mechanism actuator on or off.
 \end{DoxyParamCaption}
 ) const}}
 \label{classIDP_1_1HardwareAbstractionLayer_a82ef6744041c174edb7f8982f44685b7}
-Read the switch mounted on the grabber arm and return its status. \begin{DoxyReturn}{Returns}
+
+
+Read the switch mounted on the grabber arm and return its status. 
+
+\begin{DoxyReturn}{Returns}
 The current value of the switch, true if pressed 
 \end{DoxyReturn}
 \hypertarget{classIDP_1_1HardwareAbstractionLayer_af776086df3d861a8bec53637c91b84ab}{
@@ -173,7 +217,11 @@ The current value of the switch, true if pressed
 \end{DoxyParamCaption}
 ) const}}
 \label{classIDP_1_1HardwareAbstractionLayer_af776086df3d861a8bec53637c91b84ab}
+
+
 Set the bobbin colour indication LEDs. 
+
+
 \begin{DoxyParams}{Parameters}
 \item[{\em led\_\-0}]Whether LED0 should be on or off (true=on) \item[{\em led\_\-1}]Whether LED1 should be on or off (true=on) \item[{\em led\_\-2}]Whether LED2 should be on or off (true=on) \end{DoxyParams}
 \hypertarget{classIDP_1_1HardwareAbstractionLayer_aca143d627de2ff9942069ad922d17ee5}{
@@ -185,7 +233,11 @@ Set the bobbin colour indication LEDs.
 \end{DoxyParamCaption}
 ) const}}
 \label{classIDP_1_1HardwareAbstractionLayer_aca143d627de2ff9942069ad922d17ee5}
-Read the I/O port connected to the line following sensors, then return a struct with their current state. \begin{DoxyReturn}{Returns}
+
+
+Read the I/O port connected to the line following sensors, then return a struct with their current state. 
+
+\begin{DoxyReturn}{Returns}
 A \hyperlink{structIDP_1_1LineSensors}{LineSensors} struct containing the current state of the sensors 
 \end{DoxyReturn}
 \hypertarget{classIDP_1_1HardwareAbstractionLayer_a2e804836935e0d66e813f68c09ca3cd1}{
@@ -197,7 +249,11 @@ A \hyperlink{structIDP_1_1LineSensors}{LineSensors} struct containing the curren
 \end{DoxyParamCaption}
 ) const}}
 \label{classIDP_1_1HardwareAbstractionLayer_a2e804836935e0d66e813f68c09ca3cd1}
-Drive the left motor backward at the given speed 
+
+
+Drive the left motor backward at the given speed. 
+
+
 \begin{DoxyParams}{Parameters}
 \item[{\em speed}]The speed at which to drive the motor \end{DoxyParams}
 \hypertarget{classIDP_1_1HardwareAbstractionLayer_a164279a4dd6b8cbbc32f6b2bc3f27577}{
@@ -209,7 +265,11 @@ Drive the left motor backward at the given speed
 \end{DoxyParamCaption}
 ) const}}
 \label{classIDP_1_1HardwareAbstractionLayer_a164279a4dd6b8cbbc32f6b2bc3f27577}
-Drive the left motor forward at the given speed 
+
+
+Drive the left motor forward at the given speed. 
+
+
 \begin{DoxyParams}{Parameters}
 \item[{\em speed}]The speed at which to drive the motor \end{DoxyParams}
 \hypertarget{classIDP_1_1HardwareAbstractionLayer_ae7253b2277bc9252c1477e6b71bb0122}{
@@ -221,7 +281,11 @@ Drive the left motor forward at the given speed
 \end{DoxyParamCaption}
 ) const}}
 \label{classIDP_1_1HardwareAbstractionLayer_ae7253b2277bc9252c1477e6b71bb0122}
-Drive the right motor backward at the given speed 
+
+
+Drive the right motor backward at the given speed. 
+
+
 \begin{DoxyParams}{Parameters}
 \item[{\em speed}]The speed at which to drive the motor \end{DoxyParams}
 \hypertarget{classIDP_1_1HardwareAbstractionLayer_a2b0e3948f124ba41ef711a83e79cd5a3}{
@@ -233,7 +297,11 @@ Drive the right motor backward at the given speed
 \end{DoxyParamCaption}
 ) const}}
 \label{classIDP_1_1HardwareAbstractionLayer_a2b0e3948f124ba41ef711a83e79cd5a3}
-Drive the right motor forward at the given speed 
+
+
+Drive the right motor forward at the given speed. 
+
+
 \begin{DoxyParams}{Parameters}
 \item[{\em speed}]The speed at which to drive the motor \end{DoxyParams}
 \hypertarget{classIDP_1_1HardwareAbstractionLayer_a43a8ac2e89e101cd8976ce10401e6142}{
@@ -245,7 +313,11 @@ Drive the right motor forward at the given speed
 \end{DoxyParamCaption}
 ) const}}
 \label{classIDP_1_1HardwareAbstractionLayer_a43a8ac2e89e101cd8976ce10401e6142}
+
+
 Drive both motors backwards at a given speed. 
+
+
 \begin{DoxyParams}{Parameters}
 \item[{\em speed}]The speed to drive at, 0 to 127 \end{DoxyParams}
 \hypertarget{classIDP_1_1HardwareAbstractionLayer_a0c5a7c42e881c0b4bf8b3f5497c1e4ca}{
@@ -257,7 +329,11 @@ Drive both motors backwards at a given speed.
 \end{DoxyParamCaption}
 ) const}}
 \label{classIDP_1_1HardwareAbstractionLayer_a0c5a7c42e881c0b4bf8b3f5497c1e4ca}
+
+
 Drive both motors forwards at a given speed. 
+
+
 \begin{DoxyParams}{Parameters}
 \item[{\em speed}]The speed to drive at, 0 to 127 \end{DoxyParams}
 \hypertarget{classIDP_1_1HardwareAbstractionLayer_a186e188450a83ec4174670e1eb6c40bb}{
@@ -269,7 +345,11 @@ Drive both motors forwards at a given speed.
 \end{DoxyParamCaption}
 ) const}}
 \label{classIDP_1_1HardwareAbstractionLayer_a186e188450a83ec4174670e1eb6c40bb}
-Stop all motors. \hypertarget{classIDP_1_1HardwareAbstractionLayer_adeb07393ffab83877500183162c0bed2}{
+
+
+Stop all motors. 
+
+\hypertarget{classIDP_1_1HardwareAbstractionLayer_adeb07393ffab83877500183162c0bed2}{
 \index{IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}!motors\_\-turn\_\-left@{motors\_\-turn\_\-left}}
 \index{motors\_\-turn\_\-left@{motors\_\-turn\_\-left}!IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}}
 \subsubsection[{motors\_\-turn\_\-left}]{\setlength{\rightskip}{0pt plus 5cm}void IDP::HardwareAbstractionLayer::motors\_\-turn\_\-left (
@@ -278,7 +358,11 @@ Stop all motors. \hypertarget{classIDP_1_1HardwareAbstractionLayer_adeb07393ffab
 \end{DoxyParamCaption}
 ) const}}
 \label{classIDP_1_1HardwareAbstractionLayer_adeb07393ffab83877500183162c0bed2}
+
+
 Drive the motors to steer the robot to the left. 
+
+
 \begin{DoxyParams}{Parameters}
 \item[{\em speed}]The speed to drive at, 0 to 127 \end{DoxyParams}
 \hypertarget{classIDP_1_1HardwareAbstractionLayer_abf4317f045b498e7e67aff208fa8d519}{
@@ -290,7 +374,11 @@ Drive the motors to steer the robot to the left.
 \end{DoxyParamCaption}
 ) const}}
 \label{classIDP_1_1HardwareAbstractionLayer_abf4317f045b498e7e67aff208fa8d519}
+
+
 Drive the motors to steer the robot to the right. 
+
+
 \begin{DoxyParams}{Parameters}
 \item[{\em speed}]The speed to drive at, 0 to 127 \end{DoxyParams}
 \hypertarget{classIDP_1_1HardwareAbstractionLayer_a4ce4bec948d6449e7cab3cfcd0de513f}{
@@ -302,7 +390,11 @@ Drive the motors to steer the robot to the right.
 \end{DoxyParamCaption}
 ) const}}
 \label{classIDP_1_1HardwareAbstractionLayer_a4ce4bec948d6449e7cab3cfcd0de513f}
-Read the reset switch and return its status. \begin{DoxyReturn}{Returns}
+
+
+Read the reset switch and return its status. 
+
+\begin{DoxyReturn}{Returns}
 The current value of the switch, true if pressed 
 \end{DoxyReturn}
 \hypertarget{classIDP_1_1HardwareAbstractionLayer_a466af55473ec6b65d1f5069cfc88e774}{
@@ -314,7 +406,11 @@ The current value of the switch, true if pressed
 \end{DoxyParamCaption}
 ) const}}
 \label{classIDP_1_1HardwareAbstractionLayer_a466af55473ec6b65d1f5069cfc88e774}
-Read the status register and return it. \begin{DoxyReturn}{Returns}
+
+
+Read the status register and return it. 
+
+\begin{DoxyReturn}{Returns}
 The STATUS register 
 \end{DoxyReturn}
 

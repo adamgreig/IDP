@@ -20,6 +20,10 @@ namespace IDP {
     static const bool LINE = true;
     static const bool NO_LINE = false;
     
+    /**
+     * Contains the LINE or NO_LINE status of each of the four 
+     * IR sensors used for line following
+     */
     struct LineSensors
     {
         bool outer_left;
@@ -28,6 +32,10 @@ namespace IDP {
         bool outer_right;
     };
 
+    /**
+     * Provide a hardware agnostic interface to the required hardware
+     * functionality
+     */
     class HardwareAbstractionLayer
     {
         public:

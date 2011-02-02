@@ -4,16 +4,24 @@
 }
 
 
+Find a route from one place to another on the board, and maintain an estimate of the current position.  
+
+
+
+
 {\ttfamily \#include $<$navigation.h$>$}
 
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \hyperlink{classIDP_1_1Navigation_a028ddc27093e3d5de2dfac886c15d478}{Navigation} (const \hyperlink{classIDP_1_1HardwareAbstractionLayer}{HardwareAbstractionLayer} $\ast$hal)
-\item 
+\begin{DoxyCompactList}\small\item\em Initialise the class, storing the const pointer to the HAL. \item\end{DoxyCompactList}\item 
 const \hyperlink{namespaceIDP_a1a96e566e4d675fdf20780cc96d92283}{NavigationStatus} \hyperlink{classIDP_1_1Navigation_ab5cf30dd7a21c90d2ae58309ce0ddfa6}{go} (const \hyperlink{namespaceIDP_ab9c412f0fd539b5d70385066c30465a0}{NavigationLocation} location)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Go to a location. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
+
+\subsection{Detailed Description}
+Find a route from one place to another on the board, and maintain an estimate of the current position. 
 
 \subsection{Constructor \& Destructor Documentation}
 \hypertarget{classIDP_1_1Navigation_a028ddc27093e3d5de2dfac886c15d478}{
@@ -25,7 +33,11 @@ const \hyperlink{namespaceIDP_a1a96e566e4d675fdf20780cc96d92283}{NavigationStatu
 \end{DoxyParamCaption}
 )}}
 \label{classIDP_1_1Navigation_a028ddc27093e3d5de2dfac886c15d478}
+
+
 Initialise the class, storing the const pointer to the HAL. 
+
+
 \begin{DoxyParams}{Parameters}
 \item[{\em hal}]A const pointer to an instance of the HAL \end{DoxyParams}
 
@@ -40,7 +52,11 @@ Initialise the class, storing the const pointer to the HAL.
 \end{DoxyParamCaption}
 )}}
 \label{classIDP_1_1Navigation_ab5cf30dd7a21c90d2ae58309ce0ddfa6}
-Go to a location. \begin{DoxyReturn}{Returns}
+
+
+Go to a location. 
+
+\begin{DoxyReturn}{Returns}
 A navigation status code 
 \end{DoxyReturn}
 

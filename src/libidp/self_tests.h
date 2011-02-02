@@ -15,6 +15,9 @@
 
 namespace IDP {
 
+    /**
+     * Execute a variety of functionality self tests
+     */
     class SelfTests
     {
         public:

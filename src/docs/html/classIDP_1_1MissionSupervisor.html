@@ -38,13 +38,16 @@
 </div>
 <div class="contents">
 <!-- doxytag: class="IDP::MissionSupervisor" -->
+<p>Control the overall robot behaviour and objective fulfillment.  
+<a href="#_details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="mission__supervisor_8h_source.html">mission_supervisor.h</a>&gt;</code></p>
 <div class="dynheader">
 Collaboration diagram for IDP::MissionSupervisor:</div>
 <div class="dyncontent">
 <div class="center"><img src="classIDP_1_1MissionSupervisor__coll__graph.png" border="0" usemap="#IDP_1_1MissionSupervisor_coll__map" alt="Collaboration graph"/></div>
 <map name="IDP_1_1MissionSupervisor_coll__map" id="IDP_1_1MissionSupervisor_coll__map">
-<area shape="rect" id="node2" href="classIDP_1_1HardwareAbstractionLayer.html" title="IDP::HardwareAbstractionLayer" alt="" coords="5,6,237,34"/></map>
+<area shape="rect" id="node2" href="classIDP_1_1HardwareAbstractionLayer.html" title="Provide a hardware agnostic interface to the required hardware functionality." alt="" coords="5,6,208,37"/></map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 
 <p><a href="classIDP_1_1MissionSupervisor-members.html">List of all members.</a></p>
@@ -52,14 +55,24 @@ Collaboration diagram for IDP::MissionSupervisor:</div>
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1MissionSupervisor.html#afc6a54e04718d919b2b48458a47304b2">MissionSupervisor</a> (int robot)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Construct the <a class="el" href="classIDP_1_1MissionSupervisor.html" title="Control the overall robot behaviour and objective fulfillment.">MissionSupervisor</a>.  <a href="#afc6a54e04718d919b2b48458a47304b2"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1MissionSupervisor.html#a06fc1fcf6272651d50938fd94306ac24">run_task</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Commence running the main task.  <a href="#a06fc1fcf6272651d50938fd94306ac24"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1MissionSupervisor.html#af8c6a3073190a4479211753fe5f50a36">drive_forward</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Set both motors driving forwards.  <a href="#af8c6a3073190a4479211753fe5f50a36"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1MissionSupervisor.html#ae5d6e9a37417126da780583349b48d44">drive_backward</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Set both motors driving backwards.  <a href="#ae5d6e9a37417126da780583349b48d44"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1MissionSupervisor.html#ad11e444b6be1d51c3339bd6397d45fd4">stop</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Stop all motors.  <a href="#ad11e444b6be1d51c3339bd6397d45fd4"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1MissionSupervisor.html#af147b0bec9464bb7e956a40a7f3d0fda">test_line_sensor</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Attempt to read the line sensor status.  <a href="#af147b0bec9464bb7e956a40a7f3d0fda"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1MissionSupervisor.html#a21be0b52e2f13c7fb373c90dae77ba23">test_line_following</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Test line following on a straight line.  <a href="#a21be0b52e2f13c7fb373c90dae77ba23"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classIDP_1_1HardwareAbstractionLayer.html">HardwareAbstractionLayer</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1MissionSupervisor.html#ae19d0c2123fda158cc45e649128fbc09">hal</a> () const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Const accessor for the HAL.  <a href="#ae19d0c2123fda158cc45e649128fbc09"></a><br/></td></tr>
 </table>
+<hr/><a name="_details"></a><h2>Detailed Description</h2>
+<p>Control the overall robot behaviour and objective fulfillment. </p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="afc6a54e04718d919b2b48458a47304b2"></a><!-- doxytag: member="IDP::MissionSupervisor::MissionSupervisor" ref="afc6a54e04718d919b2b48458a47304b2" args="(int robot)" -->
 <div class="memitem">
@@ -76,7 +89,9 @@ Public Member Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>Construct the <a class="el" href="classIDP_1_1MissionSupervisor.html">MissionSupervisor</a>. Initialises a link to the specified robot number, or 0 if running embedded. </p>
+
+<p>Construct the <a class="el" href="classIDP_1_1MissionSupervisor.html" title="Control the overall robot behaviour and objective fulfillment.">MissionSupervisor</a>. </p>
+<p>Initialises a link to the specified robot number, or 0 if running embedded. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>robot</em>&nbsp;</td><td>Which robot to link to, or 0 if embedded </td></tr>
@@ -101,6 +116,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
 <p>Set both motors driving backwards. </p>
 
 </div>
@@ -119,6 +135,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
 <p>Set both motors driving forwards. </p>
 
 </div>
@@ -137,7 +154,8 @@ Public Member Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>Const accessor for the HAL </p>
+
+<p>Const accessor for the HAL. </p>
 
 </div>
 </div>
@@ -155,7 +173,8 @@ Public Member Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>Commence running the main task </p>
+
+<p>Commence running the main task. </p>
 
 </div>
 </div>
@@ -173,6 +192,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
 <p>Stop all motors. </p>
 
 </div>
@@ -191,7 +211,8 @@ Public Member Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>Test line following on a straight line </p>
+
+<p>Test line following on a straight line. </p>
 
 </div>
 </div>
@@ -209,7 +230,8 @@ Public Member Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>Attempt to read the line sensor status </p>
+
+<p>Attempt to read the line sensor status. </p>
 
 </div>
 </div>
@@ -218,7 +240,7 @@ Public Member Functions</h2></td></tr>
 <li>libidp/<a class="el" href="mission__supervisor_8cc.html">mission_supervisor.cc</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Wed Feb 2 2011 19:07:40 for IDPL108 by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Feb 2 2011 19:20:24 for IDPL108 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>
