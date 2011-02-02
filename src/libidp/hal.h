@@ -48,7 +48,7 @@ namespace IDP {
             bool grabber_switch() const;
             const unsigned short int colour_ldr() const;
             const unsigned short int bad_bobbin_ldr() const;
-            void indication_LEDs(const bool led_1, const bool led_2, const bool led_3) const;
+            void indication_LEDs(const bool led_0, const bool led_1, const bool led_2) const;
             void colour_leds(const bool red, const bool green) const;
             void bad_bobbin_led(const bool status) const;
             void grabber_jaw(const bool status) const;

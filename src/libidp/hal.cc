@@ -249,7 +249,78 @@ namespace IDP {
      * Read the reset switch and return its status.
      * \returns The current value of the switch, true if pressed
      */
-    bool reset_switch() const
+    bool HardwareAbstractionLayer::reset_switch() const
+    {
+    }
+
+    /**
+     * Read the switch mounted on the grabber arm and return its status.
+     * \returns The current value of the switch, true if pressed
+     */
+    bool HardwareAbstractionLayer::grabber_switch() const
+    {
+    }
+
+    /**
+     * Get the analogue reading from the LDR used to detect colour.
+     * \returns The analogue reading value
+     */
+    const unsigned short int HardwareAbstractionLayer::colour_ldr() const
+    {
+    }
+
+    /**
+     * Get the analogue reading from the LDR used to detect the bad bobbin.
+     * \returns The analogue reading value
+     */
+    const unsigned short int HardwareAbstractionLayer::bad_bobbin_ldr() const
+    {
+    }
+
+    /**
+     * Set the bobbin colour indication LEDs.
+     * \param led_0 Whether LED0 should be on or off (true=on)
+     * \param led_1 Whether LED1 should be on or off (true=on)
+     * \param led_2 Whether LED2 should be on or off (true=on)
+     */
+    void HardwareAbstractionLayer::indication_LEDs(const bool led_0,
+        const bool led_1, const bool led_2) const
+    {
+    }
+
+    /**
+     * Turn on and off the LEDs used to light up the bobbin for colour
+     * detection.
+     * \param red Whether the red LED should be on or off (true=on)
+     * \param green Whether the green LED should be on or off (true=on)
+     */
+    void HardwareAbstractionLayer::colour_leds(const bool red,
+        const bool green) const
+    {
+    }
+
+    /**
+     * Turn on and off the LED used to light up the top of the bobbin, for
+     * bad bobbin detection.
+     * \param status Whether the LED should be on or off (true=on)
+     */
+    void HardwareAbstractionLayer::bad_bobbin_led(const bool status) const
+    {
+    }
+
+    /**
+     * Turn the grabber jaw actuator on or off.
+     * \param status Jaw actuator status (true=on)
+     */
+    void HardwareAbstractionLayer::grabber_jaw(const bool status) const
+    {
+    }
+
+    /**
+     * Turn the grabber lift mechanism actuator on or off.
+     * \param status Lift actuator status (true=on)
+     */
+    void HardwareAbstractionLayer::grabber_lift(const bool status) const
     {
     }
 
