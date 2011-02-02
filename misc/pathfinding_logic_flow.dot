@@ -1,0 +1,33 @@
+digraph logic_flow {
+    "Start" [shape=box];
+    "Start" -> "We are going from node FROM, heading towards node TO";
+    "We are going from node FROM, heading towards node TO" -> "Go to node TARGET";
+    "Go to node TARGET" -> "Is TARGET == TO?";
+    "Is TARGET == TO?" [shape=diamond];
+    "Is TARGET == TO?" -> "Are we at a junction?" [label="Yes"];
+    "Is TARGET == TO?" -> "Is TARGET > TO?" [label="No"];
+    "Is TARGET > TO?" [shape=diamond];
+    "Is TARGET > TO?" -> "We need to go clockwise" [label="Yes"];
+    "Is TARGET > TO?" -> "We need to go anti-clockwise" [label="No"];
+    "We need to go anti-clockwise" -> "Is TO > FROM?";
+    "We need to go clockwise" -> "Is TO > FROM?";
+    "Is TO > FROM?" [shape=diamond];
+    "Is TO > FROM?" -> "We are going clockwise" [label="Yes"];
+    "Is TO > FROM?" -> "We are going anti-clockwise" [label="No"];
+    "We are going clockwise" -> "Are we going in the wrong direction?";
+    "We are going anti-clockwise" -> "Are we going in the wrong direction?";
+    "Are we going in the wrong direction?" [shape=diamond];
+    "Are we going in the wrong direction?" -> "Turn around" [label="Yes"];
+    "Turn around" -> "Are we at a junction?";
+    "Are we going in the wrong direction?" -> "Are we at a junction?" [label="No"];
+    "Are we at a junction?" [shape=diamond];
+    "Are we at a junction?" -> "Keep going straight" [label="No"];
+    "Are we at a junction?" -> "Is this the target junction?" [label="Yes"];
+    "Is this the target junction?" [shape=diamond];
+    "Is this the target junction?" -> "Look up turn" [label="No"];
+    "Is this the target junction?" -> "Stop" [label="Yes"];
+    "Stop" [shape=box];
+    "Look up turn" -> "Take turn";
+    "Take turn" -> "Keep going straight";
+    "Keep going straight" [shape=box];
+}
