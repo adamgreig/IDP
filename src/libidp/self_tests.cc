@@ -32,7 +32,7 @@ namespace IDP {
     /**
      * Drive the robot backwards for a moment
      */
-    void SelfTests::drive_forward()
+    void SelfTests::drive_backward()
     {
     }
 
