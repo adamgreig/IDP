@@ -5,6 +5,8 @@
 \subsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
+class \hyperlink{classIDP_1_1ClampControl}{ClampControl}
+\item 
 struct \hyperlink{structIDP_1_1LineSensors}{LineSensors}
 \item 
 class \hyperlink{classIDP_1_1HardwareAbstractionLayer}{HardwareAbstractionLayer}
@@ -12,6 +14,30 @@ class \hyperlink{classIDP_1_1HardwareAbstractionLayer}{HardwareAbstractionLayer}
 class \hyperlink{classIDP_1_1LineFollowing}{LineFollowing}
 \item 
 class \hyperlink{classIDP_1_1MissionSupervisor}{MissionSupervisor}
+\item 
+class \hyperlink{classIDP_1_1Navigation}{Navigation}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{namespaceIDP_a6efd2cca14c0dae1c6458714ce0218df}{BobbinColour} \{ \hyperlink{namespaceIDP_a6efd2cca14c0dae1c6458714ce0218dfa1bbb59488c1d089eefb9b54146bcdb26}{BOBBIN\_\-RED}, 
+\hyperlink{namespaceIDP_a6efd2cca14c0dae1c6458714ce0218dfa047d7c5fcd5669f1a819d05fb5319f0b}{BOBBIN\_\-GREEN}, 
+\hyperlink{namespaceIDP_a6efd2cca14c0dae1c6458714ce0218dfa8f427bfb1c335650a7ada595e1607d00}{BOBBIN\_\-WHITE}
+ \}
+\item 
+enum \hyperlink{namespaceIDP_adf12b2c1e1c228810b18c34a3c88c32d}{BobbinBadness} \{ \hyperlink{namespaceIDP_adf12b2c1e1c228810b18c34a3c88c32dafdc1b8b5a9d849fd99ac2ae438b632dd}{BOBBIN\_\-GOOD}, 
+\hyperlink{namespaceIDP_adf12b2c1e1c228810b18c34a3c88c32da6cb4993a316e9d4dc9836d3d990fd0f6}{BOBBIN\_\-BAD}
+ \}
+\item 
+enum \hyperlink{namespaceIDP_a1a96e566e4d675fdf20780cc96d92283}{NavigationStatus} \{ \hyperlink{namespaceIDP_a1a96e566e4d675fdf20780cc96d92283a9f52fe7970aefcb1b74e9aea3798f39d}{NAVIGATION\_\-ENROUTE}, 
+\hyperlink{namespaceIDP_a1a96e566e4d675fdf20780cc96d92283ab9e83c995cb23a5782b23b198dcbabcb}{NAVIGATION\_\-ARRIVED}, 
+\hyperlink{namespaceIDP_a1a96e566e4d675fdf20780cc96d92283ad75d1c5522e0a38dbe62266912d411ba}{NAVIGATION\_\-LOST}
+ \}
+\item 
+enum \hyperlink{namespaceIDP_ab9c412f0fd539b5d70385066c30465a0}{NavigationLocation} \{ \hyperlink{namespaceIDP_ab9c412f0fd539b5d70385066c30465a0a0cfb642ce5e4133706998843eb3c8da1}{NAVIGATION\_\-BOXES}, 
+\hyperlink{namespaceIDP_ab9c412f0fd539b5d70385066c30465a0af1bde0912725a75705d0fb74637f20c1}{NAVIGATION\_\-RACK}, 
+\hyperlink{namespaceIDP_ab9c412f0fd539b5d70385066c30465a0a10e09a3f2969d951f0dc233cb76eb4bf}{NAVIGATION\_\-DELIVERY}
+ \}
 \end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
@@ -31,6 +57,97 @@ static const bool \hyperlink{namespaceIDP_a5ea027b77276a637783f68955303b9b8}{NO\
 \item 
 const double \hyperlink{namespaceIDP_aa2b933f600179026dbca5d8bc63c3baf}{ki} = 4.0
 \end{DoxyCompactItemize}
+
+
+\subsection{Enumeration Type Documentation}
+\hypertarget{namespaceIDP_adf12b2c1e1c228810b18c34a3c88c32d}{
+\index{IDP@{IDP}!BobbinBadness@{BobbinBadness}}
+\index{BobbinBadness@{BobbinBadness}!IDP@{IDP}}
+\subsubsection[{BobbinBadness}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf IDP::BobbinBadness}}}
+\label{namespaceIDP_adf12b2c1e1c228810b18c34a3c88c32d}
+\begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{BOBBIN\_\-GOOD@{BOBBIN\_\-GOOD}!IDP@{IDP}}\index{IDP@{IDP}!BOBBIN\_\-GOOD@{BOBBIN\_\-GOOD}}\item[{\em 
+\hypertarget{namespaceIDP_adf12b2c1e1c228810b18c34a3c88c32dafdc1b8b5a9d849fd99ac2ae438b632dd}{
+BOBBIN\_\-GOOD}
+\label{namespaceIDP_adf12b2c1e1c228810b18c34a3c88c32dafdc1b8b5a9d849fd99ac2ae438b632dd}
+}]\index{BOBBIN\_\-BAD@{BOBBIN\_\-BAD}!IDP@{IDP}}\index{IDP@{IDP}!BOBBIN\_\-BAD@{BOBBIN\_\-BAD}}\item[{\em 
+\hypertarget{namespaceIDP_adf12b2c1e1c228810b18c34a3c88c32da6cb4993a316e9d4dc9836d3d990fd0f6}{
+BOBBIN\_\-BAD}
+\label{namespaceIDP_adf12b2c1e1c228810b18c34a3c88c32da6cb4993a316e9d4dc9836d3d990fd0f6}
+}]\end{description}
+\end{Desc}
+
+\hypertarget{namespaceIDP_a6efd2cca14c0dae1c6458714ce0218df}{
+\index{IDP@{IDP}!BobbinColour@{BobbinColour}}
+\index{BobbinColour@{BobbinColour}!IDP@{IDP}}
+\subsubsection[{BobbinColour}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf IDP::BobbinColour}}}
+\label{namespaceIDP_a6efd2cca14c0dae1c6458714ce0218df}
+\begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{BOBBIN\_\-RED@{BOBBIN\_\-RED}!IDP@{IDP}}\index{IDP@{IDP}!BOBBIN\_\-RED@{BOBBIN\_\-RED}}\item[{\em 
+\hypertarget{namespaceIDP_a6efd2cca14c0dae1c6458714ce0218dfa1bbb59488c1d089eefb9b54146bcdb26}{
+BOBBIN\_\-RED}
+\label{namespaceIDP_a6efd2cca14c0dae1c6458714ce0218dfa1bbb59488c1d089eefb9b54146bcdb26}
+}]\index{BOBBIN\_\-GREEN@{BOBBIN\_\-GREEN}!IDP@{IDP}}\index{IDP@{IDP}!BOBBIN\_\-GREEN@{BOBBIN\_\-GREEN}}\item[{\em 
+\hypertarget{namespaceIDP_a6efd2cca14c0dae1c6458714ce0218dfa047d7c5fcd5669f1a819d05fb5319f0b}{
+BOBBIN\_\-GREEN}
+\label{namespaceIDP_a6efd2cca14c0dae1c6458714ce0218dfa047d7c5fcd5669f1a819d05fb5319f0b}
+}]\index{BOBBIN\_\-WHITE@{BOBBIN\_\-WHITE}!IDP@{IDP}}\index{IDP@{IDP}!BOBBIN\_\-WHITE@{BOBBIN\_\-WHITE}}\item[{\em 
+\hypertarget{namespaceIDP_a6efd2cca14c0dae1c6458714ce0218dfa8f427bfb1c335650a7ada595e1607d00}{
+BOBBIN\_\-WHITE}
+\label{namespaceIDP_a6efd2cca14c0dae1c6458714ce0218dfa8f427bfb1c335650a7ada595e1607d00}
+}]\end{description}
+\end{Desc}
+
+\hypertarget{namespaceIDP_ab9c412f0fd539b5d70385066c30465a0}{
+\index{IDP@{IDP}!NavigationLocation@{NavigationLocation}}
+\index{NavigationLocation@{NavigationLocation}!IDP@{IDP}}
+\subsubsection[{NavigationLocation}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf IDP::NavigationLocation}}}
+\label{namespaceIDP_ab9c412f0fd539b5d70385066c30465a0}
+\begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{NAVIGATION\_\-BOXES@{NAVIGATION\_\-BOXES}!IDP@{IDP}}\index{IDP@{IDP}!NAVIGATION\_\-BOXES@{NAVIGATION\_\-BOXES}}\item[{\em 
+\hypertarget{namespaceIDP_ab9c412f0fd539b5d70385066c30465a0a0cfb642ce5e4133706998843eb3c8da1}{
+NAVIGATION\_\-BOXES}
+\label{namespaceIDP_ab9c412f0fd539b5d70385066c30465a0a0cfb642ce5e4133706998843eb3c8da1}
+}]\index{NAVIGATION\_\-RACK@{NAVIGATION\_\-RACK}!IDP@{IDP}}\index{IDP@{IDP}!NAVIGATION\_\-RACK@{NAVIGATION\_\-RACK}}\item[{\em 
+\hypertarget{namespaceIDP_ab9c412f0fd539b5d70385066c30465a0af1bde0912725a75705d0fb74637f20c1}{
+NAVIGATION\_\-RACK}
+\label{namespaceIDP_ab9c412f0fd539b5d70385066c30465a0af1bde0912725a75705d0fb74637f20c1}
+}]\index{NAVIGATION\_\-DELIVERY@{NAVIGATION\_\-DELIVERY}!IDP@{IDP}}\index{IDP@{IDP}!NAVIGATION\_\-DELIVERY@{NAVIGATION\_\-DELIVERY}}\item[{\em 
+\hypertarget{namespaceIDP_ab9c412f0fd539b5d70385066c30465a0a10e09a3f2969d951f0dc233cb76eb4bf}{
+NAVIGATION\_\-DELIVERY}
+\label{namespaceIDP_ab9c412f0fd539b5d70385066c30465a0a10e09a3f2969d951f0dc233cb76eb4bf}
+}]\end{description}
+\end{Desc}
+
+\hypertarget{namespaceIDP_a1a96e566e4d675fdf20780cc96d92283}{
+\index{IDP@{IDP}!NavigationStatus@{NavigationStatus}}
+\index{NavigationStatus@{NavigationStatus}!IDP@{IDP}}
+\subsubsection[{NavigationStatus}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf IDP::NavigationStatus}}}
+\label{namespaceIDP_a1a96e566e4d675fdf20780cc96d92283}
+\begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{NAVIGATION\_\-ENROUTE@{NAVIGATION\_\-ENROUTE}!IDP@{IDP}}\index{IDP@{IDP}!NAVIGATION\_\-ENROUTE@{NAVIGATION\_\-ENROUTE}}\item[{\em 
+\hypertarget{namespaceIDP_a1a96e566e4d675fdf20780cc96d92283a9f52fe7970aefcb1b74e9aea3798f39d}{
+NAVIGATION\_\-ENROUTE}
+\label{namespaceIDP_a1a96e566e4d675fdf20780cc96d92283a9f52fe7970aefcb1b74e9aea3798f39d}
+}]\index{NAVIGATION\_\-ARRIVED@{NAVIGATION\_\-ARRIVED}!IDP@{IDP}}\index{IDP@{IDP}!NAVIGATION\_\-ARRIVED@{NAVIGATION\_\-ARRIVED}}\item[{\em 
+\hypertarget{namespaceIDP_a1a96e566e4d675fdf20780cc96d92283ab9e83c995cb23a5782b23b198dcbabcb}{
+NAVIGATION\_\-ARRIVED}
+\label{namespaceIDP_a1a96e566e4d675fdf20780cc96d92283ab9e83c995cb23a5782b23b198dcbabcb}
+}]\index{NAVIGATION\_\-LOST@{NAVIGATION\_\-LOST}!IDP@{IDP}}\index{IDP@{IDP}!NAVIGATION\_\-LOST@{NAVIGATION\_\-LOST}}\item[{\em 
+\hypertarget{namespaceIDP_a1a96e566e4d675fdf20780cc96d92283ad75d1c5522e0a38dbe62266912d411ba}{
+NAVIGATION\_\-LOST}
+\label{namespaceIDP_a1a96e566e4d675fdf20780cc96d92283ad75d1c5522e0a38dbe62266912d411ba}
+}]\end{description}
+\end{Desc}
+
 
 
 \subsection{Function Documentation}
