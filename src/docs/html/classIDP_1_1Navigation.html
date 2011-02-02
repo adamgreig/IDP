@@ -38,6 +38,9 @@
 </div>
 <div class="contents">
 <!-- doxytag: class="IDP::Navigation" -->
+<p>Find a route from one place to another on the board, and maintain an estimate of the current position.  
+<a href="#_details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="navigation_8h_source.html">navigation.h</a>&gt;</code></p>
 
 <p><a href="classIDP_1_1Navigation-members.html">List of all members.</a></p>
@@ -45,8 +48,12 @@
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1Navigation.html#a028ddc27093e3d5de2dfac886c15d478">Navigation</a> (const <a class="el" href="classIDP_1_1HardwareAbstractionLayer.html">HardwareAbstractionLayer</a> *hal)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise the class, storing the const pointer to the HAL.  <a href="#a028ddc27093e3d5de2dfac886c15d478"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="namespaceIDP.html#a1a96e566e4d675fdf20780cc96d92283">NavigationStatus</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1Navigation.html#ab5cf30dd7a21c90d2ae58309ce0ddfa6">go</a> (const <a class="el" href="namespaceIDP.html#ab9c412f0fd539b5d70385066c30465a0">NavigationLocation</a> location)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Go to a location.  <a href="#ab5cf30dd7a21c90d2ae58309ce0ddfa6"></a><br/></td></tr>
 </table>
+<hr/><a name="_details"></a><h2>Detailed Description</h2>
+<p>Find a route from one place to another on the board, and maintain an estimate of the current position. </p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a028ddc27093e3d5de2dfac886c15d478"></a><!-- doxytag: member="IDP::Navigation::Navigation" ref="a028ddc27093e3d5de2dfac886c15d478" args="(const HardwareAbstractionLayer *hal)" -->
 <div class="memitem">
@@ -63,6 +70,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
 <p>Initialise the class, storing the const pointer to the HAL. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
@@ -89,6 +97,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
 <p>Go to a location. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A navigation status code </dd></dl>
 
@@ -99,7 +108,7 @@ Public Member Functions</h2></td></tr>
 <li>libidp/<a class="el" href="navigation_8cc.html">navigation.cc</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Wed Feb 2 2011 19:07:40 for IDPL108 by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Feb 2 2011 19:20:24 for IDPL108 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

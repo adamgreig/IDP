@@ -4,6 +4,11 @@
 }
 
 
+Control the overall robot behaviour and objective fulfillment.  
+
+
+
+
 {\ttfamily \#include $<$mission\_\-supervisor.h$>$}
 
 
@@ -19,22 +24,25 @@ Collaboration diagram for IDP::MissionSupervisor:\nopagebreak
 \begin{DoxyCompactItemize}
 \item 
 \hyperlink{classIDP_1_1MissionSupervisor_afc6a54e04718d919b2b48458a47304b2}{MissionSupervisor} (int robot)
-\item 
+\begin{DoxyCompactList}\small\item\em Construct the \hyperlink{classIDP_1_1MissionSupervisor}{MissionSupervisor}. \item\end{DoxyCompactList}\item 
 void \hyperlink{classIDP_1_1MissionSupervisor_a06fc1fcf6272651d50938fd94306ac24}{run\_\-task} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Commence running the main task. \item\end{DoxyCompactList}\item 
 void \hyperlink{classIDP_1_1MissionSupervisor_af8c6a3073190a4479211753fe5f50a36}{drive\_\-forward} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Set both motors driving forwards. \item\end{DoxyCompactList}\item 
 void \hyperlink{classIDP_1_1MissionSupervisor_ae5d6e9a37417126da780583349b48d44}{drive\_\-backward} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Set both motors driving backwards. \item\end{DoxyCompactList}\item 
 void \hyperlink{classIDP_1_1MissionSupervisor_ad11e444b6be1d51c3339bd6397d45fd4}{stop} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Stop all motors. \item\end{DoxyCompactList}\item 
 void \hyperlink{classIDP_1_1MissionSupervisor_af147b0bec9464bb7e956a40a7f3d0fda}{test\_\-line\_\-sensor} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Attempt to read the line sensor status. \item\end{DoxyCompactList}\item 
 void \hyperlink{classIDP_1_1MissionSupervisor_a21be0b52e2f13c7fb373c90dae77ba23}{test\_\-line\_\-following} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Test line following on a straight line. \item\end{DoxyCompactList}\item 
 const \hyperlink{classIDP_1_1HardwareAbstractionLayer}{HardwareAbstractionLayer} $\ast$ \hyperlink{classIDP_1_1MissionSupervisor_ae19d0c2123fda158cc45e649128fbc09}{hal} () const 
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Const accessor for the HAL. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
+
+\subsection{Detailed Description}
+Control the overall robot behaviour and objective fulfillment. 
 
 \subsection{Constructor \& Destructor Documentation}
 \hypertarget{classIDP_1_1MissionSupervisor_afc6a54e04718d919b2b48458a47304b2}{
@@ -46,7 +54,11 @@ const \hyperlink{classIDP_1_1HardwareAbstractionLayer}{HardwareAbstractionLayer}
 \end{DoxyParamCaption}
 )}}
 \label{classIDP_1_1MissionSupervisor_afc6a54e04718d919b2b48458a47304b2}
-Construct the \hyperlink{classIDP_1_1MissionSupervisor}{MissionSupervisor}. Initialises a link to the specified robot number, or 0 if running embedded. 
+
+
+Construct the \hyperlink{classIDP_1_1MissionSupervisor}{MissionSupervisor}. 
+
+Initialises a link to the specified robot number, or 0 if running embedded. 
 \begin{DoxyParams}{Parameters}
 \item[{\em robot}]Which robot to link to, or 0 if embedded \end{DoxyParams}
 
@@ -61,7 +73,11 @@ Construct the \hyperlink{classIDP_1_1MissionSupervisor}{MissionSupervisor}. Init
 \end{DoxyParamCaption}
 )}}
 \label{classIDP_1_1MissionSupervisor_ae5d6e9a37417126da780583349b48d44}
-Set both motors driving backwards. \hypertarget{classIDP_1_1MissionSupervisor_af8c6a3073190a4479211753fe5f50a36}{
+
+
+Set both motors driving backwards. 
+
+\hypertarget{classIDP_1_1MissionSupervisor_af8c6a3073190a4479211753fe5f50a36}{
 \index{IDP::MissionSupervisor@{IDP::MissionSupervisor}!drive\_\-forward@{drive\_\-forward}}
 \index{drive\_\-forward@{drive\_\-forward}!IDP::MissionSupervisor@{IDP::MissionSupervisor}}
 \subsubsection[{drive\_\-forward}]{\setlength{\rightskip}{0pt plus 5cm}void IDP::MissionSupervisor::drive\_\-forward (
@@ -70,7 +86,11 @@ Set both motors driving backwards. \hypertarget{classIDP_1_1MissionSupervisor_af
 \end{DoxyParamCaption}
 )}}
 \label{classIDP_1_1MissionSupervisor_af8c6a3073190a4479211753fe5f50a36}
-Set both motors driving forwards. \hypertarget{classIDP_1_1MissionSupervisor_ae19d0c2123fda158cc45e649128fbc09}{
+
+
+Set both motors driving forwards. 
+
+\hypertarget{classIDP_1_1MissionSupervisor_ae19d0c2123fda158cc45e649128fbc09}{
 \index{IDP::MissionSupervisor@{IDP::MissionSupervisor}!hal@{hal}}
 \index{hal@{hal}!IDP::MissionSupervisor@{IDP::MissionSupervisor}}
 \subsubsection[{hal}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf HardwareAbstractionLayer} $\ast$ IDP::MissionSupervisor::hal (
@@ -79,7 +99,11 @@ Set both motors driving forwards. \hypertarget{classIDP_1_1MissionSupervisor_ae1
 \end{DoxyParamCaption}
 ) const}}
 \label{classIDP_1_1MissionSupervisor_ae19d0c2123fda158cc45e649128fbc09}
-Const accessor for the HAL \hypertarget{classIDP_1_1MissionSupervisor_a06fc1fcf6272651d50938fd94306ac24}{
+
+
+Const accessor for the HAL. 
+
+\hypertarget{classIDP_1_1MissionSupervisor_a06fc1fcf6272651d50938fd94306ac24}{
 \index{IDP::MissionSupervisor@{IDP::MissionSupervisor}!run\_\-task@{run\_\-task}}
 \index{run\_\-task@{run\_\-task}!IDP::MissionSupervisor@{IDP::MissionSupervisor}}
 \subsubsection[{run\_\-task}]{\setlength{\rightskip}{0pt plus 5cm}void IDP::MissionSupervisor::run\_\-task (
@@ -88,7 +112,11 @@ Const accessor for the HAL \hypertarget{classIDP_1_1MissionSupervisor_a06fc1fcf6
 \end{DoxyParamCaption}
 )}}
 \label{classIDP_1_1MissionSupervisor_a06fc1fcf6272651d50938fd94306ac24}
-Commence running the main task \hypertarget{classIDP_1_1MissionSupervisor_ad11e444b6be1d51c3339bd6397d45fd4}{
+
+
+Commence running the main task. 
+
+\hypertarget{classIDP_1_1MissionSupervisor_ad11e444b6be1d51c3339bd6397d45fd4}{
 \index{IDP::MissionSupervisor@{IDP::MissionSupervisor}!stop@{stop}}
 \index{stop@{stop}!IDP::MissionSupervisor@{IDP::MissionSupervisor}}
 \subsubsection[{stop}]{\setlength{\rightskip}{0pt plus 5cm}void IDP::MissionSupervisor::stop (
@@ -97,7 +125,11 @@ Commence running the main task \hypertarget{classIDP_1_1MissionSupervisor_ad11e4
 \end{DoxyParamCaption}
 )}}
 \label{classIDP_1_1MissionSupervisor_ad11e444b6be1d51c3339bd6397d45fd4}
-Stop all motors. \hypertarget{classIDP_1_1MissionSupervisor_a21be0b52e2f13c7fb373c90dae77ba23}{
+
+
+Stop all motors. 
+
+\hypertarget{classIDP_1_1MissionSupervisor_a21be0b52e2f13c7fb373c90dae77ba23}{
 \index{IDP::MissionSupervisor@{IDP::MissionSupervisor}!test\_\-line\_\-following@{test\_\-line\_\-following}}
 \index{test\_\-line\_\-following@{test\_\-line\_\-following}!IDP::MissionSupervisor@{IDP::MissionSupervisor}}
 \subsubsection[{test\_\-line\_\-following}]{\setlength{\rightskip}{0pt plus 5cm}void IDP::MissionSupervisor::test\_\-line\_\-following (
@@ -106,7 +138,11 @@ Stop all motors. \hypertarget{classIDP_1_1MissionSupervisor_a21be0b52e2f13c7fb37
 \end{DoxyParamCaption}
 )}}
 \label{classIDP_1_1MissionSupervisor_a21be0b52e2f13c7fb373c90dae77ba23}
-Test line following on a straight line \hypertarget{classIDP_1_1MissionSupervisor_af147b0bec9464bb7e956a40a7f3d0fda}{
+
+
+Test line following on a straight line. 
+
+\hypertarget{classIDP_1_1MissionSupervisor_af147b0bec9464bb7e956a40a7f3d0fda}{
 \index{IDP::MissionSupervisor@{IDP::MissionSupervisor}!test\_\-line\_\-sensor@{test\_\-line\_\-sensor}}
 \index{test\_\-line\_\-sensor@{test\_\-line\_\-sensor}!IDP::MissionSupervisor@{IDP::MissionSupervisor}}
 \subsubsection[{test\_\-line\_\-sensor}]{\setlength{\rightskip}{0pt plus 5cm}void IDP::MissionSupervisor::test\_\-line\_\-sensor (
@@ -115,7 +151,11 @@ Test line following on a straight line \hypertarget{classIDP_1_1MissionSuperviso
 \end{DoxyParamCaption}
 )}}
 \label{classIDP_1_1MissionSupervisor_af147b0bec9464bb7e956a40a7f3d0fda}
-Attempt to read the line sensor status 
+
+
+Attempt to read the line sensor status. 
+
+
 
 The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
 \item 

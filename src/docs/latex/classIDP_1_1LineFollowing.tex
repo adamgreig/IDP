@@ -4,6 +4,11 @@
 }
 
 
+Maintain the robot position correctly with respect to the white line markers, during driving and manouvering.  
+
+
+
+
 {\ttfamily \#include $<$line\_\-following.h$>$}
 
 
@@ -19,12 +24,15 @@ Collaboration diagram for IDP::LineFollowing:\nopagebreak
 \begin{DoxyCompactItemize}
 \item 
 \hyperlink{classIDP_1_1LineFollowing_ab30cde971719545d81ce253ae995cc4d}{LineFollowing} (const \hyperlink{classIDP_1_1HardwareAbstractionLayer}{HardwareAbstractionLayer} $\ast$hal)
-\item 
+\begin{DoxyCompactList}\small\item\em Construct the Line Follower. \item\end{DoxyCompactList}\item 
 void \hyperlink{classIDP_1_1LineFollowing_af578916c93854c701fccbdaef783997b}{correct\_\-steering} (int error)
-\item 
+\begin{DoxyCompactList}\small\item\em Correct the steering of the robot. \item\end{DoxyCompactList}\item 
 void \hyperlink{classIDP_1_1LineFollowing_a35c80e04729e98dfa927159610605649}{follow\_\-line} ()
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Follow a line forwards, stopping when a junction is reached. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
+
+\subsection{Detailed Description}
+Maintain the robot position correctly with respect to the white line markers, during driving and manouvering. 
 
 \subsection{Constructor \& Destructor Documentation}
 \hypertarget{classIDP_1_1LineFollowing_ab30cde971719545d81ce253ae995cc4d}{
@@ -36,7 +44,11 @@ void \hyperlink{classIDP_1_1LineFollowing_a35c80e04729e98dfa927159610605649}{fol
 \end{DoxyParamCaption}
 )}}
 \label{classIDP_1_1LineFollowing_ab30cde971719545d81ce253ae995cc4d}
-Construct the Line Follower 
+
+
+Construct the Line Follower. 
+
+
 
 \subsection{Member Function Documentation}
 \hypertarget{classIDP_1_1LineFollowing_af578916c93854c701fccbdaef783997b}{
@@ -48,7 +60,11 @@ Construct the Line Follower
 \end{DoxyParamCaption}
 )}}
 \label{classIDP_1_1LineFollowing_af578916c93854c701fccbdaef783997b}
-Correct the steering of the robot 
+
+
+Correct the steering of the robot. 
+
+
 \begin{DoxyParams}{Parameters}
 \item[{\em \_\-error}]A signed integer where negative is too far left, and positive is too far right \end{DoxyParams}
 \hypertarget{classIDP_1_1LineFollowing_a35c80e04729e98dfa927159610605649}{
@@ -60,7 +76,11 @@ Correct the steering of the robot
 \end{DoxyParamCaption}
 )}}
 \label{classIDP_1_1LineFollowing_a35c80e04729e98dfa927159610605649}
-Follow a line forwards, stopping when a junction is reached 
+
+
+Follow a line forwards, stopping when a junction is reached. 
+
+
 
 The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
 \item 
