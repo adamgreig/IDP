@@ -94,13 +94,13 @@ namespace IDP {
     }
 
     /**
-     * Drive the left motor at the given speed
+     * Drive the left motor forward at the given speed
      * \param speed The speed at which to drive the motor
      */
-    void HardwareAbstractionLayer::motor_left_go(
+    void HardwareAbstractionLayer::motor_left_forward(
         const unsigned short int speed) const
     {
-        std::cout << "[HAL] Setting left motor to speed ";
+        std::cout << "[HAL] Setting left motor forward at speed ";
         std::cout << speed << std::endl;
 
         if (this->check_max_speed(speed)) {
@@ -111,13 +111,13 @@ namespace IDP {
     }
 
     /**
-     * Drive the right motor at the given speed
+     * Drive the right motor forward at the given speed
      * \param speed The speed at which to drive the motor
      */
-    void HardwareAbstractionLayer::motor_right_go(
+    void HardwareAbstractionLayer::motor_right_forward(
         const unsigned short int speed) const
     {
-        std::cout << "[HAL] Setting right motor to speed ";
+        std::cout << "[HAL] Setting right motor forward at speed ";
         std::cout << speed << std::endl;
 
         if (this->check_max_speed(speed)) {
@@ -125,6 +125,40 @@ namespace IDP {
         }
 
         this->rlink->command(MOTOR_2_GO, speed);
+    }
+
+    /**
+     * Drive the left motor backward at the given speed
+     * \param speed The speed at which to drive the motor
+     */
+    void HardwareAbstractionLayer::motor_left_backward(
+        const unsigned short int speed) const
+    {
+        std::cout << "[HAL] Setting left motor backward at speed ";
+        std::cout << speed << std::endl;
+
+        if (this->check_max_speed(speed)) {
+            return;
+        }
+
+        this->rlink->command(MOTOR_1_GO, speed);
+    }
+
+    /**
+     * Drive the right motor backward at the given speed
+     * \param speed The speed at which to drive the motor
+     */
+    void HardwareAbstractionLayer::motor_right_backward(
+        const unsigned short int speed) const
+    {
+        std::cout << "[HAL] Setting right motor backward at speed ";
+        std::cout << speed << std::endl;
+
+        if (this->check_max_speed(speed)) {
+            return;
+        }
+
+        this->rlink->command(MOTOR_2_GO, (1<<7) speed);
     }
 
     /**
@@ -200,6 +234,23 @@ namespace IDP {
     void HardwareAbstractionLayer::clear_status_register() const
     {
         this->rlink->request(STATUS);
+    }
+
+    /**
+     * Read the status register and return it.
+     * \returns The STATUS register
+     */
+    const char HardwareAbstractionLayer::status_register() const
+    {
+        static_cast<const char>(return this->rlink->request(STATUS));
+    }
+
+    /**
+     * Read the reset switch and return its status.
+     * \returns The current value of the switch, true if pressed
+     */
+    bool reset_switch() const
+    {
     }
 
     /**
