@@ -1,0 +1,53 @@
+\hypertarget{classIDP_1_1LineFollowing}{
+\section{IDP::LineFollowing Class Reference}
+\label{classIDP_1_1LineFollowing}\index{IDP::LineFollowing@{IDP::LineFollowing}}
+}
+{\tt \#include $<$line\_\-following.h$>$}
+
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+\hyperlink{classIDP_1_1LineFollowing_b30cde971719545d81ce253ae995cc4d}{LineFollowing} (const \hyperlink{classIDP_1_1HardwareAbstractionLayer}{HardwareAbstractionLayer} $\ast$hal)
+\item 
+void \hyperlink{classIDP_1_1LineFollowing_f578916c93854c701fccbdaef783997b}{correct\_\-steering} (int error)
+\item 
+void \hyperlink{classIDP_1_1LineFollowing_35c80e04729e98dfa927159610605649}{follow\_\-line} ()
+\end{CompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classIDP_1_1LineFollowing_b30cde971719545d81ce253ae995cc4d}{
+\index{IDP::LineFollowing@{IDP::LineFollowing}!LineFollowing@{LineFollowing}}
+\index{LineFollowing@{LineFollowing}!IDP::LineFollowing@{IDP::LineFollowing}}
+\subsubsection[{LineFollowing}]{\setlength{\rightskip}{0pt plus 5cm}IDP::LineFollowing::LineFollowing (const {\bf HardwareAbstractionLayer} $\ast$ {\em hal})}}
+\label{classIDP_1_1LineFollowing_b30cde971719545d81ce253ae995cc4d}
+
+
+Construct the Line Follower 
+
+\subsection{Member Function Documentation}
+\hypertarget{classIDP_1_1LineFollowing_f578916c93854c701fccbdaef783997b}{
+\index{IDP::LineFollowing@{IDP::LineFollowing}!correct\_\-steering@{correct\_\-steering}}
+\index{correct\_\-steering@{correct\_\-steering}!IDP::LineFollowing@{IDP::LineFollowing}}
+\subsubsection[{correct\_\-steering}]{\setlength{\rightskip}{0pt plus 5cm}void IDP::LineFollowing::correct\_\-steering (int {\em \_\-error})}}
+\label{classIDP_1_1LineFollowing_f578916c93854c701fccbdaef783997b}
+
+
+Correct the steering of the robot \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em \_\-error}]A signed integer where negative is too far left, and positive is too far right \end{description}
+\end{Desc}
+\hypertarget{classIDP_1_1LineFollowing_35c80e04729e98dfa927159610605649}{
+\index{IDP::LineFollowing@{IDP::LineFollowing}!follow\_\-line@{follow\_\-line}}
+\index{follow\_\-line@{follow\_\-line}!IDP::LineFollowing@{IDP::LineFollowing}}
+\subsubsection[{follow\_\-line}]{\setlength{\rightskip}{0pt plus 5cm}void IDP::LineFollowing::follow\_\-line ()}}
+\label{classIDP_1_1LineFollowing_35c80e04729e98dfa927159610605649}
+
+
+Call this function many times to follow a line 
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+libidp/\hyperlink{line__following_8h}{line\_\-following.h}\item 
+libidp/\hyperlink{line__following_8cc}{line\_\-following.cc}\end{CompactItemize}

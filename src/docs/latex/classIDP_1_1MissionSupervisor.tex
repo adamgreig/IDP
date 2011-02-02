@@ -1,0 +1,89 @@
+\hypertarget{classIDP_1_1MissionSupervisor}{
+\section{IDP::MissionSupervisor Class Reference}
+\label{classIDP_1_1MissionSupervisor}\index{IDP::MissionSupervisor@{IDP::MissionSupervisor}}
+}
+{\tt \#include $<$mission\_\-supervisor.h$>$}
+
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+\hyperlink{classIDP_1_1MissionSupervisor_fc6a54e04718d919b2b48458a47304b2}{MissionSupervisor} (int robot)
+\item 
+void \hyperlink{classIDP_1_1MissionSupervisor_f8c6a3073190a4479211753fe5f50a36}{drive\_\-forward} ()
+\item 
+void \hyperlink{classIDP_1_1MissionSupervisor_e5d6e9a37417126da780583349b48d44}{drive\_\-backward} ()
+\item 
+void \hyperlink{classIDP_1_1MissionSupervisor_d11e444b6be1d51c3339bd6397d45fd4}{stop} ()
+\item 
+void \hyperlink{classIDP_1_1MissionSupervisor_f147b0bec9464bb7e956a40a7f3d0fda}{test\_\-line\_\-sensor} ()
+\item 
+void \hyperlink{classIDP_1_1MissionSupervisor_21be0b52e2f13c7fb373c90dae77ba23}{test\_\-line\_\-following} ()
+\item 
+const \hyperlink{classIDP_1_1HardwareAbstractionLayer}{HardwareAbstractionLayer} $\ast$ \hyperlink{classIDP_1_1MissionSupervisor_e19d0c2123fda158cc45e649128fbc09}{hal} () const 
+\end{CompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classIDP_1_1MissionSupervisor_fc6a54e04718d919b2b48458a47304b2}{
+\index{IDP::MissionSupervisor@{IDP::MissionSupervisor}!MissionSupervisor@{MissionSupervisor}}
+\index{MissionSupervisor@{MissionSupervisor}!IDP::MissionSupervisor@{IDP::MissionSupervisor}}
+\subsubsection[{MissionSupervisor}]{\setlength{\rightskip}{0pt plus 5cm}IDP::MissionSupervisor::MissionSupervisor (int {\em robot} = {\tt 0})}}
+\label{classIDP_1_1MissionSupervisor_fc6a54e04718d919b2b48458a47304b2}
+
+
+Construct the \hyperlink{classIDP_1_1MissionSupervisor}{MissionSupervisor}. Initialises a link to the specified robot number, or 0 if running embedded. \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em robot}]Which robot to link to, or 0 if embedded \end{description}
+\end{Desc}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classIDP_1_1MissionSupervisor_e5d6e9a37417126da780583349b48d44}{
+\index{IDP::MissionSupervisor@{IDP::MissionSupervisor}!drive\_\-backward@{drive\_\-backward}}
+\index{drive\_\-backward@{drive\_\-backward}!IDP::MissionSupervisor@{IDP::MissionSupervisor}}
+\subsubsection[{drive\_\-backward}]{\setlength{\rightskip}{0pt plus 5cm}void IDP::MissionSupervisor::drive\_\-backward ()}}
+\label{classIDP_1_1MissionSupervisor_e5d6e9a37417126da780583349b48d44}
+
+
+Set both motors driving backwards. \hypertarget{classIDP_1_1MissionSupervisor_f8c6a3073190a4479211753fe5f50a36}{
+\index{IDP::MissionSupervisor@{IDP::MissionSupervisor}!drive\_\-forward@{drive\_\-forward}}
+\index{drive\_\-forward@{drive\_\-forward}!IDP::MissionSupervisor@{IDP::MissionSupervisor}}
+\subsubsection[{drive\_\-forward}]{\setlength{\rightskip}{0pt plus 5cm}void IDP::MissionSupervisor::drive\_\-forward ()}}
+\label{classIDP_1_1MissionSupervisor_f8c6a3073190a4479211753fe5f50a36}
+
+
+Set both motors driving forwards. \hypertarget{classIDP_1_1MissionSupervisor_e19d0c2123fda158cc45e649128fbc09}{
+\index{IDP::MissionSupervisor@{IDP::MissionSupervisor}!hal@{hal}}
+\index{hal@{hal}!IDP::MissionSupervisor@{IDP::MissionSupervisor}}
+\subsubsection[{hal}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf HardwareAbstractionLayer} $\ast$ IDP::MissionSupervisor::hal () const}}
+\label{classIDP_1_1MissionSupervisor_e19d0c2123fda158cc45e649128fbc09}
+
+
+Const accessor for the HAL \hypertarget{classIDP_1_1MissionSupervisor_d11e444b6be1d51c3339bd6397d45fd4}{
+\index{IDP::MissionSupervisor@{IDP::MissionSupervisor}!stop@{stop}}
+\index{stop@{stop}!IDP::MissionSupervisor@{IDP::MissionSupervisor}}
+\subsubsection[{stop}]{\setlength{\rightskip}{0pt plus 5cm}void IDP::MissionSupervisor::stop ()}}
+\label{classIDP_1_1MissionSupervisor_d11e444b6be1d51c3339bd6397d45fd4}
+
+
+Stop all motors. \hypertarget{classIDP_1_1MissionSupervisor_21be0b52e2f13c7fb373c90dae77ba23}{
+\index{IDP::MissionSupervisor@{IDP::MissionSupervisor}!test\_\-line\_\-following@{test\_\-line\_\-following}}
+\index{test\_\-line\_\-following@{test\_\-line\_\-following}!IDP::MissionSupervisor@{IDP::MissionSupervisor}}
+\subsubsection[{test\_\-line\_\-following}]{\setlength{\rightskip}{0pt plus 5cm}void IDP::MissionSupervisor::test\_\-line\_\-following ()}}
+\label{classIDP_1_1MissionSupervisor_21be0b52e2f13c7fb373c90dae77ba23}
+
+
+Test line following on a straight line \hypertarget{classIDP_1_1MissionSupervisor_f147b0bec9464bb7e956a40a7f3d0fda}{
+\index{IDP::MissionSupervisor@{IDP::MissionSupervisor}!test\_\-line\_\-sensor@{test\_\-line\_\-sensor}}
+\index{test\_\-line\_\-sensor@{test\_\-line\_\-sensor}!IDP::MissionSupervisor@{IDP::MissionSupervisor}}
+\subsubsection[{test\_\-line\_\-sensor}]{\setlength{\rightskip}{0pt plus 5cm}void IDP::MissionSupervisor::test\_\-line\_\-sensor ()}}
+\label{classIDP_1_1MissionSupervisor_f147b0bec9464bb7e956a40a7f3d0fda}
+
+
+Attempt to read the line sensor status 
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+libidp/\hyperlink{mission__supervisor_8h}{mission\_\-supervisor.h}\item 
+libidp/\hyperlink{mission__supervisor_8cc}{mission\_\-supervisor.cc}\end{CompactItemize}

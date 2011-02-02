@@ -9,6 +9,8 @@
   <div class="tabs">
     <ul>
       <li><a href="index.html"><span>Main&nbsp;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
+      <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
     </ul>
   </div>
@@ -17,7 +19,7 @@
       <li><a href="files.html"><span>File&nbsp;List</span></a></li>
     </ul>
   </div>
-<h1>libidp/hal.h</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// IDP</span>
+<h1>libidp/hal.h</h1><a href="hal_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// IDP</span>
 <a name="l00002"></a>00002 <span class="comment">// Copyright 2011 Adam Greig &amp; Jon Sowman</span>
 <a name="l00003"></a>00003 <span class="comment">//</span>
 <a name="l00004"></a>00004 <span class="comment">// hal.h</span>
@@ -34,32 +36,32 @@
 <a name="l00015"></a>00015 
 <a name="l00016"></a>00016 <span class="keyword">namespace </span>IDP {
 <a name="l00017"></a>00017 
-<a name="l00018"></a>00018     <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> MOTOR_MAX_SPEED = 127;
-<a name="l00019"></a>00019     <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> MOTOR_RAMP_TIME = 16;
-<a name="l00020"></a>00020     <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">bool</span> LINE = <span class="keyword">true</span>;
-<a name="l00021"></a>00021     <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">bool</span> NO_LINE = <span class="keyword">false</span>;
+<a name="l00018"></a><a class="code" href="namespaceIDP.html#4ead0b21ad2c507b542445695182d4cd">00018</a>     <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="namespaceIDP.html#4ead0b21ad2c507b542445695182d4cd">MOTOR_MAX_SPEED</a> = 127;
+<a name="l00019"></a><a class="code" href="namespaceIDP.html#b3a00a6cc8a6dba271e38d337daf4703">00019</a>     <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="namespaceIDP.html#b3a00a6cc8a6dba271e38d337daf4703">MOTOR_RAMP_TIME</a> = 16;
+<a name="l00020"></a><a class="code" href="namespaceIDP.html#559427fa7c37f2edc0a43a4b793c4fdc">00020</a>     <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">bool</span> <a class="code" href="namespaceIDP.html#559427fa7c37f2edc0a43a4b793c4fdc">LINE</a> = <span class="keyword">true</span>;
+<a name="l00021"></a><a class="code" href="namespaceIDP.html#5ea027b77276a637783f68955303b9b8">00021</a>     <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">bool</span> <a class="code" href="namespaceIDP.html#5ea027b77276a637783f68955303b9b8">NO_LINE</a> = <span class="keyword">false</span>;
 <a name="l00022"></a>00022     
-<a name="l00023"></a>00023     <span class="keyword">struct </span>LineSensors
+<a name="l00023"></a><a class="code" href="structIDP_1_1LineSensors.html">00023</a>     <span class="keyword">struct </span><a class="code" href="structIDP_1_1LineSensors.html">LineSensors</a>
 <a name="l00024"></a>00024     {
-<a name="l00025"></a>00025         <span class="keywordtype">bool</span> outer_left;
-<a name="l00026"></a>00026         <span class="keywordtype">bool</span> line_left;
-<a name="l00027"></a>00027         <span class="keywordtype">bool</span> line_right;
-<a name="l00028"></a>00028         <span class="keywordtype">bool</span> outer_right;
+<a name="l00025"></a><a class="code" href="structIDP_1_1LineSensors.html#51c88077f39fead3a34ef115bdcdc7f1">00025</a>         <span class="keywordtype">bool</span> <a class="code" href="structIDP_1_1LineSensors.html#51c88077f39fead3a34ef115bdcdc7f1">outer_left</a>;
+<a name="l00026"></a><a class="code" href="structIDP_1_1LineSensors.html#7b100b91da805356d2d138311029bc5a">00026</a>         <span class="keywordtype">bool</span> <a class="code" href="structIDP_1_1LineSensors.html#7b100b91da805356d2d138311029bc5a">line_left</a>;
+<a name="l00027"></a><a class="code" href="structIDP_1_1LineSensors.html#13a49feb63d5ced6b51b1d5be7f5109a">00027</a>         <span class="keywordtype">bool</span> <a class="code" href="structIDP_1_1LineSensors.html#13a49feb63d5ced6b51b1d5be7f5109a">line_right</a>;
+<a name="l00028"></a><a class="code" href="structIDP_1_1LineSensors.html#73f08dd5931bdc244d94f578f7dd0a17">00028</a>         <span class="keywordtype">bool</span> <a class="code" href="structIDP_1_1LineSensors.html#73f08dd5931bdc244d94f578f7dd0a17">outer_right</a>;
 <a name="l00029"></a>00029     };
 <a name="l00030"></a>00030 
-<a name="l00031"></a>00031     <span class="keyword">class </span>HardwareAbstractionLayer
+<a name="l00031"></a><a class="code" href="classIDP_1_1HardwareAbstractionLayer.html">00031</a>     <span class="keyword">class </span><a class="code" href="classIDP_1_1HardwareAbstractionLayer.html">HardwareAbstractionLayer</a>
 <a name="l00032"></a>00032     {
 <a name="l00033"></a>00033         <span class="keyword">public</span>:
-<a name="l00034"></a>00034             HardwareAbstractionLayer(<span class="keyword">const</span> <span class="keywordtype">int</span> robot);
-<a name="l00035"></a>00035             <span class="keywordtype">void</span> motors_forward(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> speed) <span class="keyword">const</span>;
-<a name="l00036"></a>00036             <span class="keywordtype">void</span> motors_backward(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> speed) <span class="keyword">const</span>;
-<a name="l00037"></a>00037             <span class="keywordtype">void</span> motor_left_go(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> speed) <span class="keyword">const</span>;
-<a name="l00038"></a>00038             <span class="keywordtype">void</span> motor_right_go(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> speed) <span class="keyword">const</span>;
-<a name="l00039"></a>00039             <span class="keywordtype">void</span> motors_turn_left(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> speed) <span class="keyword">const</span>;
-<a name="l00040"></a>00040             <span class="keywordtype">void</span> motors_turn_right(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> speed) <span class="keyword">const</span>;
-<a name="l00041"></a>00041             <span class="keywordtype">void</span> motors_stop() <span class="keyword">const</span>;
-<a name="l00042"></a>00042             <span class="keywordtype">void</span> clear_status_register() <span class="keyword">const</span>;
-<a name="l00043"></a>00043             <span class="keyword">const</span> LineSensors line_following_sensors() <span class="keyword">const</span>;
+<a name="l00034"></a>00034             <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#424d40bbaed459f571b46dbb45bb8576">HardwareAbstractionLayer</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> robot);
+<a name="l00035"></a>00035             <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#0c5a7c42e881c0b4bf8b3f5497c1e4ca">motors_forward</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> speed) <span class="keyword">const</span>;
+<a name="l00036"></a>00036             <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#43a8ac2e89e101cd8976ce10401e6142">motors_backward</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> speed) <span class="keyword">const</span>;
+<a name="l00037"></a>00037             <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#2ff5baa231a7796845a7cf2fb041c0c0">motor_left_go</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> speed) <span class="keyword">const</span>;
+<a name="l00038"></a>00038             <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#bdee21a9673a458f2a91d240369e08a1">motor_right_go</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> speed) <span class="keyword">const</span>;
+<a name="l00039"></a>00039             <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#deb07393ffab83877500183162c0bed2">motors_turn_left</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> speed) <span class="keyword">const</span>;
+<a name="l00040"></a>00040             <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#bf4317f045b498e7e67aff208fa8d519">motors_turn_right</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> speed) <span class="keyword">const</span>;
+<a name="l00041"></a>00041             <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#186e188450a83ec4174670e1eb6c40bb">motors_stop</a>() <span class="keyword">const</span>;
+<a name="l00042"></a>00042             <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#1902d9260758777966ab362e21f3be42">clear_status_register</a>() <span class="keyword">const</span>;
+<a name="l00043"></a>00043             <span class="keyword">const</span> <a class="code" href="structIDP_1_1LineSensors.html">LineSensors</a> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#ca143d627de2ff9942069ad922d17ee5">line_following_sensors</a>() <span class="keyword">const</span>;
 <a name="l00044"></a>00044         <span class="keyword">private</span>:
 <a name="l00045"></a>00045             <span class="keywordtype">bool</span> check_max_speed(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> speed) <span class="keyword">const</span>;
 <a name="l00046"></a>00046             robot_link* rlink;

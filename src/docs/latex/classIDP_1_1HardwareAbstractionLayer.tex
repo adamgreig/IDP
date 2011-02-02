@@ -1,0 +1,143 @@
+\hypertarget{classIDP_1_1HardwareAbstractionLayer}{
+\section{IDP::HardwareAbstractionLayer Class Reference}
+\label{classIDP_1_1HardwareAbstractionLayer}\index{IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}}
+}
+{\tt \#include $<$hal.h$>$}
+
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+\hyperlink{classIDP_1_1HardwareAbstractionLayer_424d40bbaed459f571b46dbb45bb8576}{HardwareAbstractionLayer} (const int robot)
+\item 
+void \hyperlink{classIDP_1_1HardwareAbstractionLayer_0c5a7c42e881c0b4bf8b3f5497c1e4ca}{motors\_\-forward} (const unsigned short int speed) const 
+\item 
+void \hyperlink{classIDP_1_1HardwareAbstractionLayer_43a8ac2e89e101cd8976ce10401e6142}{motors\_\-backward} (const unsigned short int speed) const 
+\item 
+void \hyperlink{classIDP_1_1HardwareAbstractionLayer_2ff5baa231a7796845a7cf2fb041c0c0}{motor\_\-left\_\-go} (const unsigned short int speed) const 
+\item 
+void \hyperlink{classIDP_1_1HardwareAbstractionLayer_bdee21a9673a458f2a91d240369e08a1}{motor\_\-right\_\-go} (const unsigned short int speed) const 
+\item 
+void \hyperlink{classIDP_1_1HardwareAbstractionLayer_deb07393ffab83877500183162c0bed2}{motors\_\-turn\_\-left} (const unsigned short int speed) const 
+\item 
+void \hyperlink{classIDP_1_1HardwareAbstractionLayer_bf4317f045b498e7e67aff208fa8d519}{motors\_\-turn\_\-right} (const unsigned short int speed) const 
+\item 
+void \hyperlink{classIDP_1_1HardwareAbstractionLayer_186e188450a83ec4174670e1eb6c40bb}{motors\_\-stop} () const 
+\item 
+void \hyperlink{classIDP_1_1HardwareAbstractionLayer_1902d9260758777966ab362e21f3be42}{clear\_\-status\_\-register} () const 
+\item 
+const \hyperlink{structIDP_1_1LineSensors}{LineSensors} \hyperlink{classIDP_1_1HardwareAbstractionLayer_ca143d627de2ff9942069ad922d17ee5}{line\_\-following\_\-sensors} () const 
+\end{CompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classIDP_1_1HardwareAbstractionLayer_424d40bbaed459f571b46dbb45bb8576}{
+\index{IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}!HardwareAbstractionLayer@{HardwareAbstractionLayer}}
+\index{HardwareAbstractionLayer@{HardwareAbstractionLayer}!IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}}
+\subsubsection[{HardwareAbstractionLayer}]{\setlength{\rightskip}{0pt plus 5cm}IDP::HardwareAbstractionLayer::HardwareAbstractionLayer (const int {\em robot} = {\tt 0})}}
+\label{classIDP_1_1HardwareAbstractionLayer_424d40bbaed459f571b46dbb45bb8576}
+
+
+Initialise the HAL class. Establishes the link to the robot. 
+
+\subsection{Member Function Documentation}
+\hypertarget{classIDP_1_1HardwareAbstractionLayer_1902d9260758777966ab362e21f3be42}{
+\index{IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}!clear\_\-status\_\-register@{clear\_\-status\_\-register}}
+\index{clear\_\-status\_\-register@{clear\_\-status\_\-register}!IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}}
+\subsubsection[{clear\_\-status\_\-register}]{\setlength{\rightskip}{0pt plus 5cm}void IDP::HardwareAbstractionLayer::clear\_\-status\_\-register () const}}
+\label{classIDP_1_1HardwareAbstractionLayer_1902d9260758777966ab362e21f3be42}
+
+
+Read the status register, discarding its value. \hypertarget{classIDP_1_1HardwareAbstractionLayer_ca143d627de2ff9942069ad922d17ee5}{
+\index{IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}!line\_\-following\_\-sensors@{line\_\-following\_\-sensors}}
+\index{line\_\-following\_\-sensors@{line\_\-following\_\-sensors}!IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}}
+\subsubsection[{line\_\-following\_\-sensors}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf LineSensors} IDP::HardwareAbstractionLayer::line\_\-following\_\-sensors () const}}
+\label{classIDP_1_1HardwareAbstractionLayer_ca143d627de2ff9942069ad922d17ee5}
+
+
+Read the I/O port connected to the line following sensors, then return a struct with their current state. \begin{Desc}
+\item[Returns:]A \hyperlink{structIDP_1_1LineSensors}{LineSensors} struct containing the current state of the sensors \end{Desc}
+\hypertarget{classIDP_1_1HardwareAbstractionLayer_2ff5baa231a7796845a7cf2fb041c0c0}{
+\index{IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}!motor\_\-left\_\-go@{motor\_\-left\_\-go}}
+\index{motor\_\-left\_\-go@{motor\_\-left\_\-go}!IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}}
+\subsubsection[{motor\_\-left\_\-go}]{\setlength{\rightskip}{0pt plus 5cm}void IDP::HardwareAbstractionLayer::motor\_\-left\_\-go (const unsigned short int {\em speed}) const}}
+\label{classIDP_1_1HardwareAbstractionLayer_2ff5baa231a7796845a7cf2fb041c0c0}
+
+
+Drive the left motor at the given speed \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em speed}]The speed at which to drive the motor \end{description}
+\end{Desc}
+\hypertarget{classIDP_1_1HardwareAbstractionLayer_bdee21a9673a458f2a91d240369e08a1}{
+\index{IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}!motor\_\-right\_\-go@{motor\_\-right\_\-go}}
+\index{motor\_\-right\_\-go@{motor\_\-right\_\-go}!IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}}
+\subsubsection[{motor\_\-right\_\-go}]{\setlength{\rightskip}{0pt plus 5cm}void IDP::HardwareAbstractionLayer::motor\_\-right\_\-go (const unsigned short int {\em speed}) const}}
+\label{classIDP_1_1HardwareAbstractionLayer_bdee21a9673a458f2a91d240369e08a1}
+
+
+Drive the right motor at the given speed \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em speed}]The speed at which to drive the motor \end{description}
+\end{Desc}
+\hypertarget{classIDP_1_1HardwareAbstractionLayer_43a8ac2e89e101cd8976ce10401e6142}{
+\index{IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}!motors\_\-backward@{motors\_\-backward}}
+\index{motors\_\-backward@{motors\_\-backward}!IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}}
+\subsubsection[{motors\_\-backward}]{\setlength{\rightskip}{0pt plus 5cm}void IDP::HardwareAbstractionLayer::motors\_\-backward (const unsigned short int {\em speed}) const}}
+\label{classIDP_1_1HardwareAbstractionLayer_43a8ac2e89e101cd8976ce10401e6142}
+
+
+Drive both motors backwards at a given speed. \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em speed}]The speed to drive at, 0 to 127 \end{description}
+\end{Desc}
+\hypertarget{classIDP_1_1HardwareAbstractionLayer_0c5a7c42e881c0b4bf8b3f5497c1e4ca}{
+\index{IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}!motors\_\-forward@{motors\_\-forward}}
+\index{motors\_\-forward@{motors\_\-forward}!IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}}
+\subsubsection[{motors\_\-forward}]{\setlength{\rightskip}{0pt plus 5cm}void IDP::HardwareAbstractionLayer::motors\_\-forward (const unsigned short int {\em speed}) const}}
+\label{classIDP_1_1HardwareAbstractionLayer_0c5a7c42e881c0b4bf8b3f5497c1e4ca}
+
+
+Drive both motors forwards at a given speed. \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em speed}]The speed to drive at, 0 to 127 \end{description}
+\end{Desc}
+\hypertarget{classIDP_1_1HardwareAbstractionLayer_186e188450a83ec4174670e1eb6c40bb}{
+\index{IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}!motors\_\-stop@{motors\_\-stop}}
+\index{motors\_\-stop@{motors\_\-stop}!IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}}
+\subsubsection[{motors\_\-stop}]{\setlength{\rightskip}{0pt plus 5cm}void IDP::HardwareAbstractionLayer::motors\_\-stop () const}}
+\label{classIDP_1_1HardwareAbstractionLayer_186e188450a83ec4174670e1eb6c40bb}
+
+
+Stop all motors. \hypertarget{classIDP_1_1HardwareAbstractionLayer_deb07393ffab83877500183162c0bed2}{
+\index{IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}!motors\_\-turn\_\-left@{motors\_\-turn\_\-left}}
+\index{motors\_\-turn\_\-left@{motors\_\-turn\_\-left}!IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}}
+\subsubsection[{motors\_\-turn\_\-left}]{\setlength{\rightskip}{0pt plus 5cm}void IDP::HardwareAbstractionLayer::motors\_\-turn\_\-left (const unsigned short int {\em speed}) const}}
+\label{classIDP_1_1HardwareAbstractionLayer_deb07393ffab83877500183162c0bed2}
+
+
+Drive the motors to steer the robot to the left. \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em speed}]The speed to drive at, 0 to 127 \end{description}
+\end{Desc}
+\hypertarget{classIDP_1_1HardwareAbstractionLayer_bf4317f045b498e7e67aff208fa8d519}{
+\index{IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}!motors\_\-turn\_\-right@{motors\_\-turn\_\-right}}
+\index{motors\_\-turn\_\-right@{motors\_\-turn\_\-right}!IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}}
+\subsubsection[{motors\_\-turn\_\-right}]{\setlength{\rightskip}{0pt plus 5cm}void IDP::HardwareAbstractionLayer::motors\_\-turn\_\-right (const unsigned short int {\em speed}) const}}
+\label{classIDP_1_1HardwareAbstractionLayer_bf4317f045b498e7e67aff208fa8d519}
+
+
+Drive the motors to steer the robot to the right. \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em speed}]The speed to drive at, 0 to 127 \end{description}
+\end{Desc}
+
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+libidp/\hyperlink{hal_8h}{hal.h}\item 
+libidp/\hyperlink{hal_8cc}{hal.cc}\end{CompactItemize}
