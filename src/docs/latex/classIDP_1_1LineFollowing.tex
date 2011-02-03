@@ -32,7 +32,7 @@ Collaboration diagram for IDP::LineFollowing:\nopagebreak
 \hyperlink{namespaceIDP_a5993bdfdd901fc5521c8df42dca43bd0}{LineFollowingStatus} \hyperlink{classIDP_1_1LineFollowing_adc0b67e4dc93dfef246cdde6190b0745}{turn\_\-right} (void)
 \begin{DoxyCompactList}\small\item\em Turn the robot right until the sensors detect another line. \item\end{DoxyCompactList}\item 
 void \hyperlink{classIDP_1_1LineFollowing_af034f457aef1716d042606c71dddfd73}{set\_\-speed} (unsigned short int speed)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Set the speed that motors will be driven at. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -80,6 +80,13 @@ A LineFollowingStatus to indicate that either we are going fine, we are lost, or
 \end{DoxyParamCaption}
 )}}
 \label{classIDP_1_1LineFollowing_af034f457aef1716d042606c71dddfd73}
+
+
+Set the speed that motors will be driven at. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em speed}]How fast to drive the motors, 0 to MOTOR\_\-MAX\_\-SPEED. \end{DoxyParams}
 \hypertarget{classIDP_1_1LineFollowing_a551e979a503328c2f645a1af2798d940}{
 \index{IDP::LineFollowing@{IDP::LineFollowing}!turn\_\-left@{turn\_\-left}}
 \index{turn\_\-left@{turn\_\-left}!IDP::LineFollowing@{IDP::LineFollowing}}
