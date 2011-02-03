@@ -28,6 +28,7 @@ namespace IDP {
      * fine, we are lost, or one or more possible turns were found.
      */
     LineFollowingStatus LineFollowing::follow_line() {
+        std::cout << "[LineFollowing] Following a line straight forwards" << std::endl;
 
         // We're not turning
         this->_lost_turning_line = false;
@@ -183,6 +184,8 @@ namespace IDP {
      */
     LineFollowingStatus LineFollowing::turn_left()
     {
+        std::cout << "[LineFollowing] Executing a left turn" << std::endl;
+
         // Read the state of the IR sensors from hal
         const LineSensors s = _hal->line_following_sensors();
 
@@ -216,6 +219,49 @@ namespace IDP {
      */
     LineFollowingStatus LineFollowing::turn_right()
     {
+        std::cout << "[LineFollowing] Executing a right turn" << std::endl;
+
+        // Read the state of the IR sensors from hal
+        const LineSensors s = _hal->line_following_sensors();
+
+        this->_hal->motor_right_forward(0);
+        this->_hal->motor_left_forward(this->_speed);
+
+        if((s.line_left == LINE && s.line_right == LINE &&
+            s.outer_left == NO_LINE && s.outer_right == NO_LINE) ||
+           (s.line_left == LINE && s.line_right == NO_LINE))
+        {
+            // If we've not lost the line, continue starting the turn
+            // Otherwise we have now finished
+            if(!this->_lost_turning_line) {
+                return ACTION_IN_PROGRESS;
+            } else {
+                return ACTION_COMPLETED;
+            }
+        } else if(s.line_left == NO_LINE && s.line_right == NO_LINE &&
+                  s.outer_left == NO_LINE && s.outer_right == NO_LINE)
+        {
+            // We've now lost the line
+            this->_lost_turning_line = true;
+        } else {
+            // Something is wrong. Hope it gets better.
+            return ACTION_IN_PROGRESS;
+        }
+    }
+
+    /**
+     * Set the speed that motors will be driven at
+     * \param speed How fast to drive the motors, 0 to MOTOR_MAX_SPEED.
+     */
+    void LineFollowing::set_speed(unsigned short int speed)
+    {
+        std::cout << "[LineFollowing] Setting LineFollowing speed to ";
+        std::cout << speed << std::endl;
+
+        if(speed < MOTOR_MAX_SPEED)
+            this->_speed = speed;
+        else
+            this->_speed = MOTOR_MAX_SPEED;
     }
 
     unsigned short int cap_correction(const unsigned short int correction) {
