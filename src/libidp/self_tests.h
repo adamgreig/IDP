@@ -25,6 +25,10 @@ namespace IDP {
             void drive_forward(void);
             void drive_backward(void);
             void stop(void);
+            void turn_left(void);
+            void turn_right(void);
+            void steer_left(void);
+            void steer_right(void);
             void line_sensors(void);
             void microswitches(void);
             void LDRs(void);

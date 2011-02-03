@@ -34,7 +34,8 @@ namespace IDP {
         // Read the state of the IR sensors from hal
         const LineSensors sensors = _hal->line_following_sensors();
 
-        if (sensors.line_left == LINE && sensors.line_right == LINE)
+        if (sensors.line_left == LINE && sensors.line_right == LINE &&
+            sensors.outer_left == NO_LINE && sensors.outer_right == NO_LINE)
         {
             std::cout << "[LineFollowing] On the line" << std::endl;
 
@@ -60,8 +61,13 @@ namespace IDP {
             std::cout << "[LineFollowing] Lost the line, stopping";
             std::cout << std::endl;
 
-            // On the line, continue
             // this->_hal->motors_stop();
+        }
+
+        if(sensors.outer_right == LINE) {
+            std::cout << "[LineFollowing] Found a right turn" << std::endl;
+            this->turn_right();
+            return;
         }
 
         // Call correct_steering to carry out any required adjustments
@@ -80,24 +86,26 @@ namespace IDP {
 
         short int correction = static_cast<short int>(ki) 
             * static_cast<short int>(_error);
+        
+        short int max_correction = MOTOR_MAX_SPEED - 64;
 
         // Clip correction to the motors' max speed
-        if (correction > MOTOR_MAX_SPEED)
-            correction = MOTOR_MAX_SPEED;
-        if (correction < -MOTOR_MAX_SPEED)
-            correction = -MOTOR_MAX_SPEED;
+        if (correction > max_correction)
+            correction = max_correction;
+        if (correction < -max_correction)
+            correction = -max_correction;
 
         if (correction < 0)
         {
             // We are too far left, so turn right
-            this->_hal->motor_left_go(64);
-            this->_hal->motor_right_go(64 - correction);
+            this->_hal->motor_left_forward(64);
+            this->_hal->motor_right_forward(64 - correction);
         }
         else if (correction > 0)
         {
             // We are too far right, so turn left 
-            this->_hal->motor_right_go(64);
-            this->_hal->motor_left_go(64 + correction);
+            this->_hal->motor_right_forward(64);
+            this->_hal->motor_left_forward(64 + correction);
         }
         else
         {
@@ -120,6 +128,30 @@ namespace IDP {
      */
     void LineFollowing::turn_right()
     {
+        // 1. Set the right motor to 0
+        this->_hal->motor_right_forward(0);
+        
+        // 2. Set the left motor to full speed
+        this->_hal->motor_left_forward(127);
+        
+        // 3. Poll the inner right sensor for losing the line
+        bool lost = false;
+        while(!lost) {
+            const LineSensors lf = this->_hal->line_following_sensors();
+            if(lf.line_right == NO_LINE) {
+                lost = true;
+            }
+        }
+        
+        // 4. Poll the inner right sensor for regaining the line
+        while(lost) {
+            const LineSensors lf = this->_hal->line_following_sensors();
+            if(lf.line_right == LINE) {
+                lost = false;
+            }
+        }
+
+        // 5. Turn completed, return control to normal line following
     }
 
     /**

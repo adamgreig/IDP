@@ -11,8 +11,6 @@
 #ifndef LIBIDP_H
 #define LIBIDP_H
 
-#include <robot_link.h>
-
 namespace IDP {
 
     /**
@@ -22,7 +20,7 @@ namespace IDP {
     class StatusWatchdog {
         public:
             const int check() const;
-    }
+    };
 }
 
 #endif /* LIBIDP_H */

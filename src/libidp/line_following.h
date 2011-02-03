@@ -28,7 +28,10 @@ namespace IDP {
         public:
             LineFollowing(const HardwareAbstractionLayer* hal);
             void correct_steering(int error);
-            void follow_line();
+            void follow_line(void);
+            void turn_left(void);
+            void turn_right(void);
+            void turn_around(void);
 
         private:
             int _error;

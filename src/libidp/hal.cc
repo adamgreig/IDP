@@ -40,6 +40,7 @@ namespace IDP {
 
         // Set motor ramp speed
         this->rlink->command(RAMP_TIME, MOTOR_RAMP_TIME);
+
     }
 
     /**
@@ -158,7 +159,7 @@ namespace IDP {
             return;
         }
 
-        this->rlink->command(MOTOR_2_GO, (1<<7) speed);
+        this->rlink->command(MOTOR_2_GO, (1<<7) | speed);
     }
 
     /**
@@ -240,9 +241,9 @@ namespace IDP {
      * Read the status register and return it.
      * \returns The STATUS register
      */
-    const char HardwareAbstractionLayer::status_register() const
+    char HardwareAbstractionLayer::status_register() const
     {
-        static_cast<const char>(return this->rlink->request(STATUS));
+        return static_cast<char>(this->rlink->request(STATUS));
     }
 
     /**
@@ -265,7 +266,7 @@ namespace IDP {
      * Get the analogue reading from the LDR used to detect colour.
      * \returns The analogue reading value
      */
-    const unsigned short int HardwareAbstractionLayer::colour_ldr() const
+    unsigned short int HardwareAbstractionLayer::colour_ldr() const
     {
     }
 
@@ -273,7 +274,7 @@ namespace IDP {
      * Get the analogue reading from the LDR used to detect the bad bobbin.
      * \returns The analogue reading value
      */
-    const unsigned short int HardwareAbstractionLayer::bad_bobbin_ldr() const
+    unsigned short int HardwareAbstractionLayer::bad_bobbin_ldr() const
     {
     }
 

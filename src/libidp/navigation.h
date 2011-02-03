@@ -12,7 +12,7 @@
 
 namespace IDP {
     
-    class HardwareAbstrationLayer;
+    class HardwareAbstractionLayer;
 
     /**
      * Current navigation status
@@ -42,7 +42,7 @@ namespace IDP {
             Navigation(const HardwareAbstractionLayer* hal);
             const NavigationStatus go(const NavigationLocation location);
         private:
-            const HardwareAbstrationLayer* _hal;
+            const HardwareAbstractionLayer* _hal;
     };
 }
 

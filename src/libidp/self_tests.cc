@@ -5,8 +5,8 @@
 // Self Tests class implementation
 
 #include <iostream>
-#include <robot_instr.h>
 
+#include "self_tests.h"
 #include "mission_supervisor.h"
 #include "hal.h"
 #include "line_following.h"

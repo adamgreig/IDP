@@ -49,13 +49,13 @@ namespace IDP {
             void motors_turn_left(const unsigned short int speed) const;
             void motors_turn_right(const unsigned short int speed) const;
             void motors_stop() const;
-            const char status_register() const;
+            char status_register() const;
             void clear_status_register() const;
             const LineSensors line_following_sensors() const;
             bool reset_switch() const;
             bool grabber_switch() const;
-            const unsigned short int colour_ldr() const;
-            const unsigned short int bad_bobbin_ldr() const;
+            unsigned short int colour_ldr() const;
+            unsigned short int bad_bobbin_ldr() const;
             void indication_LEDs(const bool led_0, const bool led_1, const bool led_2) const;
             void colour_leds(const bool red, const bool green) const;
             void bad_bobbin_led(const bool status) const;

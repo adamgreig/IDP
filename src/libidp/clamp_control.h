@@ -13,7 +13,7 @@
 
 namespace IDP {
 
-    class HardwareAbstrationLayer;
+    class HardwareAbstractionLayer;
 
     /**
      * Bobbin colours
@@ -44,6 +44,8 @@ namespace IDP {
             void put_down();
             const BobbinColour colour() const;
             const BobbinBadness badness() const;
+        private:
+            const HardwareAbstractionLayer* _hal;
     };
 }
 
