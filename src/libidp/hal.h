@@ -15,10 +15,10 @@
 
 namespace IDP {
 
-    static const int MOTOR_MAX_SPEED = 127;
-    static const int MOTOR_RAMP_TIME = 16;
-    static const bool LINE = true;
-    static const bool NO_LINE = false;
+    const int MOTOR_MAX_SPEED = 127;
+    const int MOTOR_RAMP_TIME = 16;
+    const bool LINE = true;
+    const bool NO_LINE = false;
     
     /**
      * Contains the LINE or NO_LINE status of each of the four 
@@ -56,7 +56,8 @@ namespace IDP {
             bool grabber_switch() const;
             unsigned short int colour_ldr() const;
             unsigned short int bad_bobbin_ldr() const;
-            void indication_LEDs(const bool led_0, const bool led_1, const bool led_2) const;
+            void indication_LEDs(const bool led_0, const bool led_1,
+                const bool led_2) const;
             void colour_leds(const bool red, const bool green) const;
             void bad_bobbin_led(const bool status) const;
             void grabber_jaw(const bool status) const;

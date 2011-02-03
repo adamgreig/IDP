@@ -5,7 +5,6 @@
 // Line Following class implementation
 
 #include <iostream>
-#include <robot_instr.h>
 
 #include "hal.h"
 #include "line_following.h"
@@ -15,151 +14,215 @@ namespace IDP {
      * Construct the Line Follower
      */
     LineFollowing::LineFollowing(const HardwareAbstractionLayer* hal)
-        : _hal(hal)
+        : _hal(hal), _error(0), _speed(0), _turn_in_progress(false),
+        _lost_turning_line(false), _lost_time(0)
     {
         std::cout << "[LineFollowing] Initialising a Line Follower";
         std::cout << std::endl;
-
-        // Accumulator
-        _error = 0;
     }
 
     /**
-     * Follow a line forwards, stopping when a junction is reached
+     * Read line sensors and correct motor movement to keep us going straight.
+     *
+     * \returns A LineFollowingStatus to indicate that either we are going
+     * fine, we are lost, or one or more possible turns were found.
      */
-    void LineFollowing::follow_line() {
+    LineFollowingStatus LineFollowing::follow_line() {
 
-        std::cout << "[LineFollowing] Reading IR sensors" << std::endl;
+        // We're not turning
+        this->_lost_turning_line = false;
 
         // Read the state of the IR sensors from hal
-        const LineSensors sensors = _hal->line_following_sensors();
+        const LineSensors s = _hal->line_following_sensors();
 
-        if (sensors.line_left == LINE && sensors.line_right == LINE &&
-            sensors.outer_left == NO_LINE && sensors.outer_right == NO_LINE)
+        // Take various appropriate action depending on sensor state
+        if( s.line_left == LINE && s.line_right == LINE &&
+            s.outer_left == NO_LINE && s.outer_right == NO_LINE)
         {
-            std::cout << "[LineFollowing] On the line" << std::endl;
-
-            // We are on the line so reset the error and continue
-            this->_error = 0;
-        }
-        else if (sensors.line_left == LINE && sensors.line_right == NO_LINE)
+            // We are okay! Keep driving forwards
+            this->_left_error = this->_right_error = this->_lost_time  = 0;
+            this->correct_steering();
+            return ACTION_IN_PROGRESS;
+        } else if(  s.line_left == NO_LINE && s.line_right == LINE &&
+                    s.outer_left == NO_LINE && s.outer_right == NO_LINE)
         {
-            std::cout << "[LineFollowing] Too far right" << std::endl;
-
-            // Need to turn left
-            this->_error--;
-        }
-        else if (sensors.line_left == NO_LINE && sensors.line_right == LINE)
+            // Have veered a little left, compensate
+            this->_left_error++;
+            this->_right_error = this->_lost_time = 0;
+            this->correct_steering();
+            return ACTION_IN_PROGRESS;
+        } else if(  s.line_left == LINE && s.line_right == NO_LINE &&
+                    s.outer_left == NO_LINE && s.outer_right == NO_LINE)
         {
-            std::cout << "[LineFollowing] Too far left" << std::endl;
-
-            // Need to turn right
-            this->_error++;
-        }
-        else if (sensors.line_left == NO_LINE && sensors.line_right == NO_LINE)
+            // Have veered a little right, compensate
+            this->_right_error++;
+            this->_lost_time = 0;
+            this->_left_error = this->_lost_time = 0;
+            this->correct_steering();
+            return ACTION_IN_PROGRESS;
+        } else if(  s.line_left == LINE && s.line_right == LINE &&
+                    s.outer_left == LINE && s.outer_right == NO_LINE)
         {
-            std::cout << "[LineFollowing] Lost the line, stopping";
-            std::cout << std::endl;
-
-            // this->_hal->motors_stop();
+            // Found a left turn
+            this->_right_error = this->_left_error = this->_lost_time = 0;
+            this->correct_steering();
+            return LEFT_TURN_FOUND;
+        } else if(  s.line_left == LINE && s.line_right == LINE &&
+                    s.outer_left == NO_LINE && s.outer_right == LINE)
+        {
+            // Found a right turn
+            this->_right_error = this->_left_error = this->_lost_time = 0;
+            this->correct_steering();
+            return RIGHT_TURN_FOUND;
+        } else if(  s.line_left == LINE && s.line_right == LINE &&
+                    s.outer_left == LINE && s.outer_right == LINE)
+        {
+            // Found both turns
+            this->_right_error = this->_left_error = this->_lost_time = 0;
+            this->correct_steering();
+            return BOTH_TURNS_FOUND;
+        } else if(  s.line_left == NO_LINE && s.line_right == NO_LINE &&
+                    s.outer_left == NO_LINE && s.outer_right == NO_LINE)
+        {
+            // We can't see any lines. If it has been a long time since
+            // we were on a line, return LOST, otherwise correct towards
+            // the last known direction.
+            this->_lost_time++;
+            if(this->_lost_time > LOST_TIMEOUT) {
+                // Prevent lost_time from overflowing
+                this->_lost_time--;
+                this->correct_steering();
+                return LOST;
+            } else {
+                if(this->_left_error)
+                    this->_left_error++;
+                else if(this->_right_error)
+                    this->_right_error++;
+                this->correct_steering();
+                return ACTION_IN_PROGRESS;
+            }
+        } else if(  s.line_left == NO_LINE && s.line_right == NO_LINE &&
+                    s.outer_left == LINE && s.outer_right == NO_LINE)
+        {
+            // We've veered a lot right, compensate
+            this->_right_error += EDGE_ERROR;
+            this->_left_error = this->_lost_time = 0;
+            this->correct_steering();
+            return ACTION_IN_PROGRESS;
+        } else if(  s.line_left == NO_LINE && s.line_right == NO_LINE &&
+                    s.outer_left == NO_LINE && s.outer_right == LINE)
+        {
+            // We've veered a lot left, compensate
+            this->_left_error += EDGE_ERROR;
+            this->_right_error = this->_lost_time = 0;
+            this->correct_steering();
+            return ACTION_IN_PROGRESS;
+        } else {
+            // Something odd happened. Keep driving as we were.
+            this->correct_steering();
+            return ACTION_IN_PROGRESS;
         }
-
-        if(sensors.outer_right == LINE) {
-            std::cout << "[LineFollowing] Found a right turn" << std::endl;
-            this->turn_right();
-            return;
-        }
-
-        // Call correct_steering to carry out any required adjustments
-        this->correct_steering(_error);
     }
 
     /**
-     * Correct the steering of the robot
-     * \param _error A signed integer where negative is too far left, and
-     * positive is too far right
+     * Correct the steering of the robot after the error has been
+     * calculated in follow_line.
      */
-    void LineFollowing::correct_steering(int _error)
+    void LineFollowing::correct_steering()
     {
-        std::cout << "[LineFollowing] Correcting steering with error ";
-        std::cout << _error << std::endl;
+        // Calculate available headroom for applying a forward
+        // correction
+        unsigned short int headroom = MOTOR_MAX_SPEED - this->_speed;
 
-        short int correction = static_cast<short int>(ki) 
-            * static_cast<short int>(_error);
-        
-        short int max_correction = MOTOR_MAX_SPEED - 64;
+        // Switch based on error direction
+        if(_left_error) {
+            // Calculate the required differential correction
+            unsigned short int correction = static_cast<unsigned short int>(
+                static_cast<double>(_left_error) * INTEGRAL_GAIN);
 
-        // Clip correction to the motors' max speed
-        if (correction > max_correction)
-            correction = max_correction;
-        if (correction < -max_correction)
-            correction = -max_correction;
+            // Cap correction
+            correction = cap_correction(correction);
 
-        if (correction < 0)
-        {
-            // We are too far left, so turn right
-            this->_hal->motor_left_forward(64);
-            this->_hal->motor_right_forward(64 - correction);
+            // Apply as much correction as possible to the left
+            // wheel forwards and whatever is left to right backwards
+            if(headroom >= correction) {
+                this->_hal->motor_left_forward(this->_speed + correction);
+                this->_hal->motor_right_forward(this->_speed);
+            } else {
+                this->_hal->motor_left_forward(this->_speed + headroom);
+                this->_hal->motor_right_forward(
+                    this->_speed - (correction - headroom));
+            }
+
+        } else if(_right_error) {
+            // Calculate the required differential correction
+            unsigned short int correction = static_cast<unsigned short int>(
+                static_cast<double>(_right_error) * INTEGRAL_GAIN);
+
+            // Cap correction
+            correction = cap_correction(correction);
+
+            // Apply as much correction as possible to the right
+            // wheel forwards and whatever is right to left backwards
+            if(headroom >= correction) {
+                this->_hal->motor_right_forward(this->_speed + correction);
+                this->_hal->motor_left_forward(this->_speed);
+            } else {
+                this->_hal->motor_right_forward(this->_speed + headroom);
+                this->_hal->motor_left_forward(
+                    this->_speed - (correction - headroom));
+            }
+        } else {
+            // No correction required so drive forwards
+            this->_hal->motors_forward(this->_speed);
         }
-        else if (correction > 0)
+    }
+
+    /**
+     * Turn the robot left until the sensors encounter another line
+     */
+    LineFollowingStatus LineFollowing::turn_left()
+    {
+        // Read the state of the IR sensors from hal
+        const LineSensors s = _hal->line_following_sensors();
+
+        this->_hal->motor_left_forward(0);
+        this->_hal->motor_right_forward(this->_speed);
+
+        if((s.line_left == LINE && s.line_right == LINE &&
+            s.outer_left == NO_LINE && s.outer_right == NO_LINE) ||
+           (s.line_left == NO_LINE && s.line_right == LINE))
         {
-            // We are too far right, so turn left 
-            this->_hal->motor_right_forward(64);
-            this->_hal->motor_left_forward(64 + correction);
+            // If we've not lost the line, continue starting the turn
+            // Otherwise we have now finished
+            if(!this->_lost_turning_line) {
+                return ACTION_IN_PROGRESS;
+            } else {
+                return ACTION_COMPLETED;
+            }
+        } else if(s.line_left == NO_LINE && s.line_right == NO_LINE &&
+                  s.outer_left == NO_LINE && s.outer_right == NO_LINE)
+        {
+            // We've now lost the line
+            this->_lost_turning_line = true;
+        } else {
+            // Something is wrong. Hope it gets better.
+            return ACTION_IN_PROGRESS;
         }
+    }
+
+    /**
+     * Turn the robot right until the sensors detect another line
+     */
+    LineFollowingStatus LineFollowing::turn_right()
+    {
+    }
+
+    unsigned short int cap_correction(const unsigned short int correction) {
+        if(correction > MAX_CORRECTION)
+            return MAX_CORRECTION;
         else
-        {
-            // No adjustments are required
-            this->_hal->motors_forward(64);
-        }
-    }
-
-    /**
-     * Turn the robot left on the spot until the sensors encounter another
-     * line
-     */
-    void LineFollowing::turn_left()
-    {
-    }
-
-    /**
-     * Turn the robot right on the spot until the sensors detect another
-     * line
-     */
-    void LineFollowing::turn_right()
-    {
-        // 1. Set the right motor to 0
-        this->_hal->motor_right_forward(0);
-        
-        // 2. Set the left motor to full speed
-        this->_hal->motor_left_forward(127);
-        
-        // 3. Poll the inner right sensor for losing the line
-        bool lost = false;
-        while(!lost) {
-            const LineSensors lf = this->_hal->line_following_sensors();
-            if(lf.line_right == NO_LINE) {
-                lost = true;
-            }
-        }
-        
-        // 4. Poll the inner right sensor for regaining the line
-        while(lost) {
-            const LineSensors lf = this->_hal->line_following_sensors();
-            if(lf.line_right == LINE) {
-                lost = false;
-            }
-        }
-
-        // 5. Turn completed, return control to normal line following
-    }
-
-    /**
-     * Spin the robot 180 degrees, using the line behind to detect when
-     * the correct amount of rotation has been reached
-     */
-    void LineFollowing::turn_around()
-    {
+            return correction;
     }
 }
 

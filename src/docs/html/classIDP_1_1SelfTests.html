@@ -55,6 +55,14 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Drive the robot backwards for a moment.  <a href="#a38ddef7ecdf9b7dfa69d689c9c1ac8ca"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1SelfTests.html#a33adf462d8c408b1c7b4858e9a4ff000">stop</a> (void)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Stop all of the robot's motors.  <a href="#a33adf462d8c408b1c7b4858e9a4ff000"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1SelfTests.html#a3ba14e5a1ed52ff112bc742b94f06d61">turn_left</a> (void)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Drive motors in opposite directions to turn the robot left on the spot.  <a href="#a3ba14e5a1ed52ff112bc742b94f06d61"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1SelfTests.html#a4e4b66ddff2de3444f1e9383dcf463a6">turn_right</a> (void)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Drive motors in opposite directions to turn the robot right on the spot.  <a href="#a4e4b66ddff2de3444f1e9383dcf463a6"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1SelfTests.html#ae54bd0e6c01c5d1d794363cc676dbb92">steer_left</a> (void)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Drive forwards for a moment whilst reducing the speed of the left motor relative to the right to steer left.  <a href="#ae54bd0e6c01c5d1d794363cc676dbb92"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1SelfTests.html#a7f9c5999de2e7c4f59c8c5a60965e876">steer_right</a> (void)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Drive forwards for a moment whilst reducing the speed of the right motor relative to the left to steer right.  <a href="#a7f9c5999de2e7c4f59c8c5a60965e876"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1SelfTests.html#aa73ad4de6c1d2b725ed796c10f54ab7c">line_sensors</a> (void)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Display the status (LINE or NO_LINE) of each of the four IR line following sensors.  <a href="#aa73ad4de6c1d2b725ed796c10f54ab7c"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1SelfTests.html#a6b2e4d0517de4b73c63f1b1a475b602f">microswitches</a> (void)</td></tr>
@@ -390,6 +398,46 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="ae54bd0e6c01c5d1d794363cc676dbb92"></a><!-- doxytag: member="IDP::SelfTests::steer_left" ref="ae54bd0e6c01c5d1d794363cc676dbb92" args="(void)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void IDP::SelfTests::steer_left </td>
+          <td>(</td>
+          <td class="paramtype">void&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Drive forwards for a moment whilst reducing the speed of the left motor relative to the right to steer left. </p>
+
+</div>
+</div>
+<a class="anchor" id="a7f9c5999de2e7c4f59c8c5a60965e876"></a><!-- doxytag: member="IDP::SelfTests::steer_right" ref="a7f9c5999de2e7c4f59c8c5a60965e876" args="(void)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void IDP::SelfTests::steer_right </td>
+          <td>(</td>
+          <td class="paramtype">void&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Drive forwards for a moment whilst reducing the speed of the right motor relative to the left to steer right. </p>
+
+</div>
+</div>
 <a class="anchor" id="a33adf462d8c408b1c7b4858e9a4ff000"></a><!-- doxytag: member="IDP::SelfTests::stop" ref="a33adf462d8c408b1c7b4858e9a4ff000" args="(void)" -->
 <div class="memitem">
 <div class="memproto">
@@ -410,12 +458,52 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a3ba14e5a1ed52ff112bc742b94f06d61"></a><!-- doxytag: member="IDP::SelfTests::turn_left" ref="a3ba14e5a1ed52ff112bc742b94f06d61" args="(void)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void IDP::SelfTests::turn_left </td>
+          <td>(</td>
+          <td class="paramtype">void&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Drive motors in opposite directions to turn the robot left on the spot. </p>
+
+</div>
+</div>
+<a class="anchor" id="a4e4b66ddff2de3444f1e9383dcf463a6"></a><!-- doxytag: member="IDP::SelfTests::turn_right" ref="a4e4b66ddff2de3444f1e9383dcf463a6" args="(void)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void IDP::SelfTests::turn_right </td>
+          <td>(</td>
+          <td class="paramtype">void&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Drive motors in opposite directions to turn the robot right on the spot. </p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>libidp/<a class="el" href="self__tests_8h_source.html">self_tests.h</a></li>
 <li>libidp/<a class="el" href="self__tests_8cc.html">self_tests.cc</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Wed Feb 2 2011 19:39:52 for IDPL108 by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Thu Feb 3 2011 17:31:29 for IDPL108 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

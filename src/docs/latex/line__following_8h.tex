@@ -2,14 +2,6 @@
 \section{libidp/line\_\-following.h File Reference}
 \label{line__following_8h}\index{libidp/line\_\-following.h@{libidp/line\_\-following.h}}
 }
-{\ttfamily \#include $<$robot\_\-link.h$>$}\par
-Include dependency graph for line\_\-following.h:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=188pt]{line__following_8h__incl}
-\end{center}
-\end{figure}
 This graph shows which files directly or indirectly include this file:\nopagebreak
 \begin{figure}[H]
 \begin{center}
@@ -27,8 +19,32 @@ class \hyperlink{classIDP_1_1LineFollowing}{IDP::LineFollowing}
 \item 
 namespace \hyperlink{namespaceIDP}{IDP}
 \end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{namespaceIDP_a5993bdfdd901fc5521c8df42dca43bd0}{IDP::LineFollowingStatus} \{ \par
+\hyperlink{namespaceIDP_a5993bdfdd901fc5521c8df42dca43bd0a392b1fde04c7c0a442405be80f874159}{IDP::ACTION\_\-IN\_\-PROGRESS}, 
+\hyperlink{namespaceIDP_a5993bdfdd901fc5521c8df42dca43bd0a1347f71adefd32a09a46af0c452f2884}{IDP::ACTION\_\-COMPLETED}, 
+\hyperlink{namespaceIDP_a5993bdfdd901fc5521c8df42dca43bd0a38cd4116cdddd4aa99a78dd5c3b37ed6}{IDP::LEFT\_\-TURN\_\-FOUND}, 
+\hyperlink{namespaceIDP_a5993bdfdd901fc5521c8df42dca43bd0a4e943d3404f29cc547855d1097727e63}{IDP::RIGHT\_\-TURN\_\-FOUND}, 
+\par
+\hyperlink{namespaceIDP_a5993bdfdd901fc5521c8df42dca43bd0adb771c4661fabd68ed4c31c504088e93}{IDP::BOTH\_\-TURNS\_\-FOUND}, 
+\hyperlink{namespaceIDP_a5993bdfdd901fc5521c8df42dca43bd0ab68c7dd029c69ce53f446acabd19455c}{IDP::LOST}
+ \}
+\begin{DoxyCompactList}\small\item\em Line following return status codes. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+unsigned short int \hyperlink{namespaceIDP_ae66b1b69bcde3ba7995f2fd46c6f21f5}{IDP::cap\_\-correction} (const unsigned short int correction)
+\begin{DoxyCompactList}\small\item\em Cap a line following correction value to MAX\_\-CORRECTION. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
-const double \hyperlink{namespaceIDP_aa2b933f600179026dbca5d8bc63c3baf}{IDP::ki} = 4.0
-\end{DoxyCompactItemize}
+const double \hyperlink{namespaceIDP_a9107eef10d68ba30176633afd87f1ed4}{IDP::INTEGRAL\_\-GAIN} = 4.0
+\begin{DoxyCompactList}\small\item\em Constant for integral control in line following. \item\end{DoxyCompactList}\item 
+const short unsigned int \hyperlink{namespaceIDP_a246919caaacabcb0399802d542d8330b}{IDP::MAX\_\-CORRECTION} = 127
+\begin{DoxyCompactList}\small\item\em Maximum differential correction value before it gets capped. \item\end{DoxyCompactList}\item 
+const unsigned int \hyperlink{namespaceIDP_ac845248570cca0705d43e2dbb085c3cb}{IDP::LOST\_\-TIMEOUT} = 50
+\begin{DoxyCompactList}\small\item\em The number of loop iterations before we count as lost. \item\end{DoxyCompactList}\item 
+const unsigned int \hyperlink{namespaceIDP_afa01378acc238f4bd41d8eb304f7afd7}{IDP::EDGE\_\-ERROR} = 2
+\begin{DoxyCompactList}\small\item\em How much an outer sensor seeing the edge of a line should add to the appropriate error. \item\end{DoxyCompactList}\end{DoxyCompactItemize}

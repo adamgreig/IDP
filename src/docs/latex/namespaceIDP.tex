@@ -33,6 +33,16 @@ enum \hyperlink{namespaceIDP_adf12b2c1e1c228810b18c34a3c88c32d}{BobbinBadness} \
 \hyperlink{namespaceIDP_adf12b2c1e1c228810b18c34a3c88c32da6cb4993a316e9d4dc9836d3d990fd0f6}{BOBBIN\_\-BAD}
  \}
 \begin{DoxyCompactList}\small\item\em Bobbin good or bad. \item\end{DoxyCompactList}\item 
+enum \hyperlink{namespaceIDP_a5993bdfdd901fc5521c8df42dca43bd0}{LineFollowingStatus} \{ \par
+\hyperlink{namespaceIDP_a5993bdfdd901fc5521c8df42dca43bd0a392b1fde04c7c0a442405be80f874159}{ACTION\_\-IN\_\-PROGRESS}, 
+\hyperlink{namespaceIDP_a5993bdfdd901fc5521c8df42dca43bd0a1347f71adefd32a09a46af0c452f2884}{ACTION\_\-COMPLETED}, 
+\hyperlink{namespaceIDP_a5993bdfdd901fc5521c8df42dca43bd0a38cd4116cdddd4aa99a78dd5c3b37ed6}{LEFT\_\-TURN\_\-FOUND}, 
+\hyperlink{namespaceIDP_a5993bdfdd901fc5521c8df42dca43bd0a4e943d3404f29cc547855d1097727e63}{RIGHT\_\-TURN\_\-FOUND}, 
+\par
+\hyperlink{namespaceIDP_a5993bdfdd901fc5521c8df42dca43bd0adb771c4661fabd68ed4c31c504088e93}{BOTH\_\-TURNS\_\-FOUND}, 
+\hyperlink{namespaceIDP_a5993bdfdd901fc5521c8df42dca43bd0ab68c7dd029c69ce53f446acabd19455c}{LOST}
+ \}
+\begin{DoxyCompactList}\small\item\em Line following return status codes. \item\end{DoxyCompactList}\item 
 enum \hyperlink{namespaceIDP_a1a96e566e4d675fdf20780cc96d92283}{NavigationStatus} \{ \hyperlink{namespaceIDP_a1a96e566e4d675fdf20780cc96d92283a9f52fe7970aefcb1b74e9aea3798f39d}{NAVIGATION\_\-ENROUTE}, 
 \hyperlink{namespaceIDP_a1a96e566e4d675fdf20780cc96d92283ab9e83c995cb23a5782b23b198dcbabcb}{NAVIGATION\_\-ARRIVED}, 
 \hyperlink{namespaceIDP_a1a96e566e4d675fdf20780cc96d92283ad75d1c5522e0a38dbe62266912d411ba}{NAVIGATION\_\-LOST}
@@ -43,19 +53,30 @@ enum \hyperlink{namespaceIDP_ab9c412f0fd539b5d70385066c30465a0}{NavigationLocati
 \hyperlink{namespaceIDP_ab9c412f0fd539b5d70385066c30465a0a10e09a3f2969d951f0dc233cb76eb4bf}{NAVIGATION\_\-DELIVERY}
  \}
 \begin{DoxyCompactList}\small\item\em Navigation's current position estimate. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+unsigned short int \hyperlink{namespaceIDP_ae66b1b69bcde3ba7995f2fd46c6f21f5}{cap\_\-correction} (const unsigned short int correction)
+\begin{DoxyCompactList}\small\item\em Cap a line following correction value to MAX\_\-CORRECTION. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
-static const int \hyperlink{namespaceIDP_a4ead0b21ad2c507b542445695182d4cd}{MOTOR\_\-MAX\_\-SPEED} = 127
+const int \hyperlink{namespaceIDP_a4ead0b21ad2c507b542445695182d4cd}{MOTOR\_\-MAX\_\-SPEED} = 127
 \item 
-static const int \hyperlink{namespaceIDP_ab3a00a6cc8a6dba271e38d337daf4703}{MOTOR\_\-RAMP\_\-TIME} = 16
+const int \hyperlink{namespaceIDP_ab3a00a6cc8a6dba271e38d337daf4703}{MOTOR\_\-RAMP\_\-TIME} = 16
 \item 
-static const bool \hyperlink{namespaceIDP_a559427fa7c37f2edc0a43a4b793c4fdc}{LINE} = true
+const bool \hyperlink{namespaceIDP_a559427fa7c37f2edc0a43a4b793c4fdc}{LINE} = true
 \item 
-static const bool \hyperlink{namespaceIDP_a5ea027b77276a637783f68955303b9b8}{NO\_\-LINE} = false
+const bool \hyperlink{namespaceIDP_a5ea027b77276a637783f68955303b9b8}{NO\_\-LINE} = false
 \item 
-const double \hyperlink{namespaceIDP_aa2b933f600179026dbca5d8bc63c3baf}{ki} = 4.0
-\end{DoxyCompactItemize}
+const double \hyperlink{namespaceIDP_a9107eef10d68ba30176633afd87f1ed4}{INTEGRAL\_\-GAIN} = 4.0
+\begin{DoxyCompactList}\small\item\em Constant for integral control in line following. \item\end{DoxyCompactList}\item 
+const short unsigned int \hyperlink{namespaceIDP_a246919caaacabcb0399802d542d8330b}{MAX\_\-CORRECTION} = 127
+\begin{DoxyCompactList}\small\item\em Maximum differential correction value before it gets capped. \item\end{DoxyCompactList}\item 
+const unsigned int \hyperlink{namespaceIDP_ac845248570cca0705d43e2dbb085c3cb}{LOST\_\-TIMEOUT} = 50
+\begin{DoxyCompactList}\small\item\em The number of loop iterations before we count as lost. \item\end{DoxyCompactList}\item 
+const unsigned int \hyperlink{namespaceIDP_afa01378acc238f4bd41d8eb304f7afd7}{EDGE\_\-ERROR} = 2
+\begin{DoxyCompactList}\small\item\em How much an outer sensor seeing the edge of a line should add to the appropriate error. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Enumeration Type Documentation}
@@ -106,6 +127,51 @@ BOBBIN\_\-GREEN}
 \hypertarget{namespaceIDP_a6efd2cca14c0dae1c6458714ce0218dfa8f427bfb1c335650a7ada595e1607d00}{
 BOBBIN\_\-WHITE}
 \label{namespaceIDP_a6efd2cca14c0dae1c6458714ce0218dfa8f427bfb1c335650a7ada595e1607d00}
+}]\end{description}
+\end{Desc}
+
+\hypertarget{namespaceIDP_a5993bdfdd901fc5521c8df42dca43bd0}{
+\index{IDP@{IDP}!LineFollowingStatus@{LineFollowingStatus}}
+\index{LineFollowingStatus@{LineFollowingStatus}!IDP@{IDP}}
+\subsubsection[{LineFollowingStatus}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf IDP::LineFollowingStatus}}}
+\label{namespaceIDP_a5993bdfdd901fc5521c8df42dca43bd0}
+
+
+Line following return status codes. 
+
+ACTION\_\-IN\_\-PROGRESS indicates that the requested action is still underway.
+
+ACTION\_\-COMPLETED indicates that the requested action has finished.
+
+LEFT\_\-TURN\_\-FOUND, RIGHT\_\-TURN\_\-FOUND and BOTH\_\-TURNS\_\-FOUND indicate that possible turns have been found in the path.
+
+LOST indicates that no line could be seen on any sensors and that this is unexpected. \begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{ACTION\_\-IN\_\-PROGRESS@{ACTION\_\-IN\_\-PROGRESS}!IDP@{IDP}}\index{IDP@{IDP}!ACTION\_\-IN\_\-PROGRESS@{ACTION\_\-IN\_\-PROGRESS}}\item[{\em 
+\hypertarget{namespaceIDP_a5993bdfdd901fc5521c8df42dca43bd0a392b1fde04c7c0a442405be80f874159}{
+ACTION\_\-IN\_\-PROGRESS}
+\label{namespaceIDP_a5993bdfdd901fc5521c8df42dca43bd0a392b1fde04c7c0a442405be80f874159}
+}]\index{ACTION\_\-COMPLETED@{ACTION\_\-COMPLETED}!IDP@{IDP}}\index{IDP@{IDP}!ACTION\_\-COMPLETED@{ACTION\_\-COMPLETED}}\item[{\em 
+\hypertarget{namespaceIDP_a5993bdfdd901fc5521c8df42dca43bd0a1347f71adefd32a09a46af0c452f2884}{
+ACTION\_\-COMPLETED}
+\label{namespaceIDP_a5993bdfdd901fc5521c8df42dca43bd0a1347f71adefd32a09a46af0c452f2884}
+}]\index{LEFT\_\-TURN\_\-FOUND@{LEFT\_\-TURN\_\-FOUND}!IDP@{IDP}}\index{IDP@{IDP}!LEFT\_\-TURN\_\-FOUND@{LEFT\_\-TURN\_\-FOUND}}\item[{\em 
+\hypertarget{namespaceIDP_a5993bdfdd901fc5521c8df42dca43bd0a38cd4116cdddd4aa99a78dd5c3b37ed6}{
+LEFT\_\-TURN\_\-FOUND}
+\label{namespaceIDP_a5993bdfdd901fc5521c8df42dca43bd0a38cd4116cdddd4aa99a78dd5c3b37ed6}
+}]\index{RIGHT\_\-TURN\_\-FOUND@{RIGHT\_\-TURN\_\-FOUND}!IDP@{IDP}}\index{IDP@{IDP}!RIGHT\_\-TURN\_\-FOUND@{RIGHT\_\-TURN\_\-FOUND}}\item[{\em 
+\hypertarget{namespaceIDP_a5993bdfdd901fc5521c8df42dca43bd0a4e943d3404f29cc547855d1097727e63}{
+RIGHT\_\-TURN\_\-FOUND}
+\label{namespaceIDP_a5993bdfdd901fc5521c8df42dca43bd0a4e943d3404f29cc547855d1097727e63}
+}]\index{BOTH\_\-TURNS\_\-FOUND@{BOTH\_\-TURNS\_\-FOUND}!IDP@{IDP}}\index{IDP@{IDP}!BOTH\_\-TURNS\_\-FOUND@{BOTH\_\-TURNS\_\-FOUND}}\item[{\em 
+\hypertarget{namespaceIDP_a5993bdfdd901fc5521c8df42dca43bd0adb771c4661fabd68ed4c31c504088e93}{
+BOTH\_\-TURNS\_\-FOUND}
+\label{namespaceIDP_a5993bdfdd901fc5521c8df42dca43bd0adb771c4661fabd68ed4c31c504088e93}
+}]\index{LOST@{LOST}!IDP@{IDP}}\index{IDP@{IDP}!LOST@{LOST}}\item[{\em 
+\hypertarget{namespaceIDP_a5993bdfdd901fc5521c8df42dca43bd0ab68c7dd029c69ce53f446acabd19455c}{
+LOST}
+\label{namespaceIDP_a5993bdfdd901fc5521c8df42dca43bd0ab68c7dd029c69ce53f446acabd19455c}
 }]\end{description}
 \end{Desc}
 
@@ -165,29 +231,82 @@ NAVIGATION\_\-LOST}
 
 
 
+\subsection{Function Documentation}
+\hypertarget{namespaceIDP_ae66b1b69bcde3ba7995f2fd46c6f21f5}{
+\index{IDP@{IDP}!cap\_\-correction@{cap\_\-correction}}
+\index{cap\_\-correction@{cap\_\-correction}!IDP@{IDP}}
+\subsubsection[{cap\_\-correction}]{\setlength{\rightskip}{0pt plus 5cm}unsigned short int IDP::cap\_\-correction (
+\begin{DoxyParamCaption}
+\item[{const unsigned short int}]{ correction}
+\end{DoxyParamCaption}
+)}}
+\label{namespaceIDP_ae66b1b69bcde3ba7995f2fd46c6f21f5}
+
+
+Cap a line following correction value to MAX\_\-CORRECTION. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em correction}]The existing correction value \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The capped correction value 
+\end{DoxyReturn}
+
+
 \subsection{Variable Documentation}
-\hypertarget{namespaceIDP_aa2b933f600179026dbca5d8bc63c3baf}{
-\index{IDP@{IDP}!ki@{ki}}
-\index{ki@{ki}!IDP@{IDP}}
-\subsubsection[{ki}]{\setlength{\rightskip}{0pt plus 5cm}const double {\bf IDP::ki} = 4.0}}
-\label{namespaceIDP_aa2b933f600179026dbca5d8bc63c3baf}
+\hypertarget{namespaceIDP_afa01378acc238f4bd41d8eb304f7afd7}{
+\index{IDP@{IDP}!EDGE\_\-ERROR@{EDGE\_\-ERROR}}
+\index{EDGE\_\-ERROR@{EDGE\_\-ERROR}!IDP@{IDP}}
+\subsubsection[{EDGE\_\-ERROR}]{\setlength{\rightskip}{0pt plus 5cm}const unsigned int {\bf IDP::EDGE\_\-ERROR} = 2}}
+\label{namespaceIDP_afa01378acc238f4bd41d8eb304f7afd7}
+
+
+How much an outer sensor seeing the edge of a line should add to the appropriate error. 
+
+\hypertarget{namespaceIDP_a9107eef10d68ba30176633afd87f1ed4}{
+\index{IDP@{IDP}!INTEGRAL\_\-GAIN@{INTEGRAL\_\-GAIN}}
+\index{INTEGRAL\_\-GAIN@{INTEGRAL\_\-GAIN}!IDP@{IDP}}
+\subsubsection[{INTEGRAL\_\-GAIN}]{\setlength{\rightskip}{0pt plus 5cm}const double {\bf IDP::INTEGRAL\_\-GAIN} = 4.0}}
+\label{namespaceIDP_a9107eef10d68ba30176633afd87f1ed4}
+
+
+Constant for integral control in line following. 
+
 \hypertarget{namespaceIDP_a559427fa7c37f2edc0a43a4b793c4fdc}{
 \index{IDP@{IDP}!LINE@{LINE}}
 \index{LINE@{LINE}!IDP@{IDP}}
-\subsubsection[{LINE}]{\setlength{\rightskip}{0pt plus 5cm}const bool {\bf IDP::LINE} = true\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}
+\subsubsection[{LINE}]{\setlength{\rightskip}{0pt plus 5cm}const bool {\bf IDP::LINE} = true}}
 \label{namespaceIDP_a559427fa7c37f2edc0a43a4b793c4fdc}
+\hypertarget{namespaceIDP_ac845248570cca0705d43e2dbb085c3cb}{
+\index{IDP@{IDP}!LOST\_\-TIMEOUT@{LOST\_\-TIMEOUT}}
+\index{LOST\_\-TIMEOUT@{LOST\_\-TIMEOUT}!IDP@{IDP}}
+\subsubsection[{LOST\_\-TIMEOUT}]{\setlength{\rightskip}{0pt plus 5cm}const unsigned int {\bf IDP::LOST\_\-TIMEOUT} = 50}}
+\label{namespaceIDP_ac845248570cca0705d43e2dbb085c3cb}
+
+
+The number of loop iterations before we count as lost. 
+
+\hypertarget{namespaceIDP_a246919caaacabcb0399802d542d8330b}{
+\index{IDP@{IDP}!MAX\_\-CORRECTION@{MAX\_\-CORRECTION}}
+\index{MAX\_\-CORRECTION@{MAX\_\-CORRECTION}!IDP@{IDP}}
+\subsubsection[{MAX\_\-CORRECTION}]{\setlength{\rightskip}{0pt plus 5cm}const short unsigned int {\bf IDP::MAX\_\-CORRECTION} = 127}}
+\label{namespaceIDP_a246919caaacabcb0399802d542d8330b}
+
+
+Maximum differential correction value before it gets capped. 
+
 \hypertarget{namespaceIDP_a4ead0b21ad2c507b542445695182d4cd}{
 \index{IDP@{IDP}!MOTOR\_\-MAX\_\-SPEED@{MOTOR\_\-MAX\_\-SPEED}}
 \index{MOTOR\_\-MAX\_\-SPEED@{MOTOR\_\-MAX\_\-SPEED}!IDP@{IDP}}
-\subsubsection[{MOTOR\_\-MAX\_\-SPEED}]{\setlength{\rightskip}{0pt plus 5cm}const int {\bf IDP::MOTOR\_\-MAX\_\-SPEED} = 127\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}
+\subsubsection[{MOTOR\_\-MAX\_\-SPEED}]{\setlength{\rightskip}{0pt plus 5cm}const int {\bf IDP::MOTOR\_\-MAX\_\-SPEED} = 127}}
 \label{namespaceIDP_a4ead0b21ad2c507b542445695182d4cd}
 \hypertarget{namespaceIDP_ab3a00a6cc8a6dba271e38d337daf4703}{
 \index{IDP@{IDP}!MOTOR\_\-RAMP\_\-TIME@{MOTOR\_\-RAMP\_\-TIME}}
 \index{MOTOR\_\-RAMP\_\-TIME@{MOTOR\_\-RAMP\_\-TIME}!IDP@{IDP}}
-\subsubsection[{MOTOR\_\-RAMP\_\-TIME}]{\setlength{\rightskip}{0pt plus 5cm}const int {\bf IDP::MOTOR\_\-RAMP\_\-TIME} = 16\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}
+\subsubsection[{MOTOR\_\-RAMP\_\-TIME}]{\setlength{\rightskip}{0pt plus 5cm}const int {\bf IDP::MOTOR\_\-RAMP\_\-TIME} = 16}}
 \label{namespaceIDP_ab3a00a6cc8a6dba271e38d337daf4703}
 \hypertarget{namespaceIDP_a5ea027b77276a637783f68955303b9b8}{
 \index{IDP@{IDP}!NO\_\-LINE@{NO\_\-LINE}}
 \index{NO\_\-LINE@{NO\_\-LINE}!IDP@{IDP}}
-\subsubsection[{NO\_\-LINE}]{\setlength{\rightskip}{0pt plus 5cm}const bool {\bf IDP::NO\_\-LINE} = false\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}
+\subsubsection[{NO\_\-LINE}]{\setlength{\rightskip}{0pt plus 5cm}const bool {\bf IDP::NO\_\-LINE} = false}}
 \label{namespaceIDP_a5ea027b77276a637783f68955303b9b8}

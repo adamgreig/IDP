@@ -56,10 +56,13 @@ Collaboration diagram for IDP::LineFollowing:</div>
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1LineFollowing.html#ab30cde971719545d81ce253ae995cc4d">LineFollowing</a> (const <a class="el" href="classIDP_1_1HardwareAbstractionLayer.html">HardwareAbstractionLayer</a> *hal)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Construct the Line Follower.  <a href="#ab30cde971719545d81ce253ae995cc4d"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1LineFollowing.html#af578916c93854c701fccbdaef783997b">correct_steering</a> (int error)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Correct the steering of the robot.  <a href="#af578916c93854c701fccbdaef783997b"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1LineFollowing.html#a35c80e04729e98dfa927159610605649">follow_line</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Follow a line forwards, stopping when a junction is reached.  <a href="#a35c80e04729e98dfa927159610605649"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0">LineFollowingStatus</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1LineFollowing.html#ad26d7726d2bb263658ed3140d3e30852">follow_line</a> (void)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Read line sensors and correct motor movement to keep us going straight.  <a href="#ad26d7726d2bb263658ed3140d3e30852"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0">LineFollowingStatus</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1LineFollowing.html#a551e979a503328c2f645a1af2798d940">turn_left</a> (void)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Turn the robot left until the sensors encounter another line.  <a href="#a551e979a503328c2f645a1af2798d940"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0">LineFollowingStatus</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1LineFollowing.html#adc0b67e4dc93dfef246cdde6190b0745">turn_right</a> (void)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Turn the robot right until the sensors detect another line.  <a href="#adc0b67e4dc93dfef246cdde6190b0745"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1LineFollowing.html#af034f457aef1716d042606c71dddfd73">set_speed</a> (unsigned short int speed)</td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>Maintain the robot position correctly with respect to the white line markers, during driving and manouvering. </p>
@@ -85,39 +88,14 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="af578916c93854c701fccbdaef783997b"></a><!-- doxytag: member="IDP::LineFollowing::correct_steering" ref="af578916c93854c701fccbdaef783997b" args="(int error)" -->
+<a class="anchor" id="ad26d7726d2bb263658ed3140d3e30852"></a><!-- doxytag: member="IDP::LineFollowing::follow_line" ref="ad26d7726d2bb263658ed3140d3e30852" args="(void)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void IDP::LineFollowing::correct_steering </td>
+          <td class="memname"><a class="el" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0">LineFollowingStatus</a> IDP::LineFollowing::follow_line </td>
           <td>(</td>
-          <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>_error</em></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Correct the steering of the robot. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>_error</em>&nbsp;</td><td>A signed integer where negative is too far left, and positive is too far right </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a class="anchor" id="a35c80e04729e98dfa927159610605649"></a><!-- doxytag: member="IDP::LineFollowing::follow_line" ref="a35c80e04729e98dfa927159610605649" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void IDP::LineFollowing::follow_line </td>
-          <td>(</td>
+          <td class="paramtype">void&nbsp;</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
           <td></td>
@@ -126,7 +104,66 @@ Public Member Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Follow a line forwards, stopping when a junction is reached. </p>
+<p>Read line sensors and correct motor movement to keep us going straight. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A LineFollowingStatus to indicate that either we are going fine, we are lost, or one or more possible turns were found. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="af034f457aef1716d042606c71dddfd73"></a><!-- doxytag: member="IDP::LineFollowing::set_speed" ref="af034f457aef1716d042606c71dddfd73" args="(unsigned short int speed)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void IDP::LineFollowing::set_speed </td>
+          <td>(</td>
+          <td class="paramtype">unsigned short int&nbsp;</td>
+          <td class="paramname"> <em>speed</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a551e979a503328c2f645a1af2798d940"></a><!-- doxytag: member="IDP::LineFollowing::turn_left" ref="a551e979a503328c2f645a1af2798d940" args="(void)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0">LineFollowingStatus</a> IDP::LineFollowing::turn_left </td>
+          <td>(</td>
+          <td class="paramtype">void&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Turn the robot left until the sensors encounter another line. </p>
+
+</div>
+</div>
+<a class="anchor" id="adc0b67e4dc93dfef246cdde6190b0745"></a><!-- doxytag: member="IDP::LineFollowing::turn_right" ref="adc0b67e4dc93dfef246cdde6190b0745" args="(void)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0">LineFollowingStatus</a> IDP::LineFollowing::turn_right </td>
+          <td>(</td>
+          <td class="paramtype">void&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Turn the robot right until the sensors detect another line. </p>
 
 </div>
 </div>
@@ -135,7 +172,7 @@ Public Member Functions</h2></td></tr>
 <li>libidp/<a class="el" href="line__following_8cc.html">line_following.cc</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Wed Feb 2 2011 19:39:52 for IDPL108 by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Thu Feb 3 2011 17:31:29 for IDPL108 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

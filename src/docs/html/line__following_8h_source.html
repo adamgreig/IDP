@@ -39,33 +39,54 @@
 <a name="l00010"></a>00010 <span class="preprocessor"></span><span class="preprocessor">#ifndef LIBIDP_LINE_FOLLOWING_H</span>
 <a name="l00011"></a>00011 <span class="preprocessor"></span><span class="preprocessor">#define LIBIDP_LINE_FOLLOWING_H</span>
 <a name="l00012"></a>00012 <span class="preprocessor"></span>
-<a name="l00013"></a>00013 <span class="preprocessor">#include &lt;robot_link.h&gt;</span>
+<a name="l00013"></a>00013 <span class="keyword">namespace </span>IDP {
 <a name="l00014"></a>00014 
-<a name="l00015"></a>00015 <span class="keyword">namespace </span>IDP {
+<a name="l00015"></a>00015     <span class="keyword">class </span>HardwareAbstractionLayer;
 <a name="l00016"></a>00016 
-<a name="l00017"></a>00017     <span class="keyword">class </span>HardwareAbstractionLayer;
-<a name="l00018"></a>00018 
-<a name="l00019"></a>00019     <span class="comment">// Constant for integral control in line following</span>
-<a name="l00020"></a><a class="code" href="namespaceIDP.html#aa2b933f600179026dbca5d8bc63c3baf">00020</a>     <span class="keyword">const</span> <span class="keywordtype">double</span> <a class="code" href="namespaceIDP.html#aa2b933f600179026dbca5d8bc63c3baf">ki</a> = 4.0;
+<a name="l00020"></a><a class="code" href="namespaceIDP.html#a9107eef10d68ba30176633afd87f1ed4">00020</a>     <span class="keyword">const</span> <span class="keywordtype">double</span> <a class="code" href="namespaceIDP.html#a9107eef10d68ba30176633afd87f1ed4" title="Constant for integral control in line following.">INTEGRAL_GAIN</a> = 4.0;
 <a name="l00021"></a>00021 
-<a name="l00026"></a><a class="code" href="classIDP_1_1LineFollowing.html">00026</a>     <span class="keyword">class </span><a class="code" href="classIDP_1_1LineFollowing.html" title="Maintain the robot position correctly with respect to the white line markers, during driving and mano...">LineFollowing</a> 
-<a name="l00027"></a>00027     {
-<a name="l00028"></a>00028         <span class="keyword">public</span>:
-<a name="l00029"></a>00029             <a class="code" href="classIDP_1_1LineFollowing.html#ab30cde971719545d81ce253ae995cc4d" title="Construct the Line Follower.">LineFollowing</a>(<span class="keyword">const</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html" title="Provide a hardware agnostic interface to the required hardware functionality.">HardwareAbstractionLayer</a>* hal);
-<a name="l00030"></a>00030             <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1LineFollowing.html#af578916c93854c701fccbdaef783997b" title="Correct the steering of the robot.">correct_steering</a>(<span class="keywordtype">int</span> error);
-<a name="l00031"></a>00031             <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1LineFollowing.html#a35c80e04729e98dfa927159610605649" title="Follow a line forwards, stopping when a junction is reached.">follow_line</a>();
-<a name="l00032"></a>00032 
-<a name="l00033"></a>00033         <span class="keyword">private</span>:
-<a name="l00034"></a>00034             <span class="keywordtype">int</span> _error;
-<a name="l00035"></a>00035             <span class="keyword">const</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html" title="Provide a hardware agnostic interface to the required hardware functionality.">HardwareAbstractionLayer</a>* _hal; 
-<a name="l00036"></a>00036     };
-<a name="l00037"></a>00037 }
-<a name="l00038"></a>00038 
-<a name="l00039"></a>00039 <span class="preprocessor">#endif </span><span class="comment">/* LIBIDP_LINE_FOLLOWING_H */</span>
-<a name="l00040"></a>00040 
+<a name="l00025"></a><a class="code" href="namespaceIDP.html#a246919caaacabcb0399802d542d8330b">00025</a>     <span class="keyword">const</span> <span class="keywordtype">short</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="namespaceIDP.html#a246919caaacabcb0399802d542d8330b" title="Maximum differential correction value before it gets capped.">MAX_CORRECTION</a> = 127;
+<a name="l00026"></a>00026 
+<a name="l00030"></a><a class="code" href="namespaceIDP.html#ac845248570cca0705d43e2dbb085c3cb">00030</a>     <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="namespaceIDP.html#ac845248570cca0705d43e2dbb085c3cb" title="The number of loop iterations before we count as lost.">LOST_TIMEOUT</a> = 50;
+<a name="l00031"></a>00031 
+<a name="l00036"></a><a class="code" href="namespaceIDP.html#afa01378acc238f4bd41d8eb304f7afd7">00036</a>     <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="namespaceIDP.html#afa01378acc238f4bd41d8eb304f7afd7" title="How much an outer sensor seeing the edge of a line should add to the appropriate error.">EDGE_ERROR</a> = 2;
+<a name="l00037"></a>00037 
+<a name="l00052"></a><a class="code" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0">00052</a>     <span class="keyword">enum</span> <a class="code" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0" title="Line following return status codes.">LineFollowingStatus</a> {
+<a name="l00053"></a><a class="code" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0a392b1fde04c7c0a442405be80f874159">00053</a>         ACTION_IN_PROGRESS,
+<a name="l00054"></a><a class="code" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0a1347f71adefd32a09a46af0c452f2884">00054</a>         ACTION_COMPLETED,
+<a name="l00055"></a><a class="code" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0a38cd4116cdddd4aa99a78dd5c3b37ed6">00055</a>         LEFT_TURN_FOUND,
+<a name="l00056"></a><a class="code" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0a4e943d3404f29cc547855d1097727e63">00056</a>         RIGHT_TURN_FOUND,
+<a name="l00057"></a><a class="code" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0adb771c4661fabd68ed4c31c504088e93">00057</a>         BOTH_TURNS_FOUND,
+<a name="l00058"></a><a class="code" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0ab68c7dd029c69ce53f446acabd19455c">00058</a>         <a class="code" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0ab68c7dd029c69ce53f446acabd19455c">LOST</a>
+<a name="l00059"></a>00059     };
+<a name="l00060"></a>00060 
+<a name="l00066"></a>00066     <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> <a class="code" href="namespaceIDP.html#ae66b1b69bcde3ba7995f2fd46c6f21f5" title="Cap a line following correction value to MAX_CORRECTION.">cap_correction</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> correction);
+<a name="l00067"></a>00067 
+<a name="l00072"></a><a class="code" href="classIDP_1_1LineFollowing.html">00072</a>     <span class="keyword">class </span><a class="code" href="classIDP_1_1LineFollowing.html" title="Maintain the robot position correctly with respect to the white line markers, during driving and mano...">LineFollowing</a> 
+<a name="l00073"></a>00073     {
+<a name="l00074"></a>00074         <span class="keyword">public</span>:
+<a name="l00075"></a>00075             <a class="code" href="classIDP_1_1LineFollowing.html#ab30cde971719545d81ce253ae995cc4d" title="Construct the Line Follower.">LineFollowing</a>(<span class="keyword">const</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html" title="Provide a hardware agnostic interface to the required hardware functionality.">HardwareAbstractionLayer</a>* hal);
+<a name="l00076"></a>00076             <a class="code" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0" title="Line following return status codes.">LineFollowingStatus</a> <a class="code" href="classIDP_1_1LineFollowing.html#ad26d7726d2bb263658ed3140d3e30852" title="Read line sensors and correct motor movement to keep us going straight.">follow_line</a>(<span class="keywordtype">void</span>);
+<a name="l00077"></a>00077             <a class="code" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0" title="Line following return status codes.">LineFollowingStatus</a> <a class="code" href="classIDP_1_1LineFollowing.html#a551e979a503328c2f645a1af2798d940" title="Turn the robot left until the sensors encounter another line.">turn_left</a>(<span class="keywordtype">void</span>);
+<a name="l00078"></a>00078             <a class="code" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0" title="Line following return status codes.">LineFollowingStatus</a> <a class="code" href="classIDP_1_1LineFollowing.html#adc0b67e4dc93dfef246cdde6190b0745" title="Turn the robot right until the sensors detect another line.">turn_right</a>(<span class="keywordtype">void</span>);
+<a name="l00079"></a>00079             <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1LineFollowing.html#af034f457aef1716d042606c71dddfd73">set_speed</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> speed);
+<a name="l00080"></a>00080 
+<a name="l00081"></a>00081         <span class="keyword">private</span>:
+<a name="l00082"></a>00082             <span class="keywordtype">void</span> correct_steering(<span class="keywordtype">void</span>);
+<a name="l00083"></a>00083             <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> _left_error;
+<a name="l00084"></a>00084             <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> _right_error;
+<a name="l00085"></a>00085             <span class="keywordtype">bool</span> _lost_turning_line;
+<a name="l00086"></a>00086             <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> _speed;
+<a name="l00087"></a>00087             <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> _lost_time;
+<a name="l00088"></a>00088             <span class="keyword">const</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html" title="Provide a hardware agnostic interface to the required hardware functionality.">HardwareAbstractionLayer</a>* _hal; 
+<a name="l00089"></a>00089     };
+<a name="l00090"></a>00090 }
+<a name="l00091"></a>00091 
+<a name="l00092"></a>00092 <span class="preprocessor">#endif </span><span class="comment">/* LIBIDP_LINE_FOLLOWING_H */</span>
+<a name="l00093"></a>00093 
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Wed Feb 2 2011 19:39:52 for IDPL108 by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Thu Feb 3 2011 17:31:29 for IDPL108 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

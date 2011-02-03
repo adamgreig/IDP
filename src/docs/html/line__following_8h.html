@@ -27,17 +27,13 @@
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#namespaces">Namespaces</a> &#124;
+<a href="#enum-members">Enumerations</a> &#124;
+<a href="#func-members">Functions</a> &#124;
 <a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <h1>libidp/line_following.h File Reference</h1>  </div>
 </div>
 <div class="contents">
-<code>#include &lt;robot_link.h&gt;</code><br/>
-<div class="dynheader">
-Include dependency graph for line_following.h:</div>
-<div class="dyncontent">
-<div class="center"><img src="line__following_8h__incl.png" border="0" usemap="#libidp_2line__following_8h" alt=""/></div>
-</div>
 <div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
@@ -55,12 +51,37 @@ Classes</h2></td></tr>
 <tr><td colspan="2"><h2><a name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">namespace &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceIDP.html">IDP</a></td></tr>
+<tr><td colspan="2"><h2><a name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0">IDP::LineFollowingStatus</a> { <br/>
+&nbsp;&nbsp;<a class="el" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0a392b1fde04c7c0a442405be80f874159">IDP::ACTION_IN_PROGRESS</a>, 
+<a class="el" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0a1347f71adefd32a09a46af0c452f2884">IDP::ACTION_COMPLETED</a>, 
+<a class="el" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0a38cd4116cdddd4aa99a78dd5c3b37ed6">IDP::LEFT_TURN_FOUND</a>, 
+<a class="el" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0a4e943d3404f29cc547855d1097727e63">IDP::RIGHT_TURN_FOUND</a>, 
+<br/>
+&nbsp;&nbsp;<a class="el" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0adb771c4661fabd68ed4c31c504088e93">IDP::BOTH_TURNS_FOUND</a>, 
+<a class="el" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0ab68c7dd029c69ce53f446acabd19455c">IDP::LOST</a>
+<br/>
+ }</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><p>Line following return status codes. </p>
+ <a href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0">More...</a><br/></td></tr>
+<tr><td colspan="2"><h2><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">unsigned short int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceIDP.html#ae66b1b69bcde3ba7995f2fd46c6f21f5">IDP::cap_correction</a> (const unsigned short int correction)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Cap a line following correction value to MAX_CORRECTION.  <a href="#ae66b1b69bcde3ba7995f2fd46c6f21f5"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">const double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceIDP.html#aa2b933f600179026dbca5d8bc63c3baf">IDP::ki</a> = 4.0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceIDP.html#a9107eef10d68ba30176633afd87f1ed4">IDP::INTEGRAL_GAIN</a> = 4.0</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constant for integral control in line following.  <a href="#a9107eef10d68ba30176633afd87f1ed4"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const short unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceIDP.html#a246919caaacabcb0399802d542d8330b">IDP::MAX_CORRECTION</a> = 127</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Maximum differential correction value before it gets capped.  <a href="#a246919caaacabcb0399802d542d8330b"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceIDP.html#ac845248570cca0705d43e2dbb085c3cb">IDP::LOST_TIMEOUT</a> = 50</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">The number of loop iterations before we count as lost.  <a href="#ac845248570cca0705d43e2dbb085c3cb"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceIDP.html#afa01378acc238f4bd41d8eb304f7afd7">IDP::EDGE_ERROR</a> = 2</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">How much an outer sensor seeing the edge of a line should add to the appropriate error.  <a href="#afa01378acc238f4bd41d8eb304f7afd7"></a><br/></td></tr>
 </table>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Wed Feb 2 2011 19:39:52 for IDPL108 by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Thu Feb 3 2011 17:31:29 for IDPL108 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

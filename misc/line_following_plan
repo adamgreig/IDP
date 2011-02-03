@@ -1,0 +1,74 @@
+LineFollowing:
+
+    Functionality:
+        Follow a line straight
+        Turn left/right
+        Set speed
+
+    "Actions":
+        Go straight
+        Turn left
+        Turn right
+
+    Interfaces:
+        HAL:
+            Line sensor status
+            Motor control
+
+    Possible return states:
+        * ACTION_IN_PROGRESS
+        * ACTION_COMPLETED
+        * LEFT_TURN_FOUND
+        * RIGHT_TURN_FOUND
+        * BOTH_TURNS_FOUND
+        * LOST :(
+
+    Internal state:
+        * Left error signal
+        * Right error signal
+        * Turn in progress
+        * Lost turning line
+        * Speed
+        * How long since we last saw a line?
+        * Which way was the line?
+            - Already stored in the error variable
+
+    Follow a straight line:
+        * Outer left, inner left, inner right, outer right :- 0=no line, 1=line
+        * 0110
+            We are okay! Keep driving forwards.
+        * 0010
+            Have veered a little left, compensate
+        * 0100
+            Have veered a little right, compensate
+        * 1110
+            Found a left turn
+        * 0111
+            Found a right turn
+        * 1111
+            Found both turns
+        * 0000
+            If it has been a long time since we saw a line, LOST
+            Otherwise correct towards the last known direction
+        * 1000
+            Have veered a lot right, compensate
+        * 0001
+            Have veered a lot left, compensate
+        * 1100, 0011, 1001, 1011, 1101, 0101, 1010
+            What on earth happened?! Drive straight and hope we get
+            into a normal state soon. Slow down, too, because of the
+            impending collision. With the wall. In front of us.
+
+    Turning (left or right):
+        * 0110
+            If we haven't yet lost the line: continue starting to turn
+            Otherwise: We've finished the turn
+        * x10x and x01x
+            If we haven't yet lost the line, turning is going as expected.
+            Otherwise, we have found the line again, ACTION_FINISHED
+        * 0000
+            If we hadn't lost the line yet, we now have.
+            Keep applying turning steering.
+        * Other states
+            Something is going wrong, keep applying steering and hope it
+            fixes itself.
