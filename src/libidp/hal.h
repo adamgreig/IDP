@@ -15,10 +15,24 @@
 
 namespace IDP {
 
+    /**
+     * Highest allowable motor speed in either direction
+     */
     const int MOTOR_MAX_SPEED = 127;
+
+    /**
+     * How fast to ramp the motors towards the desired speed.
+     * Lower is faster.
+     */
     const int MOTOR_RAMP_TIME = 16;
-    const bool LINE = true;
-    const bool NO_LINE = false;
+
+    /**
+     * Line sensor status, LINE or NO_LINE.
+     */
+    enum LineSensorStatus {
+        LINE,
+        NO_LINE
+    };
     
     /**
      * Contains the LINE or NO_LINE status of each of the four 
@@ -26,10 +40,10 @@ namespace IDP {
      */
     struct LineSensors
     {
-        bool outer_left;
-        bool line_left;
-        bool line_right;
-        bool outer_right;
+        LineSensorStatus outer_left;
+        LineSensorStatus line_left;
+        LineSensorStatus line_right;
+        LineSensorStatus outer_right;
     };
 
     /**

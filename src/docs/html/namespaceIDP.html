@@ -66,6 +66,11 @@ Enumerations</h2></td></tr>
  }</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><p>Bobbin good or bad. </p>
  <a href="namespaceIDP.html#adf12b2c1e1c228810b18c34a3c88c32d">More...</a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceIDP.html#afc3b1d4cbb313bfc854f49d6f23b25f7">LineSensorStatus</a> { <a class="el" href="namespaceIDP.html#afc3b1d4cbb313bfc854f49d6f23b25f7ab8f6b528c0b2fd3edfdd6463cc6a2fd2">LINE</a>, 
+<a class="el" href="namespaceIDP.html#afc3b1d4cbb313bfc854f49d6f23b25f7a8f85d4834fc4519df3f2053201d497d1">NO_LINE</a>
+ }</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><p>Line sensor status, LINE or NO_LINE. </p>
+ <a href="namespaceIDP.html#afc3b1d4cbb313bfc854f49d6f23b25f7">More...</a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0">LineFollowingStatus</a> { <br/>
 &nbsp;&nbsp;<a class="el" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0a392b1fde04c7c0a442405be80f874159">ACTION_IN_PROGRESS</a>, 
 <a class="el" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0a1347f71adefd32a09a46af0c452f2884">ACTION_COMPLETED</a>, 
@@ -97,9 +102,9 @@ Functions</h2></td></tr>
 <tr><td colspan="2"><h2><a name="var-members"></a>
 Variables</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceIDP.html#a4ead0b21ad2c507b542445695182d4cd">MOTOR_MAX_SPEED</a> = 127</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Highest allowable motor speed in either direction.  <a href="#a4ead0b21ad2c507b542445695182d4cd"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceIDP.html#ab3a00a6cc8a6dba271e38d337daf4703">MOTOR_RAMP_TIME</a> = 16</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">const bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceIDP.html#a559427fa7c37f2edc0a43a4b793c4fdc">LINE</a> = true</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">const bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceIDP.html#a5ea027b77276a637783f68955303b9b8">NO_LINE</a> = false</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">How fast to ramp the motors towards the desired speed.  <a href="#ab3a00a6cc8a6dba271e38d337daf4703"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceIDP.html#a9107eef10d68ba30176633afd87f1ed4">INTEGRAL_GAIN</a> = 4.0</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constant for integral control in line following.  <a href="#a9107eef10d68ba30176633afd87f1ed4"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const short unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceIDP.html#a246919caaacabcb0399802d542d8330b">MAX_CORRECTION</a> = 127</td></tr>
@@ -186,6 +191,29 @@ Variables</h2></td></tr>
 <tr><td valign="top"><em><a class="anchor" id="a5993bdfdd901fc5521c8df42dca43bd0adb771c4661fabd68ed4c31c504088e93"></a><!-- doxytag: member="BOTH_TURNS_FOUND" ref="a5993bdfdd901fc5521c8df42dca43bd0adb771c4661fabd68ed4c31c504088e93" args="" -->BOTH_TURNS_FOUND</em>&nbsp;</td><td>
 </td></tr>
 <tr><td valign="top"><em><a class="anchor" id="a5993bdfdd901fc5521c8df42dca43bd0ab68c7dd029c69ce53f446acabd19455c"></a><!-- doxytag: member="LOST" ref="a5993bdfdd901fc5521c8df42dca43bd0ab68c7dd029c69ce53f446acabd19455c" args="" -->LOST</em>&nbsp;</td><td>
+</td></tr>
+</table>
+</dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="afc3b1d4cbb313bfc854f49d6f23b25f7"></a><!-- doxytag: member="IDP::LineSensorStatus" ref="afc3b1d4cbb313bfc854f49d6f23b25f7" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="namespaceIDP.html#afc3b1d4cbb313bfc854f49d6f23b25f7">IDP::LineSensorStatus</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Line sensor status, LINE or NO_LINE. </p>
+<dl><dt><b>Enumerator: </b></dt><dd><table border="0" cellspacing="2" cellpadding="0">
+<tr><td valign="top"><em><a class="anchor" id="afc3b1d4cbb313bfc854f49d6f23b25f7ab8f6b528c0b2fd3edfdd6463cc6a2fd2"></a><!-- doxytag: member="LINE" ref="afc3b1d4cbb313bfc854f49d6f23b25f7ab8f6b528c0b2fd3edfdd6463cc6a2fd2" args="" -->LINE</em>&nbsp;</td><td>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="afc3b1d4cbb313bfc854f49d6f23b25f7a8f85d4834fc4519df3f2053201d497d1"></a><!-- doxytag: member="NO_LINE" ref="afc3b1d4cbb313bfc854f49d6f23b25f7a8f85d4834fc4519df3f2053201d497d1" args="" -->NO_LINE</em>&nbsp;</td><td>
 </td></tr>
 </table>
 </dd>
@@ -302,19 +330,6 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a559427fa7c37f2edc0a43a4b793c4fdc"></a><!-- doxytag: member="IDP::LINE" ref="a559427fa7c37f2edc0a43a4b793c4fdc" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const bool <a class="el" href="namespaceIDP.html#a559427fa7c37f2edc0a43a4b793c4fdc">IDP::LINE</a> = true</td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
 <a class="anchor" id="ac845248570cca0705d43e2dbb085c3cb"></a><!-- doxytag: member="IDP::LOST_TIMEOUT" ref="ac845248570cca0705d43e2dbb085c3cb" args="" -->
 <div class="memitem">
 <div class="memproto">
@@ -356,6 +371,8 @@ Variables</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Highest allowable motor speed in either direction. </p>
+
 </div>
 </div>
 <a class="anchor" id="ab3a00a6cc8a6dba271e38d337daf4703"></a><!-- doxytag: member="IDP::MOTOR_RAMP_TIME" ref="ab3a00a6cc8a6dba271e38d337daf4703" args="" -->
@@ -369,23 +386,13 @@ Variables</h2></td></tr>
 </div>
 <div class="memdoc">
 
-</div>
-</div>
-<a class="anchor" id="a5ea027b77276a637783f68955303b9b8"></a><!-- doxytag: member="IDP::NO_LINE" ref="a5ea027b77276a637783f68955303b9b8" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const bool <a class="el" href="namespaceIDP.html#a5ea027b77276a637783f68955303b9b8">IDP::NO_LINE</a> = false</td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
+<p>How fast to ramp the motors towards the desired speed. </p>
+<p>Lower is faster. </p>
 
 </div>
 </div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Thu Feb 3 2011 17:46:14 for IDPL108 by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Thu Feb 3 2011 17:49:52 for IDPL108 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>
