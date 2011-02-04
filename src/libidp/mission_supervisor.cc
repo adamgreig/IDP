@@ -99,9 +99,26 @@ namespace IDP {
     {
         std::cout << "[MisSup] Testing line following" << std::endl;
         LineFollowing lf(this->hal());
-        for(;;) {
-            lf.follow_line();
-        }
+        LineFollowingStatus status;
+        
+        do {
+            status = lf.follow_line();
+        } while(status == ACTION_IN_PROGRESS);
+
+        do {
+            status = lf.turn_right();
+        } while(status == ACTION_IN_PROGRESS);
+
+        do {
+            status = lf.follow_line();
+        } while(status == ACTION_IN_PROGRESS);
+
+        do {
+            status = lf.turn_right();
+        } while(status == ACTION_IN_PROGRESS);
+
+        return;
+
     }
 
     /**
