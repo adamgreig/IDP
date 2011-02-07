@@ -100,6 +100,24 @@ namespace IDP {
         std::cout << "[MisSup] Testing line following" << std::endl;
         LineFollowing lf(this->hal());
         LineFollowingStatus status;
+
+        lf.set_speed(127);
+        
+        do {
+            status = lf.follow_line();
+        } while(status == ACTION_IN_PROGRESS);
+
+        do {
+            status = lf.follow_line();
+        } while(status == BOTH_TURNS_FOUND);
+        
+        do {
+            status = lf.follow_line();
+        } while(status == ACTION_IN_PROGRESS);
+
+        do {
+            status = lf.follow_line();
+        } while(status == BOTH_TURNS_FOUND);
         
         do {
             status = lf.follow_line();
@@ -114,8 +132,50 @@ namespace IDP {
         } while(status == ACTION_IN_PROGRESS);
 
         do {
+            status = lf.follow_line();
+        } while(status == BOTH_TURNS_FOUND);
+        
+        do {
+            status = lf.follow_line();
+        } while(status == ACTION_IN_PROGRESS);
+
+        do {
             status = lf.turn_right();
         } while(status == ACTION_IN_PROGRESS);
+
+        do {
+            status = lf.turn_right();
+        } while(status == ACTION_IN_PROGRESS);
+
+        do {
+            status = lf.follow_line();
+        } while(status == ACTION_IN_PROGRESS);
+
+        do {
+            status = lf.follow_line();
+        } while(status == BOTH_TURNS_FOUND);
+        
+        do {
+            status = lf.follow_line();
+        } while(status == ACTION_IN_PROGRESS);
+        
+        do {
+            status = lf.follow_line();
+        } while(status == BOTH_TURNS_FOUND);
+        
+        do {
+            status = lf.follow_line();
+        } while(status == ACTION_IN_PROGRESS);
+
+        do {
+            status = lf.turn_right();
+        } while(status == ACTION_IN_PROGRESS);
+
+        do {
+            status = lf.follow_line();
+        } while(status == ACTION_IN_PROGRESS);
+
+        this->_hal->motors_stop();
 
         return;
 

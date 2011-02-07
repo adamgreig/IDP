@@ -22,7 +22,7 @@ namespace IDP {
      * Construct the Line Follower
      */
     LineFollowing::LineFollowing(const HardwareAbstractionLayer* hal)
-        : _hal(hal), _error(0), _speed(0), _turn_in_progress(false),
+        : _hal(hal), _left_error(0), _right_error(0), _speed(0),
         _lost_turning_line(false), _lost_time(0)
     {
         DEBUG("Initialising a Line Follower");
@@ -241,15 +241,20 @@ namespace IDP {
             // If we've not lost the line, continue starting the turn
             // Otherwise we have now finished
             if(!this->_lost_turning_line) {
+                std::cout << "[LineFollowing] At start of turn" << std::endl;
                 return ACTION_IN_PROGRESS;
             } else {
+                std::cout << "[LineFollowing] Found line again" << std::endl;
+                this->_lost_turning_line = false;
                 return ACTION_COMPLETED;
             }
         } else if(s.line_left == NO_LINE && s.line_right == NO_LINE &&
                   s.outer_left == NO_LINE && s.outer_right == NO_LINE)
         {
             // We've now lost the line
+            std::cout << "[LineFollowing] Lost turning line" << std::endl;
             this->_lost_turning_line = true;
+            return ACTION_IN_PROGRESS;
         } else {
             // Something is wrong. Hope it gets better.
             return ACTION_IN_PROGRESS;
