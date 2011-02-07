@@ -55,7 +55,8 @@ namespace IDP {
         LEFT_TURN_FOUND,
         RIGHT_TURN_FOUND,
         BOTH_TURNS_FOUND,
-        LOST
+        LOST,
+        NO_TURNS_FOUND
     };
 
     /**
@@ -76,6 +77,9 @@ namespace IDP {
             LineFollowingStatus follow_line(void);
             LineFollowingStatus turn_left(void);
             LineFollowingStatus turn_right(void);
+            LineFollowingStatus turn_around_cw(void);
+            LineFollowingStatus turn_around_ccw(void);
+            LineFollowingStatus junction_status(void);
             void set_speed(unsigned short int speed);
 
         private:

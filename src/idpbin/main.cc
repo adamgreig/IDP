@@ -22,6 +22,7 @@ static const int MENU_DRIVE_FORWARD = 1;
 static const int MENU_DRIVE_BACKWARD = 2;
 static const int MENU_TEST_LINE_SENSOR = 3;
 static const int MENU_TEST_LINE_FOLLOWING = 4;
+static const int MENU_TEST_NAVIGATION = 5;
 
 /**
  * Global reference to our Mission Supervisor so we can
@@ -62,6 +63,7 @@ int menu()
         std::cout << "2) Drive backward" << std::endl;
         std::cout << "3) Test line sensor" << std::endl;
         std::cout << "4) Test line following" << std::endl;
+        std::cout << "5) Test navigation" << std::endl;
         std::cout << std::endl;
         std::cout << "> ";
 
@@ -83,6 +85,8 @@ int menu()
             return MENU_TEST_LINE_SENSOR;
         } else if(choice == "4") {
             return MENU_TEST_LINE_FOLLOWING;
+        } else if(choice == "5") {
+            return MENU_TEST_NAVIGATION;
         } else if(choice == "Open the pod bay doors, HAL.") {
             std::cout << "I'm sorry, Dave. I'm afraid I can't do that.";
             std::cout << std::endl << std::endl;
@@ -126,6 +130,8 @@ int main()
         missup->test_line_sensor();
     } else if(choice == MENU_TEST_LINE_FOLLOWING) {
         missup->test_line_following();
+    } else if(choice == MENU_TEST_NAVIGATION) {
+        missup->test_navigation();
     }
 
     // Wait forever (MissionSupervisor should take care of things)

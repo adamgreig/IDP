@@ -25,12 +25,14 @@ namespace IDP {
     {
         public:
             MissionSupervisor(int robot);
+            ~MissionSupervisor();
             void run_task();
             void drive_forward();
             void drive_backward();
             void stop();
             void test_line_sensor();
             void test_line_following();
+            void test_navigation();
             const HardwareAbstractionLayer* hal() const;
         private:
             HardwareAbstractionLayer* _hal;

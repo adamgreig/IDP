@@ -9,9 +9,9 @@
 #include "hal.h"
 #include "line_following.h"
 
-#define LINEFOLLOWING_DEBUG 1
+#define LINEFOLLOWING_DEBUG 0
 
-#ifdef LINEFOLLOWING_DEBUG
+#if LINEFOLLOWING_DEBUG
 #define DEBUG(x) std::cout<<"[LineFollowing] "<<x<<std::endl
 #else
 #define DEBUG(x)
@@ -35,6 +35,11 @@ namespace IDP {
      * fine, we are lost, or one or more possible turns were found.
      */
     LineFollowingStatus LineFollowing::follow_line() {
+        if(this->_speed == 0) {
+            std::cerr << "[LineFollowing] follow_line called but speed is 0!";
+            std::cerr << std::endl;
+        }
+
         DEBUG("Following a line straight forwards");
 
         // We're not turning
@@ -188,6 +193,7 @@ namespace IDP {
 
     /**
      * Turn the robot left until the sensors encounter another line
+     * \returns A LineFollowingStatus code
      */
     LineFollowingStatus LineFollowing::turn_left()
     {
@@ -201,20 +207,25 @@ namespace IDP {
 
         if((s.line_left == LINE && s.line_right == LINE &&
             s.outer_left == NO_LINE && s.outer_right == NO_LINE) ||
-           (s.line_left == NO_LINE && s.line_right == LINE))
+           (s.line_left == LINE && s.line_right == NO_LINE))
         {
             // If we've not lost the line, continue starting the turn
             // Otherwise we have now finished
+            DEBUG("Can see the line on left turn");
+            DEBUG("line_right: " << s.line_right);
             if(!this->_lost_turning_line) {
                 return ACTION_IN_PROGRESS;
             } else {
+                this->_lost_turning_line = false;
                 return ACTION_COMPLETED;
             }
         } else if(s.line_left == NO_LINE && s.line_right == NO_LINE &&
                   s.outer_left == NO_LINE && s.outer_right == NO_LINE)
         {
             // We've now lost the line
+            DEBUG("Lost turning line on left turn");
             this->_lost_turning_line = true;
+            return ACTION_IN_PROGRESS;
         } else {
             // Something is wrong. Hope it gets better.
             return ACTION_IN_PROGRESS;
@@ -223,6 +234,7 @@ namespace IDP {
 
     /**
      * Turn the robot right until the sensors detect another line
+     * \returns A LineFollowingStatus code
      */
     LineFollowingStatus LineFollowing::turn_right()
     {
@@ -241,10 +253,10 @@ namespace IDP {
             // If we've not lost the line, continue starting the turn
             // Otherwise we have now finished
             if(!this->_lost_turning_line) {
-                std::cout << "[LineFollowing] At start of turn" << std::endl;
+                DEBUG("At start of turn");
                 return ACTION_IN_PROGRESS;
             } else {
-                std::cout << "[LineFollowing] Found line again" << std::endl;
+                DEBUG("Found line again");
                 this->_lost_turning_line = false;
                 return ACTION_COMPLETED;
             }
@@ -252,13 +264,120 @@ namespace IDP {
                   s.outer_left == NO_LINE && s.outer_right == NO_LINE)
         {
             // We've now lost the line
-            std::cout << "[LineFollowing] Lost turning line" << std::endl;
+            DEBUG("Lost turning line");
             this->_lost_turning_line = true;
             return ACTION_IN_PROGRESS;
         } else {
             // Something is wrong. Hope it gets better.
             return ACTION_IN_PROGRESS;
         }
+    }
+
+    /**
+     * Turn the robot around clockwise until the sensors detect another line
+     * \returns A LineFollowingStatus code
+     */
+    LineFollowingStatus LineFollowing::turn_around_cw()
+    {
+        DEBUG("Executing a turn around clockwise");
+
+        // Read the state of the IR sensors from hal
+        const LineSensors s = _hal->line_following_sensors();
+
+        this->_hal->motor_right_backward(this->_speed);
+        this->_hal->motor_left_forward(this->_speed);
+
+        if((s.line_left == LINE && s.line_right == LINE &&
+            s.outer_left == NO_LINE && s.outer_right == NO_LINE) ||
+           (s.line_left == LINE && s.line_right == NO_LINE))
+        {
+            // If we've not lost the line, continue starting the turn
+            // Otherwise we have now finished
+            if(!this->_lost_turning_line) {
+                DEBUG("At start of turn around clockwise");
+                return ACTION_IN_PROGRESS;
+            } else {
+                DEBUG("Found line again");
+                this->_lost_turning_line = false;
+                return ACTION_COMPLETED;
+            }
+        } else if(s.line_left == NO_LINE && s.line_right == NO_LINE &&
+                  s.outer_left == NO_LINE && s.outer_right == NO_LINE)
+        {
+            // We've now lost the line
+            DEBUG("Lost turning line");
+            this->_lost_turning_line = true;
+            return ACTION_IN_PROGRESS;
+        } else {
+            // Something is wrong. Hope it gets better.
+            return ACTION_IN_PROGRESS;
+        }
+    }
+
+    /**
+     * Turn the robot around counterclockwise until the sensors detect another
+     * line
+     * \returns A LineFollowingStatus code
+     */
+    LineFollowingStatus LineFollowing::turn_around_ccw()
+    {
+        DEBUG("Executing a turn around counterclockwise");
+
+        // Read the state of the IR sensors from hal
+        const LineSensors s = _hal->line_following_sensors();
+
+        this->_hal->motor_right_forward(this->_speed);
+        this->_hal->motor_left_backward(this->_speed);
+
+        if((s.line_left == LINE && s.line_right == LINE &&
+            s.outer_left == NO_LINE && s.outer_right == NO_LINE) ||
+           (s.line_left == NO_LINE && s.line_right == LINE))
+        {
+            // If we've not lost the line, continue starting the turn
+            // Otherwise we have now finished
+            if(!this->_lost_turning_line) {
+                DEBUG("At start of turn around counterclockwise");
+                return ACTION_IN_PROGRESS;
+            } else {
+                DEBUG("Found line again");
+                this->_lost_turning_line = false;
+                return ACTION_COMPLETED;
+            }
+        } else if(s.line_left == NO_LINE && s.line_right == NO_LINE &&
+                  s.outer_left == NO_LINE && s.outer_right == NO_LINE)
+        {
+            // We've now lost the line
+            DEBUG("Lost turning line");
+            this->_lost_turning_line = true;
+            return ACTION_IN_PROGRESS;
+        } else {
+            // Something is wrong. Hope it gets better.
+            return ACTION_IN_PROGRESS;
+        }
+    }
+
+    /**
+     * Return whether we can see a junction or not, without
+     * changing motor settings.
+     * \returns A LineFollowingStatus indicating junctions or
+     * NO_TURNS_FOUND if no junctions found.
+     */
+    LineFollowingStatus LineFollowing::junction_status()
+    {
+        // Read the state of the IR sensors from hal
+        const LineSensors s = _hal->line_following_sensors();
+
+        if(s.line_left == NO_LINE || s.line_right == NO_LINE)
+            return NO_TURNS_FOUND;
+
+        if(s.outer_left == LINE && s.outer_right == LINE)
+            return BOTH_TURNS_FOUND;
+        else if(s.outer_left == LINE)
+            return LEFT_TURN_FOUND;
+        else if(s.outer_right == LINE)
+            return RIGHT_TURN_FOUND;
+        else
+            return NO_TURNS_FOUND;
     }
 
     /**

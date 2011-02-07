@@ -10,6 +10,7 @@
 #include "mission_supervisor.h"
 #include "hal.h"
 #include "line_following.h"
+#include "navigation.h"
 
 namespace IDP {
     /**
@@ -22,6 +23,14 @@ namespace IDP {
     {
         // Construct the hardware abstraction layer
         this->_hal = new HardwareAbstractionLayer(robot);
+    }
+
+    /**
+     * Destruct the MissionSupervisor, deleting the HAL
+     */
+    MissionSupervisor::~MissionSupervisor()
+    {
+        delete this->_hal;
     }
 
     /**
@@ -103,74 +112,92 @@ namespace IDP {
 
         lf.set_speed(127);
         
+        std::cout << "following a line" << std::endl;
         do {
             status = lf.follow_line();
         } while(status == ACTION_IN_PROGRESS);
 
+        std::cout << "driving over a junction" << std::endl;
         do {
             status = lf.follow_line();
         } while(status == BOTH_TURNS_FOUND);
         
+        std::cout << "following a line" << std::endl;
         do {
             status = lf.follow_line();
         } while(status == ACTION_IN_PROGRESS);
 
+        std::cout << "driving over a junction" << std::endl;
         do {
             status = lf.follow_line();
         } while(status == BOTH_TURNS_FOUND);
         
+        std::cout << "following a line" << std::endl;
         do {
             status = lf.follow_line();
         } while(status == ACTION_IN_PROGRESS);
 
+        std::cout << "turning right" << std::endl;
         do {
             status = lf.turn_right();
         } while(status == ACTION_IN_PROGRESS);
 
+        std::cout << "following a line" << std::endl;
         do {
             status = lf.follow_line();
         } while(status == ACTION_IN_PROGRESS);
 
+        std::cout << "driving over a junction" << std::endl;
         do {
             status = lf.follow_line();
         } while(status == BOTH_TURNS_FOUND);
         
+        std::cout << "following a line" << std::endl;
         do {
             status = lf.follow_line();
         } while(status == ACTION_IN_PROGRESS);
 
+        std::cout << "turning right" << std::endl;
         do {
             status = lf.turn_right();
         } while(status == ACTION_IN_PROGRESS);
 
+        std::cout << "turning right" << std::endl;
         do {
             status = lf.turn_right();
         } while(status == ACTION_IN_PROGRESS);
 
+        std::cout << "following a line" << std::endl;
         do {
             status = lf.follow_line();
         } while(status == ACTION_IN_PROGRESS);
 
+        std::cout << "driving over a junction" << std::endl;
         do {
             status = lf.follow_line();
         } while(status == BOTH_TURNS_FOUND);
         
+        std::cout << "following a line" << std::endl;
         do {
             status = lf.follow_line();
         } while(status == ACTION_IN_PROGRESS);
         
+        std::cout << "driving over a junction" << std::endl;
         do {
             status = lf.follow_line();
         } while(status == BOTH_TURNS_FOUND);
         
+        std::cout << "following a line" << std::endl;
         do {
             status = lf.follow_line();
         } while(status == ACTION_IN_PROGRESS);
 
+        std::cout << "turning right" << std::endl;
         do {
             status = lf.turn_right();
         } while(status == ACTION_IN_PROGRESS);
 
+        std::cout << "following a line" << std::endl;
         do {
             status = lf.follow_line();
         } while(status == ACTION_IN_PROGRESS);
@@ -179,6 +206,21 @@ namespace IDP {
 
         return;
 
+    }
+
+    /**
+     * Test navigation code
+     */
+    void MissionSupervisor::test_navigation()
+    {
+        Navigation nav(this->hal(), NODE1, NODE2);
+        NavigationStatus status;
+        do {
+            status = nav.go_node(NODE11);
+        } while(status == NAVIGATION_ENROUTE);
+
+        this->_hal->motors_stop();
+        return;
     }
 
     /**

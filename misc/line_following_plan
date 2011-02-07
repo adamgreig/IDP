@@ -3,12 +3,15 @@ LineFollowing:
     Functionality:
         Follow a line straight
         Turn left/right
+        Turn around clockwise/anticlockwise
         Set speed
 
     "Actions":
         Go straight
         Turn left
         Turn right
+        Turn clockwise
+        Turn anticlockwise
 
     Interfaces:
         HAL:
@@ -72,3 +75,6 @@ LineFollowing:
         * Other states
             Something is going wrong, keep applying steering and hope it
             fixes itself.
+
+    Turning around (clockwise or counterclockwise):
+        As above but drive motors in full diffential. :(

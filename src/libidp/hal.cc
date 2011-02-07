@@ -11,9 +11,9 @@
 
 #include <robot_instr.h>
 
-#define HAL_DEBUG 1
+#define HAL_DEBUG 0
 
-#ifdef HAL_DEBUG
+#if HAL_DEBUG
 #define DEBUG(x) std::cout<<"[HAL] "<<x<<std::endl
 #else
 #define DEBUG(x)
@@ -335,8 +335,7 @@ namespace IDP {
         const unsigned short int speed) const
     {
         if(speed > MOTOR_MAX_SPEED) {
-            std::cerr << "[HAL] ERROR: Motor speed too high, not setting";
-            std::cerr << std::endl;
+            DEBUG("ERROR: Motor speed too high, not setting");
             return true;
         } else {
             return false;
