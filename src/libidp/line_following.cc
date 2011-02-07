@@ -9,6 +9,14 @@
 #include "hal.h"
 #include "line_following.h"
 
+#define LINEFOLLOWING_DEBUG 1
+
+#ifdef LINEFOLLOWING_DEBUG
+#define DEBUG(x) std::cout<<"[LineFollowing] "<<x<<std::endl
+#else
+#define DEBUG(x)
+#endif
+
 namespace IDP {
     /**
      * Construct the Line Follower
@@ -17,8 +25,7 @@ namespace IDP {
         : _hal(hal), _error(0), _speed(0), _turn_in_progress(false),
         _lost_turning_line(false), _lost_time(0)
     {
-        std::cout << "[LineFollowing] Initialising a Line Follower";
-        std::cout << std::endl;
+        DEBUG("Initialising a Line Follower");
     }
 
     /**
@@ -28,7 +35,7 @@ namespace IDP {
      * fine, we are lost, or one or more possible turns were found.
      */
     LineFollowingStatus LineFollowing::follow_line() {
-        std::cout << "[LineFollowing] Following a line straight forwards" << std::endl;
+        DEBUG("Following a line straight forwards");
 
         // We're not turning
         this->_lost_turning_line = false;
@@ -184,7 +191,7 @@ namespace IDP {
      */
     LineFollowingStatus LineFollowing::turn_left()
     {
-        std::cout << "[LineFollowing] Executing a left turn" << std::endl;
+        DEBUG("Executing a left turn");
 
         // Read the state of the IR sensors from hal
         const LineSensors s = _hal->line_following_sensors();
@@ -219,7 +226,7 @@ namespace IDP {
      */
     LineFollowingStatus LineFollowing::turn_right()
     {
-        std::cout << "[LineFollowing] Executing a right turn" << std::endl;
+        DEBUG("Executing a right turn");
 
         // Read the state of the IR sensors from hal
         const LineSensors s = _hal->line_following_sensors();
@@ -255,8 +262,7 @@ namespace IDP {
      */
     void LineFollowing::set_speed(unsigned short int speed)
     {
-        std::cout << "[LineFollowing] Setting LineFollowing speed to ";
-        std::cout << speed << std::endl;
+        DEBUG("Setting LineFollowing speed to " << speed);
 
         if(speed < MOTOR_MAX_SPEED)
             this->_speed = speed;

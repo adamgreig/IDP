@@ -11,6 +11,14 @@
 
 #include <robot_instr.h>
 
+#define HAL_DEBUG 1
+
+#ifdef HAL_DEBUG
+#define DEBUG(x) std::cout<<"[HAL] "<<x<<std::endl
+#else
+#define DEBUG(x)
+#endif
+
 namespace IDP {
 
     /**
@@ -23,7 +31,7 @@ namespace IDP {
         this->rlink = new robot_link;
 
         // Initialise link
-        std::cout << "[HAL] Initialising link" << std::endl;
+        DEBUG("Initialising link");
         if(robot == 0) {
             status = this->rlink->initialise();
         } else {
@@ -32,8 +40,8 @@ namespace IDP {
 
         // Check link, exit on failure
         if(!status) {
-            std::cerr << "[HAL] ERROR: Initialising rlink" << std::endl;
-            std::cout << "[HAL] Could not initialise, quitting" << std::endl;
+            DEBUG("ERROR: Initialising rlink");
+            DEBUG("Could not initialise, quitting");
             std::exit(1);
             return;
         }
@@ -50,8 +58,7 @@ namespace IDP {
     void HardwareAbstractionLayer::motors_forward(
         const unsigned short int speed) const
     {
-        std::cout << "[HAL] Driving motors forward, speed " << speed;
-        std::cout << std::endl;
+        DEBUG("Driving motors forward, speed " << speed);
 
         if(this->check_max_speed(speed)) {
             return;
@@ -67,8 +74,7 @@ namespace IDP {
     void HardwareAbstractionLayer::motors_backward(
         const unsigned short int speed) const
     {
-        std::cout << "[HAL] Driving motors backward, speed " << speed;
-        std::cout << std::endl;
+        DEBUG("Driving motors backward, speed " << speed);
 
         if(this->check_max_speed(speed)) {
             return;
@@ -84,8 +90,7 @@ namespace IDP {
     void HardwareAbstractionLayer::motors_turn_left(
         const unsigned short int speed) const
     {
-        std::cout << "[HAL] Turning motors left, speed " << speed;
-        std::cout << std::endl;
+        DEBUG("Turning motors left, speed " << speed);
 
         if(this->check_max_speed(speed)) {
             return;
@@ -101,8 +106,7 @@ namespace IDP {
     void HardwareAbstractionLayer::motor_left_forward(
         const unsigned short int speed) const
     {
-        std::cout << "[HAL] Setting left motor forward at speed ";
-        std::cout << speed << std::endl;
+        DEBUG("Setting left motor forward at speed " << speed);
 
         if (this->check_max_speed(speed)) {
             return;
@@ -118,8 +122,7 @@ namespace IDP {
     void HardwareAbstractionLayer::motor_right_forward(
         const unsigned short int speed) const
     {
-        std::cout << "[HAL] Setting right motor forward at speed ";
-        std::cout << speed << std::endl;
+        DEBUG("Setting right motor forward at speed " << speed);
 
         if (this->check_max_speed(speed)) {
             return;
@@ -135,8 +138,7 @@ namespace IDP {
     void HardwareAbstractionLayer::motor_left_backward(
         const unsigned short int speed) const
     {
-        std::cout << "[HAL] Setting left motor backward at speed ";
-        std::cout << speed << std::endl;
+        DEBUG("Setting left motor backward at speed " << speed);
 
         if (this->check_max_speed(speed)) {
             return;
@@ -152,8 +154,7 @@ namespace IDP {
     void HardwareAbstractionLayer::motor_right_backward(
         const unsigned short int speed) const
     {
-        std::cout << "[HAL] Setting right motor backward at speed ";
-        std::cout << speed << std::endl;
+        DEBUG("Setting right motor backward at speed " << speed);
 
         if (this->check_max_speed(speed)) {
             return;
@@ -169,8 +170,7 @@ namespace IDP {
     void HardwareAbstractionLayer::motors_turn_right(
         const unsigned short int speed) const
     {
-        std::cout << "[HAL] Turning motors right, speed " << speed;
-        std::cout << std::endl;
+        DEBUG("Turning motors right, speed " << speed);
 
         if(this->check_max_speed(speed)) {
             return;
@@ -184,7 +184,7 @@ namespace IDP {
      */
     void HardwareAbstractionLayer::motors_stop() const
     {
-        std::cout << "[HAL] Stopping all motors" << std::endl;
+        DEBUG("Stopping all motors");
         this->rlink->command(MOTOR_1_GO, 0);
         this->rlink->command(MOTOR_2_GO, 0);
         this->rlink->command(MOTOR_3_GO, 0);
@@ -198,7 +198,7 @@ namespace IDP {
      */
     const LineSensors HardwareAbstractionLayer::line_following_sensors() const
     {
-        //std::cout << "[HAL] Reading line following sensors" << std::endl;
+        DEBUG("Reading line following sensors");
 
         // Get the port values
         int port_values = this->rlink->request(READ_PORT_0);
