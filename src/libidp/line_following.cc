@@ -4,20 +4,52 @@
 // line_following.cc
 // Line Following class implementation
 
-#include <iostream>
-
 #include "hal.h"
 #include "line_following.h"
 
-#define LINEFOLLOWING_DEBUG 0
-
-#if LINEFOLLOWING_DEBUG
-#define DEBUG(x) std::cout<<"[LineFollowing] "<<x<<std::endl
-#else
-#define DEBUG(x)
-#endif
+// Debug functionality
+#define MODULE_NAME "LineFollowing"
+#define DEBUG_ENABLED   true
+#define INFO_ENABLED    true
+#define ERROR_ENABLED   true
+#include "debug.h"
 
 namespace IDP {
+
+    /**
+     * String representations of LineFollowingTurnDirection
+     */
+    const char* LineFollowingTurnDirectionStrings[] = {
+        "TURN_LEFT",
+        "TURN_RIGHT",
+        "TURN_AROUND_CW",
+        "TURN_AROUND_CCW",
+        "MAX_TURN_DIRECTION"
+    };
+
+    /**
+     * String representation of LineFollowingLineStatus
+     */
+    const char* LineFollowingLineStatusStrings[] = {
+        "ON_LINE",
+        "LOST_LINE",
+        "OTHER",
+        "MAX_LINE_STATUS"
+    };
+
+    /**
+     * String representations of LineFollowingStatus
+     */
+    const char* LineFollowingStatusStrings[] = {
+        "ACTION_IN_PROGRESS",
+        "ACTION_COMPLETED",
+        "LEFT_TURN_FOUND",
+        "RIGHT_TURN_FOUND",
+        "BOTH_TURNS_FOUND",
+        "LOST",
+        "NO_TURNS_FOUND"
+    };
+
     /**
      * Construct the Line Follower
      */
@@ -25,7 +57,8 @@ namespace IDP {
         : _hal(hal), _left_error(0), _right_error(0), _speed(0),
         _lost_turning_line(false), _lost_time(0)
     {
-        DEBUG("Initialising a Line Follower");
+        INFO("Initialising a Line Follower");
+        TRACE("LineFollowing(" << hal << ")");
     }
 
     /**
@@ -35,24 +68,27 @@ namespace IDP {
      * fine, we are lost, or one or more possible turns were found.
      */
     LineFollowingStatus LineFollowing::follow_line() {
+        TRACE("follow_line()");
+
+        // Quick speed sanity check to prevent otherwise very frustrating
+        // mistakes
         if(this->_speed == 0) {
-            std::cerr << "[LineFollowing] follow_line called but speed is 0!";
-            std::cerr << std::endl;
+            ERROR("follow_line() called but speed is 0!");
         }
 
-        DEBUG("Following a line straight forwards");
-
-        // We're not turning
+        // We're not turning, so reset the state in case it's incorrect
         this->_lost_turning_line = false;
 
         // Read the state of the IR sensors from hal
         const LineSensors s = _hal->line_following_sensors();
 
-        // Take various appropriate action depending on sensor state
+        // Take various appropriate action depending on sensor state.
+        // A long if statement but at least it's not very deeply nested.
         if( s.line_left == LINE && s.line_right == LINE &&
             s.outer_left == NO_LINE && s.outer_right == NO_LINE)
         {
             // We are okay! Keep driving forwards
+            DEBUG("Driving forwards");
             this->_left_error = this->_right_error = this->_lost_time  = 0;
             this->correct_steering();
             return ACTION_IN_PROGRESS;
@@ -60,6 +96,7 @@ namespace IDP {
                     s.outer_left == NO_LINE && s.outer_right == NO_LINE)
         {
             // Have veered a little left, compensate
+            DEBUG("Compensating for slight left drift");
             this->_left_error++;
             this->_right_error = this->_lost_time = 0;
             this->correct_steering();
@@ -68,15 +105,35 @@ namespace IDP {
                     s.outer_left == NO_LINE && s.outer_right == NO_LINE)
         {
             // Have veered a little right, compensate
+            DEBUG("Compensating for slight right drift");
             this->_right_error++;
             this->_lost_time = 0;
             this->_left_error = this->_lost_time = 0;
+            this->correct_steering();
+            return ACTION_IN_PROGRESS;
+        } else if(  s.line_left == NO_LINE && s.line_right == NO_LINE &&
+                    s.outer_left == LINE && s.outer_right == NO_LINE)
+        {
+            // We've veered a lot right, compensate
+            DEBUG("Compensating for large right drift");
+            this->_right_error += EDGE_ERROR;
+            this->_left_error = this->_lost_time = 0;
+            this->correct_steering();
+            return ACTION_IN_PROGRESS;
+        } else if(  s.line_left == NO_LINE && s.line_right == NO_LINE &&
+                    s.outer_left == NO_LINE && s.outer_right == LINE)
+        {
+            // We've veered a lot left, compensate
+            DEBUG("Compensating for large left drift");
+            this->_left_error += EDGE_ERROR;
+            this->_right_error = this->_lost_time = 0;
             this->correct_steering();
             return ACTION_IN_PROGRESS;
         } else if(  s.line_left == LINE && s.line_right == LINE &&
                     s.outer_left == LINE && s.outer_right == NO_LINE)
         {
             // Found a left turn
+            INFO("Left turn found");
             this->_right_error = this->_left_error = this->_lost_time = 0;
             this->correct_steering();
             return LEFT_TURN_FOUND;
@@ -84,6 +141,7 @@ namespace IDP {
                     s.outer_left == NO_LINE && s.outer_right == LINE)
         {
             // Found a right turn
+            INFO("Right turn found");
             this->_right_error = this->_left_error = this->_lost_time = 0;
             this->correct_steering();
             return RIGHT_TURN_FOUND;
@@ -91,6 +149,7 @@ namespace IDP {
                     s.outer_left == LINE && s.outer_right == LINE)
         {
             // Found both turns
+            INFO("Both turns found");
             this->_right_error = this->_left_error = this->_lost_time = 0;
             this->correct_steering();
             return BOTH_TURNS_FOUND;
@@ -100,13 +159,16 @@ namespace IDP {
             // We can't see any lines. If it has been a long time since
             // we were on a line, return LOST, otherwise correct towards
             // the last known direction.
+            DEBUG("No line visible");
             this->_lost_time++;
             if(this->_lost_time > LOST_TIMEOUT) {
                 // Prevent lost_time from overflowing
+                INFO("Haven't seen a line for a while, LOST");
                 this->_lost_time--;
                 this->correct_steering();
                 return LOST;
             } else {
+                DEBUG("Trying to find the line");
                 if(this->_left_error)
                     this->_left_error++;
                 else if(this->_right_error)
@@ -114,24 +176,9 @@ namespace IDP {
                 this->correct_steering();
                 return ACTION_IN_PROGRESS;
             }
-        } else if(  s.line_left == NO_LINE && s.line_right == NO_LINE &&
-                    s.outer_left == LINE && s.outer_right == NO_LINE)
-        {
-            // We've veered a lot right, compensate
-            this->_right_error += EDGE_ERROR;
-            this->_left_error = this->_lost_time = 0;
-            this->correct_steering();
-            return ACTION_IN_PROGRESS;
-        } else if(  s.line_left == NO_LINE && s.line_right == NO_LINE &&
-                    s.outer_left == NO_LINE && s.outer_right == LINE)
-        {
-            // We've veered a lot left, compensate
-            this->_left_error += EDGE_ERROR;
-            this->_right_error = this->_lost_time = 0;
-            this->correct_steering();
-            return ACTION_IN_PROGRESS;
         } else {
             // Something odd happened. Keep driving as we were.
+            DEBUG("In an unhandled state, continuing steering as before");
             this->correct_steering();
             return ACTION_IN_PROGRESS;
         }
@@ -143,18 +190,26 @@ namespace IDP {
      */
     void LineFollowing::correct_steering()
     {
+        TRACE("correct_steering()");
+
         // Calculate available headroom for applying a forward
         // correction
         unsigned short int headroom = MOTOR_MAX_SPEED - this->_speed;
 
         // Switch based on error direction
         if(_left_error) {
+            DEBUG("Correcting a left error");
+
             // Calculate the required differential correction
             unsigned short int correction = static_cast<unsigned short int>(
                 static_cast<double>(_left_error) * INTEGRAL_GAIN);
+            
+            DEBUG("Pre-cap correction: " << correction);
 
             // Cap correction
             correction = cap_correction(correction);
+
+            DEBUG("Post-cap correction: " << correction);
 
             // Apply as much correction as possible to the left
             // wheel forwards and whatever is left to right backwards
@@ -168,12 +223,18 @@ namespace IDP {
             }
 
         } else if(_right_error) {
+            DEBUG("Correcting a right error");
+
             // Calculate the required differential correction
             unsigned short int correction = static_cast<unsigned short int>(
                 static_cast<double>(_right_error) * INTEGRAL_GAIN);
+            
+            DEBUG("Pre-cap correction: " << correction);
 
             // Cap correction
             correction = cap_correction(correction);
+
+            DEBUG("Post-cap correction: " << correction);
 
             // Apply as much correction as possible to the right
             // wheel forwards and whatever is right to left backwards
@@ -187,6 +248,7 @@ namespace IDP {
             }
         } else {
             // No correction required so drive forwards
+            DEBUG("No correction required");
             this->_hal->motors_forward(this->_speed);
         }
     }
@@ -197,39 +259,8 @@ namespace IDP {
      */
     LineFollowingStatus LineFollowing::turn_left()
     {
-        DEBUG("Executing a left turn");
-
-        // Read the state of the IR sensors from hal
-        const LineSensors s = _hal->line_following_sensors();
-
-        this->_hal->motor_left_forward(0);
-        this->_hal->motor_right_forward(this->_speed);
-
-        if((s.line_left == LINE && s.line_right == LINE &&
-            s.outer_left == NO_LINE && s.outer_right == NO_LINE) ||
-           (s.line_left == LINE && s.line_right == NO_LINE))
-        {
-            // If we've not lost the line, continue starting the turn
-            // Otherwise we have now finished
-            DEBUG("Can see the line on left turn");
-            DEBUG("line_right: " << s.line_right);
-            if(!this->_lost_turning_line) {
-                return ACTION_IN_PROGRESS;
-            } else {
-                this->_lost_turning_line = false;
-                return ACTION_COMPLETED;
-            }
-        } else if(s.line_left == NO_LINE && s.line_right == NO_LINE &&
-                  s.outer_left == NO_LINE && s.outer_right == NO_LINE)
-        {
-            // We've now lost the line
-            DEBUG("Lost turning line on left turn");
-            this->_lost_turning_line = true;
-            return ACTION_IN_PROGRESS;
-        } else {
-            // Something is wrong. Hope it gets better.
-            return ACTION_IN_PROGRESS;
-        }
+        TRACE("turn_left()");
+        return this->turn(TURN_LEFT);
     }
 
     /**
@@ -238,39 +269,8 @@ namespace IDP {
      */
     LineFollowingStatus LineFollowing::turn_right()
     {
-        DEBUG("Executing a right turn");
-
-        // Read the state of the IR sensors from hal
-        const LineSensors s = _hal->line_following_sensors();
-
-        this->_hal->motor_right_forward(0);
-        this->_hal->motor_left_forward(this->_speed);
-
-        if((s.line_left == LINE && s.line_right == LINE &&
-            s.outer_left == NO_LINE && s.outer_right == NO_LINE) ||
-           (s.line_left == LINE && s.line_right == NO_LINE))
-        {
-            // If we've not lost the line, continue starting the turn
-            // Otherwise we have now finished
-            if(!this->_lost_turning_line) {
-                DEBUG("At start of turn");
-                return ACTION_IN_PROGRESS;
-            } else {
-                DEBUG("Found line again");
-                this->_lost_turning_line = false;
-                return ACTION_COMPLETED;
-            }
-        } else if(s.line_left == NO_LINE && s.line_right == NO_LINE &&
-                  s.outer_left == NO_LINE && s.outer_right == NO_LINE)
-        {
-            // We've now lost the line
-            DEBUG("Lost turning line");
-            this->_lost_turning_line = true;
-            return ACTION_IN_PROGRESS;
-        } else {
-            // Something is wrong. Hope it gets better.
-            return ACTION_IN_PROGRESS;
-        }
+        TRACE("turn_right()");
+        return this->turn(TURN_RIGHT);
     }
 
     /**
@@ -279,39 +279,8 @@ namespace IDP {
      */
     LineFollowingStatus LineFollowing::turn_around_cw()
     {
-        DEBUG("Executing a turn around clockwise");
-
-        // Read the state of the IR sensors from hal
-        const LineSensors s = _hal->line_following_sensors();
-
-        this->_hal->motor_right_backward(this->_speed);
-        this->_hal->motor_left_forward(this->_speed);
-
-        if((s.line_left == LINE && s.line_right == LINE &&
-            s.outer_left == NO_LINE && s.outer_right == NO_LINE) ||
-           (s.line_left == LINE && s.line_right == NO_LINE))
-        {
-            // If we've not lost the line, continue starting the turn
-            // Otherwise we have now finished
-            if(!this->_lost_turning_line) {
-                DEBUG("At start of turn around clockwise");
-                return ACTION_IN_PROGRESS;
-            } else {
-                DEBUG("Found line again");
-                this->_lost_turning_line = false;
-                return ACTION_COMPLETED;
-            }
-        } else if(s.line_left == NO_LINE && s.line_right == NO_LINE &&
-                  s.outer_left == NO_LINE && s.outer_right == NO_LINE)
-        {
-            // We've now lost the line
-            DEBUG("Lost turning line");
-            this->_lost_turning_line = true;
-            return ACTION_IN_PROGRESS;
-        } else {
-            // Something is wrong. Hope it gets better.
-            return ACTION_IN_PROGRESS;
-        }
+        TRACE("turn_around_cw()");
+        return this->turn(TURN_AROUND_CW);
     }
 
     /**
@@ -321,39 +290,8 @@ namespace IDP {
      */
     LineFollowingStatus LineFollowing::turn_around_ccw()
     {
-        DEBUG("Executing a turn around counterclockwise");
-
-        // Read the state of the IR sensors from hal
-        const LineSensors s = _hal->line_following_sensors();
-
-        this->_hal->motor_right_forward(this->_speed);
-        this->_hal->motor_left_backward(this->_speed);
-
-        if((s.line_left == LINE && s.line_right == LINE &&
-            s.outer_left == NO_LINE && s.outer_right == NO_LINE) ||
-           (s.line_left == NO_LINE && s.line_right == LINE))
-        {
-            // If we've not lost the line, continue starting the turn
-            // Otherwise we have now finished
-            if(!this->_lost_turning_line) {
-                DEBUG("At start of turn around counterclockwise");
-                return ACTION_IN_PROGRESS;
-            } else {
-                DEBUG("Found line again");
-                this->_lost_turning_line = false;
-                return ACTION_COMPLETED;
-            }
-        } else if(s.line_left == NO_LINE && s.line_right == NO_LINE &&
-                  s.outer_left == NO_LINE && s.outer_right == NO_LINE)
-        {
-            // We've now lost the line
-            DEBUG("Lost turning line");
-            this->_lost_turning_line = true;
-            return ACTION_IN_PROGRESS;
-        } else {
-            // Something is wrong. Hope it gets better.
-            return ACTION_IN_PROGRESS;
-        }
+        TRACE("turn_around_ccw()");
+        return this->turn(TURN_AROUND_CCW);
     }
 
     /**
@@ -364,20 +302,33 @@ namespace IDP {
      */
     LineFollowingStatus LineFollowing::junction_status()
     {
+        TRACE("junction_status()");
+
         // Read the state of the IR sensors from hal
         const LineSensors s = _hal->line_following_sensors();
 
-        if(s.line_left == NO_LINE || s.line_right == NO_LINE)
+        // If the inner sensors do not detect a line, it implies we
+        // are not really at a junction anyway, but maybe have drifted
+        // far enough to a side that we think the main line is a junction.
+        // Therefore, return early in this case.
+        //
+        // Otherwise, we check the outer sensors for junctions.
+        if(s.line_left == NO_LINE || s.line_right == NO_LINE) {
+            DEBUG("Not looking at edge sensors as inner sensors are NO_LINE");
             return NO_TURNS_FOUND;
-
-        if(s.outer_left == LINE && s.outer_right == LINE)
+        } else if(s.outer_left == LINE && s.outer_right == LINE) {
+            INFO("Found both turns");
             return BOTH_TURNS_FOUND;
-        else if(s.outer_left == LINE)
+        } else if(s.outer_left == LINE) {
+            INFO("Found left turn");
             return LEFT_TURN_FOUND;
-        else if(s.outer_right == LINE)
+        }  else if(s.outer_right == LINE) {
+            INFO("Found right turn");
             return RIGHT_TURN_FOUND;
-        else
+        } else {
+            DEBUG("No turns found");
             return NO_TURNS_FOUND;
+        }
     }
 
     /**
@@ -386,14 +337,159 @@ namespace IDP {
      */
     void LineFollowing::set_speed(unsigned short int speed)
     {
-        DEBUG("Setting LineFollowing speed to " << speed);
+        TRACE("set_speed(" << speed << ")");
+        DEBUG("set_speed called with speed=" << speed);
 
-        if(speed < MOTOR_MAX_SPEED)
+        if(speed < MOTOR_MAX_SPEED) {
+            INFO("Setting motor speed to " << speed);
             this->_speed = speed;
-        else
+        } else {
+            INFO("Setting motor speed to MOTOR_MAX_SPEED (" <<
+                MOTOR_MAX_SPEED << ")");
             this->_speed = MOTOR_MAX_SPEED;
+        }
     }
 
+    /**
+     * Return the current line status, depending on turning direction.
+     * \param dir The turning direction
+     * \returns a LineFollowingLineStatus
+     */
+    LineFollowingLineStatus LineFollowing::line_status(
+        LineFollowingTurnDirection dir)
+    {
+        TRACE("line_status(" << LineFollowingTurnDirectionStrings[dir] << ")");
+
+        // Read the IR sensors from HAL
+        const LineSensors s = _hal->line_following_sensors();
+        
+        if(s.line_left == LINE && s.line_right == LINE &&
+            s.outer_left == NO_LINE && s.outer_right == NO_LINE)
+        {
+            // Dead on the line
+            DEBUG("Line status: We are perfectly on the line");
+            return ON_LINE;
+        } else if(s.line_left == NO_LINE && s.line_right == NO_LINE &&
+                  s.outer_left == NO_LINE && s.outer_right == NO_LINE)
+        {
+            // Totally off the line
+            DEBUG("Line status: We cannot see the line at all");
+        } else {
+            // Different cases for different directions
+            if(
+                (dir == TURN_LEFT &&
+                    (s.line_left == LINE && s.line_right == NO_LINE)) ||
+                (dir == TURN_RIGHT &&
+                    (s.line_left == LINE && s.line_right == NO_LINE)) ||
+                (dir == TURN_AROUND_CW &&
+                    (s.line_left == LINE && s.line_right == NO_LINE)) ||
+                (dir == TURN_AROUND_CCW &&
+                    (s.line_left == NO_LINE && s.line_right == LINE))
+            ) {
+                DEBUG("Line status: on the line for our turning direction");
+                return ON_LINE;
+            } else {
+                DEBUG("Line status: other");
+                return OTHER;
+            }
+        }
+
+    }
+
+    /**
+     * Perform a turn in the given direction.
+     *
+     * turn_left, turn_right, turn_around_cw and turn_around_ccw are
+     * all essentially just wrappers for this functions. They stop it
+     * being called with silly arguments, at least.
+     *
+     * \params dir The direction to turn in
+     */
+    LineFollowingStatus LineFollowing::turn(LineFollowingTurnDirection dir)
+    {
+        TRACE("turn(" << LineFollowingTurnDirectionStrings[dir] << ")");
+        INFO("Executing a " << LineFollowingTurnDirectionStrings[dir]);
+
+        // Set the motors going
+        this->set_motors_turning(dir);
+
+        // Check the current line status for this turn direction
+        LineFollowingLineStatus status = this->line_status(dir);
+
+        if(status == ON_LINE) {
+            // If we are on the line, we have either just started to turn
+            // and not yet moved much, so keep turning, or have re-found
+            // the line after turning, so indicate success.
+            DEBUG("Turning, currently on the line");
+            if(!this->_lost_turning_line) {
+                DEBUG("Still starting the turn");
+                return ACTION_IN_PROGRESS;
+            } else {
+                INFO("Found the line after a turn, turn complete");
+                this->_lost_turning_line = false;
+                return ACTION_COMPLETED;
+            }
+        } else if(status == LOST_LINE) {
+            // If we've lost the line, we are properly into the turn now.
+            DEBUG("Turning, cannot see the line");
+
+            if(!this->_lost_turning_line) {
+                INFO("Lost the turning line");
+                this->_lost_turning_line = true;
+            }
+
+            // Increment the lost_time counter so if we don't find the line
+            // we can think about recovering rather than going in circles
+            // forever.
+            this->_lost_time++;
+            if(this->_lost_time > LOST_TIMEOUT) {
+                ERROR("Haven't seen the line for ages while turning, LOST");
+                this->_lost_time--; //prevent overflow
+                return LOST;
+            }
+
+            return ACTION_IN_PROGRESS;
+        } else {
+            // Other states are acceptable and mostly transition states.
+            // Keep on turning.
+            DEBUG("Turning, in an unhandled state");
+            return ACTION_IN_PROGRESS;
+        }
+    } 
+
+    /**
+     * Set the motors to the correct steering speeds.
+     * \param dir Which direction to turn in
+     *
+     * This will set the left and right motors either forwards,
+     * backwards or stationary as appropriate to execute a turn.
+     */
+    void LineFollowing::set_motors_turning(LineFollowingTurnDirection dir)
+    {
+        TRACE("set_motors_turning(" << LineFollowingTurnDirectionStrings[dir]
+            << ")");
+
+        if(dir == TURN_LEFT) {
+            DEBUG("Steering left");
+            this->_hal->motor_left_forward(0);
+            this->_hal->motor_right_forward(this->_speed);
+        } else if(dir == TURN_RIGHT) {
+            DEBUG("Steering right");
+            this->_hal->motor_right_forward(0);
+            this->_hal->motor_left_forward(this->_speed);
+        } else if(dir == TURN_AROUND_CW) {
+            DEBUG("Steering around, clockwise");
+            this->_hal->motor_right_backward(this->_speed / 2);
+            this->_hal->motor_left_forward(this->_speed / 2);
+        } else if(dir == TURN_AROUND_CCW) {
+            DEBUG("Steering around, anticlockwise");
+            this->_hal->motor_right_forward(this->_speed / 2);
+            this->_hal->motor_left_backward(this->_speed / 2);
+        }
+    }
+
+    // Documented in line_following.h
+    // Intentionally not part of the class.
     unsigned short int cap_correction(const unsigned short int correction) {
         if(correction > MAX_CORRECTION)
             return MAX_CORRECTION;

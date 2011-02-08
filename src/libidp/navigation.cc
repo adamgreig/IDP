@@ -22,7 +22,13 @@ namespace IDP {
 
     /**
      * Initialise the class, storing the const pointer to the HAL.
+     *
+     * The optional parameters from and to can be used to define the
+     * starting position, but default to the 'start box'.
+     *
      * \param hal A const pointer to an instance of the HAL
+     * \param from The node behind the robot at the start
+     * \param to The node in front of the robot at the start
      */
     Navigation::Navigation(const HardwareAbstractionLayer* hal,
         const NavigationNode from=NODE7, const NavigationNode to=NODE8):

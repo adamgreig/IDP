@@ -1,0 +1,418 @@
+\hypertarget{classIDP_1_1SelfTests}{
+\section{IDP::SelfTests Class Reference}
+\label{classIDP_1_1SelfTests}\index{IDP::SelfTests@{IDP::SelfTests}}
+}
+
+
+Execute a variety of functionality self tests.  
+
+
+
+
+{\ttfamily \#include $<$self\_\-tests.h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classIDP_1_1SelfTests_a6864b03502cc5d1ac3728b456b04238f}{SelfTests} (int robot)
+\begin{DoxyCompactList}\small\item\em Constuct a SelfTest instance Completely seperate to mission supervisor and initialises own link to robot, with its own HAL instance. \item\end{DoxyCompactList}\item 
+void \hyperlink{classIDP_1_1SelfTests_a4ff456e74d55e13599cf64db76bd2ed4}{drive\_\-forward} (void)
+\begin{DoxyCompactList}\small\item\em Drive the robot forwards for a moment. \item\end{DoxyCompactList}\item 
+void \hyperlink{classIDP_1_1SelfTests_a38ddef7ecdf9b7dfa69d689c9c1ac8ca}{drive\_\-backward} (void)
+\begin{DoxyCompactList}\small\item\em Drive the robot backwards for a moment. \item\end{DoxyCompactList}\item 
+void \hyperlink{classIDP_1_1SelfTests_a33adf462d8c408b1c7b4858e9a4ff000}{stop} (void)
+\begin{DoxyCompactList}\small\item\em Stop all of the robot's motors. \item\end{DoxyCompactList}\item 
+void \hyperlink{classIDP_1_1SelfTests_a3ba14e5a1ed52ff112bc742b94f06d61}{turn\_\-left} (void)
+\begin{DoxyCompactList}\small\item\em Drive motors in opposite directions to turn the robot left on the spot. \item\end{DoxyCompactList}\item 
+void \hyperlink{classIDP_1_1SelfTests_a4e4b66ddff2de3444f1e9383dcf463a6}{turn\_\-right} (void)
+\begin{DoxyCompactList}\small\item\em Drive motors in opposite directions to turn the robot right on the spot. \item\end{DoxyCompactList}\item 
+void \hyperlink{classIDP_1_1SelfTests_ae54bd0e6c01c5d1d794363cc676dbb92}{steer\_\-left} (void)
+\begin{DoxyCompactList}\small\item\em Drive forwards for a moment whilst reducing the speed of the left motor relative to the right to steer left. \item\end{DoxyCompactList}\item 
+void \hyperlink{classIDP_1_1SelfTests_a7f9c5999de2e7c4f59c8c5a60965e876}{steer\_\-right} (void)
+\begin{DoxyCompactList}\small\item\em Drive forwards for a moment whilst reducing the speed of the right motor relative to the left to steer right. \item\end{DoxyCompactList}\item 
+void \hyperlink{classIDP_1_1SelfTests_aa73ad4de6c1d2b725ed796c10f54ab7c}{line\_\-sensors} (void)
+\begin{DoxyCompactList}\small\item\em Display the status (LINE or NO\_\-LINE) of each of the four IR line following sensors. \item\end{DoxyCompactList}\item 
+void \hyperlink{classIDP_1_1SelfTests_a6b2e4d0517de4b73c63f1b1a475b602f}{microswitches} (void)
+\begin{DoxyCompactList}\small\item\em Display the state of each of the two microswitches. \item\end{DoxyCompactList}\item 
+void \hyperlink{classIDP_1_1SelfTests_a56952650637691f869ef21f7d43f1226}{LDRs} (void)
+\begin{DoxyCompactList}\small\item\em Display the current ADC read from the light dependent resistor. \item\end{DoxyCompactList}\item 
+void \hyperlink{classIDP_1_1SelfTests_a0ca765ac144fafaab502f4326a480486}{actuators} (void)
+\begin{DoxyCompactList}\small\item\em Fire each of the actuators in turn. \item\end{DoxyCompactList}\item 
+void \hyperlink{classIDP_1_1SelfTests_a0a1a40b56fee5249def567bebdb05dc1}{line\_\-following} (void)
+\begin{DoxyCompactList}\small\item\em Follow a line until further notice, without caring where we end up. \item\end{DoxyCompactList}\item 
+void \hyperlink{classIDP_1_1SelfTests_a896204355ca039660a12e8131578b6c3}{clamp\_\-control} (void)
+\begin{DoxyCompactList}\small\item\em Use the actuators to pick up an object before placing it back down again. \item\end{DoxyCompactList}\item 
+void \hyperlink{classIDP_1_1SelfTests_a66f0a3bad277e36b963b2bf3cd5df9dd}{bobbin\_\-analyse} (void)
+\begin{DoxyCompactList}\small\item\em Analyse the colour of the bobbin that is currently being held in the clamp. \item\end{DoxyCompactList}\item 
+void \hyperlink{classIDP_1_1SelfTests_a710347081427c05706f92bdd12f62fbe}{navigate} (void)
+\begin{DoxyCompactList}\small\item\em Select a source and destination and then navigate to the destination assuming we are starting at the source. \item\end{DoxyCompactList}\item 
+void \hyperlink{classIDP_1_1SelfTests_ada3dfe991573fc6b0922cace927fc4e0}{position} (void)
+\begin{DoxyCompactList}\small\item\em Drive slowly looking for an object in range for pickup, then position self ready to clamp said object. \item\end{DoxyCompactList}\item 
+void \hyperlink{classIDP_1_1SelfTests_abbe6e3e29b00f760e0b65f2aeb772fb5}{status\_\-LEDs} (void)
+\begin{DoxyCompactList}\small\item\em Turn on each of the status LEDs (used for indicating bobbin colour) in turn. \item\end{DoxyCompactList}\item 
+void \hyperlink{classIDP_1_1SelfTests_a1380b0222eef47f6d50e7cf334e4c9e7}{colour\_\-sensor\_\-LEDs} (void)
+\begin{DoxyCompactList}\small\item\em Turn on each of the coloured LEDs used for colour detection in turn. \item\end{DoxyCompactList}\item 
+void \hyperlink{classIDP_1_1SelfTests_aee90c71e9e93398f06dc1ad67002d7bf}{badness\_\-LED} (void)
+\begin{DoxyCompactList}\small\item\em Turn on the LED used for detecting bad bobbins. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Execute a variety of functionality self tests. 
+
+Definition at line 21 of file self\_\-tests.h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classIDP_1_1SelfTests_a6864b03502cc5d1ac3728b456b04238f}{
+\index{IDP::SelfTests@{IDP::SelfTests}!SelfTests@{SelfTests}}
+\index{SelfTests@{SelfTests}!IDP::SelfTests@{IDP::SelfTests}}
+\subsubsection[{SelfTests}]{\setlength{\rightskip}{0pt plus 5cm}IDP::SelfTests::SelfTests (
+\begin{DoxyParamCaption}
+\item[{int}]{ robot = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)}}
+\label{classIDP_1_1SelfTests_a6864b03502cc5d1ac3728b456b04238f}
+
+
+Constuct a SelfTest instance Completely seperate to mission supervisor and initialises own link to robot, with its own HAL instance. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em robot}]Which robot to link to, or 0 if embedded \end{DoxyParams}
+
+
+Definition at line 17 of file self\_\-tests.cc.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classIDP_1_1SelfTests_a0ca765ac144fafaab502f4326a480486}{
+\index{IDP::SelfTests@{IDP::SelfTests}!actuators@{actuators}}
+\index{actuators@{actuators}!IDP::SelfTests@{IDP::SelfTests}}
+\subsubsection[{actuators}]{\setlength{\rightskip}{0pt plus 5cm}void IDP::SelfTests::actuators (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}
+\label{classIDP_1_1SelfTests_a0ca765ac144fafaab502f4326a480486}
+
+
+Fire each of the actuators in turn. 
+
+
+
+Definition at line 99 of file self\_\-tests.cc.
+
+\hypertarget{classIDP_1_1SelfTests_aee90c71e9e93398f06dc1ad67002d7bf}{
+\index{IDP::SelfTests@{IDP::SelfTests}!badness\_\-LED@{badness\_\-LED}}
+\index{badness\_\-LED@{badness\_\-LED}!IDP::SelfTests@{IDP::SelfTests}}
+\subsubsection[{badness\_\-LED}]{\setlength{\rightskip}{0pt plus 5cm}void IDP::SelfTests::badness\_\-LED (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}
+\label{classIDP_1_1SelfTests_aee90c71e9e93398f06dc1ad67002d7bf}
+
+
+Turn on the LED used for detecting bad bobbins. 
+
+
+
+Definition at line 161 of file self\_\-tests.cc.
+
+\hypertarget{classIDP_1_1SelfTests_a66f0a3bad277e36b963b2bf3cd5df9dd}{
+\index{IDP::SelfTests@{IDP::SelfTests}!bobbin\_\-analyse@{bobbin\_\-analyse}}
+\index{bobbin\_\-analyse@{bobbin\_\-analyse}!IDP::SelfTests@{IDP::SelfTests}}
+\subsubsection[{bobbin\_\-analyse}]{\setlength{\rightskip}{0pt plus 5cm}void IDP::SelfTests::bobbin\_\-analyse (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}
+\label{classIDP_1_1SelfTests_a66f0a3bad277e36b963b2bf3cd5df9dd}
+
+
+Analyse the colour of the bobbin that is currently being held in the clamp. 
+
+
+
+Definition at line 122 of file self\_\-tests.cc.
+
+\hypertarget{classIDP_1_1SelfTests_a896204355ca039660a12e8131578b6c3}{
+\index{IDP::SelfTests@{IDP::SelfTests}!clamp\_\-control@{clamp\_\-control}}
+\index{clamp\_\-control@{clamp\_\-control}!IDP::SelfTests@{IDP::SelfTests}}
+\subsubsection[{clamp\_\-control}]{\setlength{\rightskip}{0pt plus 5cm}void IDP::SelfTests::clamp\_\-control (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}
+\label{classIDP_1_1SelfTests_a896204355ca039660a12e8131578b6c3}
+
+
+Use the actuators to pick up an object before placing it back down again. 
+
+
+
+Definition at line 114 of file self\_\-tests.cc.
+
+\hypertarget{classIDP_1_1SelfTests_a1380b0222eef47f6d50e7cf334e4c9e7}{
+\index{IDP::SelfTests@{IDP::SelfTests}!colour\_\-sensor\_\-LEDs@{colour\_\-sensor\_\-LEDs}}
+\index{colour\_\-sensor\_\-LEDs@{colour\_\-sensor\_\-LEDs}!IDP::SelfTests@{IDP::SelfTests}}
+\subsubsection[{colour\_\-sensor\_\-LEDs}]{\setlength{\rightskip}{0pt plus 5cm}void IDP::SelfTests::colour\_\-sensor\_\-LEDs (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}
+\label{classIDP_1_1SelfTests_a1380b0222eef47f6d50e7cf334e4c9e7}
+
+
+Turn on each of the coloured LEDs used for colour detection in turn. 
+
+
+
+Definition at line 154 of file self\_\-tests.cc.
+
+\hypertarget{classIDP_1_1SelfTests_a38ddef7ecdf9b7dfa69d689c9c1ac8ca}{
+\index{IDP::SelfTests@{IDP::SelfTests}!drive\_\-backward@{drive\_\-backward}}
+\index{drive\_\-backward@{drive\_\-backward}!IDP::SelfTests@{IDP::SelfTests}}
+\subsubsection[{drive\_\-backward}]{\setlength{\rightskip}{0pt plus 5cm}void IDP::SelfTests::drive\_\-backward (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}
+\label{classIDP_1_1SelfTests_a38ddef7ecdf9b7dfa69d689c9c1ac8ca}
+
+
+Drive the robot backwards for a moment. 
+
+
+
+Definition at line 31 of file self\_\-tests.cc.
+
+\hypertarget{classIDP_1_1SelfTests_a4ff456e74d55e13599cf64db76bd2ed4}{
+\index{IDP::SelfTests@{IDP::SelfTests}!drive\_\-forward@{drive\_\-forward}}
+\index{drive\_\-forward@{drive\_\-forward}!IDP::SelfTests@{IDP::SelfTests}}
+\subsubsection[{drive\_\-forward}]{\setlength{\rightskip}{0pt plus 5cm}void IDP::SelfTests::drive\_\-forward (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}
+\label{classIDP_1_1SelfTests_a4ff456e74d55e13599cf64db76bd2ed4}
+
+
+Drive the robot forwards for a moment. 
+
+
+
+Definition at line 24 of file self\_\-tests.cc.
+
+\hypertarget{classIDP_1_1SelfTests_a56952650637691f869ef21f7d43f1226}{
+\index{IDP::SelfTests@{IDP::SelfTests}!LDRs@{LDRs}}
+\index{LDRs@{LDRs}!IDP::SelfTests@{IDP::SelfTests}}
+\subsubsection[{LDRs}]{\setlength{\rightskip}{0pt plus 5cm}void IDP::SelfTests::LDRs (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}
+\label{classIDP_1_1SelfTests_a56952650637691f869ef21f7d43f1226}
+
+
+Display the current ADC read from the light dependent resistor. 
+
+
+
+Definition at line 92 of file self\_\-tests.cc.
+
+\hypertarget{classIDP_1_1SelfTests_a0a1a40b56fee5249def567bebdb05dc1}{
+\index{IDP::SelfTests@{IDP::SelfTests}!line\_\-following@{line\_\-following}}
+\index{line\_\-following@{line\_\-following}!IDP::SelfTests@{IDP::SelfTests}}
+\subsubsection[{line\_\-following}]{\setlength{\rightskip}{0pt plus 5cm}void IDP::SelfTests::line\_\-following (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}
+\label{classIDP_1_1SelfTests_a0a1a40b56fee5249def567bebdb05dc1}
+
+
+Follow a line until further notice, without caring where we end up. 
+
+
+
+Definition at line 106 of file self\_\-tests.cc.
+
+\hypertarget{classIDP_1_1SelfTests_aa73ad4de6c1d2b725ed796c10f54ab7c}{
+\index{IDP::SelfTests@{IDP::SelfTests}!line\_\-sensors@{line\_\-sensors}}
+\index{line\_\-sensors@{line\_\-sensors}!IDP::SelfTests@{IDP::SelfTests}}
+\subsubsection[{line\_\-sensors}]{\setlength{\rightskip}{0pt plus 5cm}void IDP::SelfTests::line\_\-sensors (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}
+\label{classIDP_1_1SelfTests_aa73ad4de6c1d2b725ed796c10f54ab7c}
+
+
+Display the status (LINE or NO\_\-LINE) of each of the four IR line following sensors. 
+
+
+
+Definition at line 78 of file self\_\-tests.cc.
+
+\hypertarget{classIDP_1_1SelfTests_a6b2e4d0517de4b73c63f1b1a475b602f}{
+\index{IDP::SelfTests@{IDP::SelfTests}!microswitches@{microswitches}}
+\index{microswitches@{microswitches}!IDP::SelfTests@{IDP::SelfTests}}
+\subsubsection[{microswitches}]{\setlength{\rightskip}{0pt plus 5cm}void IDP::SelfTests::microswitches (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}
+\label{classIDP_1_1SelfTests_a6b2e4d0517de4b73c63f1b1a475b602f}
+
+
+Display the state of each of the two microswitches. 
+
+
+
+Definition at line 85 of file self\_\-tests.cc.
+
+\hypertarget{classIDP_1_1SelfTests_a710347081427c05706f92bdd12f62fbe}{
+\index{IDP::SelfTests@{IDP::SelfTests}!navigate@{navigate}}
+\index{navigate@{navigate}!IDP::SelfTests@{IDP::SelfTests}}
+\subsubsection[{navigate}]{\setlength{\rightskip}{0pt plus 5cm}void IDP::SelfTests::navigate (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}
+\label{classIDP_1_1SelfTests_a710347081427c05706f92bdd12f62fbe}
+
+
+Select a source and destination and then navigate to the destination assuming we are starting at the source. 
+
+
+
+Definition at line 130 of file self\_\-tests.cc.
+
+\hypertarget{classIDP_1_1SelfTests_ada3dfe991573fc6b0922cace927fc4e0}{
+\index{IDP::SelfTests@{IDP::SelfTests}!position@{position}}
+\index{position@{position}!IDP::SelfTests@{IDP::SelfTests}}
+\subsubsection[{position}]{\setlength{\rightskip}{0pt plus 5cm}void IDP::SelfTests::position (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}
+\label{classIDP_1_1SelfTests_ada3dfe991573fc6b0922cace927fc4e0}
+
+
+Drive slowly looking for an object in range for pickup, then position self ready to clamp said object. 
+
+
+
+Definition at line 138 of file self\_\-tests.cc.
+
+\hypertarget{classIDP_1_1SelfTests_abbe6e3e29b00f760e0b65f2aeb772fb5}{
+\index{IDP::SelfTests@{IDP::SelfTests}!status\_\-LEDs@{status\_\-LEDs}}
+\index{status\_\-LEDs@{status\_\-LEDs}!IDP::SelfTests@{IDP::SelfTests}}
+\subsubsection[{status\_\-LEDs}]{\setlength{\rightskip}{0pt plus 5cm}void IDP::SelfTests::status\_\-LEDs (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}
+\label{classIDP_1_1SelfTests_abbe6e3e29b00f760e0b65f2aeb772fb5}
+
+
+Turn on each of the status LEDs (used for indicating bobbin colour) in turn. 
+
+
+
+Definition at line 146 of file self\_\-tests.cc.
+
+\hypertarget{classIDP_1_1SelfTests_ae54bd0e6c01c5d1d794363cc676dbb92}{
+\index{IDP::SelfTests@{IDP::SelfTests}!steer\_\-left@{steer\_\-left}}
+\index{steer\_\-left@{steer\_\-left}!IDP::SelfTests@{IDP::SelfTests}}
+\subsubsection[{steer\_\-left}]{\setlength{\rightskip}{0pt plus 5cm}void IDP::SelfTests::steer\_\-left (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}
+\label{classIDP_1_1SelfTests_ae54bd0e6c01c5d1d794363cc676dbb92}
+
+
+Drive forwards for a moment whilst reducing the speed of the left motor relative to the right to steer left. 
+
+
+
+Definition at line 62 of file self\_\-tests.cc.
+
+\hypertarget{classIDP_1_1SelfTests_a7f9c5999de2e7c4f59c8c5a60965e876}{
+\index{IDP::SelfTests@{IDP::SelfTests}!steer\_\-right@{steer\_\-right}}
+\index{steer\_\-right@{steer\_\-right}!IDP::SelfTests@{IDP::SelfTests}}
+\subsubsection[{steer\_\-right}]{\setlength{\rightskip}{0pt plus 5cm}void IDP::SelfTests::steer\_\-right (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}
+\label{classIDP_1_1SelfTests_a7f9c5999de2e7c4f59c8c5a60965e876}
+
+
+Drive forwards for a moment whilst reducing the speed of the right motor relative to the left to steer right. 
+
+
+
+Definition at line 70 of file self\_\-tests.cc.
+
+\hypertarget{classIDP_1_1SelfTests_a33adf462d8c408b1c7b4858e9a4ff000}{
+\index{IDP::SelfTests@{IDP::SelfTests}!stop@{stop}}
+\index{stop@{stop}!IDP::SelfTests@{IDP::SelfTests}}
+\subsubsection[{stop}]{\setlength{\rightskip}{0pt plus 5cm}void IDP::SelfTests::stop (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}
+\label{classIDP_1_1SelfTests_a33adf462d8c408b1c7b4858e9a4ff000}
+
+
+Stop all of the robot's motors. 
+
+
+
+Definition at line 38 of file self\_\-tests.cc.
+
+\hypertarget{classIDP_1_1SelfTests_a3ba14e5a1ed52ff112bc742b94f06d61}{
+\index{IDP::SelfTests@{IDP::SelfTests}!turn\_\-left@{turn\_\-left}}
+\index{turn\_\-left@{turn\_\-left}!IDP::SelfTests@{IDP::SelfTests}}
+\subsubsection[{turn\_\-left}]{\setlength{\rightskip}{0pt plus 5cm}void IDP::SelfTests::turn\_\-left (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}
+\label{classIDP_1_1SelfTests_a3ba14e5a1ed52ff112bc742b94f06d61}
+
+
+Drive motors in opposite directions to turn the robot left on the spot. 
+
+
+
+Definition at line 46 of file self\_\-tests.cc.
+
+\hypertarget{classIDP_1_1SelfTests_a4e4b66ddff2de3444f1e9383dcf463a6}{
+\index{IDP::SelfTests@{IDP::SelfTests}!turn\_\-right@{turn\_\-right}}
+\index{turn\_\-right@{turn\_\-right}!IDP::SelfTests@{IDP::SelfTests}}
+\subsubsection[{turn\_\-right}]{\setlength{\rightskip}{0pt plus 5cm}void IDP::SelfTests::turn\_\-right (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}
+\label{classIDP_1_1SelfTests_a4e4b66ddff2de3444f1e9383dcf463a6}
+
+
+Drive motors in opposite directions to turn the robot right on the spot. 
+
+
+
+Definition at line 54 of file self\_\-tests.cc.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+src/libidp/\hyperlink{self__tests_8h}{self\_\-tests.h}\item 
+src/libidp/\hyperlink{self__tests_8cc}{self\_\-tests.cc}\end{DoxyCompactItemize}

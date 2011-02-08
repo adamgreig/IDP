@@ -1,0 +1,148 @@
+\hypertarget{classIDP_1_1ClampControl}{
+\section{IDP::ClampControl Class Reference}
+\label{classIDP_1_1ClampControl}\index{IDP::ClampControl@{IDP::ClampControl}}
+}
+
+
+Manage the actuation of the clamp, as well as the detection and analysis of bobbins for their colour and badness.  
+
+
+
+
+{\ttfamily \#include $<$clamp\_\-control.h$>$}
+
+
+
+Collaboration diagram for IDP::ClampControl:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=232pt]{classIDP_1_1ClampControl__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classIDP_1_1ClampControl_a86666dd07720e41ba549edc9cc06d72a}{ClampControl} (const \hyperlink{classIDP_1_1HardwareAbstractionLayer}{HardwareAbstractionLayer} $\ast$hal)
+\begin{DoxyCompactList}\small\item\em Initialise the class, storing the const pointer to the HAL. \item\end{DoxyCompactList}\item 
+void \hyperlink{classIDP_1_1ClampControl_a881ecc4fbc73c47594ecc675b9dbf3e1}{pick\_\-up} ()
+\begin{DoxyCompactList}\small\item\em Pick up something using the clamp. \item\end{DoxyCompactList}\item 
+void \hyperlink{classIDP_1_1ClampControl_a31573846d9f7c61a6133b9dd465eca25}{put\_\-down} ()
+\begin{DoxyCompactList}\small\item\em Put something in the clamp down. \item\end{DoxyCompactList}\item 
+const \hyperlink{namespaceIDP_a6efd2cca14c0dae1c6458714ce0218df}{BobbinColour} \hyperlink{classIDP_1_1ClampControl_a99cb7006d4265ea369124786625281c9}{colour} () const 
+\begin{DoxyCompactList}\small\item\em Check the bobbin colour. \item\end{DoxyCompactList}\item 
+const \hyperlink{namespaceIDP_adf12b2c1e1c228810b18c34a3c88c32d}{BobbinBadness} \hyperlink{classIDP_1_1ClampControl_a6b829dbdee269f7fc3a99b2bd0bb379c}{badness} () const 
+\begin{DoxyCompactList}\small\item\em Check the bobbin badness. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Manage the actuation of the clamp, as well as the detection and analysis of bobbins for their colour and badness. 
+
+Definition at line 39 of file clamp\_\-control.h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classIDP_1_1ClampControl_a86666dd07720e41ba549edc9cc06d72a}{
+\index{IDP::ClampControl@{IDP::ClampControl}!ClampControl@{ClampControl}}
+\index{ClampControl@{ClampControl}!IDP::ClampControl@{IDP::ClampControl}}
+\subsubsection[{ClampControl}]{\setlength{\rightskip}{0pt plus 5cm}IDP::ClampControl::ClampControl (
+\begin{DoxyParamCaption}
+\item[{const {\bf HardwareAbstractionLayer} $\ast$}]{ hal}
+\end{DoxyParamCaption}
+)}}
+\label{classIDP_1_1ClampControl_a86666dd07720e41ba549edc9cc06d72a}
+
+
+Initialise the class, storing the const pointer to the HAL. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em hal}]A const pointer to an instance of the HAL \end{DoxyParams}
+
+
+Definition at line 14 of file clamp\_\-control.cc.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classIDP_1_1ClampControl_a6b829dbdee269f7fc3a99b2bd0bb379c}{
+\index{IDP::ClampControl@{IDP::ClampControl}!badness@{badness}}
+\index{badness@{badness}!IDP::ClampControl@{IDP::ClampControl}}
+\subsubsection[{badness}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf BobbinBadness} IDP::ClampControl::badness (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}
+\label{classIDP_1_1ClampControl_a6b829dbdee269f7fc3a99b2bd0bb379c}
+
+
+Check the bobbin badness. 
+
+\begin{DoxyReturn}{Returns}
+A BobbinBadness value to indicate current bobbin status 
+\end{DoxyReturn}
+
+
+Definition at line 44 of file clamp\_\-control.cc.
+
+\hypertarget{classIDP_1_1ClampControl_a99cb7006d4265ea369124786625281c9}{
+\index{IDP::ClampControl@{IDP::ClampControl}!colour@{colour}}
+\index{colour@{colour}!IDP::ClampControl@{IDP::ClampControl}}
+\subsubsection[{colour}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf BobbinColour} IDP::ClampControl::colour (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}
+\label{classIDP_1_1ClampControl_a99cb7006d4265ea369124786625281c9}
+
+
+Check the bobbin colour. 
+
+\begin{DoxyReturn}{Returns}
+A BobbinColour value to indicate current bobbin colour 
+\end{DoxyReturn}
+
+
+Definition at line 36 of file clamp\_\-control.cc.
+
+\hypertarget{classIDP_1_1ClampControl_a881ecc4fbc73c47594ecc675b9dbf3e1}{
+\index{IDP::ClampControl@{IDP::ClampControl}!pick\_\-up@{pick\_\-up}}
+\index{pick\_\-up@{pick\_\-up}!IDP::ClampControl@{IDP::ClampControl}}
+\subsubsection[{pick\_\-up}]{\setlength{\rightskip}{0pt plus 5cm}void IDP::ClampControl::pick\_\-up (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{classIDP_1_1ClampControl_a881ecc4fbc73c47594ecc675b9dbf3e1}
+
+
+Pick up something using the clamp. 
+
+
+
+Definition at line 21 of file clamp\_\-control.cc.
+
+\hypertarget{classIDP_1_1ClampControl_a31573846d9f7c61a6133b9dd465eca25}{
+\index{IDP::ClampControl@{IDP::ClampControl}!put\_\-down@{put\_\-down}}
+\index{put\_\-down@{put\_\-down}!IDP::ClampControl@{IDP::ClampControl}}
+\subsubsection[{put\_\-down}]{\setlength{\rightskip}{0pt plus 5cm}void IDP::ClampControl::put\_\-down (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{classIDP_1_1ClampControl_a31573846d9f7c61a6133b9dd465eca25}
+
+
+Put something in the clamp down. 
+
+
+
+Definition at line 28 of file clamp\_\-control.cc.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+src/libidp/\hyperlink{clamp__control_8h}{clamp\_\-control.h}\item 
+src/libidp/\hyperlink{clamp__control_8cc}{clamp\_\-control.cc}\end{DoxyCompactItemize}

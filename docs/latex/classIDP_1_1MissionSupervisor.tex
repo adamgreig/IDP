@@ -1,0 +1,237 @@
+\hypertarget{classIDP_1_1MissionSupervisor}{
+\section{IDP::MissionSupervisor Class Reference}
+\label{classIDP_1_1MissionSupervisor}\index{IDP::MissionSupervisor@{IDP::MissionSupervisor}}
+}
+
+
+Control the overall robot behaviour and objective fulfillment.  
+
+
+
+
+{\ttfamily \#include $<$mission\_\-supervisor.h$>$}
+
+
+
+Collaboration diagram for IDP::MissionSupervisor:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=232pt]{classIDP_1_1MissionSupervisor__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classIDP_1_1MissionSupervisor_afc6a54e04718d919b2b48458a47304b2}{MissionSupervisor} (int robot)
+\begin{DoxyCompactList}\small\item\em Construct the \hyperlink{classIDP_1_1MissionSupervisor}{MissionSupervisor}. \item\end{DoxyCompactList}\item 
+\hyperlink{classIDP_1_1MissionSupervisor_aa43dab8c02cd596d0f5df6b3af5aade4}{$\sim$MissionSupervisor} ()
+\begin{DoxyCompactList}\small\item\em Destruct the \hyperlink{classIDP_1_1MissionSupervisor}{MissionSupervisor}, deleting the HAL. \item\end{DoxyCompactList}\item 
+void \hyperlink{classIDP_1_1MissionSupervisor_a06fc1fcf6272651d50938fd94306ac24}{run\_\-task} ()
+\begin{DoxyCompactList}\small\item\em Commence running the main task. \item\end{DoxyCompactList}\item 
+void \hyperlink{classIDP_1_1MissionSupervisor_af8c6a3073190a4479211753fe5f50a36}{drive\_\-forward} ()
+\begin{DoxyCompactList}\small\item\em Set both motors driving forwards. \item\end{DoxyCompactList}\item 
+void \hyperlink{classIDP_1_1MissionSupervisor_ae5d6e9a37417126da780583349b48d44}{drive\_\-backward} ()
+\begin{DoxyCompactList}\small\item\em Set both motors driving backwards. \item\end{DoxyCompactList}\item 
+void \hyperlink{classIDP_1_1MissionSupervisor_ad11e444b6be1d51c3339bd6397d45fd4}{stop} ()
+\begin{DoxyCompactList}\small\item\em Stop all motors. \item\end{DoxyCompactList}\item 
+void \hyperlink{classIDP_1_1MissionSupervisor_af147b0bec9464bb7e956a40a7f3d0fda}{test\_\-line\_\-sensor} ()
+\begin{DoxyCompactList}\small\item\em Attempt to read the line sensor status. \item\end{DoxyCompactList}\item 
+void \hyperlink{classIDP_1_1MissionSupervisor_a21be0b52e2f13c7fb373c90dae77ba23}{test\_\-line\_\-following} ()
+\begin{DoxyCompactList}\small\item\em Test line following on a straight line. \item\end{DoxyCompactList}\item 
+void \hyperlink{classIDP_1_1MissionSupervisor_a7c0f8d9bc56e3ec9da1b1294fa828541}{test\_\-navigation} ()
+\begin{DoxyCompactList}\small\item\em Test navigation code. \item\end{DoxyCompactList}\item 
+const \hyperlink{classIDP_1_1HardwareAbstractionLayer}{HardwareAbstractionLayer} $\ast$ \hyperlink{classIDP_1_1MissionSupervisor_ae19d0c2123fda158cc45e649128fbc09}{hal} () const 
+\begin{DoxyCompactList}\small\item\em Const accessor for the HAL. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Control the overall robot behaviour and objective fulfillment. 
+
+Definition at line 24 of file mission\_\-supervisor.h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classIDP_1_1MissionSupervisor_afc6a54e04718d919b2b48458a47304b2}{
+\index{IDP::MissionSupervisor@{IDP::MissionSupervisor}!MissionSupervisor@{MissionSupervisor}}
+\index{MissionSupervisor@{MissionSupervisor}!IDP::MissionSupervisor@{IDP::MissionSupervisor}}
+\subsubsection[{MissionSupervisor}]{\setlength{\rightskip}{0pt plus 5cm}IDP::MissionSupervisor::MissionSupervisor (
+\begin{DoxyParamCaption}
+\item[{int}]{ robot = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)}}
+\label{classIDP_1_1MissionSupervisor_afc6a54e04718d919b2b48458a47304b2}
+
+
+Construct the \hyperlink{classIDP_1_1MissionSupervisor}{MissionSupervisor}. 
+
+Initialises a link to the specified robot number, or 0 if running embedded. 
+\begin{DoxyParams}{Parameters}
+\item[{\em robot}]Which robot to link to, or 0 if embedded \end{DoxyParams}
+
+
+Definition at line 21 of file mission\_\-supervisor.cc.
+
+\hypertarget{classIDP_1_1MissionSupervisor_aa43dab8c02cd596d0f5df6b3af5aade4}{
+\index{IDP::MissionSupervisor@{IDP::MissionSupervisor}!$\sim$MissionSupervisor@{$\sim$MissionSupervisor}}
+\index{$\sim$MissionSupervisor@{$\sim$MissionSupervisor}!IDP::MissionSupervisor@{IDP::MissionSupervisor}}
+\subsubsection[{$\sim$MissionSupervisor}]{\setlength{\rightskip}{0pt plus 5cm}IDP::MissionSupervisor::$\sim$MissionSupervisor (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{classIDP_1_1MissionSupervisor_aa43dab8c02cd596d0f5df6b3af5aade4}
+
+
+Destruct the \hyperlink{classIDP_1_1MissionSupervisor}{MissionSupervisor}, deleting the HAL. 
+
+
+
+Definition at line 30 of file mission\_\-supervisor.cc.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classIDP_1_1MissionSupervisor_ae5d6e9a37417126da780583349b48d44}{
+\index{IDP::MissionSupervisor@{IDP::MissionSupervisor}!drive\_\-backward@{drive\_\-backward}}
+\index{drive\_\-backward@{drive\_\-backward}!IDP::MissionSupervisor@{IDP::MissionSupervisor}}
+\subsubsection[{drive\_\-backward}]{\setlength{\rightskip}{0pt plus 5cm}void IDP::MissionSupervisor::drive\_\-backward (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{classIDP_1_1MissionSupervisor_ae5d6e9a37417126da780583349b48d44}
+
+
+Set both motors driving backwards. 
+
+
+
+Definition at line 55 of file mission\_\-supervisor.cc.
+
+\hypertarget{classIDP_1_1MissionSupervisor_af8c6a3073190a4479211753fe5f50a36}{
+\index{IDP::MissionSupervisor@{IDP::MissionSupervisor}!drive\_\-forward@{drive\_\-forward}}
+\index{drive\_\-forward@{drive\_\-forward}!IDP::MissionSupervisor@{IDP::MissionSupervisor}}
+\subsubsection[{drive\_\-forward}]{\setlength{\rightskip}{0pt plus 5cm}void IDP::MissionSupervisor::drive\_\-forward (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{classIDP_1_1MissionSupervisor_af8c6a3073190a4479211753fe5f50a36}
+
+
+Set both motors driving forwards. 
+
+
+
+Definition at line 45 of file mission\_\-supervisor.cc.
+
+\hypertarget{classIDP_1_1MissionSupervisor_ae19d0c2123fda158cc45e649128fbc09}{
+\index{IDP::MissionSupervisor@{IDP::MissionSupervisor}!hal@{hal}}
+\index{hal@{hal}!IDP::MissionSupervisor@{IDP::MissionSupervisor}}
+\subsubsection[{hal}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf HardwareAbstractionLayer} $\ast$ IDP::MissionSupervisor::hal (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}
+\label{classIDP_1_1MissionSupervisor_ae19d0c2123fda158cc45e649128fbc09}
+
+
+Const accessor for the HAL. 
+
+
+
+Definition at line 228 of file mission\_\-supervisor.cc.
+
+\hypertarget{classIDP_1_1MissionSupervisor_a06fc1fcf6272651d50938fd94306ac24}{
+\index{IDP::MissionSupervisor@{IDP::MissionSupervisor}!run\_\-task@{run\_\-task}}
+\index{run\_\-task@{run\_\-task}!IDP::MissionSupervisor@{IDP::MissionSupervisor}}
+\subsubsection[{run\_\-task}]{\setlength{\rightskip}{0pt plus 5cm}void IDP::MissionSupervisor::run\_\-task (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{classIDP_1_1MissionSupervisor_a06fc1fcf6272651d50938fd94306ac24}
+
+
+Commence running the main task. 
+
+
+
+Definition at line 38 of file mission\_\-supervisor.cc.
+
+\hypertarget{classIDP_1_1MissionSupervisor_ad11e444b6be1d51c3339bd6397d45fd4}{
+\index{IDP::MissionSupervisor@{IDP::MissionSupervisor}!stop@{stop}}
+\index{stop@{stop}!IDP::MissionSupervisor@{IDP::MissionSupervisor}}
+\subsubsection[{stop}]{\setlength{\rightskip}{0pt plus 5cm}void IDP::MissionSupervisor::stop (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{classIDP_1_1MissionSupervisor_ad11e444b6be1d51c3339bd6397d45fd4}
+
+
+Stop all motors. 
+
+
+
+Definition at line 64 of file mission\_\-supervisor.cc.
+
+\hypertarget{classIDP_1_1MissionSupervisor_a21be0b52e2f13c7fb373c90dae77ba23}{
+\index{IDP::MissionSupervisor@{IDP::MissionSupervisor}!test\_\-line\_\-following@{test\_\-line\_\-following}}
+\index{test\_\-line\_\-following@{test\_\-line\_\-following}!IDP::MissionSupervisor@{IDP::MissionSupervisor}}
+\subsubsection[{test\_\-line\_\-following}]{\setlength{\rightskip}{0pt plus 5cm}void IDP::MissionSupervisor::test\_\-line\_\-following (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{classIDP_1_1MissionSupervisor_a21be0b52e2f13c7fb373c90dae77ba23}
+
+
+Test line following on a straight line. 
+
+
+
+Definition at line 106 of file mission\_\-supervisor.cc.
+
+\hypertarget{classIDP_1_1MissionSupervisor_af147b0bec9464bb7e956a40a7f3d0fda}{
+\index{IDP::MissionSupervisor@{IDP::MissionSupervisor}!test\_\-line\_\-sensor@{test\_\-line\_\-sensor}}
+\index{test\_\-line\_\-sensor@{test\_\-line\_\-sensor}!IDP::MissionSupervisor@{IDP::MissionSupervisor}}
+\subsubsection[{test\_\-line\_\-sensor}]{\setlength{\rightskip}{0pt plus 5cm}void IDP::MissionSupervisor::test\_\-line\_\-sensor (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{classIDP_1_1MissionSupervisor_af147b0bec9464bb7e956a40a7f3d0fda}
+
+
+Attempt to read the line sensor status. 
+
+
+
+Definition at line 73 of file mission\_\-supervisor.cc.
+
+\hypertarget{classIDP_1_1MissionSupervisor_a7c0f8d9bc56e3ec9da1b1294fa828541}{
+\index{IDP::MissionSupervisor@{IDP::MissionSupervisor}!test\_\-navigation@{test\_\-navigation}}
+\index{test\_\-navigation@{test\_\-navigation}!IDP::MissionSupervisor@{IDP::MissionSupervisor}}
+\subsubsection[{test\_\-navigation}]{\setlength{\rightskip}{0pt plus 5cm}void IDP::MissionSupervisor::test\_\-navigation (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{classIDP_1_1MissionSupervisor_a7c0f8d9bc56e3ec9da1b1294fa828541}
+
+
+Test navigation code. 
+
+
+
+Definition at line 213 of file mission\_\-supervisor.cc.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+src/libidp/\hyperlink{mission__supervisor_8h}{mission\_\-supervisor.h}\item 
+src/libidp/\hyperlink{mission__supervisor_8cc}{mission\_\-supervisor.cc}\end{DoxyCompactItemize}

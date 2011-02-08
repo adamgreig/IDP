@@ -1,0 +1,222 @@
+\indexentry{IDP@{IDP}|hyperpage}{9}
+\indexentry{IDP@{IDP}!BobbinBadness@{BobbinBadness}|hyperpage}{11}
+\indexentry{BobbinBadness@{BobbinBadness}!IDP@{IDP}|hyperpage}{11}
+\indexentry{BOBBIN\_\-GOOD@{BOBBIN\_\-GOOD}!IDP@{IDP}|hyperpage}{11}
+\indexentry{IDP@{IDP}!BOBBIN\_\-GOOD@{BOBBIN\_\-GOOD}|hyperpage}{11}
+\indexentry{BOBBIN\_\-BAD@{BOBBIN\_\-BAD}!IDP@{IDP}|hyperpage}{11}
+\indexentry{IDP@{IDP}!BOBBIN\_\-BAD@{BOBBIN\_\-BAD}|hyperpage}{11}
+\indexentry{IDP@{IDP}!BobbinColour@{BobbinColour}|hyperpage}{11}
+\indexentry{BobbinColour@{BobbinColour}!IDP@{IDP}|hyperpage}{11}
+\indexentry{BOBBIN\_\-RED@{BOBBIN\_\-RED}!IDP@{IDP}|hyperpage}{11}
+\indexentry{IDP@{IDP}!BOBBIN\_\-RED@{BOBBIN\_\-RED}|hyperpage}{11}
+\indexentry{BOBBIN\_\-GREEN@{BOBBIN\_\-GREEN}!IDP@{IDP}|hyperpage}{11}
+\indexentry{IDP@{IDP}!BOBBIN\_\-GREEN@{BOBBIN\_\-GREEN}|hyperpage}{11}
+\indexentry{BOBBIN\_\-WHITE@{BOBBIN\_\-WHITE}!IDP@{IDP}|hyperpage}{11}
+\indexentry{IDP@{IDP}!BOBBIN\_\-WHITE@{BOBBIN\_\-WHITE}|hyperpage}{11}
+\indexentry{IDP@{IDP}!LineFollowingStatus@{LineFollowingStatus}|hyperpage}{11}
+\indexentry{LineFollowingStatus@{LineFollowingStatus}!IDP@{IDP}|hyperpage}{11}
+\indexentry{ACTION\_\-IN\_\-PROGRESS@{ACTION\_\-IN\_\-PROGRESS}!IDP@{IDP}|hyperpage}{11}
+\indexentry{IDP@{IDP}!ACTION\_\-IN\_\-PROGRESS@{ACTION\_\-IN\_\-PROGRESS}|hyperpage}{11}
+\indexentry{ACTION\_\-COMPLETED@{ACTION\_\-COMPLETED}!IDP@{IDP}|hyperpage}{11}
+\indexentry{IDP@{IDP}!ACTION\_\-COMPLETED@{ACTION\_\-COMPLETED}|hyperpage}{11}
+\indexentry{LEFT\_\-TURN\_\-FOUND@{LEFT\_\-TURN\_\-FOUND}!IDP@{IDP}|hyperpage}{11}
+\indexentry{IDP@{IDP}!LEFT\_\-TURN\_\-FOUND@{LEFT\_\-TURN\_\-FOUND}|hyperpage}{11}
+\indexentry{RIGHT\_\-TURN\_\-FOUND@{RIGHT\_\-TURN\_\-FOUND}!IDP@{IDP}|hyperpage}{11}
+\indexentry{IDP@{IDP}!RIGHT\_\-TURN\_\-FOUND@{RIGHT\_\-TURN\_\-FOUND}|hyperpage}{11}
+\indexentry{BOTH\_\-TURNS\_\-FOUND@{BOTH\_\-TURNS\_\-FOUND}!IDP@{IDP}|hyperpage}{11}
+\indexentry{IDP@{IDP}!BOTH\_\-TURNS\_\-FOUND@{BOTH\_\-TURNS\_\-FOUND}|hyperpage}{11}
+\indexentry{LOST@{LOST}!IDP@{IDP}|hyperpage}{11}
+\indexentry{IDP@{IDP}!LOST@{LOST}|hyperpage}{11}
+\indexentry{IDP@{IDP}!LineSensorStatus@{LineSensorStatus}|hyperpage}{11}
+\indexentry{LineSensorStatus@{LineSensorStatus}!IDP@{IDP}|hyperpage}{11}
+\indexentry{LINE@{LINE}!IDP@{IDP}|hyperpage}{11}
+\indexentry{IDP@{IDP}!LINE@{LINE}|hyperpage}{11}
+\indexentry{NO\_\-LINE@{NO\_\-LINE}!IDP@{IDP}|hyperpage}{11}
+\indexentry{IDP@{IDP}!NO\_\-LINE@{NO\_\-LINE}|hyperpage}{11}
+\indexentry{IDP@{IDP}!NavigationLocation@{NavigationLocation}|hyperpage}{11}
+\indexentry{NavigationLocation@{NavigationLocation}!IDP@{IDP}|hyperpage}{11}
+\indexentry{NAVIGATION\_\-BOXES@{NAVIGATION\_\-BOXES}!IDP@{IDP}|hyperpage}{12}
+\indexentry{IDP@{IDP}!NAVIGATION\_\-BOXES@{NAVIGATION\_\-BOXES}|hyperpage}{12}
+\indexentry{NAVIGATION\_\-RACK@{NAVIGATION\_\-RACK}!IDP@{IDP}|hyperpage}{12}
+\indexentry{IDP@{IDP}!NAVIGATION\_\-RACK@{NAVIGATION\_\-RACK}|hyperpage}{12}
+\indexentry{NAVIGATION\_\-DELIVERY@{NAVIGATION\_\-DELIVERY}!IDP@{IDP}|hyperpage}{12}
+\indexentry{IDP@{IDP}!NAVIGATION\_\-DELIVERY@{NAVIGATION\_\-DELIVERY}|hyperpage}{12}
+\indexentry{IDP@{IDP}!NavigationStatus@{NavigationStatus}|hyperpage}{12}
+\indexentry{NavigationStatus@{NavigationStatus}!IDP@{IDP}|hyperpage}{12}
+\indexentry{NAVIGATION\_\-ENROUTE@{NAVIGATION\_\-ENROUTE}!IDP@{IDP}|hyperpage}{12}
+\indexentry{IDP@{IDP}!NAVIGATION\_\-ENROUTE@{NAVIGATION\_\-ENROUTE}|hyperpage}{12}
+\indexentry{NAVIGATION\_\-ARRIVED@{NAVIGATION\_\-ARRIVED}!IDP@{IDP}|hyperpage}{12}
+\indexentry{IDP@{IDP}!NAVIGATION\_\-ARRIVED@{NAVIGATION\_\-ARRIVED}|hyperpage}{12}
+\indexentry{NAVIGATION\_\-LOST@{NAVIGATION\_\-LOST}!IDP@{IDP}|hyperpage}{12}
+\indexentry{IDP@{IDP}!NAVIGATION\_\-LOST@{NAVIGATION\_\-LOST}|hyperpage}{12}
+\indexentry{IDP@{IDP}!cap\_\discretionary {-}{}{}correction@{cap\_\discretionary {-}{}{}correction}|hyperpage}{12}
+\indexentry{cap\_\discretionary {-}{}{}correction@{cap\_\discretionary {-}{}{}correction}!IDP@{IDP}|hyperpage}{12}
+\indexentry{IDP@{IDP}!EDGE\_\discretionary {-}{}{}ERROR@{EDGE\_\discretionary {-}{}{}ERROR}|hyperpage}{12}
+\indexentry{EDGE\_\discretionary {-}{}{}ERROR@{EDGE\_\discretionary {-}{}{}ERROR}!IDP@{IDP}|hyperpage}{12}
+\indexentry{IDP@{IDP}!INTEGRAL\_\discretionary {-}{}{}GAIN@{INTEGRAL\_\discretionary {-}{}{}GAIN}|hyperpage}{12}
+\indexentry{INTEGRAL\_\discretionary {-}{}{}GAIN@{INTEGRAL\_\discretionary {-}{}{}GAIN}!IDP@{IDP}|hyperpage}{12}
+\indexentry{IDP@{IDP}!LOST\_\discretionary {-}{}{}TIMEOUT@{LOST\_\discretionary {-}{}{}TIMEOUT}|hyperpage}{12}
+\indexentry{LOST\_\discretionary {-}{}{}TIMEOUT@{LOST\_\discretionary {-}{}{}TIMEOUT}!IDP@{IDP}|hyperpage}{12}
+\indexentry{IDP@{IDP}!MAX\_\discretionary {-}{}{}CORRECTION@{MAX\_\discretionary {-}{}{}CORRECTION}|hyperpage}{12}
+\indexentry{MAX\_\discretionary {-}{}{}CORRECTION@{MAX\_\discretionary {-}{}{}CORRECTION}!IDP@{IDP}|hyperpage}{12}
+\indexentry{IDP@{IDP}!MOTOR\_\discretionary {-}{}{}MAX\_\discretionary {-}{}{}SPEED@{MOTOR\_\discretionary {-}{}{}MAX\_\discretionary {-}{}{}SPEED}|hyperpage}{13}
+\indexentry{MOTOR\_\discretionary {-}{}{}MAX\_\discretionary {-}{}{}SPEED@{MOTOR\_\discretionary {-}{}{}MAX\_\discretionary {-}{}{}SPEED}!IDP@{IDP}|hyperpage}{13}
+\indexentry{IDP@{IDP}!MOTOR\_\discretionary {-}{}{}RAMP\_\discretionary {-}{}{}TIME@{MOTOR\_\discretionary {-}{}{}RAMP\_\discretionary {-}{}{}TIME}|hyperpage}{13}
+\indexentry{MOTOR\_\discretionary {-}{}{}RAMP\_\discretionary {-}{}{}TIME@{MOTOR\_\discretionary {-}{}{}RAMP\_\discretionary {-}{}{}TIME}!IDP@{IDP}|hyperpage}{13}
+\indexentry{IDP::ClampControl@{IDP::ClampControl}|hyperpage}{15}
+\indexentry{IDP::ClampControl@{IDP::ClampControl}!ClampControl@{ClampControl}|hyperpage}{16}
+\indexentry{ClampControl@{ClampControl}!IDP::ClampControl@{IDP::ClampControl}|hyperpage}{16}
+\indexentry{IDP::ClampControl@{IDP::ClampControl}!badness@{badness}|hyperpage}{16}
+\indexentry{badness@{badness}!IDP::ClampControl@{IDP::ClampControl}|hyperpage}{16}
+\indexentry{IDP::ClampControl@{IDP::ClampControl}!colour@{colour}|hyperpage}{16}
+\indexentry{colour@{colour}!IDP::ClampControl@{IDP::ClampControl}|hyperpage}{16}
+\indexentry{IDP::ClampControl@{IDP::ClampControl}!pick\_\discretionary {-}{}{}up@{pick\_\discretionary {-}{}{}up}|hyperpage}{16}
+\indexentry{pick\_\discretionary {-}{}{}up@{pick\_\discretionary {-}{}{}up}!IDP::ClampControl@{IDP::ClampControl}|hyperpage}{16}
+\indexentry{IDP::ClampControl@{IDP::ClampControl}!put\_\discretionary {-}{}{}down@{put\_\discretionary {-}{}{}down}|hyperpage}{16}
+\indexentry{put\_\discretionary {-}{}{}down@{put\_\discretionary {-}{}{}down}!IDP::ClampControl@{IDP::ClampControl}|hyperpage}{16}
+\indexentry{IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}|hyperpage}{17}
+\indexentry{IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}!HardwareAbstractionLayer@{HardwareAbstractionLayer}|hyperpage}{18}
+\indexentry{HardwareAbstractionLayer@{HardwareAbstractionLayer}!IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}|hyperpage}{18}
+\indexentry{IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}!bad\_\discretionary {-}{}{}bobbin\_\discretionary {-}{}{}ldr@{bad\_\discretionary {-}{}{}bobbin\_\discretionary {-}{}{}ldr}|hyperpage}{19}
+\indexentry{bad\_\discretionary {-}{}{}bobbin\_\discretionary {-}{}{}ldr@{bad\_\discretionary {-}{}{}bobbin\_\discretionary {-}{}{}ldr}!IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}|hyperpage}{19}
+\indexentry{IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}!bad\_\discretionary {-}{}{}bobbin\_\discretionary {-}{}{}led@{bad\_\discretionary {-}{}{}bobbin\_\discretionary {-}{}{}led}|hyperpage}{19}
+\indexentry{bad\_\discretionary {-}{}{}bobbin\_\discretionary {-}{}{}led@{bad\_\discretionary {-}{}{}bobbin\_\discretionary {-}{}{}led}!IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}|hyperpage}{19}
+\indexentry{IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}!clear\_\discretionary {-}{}{}status\_\discretionary {-}{}{}register@{clear\_\discretionary {-}{}{}status\_\discretionary {-}{}{}register}|hyperpage}{19}
+\indexentry{clear\_\discretionary {-}{}{}status\_\discretionary {-}{}{}register@{clear\_\discretionary {-}{}{}status\_\discretionary {-}{}{}register}!IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}|hyperpage}{19}
+\indexentry{IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}!colour\_\discretionary {-}{}{}ldr@{colour\_\discretionary {-}{}{}ldr}|hyperpage}{19}
+\indexentry{colour\_\discretionary {-}{}{}ldr@{colour\_\discretionary {-}{}{}ldr}!IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}|hyperpage}{19}
+\indexentry{IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}!colour\_\discretionary {-}{}{}leds@{colour\_\discretionary {-}{}{}leds}|hyperpage}{19}
+\indexentry{colour\_\discretionary {-}{}{}leds@{colour\_\discretionary {-}{}{}leds}!IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}|hyperpage}{19}
+\indexentry{IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}!grabber\_\discretionary {-}{}{}jaw@{grabber\_\discretionary {-}{}{}jaw}|hyperpage}{19}
+\indexentry{grabber\_\discretionary {-}{}{}jaw@{grabber\_\discretionary {-}{}{}jaw}!IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}|hyperpage}{19}
+\indexentry{IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}!grabber\_\discretionary {-}{}{}lift@{grabber\_\discretionary {-}{}{}lift}|hyperpage}{19}
+\indexentry{grabber\_\discretionary {-}{}{}lift@{grabber\_\discretionary {-}{}{}lift}!IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}|hyperpage}{19}
+\indexentry{IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}!grabber\_\discretionary {-}{}{}switch@{grabber\_\discretionary {-}{}{}switch}|hyperpage}{20}
+\indexentry{grabber\_\discretionary {-}{}{}switch@{grabber\_\discretionary {-}{}{}switch}!IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}|hyperpage}{20}
+\indexentry{IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}!indication\_\discretionary {-}{}{}LEDs@{indication\_\discretionary {-}{}{}LEDs}|hyperpage}{20}
+\indexentry{indication\_\discretionary {-}{}{}LEDs@{indication\_\discretionary {-}{}{}LEDs}!IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}|hyperpage}{20}
+\indexentry{IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}!line\_\discretionary {-}{}{}following\_\discretionary {-}{}{}sensors@{line\_\discretionary {-}{}{}following\_\discretionary {-}{}{}sensors}|hyperpage}{20}
+\indexentry{line\_\discretionary {-}{}{}following\_\discretionary {-}{}{}sensors@{line\_\discretionary {-}{}{}following\_\discretionary {-}{}{}sensors}!IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}|hyperpage}{20}
+\indexentry{IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}!motor\_\discretionary {-}{}{}left\_\discretionary {-}{}{}backward@{motor\_\discretionary {-}{}{}left\_\discretionary {-}{}{}backward}|hyperpage}{20}
+\indexentry{motor\_\discretionary {-}{}{}left\_\discretionary {-}{}{}backward@{motor\_\discretionary {-}{}{}left\_\discretionary {-}{}{}backward}!IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}|hyperpage}{20}
+\indexentry{IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}!motor\_\discretionary {-}{}{}left\_\discretionary {-}{}{}forward@{motor\_\discretionary {-}{}{}left\_\discretionary {-}{}{}forward}|hyperpage}{20}
+\indexentry{motor\_\discretionary {-}{}{}left\_\discretionary {-}{}{}forward@{motor\_\discretionary {-}{}{}left\_\discretionary {-}{}{}forward}!IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}|hyperpage}{20}
+\indexentry{IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}!motor\_\discretionary {-}{}{}right\_\discretionary {-}{}{}backward@{motor\_\discretionary {-}{}{}right\_\discretionary {-}{}{}backward}|hyperpage}{20}
+\indexentry{motor\_\discretionary {-}{}{}right\_\discretionary {-}{}{}backward@{motor\_\discretionary {-}{}{}right\_\discretionary {-}{}{}backward}!IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}|hyperpage}{20}
+\indexentry{IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}!motor\_\discretionary {-}{}{}right\_\discretionary {-}{}{}forward@{motor\_\discretionary {-}{}{}right\_\discretionary {-}{}{}forward}|hyperpage}{21}
+\indexentry{motor\_\discretionary {-}{}{}right\_\discretionary {-}{}{}forward@{motor\_\discretionary {-}{}{}right\_\discretionary {-}{}{}forward}!IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}|hyperpage}{21}
+\indexentry{IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}!motors\_\discretionary {-}{}{}backward@{motors\_\discretionary {-}{}{}backward}|hyperpage}{21}
+\indexentry{motors\_\discretionary {-}{}{}backward@{motors\_\discretionary {-}{}{}backward}!IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}|hyperpage}{21}
+\indexentry{IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}!motors\_\discretionary {-}{}{}forward@{motors\_\discretionary {-}{}{}forward}|hyperpage}{21}
+\indexentry{motors\_\discretionary {-}{}{}forward@{motors\_\discretionary {-}{}{}forward}!IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}|hyperpage}{21}
+\indexentry{IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}!motors\_\discretionary {-}{}{}stop@{motors\_\discretionary {-}{}{}stop}|hyperpage}{21}
+\indexentry{motors\_\discretionary {-}{}{}stop@{motors\_\discretionary {-}{}{}stop}!IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}|hyperpage}{21}
+\indexentry{IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}!motors\_\discretionary {-}{}{}turn\_\discretionary {-}{}{}left@{motors\_\discretionary {-}{}{}turn\_\discretionary {-}{}{}left}|hyperpage}{21}
+\indexentry{motors\_\discretionary {-}{}{}turn\_\discretionary {-}{}{}left@{motors\_\discretionary {-}{}{}turn\_\discretionary {-}{}{}left}!IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}|hyperpage}{21}
+\indexentry{IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}!motors\_\discretionary {-}{}{}turn\_\discretionary {-}{}{}right@{motors\_\discretionary {-}{}{}turn\_\discretionary {-}{}{}right}|hyperpage}{21}
+\indexentry{motors\_\discretionary {-}{}{}turn\_\discretionary {-}{}{}right@{motors\_\discretionary {-}{}{}turn\_\discretionary {-}{}{}right}!IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}|hyperpage}{21}
+\indexentry{IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}!reset\_\discretionary {-}{}{}switch@{reset\_\discretionary {-}{}{}switch}|hyperpage}{22}
+\indexentry{reset\_\discretionary {-}{}{}switch@{reset\_\discretionary {-}{}{}switch}!IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}|hyperpage}{22}
+\indexentry{IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}!status\_\discretionary {-}{}{}register@{status\_\discretionary {-}{}{}register}|hyperpage}{22}
+\indexentry{status\_\discretionary {-}{}{}register@{status\_\discretionary {-}{}{}register}!IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}|hyperpage}{22}
+\indexentry{IDP::LineFollowing@{IDP::LineFollowing}|hyperpage}{22}
+\indexentry{IDP::LineFollowing@{IDP::LineFollowing}!LineFollowing@{LineFollowing}|hyperpage}{23}
+\indexentry{LineFollowing@{LineFollowing}!IDP::LineFollowing@{IDP::LineFollowing}|hyperpage}{23}
+\indexentry{IDP::LineFollowing@{IDP::LineFollowing}!follow\_\discretionary {-}{}{}line@{follow\_\discretionary {-}{}{}line}|hyperpage}{24}
+\indexentry{follow\_\discretionary {-}{}{}line@{follow\_\discretionary {-}{}{}line}!IDP::LineFollowing@{IDP::LineFollowing}|hyperpage}{24}
+\indexentry{IDP::LineFollowing@{IDP::LineFollowing}!set\_\discretionary {-}{}{}speed@{set\_\discretionary {-}{}{}speed}|hyperpage}{24}
+\indexentry{set\_\discretionary {-}{}{}speed@{set\_\discretionary {-}{}{}speed}!IDP::LineFollowing@{IDP::LineFollowing}|hyperpage}{24}
+\indexentry{IDP::LineFollowing@{IDP::LineFollowing}!turn\_\discretionary {-}{}{}left@{turn\_\discretionary {-}{}{}left}|hyperpage}{24}
+\indexentry{turn\_\discretionary {-}{}{}left@{turn\_\discretionary {-}{}{}left}!IDP::LineFollowing@{IDP::LineFollowing}|hyperpage}{24}
+\indexentry{IDP::LineFollowing@{IDP::LineFollowing}!turn\_\discretionary {-}{}{}right@{turn\_\discretionary {-}{}{}right}|hyperpage}{24}
+\indexentry{turn\_\discretionary {-}{}{}right@{turn\_\discretionary {-}{}{}right}!IDP::LineFollowing@{IDP::LineFollowing}|hyperpage}{24}
+\indexentry{IDP::LineSensors@{IDP::LineSensors}|hyperpage}{24}
+\indexentry{IDP::LineSensors@{IDP::LineSensors}!line\_\discretionary {-}{}{}left@{line\_\discretionary {-}{}{}left}|hyperpage}{25}
+\indexentry{line\_\discretionary {-}{}{}left@{line\_\discretionary {-}{}{}left}!IDP::LineSensors@{IDP::LineSensors}|hyperpage}{25}
+\indexentry{IDP::LineSensors@{IDP::LineSensors}!line\_\discretionary {-}{}{}right@{line\_\discretionary {-}{}{}right}|hyperpage}{25}
+\indexentry{line\_\discretionary {-}{}{}right@{line\_\discretionary {-}{}{}right}!IDP::LineSensors@{IDP::LineSensors}|hyperpage}{25}
+\indexentry{IDP::LineSensors@{IDP::LineSensors}!outer\_\discretionary {-}{}{}left@{outer\_\discretionary {-}{}{}left}|hyperpage}{25}
+\indexentry{outer\_\discretionary {-}{}{}left@{outer\_\discretionary {-}{}{}left}!IDP::LineSensors@{IDP::LineSensors}|hyperpage}{25}
+\indexentry{IDP::LineSensors@{IDP::LineSensors}!outer\_\discretionary {-}{}{}right@{outer\_\discretionary {-}{}{}right}|hyperpage}{25}
+\indexentry{outer\_\discretionary {-}{}{}right@{outer\_\discretionary {-}{}{}right}!IDP::LineSensors@{IDP::LineSensors}|hyperpage}{25}
+\indexentry{IDP::MissionSupervisor@{IDP::MissionSupervisor}|hyperpage}{25}
+\indexentry{IDP::MissionSupervisor@{IDP::MissionSupervisor}!MissionSupervisor@{MissionSupervisor}|hyperpage}{26}
+\indexentry{MissionSupervisor@{MissionSupervisor}!IDP::MissionSupervisor@{IDP::MissionSupervisor}|hyperpage}{26}
+\indexentry{IDP::MissionSupervisor@{IDP::MissionSupervisor}!drive\_\discretionary {-}{}{}backward@{drive\_\discretionary {-}{}{}backward}|hyperpage}{26}
+\indexentry{drive\_\discretionary {-}{}{}backward@{drive\_\discretionary {-}{}{}backward}!IDP::MissionSupervisor@{IDP::MissionSupervisor}|hyperpage}{26}
+\indexentry{IDP::MissionSupervisor@{IDP::MissionSupervisor}!drive\_\discretionary {-}{}{}forward@{drive\_\discretionary {-}{}{}forward}|hyperpage}{26}
+\indexentry{drive\_\discretionary {-}{}{}forward@{drive\_\discretionary {-}{}{}forward}!IDP::MissionSupervisor@{IDP::MissionSupervisor}|hyperpage}{26}
+\indexentry{IDP::MissionSupervisor@{IDP::MissionSupervisor}!hal@{hal}|hyperpage}{26}
+\indexentry{hal@{hal}!IDP::MissionSupervisor@{IDP::MissionSupervisor}|hyperpage}{26}
+\indexentry{IDP::MissionSupervisor@{IDP::MissionSupervisor}!run\_\discretionary {-}{}{}task@{run\_\discretionary {-}{}{}task}|hyperpage}{26}
+\indexentry{run\_\discretionary {-}{}{}task@{run\_\discretionary {-}{}{}task}!IDP::MissionSupervisor@{IDP::MissionSupervisor}|hyperpage}{26}
+\indexentry{IDP::MissionSupervisor@{IDP::MissionSupervisor}!stop@{stop}|hyperpage}{26}
+\indexentry{stop@{stop}!IDP::MissionSupervisor@{IDP::MissionSupervisor}|hyperpage}{26}
+\indexentry{IDP::MissionSupervisor@{IDP::MissionSupervisor}!test\_\discretionary {-}{}{}line\_\discretionary {-}{}{}following@{test\_\discretionary {-}{}{}line\_\discretionary {-}{}{}following}|hyperpage}{27}
+\indexentry{test\_\discretionary {-}{}{}line\_\discretionary {-}{}{}following@{test\_\discretionary {-}{}{}line\_\discretionary {-}{}{}following}!IDP::MissionSupervisor@{IDP::MissionSupervisor}|hyperpage}{27}
+\indexentry{IDP::MissionSupervisor@{IDP::MissionSupervisor}!test\_\discretionary {-}{}{}line\_\discretionary {-}{}{}sensor@{test\_\discretionary {-}{}{}line\_\discretionary {-}{}{}sensor}|hyperpage}{27}
+\indexentry{test\_\discretionary {-}{}{}line\_\discretionary {-}{}{}sensor@{test\_\discretionary {-}{}{}line\_\discretionary {-}{}{}sensor}!IDP::MissionSupervisor@{IDP::MissionSupervisor}|hyperpage}{27}
+\indexentry{IDP::Navigation@{IDP::Navigation}|hyperpage}{27}
+\indexentry{IDP::Navigation@{IDP::Navigation}!Navigation@{Navigation}|hyperpage}{28}
+\indexentry{Navigation@{Navigation}!IDP::Navigation@{IDP::Navigation}|hyperpage}{28}
+\indexentry{IDP::Navigation@{IDP::Navigation}!go@{go}|hyperpage}{28}
+\indexentry{go@{go}!IDP::Navigation@{IDP::Navigation}|hyperpage}{28}
+\indexentry{IDP::SelfTests@{IDP::SelfTests}|hyperpage}{28}
+\indexentry{IDP::SelfTests@{IDP::SelfTests}!SelfTests@{SelfTests}|hyperpage}{30}
+\indexentry{SelfTests@{SelfTests}!IDP::SelfTests@{IDP::SelfTests}|hyperpage}{30}
+\indexentry{IDP::SelfTests@{IDP::SelfTests}!actuators@{actuators}|hyperpage}{30}
+\indexentry{actuators@{actuators}!IDP::SelfTests@{IDP::SelfTests}|hyperpage}{30}
+\indexentry{IDP::SelfTests@{IDP::SelfTests}!badness\_\discretionary {-}{}{}LED@{badness\_\discretionary {-}{}{}LED}|hyperpage}{30}
+\indexentry{badness\_\discretionary {-}{}{}LED@{badness\_\discretionary {-}{}{}LED}!IDP::SelfTests@{IDP::SelfTests}|hyperpage}{30}
+\indexentry{IDP::SelfTests@{IDP::SelfTests}!bobbin\_\discretionary {-}{}{}analyse@{bobbin\_\discretionary {-}{}{}analyse}|hyperpage}{30}
+\indexentry{bobbin\_\discretionary {-}{}{}analyse@{bobbin\_\discretionary {-}{}{}analyse}!IDP::SelfTests@{IDP::SelfTests}|hyperpage}{30}
+\indexentry{IDP::SelfTests@{IDP::SelfTests}!clamp\_\discretionary {-}{}{}control@{clamp\_\discretionary {-}{}{}control}|hyperpage}{30}
+\indexentry{clamp\_\discretionary {-}{}{}control@{clamp\_\discretionary {-}{}{}control}!IDP::SelfTests@{IDP::SelfTests}|hyperpage}{30}
+\indexentry{IDP::SelfTests@{IDP::SelfTests}!colour\_\discretionary {-}{}{}sensor\_\discretionary {-}{}{}LEDs@{colour\_\discretionary {-}{}{}sensor\_\discretionary {-}{}{}LEDs}|hyperpage}{30}
+\indexentry{colour\_\discretionary {-}{}{}sensor\_\discretionary {-}{}{}LEDs@{colour\_\discretionary {-}{}{}sensor\_\discretionary {-}{}{}LEDs}!IDP::SelfTests@{IDP::SelfTests}|hyperpage}{30}
+\indexentry{IDP::SelfTests@{IDP::SelfTests}!drive\_\discretionary {-}{}{}backward@{drive\_\discretionary {-}{}{}backward}|hyperpage}{30}
+\indexentry{drive\_\discretionary {-}{}{}backward@{drive\_\discretionary {-}{}{}backward}!IDP::SelfTests@{IDP::SelfTests}|hyperpage}{30}
+\indexentry{IDP::SelfTests@{IDP::SelfTests}!drive\_\discretionary {-}{}{}forward@{drive\_\discretionary {-}{}{}forward}|hyperpage}{30}
+\indexentry{drive\_\discretionary {-}{}{}forward@{drive\_\discretionary {-}{}{}forward}!IDP::SelfTests@{IDP::SelfTests}|hyperpage}{30}
+\indexentry{IDP::SelfTests@{IDP::SelfTests}!LDRs@{LDRs}|hyperpage}{30}
+\indexentry{LDRs@{LDRs}!IDP::SelfTests@{IDP::SelfTests}|hyperpage}{30}
+\indexentry{IDP::SelfTests@{IDP::SelfTests}!line\_\discretionary {-}{}{}following@{line\_\discretionary {-}{}{}following}|hyperpage}{30}
+\indexentry{line\_\discretionary {-}{}{}following@{line\_\discretionary {-}{}{}following}!IDP::SelfTests@{IDP::SelfTests}|hyperpage}{30}
+\indexentry{IDP::SelfTests@{IDP::SelfTests}!line\_\discretionary {-}{}{}sensors@{line\_\discretionary {-}{}{}sensors}|hyperpage}{31}
+\indexentry{line\_\discretionary {-}{}{}sensors@{line\_\discretionary {-}{}{}sensors}!IDP::SelfTests@{IDP::SelfTests}|hyperpage}{31}
+\indexentry{IDP::SelfTests@{IDP::SelfTests}!microswitches@{microswitches}|hyperpage}{31}
+\indexentry{microswitches@{microswitches}!IDP::SelfTests@{IDP::SelfTests}|hyperpage}{31}
+\indexentry{IDP::SelfTests@{IDP::SelfTests}!navigate@{navigate}|hyperpage}{31}
+\indexentry{navigate@{navigate}!IDP::SelfTests@{IDP::SelfTests}|hyperpage}{31}
+\indexentry{IDP::SelfTests@{IDP::SelfTests}!position@{position}|hyperpage}{31}
+\indexentry{position@{position}!IDP::SelfTests@{IDP::SelfTests}|hyperpage}{31}
+\indexentry{IDP::SelfTests@{IDP::SelfTests}!status\_\discretionary {-}{}{}LEDs@{status\_\discretionary {-}{}{}LEDs}|hyperpage}{31}
+\indexentry{status\_\discretionary {-}{}{}LEDs@{status\_\discretionary {-}{}{}LEDs}!IDP::SelfTests@{IDP::SelfTests}|hyperpage}{31}
+\indexentry{IDP::SelfTests@{IDP::SelfTests}!steer\_\discretionary {-}{}{}left@{steer\_\discretionary {-}{}{}left}|hyperpage}{31}
+\indexentry{steer\_\discretionary {-}{}{}left@{steer\_\discretionary {-}{}{}left}!IDP::SelfTests@{IDP::SelfTests}|hyperpage}{31}
+\indexentry{IDP::SelfTests@{IDP::SelfTests}!steer\_\discretionary {-}{}{}right@{steer\_\discretionary {-}{}{}right}|hyperpage}{31}
+\indexentry{steer\_\discretionary {-}{}{}right@{steer\_\discretionary {-}{}{}right}!IDP::SelfTests@{IDP::SelfTests}|hyperpage}{31}
+\indexentry{IDP::SelfTests@{IDP::SelfTests}!stop@{stop}|hyperpage}{31}
+\indexentry{stop@{stop}!IDP::SelfTests@{IDP::SelfTests}|hyperpage}{31}
+\indexentry{IDP::SelfTests@{IDP::SelfTests}!turn\_\discretionary {-}{}{}left@{turn\_\discretionary {-}{}{}left}|hyperpage}{31}
+\indexentry{turn\_\discretionary {-}{}{}left@{turn\_\discretionary {-}{}{}left}!IDP::SelfTests@{IDP::SelfTests}|hyperpage}{31}
+\indexentry{IDP::SelfTests@{IDP::SelfTests}!turn\_\discretionary {-}{}{}right@{turn\_\discretionary {-}{}{}right}|hyperpage}{31}
+\indexentry{turn\_\discretionary {-}{}{}right@{turn\_\discretionary {-}{}{}right}!IDP::SelfTests@{IDP::SelfTests}|hyperpage}{31}
+\indexentry{IDP::StatusWatchdog@{IDP::StatusWatchdog}|hyperpage}{32}
+\indexentry{IDP::StatusWatchdog@{IDP::StatusWatchdog}!check@{check}|hyperpage}{32}
+\indexentry{check@{check}!IDP::StatusWatchdog@{IDP::StatusWatchdog}|hyperpage}{32}
+\indexentry{libidp/clamp\_\discretionary {-}{}{}control.cc@{libidp/clamp\_\discretionary {-}{}{}control.cc}|hyperpage}{33}
+\indexentry{libidp/clamp\_\discretionary {-}{}{}control.h@{libidp/clamp\_\discretionary {-}{}{}control.h}|hyperpage}{34}
+\indexentry{libidp/hal.cc@{libidp/hal.cc}|hyperpage}{34}
+\indexentry{libidp/hal.h@{libidp/hal.h}|hyperpage}{35}
+\indexentry{libidp/libidp.h@{libidp/libidp.h}|hyperpage}{36}
+\indexentry{libidp/line\_\discretionary {-}{}{}following.cc@{libidp/line\_\discretionary {-}{}{}following.cc}|hyperpage}{37}
+\indexentry{libidp/line\_\discretionary {-}{}{}following.h@{libidp/line\_\discretionary {-}{}{}following.h}|hyperpage}{38}
+\indexentry{libidp/mission\_\discretionary {-}{}{}supervisor.cc@{libidp/mission\_\discretionary {-}{}{}supervisor.cc}|hyperpage}{39}
+\indexentry{libidp/mission\_\discretionary {-}{}{}supervisor.h@{libidp/mission\_\discretionary {-}{}{}supervisor.h}|hyperpage}{40}
+\indexentry{libidp/navigation.cc@{libidp/navigation.cc}|hyperpage}{41}
+\indexentry{libidp/navigation.h@{libidp/navigation.h}|hyperpage}{41}
+\indexentry{libidp/self\_\discretionary {-}{}{}tests.cc@{libidp/self\_\discretionary {-}{}{}tests.cc}|hyperpage}{42}
+\indexentry{libidp/self\_\discretionary {-}{}{}tests.h@{libidp/self\_\discretionary {-}{}{}tests.h}|hyperpage}{43}
+\indexentry{libidp/status\_\discretionary {-}{}{}watchdog.cc@{libidp/status\_\discretionary {-}{}{}watchdog.cc}|hyperpage}{44}
+\indexentry{libidp/status\_\discretionary {-}{}{}watchdog.h@{libidp/status\_\discretionary {-}{}{}watchdog.h}|hyperpage}{44}

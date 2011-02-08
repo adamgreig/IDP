@@ -1,0 +1,390 @@
+\begin{theindex}
+
+  \item {ACTION\_\-COMPLETED}
+    \subitem {IDP}, \hyperpage{11}
+  \item {ACTION\_\-IN\_\-PROGRESS}
+    \subitem {IDP}, \hyperpage{11}
+  \item {actuators}
+    \subitem {IDP::SelfTests}, \hyperpage{30}
+
+  \indexspace
+
+  \item {bad\_\discretionary {-}{}{}bobbin\_\discretionary {-}{}{}ldr}
+    \subitem {IDP::HardwareAbstractionLayer}, \hyperpage{19}
+  \item {bad\_\discretionary {-}{}{}bobbin\_\discretionary {-}{}{}led}
+    \subitem {IDP::HardwareAbstractionLayer}, \hyperpage{19}
+  \item {badness}
+    \subitem {IDP::ClampControl}, \hyperpage{16}
+  \item {badness\_\discretionary {-}{}{}LED}
+    \subitem {IDP::SelfTests}, \hyperpage{30}
+  \item {BOBBIN\_\-BAD}
+    \subitem {IDP}, \hyperpage{11}
+  \item {BOBBIN\_\-GOOD}
+    \subitem {IDP}, \hyperpage{11}
+  \item {BOBBIN\_\-GREEN}
+    \subitem {IDP}, \hyperpage{11}
+  \item {BOBBIN\_\-RED}
+    \subitem {IDP}, \hyperpage{11}
+  \item {BOBBIN\_\-WHITE}
+    \subitem {IDP}, \hyperpage{11}
+  \item {bobbin\_\discretionary {-}{}{}analyse}
+    \subitem {IDP::SelfTests}, \hyperpage{30}
+  \item {BobbinBadness}
+    \subitem {IDP}, \hyperpage{11}
+  \item {BobbinColour}
+    \subitem {IDP}, \hyperpage{11}
+  \item {BOTH\_\-TURNS\_\-FOUND}
+    \subitem {IDP}, \hyperpage{11}
+
+  \indexspace
+
+  \item {cap\_\discretionary {-}{}{}correction}
+    \subitem {IDP}, \hyperpage{12}
+  \item {check}
+    \subitem {IDP::StatusWatchdog}, \hyperpage{32}
+  \item {clamp\_\discretionary {-}{}{}control}
+    \subitem {IDP::SelfTests}, \hyperpage{30}
+  \item {ClampControl}
+    \subitem {IDP::ClampControl}, \hyperpage{16}
+  \item {clear\_\discretionary {-}{}{}status\_\discretionary {-}{}{}register}
+    \subitem {IDP::HardwareAbstractionLayer}, \hyperpage{19}
+  \item {colour}
+    \subitem {IDP::ClampControl}, \hyperpage{16}
+  \item {colour\_\discretionary {-}{}{}ldr}
+    \subitem {IDP::HardwareAbstractionLayer}, \hyperpage{19}
+  \item {colour\_\discretionary {-}{}{}leds}
+    \subitem {IDP::HardwareAbstractionLayer}, \hyperpage{19}
+  \item {colour\_\discretionary {-}{}{}sensor\_\discretionary {-}{}{}LEDs}
+    \subitem {IDP::SelfTests}, \hyperpage{30}
+
+  \indexspace
+
+  \item {drive\_\discretionary {-}{}{}backward}
+    \subitem {IDP::MissionSupervisor}, \hyperpage{26}
+    \subitem {IDP::SelfTests}, \hyperpage{30}
+  \item {drive\_\discretionary {-}{}{}forward}
+    \subitem {IDP::MissionSupervisor}, \hyperpage{26}
+    \subitem {IDP::SelfTests}, \hyperpage{30}
+
+  \indexspace
+
+  \item {EDGE\_\discretionary {-}{}{}ERROR}
+    \subitem {IDP}, \hyperpage{12}
+
+  \indexspace
+
+  \item {follow\_\discretionary {-}{}{}line}
+    \subitem {IDP::LineFollowing}, \hyperpage{24}
+
+  \indexspace
+
+  \item {go}
+    \subitem {IDP::Navigation}, \hyperpage{28}
+  \item {grabber\_\discretionary {-}{}{}jaw}
+    \subitem {IDP::HardwareAbstractionLayer}, \hyperpage{19}
+  \item {grabber\_\discretionary {-}{}{}lift}
+    \subitem {IDP::HardwareAbstractionLayer}, \hyperpage{19}
+  \item {grabber\_\discretionary {-}{}{}switch}
+    \subitem {IDP::HardwareAbstractionLayer}, \hyperpage{20}
+
+  \indexspace
+
+  \item {hal}
+    \subitem {IDP::MissionSupervisor}, \hyperpage{26}
+  \item {HardwareAbstractionLayer}
+    \subitem {IDP::HardwareAbstractionLayer}, \hyperpage{18}
+
+  \indexspace
+
+  \item {IDP}, \hyperpage{9}
+    \subitem {ACTION\_\-COMPLETED}, \hyperpage{11}
+    \subitem {ACTION\_\-IN\_\-PROGRESS}, \hyperpage{11}
+    \subitem {BOBBIN\_\-BAD}, \hyperpage{11}
+    \subitem {BOBBIN\_\-GOOD}, \hyperpage{11}
+    \subitem {BOBBIN\_\-GREEN}, \hyperpage{11}
+    \subitem {BOBBIN\_\-RED}, \hyperpage{11}
+    \subitem {BOBBIN\_\-WHITE}, \hyperpage{11}
+    \subitem {BobbinBadness}, \hyperpage{11}
+    \subitem {BobbinColour}, \hyperpage{11}
+    \subitem {BOTH\_\-TURNS\_\-FOUND}, \hyperpage{11}
+    \subitem {cap\_\discretionary {-}{}{}correction}, \hyperpage{12}
+    \subitem {EDGE\_\discretionary {-}{}{}ERROR}, \hyperpage{12}
+    \subitem {INTEGRAL\_\discretionary {-}{}{}GAIN}, \hyperpage{12}
+    \subitem {LEFT\_\-TURN\_\-FOUND}, \hyperpage{11}
+    \subitem {LINE}, \hyperpage{11}
+    \subitem {LineFollowingStatus}, \hyperpage{11}
+    \subitem {LineSensorStatus}, \hyperpage{11}
+    \subitem {LOST}, \hyperpage{11}
+    \subitem {LOST\_\discretionary {-}{}{}TIMEOUT}, \hyperpage{12}
+    \subitem {MAX\_\discretionary {-}{}{}CORRECTION}, \hyperpage{12}
+    \subitem {MOTOR\_\discretionary {-}{}{}MAX\_\discretionary {-}{}{}SPEED}, 
+		\hyperpage{13}
+    \subitem {MOTOR\_\discretionary {-}{}{}RAMP\_\discretionary {-}{}{}TIME}, 
+		\hyperpage{13}
+    \subitem {NAVIGATION\_\-ARRIVED}, \hyperpage{12}
+    \subitem {NAVIGATION\_\-BOXES}, \hyperpage{12}
+    \subitem {NAVIGATION\_\-DELIVERY}, \hyperpage{12}
+    \subitem {NAVIGATION\_\-ENROUTE}, \hyperpage{12}
+    \subitem {NAVIGATION\_\-LOST}, \hyperpage{12}
+    \subitem {NAVIGATION\_\-RACK}, \hyperpage{12}
+    \subitem {NavigationLocation}, \hyperpage{11}
+    \subitem {NavigationStatus}, \hyperpage{12}
+    \subitem {NO\_\-LINE}, \hyperpage{11}
+    \subitem {RIGHT\_\-TURN\_\-FOUND}, \hyperpage{11}
+  \item {IDP::ClampControl}, \hyperpage{15}
+    \subitem {badness}, \hyperpage{16}
+    \subitem {ClampControl}, \hyperpage{16}
+    \subitem {colour}, \hyperpage{16}
+    \subitem {pick\_\discretionary {-}{}{}up}, \hyperpage{16}
+    \subitem {put\_\discretionary {-}{}{}down}, \hyperpage{16}
+  \item {IDP::HardwareAbstractionLayer}, \hyperpage{17}
+    \subitem {bad\_\discretionary {-}{}{}bobbin\_\discretionary {-}{}{}ldr}, 
+		\hyperpage{19}
+    \subitem {bad\_\discretionary {-}{}{}bobbin\_\discretionary {-}{}{}led}, 
+		\hyperpage{19}
+    \subitem {clear\_\discretionary {-}{}{}status\_\discretionary {-}{}{}register}, 
+		\hyperpage{19}
+    \subitem {colour\_\discretionary {-}{}{}ldr}, \hyperpage{19}
+    \subitem {colour\_\discretionary {-}{}{}leds}, \hyperpage{19}
+    \subitem {grabber\_\discretionary {-}{}{}jaw}, \hyperpage{19}
+    \subitem {grabber\_\discretionary {-}{}{}lift}, \hyperpage{19}
+    \subitem {grabber\_\discretionary {-}{}{}switch}, \hyperpage{20}
+    \subitem {HardwareAbstractionLayer}, \hyperpage{18}
+    \subitem {indication\_\discretionary {-}{}{}LEDs}, \hyperpage{20}
+    \subitem {line\_\discretionary {-}{}{}following\_\discretionary {-}{}{}sensors}, 
+		\hyperpage{20}
+    \subitem {motor\_\discretionary {-}{}{}left\_\discretionary {-}{}{}backward}, 
+		\hyperpage{20}
+    \subitem {motor\_\discretionary {-}{}{}left\_\discretionary {-}{}{}forward}, 
+		\hyperpage{20}
+    \subitem {motor\_\discretionary {-}{}{}right\_\discretionary {-}{}{}backward}, 
+		\hyperpage{20}
+    \subitem {motor\_\discretionary {-}{}{}right\_\discretionary {-}{}{}forward}, 
+		\hyperpage{21}
+    \subitem {motors\_\discretionary {-}{}{}backward}, \hyperpage{21}
+    \subitem {motors\_\discretionary {-}{}{}forward}, \hyperpage{21}
+    \subitem {motors\_\discretionary {-}{}{}stop}, \hyperpage{21}
+    \subitem {motors\_\discretionary {-}{}{}turn\_\discretionary {-}{}{}left}, 
+		\hyperpage{21}
+    \subitem {motors\_\discretionary {-}{}{}turn\_\discretionary {-}{}{}right}, 
+		\hyperpage{21}
+    \subitem {reset\_\discretionary {-}{}{}switch}, \hyperpage{22}
+    \subitem {status\_\discretionary {-}{}{}register}, \hyperpage{22}
+  \item {IDP::LineFollowing}, \hyperpage{22}
+    \subitem {follow\_\discretionary {-}{}{}line}, \hyperpage{24}
+    \subitem {LineFollowing}, \hyperpage{23}
+    \subitem {set\_\discretionary {-}{}{}speed}, \hyperpage{24}
+    \subitem {turn\_\discretionary {-}{}{}left}, \hyperpage{24}
+    \subitem {turn\_\discretionary {-}{}{}right}, \hyperpage{24}
+  \item {IDP::LineSensors}, \hyperpage{24}
+    \subitem {line\_\discretionary {-}{}{}left}, \hyperpage{25}
+    \subitem {line\_\discretionary {-}{}{}right}, \hyperpage{25}
+    \subitem {outer\_\discretionary {-}{}{}left}, \hyperpage{25}
+    \subitem {outer\_\discretionary {-}{}{}right}, \hyperpage{25}
+  \item {IDP::MissionSupervisor}, \hyperpage{25}
+    \subitem {drive\_\discretionary {-}{}{}backward}, \hyperpage{26}
+    \subitem {drive\_\discretionary {-}{}{}forward}, \hyperpage{26}
+    \subitem {hal}, \hyperpage{26}
+    \subitem {MissionSupervisor}, \hyperpage{26}
+    \subitem {run\_\discretionary {-}{}{}task}, \hyperpage{26}
+    \subitem {stop}, \hyperpage{26}
+    \subitem {test\_\discretionary {-}{}{}line\_\discretionary {-}{}{}following}, 
+		\hyperpage{27}
+    \subitem {test\_\discretionary {-}{}{}line\_\discretionary {-}{}{}sensor}, 
+		\hyperpage{27}
+  \item {IDP::Navigation}, \hyperpage{27}
+    \subitem {go}, \hyperpage{28}
+    \subitem {Navigation}, \hyperpage{28}
+  \item {IDP::SelfTests}, \hyperpage{28}
+    \subitem {actuators}, \hyperpage{30}
+    \subitem {badness\_\discretionary {-}{}{}LED}, \hyperpage{30}
+    \subitem {bobbin\_\discretionary {-}{}{}analyse}, \hyperpage{30}
+    \subitem {clamp\_\discretionary {-}{}{}control}, \hyperpage{30}
+    \subitem {colour\_\discretionary {-}{}{}sensor\_\discretionary {-}{}{}LEDs}, 
+		\hyperpage{30}
+    \subitem {drive\_\discretionary {-}{}{}backward}, \hyperpage{30}
+    \subitem {drive\_\discretionary {-}{}{}forward}, \hyperpage{30}
+    \subitem {LDRs}, \hyperpage{30}
+    \subitem {line\_\discretionary {-}{}{}following}, \hyperpage{30}
+    \subitem {line\_\discretionary {-}{}{}sensors}, \hyperpage{31}
+    \subitem {microswitches}, \hyperpage{31}
+    \subitem {navigate}, \hyperpage{31}
+    \subitem {position}, \hyperpage{31}
+    \subitem {SelfTests}, \hyperpage{30}
+    \subitem {status\_\discretionary {-}{}{}LEDs}, \hyperpage{31}
+    \subitem {steer\_\discretionary {-}{}{}left}, \hyperpage{31}
+    \subitem {steer\_\discretionary {-}{}{}right}, \hyperpage{31}
+    \subitem {stop}, \hyperpage{31}
+    \subitem {turn\_\discretionary {-}{}{}left}, \hyperpage{31}
+    \subitem {turn\_\discretionary {-}{}{}right}, \hyperpage{31}
+  \item {IDP::StatusWatchdog}, \hyperpage{32}
+    \subitem {check}, \hyperpage{32}
+  \item {indication\_\discretionary {-}{}{}LEDs}
+    \subitem {IDP::HardwareAbstractionLayer}, \hyperpage{20}
+  \item {INTEGRAL\_\discretionary {-}{}{}GAIN}
+    \subitem {IDP}, \hyperpage{12}
+
+  \indexspace
+
+  \item {LDRs}
+    \subitem {IDP::SelfTests}, \hyperpage{30}
+  \item {LEFT\_\-TURN\_\-FOUND}
+    \subitem {IDP}, \hyperpage{11}
+  \item {libidp/clamp\_\discretionary {-}{}{}control.cc}, 
+		\hyperpage{33}
+  \item {libidp/clamp\_\discretionary {-}{}{}control.h}, \hyperpage{34}
+  \item {libidp/hal.cc}, \hyperpage{34}
+  \item {libidp/hal.h}, \hyperpage{35}
+  \item {libidp/libidp.h}, \hyperpage{36}
+  \item {libidp/line\_\discretionary {-}{}{}following.cc}, 
+		\hyperpage{37}
+  \item {libidp/line\_\discretionary {-}{}{}following.h}, 
+		\hyperpage{38}
+  \item {libidp/mission\_\discretionary {-}{}{}supervisor.cc}, 
+		\hyperpage{39}
+  \item {libidp/mission\_\discretionary {-}{}{}supervisor.h}, 
+		\hyperpage{40}
+  \item {libidp/navigation.cc}, \hyperpage{41}
+  \item {libidp/navigation.h}, \hyperpage{41}
+  \item {libidp/self\_\discretionary {-}{}{}tests.cc}, \hyperpage{42}
+  \item {libidp/self\_\discretionary {-}{}{}tests.h}, \hyperpage{43}
+  \item {libidp/status\_\discretionary {-}{}{}watchdog.cc}, 
+		\hyperpage{44}
+  \item {libidp/status\_\discretionary {-}{}{}watchdog.h}, 
+		\hyperpage{44}
+  \item {LINE}
+    \subitem {IDP}, \hyperpage{11}
+  \item {line\_\discretionary {-}{}{}following}
+    \subitem {IDP::SelfTests}, \hyperpage{30}
+  \item {line\_\discretionary {-}{}{}following\_\discretionary {-}{}{}sensors}
+    \subitem {IDP::HardwareAbstractionLayer}, \hyperpage{20}
+  \item {line\_\discretionary {-}{}{}left}
+    \subitem {IDP::LineSensors}, \hyperpage{25}
+  \item {line\_\discretionary {-}{}{}right}
+    \subitem {IDP::LineSensors}, \hyperpage{25}
+  \item {line\_\discretionary {-}{}{}sensors}
+    \subitem {IDP::SelfTests}, \hyperpage{31}
+  \item {LineFollowing}
+    \subitem {IDP::LineFollowing}, \hyperpage{23}
+  \item {LineFollowingStatus}
+    \subitem {IDP}, \hyperpage{11}
+  \item {LineSensorStatus}
+    \subitem {IDP}, \hyperpage{11}
+  \item {LOST}
+    \subitem {IDP}, \hyperpage{11}
+  \item {LOST\_\discretionary {-}{}{}TIMEOUT}
+    \subitem {IDP}, \hyperpage{12}
+
+  \indexspace
+
+  \item {MAX\_\discretionary {-}{}{}CORRECTION}
+    \subitem {IDP}, \hyperpage{12}
+  \item {microswitches}
+    \subitem {IDP::SelfTests}, \hyperpage{31}
+  \item {MissionSupervisor}
+    \subitem {IDP::MissionSupervisor}, \hyperpage{26}
+  \item {motor\_\discretionary {-}{}{}left\_\discretionary {-}{}{}backward}
+    \subitem {IDP::HardwareAbstractionLayer}, \hyperpage{20}
+  \item {motor\_\discretionary {-}{}{}left\_\discretionary {-}{}{}forward}
+    \subitem {IDP::HardwareAbstractionLayer}, \hyperpage{20}
+  \item {MOTOR\_\discretionary {-}{}{}MAX\_\discretionary {-}{}{}SPEED}
+    \subitem {IDP}, \hyperpage{13}
+  \item {MOTOR\_\discretionary {-}{}{}RAMP\_\discretionary {-}{}{}TIME}
+    \subitem {IDP}, \hyperpage{13}
+  \item {motor\_\discretionary {-}{}{}right\_\discretionary {-}{}{}backward}
+    \subitem {IDP::HardwareAbstractionLayer}, \hyperpage{20}
+  \item {motor\_\discretionary {-}{}{}right\_\discretionary {-}{}{}forward}
+    \subitem {IDP::HardwareAbstractionLayer}, \hyperpage{21}
+  \item {motors\_\discretionary {-}{}{}backward}
+    \subitem {IDP::HardwareAbstractionLayer}, \hyperpage{21}
+  \item {motors\_\discretionary {-}{}{}forward}
+    \subitem {IDP::HardwareAbstractionLayer}, \hyperpage{21}
+  \item {motors\_\discretionary {-}{}{}stop}
+    \subitem {IDP::HardwareAbstractionLayer}, \hyperpage{21}
+  \item {motors\_\discretionary {-}{}{}turn\_\discretionary {-}{}{}left}
+    \subitem {IDP::HardwareAbstractionLayer}, \hyperpage{21}
+  \item {motors\_\discretionary {-}{}{}turn\_\discretionary {-}{}{}right}
+    \subitem {IDP::HardwareAbstractionLayer}, \hyperpage{21}
+
+  \indexspace
+
+  \item {navigate}
+    \subitem {IDP::SelfTests}, \hyperpage{31}
+  \item {Navigation}
+    \subitem {IDP::Navigation}, \hyperpage{28}
+  \item {NAVIGATION\_\-ARRIVED}
+    \subitem {IDP}, \hyperpage{12}
+  \item {NAVIGATION\_\-BOXES}
+    \subitem {IDP}, \hyperpage{12}
+  \item {NAVIGATION\_\-DELIVERY}
+    \subitem {IDP}, \hyperpage{12}
+  \item {NAVIGATION\_\-ENROUTE}
+    \subitem {IDP}, \hyperpage{12}
+  \item {NAVIGATION\_\-LOST}
+    \subitem {IDP}, \hyperpage{12}
+  \item {NAVIGATION\_\-RACK}
+    \subitem {IDP}, \hyperpage{12}
+  \item {NavigationLocation}
+    \subitem {IDP}, \hyperpage{11}
+  \item {NavigationStatus}
+    \subitem {IDP}, \hyperpage{12}
+  \item {NO\_\-LINE}
+    \subitem {IDP}, \hyperpage{11}
+
+  \indexspace
+
+  \item {outer\_\discretionary {-}{}{}left}
+    \subitem {IDP::LineSensors}, \hyperpage{25}
+  \item {outer\_\discretionary {-}{}{}right}
+    \subitem {IDP::LineSensors}, \hyperpage{25}
+
+  \indexspace
+
+  \item {pick\_\discretionary {-}{}{}up}
+    \subitem {IDP::ClampControl}, \hyperpage{16}
+  \item {position}
+    \subitem {IDP::SelfTests}, \hyperpage{31}
+  \item {put\_\discretionary {-}{}{}down}
+    \subitem {IDP::ClampControl}, \hyperpage{16}
+
+  \indexspace
+
+  \item {reset\_\discretionary {-}{}{}switch}
+    \subitem {IDP::HardwareAbstractionLayer}, \hyperpage{22}
+  \item {RIGHT\_\-TURN\_\-FOUND}
+    \subitem {IDP}, \hyperpage{11}
+  \item {run\_\discretionary {-}{}{}task}
+    \subitem {IDP::MissionSupervisor}, \hyperpage{26}
+
+  \indexspace
+
+  \item {SelfTests}
+    \subitem {IDP::SelfTests}, \hyperpage{30}
+  \item {set\_\discretionary {-}{}{}speed}
+    \subitem {IDP::LineFollowing}, \hyperpage{24}
+  \item {status\_\discretionary {-}{}{}LEDs}
+    \subitem {IDP::SelfTests}, \hyperpage{31}
+  \item {status\_\discretionary {-}{}{}register}
+    \subitem {IDP::HardwareAbstractionLayer}, \hyperpage{22}
+  \item {steer\_\discretionary {-}{}{}left}
+    \subitem {IDP::SelfTests}, \hyperpage{31}
+  \item {steer\_\discretionary {-}{}{}right}
+    \subitem {IDP::SelfTests}, \hyperpage{31}
+  \item {stop}
+    \subitem {IDP::MissionSupervisor}, \hyperpage{26}
+    \subitem {IDP::SelfTests}, \hyperpage{31}
+
+  \indexspace
+
+  \item {test\_\discretionary {-}{}{}line\_\discretionary {-}{}{}following}
+    \subitem {IDP::MissionSupervisor}, \hyperpage{27}
+  \item {test\_\discretionary {-}{}{}line\_\discretionary {-}{}{}sensor}
+    \subitem {IDP::MissionSupervisor}, \hyperpage{27}
+  \item {turn\_\discretionary {-}{}{}left}
+    \subitem {IDP::LineFollowing}, \hyperpage{24}
+    \subitem {IDP::SelfTests}, \hyperpage{31}
+  \item {turn\_\discretionary {-}{}{}right}
+    \subitem {IDP::LineFollowing}, \hyperpage{24}
+    \subitem {IDP::SelfTests}, \hyperpage{31}
+
+\end{theindex}

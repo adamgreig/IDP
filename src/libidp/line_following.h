@@ -60,6 +60,28 @@ namespace IDP {
     };
 
     /**
+     * Possible turn directions
+     */
+    enum LineFollowingTurnDirection {
+        TURN_LEFT,
+        TURN_RIGHT,
+        TURN_AROUND_CW,
+        TURN_AROUND_CCW,
+        MAX_TURN_DIRECTION
+    };
+
+    /**
+     * Possible line statuses, used internally.
+     */
+    enum LineFollowingLineStatus {
+        ON_LINE,
+        LOST_LINE,
+        OTHER,
+        MAX_LINE_STATUS
+    };
+
+
+    /**
      * Cap a line following correction value to MAX_CORRECTION
      * \param correction The existing correction value
      * \returns The capped correction value
@@ -84,6 +106,11 @@ namespace IDP {
 
         private:
             void correct_steering(void);
+            void set_motors_turning(LineFollowingTurnDirection dir);
+            LineFollowingStatus turn(LineFollowingTurnDirection dir);
+            LineFollowingLineStatus line_status(
+                LineFollowingTurnDirection dir);
+
             unsigned short int _left_error;
             unsigned short int _right_error;
             bool _lost_turning_line;
