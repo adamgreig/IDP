@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2010.10.30)  7 FEB 2011 12:36
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2010.10.30)  8 FEB 2011 02:48
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -781,27 +781,27 @@ LaTeX Font Info:    External font `cmex10' loaded for size
  [1
 
 ]
-Underfull \vbox (badness 1389) has occurred while \output is active []
-
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <7> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 63.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 64.
  [2]
 Underfull \vbox (badness 1389) has occurred while \output is active []
 
  [3]
-[4])
+Underfull \vbox (badness 1389) has occurred while \output is active []
+
+ [4]
+[5])
 \tf@toc=\write5
 \openout5 = `refman.toc'.
 
- [5] [6
-
-]
+ [6]
 Package hyperref Info: Option `pageanchor' set `true' on input line 52.
 
 Chapter 1.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <20.74> not available
 (Font)              Font shape `T1/ptm/b/n' tried instead on input line 53.
 (./index.tex) [1
+
 
 ] [2
 
@@ -830,246 +830,314 @@ LaTeX Font Info:    Try loading font information for TS1+ptm on input line 8.
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 )
 [9]
-Underfull \hbox (badness 10000) in paragraph at lines 50--54
+Underfull \hbox (badness 10000) in paragraph at lines 66--71
 []\T1/ptm/m/n/10 enum [][]Nav-i-ga-tion-Sta-tus[][] { [][]NAVIGATION_-ENROUTE[]
 [], [][]NAVIGATION_-ARRIVED[][],
  []
 
-[10]
+
+Underfull \hbox (badness 2617) in paragraph at lines 106--110
+[][][]\T1/ptm/m/n/10 LEFT_-AND_-STRAIGHT[][], [][]RIGHT_-AND_-STRAIGHT[][], [][
+]BOTH_-AND_-STRAIGHT[][], [][]END_-OF_-
+ []
+
+[10] [11]
 LaTeX Font Info:    Font shape `T1/ptm/bx/it' in size <10> not available
-(Font)              Font shape `T1/ptm/b/it' tried instead on input line 99.
- [11] [12]) [13] [14
+(Font)              Font shape `T1/ptm/b/it' tried instead on input line 170.
+ [12] [13] [14] [15]
+LaTeX Font Info:    Try loading font information for T1+pcr on input line 737.
+
+(/usr/share/texmf-texlive/tex/latex/psnfss/t1pcr.fd
+File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
+) [16]) [17] [18
 
 ]
 Chapter 6.
 (./classIDP_1_1ClampControl.tex
-LaTeX Font Info:    Try loading font information for T1+pcr on input line 12.
-
-(/usr/share/texmf-texlive/tex/latex/psnfss/t1pcr.fd
-File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
-)
 
 pdfTeX warning: pdflatex (file ./classIDP_1_1ClampControl__coll__graph.pdf): PD
 F inclusion: found PDF version <1.5>, but at most version <1.4> allowed
-<classIDP_1_1ClampControl__coll__graph.pdf, id=939, 232.87pt x 178.6675pt>
+<classIDP_1_1ClampControl__coll__graph.pdf, id=1379, 232.87pt x 178.6675pt>
 File: classIDP_1_1ClampControl__coll__graph.pdf Graphic file (type pdf)
 
-<use classIDP_1_1ClampControl__coll__graph.pdf> [15 <./classIDP_1_1ClampControl
-__coll__graph.pdf>] [16]) (./classIDP_1_1HardwareAbstractionLayer.tex [17]
+<use classIDP_1_1ClampControl__coll__graph.pdf> [19 <./classIDP_1_1ClampControl
+__coll__graph.pdf>] [20]) (./classIDP_1_1HardwareAbstractionLayer.tex [21]
 LaTeX Font Info:    Font shape `T1/pcr/bx/it' in size <10> not available
-(Font)              Font shape `T1/pcr/b/it' tried instead on input line 74.
+(Font)              Font shape `T1/pcr/b/it' tried instead on input line 78.
 LaTeX Font Info:    Font shape `T1/pcr/b/it' in size <10> not available
-(Font)              Font shape `T1/pcr/b/sl' tried instead on input line 74.
+(Font)              Font shape `T1/pcr/b/sl' tried instead on input line 78.
 
-[18] [19] [20] [21]) (./classIDP_1_1LineFollowing.tex
+[22] [23] [24] [25] [26]) (./classIDP_1_1LineFollowing.tex
 
 pdfTeX warning: pdflatex (file ./classIDP_1_1LineFollowing__coll__graph.pdf): P
 DF inclusion: found PDF version <1.5>, but at most version <1.4> allowed
-<classIDP_1_1LineFollowing__coll__graph.pdf, id=1047, 232.87pt x 178.6675pt>
+<classIDP_1_1LineFollowing__coll__graph.pdf, id=1489, 232.87pt x 178.6675pt>
 File: classIDP_1_1LineFollowing__coll__graph.pdf Graphic file (type pdf)
 
-<use classIDP_1_1LineFollowing__coll__graph.pdf>
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [22]
-[23 <./classIDP_1_1LineFollowing__coll__graph.pdf>])
-(./structIDP_1_1LineSensors.tex [24]) (./classIDP_1_1MissionSupervisor.tex
+<use classIDP_1_1LineFollowing__coll__graph.pdf> [27 <./classIDP_1_1LineFollowi
+ng__coll__graph.pdf>] [28] [29]) (./structIDP_1_1LineSensors.tex [30])
+(./classIDP_1_1MissionSupervisor.tex
 
 pdfTeX warning: pdflatex (file ./classIDP_1_1MissionSupervisor__coll__graph.pdf
 ): PDF inclusion: found PDF version <1.5>, but at most version <1.4> allowed
 
-<classIDP_1_1MissionSupervisor__coll__graph.pdf, id=1101, 232.87pt x 178.6675pt
+<classIDP_1_1MissionSupervisor__coll__graph.pdf, id=1556, 232.87pt x 178.6675pt
 >
 File: classIDP_1_1MissionSupervisor__coll__graph.pdf Graphic file (type pdf)
- <use classIDP_1_1MissionSupervisor__coll__graph.pdf> [25 <./classIDP_1_1Missio
-nSupervisor__coll__graph.pdf>] [26]) (./classIDP_1_1Navigation.tex
+ <use classIDP_1_1MissionSupervisor__coll__graph.pdf> [31 <./classIDP_1_1Missio
+nSupervisor__coll__graph.pdf>]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 83.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\sim' on input line 83.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 83.
+
+[32]) (./classIDP_1_1Navigation.tex
 
 pdfTeX warning: pdflatex (file ./classIDP_1_1Navigation__coll__graph.pdf): PDF 
 inclusion: found PDF version <1.5>, but at most version <1.4> allowed
-<classIDP_1_1Navigation__coll__graph.pdf, id=1141, 232.87pt x 178.6675pt>
+<classIDP_1_1Navigation__coll__graph.pdf, id=1602, 262.9825pt x 252.945pt>
 File: classIDP_1_1Navigation__coll__graph.pdf Graphic file (type pdf)
 
-<use classIDP_1_1Navigation__coll__graph.pdf> [27 <./classIDP_1_1Navigation__co
-ll__graph.pdf>]) (./classIDP_1_1SelfTests.tex [28] [29] [30])
-(./classIDP_1_1StatusWatchdog.tex [31]) [32]
+<use classIDP_1_1Navigation__coll__graph.pdf> [33]
+Underfull \vbox (badness 1454) has occurred while \output is active []
+
+ [34 <./classIDP_1_1Navigation__coll__graph.pdf>]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 75.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\sim' on input line 75.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 75.
+
+) (./classIDP_1_1SelfTests.tex [35] [36] [37] [38])
+(./classIDP_1_1StatusWatchdog.tex [39]) [40]
 Chapter 7.
 (./clamp__control_8cc.tex
 
 pdfTeX warning: pdflatex (file ./clamp__control_8cc__incl.pdf): PDF inclusion: 
 found PDF version <1.5>, but at most version <1.4> allowed
-<clamp__control_8cc__incl.pdf, id=1234, 238.8925pt x 164.615pt>
+<clamp__control_8cc__incl.pdf, id=1715, 236.885pt x 224.84pt>
 File: clamp__control_8cc__incl.pdf Graphic file (type pdf)
 
-<use clamp__control_8cc__incl.pdf>) (./clamp__control_8h.tex
+<use clamp__control_8cc__incl.pdf> [41
+
+ <./clamp__control_8cc__incl.pdf>])
+(./clamp__control_8h.tex
 
 pdfTeX warning: pdflatex (file ./clamp__control_8h__dep__incl.pdf): PDF inclusi
 on: found PDF version <1.5>, but at most version <1.4> allowed
-<clamp__control_8h__dep__incl.pdf, id=1237, 196.735pt x 164.615pt>
+<clamp__control_8h__dep__incl.pdf, id=1739, 212.795pt x 164.615pt>
 File: clamp__control_8h__dep__incl.pdf Graphic file (type pdf)
 
-<use clamp__control_8h__dep__incl.pdf>
-Underfull \vbox (badness 10000) has occurred while \output is active []
+<use clamp__control_8h__dep__incl.pdf> [42 <./clamp__control_8h__dep__incl.pdf>
+]) (./debug_8h.tex
 
- [33
+pdfTeX warning: pdflatex (file ./debug_8h__incl.pdf): PDF inclusion: found PDF 
+version <1.5>, but at most version <1.4> allowed
+<debug_8h__incl.pdf, id=1766, 172.645pt x 164.615pt>
+File: debug_8h__incl.pdf Graphic file (type pdf)
+ <use debug_8h__incl.pdf>
 
- <./clamp__control_8cc__incl.pdf>]) (./hal_8cc.tex
+pdfTeX warning: pdflatex (file ./debug_8h__dep__incl.pdf): PDF inclusion: found
+ PDF version <1.5>, but at most version <1.4> allowed
+<debug_8h__dep__incl.pdf, id=1768, 1069.9975pt x 164.615pt>
+File: debug_8h__dep__incl.pdf Graphic file (type pdf)
+
+<use debug_8h__dep__incl.pdf>) (./hal_8cc.tex [43 <./debug_8h__incl.pdf> <./deb
+ug_8h__dep__incl.pdf>]
 
 pdfTeX warning: pdflatex (file ./hal_8cc__incl.pdf): PDF inclusion: found PDF v
 ersion <1.5>, but at most version <1.4> allowed
-<hal_8cc__incl.pdf, id=1261, 355.3275pt x 224.84pt>
+<hal_8cc__incl.pdf, id=1793, 389.455pt x 224.84pt>
 File: hal_8cc__incl.pdf Graphic file (type pdf)
  <use hal_8cc__incl.pdf>
-[34 <./clamp__control_8h__dep__incl.pdf>]) (./hal_8h.tex
+[44 <./hal_8cc__incl.pdf>]) (./hal_8h.tex
 
 pdfTeX warning: pdflatex (file ./hal_8h__incl.pdf): PDF inclusion: found PDF ve
 rsion <1.5>, but at most version <1.4> allowed
-<hal_8h__incl.pdf, id=1279, 146.5475pt x 164.615pt>
+<hal_8h__incl.pdf, id=1822, 160.6pt x 164.615pt>
 File: hal_8h__incl.pdf Graphic file (type pdf)
  <use hal_8h__incl.pdf>
 
 pdfTeX warning: pdflatex (file ./hal_8h__dep__incl.pdf): PDF inclusion: found P
 DF version <1.5>, but at most version <1.4> allowed
-<hal_8h__dep__incl.pdf, id=1281, 554.07pt x 164.615pt>
+<hal_8h__dep__incl.pdf, id=1824, 754.82pt x 164.615pt>
 File: hal_8h__dep__incl.pdf Graphic file (type pdf)
 
 <use hal_8h__dep__incl.pdf>
-Underfull \vbox (badness 3579) has occurred while \output is active []
+Underfull \vbox (badness 4995) has occurred while \output is active []
 
- [35 <./hal_8cc__incl.pdf> <./hal_8h__incl.pdf>]) (./libidp_8h.tex
+ [45 <./hal_8h__incl.pdf>]) (./libidp_8h.tex
 
 pdfTeX warning: pdflatex (file ./libidp_8h__incl.pdf): PDF inclusion: found PDF
  version <1.5>, but at most version <1.4> allowed
-<libidp_8h__incl.pdf, id=1313, 188.705pt x 224.84pt>
+<libidp_8h__incl.pdf, id=1846, 188.705pt x 224.84pt>
 File: libidp_8h__incl.pdf Graphic file (type pdf)
- <use libidp_8h__incl.pdf>) (./line__following_8cc.tex [36 <./hal_8h__dep__incl
+ <use libidp_8h__incl.pdf>) (./line__following_8cc.tex [46 <./hal_8h__dep__incl
 .pdf>]
 
 pdfTeX warning: pdflatex (file ./line__following_8cc__incl.pdf): PDF inclusion:
  found PDF version <1.5>, but at most version <1.4> allowed
-<line__following_8cc__incl.pdf, id=1331, 291.0875pt x 224.84pt>
+<line__following_8cc__incl.pdf, id=1864, 303.1325pt x 224.84pt>
 File: line__following_8cc__incl.pdf Graphic file (type pdf)
 
-<use line__following_8cc__incl.pdf> [37 <./libidp_8h__incl.pdf> <./line__follow
+<use line__following_8cc__incl.pdf> [47 <./libidp_8h__incl.pdf> <./line__follow
 ing_8cc__incl.pdf>]) (./line__following_8h.tex
 
 pdfTeX warning: pdflatex (file ./line__following_8h__dep__incl.pdf): PDF inclus
 ion: found PDF version <1.5>, but at most version <1.4> allowed
-<line__following_8h__dep__incl.pdf, id=1355, 467.7475pt x 164.615pt>
+<line__following_8h__dep__incl.pdf, id=1894, 652.4375pt x 164.615pt>
 File: line__following_8h__dep__incl.pdf Graphic file (type pdf)
 
-<use line__following_8h__dep__incl.pdf>
+<use line__following_8h__dep__incl.pdf> [48]
 Underfull \hbox (badness 10000) in paragraph at lines 26--30
 [][][]\T1/ptm/m/n/10 IDP::ACTION_-IN_-PROGRESS[][], [][]IDP::ACTION_-COMPLETED[
 ][], [][]IDP::LEFT_-TURN_-FOUND[][],
  []
 
-[38 <./line__following_8h__dep__incl.pdf>]) (./mission__supervisor_8cc.tex
+
+Underfull \hbox (badness 10000) in paragraph at lines 45--50
+[]\T1/ptm/m/n/10 enum [][]IDP::LineFollowingLineStatus[][] { [][]IDP::ON_-LINE[
+][], [][]IDP::LOST_-LINE[][], [][]IDP::OTHER[][],
+ []
+
+[49 <./line__following_8h__dep__incl.pdf>]) (./mission__supervisor_8cc.tex
 
 pdfTeX warning: pdflatex (file ./mission__supervisor_8cc__incl.pdf): PDF inclus
 ion: found PDF version <1.5>, but at most version <1.4> allowed
-<mission__supervisor_8cc__incl.pdf, id=1388, 505.89pt x 224.84pt>
+<mission__supervisor_8cc__incl.pdf, id=1951, 603.25375pt x 224.84pt>
 File: mission__supervisor_8cc__incl.pdf Graphic file (type pdf)
 
-<use mission__supervisor_8cc__incl.pdf> [39 <./mission__supervisor_8cc__incl.pd
+<use mission__supervisor_8cc__incl.pdf> [50 <./mission__supervisor_8cc__incl.pd
 f>]) (./mission__supervisor_8h.tex
 
 pdfTeX warning: pdflatex (file ./mission__supervisor_8h__incl.pdf): PDF inclusi
 on: found PDF version <1.5>, but at most version <1.4> allowed
-<mission__supervisor_8h__incl.pdf, id=1405, 214.8025pt x 164.615pt>
+<mission__supervisor_8h__incl.pdf, id=1975, 230.8625pt x 164.615pt>
 File: mission__supervisor_8h__incl.pdf Graphic file (type pdf)
 
 <use mission__supervisor_8h__incl.pdf>
 
 pdfTeX warning: pdflatex (file ./mission__supervisor_8h__dep__incl.pdf): PDF in
 clusion: found PDF version <1.5>, but at most version <1.4> allowed
-<mission__supervisor_8h__dep__incl.pdf, id=1407, 427.5975pt x 164.615pt>
+<mission__supervisor_8h__dep__incl.pdf, id=1977, 475.7775pt x 164.615pt>
 File: mission__supervisor_8h__dep__incl.pdf Graphic file (type pdf)
 
-<use mission__supervisor_8h__dep__incl.pdf>) (./navigation_8cc.tex [40 <./missi
-on__supervisor_8h__incl.pdf> <./mission__supervisor_8h__dep__incl.pdf>]
+<use mission__supervisor_8h__dep__incl.pdf> [51 <./mission__supervisor_8h__incl
+.pdf>]) (./navigation_8cc.tex
 
 pdfTeX warning: pdflatex (file ./navigation_8cc__incl.pdf): PDF inclusion: foun
 d PDF version <1.5>, but at most version <1.4> allowed
-<navigation_8cc__incl.pdf, id=1434, 220.825pt x 164.615pt>
+<navigation_8cc__incl.pdf, id=1997, 387.4475pt x 224.84pt>
 File: navigation_8cc__incl.pdf Graphic file (type pdf)
 
-<use navigation_8cc__incl.pdf>) (./navigation_8h.tex
+<use navigation_8cc__incl.pdf>
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [52 <./mission__supervisor_8h__dep__incl.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 40--41
+[]\T1/ptm/m/n/10 const Nav-i-ga-tion-Turn [][]IDP::NAVIGATION_-NODE_-TURNS[][] 
+[]MAX_-DIRECTION[][]MAX_-
+ []
+
+[53 <./navigation_8cc__incl.pdf>]) (./navigation_8h.tex
 
 pdfTeX warning: pdflatex (file ./navigation_8h__dep__incl.pdf): PDF inclusion: 
 found PDF version <1.5>, but at most version <1.4> allowed
-<navigation_8h__dep__incl.pdf, id=1437, 180.675pt x 164.615pt>
+<navigation_8h__dep__incl.pdf, id=2046, 371.3875pt x 164.615pt>
 File: navigation_8h__dep__incl.pdf Graphic file (type pdf)
 
-<use navigation_8h__dep__incl.pdf> [41 <./navigation_8cc__incl.pdf> <./navigati
-on_8h__dep__incl.pdf>]
-Underfull \hbox (badness 4954) in paragraph at lines 30--34
+<use navigation_8h__dep__incl.pdf> [54 <./navigation_8h__dep__incl.pdf>]
+Underfull \hbox (badness 4954) in paragraph at lines 31--36
 []\T1/ptm/m/n/10 enum [][]IDP::NavigationLocation[][] { [][]IDP::NAVIGATION_-BO
 XES[][], [][]IDP::NAVIGATION_-RACK[][],
  []
 
-) (./self__tests_8cc.tex
+
+Underfull \hbox (badness 3942) in paragraph at lines 37--41
+[]\T1/ptm/m/n/10 enum [][]IDP::NavigationDirection[][] { [][]IDP::NAVIGATION_-C
+LOCKWISE[][], [][]IDP::NAVIGATION_-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 65--69
+[][][]\T1/ptm/m/n/10 IDP::LEFT_-AND_-STRAIGHT[][], [][]IDP::RIGHT_-AND_-STRAIGH
+T[][], [][]IDP::BOTH_-AND_-
+ []
+
+) (./self__tests_8cc.tex [55]
 
 pdfTeX warning: pdflatex (file ./self__tests_8cc__incl.pdf): PDF inclusion: fou
 nd PDF version <1.5>, but at most version <1.4> allowed
-<self__tests_8cc__incl.pdf, id=1472, 503.8825pt x 224.84pt>
+<self__tests_8cc__incl.pdf, id=2114, 501.875pt x 224.84pt>
 File: self__tests_8cc__incl.pdf Graphic file (type pdf)
 
-<use self__tests_8cc__incl.pdf>) (./self__tests_8h.tex [42 <./self__tests_8cc__
-incl.pdf>]
+<use self__tests_8cc__incl.pdf> [56 <./self__tests_8cc__incl.pdf>])
+(./self__tests_8h.tex
 
 pdfTeX warning: pdflatex (file ./self__tests_8h__incl.pdf): PDF inclusion: foun
 d PDF version <1.5>, but at most version <1.4> allowed
-<self__tests_8h__incl.pdf, id=1490, 172.645pt x 164.615pt>
+<self__tests_8h__incl.pdf, id=2141, 190.7125pt x 164.615pt>
 File: self__tests_8h__incl.pdf Graphic file (type pdf)
 
 <use self__tests_8h__incl.pdf>
 
 pdfTeX warning: pdflatex (file ./self__tests_8h__dep__incl.pdf): PDF inclusion:
  found PDF version <1.5>, but at most version <1.4> allowed
-<self__tests_8h__dep__incl.pdf, id=1492, 178.6675pt x 164.615pt>
+<self__tests_8h__dep__incl.pdf, id=2143, 194.7275pt x 164.615pt>
 File: self__tests_8h__dep__incl.pdf Graphic file (type pdf)
 
-<use self__tests_8h__dep__incl.pdf>) (./status__watchdog_8cc.tex [43 <./self__t
-ests_8h__incl.pdf> <./self__tests_8h__dep__incl.pdf>]
+<use self__tests_8h__dep__incl.pdf> [57 <./self__tests_8h__incl.pdf> <./self__t
+ests_8h__dep__incl.pdf>]) (./status__watchdog_8cc.tex
 
 pdfTeX warning: pdflatex (file ./status__watchdog_8cc__incl.pdf): PDF inclusion
 : found PDF version <1.5>, but at most version <1.4> allowed
-<status__watchdog_8cc__incl.pdf, id=1518, 208.78pt x 164.615pt>
+<status__watchdog_8cc__incl.pdf, id=2167, 248.93pt x 224.84pt>
 File: status__watchdog_8cc__incl.pdf Graphic file (type pdf)
 
-<use status__watchdog_8cc__incl.pdf>) (./status__watchdog_8h.tex
+<use status__watchdog_8cc__incl.pdf> [58 <./status__watchdog_8cc__incl.pdf>])
+(./status__watchdog_8h.tex
 
 pdfTeX warning: pdflatex (file ./status__watchdog_8h__dep__incl.pdf): PDF inclu
 sion: found PDF version <1.5>, but at most version <1.4> allowed
-<status__watchdog_8h__dep__incl.pdf, id=1521, 208.78pt x 164.615pt>
+<status__watchdog_8h__dep__incl.pdf, id=2196, 226.8475pt x 164.615pt>
 File: status__watchdog_8h__dep__incl.pdf Graphic file (type pdf)
 
-<use status__watchdog_8h__dep__incl.pdf> [44 <./status__watchdog_8cc__incl.pdf>
- <./status__watchdog_8h__dep__incl.pdf>]) (./refman.ind [45] [46
+<use status__watchdog_8h__dep__incl.pdf> [59 <./status__watchdog_8h__dep__incl.
+pdf>]) (./refman.ind [60] [61
 
-] [47] [48]
-[49
-
-]) (./refman.aux) ) 
+] [62] [63] [64] [65] [66]) (./refman.aux) ) 
 Here is how much of TeX's memory you used:
- 9036 strings out of 495061
- 137461 string characters out of 1182620
+ 9392 strings out of 495061
+ 152807 string characters out of 1182620
  217818 words of memory out of 3000000
- 11624 multiletter control sequences out of 15000+50000
- 42694 words of font info for 46 fonts, out of 3000000 for 9000
+ 11792 multiletter control sequences out of 15000+50000
+ 44959 words of font info for 49 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
- 38i,13n,58p,325b,492s stack positions out of 5000i,500n,10000p,200000b,50000s
-{/usr/share/texmf-texlive/fonts/enc/dvips/base/8r.enc}</usr/
-share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf
--texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fo
-nts/type1/urw/courier/ucrbo8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/cou
-rier/ucrr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></us
-r/share/texmf-texlive/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texmf-texli
-ve/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/t
-imes/utmri8a.pfb>
-Output written on refman.pdf (57 pages, 475712 bytes).
+ 38i,12n,58p,402b,492s stack positions out of 5000i,500n,10000p,200000b,50000s
+{/usr/share/texmf-texlive/fonts/enc
+/dvips/base/8r.enc}</usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmm
+i10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></u
+sr/share/texmf-texlive/fonts/type1/urw/courier/ucrbo8a.pfb></usr/share/texmf-te
+xlive/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texmf-texlive/fonts/type1/
+urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmbi8a.pf
+b></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-
+texlive/fonts/type1/urw/times/utmri8a.pfb>
+Output written on refman.pdf (74 pages, 663904 bytes).
 PDF statistics:
- 1895 PDF objects out of 2073 (max. 8388607)
- 355 named destinations out of 1000 (max. 500000)
- 1223 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 2798 PDF objects out of 2984 (max. 8388607)
+ 538 named destinations out of 1000 (max. 500000)
+ 1729 words of extra memory for PDF output out of 10000 (max. 10000000)
 
