@@ -23,7 +23,7 @@ Collaboration diagram for IDP::LineFollowing:\nopagebreak
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classIDP_1_1LineFollowing_ab30cde971719545d81ce253ae995cc4d}{LineFollowing} (const \hyperlink{classIDP_1_1HardwareAbstractionLayer}{HardwareAbstractionLayer} $\ast$hal)
+\hyperlink{classIDP_1_1LineFollowing_a0a8b7e1ecdff2e4d0949b01fcf7609ef}{LineFollowing} (\hyperlink{classIDP_1_1HardwareAbstractionLayer}{HardwareAbstractionLayer} $\ast$hal)
 \begin{DoxyCompactList}\small\item\em Construct the Line Follower. \item\end{DoxyCompactList}\item 
 \hyperlink{namespaceIDP_a5993bdfdd901fc5521c8df42dca43bd0}{LineFollowingStatus} \hyperlink{classIDP_1_1LineFollowing_ad26d7726d2bb263658ed3140d3e30852}{follow\_\-line} (void)
 \begin{DoxyCompactList}\small\item\em Read line sensors and correct motor movement to keep us going straight. \item\end{DoxyCompactList}\item 
@@ -44,27 +44,27 @@ void \hyperlink{classIDP_1_1LineFollowing_af034f457aef1716d042606c71dddfd73}{set
 \subsection{Detailed Description}
 Maintain the robot position correctly with respect to the white line markers, during driving and manouvering. 
 
-Definition at line 128 of file line\_\-following.h.
+Definition at line 95 of file line\_\-following.h.
 
 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{classIDP_1_1LineFollowing_ab30cde971719545d81ce253ae995cc4d}{
+\hypertarget{classIDP_1_1LineFollowing_a0a8b7e1ecdff2e4d0949b01fcf7609ef}{
 \index{IDP::LineFollowing@{IDP::LineFollowing}!LineFollowing@{LineFollowing}}
 \index{LineFollowing@{LineFollowing}!IDP::LineFollowing@{IDP::LineFollowing}}
 \subsubsection[{LineFollowing}]{\setlength{\rightskip}{0pt plus 5cm}IDP::LineFollowing::LineFollowing (
 \begin{DoxyParamCaption}
-\item[{const {\bf HardwareAbstractionLayer} $\ast$}]{ hal}
+\item[{{\bf HardwareAbstractionLayer} $\ast$}]{ hal}
 \end{DoxyParamCaption}
 )}}
-\label{classIDP_1_1LineFollowing_ab30cde971719545d81ce253ae995cc4d}
+\label{classIDP_1_1LineFollowing_a0a8b7e1ecdff2e4d0949b01fcf7609ef}
 
 
 Construct the Line Follower. 
 
 
 
-Definition at line 20 of file line\_\-following.cc.
+Definition at line 57 of file line\_\-following.cc.
 
 
 
@@ -87,7 +87,7 @@ A LineFollowingStatus to indicate that either we are going fine, we are lost, or
 \end{DoxyReturn}
 
 
-Definition at line 34 of file line\_\-following.cc.
+Definition at line 71 of file line\_\-following.cc.
 
 \hypertarget{classIDP_1_1LineFollowing_af4feccda1b15ebbdad8dd49178b28914}{
 \index{IDP::LineFollowing@{IDP::LineFollowing}!junction\_\-status@{junction\_\-status}}
@@ -107,7 +107,7 @@ A LineFollowingStatus indicating junctions or NO\_\-TURNS\_\-FOUND if no junctio
 \end{DoxyReturn}
 
 
-Definition at line 392 of file line\_\-following.cc.
+Definition at line 304 of file line\_\-following.cc.
 
 \hypertarget{classIDP_1_1LineFollowing_af034f457aef1716d042606c71dddfd73}{
 \index{IDP::LineFollowing@{IDP::LineFollowing}!set\_\-speed@{set\_\-speed}}
@@ -127,7 +127,7 @@ Set the speed that motors will be driven at.
 \item[{\em speed}]How fast to drive the motors, 0 to MOTOR\_\-MAX\_\-SPEED. \end{DoxyParams}
 
 
-Definition at line 427 of file line\_\-following.cc.
+Definition at line 339 of file line\_\-following.cc.
 
 \hypertarget{classIDP_1_1LineFollowing_a3156dca6ebcbee20933949137dba6cf6}{
 \index{IDP::LineFollowing@{IDP::LineFollowing}!turn\_\-around\_\-ccw@{turn\_\-around\_\-ccw}}
@@ -147,7 +147,7 @@ A LineFollowingStatus code
 \end{DoxyReturn}
 
 
-Definition at line 349 of file line\_\-following.cc.
+Definition at line 292 of file line\_\-following.cc.
 
 \hypertarget{classIDP_1_1LineFollowing_a5bbdc1317ef04ea599a7d5583703660b}{
 \index{IDP::LineFollowing@{IDP::LineFollowing}!turn\_\-around\_\-cw@{turn\_\-around\_\-cw}}
@@ -167,7 +167,7 @@ A LineFollowingStatus code
 \end{DoxyReturn}
 
 
-Definition at line 307 of file line\_\-following.cc.
+Definition at line 281 of file line\_\-following.cc.
 
 \hypertarget{classIDP_1_1LineFollowing_a551e979a503328c2f645a1af2798d940}{
 \index{IDP::LineFollowing@{IDP::LineFollowing}!turn\_\-left@{turn\_\-left}}
@@ -187,7 +187,7 @@ A LineFollowingStatus code
 \end{DoxyReturn}
 
 
-Definition at line 224 of file line\_\-following.cc.
+Definition at line 261 of file line\_\-following.cc.
 
 \hypertarget{classIDP_1_1LineFollowing_adc0b67e4dc93dfef246cdde6190b0745}{
 \index{IDP::LineFollowing@{IDP::LineFollowing}!turn\_\-right@{turn\_\-right}}
@@ -207,7 +207,7 @@ A LineFollowingStatus code
 \end{DoxyReturn}
 
 
-Definition at line 266 of file line\_\-following.cc.
+Definition at line 271 of file line\_\-following.cc.
 
 
 

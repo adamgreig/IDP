@@ -92,55 +92,26 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00061"></a><a class="code" href="namespaceIDP.html#a628dde0214c4c861deda405e77ad75a2a93bc5c5f7716052e0a1ae894ce62c0ea">00061</a>         NO_CACHE, LEFT_TURN, RIGHT_TURN, BOTH_TURNS, <a class="code" href="namespaceIDP.html#a628dde0214c4c861deda405e77ad75a2a0a75c4d06bf2d5a2b4d1c37cede78ddd">NO_TURNS</a>
 <a name="l00062"></a>00062     };
 <a name="l00063"></a>00063 
-<a name="l00069"></a><a class="code" href="namespaceIDP.html#aa117cb76acf18e6af22830d5f2468ff4">00069</a>     <span class="keyword">const</span> <a class="code" href="namespaceIDP.html#ab8b8e9ff9f7de27da30c1fffaeef4b72" title="Possible turns at a node.">NavigationTurn</a> <a class="code" href="namespaceIDP.html#aa117cb76acf18e6af22830d5f2468ff4" title="The turns at each node.">NAVIGATION_NODE_TURNS</a>[MAX_DIRECTION][MAX_NODE] = {
-<a name="l00070"></a>00070         {STRAIGHT, BOTH_AND_STRAIGHT, BOTH_AND_STRAIGHT, BOTH,
-<a name="l00071"></a>00071             BOTH_AND_STRAIGHT, BOTH_AND_STRAIGHT, BOTH_AND_STRAIGHT,
-<a name="l00072"></a>00072             BOTH_AND_STRAIGHT, BOTH_AND_STRAIGHT, RIGHT, <a class="code" href="namespaceIDP.html#ab8b8e9ff9f7de27da30c1fffaeef4b72adbcc0fdad00650bfc91fbd20d64ad6e4">END_OF_LINE</a>},
-<a name="l00073"></a>00073         {END_OF_LINE, BOTH_AND_STRAIGHT, BOTH_AND_STRAIGHT, RIGHT_AND_STRAIGHT,
-<a name="l00074"></a>00074             BOTH_AND_STRAIGHT, BOTH_AND_STRAIGHT, BOTH_AND_STRAIGHT,
-<a name="l00075"></a>00075             BOTH_AND_STRAIGHT, BOTH_AND_STRAIGHT, LEFT, <a class="code" href="namespaceIDP.html#ab8b8e9ff9f7de27da30c1fffaeef4b72a89e423fa73cc15b78c7a12d75358bc5d">STRAIGHT</a>}
-<a name="l00076"></a>00076     };
-<a name="l00077"></a>00077 
-<a name="l00083"></a><a class="code" href="namespaceIDP.html#a0bada0608b684564e235786b3b38c10a">00083</a>     <span class="keyword">const</span> <a class="code" href="namespaceIDP.html#ab8b8e9ff9f7de27da30c1fffaeef4b72" title="Possible turns at a node.">NavigationTurn</a> <a class="code" href="namespaceIDP.html#a0bada0608b684564e235786b3b38c10a" title="Turns that should be taken at each node in each direction.">NAVIGATION_TURN_MAP</a>[MAX_DIRECTION][MAX_NODE] = {
-<a name="l00084"></a>00084         {STRAIGHT, STRAIGHT, STRAIGHT, RIGHT, STRAIGHT, RIGHT, STRAIGHT,
-<a name="l00085"></a>00085             STRAIGHT, STRAIGHT, RIGHT, <a class="code" href="namespaceIDP.html#ab8b8e9ff9f7de27da30c1fffaeef4b72adbcc0fdad00650bfc91fbd20d64ad6e4">END_OF_LINE</a>},
-<a name="l00086"></a>00086         {END_OF_LINE, STRAIGHT, STRAIGHT, LEFT, STRAIGHT, LEFT, STRAIGHT,
-<a name="l00087"></a>00087             STRAIGHT, STRAIGHT, LEFT, STRAIGHT}
-<a name="l00088"></a>00088     };
-<a name="l00089"></a>00089 
-<a name="l00094"></a><a class="code" href="namespaceIDP.html#a33e1b72d66088b211bfeb61b18d7b63b">00094</a>     <span class="keyword">const</span> <a class="code" href="namespaceIDP.html#a286f26dda01010063dff761803b4cd16" title="Navigation nodes, numbered clockwise from the bottom right corner of the table.">NavigationNode</a> <a class="code" href="namespaceIDP.html#a33e1b72d66088b211bfeb61b18d7b63b" title="The lookup table of NavigationLocations to a pair of NavigationNodes indicating the start and end nod...">NAVIGATION_LOCATION_LOOKUP</a>[MAX_LOCATION][2] = {
-<a name="l00095"></a>00095         {NODE9, <a class="code" href="namespaceIDP.html#a286f26dda01010063dff761803b4cd16a82c1907a7289c9ae600c7597640c7999">NODE6</a>}, <span class="comment">// NAVIGATION_BOXES</span>
-<a name="l00096"></a>00096         {NODE7, <a class="code" href="namespaceIDP.html#a286f26dda01010063dff761803b4cd16ac1ad66fa991f24bbd3b7d38935ffefc3">NODE10</a>},<span class="comment">// NAVIGATION_RACK</span>
-<a name="l00097"></a>00097         {NODE3, <a class="code" href="namespaceIDP.html#a286f26dda01010063dff761803b4cd16a643f7b9d84010cdf26d3245b52e95d61">NODE2</a>}  <span class="comment">// NAVIGATION_DELIVERY</span>
-<a name="l00098"></a>00098     };
-<a name="l00099"></a>00099 
-<a name="l00103"></a><a class="code" href="namespaceIDP.html#a33ba7fcc78e0c8e5477d2ed6ac18e48f">00103</a>     <span class="keyword">const</span> <a class="code" href="namespaceIDP.html#a286f26dda01010063dff761803b4cd16" title="Navigation nodes, numbered clockwise from the bottom right corner of the table.">NavigationNode</a> <a class="code" href="namespaceIDP.html#a33ba7fcc78e0c8e5477d2ed6ac18e48f" title="The route to take, node by node.">NAVIGATION_ROUTE_MAP</a>[MAX_DIRECTION][MAX_NODE] = {
-<a name="l00104"></a>00104         {NODE2, NODE3, NODE4, NODE5, NODE6, NODE8, NODE8, NODE9, NODE10,
-<a name="l00105"></a>00105             NODE11, NODE10},
-<a name="l00106"></a>00106         {NODE2, NODE1, NODE2, NODE3, NODE4, NODE5, NODE6, NODE7, NODE8,
-<a name="l00107"></a>00107             NODE9, <a class="code" href="namespaceIDP.html#a286f26dda01010063dff761803b4cd16ac1ad66fa991f24bbd3b7d38935ffefc3">NODE10</a>}
-<a name="l00108"></a>00108     };
-<a name="l00109"></a>00109 
-<a name="l00114"></a><a class="code" href="classIDP_1_1Navigation.html">00114</a>     <span class="keyword">class </span><a class="code" href="classIDP_1_1Navigation.html" title="Find a route from one place to another on the board, and maintain an estimate of the current position...">Navigation</a>
-<a name="l00115"></a>00115     {
-<a name="l00116"></a>00116         <span class="keyword">public</span>:
-<a name="l00117"></a>00117             <a class="code" href="classIDP_1_1Navigation.html#af32e7bdadf3997b12c71b95a7aede38c" title="Initialise the class, storing the const pointer to the HAL.">Navigation</a>(<span class="keyword">const</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html" title="Provide a hardware agnostic interface to the required hardware functionality.">HardwareAbstractionLayer</a>* hal,
-<a name="l00118"></a>00118                 <span class="keyword">const</span> <a class="code" href="namespaceIDP.html#a286f26dda01010063dff761803b4cd16" title="Navigation nodes, numbered clockwise from the bottom right corner of the table.">NavigationNode</a> from, <span class="keyword">const</span> <a class="code" href="namespaceIDP.html#a286f26dda01010063dff761803b4cd16" title="Navigation nodes, numbered clockwise from the bottom right corner of the table.">NavigationNode</a> to);
-<a name="l00119"></a>00119             <a class="code" href="classIDP_1_1Navigation.html#a2af5390d05f2058beb841030f9aea0c0" title="Destruct Navigation, deleting the LineFollowing object.">~Navigation</a>();
-<a name="l00120"></a>00120             <span class="keyword">const</span> <a class="code" href="namespaceIDP.html#a1a96e566e4d675fdf20780cc96d92283" title="Current navigation status.">NavigationStatus</a> <a class="code" href="classIDP_1_1Navigation.html#ab5cf30dd7a21c90d2ae58309ce0ddfa6" title="Go to a NavigationLocation.">go</a>(<span class="keyword">const</span> <a class="code" href="namespaceIDP.html#ab9c412f0fd539b5d70385066c30465a0" title="Possible locations for navigation to be asked to go to.">NavigationLocation</a> location);
-<a name="l00121"></a>00121             <span class="keyword">const</span> <a class="code" href="namespaceIDP.html#a1a96e566e4d675fdf20780cc96d92283" title="Current navigation status.">NavigationStatus</a> <a class="code" href="classIDP_1_1Navigation.html#a2f773d387e37fd25c473cd2e130c1cf3" title="Go to a particular NavigationNode.">go_node</a>(<span class="keyword">const</span> <a class="code" href="namespaceIDP.html#a286f26dda01010063dff761803b4cd16" title="Navigation nodes, numbered clockwise from the bottom right corner of the table.">NavigationNode</a> target);
-<a name="l00122"></a>00122         <span class="keyword">private</span>:
-<a name="l00123"></a>00123             <span class="keyword">const</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html" title="Provide a hardware agnostic interface to the required hardware functionality.">HardwareAbstractionLayer</a>* _hal;
-<a name="l00124"></a>00124             <a class="code" href="classIDP_1_1LineFollowing.html" title="Maintain the robot position correctly with respect to the white line markers, during driving and mano...">LineFollowing</a>* _lf;
-<a name="l00125"></a>00125             <a class="code" href="namespaceIDP.html#a286f26dda01010063dff761803b4cd16" title="Navigation nodes, numbered clockwise from the bottom right corner of the table.">NavigationNode</a> _from;
-<a name="l00126"></a>00126             <a class="code" href="namespaceIDP.html#a286f26dda01010063dff761803b4cd16" title="Navigation nodes, numbered clockwise from the bottom right corner of the table.">NavigationNode</a> _to;
-<a name="l00127"></a>00127             <a class="code" href="namespaceIDP.html#a628dde0214c4c861deda405e77ad75a2" title="Cached junction information for use while driving over a junction or executing a turn.">NavigationCachedJunction</a> _cached_junction;
-<a name="l00128"></a>00128             <span class="keywordtype">bool</span> _doing_second_turn;
-<a name="l00129"></a>00129     };
-<a name="l00130"></a>00130 }
-<a name="l00131"></a>00131 
-<a name="l00132"></a>00132 <span class="preprocessor">#endif </span><span class="comment">/* LIBIDP_NAVIGATION_H */</span>
-<a name="l00133"></a>00133 
+<a name="l00068"></a><a class="code" href="classIDP_1_1Navigation.html">00068</a>     <span class="keyword">class </span><a class="code" href="classIDP_1_1Navigation.html" title="Find a route from one place to another on the board, and maintain an estimate of the current position...">Navigation</a>
+<a name="l00069"></a>00069     {
+<a name="l00070"></a>00070         <span class="keyword">public</span>:
+<a name="l00071"></a>00071             <a class="code" href="classIDP_1_1Navigation.html#afc2747e51acc44614f67cb0a785f76ac" title="Initialise the class, storing the const pointer to the HAL.">Navigation</a>(<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html" title="Provide a hardware agnostic interface to the required hardware functionality.">HardwareAbstractionLayer</a>* hal,
+<a name="l00072"></a>00072                 <span class="keyword">const</span> <a class="code" href="namespaceIDP.html#a286f26dda01010063dff761803b4cd16" title="Navigation nodes, numbered clockwise from the bottom right corner of the table.">NavigationNode</a> from, <span class="keyword">const</span> <a class="code" href="namespaceIDP.html#a286f26dda01010063dff761803b4cd16" title="Navigation nodes, numbered clockwise from the bottom right corner of the table.">NavigationNode</a> to);
+<a name="l00073"></a>00073             <a class="code" href="classIDP_1_1Navigation.html#a2af5390d05f2058beb841030f9aea0c0" title="Destruct Navigation, deleting the LineFollowing object.">~Navigation</a>();
+<a name="l00074"></a>00074             <a class="code" href="namespaceIDP.html#a1a96e566e4d675fdf20780cc96d92283" title="Current navigation status.">NavigationStatus</a> <a class="code" href="classIDP_1_1Navigation.html#aba1ab266d223b517fdc3cf6bc3d8e84c" title="Go to a NavigationLocation.">go</a>(<span class="keyword">const</span> <a class="code" href="namespaceIDP.html#ab9c412f0fd539b5d70385066c30465a0" title="Possible locations for navigation to be asked to go to.">NavigationLocation</a> location);
+<a name="l00075"></a>00075             <a class="code" href="namespaceIDP.html#a1a96e566e4d675fdf20780cc96d92283" title="Current navigation status.">NavigationStatus</a> <a class="code" href="classIDP_1_1Navigation.html#a24b977f20868a385251d4becf187b815" title="Go to a particular NavigationNode.">go_node</a>(<span class="keyword">const</span> <a class="code" href="namespaceIDP.html#a286f26dda01010063dff761803b4cd16" title="Navigation nodes, numbered clockwise from the bottom right corner of the table.">NavigationNode</a> target);
+<a name="l00076"></a>00076         <span class="keyword">private</span>:
+<a name="l00077"></a>00077             <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html" title="Provide a hardware agnostic interface to the required hardware functionality.">HardwareAbstractionLayer</a>* _hal;
+<a name="l00078"></a>00078             <a class="code" href="namespaceIDP.html#a286f26dda01010063dff761803b4cd16" title="Navigation nodes, numbered clockwise from the bottom right corner of the table.">NavigationNode</a> _from;
+<a name="l00079"></a>00079             <a class="code" href="namespaceIDP.html#a286f26dda01010063dff761803b4cd16" title="Navigation nodes, numbered clockwise from the bottom right corner of the table.">NavigationNode</a> _to;
+<a name="l00080"></a>00080             <a class="code" href="classIDP_1_1LineFollowing.html" title="Maintain the robot position correctly with respect to the white line markers, during driving and mano...">LineFollowing</a>* _lf;
+<a name="l00081"></a>00081             <a class="code" href="namespaceIDP.html#a628dde0214c4c861deda405e77ad75a2" title="Cached junction information for use while driving over a junction or executing a turn.">NavigationCachedJunction</a> _cached_junction;
+<a name="l00082"></a>00082             <span class="keywordtype">bool</span> _doing_second_turn;
+<a name="l00083"></a>00083     };
+<a name="l00084"></a>00084 }
+<a name="l00085"></a>00085 
+<a name="l00086"></a>00086 <span class="preprocessor">#endif </span><span class="comment">/* LIBIDP_NAVIGATION_H */</span>
+<a name="l00087"></a>00087 
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -157,7 +128,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Tue Feb 8 2011 01:27:29 for IDPL108 by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Feb 8 2011 02:45:35 for IDPL108 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

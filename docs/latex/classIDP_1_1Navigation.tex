@@ -23,35 +23,35 @@ Collaboration diagram for IDP::Navigation:\nopagebreak
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classIDP_1_1Navigation_af32e7bdadf3997b12c71b95a7aede38c}{Navigation} (const \hyperlink{classIDP_1_1HardwareAbstractionLayer}{HardwareAbstractionLayer} $\ast$hal, const \hyperlink{namespaceIDP_a286f26dda01010063dff761803b4cd16}{NavigationNode} from, const \hyperlink{namespaceIDP_a286f26dda01010063dff761803b4cd16}{NavigationNode} to)
+\hyperlink{classIDP_1_1Navigation_afc2747e51acc44614f67cb0a785f76ac}{Navigation} (\hyperlink{classIDP_1_1HardwareAbstractionLayer}{HardwareAbstractionLayer} $\ast$hal, const \hyperlink{namespaceIDP_a286f26dda01010063dff761803b4cd16}{NavigationNode} from, const \hyperlink{namespaceIDP_a286f26dda01010063dff761803b4cd16}{NavigationNode} to)
 \begin{DoxyCompactList}\small\item\em Initialise the class, storing the const pointer to the HAL. \item\end{DoxyCompactList}\item 
 \hyperlink{classIDP_1_1Navigation_a2af5390d05f2058beb841030f9aea0c0}{$\sim$Navigation} ()
 \begin{DoxyCompactList}\small\item\em Destruct \hyperlink{classIDP_1_1Navigation}{Navigation}, deleting the \hyperlink{classIDP_1_1LineFollowing}{LineFollowing} object. \item\end{DoxyCompactList}\item 
-const \hyperlink{namespaceIDP_a1a96e566e4d675fdf20780cc96d92283}{NavigationStatus} \hyperlink{classIDP_1_1Navigation_ab5cf30dd7a21c90d2ae58309ce0ddfa6}{go} (const \hyperlink{namespaceIDP_ab9c412f0fd539b5d70385066c30465a0}{NavigationLocation} location)
+\hyperlink{namespaceIDP_a1a96e566e4d675fdf20780cc96d92283}{NavigationStatus} \hyperlink{classIDP_1_1Navigation_aba1ab266d223b517fdc3cf6bc3d8e84c}{go} (const \hyperlink{namespaceIDP_ab9c412f0fd539b5d70385066c30465a0}{NavigationLocation} location)
 \begin{DoxyCompactList}\small\item\em Go to a NavigationLocation. \item\end{DoxyCompactList}\item 
-const \hyperlink{namespaceIDP_a1a96e566e4d675fdf20780cc96d92283}{NavigationStatus} \hyperlink{classIDP_1_1Navigation_a2f773d387e37fd25c473cd2e130c1cf3}{go\_\-node} (const \hyperlink{namespaceIDP_a286f26dda01010063dff761803b4cd16}{NavigationNode} target)
+\hyperlink{namespaceIDP_a1a96e566e4d675fdf20780cc96d92283}{NavigationStatus} \hyperlink{classIDP_1_1Navigation_a24b977f20868a385251d4becf187b815}{go\_\-node} (const \hyperlink{namespaceIDP_a286f26dda01010063dff761803b4cd16}{NavigationNode} target)
 \begin{DoxyCompactList}\small\item\em Go to a particular NavigationNode. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 Find a route from one place to another on the board, and maintain an estimate of the current position. 
 
-Definition at line 114 of file navigation.h.
+Definition at line 68 of file navigation.h.
 
 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{classIDP_1_1Navigation_af32e7bdadf3997b12c71b95a7aede38c}{
+\hypertarget{classIDP_1_1Navigation_afc2747e51acc44614f67cb0a785f76ac}{
 \index{IDP::Navigation@{IDP::Navigation}!Navigation@{Navigation}}
 \index{Navigation@{Navigation}!IDP::Navigation@{IDP::Navigation}}
 \subsubsection[{Navigation}]{\setlength{\rightskip}{0pt plus 5cm}IDP::Navigation::Navigation (
 \begin{DoxyParamCaption}
-\item[{const {\bf HardwareAbstractionLayer} $\ast$}]{ hal, }
+\item[{{\bf HardwareAbstractionLayer} $\ast$}]{ hal, }
 \item[{const {\bf NavigationNode}}]{ from = {\ttfamily NODE7}, }
 \item[{const {\bf NavigationNode}}]{ to = {\ttfamily NODE8}}
 \end{DoxyParamCaption}
 )}}
-\label{classIDP_1_1Navigation_af32e7bdadf3997b12c71b95a7aede38c}
+\label{classIDP_1_1Navigation_afc2747e51acc44614f67cb0a785f76ac}
 
 
 Initialise the class, storing the const pointer to the HAL. 
@@ -63,7 +63,7 @@ The optional parameters from and to can be used to define the starting position,
 \item[{\em hal}]A const pointer to an instance of the HAL \item[{\em from}]The node behind the robot at the start \item[{\em to}]The node in front of the robot at the start \end{DoxyParams}
 
 
-Definition at line 33 of file navigation.cc.
+Definition at line 126 of file navigation.cc.
 
 \hypertarget{classIDP_1_1Navigation_a2af5390d05f2058beb841030f9aea0c0}{
 \index{IDP::Navigation@{IDP::Navigation}!$\sim$Navigation@{$\sim$Navigation}}
@@ -80,20 +80,20 @@ Destruct \hyperlink{classIDP_1_1Navigation}{Navigation}, deleting the \hyperlink
 
 
 
-Definition at line 47 of file navigation.cc.
+Definition at line 143 of file navigation.cc.
 
 
 
 \subsection{Member Function Documentation}
-\hypertarget{classIDP_1_1Navigation_ab5cf30dd7a21c90d2ae58309ce0ddfa6}{
+\hypertarget{classIDP_1_1Navigation_aba1ab266d223b517fdc3cf6bc3d8e84c}{
 \index{IDP::Navigation@{IDP::Navigation}!go@{go}}
 \index{go@{go}!IDP::Navigation@{IDP::Navigation}}
-\subsubsection[{go}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf NavigationStatus} IDP::Navigation::go (
+\subsubsection[{go}]{\setlength{\rightskip}{0pt plus 5cm}{\bf NavigationStatus} IDP::Navigation::go (
 \begin{DoxyParamCaption}
 \item[{const {\bf NavigationLocation}}]{ location}
 \end{DoxyParamCaption}
 )}}
-\label{classIDP_1_1Navigation_ab5cf30dd7a21c90d2ae58309ce0ddfa6}
+\label{classIDP_1_1Navigation_aba1ab266d223b517fdc3cf6bc3d8e84c}
 
 
 Go to a NavigationLocation. 
@@ -103,17 +103,17 @@ A NavigationStatus code
 \end{DoxyReturn}
 
 
-Definition at line 57 of file navigation.cc.
+Definition at line 155 of file navigation.cc.
 
-\hypertarget{classIDP_1_1Navigation_a2f773d387e37fd25c473cd2e130c1cf3}{
+\hypertarget{classIDP_1_1Navigation_a24b977f20868a385251d4becf187b815}{
 \index{IDP::Navigation@{IDP::Navigation}!go\_\-node@{go\_\-node}}
 \index{go\_\-node@{go\_\-node}!IDP::Navigation@{IDP::Navigation}}
-\subsubsection[{go\_\-node}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf NavigationStatus} IDP::Navigation::go\_\-node (
+\subsubsection[{go\_\-node}]{\setlength{\rightskip}{0pt plus 5cm}{\bf NavigationStatus} IDP::Navigation::go\_\-node (
 \begin{DoxyParamCaption}
 \item[{const {\bf NavigationNode}}]{ target}
 \end{DoxyParamCaption}
 )}}
-\label{classIDP_1_1Navigation_a2f773d387e37fd25c473cd2e130c1cf3}
+\label{classIDP_1_1Navigation_a24b977f20868a385251d4becf187b815}
 
 
 Go to a particular NavigationNode. 
@@ -123,7 +123,7 @@ A NavigationStatus code
 \end{DoxyReturn}
 
 
-Definition at line 65 of file navigation.cc.
+Definition at line 166 of file navigation.cc.
 
 
 

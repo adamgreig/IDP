@@ -83,77 +83,54 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00059"></a><a class="code" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0aaa2e9a813db91657570cf2eeb78d0983">00059</a>         <a class="code" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0aaa2e9a813db91657570cf2eeb78d0983">NO_TURNS_FOUND</a>
 <a name="l00060"></a>00060     };
 <a name="l00061"></a>00061 
-<a name="l00065"></a>00065     <span class="keyword">const</span> <span class="keywordtype">char</span>* LineFollowingStatusStrings[] = {
-<a name="l00066"></a>00066         <span class="stringliteral">&quot;ACTION_IN_PROGRESS&quot;</span>,
-<a name="l00067"></a>00067         <span class="stringliteral">&quot;ACTION_COMPLETED&quot;</span>,
-<a name="l00068"></a>00068         <span class="stringliteral">&quot;LEFT_TURN_FOUND&quot;</span>,
-<a name="l00069"></a>00069         <span class="stringliteral">&quot;RIGHT_TURN_FOUND&quot;</span>,
-<a name="l00070"></a>00070         <span class="stringliteral">&quot;BOTH_TURNS_FOUND&quot;</span>,
-<a name="l00071"></a>00071         <span class="stringliteral">&quot;LOST&quot;</span>,
-<a name="l00072"></a>00072         <span class="stringliteral">&quot;NO_TURNS_FOUND&quot;</span>
-<a name="l00073"></a>00073     };
-<a name="l00074"></a>00074 
-<a name="l00078"></a><a class="code" href="namespaceIDP.html#aba52d8ae6ecf9eb4c7edb518bcc02544">00078</a>     <span class="keyword">enum</span> <a class="code" href="namespaceIDP.html#aba52d8ae6ecf9eb4c7edb518bcc02544" title="Possible turn directions.">LineFollowingTurnDirection</a> {
-<a name="l00079"></a><a class="code" href="namespaceIDP.html#aba52d8ae6ecf9eb4c7edb518bcc02544a999d44c9ef45538375c7b316d0a51059">00079</a>         TURN_LEFT,
-<a name="l00080"></a><a class="code" href="namespaceIDP.html#aba52d8ae6ecf9eb4c7edb518bcc02544a630a2f356cbbe3205557ed0f82f25eec">00080</a>         TURN_RIGHT,
-<a name="l00081"></a><a class="code" href="namespaceIDP.html#aba52d8ae6ecf9eb4c7edb518bcc02544af2abadf838c7b083430a3671c9831990">00081</a>         TURN_AROUND_CW,
-<a name="l00082"></a><a class="code" href="namespaceIDP.html#aba52d8ae6ecf9eb4c7edb518bcc02544a10a1f928d94973b92dcebf2e79858e92">00082</a>         TURN_AROUND_CCW,
-<a name="l00083"></a><a class="code" href="namespaceIDP.html#aba52d8ae6ecf9eb4c7edb518bcc02544aa74bb750e694576bc85d62d37534d22e">00083</a>         <a class="code" href="namespaceIDP.html#aba52d8ae6ecf9eb4c7edb518bcc02544aa74bb750e694576bc85d62d37534d22e">MAX_TURN_DIRECTION</a>
-<a name="l00084"></a>00084     };
-<a name="l00085"></a>00085 
-<a name="l00089"></a>00089     <span class="keyword">const</span> <span class="keywordtype">char</span>* LineFollowingTurnDirectionStrings[] = {
-<a name="l00090"></a>00090         <span class="stringliteral">&quot;TURN_LEFT&quot;</span>,
-<a name="l00091"></a>00091         <span class="stringliteral">&quot;TURN_RIGHT&quot;</span>,
-<a name="l00092"></a>00092         <span class="stringliteral">&quot;TURN_AROUND_CW&quot;</span>,
-<a name="l00093"></a>00093         <span class="stringliteral">&quot;TURN_AROUND_CCW&quot;</span>,
-<a name="l00094"></a>00094         <span class="stringliteral">&quot;MAX_TURN_DIRECTION&quot;</span>
-<a name="l00095"></a>00095     };
-<a name="l00096"></a>00096 
-<a name="l00100"></a><a class="code" href="namespaceIDP.html#ac3688e4c6bc9b671b09672d71ebccc40">00100</a>     <span class="keyword">enum</span> <a class="code" href="namespaceIDP.html#ac3688e4c6bc9b671b09672d71ebccc40" title="Possible line statuses, used internally.">LineFollowingLineStatus</a> {
-<a name="l00101"></a><a class="code" href="namespaceIDP.html#ac3688e4c6bc9b671b09672d71ebccc40ae98c6f22ce3cb9115070fa63dc53be54">00101</a>         ON_LINE,
-<a name="l00102"></a><a class="code" href="namespaceIDP.html#ac3688e4c6bc9b671b09672d71ebccc40a6d73c89419d3f6d4b5816b31ed4a1d50">00102</a>         LOST_LINE,
-<a name="l00103"></a><a class="code" href="namespaceIDP.html#ac3688e4c6bc9b671b09672d71ebccc40a01ca34a0cd3291e4677952ffa87bdf05">00103</a>         OTHER,
-<a name="l00104"></a><a class="code" href="namespaceIDP.html#ac3688e4c6bc9b671b09672d71ebccc40a7f43bbf697f9db6ab9a5f8f09cab156b">00104</a>         <a class="code" href="namespaceIDP.html#ac3688e4c6bc9b671b09672d71ebccc40a7f43bbf697f9db6ab9a5f8f09cab156b">MAX_LINE_STATUS</a>
-<a name="l00105"></a>00105     };
+<a name="l00065"></a><a class="code" href="namespaceIDP.html#aba52d8ae6ecf9eb4c7edb518bcc02544">00065</a>     <span class="keyword">enum</span> <a class="code" href="namespaceIDP.html#aba52d8ae6ecf9eb4c7edb518bcc02544" title="Possible turn directions.">LineFollowingTurnDirection</a> {
+<a name="l00066"></a><a class="code" href="namespaceIDP.html#aba52d8ae6ecf9eb4c7edb518bcc02544a999d44c9ef45538375c7b316d0a51059">00066</a>         TURN_LEFT,
+<a name="l00067"></a><a class="code" href="namespaceIDP.html#aba52d8ae6ecf9eb4c7edb518bcc02544a630a2f356cbbe3205557ed0f82f25eec">00067</a>         TURN_RIGHT,
+<a name="l00068"></a><a class="code" href="namespaceIDP.html#aba52d8ae6ecf9eb4c7edb518bcc02544af2abadf838c7b083430a3671c9831990">00068</a>         TURN_AROUND_CW,
+<a name="l00069"></a><a class="code" href="namespaceIDP.html#aba52d8ae6ecf9eb4c7edb518bcc02544a10a1f928d94973b92dcebf2e79858e92">00069</a>         TURN_AROUND_CCW,
+<a name="l00070"></a><a class="code" href="namespaceIDP.html#aba52d8ae6ecf9eb4c7edb518bcc02544aa74bb750e694576bc85d62d37534d22e">00070</a>         <a class="code" href="namespaceIDP.html#aba52d8ae6ecf9eb4c7edb518bcc02544aa74bb750e694576bc85d62d37534d22e">MAX_TURN_DIRECTION</a>
+<a name="l00071"></a>00071     };
+<a name="l00072"></a>00072 
+<a name="l00076"></a><a class="code" href="namespaceIDP.html#ac3688e4c6bc9b671b09672d71ebccc40">00076</a>     <span class="keyword">enum</span> <a class="code" href="namespaceIDP.html#ac3688e4c6bc9b671b09672d71ebccc40" title="Possible line statuses, used internally.">LineFollowingLineStatus</a> {
+<a name="l00077"></a><a class="code" href="namespaceIDP.html#ac3688e4c6bc9b671b09672d71ebccc40ae98c6f22ce3cb9115070fa63dc53be54">00077</a>         ON_LINE,
+<a name="l00078"></a><a class="code" href="namespaceIDP.html#ac3688e4c6bc9b671b09672d71ebccc40a6d73c89419d3f6d4b5816b31ed4a1d50">00078</a>         LOST_LINE,
+<a name="l00079"></a><a class="code" href="namespaceIDP.html#ac3688e4c6bc9b671b09672d71ebccc40a01ca34a0cd3291e4677952ffa87bdf05">00079</a>         OTHER,
+<a name="l00080"></a><a class="code" href="namespaceIDP.html#ac3688e4c6bc9b671b09672d71ebccc40a7f43bbf697f9db6ab9a5f8f09cab156b">00080</a>         <a class="code" href="namespaceIDP.html#ac3688e4c6bc9b671b09672d71ebccc40a7f43bbf697f9db6ab9a5f8f09cab156b">MAX_LINE_STATUS</a>
+<a name="l00081"></a>00081     };
+<a name="l00082"></a>00082 
+<a name="l00083"></a>00083 
+<a name="l00089"></a>00089     <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> <a class="code" href="namespaceIDP.html#ae66b1b69bcde3ba7995f2fd46c6f21f5" title="Cap a line following correction value to MAX_CORRECTION.">cap_correction</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> correction);
+<a name="l00090"></a>00090 
+<a name="l00095"></a><a class="code" href="classIDP_1_1LineFollowing.html">00095</a>     <span class="keyword">class </span><a class="code" href="classIDP_1_1LineFollowing.html" title="Maintain the robot position correctly with respect to the white line markers, during driving and mano...">LineFollowing</a> 
+<a name="l00096"></a>00096     {
+<a name="l00097"></a>00097         <span class="keyword">public</span>:
+<a name="l00098"></a>00098             <a class="code" href="classIDP_1_1LineFollowing.html#a0a8b7e1ecdff2e4d0949b01fcf7609ef" title="Construct the Line Follower.">LineFollowing</a>(<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html" title="Provide a hardware agnostic interface to the required hardware functionality.">HardwareAbstractionLayer</a>* hal);
+<a name="l00099"></a>00099             <a class="code" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0" title="Line following return status codes.">LineFollowingStatus</a> <a class="code" href="classIDP_1_1LineFollowing.html#ad26d7726d2bb263658ed3140d3e30852" title="Read line sensors and correct motor movement to keep us going straight.">follow_line</a>(<span class="keywordtype">void</span>);
+<a name="l00100"></a>00100             <a class="code" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0" title="Line following return status codes.">LineFollowingStatus</a> <a class="code" href="classIDP_1_1LineFollowing.html#a551e979a503328c2f645a1af2798d940" title="Turn the robot left until the sensors encounter another line.">turn_left</a>(<span class="keywordtype">void</span>);
+<a name="l00101"></a>00101             <a class="code" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0" title="Line following return status codes.">LineFollowingStatus</a> <a class="code" href="classIDP_1_1LineFollowing.html#adc0b67e4dc93dfef246cdde6190b0745" title="Turn the robot right until the sensors detect another line.">turn_right</a>(<span class="keywordtype">void</span>);
+<a name="l00102"></a>00102             <a class="code" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0" title="Line following return status codes.">LineFollowingStatus</a> <a class="code" href="classIDP_1_1LineFollowing.html#a5bbdc1317ef04ea599a7d5583703660b" title="Turn the robot around clockwise until the sensors detect another line.">turn_around_cw</a>(<span class="keywordtype">void</span>);
+<a name="l00103"></a>00103             <a class="code" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0" title="Line following return status codes.">LineFollowingStatus</a> <a class="code" href="classIDP_1_1LineFollowing.html#a3156dca6ebcbee20933949137dba6cf6" title="Turn the robot around counterclockwise until the sensors detect another line.">turn_around_ccw</a>(<span class="keywordtype">void</span>);
+<a name="l00104"></a>00104             <a class="code" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0" title="Line following return status codes.">LineFollowingStatus</a> <a class="code" href="classIDP_1_1LineFollowing.html#af4feccda1b15ebbdad8dd49178b28914" title="Return whether we can see a junction or not, without changing motor settings.">junction_status</a>(<span class="keywordtype">void</span>);
+<a name="l00105"></a>00105             <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1LineFollowing.html#af034f457aef1716d042606c71dddfd73" title="Set the speed that motors will be driven at.">set_speed</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> speed);
 <a name="l00106"></a>00106 
-<a name="l00110"></a>00110     <span class="keyword">const</span> <span class="keywordtype">char</span>* LineFollowingLineStatusStrings[] = {
-<a name="l00111"></a>00111         <span class="stringliteral">&quot;ON_LINE&quot;</span>,
-<a name="l00112"></a>00112         <span class="stringliteral">&quot;LOST_LINE&quot;</span>,
-<a name="l00113"></a>00113         <span class="stringliteral">&quot;OTHER&quot;</span>,
-<a name="l00114"></a>00114         <span class="stringliteral">&quot;MAX_LINE_STATUS&quot;</span>
-<a name="l00115"></a>00115     };
-<a name="l00116"></a>00116 
-<a name="l00122"></a>00122     <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> <a class="code" href="namespaceIDP.html#ae66b1b69bcde3ba7995f2fd46c6f21f5" title="Cap a line following correction value to MAX_CORRECTION.">cap_correction</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> correction);
-<a name="l00123"></a>00123 
-<a name="l00128"></a><a class="code" href="classIDP_1_1LineFollowing.html">00128</a>     <span class="keyword">class </span><a class="code" href="classIDP_1_1LineFollowing.html" title="Maintain the robot position correctly with respect to the white line markers, during driving and mano...">LineFollowing</a> 
-<a name="l00129"></a>00129     {
-<a name="l00130"></a>00130         <span class="keyword">public</span>:
-<a name="l00131"></a>00131             <a class="code" href="classIDP_1_1LineFollowing.html#ab30cde971719545d81ce253ae995cc4d" title="Construct the Line Follower.">LineFollowing</a>(<span class="keyword">const</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html" title="Provide a hardware agnostic interface to the required hardware functionality.">HardwareAbstractionLayer</a>* hal);
-<a name="l00132"></a>00132             <a class="code" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0" title="Line following return status codes.">LineFollowingStatus</a> <a class="code" href="classIDP_1_1LineFollowing.html#ad26d7726d2bb263658ed3140d3e30852" title="Read line sensors and correct motor movement to keep us going straight.">follow_line</a>(<span class="keywordtype">void</span>);
-<a name="l00133"></a>00133             <a class="code" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0" title="Line following return status codes.">LineFollowingStatus</a> <a class="code" href="classIDP_1_1LineFollowing.html#a551e979a503328c2f645a1af2798d940" title="Turn the robot left until the sensors encounter another line.">turn_left</a>(<span class="keywordtype">void</span>);
-<a name="l00134"></a>00134             <a class="code" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0" title="Line following return status codes.">LineFollowingStatus</a> <a class="code" href="classIDP_1_1LineFollowing.html#adc0b67e4dc93dfef246cdde6190b0745" title="Turn the robot right until the sensors detect another line.">turn_right</a>(<span class="keywordtype">void</span>);
-<a name="l00135"></a>00135             <a class="code" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0" title="Line following return status codes.">LineFollowingStatus</a> <a class="code" href="classIDP_1_1LineFollowing.html#a5bbdc1317ef04ea599a7d5583703660b" title="Turn the robot around clockwise until the sensors detect another line.">turn_around_cw</a>(<span class="keywordtype">void</span>);
-<a name="l00136"></a>00136             <a class="code" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0" title="Line following return status codes.">LineFollowingStatus</a> <a class="code" href="classIDP_1_1LineFollowing.html#a3156dca6ebcbee20933949137dba6cf6" title="Turn the robot around counterclockwise until the sensors detect another line.">turn_around_ccw</a>(<span class="keywordtype">void</span>);
-<a name="l00137"></a>00137             <a class="code" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0" title="Line following return status codes.">LineFollowingStatus</a> <a class="code" href="classIDP_1_1LineFollowing.html#af4feccda1b15ebbdad8dd49178b28914" title="Return whether we can see a junction or not, without changing motor settings.">junction_status</a>(<span class="keywordtype">void</span>);
-<a name="l00138"></a>00138             <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1LineFollowing.html#af034f457aef1716d042606c71dddfd73" title="Set the speed that motors will be driven at.">set_speed</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> speed);
-<a name="l00139"></a>00139 
-<a name="l00140"></a>00140         <span class="keyword">private</span>:
-<a name="l00141"></a>00141             <span class="keywordtype">void</span> correct_steering(<span class="keywordtype">void</span>);
-<a name="l00142"></a>00142             <span class="keywordtype">void</span> set_motors_turning(<a class="code" href="namespaceIDP.html#aba52d8ae6ecf9eb4c7edb518bcc02544" title="Possible turn directions.">LineFollowingTurnDirection</a> dir);
-<a name="l00143"></a>00143             <span class="keywordtype">bool</span> line_status(<a class="code" href="namespaceIDP.html#aba52d8ae6ecf9eb4c7edb518bcc02544" title="Possible turn directions.">LineFollowingTurnDirection</a> dir)
-<a name="l00144"></a>00144             <a class="code" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0" title="Line following return status codes.">LineFollowingStatus</a> turn(<a class="code" href="namespaceIDP.html#aba52d8ae6ecf9eb4c7edb518bcc02544" title="Possible turn directions.">LineFollowingTurnDirection</a> dir);
-<a name="l00145"></a>00145 
-<a name="l00146"></a>00146             <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> _left_error;
-<a name="l00147"></a>00147             <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> _right_error;
-<a name="l00148"></a>00148             <span class="keywordtype">bool</span> _lost_turning_line;
-<a name="l00149"></a>00149             <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> _speed;
-<a name="l00150"></a>00150             <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> _lost_time;
-<a name="l00151"></a>00151             <span class="keyword">const</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html" title="Provide a hardware agnostic interface to the required hardware functionality.">HardwareAbstractionLayer</a>* _hal; 
-<a name="l00152"></a>00152     };
-<a name="l00153"></a>00153 }
-<a name="l00154"></a>00154 
-<a name="l00155"></a>00155 <span class="preprocessor">#endif </span><span class="comment">/* LIBIDP_LINE_FOLLOWING_H */</span>
-<a name="l00156"></a>00156 
+<a name="l00107"></a>00107         <span class="keyword">private</span>:
+<a name="l00108"></a>00108             <span class="keywordtype">void</span> correct_steering(<span class="keywordtype">void</span>);
+<a name="l00109"></a>00109             <span class="keywordtype">void</span> set_motors_turning(<a class="code" href="namespaceIDP.html#aba52d8ae6ecf9eb4c7edb518bcc02544" title="Possible turn directions.">LineFollowingTurnDirection</a> dir);
+<a name="l00110"></a>00110             <a class="code" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0" title="Line following return status codes.">LineFollowingStatus</a> turn(<a class="code" href="namespaceIDP.html#aba52d8ae6ecf9eb4c7edb518bcc02544" title="Possible turn directions.">LineFollowingTurnDirection</a> dir);
+<a name="l00111"></a>00111             <a class="code" href="namespaceIDP.html#ac3688e4c6bc9b671b09672d71ebccc40" title="Possible line statuses, used internally.">LineFollowingLineStatus</a> line_status(
+<a name="l00112"></a>00112                 <a class="code" href="namespaceIDP.html#aba52d8ae6ecf9eb4c7edb518bcc02544" title="Possible turn directions.">LineFollowingTurnDirection</a> dir);
+<a name="l00113"></a>00113 
+<a name="l00114"></a>00114             <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html" title="Provide a hardware agnostic interface to the required hardware functionality.">HardwareAbstractionLayer</a>* _hal; 
+<a name="l00115"></a>00115             <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> _left_error;
+<a name="l00116"></a>00116             <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> _right_error;
+<a name="l00117"></a>00117             <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> _speed;
+<a name="l00118"></a>00118             <span class="keywordtype">bool</span> _lost_turning_line;
+<a name="l00119"></a>00119             <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> _lost_time;
+<a name="l00120"></a>00120     };
+<a name="l00121"></a>00121 }
+<a name="l00122"></a>00122 
+<a name="l00123"></a>00123 <span class="preprocessor">#endif </span><span class="comment">/* LIBIDP_LINE_FOLLOWING_H */</span>
+<a name="l00124"></a>00124 
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -170,7 +147,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Tue Feb 8 2011 01:27:29 for IDPL108 by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Feb 8 2011 02:45:35 for IDPL108 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

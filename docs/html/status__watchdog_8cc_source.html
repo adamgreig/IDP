@@ -58,10 +58,20 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00007"></a>00007 
 <a name="l00008"></a>00008 <span class="preprocessor">#include &quot;<a class="code" href="status__watchdog_8h.html">status_watchdog.h</a>&quot;</span>
 <a name="l00009"></a>00009 
-<a name="l00010"></a>00010 <span class="keyword">namespace </span>IDP {
-<a name="l00015"></a>00015     <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="classIDP_1_1StatusWatchdog.html#a62cf3c72abdba9a57a84179aa2089364" title="Read the STATUS register of the microcontroller and return the value.">StatusWatchdog::check</a>()<span class="keyword"> const </span>{
-<a name="l00016"></a>00016     }
-<a name="l00017"></a>00017 }
+<a name="l00010"></a>00010 <span class="comment">// Debug functionality</span>
+<a name="l00011"></a><a class="code" href="status__watchdog_8cc.html#a14ded244c47bbba850a8a4be6d16c7e3">00011</a> <span class="preprocessor">#define MODULE_NAME &quot;StatusWatch&quot;</span>
+<a name="l00012"></a><a class="code" href="status__watchdog_8cc.html#ae04c5e41f64b51d21bc71565938a59d6">00012</a> <span class="preprocessor"></span><span class="preprocessor">#define TRACE_ENABLED   false</span>
+<a name="l00013"></a><a class="code" href="status__watchdog_8cc.html#a7d2ae674cad5299a52b0e7dceac10087">00013</a> <span class="preprocessor"></span><span class="preprocessor">#define DEBUG_ENABLED   true</span>
+<a name="l00014"></a><a class="code" href="status__watchdog_8cc.html#a580f977f97ee7f7ceb91b1c42306f537">00014</a> <span class="preprocessor"></span><span class="preprocessor">#define INFO_ENABLED    true</span>
+<a name="l00015"></a><a class="code" href="status__watchdog_8cc.html#a292d4ca4e07d63502916a17a853ab606">00015</a> <span class="preprocessor"></span><span class="preprocessor">#define ERROR_ENABLED   true</span>
+<a name="l00016"></a>00016 <span class="preprocessor"></span><span class="preprocessor">#include &quot;<a class="code" href="debug_8h.html">debug.h</a>&quot;</span>
+<a name="l00017"></a>00017 
+<a name="l00018"></a>00018 <span class="keyword">namespace </span>IDP {
+<a name="l00023"></a><a class="code" href="classIDP_1_1StatusWatchdog.html#a03adfc8f02749c1d6c32a02a6f93dbb3">00023</a>     <span class="keywordtype">int</span> <a class="code" href="classIDP_1_1StatusWatchdog.html#a03adfc8f02749c1d6c32a02a6f93dbb3" title="Read the STATUS register of the microcontroller and return the value.">StatusWatchdog::check</a>()<span class="keyword"> const </span>{
+<a name="l00024"></a>00024         TRACE(<span class="stringliteral">&quot;check()&quot;</span>);
+<a name="l00025"></a>00025         <span class="keywordflow">return</span> 0;
+<a name="l00026"></a>00026     }
+<a name="l00027"></a>00027 }
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -78,7 +88,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Tue Feb 8 2011 01:27:29 for IDPL108 by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Feb 8 2011 02:45:35 for IDPL108 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

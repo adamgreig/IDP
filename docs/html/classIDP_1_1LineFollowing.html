@@ -75,8 +75,8 @@ Collaboration diagram for IDP::LineFollowing:</div>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1LineFollowing.html#ab30cde971719545d81ce253ae995cc4d">LineFollowing</a> (const <a class="el" href="classIDP_1_1HardwareAbstractionLayer.html">HardwareAbstractionLayer</a> *hal)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Construct the Line Follower.  <a href="#ab30cde971719545d81ce253ae995cc4d"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1LineFollowing.html#a0a8b7e1ecdff2e4d0949b01fcf7609ef">LineFollowing</a> (<a class="el" href="classIDP_1_1HardwareAbstractionLayer.html">HardwareAbstractionLayer</a> *hal)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Construct the Line Follower.  <a href="#a0a8b7e1ecdff2e4d0949b01fcf7609ef"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0">LineFollowingStatus</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1LineFollowing.html#ad26d7726d2bb263658ed3140d3e30852">follow_line</a> (void)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Read line sensors and correct motor movement to keep us going straight.  <a href="#ad26d7726d2bb263658ed3140d3e30852"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0">LineFollowingStatus</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1LineFollowing.html#a551e979a503328c2f645a1af2798d940">turn_left</a> (void)</td></tr>
@@ -95,16 +95,16 @@ Public Member Functions</h2></td></tr>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>Maintain the robot position correctly with respect to the white line markers, during driving and manouvering. </p>
 
-<p>Definition at line <a class="el" href="line__following_8h_source.html#l00128">128</a> of file <a class="el" href="line__following_8h_source.html">line_following.h</a>.</p>
+<p>Definition at line <a class="el" href="line__following_8h_source.html#l00095">95</a> of file <a class="el" href="line__following_8h_source.html">line_following.h</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="ab30cde971719545d81ce253ae995cc4d"></a><!-- doxytag: member="IDP::LineFollowing::LineFollowing" ref="ab30cde971719545d81ce253ae995cc4d" args="(const HardwareAbstractionLayer *hal)" -->
+<a class="anchor" id="a0a8b7e1ecdff2e4d0949b01fcf7609ef"></a><!-- doxytag: member="IDP::LineFollowing::LineFollowing" ref="a0a8b7e1ecdff2e4d0949b01fcf7609ef" args="(HardwareAbstractionLayer *hal)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">IDP::LineFollowing::LineFollowing </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classIDP_1_1HardwareAbstractionLayer.html">HardwareAbstractionLayer</a> *&nbsp;</td>
+          <td class="paramtype"><a class="el" href="classIDP_1_1HardwareAbstractionLayer.html">HardwareAbstractionLayer</a> *&nbsp;</td>
           <td class="paramname"> <em>hal</em></td>
           <td>&nbsp;)&nbsp;</td>
           <td></td>
@@ -115,7 +115,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Construct the Line Follower. </p>
 
-<p>Definition at line <a class="el" href="line__following_8cc_source.html#l00020">20</a> of file <a class="el" href="line__following_8cc_source.html">line_following.cc</a>.</p>
+<p>Definition at line <a class="el" href="line__following_8cc_source.html#l00057">57</a> of file <a class="el" href="line__following_8cc_source.html">line_following.cc</a>.</p>
 
 </div>
 </div>
@@ -139,7 +139,7 @@ Public Member Functions</h2></td></tr>
 <p>Read line sensors and correct motor movement to keep us going straight. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A LineFollowingStatus to indicate that either we are going fine, we are lost, or one or more possible turns were found. </dd></dl>
 
-<p>Definition at line <a class="el" href="line__following_8cc_source.html#l00034">34</a> of file <a class="el" href="line__following_8cc_source.html">line_following.cc</a>.</p>
+<p>Definition at line <a class="el" href="line__following_8cc_source.html#l00071">71</a> of file <a class="el" href="line__following_8cc_source.html">line_following.cc</a>.</p>
 
 </div>
 </div>
@@ -162,7 +162,7 @@ Public Member Functions</h2></td></tr>
 <p>Return whether we can see a junction or not, without changing motor settings. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A LineFollowingStatus indicating junctions or NO_TURNS_FOUND if no junctions found. </dd></dl>
 
-<p>Definition at line <a class="el" href="line__following_8cc_source.html#l00392">392</a> of file <a class="el" href="line__following_8cc_source.html">line_following.cc</a>.</p>
+<p>Definition at line <a class="el" href="line__following_8cc_source.html#l00304">304</a> of file <a class="el" href="line__following_8cc_source.html">line_following.cc</a>.</p>
 
 </div>
 </div>
@@ -190,7 +190,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="line__following_8cc_source.html#l00427">427</a> of file <a class="el" href="line__following_8cc_source.html">line_following.cc</a>.</p>
+<p>Definition at line <a class="el" href="line__following_8cc_source.html#l00339">339</a> of file <a class="el" href="line__following_8cc_source.html">line_following.cc</a>.</p>
 
 </div>
 </div>
@@ -213,7 +213,7 @@ Public Member Functions</h2></td></tr>
 <p>Turn the robot around counterclockwise until the sensors detect another line. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A LineFollowingStatus code </dd></dl>
 
-<p>Definition at line <a class="el" href="line__following_8cc_source.html#l00349">349</a> of file <a class="el" href="line__following_8cc_source.html">line_following.cc</a>.</p>
+<p>Definition at line <a class="el" href="line__following_8cc_source.html#l00292">292</a> of file <a class="el" href="line__following_8cc_source.html">line_following.cc</a>.</p>
 
 </div>
 </div>
@@ -236,7 +236,7 @@ Public Member Functions</h2></td></tr>
 <p>Turn the robot around clockwise until the sensors detect another line. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A LineFollowingStatus code </dd></dl>
 
-<p>Definition at line <a class="el" href="line__following_8cc_source.html#l00307">307</a> of file <a class="el" href="line__following_8cc_source.html">line_following.cc</a>.</p>
+<p>Definition at line <a class="el" href="line__following_8cc_source.html#l00281">281</a> of file <a class="el" href="line__following_8cc_source.html">line_following.cc</a>.</p>
 
 </div>
 </div>
@@ -259,7 +259,7 @@ Public Member Functions</h2></td></tr>
 <p>Turn the robot left until the sensors encounter another line. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A LineFollowingStatus code </dd></dl>
 
-<p>Definition at line <a class="el" href="line__following_8cc_source.html#l00224">224</a> of file <a class="el" href="line__following_8cc_source.html">line_following.cc</a>.</p>
+<p>Definition at line <a class="el" href="line__following_8cc_source.html#l00261">261</a> of file <a class="el" href="line__following_8cc_source.html">line_following.cc</a>.</p>
 
 </div>
 </div>
@@ -282,7 +282,7 @@ Public Member Functions</h2></td></tr>
 <p>Turn the robot right until the sensors detect another line. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A LineFollowingStatus code </dd></dl>
 
-<p>Definition at line <a class="el" href="line__following_8cc_source.html#l00266">266</a> of file <a class="el" href="line__following_8cc_source.html">line_following.cc</a>.</p>
+<p>Definition at line <a class="el" href="line__following_8cc_source.html#l00271">271</a> of file <a class="el" href="line__following_8cc_source.html">line_following.cc</a>.</p>
 
 </div>
 </div>
@@ -305,7 +305,7 @@ Public Member Functions</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Tue Feb 8 2011 01:27:29 for IDPL108 by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Feb 8 2011 02:45:35 for IDPL108 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>
