@@ -8,17 +8,110 @@
 #include "line_following.h"
 #include "hal.h"
 
-#include <iostream>
+// Debug functionality
+#define MODULE_NAME "Navigation"
+#define TRACE_ENABLED   false
+#define DEBUG_ENABLED   true
+#define INFO_ENABLED    true
+#define ERROR_ENABLED   true
+#include "debug.h"
 
-#define NAVIGATION_DEBUG 1
-
-#if NAVIGATION_DEBUG
-#define DEBUG(x) std::cout<<"[Navigation] "<<x<<std::endl
-#else
-#define DEBUG(x)
-#endif
+// For now, define this to avoid unused-variable errors
+#define UNUSED(x) (void)(x)
 
 namespace IDP {
+
+    /**
+     * The turns at each node.
+     *
+     * Indexed by NavigationDirection and then by NavigationNode
+     */
+    const NavigationTurn NAVIGATION_NODE_TURNS[MAX_DIRECTION][MAX_NODE] = {
+        {STRAIGHT, BOTH_AND_STRAIGHT, BOTH_AND_STRAIGHT, BOTH,
+            BOTH_AND_STRAIGHT, BOTH_AND_STRAIGHT, BOTH_AND_STRAIGHT,
+            BOTH_AND_STRAIGHT, BOTH_AND_STRAIGHT, RIGHT, END_OF_LINE},
+        {END_OF_LINE, BOTH_AND_STRAIGHT, BOTH_AND_STRAIGHT, RIGHT_AND_STRAIGHT,
+            BOTH_AND_STRAIGHT, BOTH_AND_STRAIGHT, BOTH_AND_STRAIGHT,
+            BOTH_AND_STRAIGHT, BOTH_AND_STRAIGHT, LEFT, STRAIGHT}
+    };
+
+    /**
+     * Turns that should be taken at each node in each direction.
+     *
+     * Indexed by NavigationDirection and then by NavigationNode
+     */
+    const NavigationTurn NAVIGATION_TURN_MAP[MAX_DIRECTION][MAX_NODE] = {
+        {STRAIGHT, STRAIGHT, STRAIGHT, RIGHT, STRAIGHT, RIGHT, STRAIGHT,
+            STRAIGHT, STRAIGHT, RIGHT, END_OF_LINE},
+        {END_OF_LINE, STRAIGHT, STRAIGHT, LEFT, STRAIGHT, LEFT, STRAIGHT,
+            STRAIGHT, STRAIGHT, LEFT, STRAIGHT}
+    };
+
+    /**
+     * The lookup table of NavigationLocations to a pair of NavigationNodes
+     * indicating the start and end node (with implied direction).
+     */
+    const NavigationNode NAVIGATION_LOCATION_LOOKUP[MAX_LOCATION][2] = {
+        {NODE9, NODE6}, // NAVIGATION_BOXES
+        {NODE7, NODE10},// NAVIGATION_RACK
+        {NODE3, NODE2}  // NAVIGATION_DELIVERY
+    };
+
+    /**
+     * The route to take, node by node
+     */
+    const NavigationNode NAVIGATION_ROUTE_MAP[MAX_DIRECTION][MAX_NODE] = {
+        {NODE2, NODE3, NODE4, NODE5, NODE6, NODE8, NODE8, NODE9, NODE10,
+            NODE11, NODE10},
+        {NODE2, NODE1, NODE2, NODE3, NODE4, NODE5, NODE6, NODE7, NODE8,
+            NODE9, NODE10}
+    };
+
+    /**
+     * String representations of NavigationStatus
+     */
+    const char* NavigationStatusStrings[] = {
+        "NAVIGATION_ENROUTE", "NAVIGATION_ARRIVED", "NAVIGATION_LOST",
+        "MAX_STATUS"
+    };
+
+    /**
+     * String representations of NavigationLocation
+     */
+    const char* NavigationLocationStrings[] = {
+        "NAVIGATION_BOXES", "NAVIGATION_RACK", "NAVIGATION_DELIVERY",
+        "MAX_LOCATION"
+    };
+
+    /**
+     * String representations of NavigationDirection
+     */
+    const char* NavigationDirectionStrings[] = {
+        "NAVIGATION_CLOCKWISE", "NAVIGATION_ANTICLOCKWISE", "MAX_DIRECTION"
+    };
+
+    /**
+     * String representations of NavigationNode
+     */
+    const char* NavigationNodeStrings[] = {
+        "NODE1", "NODE2", "NODE3", "NODE4", "NODE5", "NODE6", "NODE7",
+        "NODE8", "NODE9", "NODE10", "NODE11", "MAX_NODE"
+    };
+
+    /**
+     * String representations of NavigationTurn
+     */
+    const char* NavigationTurnStrings[] = {
+        "STRIGHT", "LEFT", "RIGHT", "BOTH", "LEFT_AND_STRAIGHT",
+        "RIGHT_AND_STRAIGHT", "BOTH_AND_STRAIGHT", "END_OF_LINE", "MAX_TURNS"
+    };
+
+    /**
+     * String representations of NavigationCachedJunction
+     */
+    const char* NavigationCachedJunctionStrings[] = {
+        "NO_CACHE", "LEFT_TURN", "RIGHT_TURN", "BOTH_TURNS", "NO_TURNS"
+    };
 
     /**
      * Initialise the class, storing the const pointer to the HAL.
@@ -30,12 +123,15 @@ namespace IDP {
      * \param from The node behind the robot at the start
      * \param to The node in front of the robot at the start
      */
-    Navigation::Navigation(const HardwareAbstractionLayer* hal,
+    Navigation::Navigation(HardwareAbstractionLayer* hal,
         const NavigationNode from=NODE7, const NavigationNode to=NODE8):
         _hal(hal), _from(from), _to(to), _lf(0), _cached_junction(NO_CACHE),
         _doing_second_turn(false)
     {
-        DEBUG("Initialising Navigation");
+        TRACE("Navigation(" << hal << ", " << NavigationNodeStrings[from] <<
+            ", " << NavigationNodeStrings[to] << ")");
+        INFO("Initialising Navigation");
+        
         // Initialise a new lf object
         this->_lf = new LineFollowing(hal);
         this->_lf->set_speed(127);
@@ -46,6 +142,8 @@ namespace IDP {
      */
     Navigation::~Navigation()
     {
+        TRACE("~Navigation()");
+        INFO("Destructing Navigation");
         if(this->_lf)
             delete this->_lf;
     }
@@ -54,18 +152,24 @@ namespace IDP {
      * Go to a NavigationLocation.
      * \returns A NavigationStatus code
      */
-    const NavigationStatus Navigation::go(const NavigationLocation location)
+    NavigationStatus Navigation::go(const NavigationLocation location)
     {
+        TRACE("go(" << NavigationLocationStrings[location] << ")");
+        UNUSED(location);
+        return NAVIGATION_ARRIVED;
     }
 
     /**
      * Go to a particular NavigationNode
      * \returns A NavigationStatus code
      */
-    const NavigationStatus Navigation::go_node(const NavigationNode target)
+    NavigationStatus Navigation::go_node(const NavigationNode target)
     {
-        DEBUG("from: " << _from+1 << ", to: " << _to+1 <<
-            ", target: " << target+1);
+        TRACE("go_node(" << NavigationNodeStrings[target] << ")");
+        DEBUG("From " << NavigationNodeStrings[_from] << ", to " <<
+            NavigationNodeStrings[_to] << ", target " <<
+            NavigationNodeStrings[target]);
+
         if(target == this->_to) {
             // Already heading in the right direction
             LineFollowingStatus status = this->_lf->follow_line();
@@ -135,6 +239,7 @@ namespace IDP {
                 // Still driving forwards
                 // TODO catch this status and do something with it
                 LineFollowingStatus status = this->_lf->follow_line();
+                UNUSED(status);
                 this->_cached_junction = NO_CACHE; 
                 return NAVIGATION_ENROUTE;
             } else {

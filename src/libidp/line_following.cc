@@ -9,6 +9,7 @@
 
 // Debug functionality
 #define MODULE_NAME "LineFollowing"
+#define TRACE_ENABLED   false
 #define DEBUG_ENABLED   true
 #define INFO_ENABLED    true
 #define ERROR_ENABLED   true
@@ -53,7 +54,7 @@ namespace IDP {
     /**
      * Construct the Line Follower
      */
-    LineFollowing::LineFollowing(const HardwareAbstractionLayer* hal)
+    LineFollowing::LineFollowing(HardwareAbstractionLayer* hal)
         : _hal(hal), _left_error(0), _right_error(0), _speed(0),
         _lost_turning_line(false), _lost_time(0)
     {
@@ -394,6 +395,8 @@ namespace IDP {
             }
         }
 
+        // We shouldn't ever get here but the compiler can get confused.
+        return OTHER;
     }
 
     /**

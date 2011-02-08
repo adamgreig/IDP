@@ -39,13 +39,13 @@ namespace IDP {
     class ClampControl
     {
         public:
-            ClampControl(const HardwareAbstractionLayer* hal);
+            ClampControl(HardwareAbstractionLayer* hal);
             void pick_up();
             void put_down();
-            const BobbinColour colour() const;
-            const BobbinBadness badness() const;
+            BobbinColour colour() const;
+            BobbinBadness badness() const;
         private:
-            const HardwareAbstractionLayer* _hal;
+            HardwareAbstractionLayer* _hal;
     };
 }
 

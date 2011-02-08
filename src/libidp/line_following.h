@@ -95,7 +95,7 @@ namespace IDP {
     class LineFollowing 
     {
         public:
-            LineFollowing(const HardwareAbstractionLayer* hal);
+            LineFollowing(HardwareAbstractionLayer* hal);
             LineFollowingStatus follow_line(void);
             LineFollowingStatus turn_left(void);
             LineFollowingStatus turn_right(void);
@@ -111,12 +111,12 @@ namespace IDP {
             LineFollowingLineStatus line_status(
                 LineFollowingTurnDirection dir);
 
+            HardwareAbstractionLayer* _hal; 
             unsigned short int _left_error;
             unsigned short int _right_error;
-            bool _lost_turning_line;
             unsigned short int _speed;
+            bool _lost_turning_line;
             unsigned short int _lost_time;
-            const HardwareAbstractionLayer* _hal; 
     };
 }
 

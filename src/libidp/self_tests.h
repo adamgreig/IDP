@@ -41,6 +41,8 @@ namespace IDP {
             void status_LEDs(void);
             void colour_sensor_LEDs(void);
             void badness_LED(void);
+        private:
+            int _robot;
     };
 }
 

@@ -4,12 +4,19 @@
 // self_tests.cc
 // Self Tests class implementation
 
-#include <iostream>
 
 #include "self_tests.h"
 #include "mission_supervisor.h"
 #include "hal.h"
 #include "line_following.h"
+
+// Debug functionality
+#define MODULE_NAME "SelfTests"
+#define TRACE_ENABLED   false
+#define DEBUG_ENABLED   true
+#define INFO_ENABLED    true
+#define ERROR_ENABLED   true
+#include "debug.h"
 
 namespace IDP {
     /**
@@ -18,8 +25,10 @@ namespace IDP {
      * link to robot, with its own HAL instance
      * \param robot Which robot to link to, or 0 if embedded
      */
-    SelfTests::SelfTests(int robot = 0)
+    SelfTests::SelfTests(int robot = 0): _robot(robot)
     {
+        TRACE("SelfTests("<<robot<<")");
+        INFO("Initialising a SelfTests");
     }
 
     /**
@@ -27,6 +36,7 @@ namespace IDP {
      */
     void SelfTests::drive_forward()
     {
+        TRACE("drive_forward()");
     }
 
     /**
@@ -34,6 +44,7 @@ namespace IDP {
      */
     void SelfTests::drive_backward()
     {
+        TRACE("drive_backwardi()");
     }
 
     /**
@@ -41,6 +52,7 @@ namespace IDP {
      */
     void SelfTests::stop()
     {
+        TRACE("stop()");
     }
 
     /**
@@ -49,6 +61,7 @@ namespace IDP {
      */
     void SelfTests::turn_left()
     {
+        TRACE("turn_left()");
     }
 
     /**
@@ -57,6 +70,7 @@ namespace IDP {
      */
     void SelfTests::turn_right()
     {
+        TRACE("turn_right()");
     }
     
     /**
@@ -65,6 +79,7 @@ namespace IDP {
      */
     void SelfTests::steer_left()
     {
+        TRACE("steer_left()");
     }
 
     /**
@@ -73,6 +88,7 @@ namespace IDP {
      */
     void SelfTests::steer_right()
     {
+        TRACE("steer_right()");
     }
 
     /**
@@ -81,6 +97,7 @@ namespace IDP {
      */
     void SelfTests::line_sensors()
     {
+        TRACE("line_sensors()");
     }
 
     /**
@@ -88,6 +105,7 @@ namespace IDP {
      */
     void SelfTests::microswitches()
     {
+        TRACE("microswitches()");
     }
     
     /**
@@ -95,6 +113,7 @@ namespace IDP {
      */
     void SelfTests::LDRs()
     {
+        TRACE("LDRs()");
     }
 
     /**
@@ -102,6 +121,7 @@ namespace IDP {
      */
     void SelfTests::actuators()
     {
+        TRACE("actuators()");
     }
 
     /**
@@ -109,6 +129,7 @@ namespace IDP {
      */
     void SelfTests::line_following()
     {
+        TRACE("line_following()");
     }
 
     /**
@@ -117,6 +138,7 @@ namespace IDP {
      */
     void SelfTests::clamp_control()
     {
+        TRACE("clamp_control()");
     }
 
     /**
@@ -125,6 +147,7 @@ namespace IDP {
      */
     void SelfTests::bobbin_analyse()
     {
+        TRACE("bobbin_analyse()");
     }
 
     /**
@@ -133,6 +156,7 @@ namespace IDP {
      */
     void SelfTests::navigate()
     {
+        TRACE("navigate()");
     }
 
     /**
@@ -141,6 +165,7 @@ namespace IDP {
      */
     void SelfTests::position()
     {
+        TRACE("position()");
     }
 
     /**
@@ -149,6 +174,7 @@ namespace IDP {
      */
     void SelfTests::status_LEDs()
     {
+        TRACE("status_LEDs()");
     }
 
     /**
@@ -157,12 +183,14 @@ namespace IDP {
      */
     void SelfTests::colour_sensor_LEDs()
     {
+        TRACE("colour_sensor_LEDs()");
     }
 
     /**
      * Turn on the LED used for detecting bad bobbins
      */
-    void SelfTests::badness_LED(void)
+    void SelfTests::badness_LED()
     {
+        TRACE("badness_LED()");
     }
 }

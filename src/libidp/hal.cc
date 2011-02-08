@@ -11,13 +11,16 @@
 
 #include <robot_instr.h>
 
-#define HAL_DEBUG 0
+// Debug functionality
+#define MODULE_NAME "HAL"
+#define TRACE_ENABLED   false
+#define DEBUG_ENABLED   false
+#define INFO_ENABLED    true
+#define ERROR_ENABLED   true
+#include "debug.h"
 
-#if HAL_DEBUG
-#define DEBUG(x) std::cout<<"[HAL] "<<x<<std::endl
-#else
-#define DEBUG(x)
-#endif
+// For now, define this to avoid unused-variable errors
+#define UNUSED(x) (void)(x)
 
 namespace IDP {
 
@@ -27,11 +30,14 @@ namespace IDP {
      */
     HardwareAbstractionLayer::HardwareAbstractionLayer(const int robot=0)
     {
+        TRACE("HardwareAbstractionLayer(" << robot << ")");
+        INFO("Constructing HAL");
+
         int status;
         this->rlink = new robot_link;
 
         // Initialise link
-        DEBUG("Initialising link");
+        INFO("Initialising link");
         if(robot == 0) {
             status = this->rlink->initialise();
         } else {
@@ -40,13 +46,13 @@ namespace IDP {
 
         // Check link, exit on failure
         if(!status) {
-            DEBUG("ERROR: Initialising rlink");
-            DEBUG("Could not initialise, quitting");
+            ERROR("Error initialising rlink, quitting");
             std::exit(1);
             return;
         }
 
         // Set motor ramp speed
+        DEBUG("Setting motor ramp speed to " << MOTOR_RAMP_TIME);
         this->rlink->command(RAMP_TIME, MOTOR_RAMP_TIME);
 
     }
@@ -56,8 +62,9 @@ namespace IDP {
      * \param speed The speed to drive at, 0 to 127
      */
     void HardwareAbstractionLayer::motors_forward(
-        const unsigned short int speed) const
+        const unsigned short int speed)
     {
+        TRACE("motors_forward(" << speed << ")");
         DEBUG("Driving motors forward, speed " << speed);
 
         if(this->check_max_speed(speed)) {
@@ -72,8 +79,9 @@ namespace IDP {
      * \param speed The speed to drive at, 0 to 127
      */
     void HardwareAbstractionLayer::motors_backward(
-        const unsigned short int speed) const
+        const unsigned short int speed)
     {
+        TRACE("motors_backward(" << speed << ")");
         DEBUG("Driving motors backward, speed " << speed);
 
         if(this->check_max_speed(speed)) {
@@ -84,28 +92,13 @@ namespace IDP {
     }
 
     /**
-     * Drive the motors to steer the robot to the left.
-     * \param speed The speed to drive at, 0 to 127
-     */
-    void HardwareAbstractionLayer::motors_turn_left(
-        const unsigned short int speed) const
-    {
-        DEBUG("Turning motors left, speed " << speed);
-
-        if(this->check_max_speed(speed)) {
-            return;
-        }
-
-        this->rlink->command(BOTH_MOTORS_GO_SAME, (1<<7) | speed);
-    }
-
-    /**
      * Drive the left motor forward at the given speed
      * \param speed The speed at which to drive the motor
      */
     void HardwareAbstractionLayer::motor_left_forward(
-        const unsigned short int speed) const
+        const unsigned short int speed)
     {
+        TRACE("motors_turn_right(" << speed << ")");
         DEBUG("Setting left motor forward at speed " << speed);
 
         if (this->check_max_speed(speed)) {
@@ -120,8 +113,9 @@ namespace IDP {
      * \param speed The speed at which to drive the motor
      */
     void HardwareAbstractionLayer::motor_right_forward(
-        const unsigned short int speed) const
+        const unsigned short int speed)
     {
+        TRACE("motor_right_forward(" << speed << ")");
         DEBUG("Setting right motor forward at speed " << speed);
 
         if (this->check_max_speed(speed)) {
@@ -136,8 +130,9 @@ namespace IDP {
      * \param speed The speed at which to drive the motor
      */
     void HardwareAbstractionLayer::motor_left_backward(
-        const unsigned short int speed) const
+        const unsigned short int speed)
     {
+        TRACE("motor_left_backward(" << speed << ")");
         DEBUG("Setting left motor backward at speed " << speed);
 
         if (this->check_max_speed(speed)) {
@@ -152,8 +147,9 @@ namespace IDP {
      * \param speed The speed at which to drive the motor
      */
     void HardwareAbstractionLayer::motor_right_backward(
-        const unsigned short int speed) const
+        const unsigned short int speed)
     {
+        TRACE("motor_right_backward(" << speed << ")");
         DEBUG("Setting right motor backward at speed " << speed);
 
         if (this->check_max_speed(speed)) {
@@ -164,12 +160,30 @@ namespace IDP {
     }
 
     /**
+     * Drive the motors to steer the robot to the left.
+     * \param speed The speed to drive at, 0 to 127
+     */
+    void HardwareAbstractionLayer::motors_turn_left(
+        const unsigned short int speed)
+    {
+        TRACE("motors_turn_left(" << speed << ")");
+        DEBUG("Turning motors left, speed " << speed);
+
+        if(this->check_max_speed(speed)) {
+            return;
+        }
+
+        this->rlink->command(BOTH_MOTORS_GO_SAME, (1<<7) | speed);
+    }
+
+    /**
      * Drive the motors to steer the robot to the right.
      * \param speed The speed to drive at, 0 to 127
      */
     void HardwareAbstractionLayer::motors_turn_right(
-        const unsigned short int speed) const
+        const unsigned short int speed)
     {
+        TRACE("motors_turn_right(" << speed << ")");
         DEBUG("Turning motors right, speed " << speed);
 
         if(this->check_max_speed(speed)) {
@@ -182,9 +196,10 @@ namespace IDP {
     /**
      * Stop all motors.
      */
-    void HardwareAbstractionLayer::motors_stop() const
+    void HardwareAbstractionLayer::motors_stop()
     {
-        DEBUG("Stopping all motors");
+        TRACE("motors_stop()");
+        INFO("Stopping all motors");
         this->rlink->command(MOTOR_1_GO, 0);
         this->rlink->command(MOTOR_2_GO, 0);
         this->rlink->command(MOTOR_3_GO, 0);
@@ -198,6 +213,7 @@ namespace IDP {
      */
     const LineSensors HardwareAbstractionLayer::line_following_sensors() const
     {
+        TRACE("line_following_sensors()");
         DEBUG("Reading line following sensors");
 
         // Get the port values
@@ -234,6 +250,8 @@ namespace IDP {
      */
     void HardwareAbstractionLayer::clear_status_register() const
     {
+        TRACE("clear_status_register()");
+        DEBUG("Reading and discarding status register");
         this->rlink->request(STATUS);
     }
 
@@ -243,6 +261,8 @@ namespace IDP {
      */
     char HardwareAbstractionLayer::status_register() const
     {
+        TRACE("status_register()");
+        DEBUG("Reading status register");
         return static_cast<char>(this->rlink->request(STATUS));
     }
 
@@ -252,6 +272,8 @@ namespace IDP {
      */
     bool HardwareAbstractionLayer::reset_switch() const
     {
+        TRACE("reset_switch()");
+        return false;
     }
 
     /**
@@ -260,6 +282,8 @@ namespace IDP {
      */
     bool HardwareAbstractionLayer::grabber_switch() const
     {
+        TRACE("grabber_switch()");
+        return false;
     }
 
     /**
@@ -268,6 +292,8 @@ namespace IDP {
      */
     unsigned short int HardwareAbstractionLayer::colour_ldr() const
     {
+        TRACE("colour_ldr()");
+        return 0;
     }
 
     /**
@@ -276,6 +302,8 @@ namespace IDP {
      */
     unsigned short int HardwareAbstractionLayer::bad_bobbin_ldr() const
     {
+        TRACE("bad_bobbin_ldr()");
+        return 0;
     }
 
     /**
@@ -285,8 +313,12 @@ namespace IDP {
      * \param led_2 Whether LED2 should be on or off (true=on)
      */
     void HardwareAbstractionLayer::indication_LEDs(const bool led_0,
-        const bool led_1, const bool led_2) const
+        const bool led_1, const bool led_2)
     {
+        TRACE("indication_LEDs("<<led_0<<", "<<led_1<<", "<<led_2<<")");
+        UNUSED(led_0);
+        UNUSED(led_1);
+        UNUSED(led_2);
     }
 
     /**
@@ -296,8 +328,11 @@ namespace IDP {
      * \param green Whether the green LED should be on or off (true=on)
      */
     void HardwareAbstractionLayer::colour_leds(const bool red,
-        const bool green) const
+        const bool green)
     {
+        TRACE("colour_leds("<<red<<", "<<green<<")");
+        UNUSED(red);
+        UNUSED(green);
     }
 
     /**
@@ -305,24 +340,30 @@ namespace IDP {
      * bad bobbin detection.
      * \param status Whether the LED should be on or off (true=on)
      */
-    void HardwareAbstractionLayer::bad_bobbin_led(const bool status) const
+    void HardwareAbstractionLayer::bad_bobbin_led(const bool status)
     {
+        TRACE("bad_bobbin_led("<<status<<")");
+        UNUSED(status);
     }
 
     /**
      * Turn the grabber jaw actuator on or off.
      * \param status Jaw actuator status (true=on)
      */
-    void HardwareAbstractionLayer::grabber_jaw(const bool status) const
+    void HardwareAbstractionLayer::grabber_jaw(const bool status)
     {
+        TRACE("grabber_jaw("<<status<<")");
+        UNUSED(status);
     }
 
     /**
      * Turn the grabber lift mechanism actuator on or off.
      * \param status Lift actuator status (true=on)
      */
-    void HardwareAbstractionLayer::grabber_lift(const bool status) const
+    void HardwareAbstractionLayer::grabber_lift(const bool status)
     {
+        TRACE("grabber_lift("<<status<<")");
+        UNUSED(status);
     }
 
     /**
@@ -334,6 +375,7 @@ namespace IDP {
     bool HardwareAbstractionLayer::check_max_speed(
         const unsigned short int speed) const
     {
+        TRACE("check_max_speed("<<speed<<")");
         if(speed > MOTOR_MAX_SPEED) {
             DEBUG("ERROR: Motor speed too high, not setting");
             return true;

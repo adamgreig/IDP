@@ -19,7 +19,7 @@ namespace IDP {
      */
     class StatusWatchdog {
         public:
-            const int check() const;
+            int check() const;
     };
 }
 
