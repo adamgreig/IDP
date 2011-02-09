@@ -236,9 +236,9 @@ namespace IDP {
         TRACE("test_navigation()");
         INFO("Testing navigation");
 
-        NavigationNode from     = NODE1;
-        NavigationNode to       = NODE2;
-        NavigationNode target   = NODE11;
+        NavigationNode from     = NODE11;
+        NavigationNode to       = NODE10;
+        NavigationNode target   = NODE9;
 
         Navigation nav(this->_hal, from, to);
         NavigationStatus status;

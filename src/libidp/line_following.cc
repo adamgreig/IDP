@@ -375,6 +375,7 @@ namespace IDP {
         {
             // Totally off the line
             DEBUG("Line status: We cannot see the line at all");
+            return LOST_LINE;
         } else {
             // Different cases for different directions
             if(
@@ -383,9 +384,9 @@ namespace IDP {
                 (dir == TURN_RIGHT &&
                     (s.line_left == LINE && s.line_right == NO_LINE)) ||
                 (dir == TURN_AROUND_CW &&
-                    (s.line_left == LINE && s.line_right == NO_LINE)) ||
+                    (s.outer_right == LINE)) ||
                 (dir == TURN_AROUND_CCW &&
-                    (s.line_left == NO_LINE && s.line_right == LINE))
+                    (s.line_left == LINE && s.line_right == NO_LINE))
             ) {
                 DEBUG("Line status: on the line for our turning direction");
                 return ON_LINE;
@@ -445,7 +446,7 @@ namespace IDP {
             // we can think about recovering rather than going in circles
             // forever.
             this->_lost_time++;
-            if(this->_lost_time > LOST_TIMEOUT) {
+            if(this->_lost_time > LOST_TURNING_TIMEOUT) {
                 ERROR("Haven't seen the line for ages while turning, LOST");
                 this->_lost_time--; //prevent overflow
                 return LOST;

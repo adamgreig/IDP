@@ -25,9 +25,16 @@ namespace IDP {
     const short unsigned int MAX_CORRECTION = 127;
 
     /**
-     * The number of loop iterations before we count as lost
+     * The number of loop iterations before we count as lost when driving
+     * straight
      */
     const unsigned int LOST_TIMEOUT = 50;
+
+    /**
+     * The number of loop iterations before we count as lost when turning
+     * around
+     */
+    const unsigned int LOST_TURNING_TIMEOUT = 400;
 
     /**
      * How much an outer sensor seeing the edge of a line should add

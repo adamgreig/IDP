@@ -74,6 +74,8 @@ namespace IDP {
             NavigationStatus go(const NavigationLocation location);
             NavigationStatus go_node(const NavigationNode target);
         private:
+            void update_cache();
+            NavigationStatus handle_junction(const NavigationNode target);
             HardwareAbstractionLayer* _hal;
             NavigationNode _from;
             NavigationNode _to;
