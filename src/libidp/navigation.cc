@@ -67,51 +67,6 @@ namespace IDP {
             NODE9, NODE10}
     };
 
-    /**
-     * String representations of NavigationStatus
-     */
-    const char* NavigationStatusStrings[] = {
-        "NAVIGATION_ENROUTE", "NAVIGATION_ARRIVED", "NAVIGATION_LOST",
-        "MAX_STATUS"
-    };
-
-    /**
-     * String representations of NavigationLocation
-     */
-    const char* NavigationLocationStrings[] = {
-        "NAVIGATION_BOXES", "NAVIGATION_RACK", "NAVIGATION_DELIVERY",
-        "MAX_LOCATION"
-    };
-
-    /**
-     * String representations of NavigationDirection
-     */
-    const char* NavigationDirectionStrings[] = {
-        "NAVIGATION_CLOCKWISE", "NAVIGATION_ANTICLOCKWISE", "MAX_DIRECTION"
-    };
-
-    /**
-     * String representations of NavigationNode
-     */
-    const char* NavigationNodeStrings[] = {
-        "NODE1", "NODE2", "NODE3", "NODE4", "NODE5", "NODE6", "NODE7",
-        "NODE8", "NODE9", "NODE10", "NODE11", "MAX_NODE"
-    };
-
-    /**
-     * String representations of NavigationTurn
-     */
-    const char* NavigationTurnStrings[] = {
-        "STRIGHT", "LEFT", "RIGHT", "BOTH", "LEFT_AND_STRAIGHT",
-        "RIGHT_AND_STRAIGHT", "BOTH_AND_STRAIGHT", "END_OF_LINE", "MAX_TURNS"
-    };
-
-    /**
-     * String representations of NavigationCachedJunction
-     */
-    const char* NavigationCachedJunctionStrings[] = {
-        "NO_CACHE", "LEFT_TURN", "RIGHT_TURN", "BOTH_TURNS", "NO_TURNS"
-    };
 
     /**
      * Initialise the class, storing the const pointer to the HAL.
@@ -170,151 +125,95 @@ namespace IDP {
             NavigationNodeStrings[_to] << ", target " <<
             NavigationNodeStrings[target]);
 
-        if(target == this->_to) {
-            // Already heading in the right direction
+        // Check if we need to turn, and do so
+        if(this->turn_around_required(target))
+            return this->turn_around();
+
+        // Update our cached view of the junction status.
+        // This stores the last known junction when we start
+        // a turn so we don't get confused halfway through.
+        this->update_cache();
+
+        // If we detect a junction, handle it, otherwise keep on
+        // driving straight.
+        if(this->_cached_junction == NO_TURNS) {
+            this->_cached_junction = NO_CACHE;
             LineFollowingStatus status = this->_lf->follow_line();
-            if(status == ACTION_IN_PROGRESS) {
-                // Still driving
-                return NAVIGATION_ENROUTE;
-            } else if(status == LOST) {
-                DEBUG("LineFollowing got lost :(");
-                return NAVIGATION_LOST;
-            } else {
-                // Found the junction
-                // Later, check this is the correct junction
-                DEBUG("Found target junction");
-                return NAVIGATION_ARRIVED;
-            }
+            UNUSED(status);
+            return NAVIGATION_ENROUTE;
         } else {
-            // Determine direction we need to be travelling to get to
-            // the target, and also the direction we are currently
-            // travelling.
-            NavigationDirection target_direction, current_direction;
-            if(target > this->_to)
-                target_direction = NAVIGATION_CLOCKWISE;
-            else
-                target_direction = NAVIGATION_ANTICLOCKWISE;
-            if(this->_to > this->_from)
-                current_direction = NAVIGATION_CLOCKWISE;
-            else
-                current_direction = NAVIGATION_ANTICLOCKWISE;
-
-            // If we need to turn around, work out which way and
-            // do the turn.
-            if(target_direction != current_direction) {
-                DEBUG("Need to turn around");
-                LineFollowingStatus turnstatus;
-                if(current_direction == NAVIGATION_CLOCKWISE)
-                    turnstatus = this->_lf->turn_around_cw();
-                else
-                    turnstatus = this->_lf->turn_around_ccw();
-                if(turnstatus == ACTION_IN_PROGRESS)
-                    return NAVIGATION_ENROUTE;
-                else if(turnstatus == LOST)
-                    return NAVIGATION_LOST;
-
-                DEBUG("Turn completed");
-
-                // Swap to and from now that we've finished the turn
-                NavigationNode placeholder = this->_to;
-                this->_to = this->_from;
-                this->_from = placeholder;
-                current_direction = target_direction;
-            }
-
-            // If nothing is in the cache, update it, otherwise
-            // leave it alone.
-            this->update_cache();
-
-            if(this->_cached_junction == NO_TURNS) {
-                // Still driving forwards
-                // TODO catch this status and do something with it
-                LineFollowingStatus status = this->_lf->follow_line();
-                UNUSED(status);
-                this->_cached_junction = NO_CACHE; 
-                return NAVIGATION_ENROUTE;
-            } else {
-                DEBUG("Arrived at junction " << this->_to + 1);
-                // We are at a junction or EOL
-                if(this->_to == target) {
-                    DEBUG("Arrived at target! :)");
-                    return NAVIGATION_ARRIVED;
-                } else {
-                    // Look up which direction to go
-                    NavigationTurn turn;
-                    turn = NAVIGATION_TURN_MAP[current_direction][this->_to];
-                    if(turn == STRAIGHT) {
-                        // Go straight. Check we're over the junction by
-                        // ensuring we get ACTION_IN_PROGRESS back before
-                        // updating our position.
-                        DEBUG("Continuing straight over junction");
-                        LineFollowingStatus status = this->_lf->follow_line();
-                        if(status == ACTION_IN_PROGRESS) {
-                            DEBUG("Driven over juntion");
-                            this->_cached_junction = NO_CACHE; 
-                            this->_from = this->_to;
-                            this->_to = NAVIGATION_ROUTE_MAP
-                                [current_direction][this->_to];
-                        }
-                    } else if(turn == LEFT) {
-                        DEBUG("Turning left");
-                        LineFollowingStatus status = this->_lf->turn_left();
-                        if(status == ACTION_COMPLETED) {
-                            DEBUG("Left turn completed");
-                            this->_cached_junction = NO_CACHE; 
-                            this->_from = this->_to;
-                            this->_to = NAVIGATION_ROUTE_MAP
-                                [current_direction][this->_to];
-                        }
-                    } else if(turn == RIGHT) {
-                        DEBUG("Turning right");
-                        LineFollowingStatus status = this->_lf->turn_right();
-                        if(status == ACTION_COMPLETED) {
-                            DEBUG("Right turn completed");
-                            if(this->_to == NODE6 &&
-                                    current_direction == NAVIGATION_CLOCKWISE){
-                                if(!this->_doing_second_turn) {
-                                    this->_doing_second_turn = true;
-                                    return NAVIGATION_ENROUTE;
-                                }
-                            }
-                            this->_doing_second_turn = false;
-                            this->_cached_junction = NO_CACHE; 
-                            this->_from = this->_to;
-                            this->_to = NAVIGATION_ROUTE_MAP
-                                [current_direction][this->_to];
-                        }
-                    } else if(turn == END_OF_LINE) {
-                        DEBUG("end of line :(");
-                        this->_hal->motors_stop();
-                        return NAVIGATION_ARRIVED;
-                    }
-                    return NAVIGATION_ENROUTE;
-                }
-            }
+            return this->handle_junction(target);
         }
+
     }
 
     /**
-     * Check if we need to turn around, and if so set that up.
+     * Check if we need to turn around
      * \param target The NavigationNode we need to go to
-     * \returns A NavigationTurnStatus of ACTION_IN_PROGRESS if
-     * we are turning, or ACTION_COMPLETED if a turn is complete
-     * or was not required.
+     * \returns A bool, true if we need to turn around
      */
-    NavigationTurnStatus Navigation::check_turn_around(
-        const NavigationNode target)
+    bool Navigation::turn_around_required(const NavigationNode target) const
     {
+        TRACE("turn_around_required(" << NavigationNodeStrings[target]<<")");
+
+        // Determine direction we need to be travelling to get to
+        // the target, and also the direction we are currently
+        // travelling.
+        NavigationDirection target_direction, current_direction;
+        if(target > this->_to)
+            target_direction = NAVIGATION_CLOCKWISE;
+        else
+            target_direction = NAVIGATION_ANTICLOCKWISE;
+        if(this->_to > this->_from)
+            current_direction = NAVIGATION_CLOCKWISE;
+        else
+            current_direction = NAVIGATION_ANTICLOCKWISE;
+
+        return target_direction != current_direction;
     }
 
     /**
-     * Handle completing a turn left, right, or around clockwise or
-     * anticlockwise.
-     * \return A NavigationTurnStatus of ACTION_IN_PROGRESS if currently
-     * turning, or ACTION_COMPLETED if the turn is complete.
+     * Determine the current direction of travel and then execute an
+     * about turn.
+     * \returns A NavigationStatus of NAVIGATION_ENROUTE if currently
+     * turning, or NAVIGATION_LOST if line following got lost during
+     * the turn.
      */
-    NavigationTurnStatus Navigation::turn()
+    NavigationStatus Navigation::turn_around()
     {
+        TRACE("turn_around()");
+
+        // Determine the current direction of travel around the course
+        NavigationDirection current_direction;
+        if(this->_to > this->_from) {
+            DEBUG("We are travelling clockwise");
+            current_direction = NAVIGATION_CLOCKWISE;
+        } else {
+            DEBUG("We are travelling anticlockwise");
+            current_direction = NAVIGATION_ANTICLOCKWISE;
+        }
+
+        // Request LineFollowing to execute the required turn.
+        LineFollowingStatus turnstatus;
+        if(current_direction == NAVIGATION_CLOCKWISE) {
+            DEBUG("Turning clockwise");
+            turnstatus = this->_lf->turn_around_cw();
+        } else {
+            DEBUG("Turning anticlockwise");
+            turnstatus = this->_lf->turn_around_ccw();
+        }
+        
+        if(turnstatus == ACTION_COMPLETED) {
+            // Swap around to and from nodes
+            NavigationNode placeholder = this->_to;
+            this->_to = this->_from;
+            this->_from = placeholder;
+        } else if(turnstatus == LOST) {
+            // If lost, bubble that up
+            return NAVIGATION_LOST;
+        }
+
+        return NAVIGATION_ENROUTE;
     }
 
     /**
@@ -324,6 +223,7 @@ namespace IDP {
     void Navigation::update_cache()
     {
         TRACE("update_cache()");
+
         if(this->_cached_junction == NO_CACHE) {
             LineFollowingStatus status = this->_lf->junction_status();
             DEBUG("Updating cache with " << LineFollowingStatusStrings[status]);
@@ -355,6 +255,76 @@ namespace IDP {
      */
     NavigationStatus Navigation::handle_junction(const NavigationNode target)
     {
+        TRACE("handle_junction("<<NavigationNodeString[target]<<")");
+
+        // See if we're there!
+        if(target == this->_to) {
+            DEBUG("Found target junction");
+            return NAVIGATION_ARRIVED;
+        }
+
+        // Determine the current direction of travel around the course
+        NavigationDirection current_direction;
+        if(this->_to > this->_from) {
+            DEBUG("We are travelling clockwise");
+            current_direction = NAVIGATION_CLOCKWISE;
+        } else {
+            DEBUG("We are travelling anticlockwise");
+            current_direction = NAVIGATION_ANTICLOCKWISE;
+        }
+
+        // Look up which direction to go
+        NavigationTurn turn;
+        turn = NAVIGATION_TURN_MAP[current_direction][this->_to];
+
+        // Store the result of the LineFollowing operation
+        LineFollowingStatus status;
+
+        // Initialise status to a somewhat harmless default
+        status = ACTION_IN_PROGRESS;
+
+        if(turn == STRAIGHT) {
+            DEBUG("Continuing straight over junction");
+            status = this->_lf->follow_line();
+        } else if(turn == LEFT) {
+            DEBUG("Turning left");
+            status = this->_lf->turn_left();
+        } else if(turn == RIGHT) {
+            DEBUG("Turning right");
+            status = this->_lf->turn_right();
+        } else if(turn == END_OF_LINE) {
+            DEBUG("end of line :(");
+            this->_hal->motors_stop();
+            return NAVIGATION_ARRIVED;
+        }
+
+        // Special case the right hand turn after NODE6 as the
+        // robot will see the starting box line and believe
+        // that to be the end of the turn when in fact it is not.
+        if(turn == RIGHT && this->_to == NODE6 &&
+            current_direction == NAVIGATION_CLOCKWISE &&
+            status == ACTION_COMPLETED && !this->_doing_second_turn)
+        {
+            INFO("Executing special case second right turn at NODE6");
+            this->_doing_second_turn = true;
+            return NAVIGATION_ENROUTE;
+        }
+
+        // If we're going straight, ACTION_IN_PROGRESS is an
+        // indication of completion, while ACTION_COMPLETED means
+        // a turn completed.
+        if((turn == STRAIGHT && status == ACTION_IN_PROGRESS)
+            || status == ACTION_COMPLETED)
+        {
+            DEBUG("Completed junction action");
+            this->_doing_second_turn = false;
+            this->_cached_junction = NO_CACHE;
+            this->_from = this->_to;
+            this->_to = NAVIGATION_ROUTE_MAP[current_direction][this->_to];
+            return NAVIGATION_ARRIVED;
+        } else {
+            return NAVIGATION_ENROUTE;
+        }
     }
 }
 

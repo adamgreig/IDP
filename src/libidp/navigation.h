@@ -62,6 +62,52 @@ namespace IDP {
     };
 
     /**
+     * String representations of NavigationStatus
+     */
+    static const char* const NavigationStatusStrings[] = {
+        "NAVIGATION_ENROUTE", "NAVIGATION_ARRIVED", "NAVIGATION_LOST",
+        "MAX_STATUS"
+    };
+
+    /**
+     * String representations of NavigationLocation
+     */
+    static const char* const NavigationLocationStrings[] = {
+        "NAVIGATION_BOXES", "NAVIGATION_RACK", "NAVIGATION_DELIVERY",
+        "MAX_LOCATION"
+    };
+
+    /**
+     * String representations of NavigationDirection
+     */
+    static const char* const NavigationDirectionStrings[] = {
+        "NAVIGATION_CLOCKWISE", "NAVIGATION_ANTICLOCKWISE", "MAX_DIRECTION"
+    };
+
+    /**
+     * String representations of NavigationNode
+     */
+    static const char* const NavigationNodeStrings[] = {
+        "NODE1", "NODE2", "NODE3", "NODE4", "NODE5", "NODE6", "NODE7",
+        "NODE8", "NODE9", "NODE10", "NODE11", "MAX_NODE"
+    };
+
+    /**
+     * String representations of NavigationTurn
+     */
+    static const char* const NavigationTurnStrings[] = {
+        "STRIGHT", "LEFT", "RIGHT", "BOTH", "LEFT_AND_STRAIGHT",
+        "RIGHT_AND_STRAIGHT", "BOTH_AND_STRAIGHT", "END_OF_LINE", "MAX_TURNS"
+    };
+
+    /**
+     * String representations of NavigationCachedJunction
+     */
+    static const char* const NavigationCachedJunctionStrings[] = {
+        "NO_CACHE", "LEFT_TURN", "RIGHT_TURN", "BOTH_TURNS", "NO_TURNS"
+    };
+
+    /**
      * Find a route from one place to another on the board, and
      * maintain an estimate of the current position
      */
@@ -75,6 +121,8 @@ namespace IDP {
             NavigationStatus go_node(const NavigationNode target);
         private:
             void update_cache();
+            bool turn_around_required(const NavigationNode target) const;
+            NavigationStatus turn_around();
             NavigationStatus handle_junction(const NavigationNode target);
             HardwareAbstractionLayer* _hal;
             NavigationNode _from;

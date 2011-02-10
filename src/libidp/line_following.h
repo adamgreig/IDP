@@ -87,6 +87,40 @@ namespace IDP {
         MAX_LINE_STATUS
     };
 
+    /**
+     * String representations of LineFollowingStatus
+     */
+    static const char* const LineFollowingStatusStrings[] = {
+        "ACTION_IN_PROGRESS",
+        "ACTION_COMPLETED",
+        "LEFT_TURN_FOUND",
+        "RIGHT_TURN_FOUND",
+        "BOTH_TURNS_FOUND",
+        "LOST",
+        "NO_TURNS_FOUND"
+    };
+
+    /**
+     * String representations of LineFollowingTurnDirection
+     */
+    static const char* const LineFollowingTurnDirectionStrings[] = {
+        "TURN_LEFT",
+        "TURN_RIGHT",
+        "TURN_AROUND_CW",
+        "TURN_AROUND_CCW",
+        "MAX_TURN_DIRECTION"
+    };
+
+    /**
+     * String representation of LineFollowingLineStatus
+     */
+    static const char* const LineFollowingLineStatusStrings[] = {
+        "ON_LINE",
+        "LOST_LINE",
+        "OTHER",
+        "MAX_LINE_STATUS"
+    };
+
 
     /**
      * Cap a line following correction value to MAX_CORRECTION

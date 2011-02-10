@@ -18,40 +18,6 @@
 namespace IDP {
 
     /**
-     * String representations of LineFollowingTurnDirection
-     */
-    const char* LineFollowingTurnDirectionStrings[] = {
-        "TURN_LEFT",
-        "TURN_RIGHT",
-        "TURN_AROUND_CW",
-        "TURN_AROUND_CCW",
-        "MAX_TURN_DIRECTION"
-    };
-
-    /**
-     * String representation of LineFollowingLineStatus
-     */
-    const char* LineFollowingLineStatusStrings[] = {
-        "ON_LINE",
-        "LOST_LINE",
-        "OTHER",
-        "MAX_LINE_STATUS"
-    };
-
-    /**
-     * String representations of LineFollowingStatus
-     */
-    const char* LineFollowingStatusStrings[] = {
-        "ACTION_IN_PROGRESS",
-        "ACTION_COMPLETED",
-        "LEFT_TURN_FOUND",
-        "RIGHT_TURN_FOUND",
-        "BOTH_TURNS_FOUND",
-        "LOST",
-        "NO_TURNS_FOUND"
-    };
-
-    /**
      * Construct the Line Follower
      */
     LineFollowing::LineFollowing(HardwareAbstractionLayer* hal)
