@@ -55,17 +55,6 @@ namespace IDP {
         DEBUG("Setting motor ramp speed to " << MOTOR_RAMP_TIME);
         this->rlink->command(RAMP_TIME, MOTOR_RAMP_TIME);
 
-        //for(;;) {
-        //DEBUG("Setting actuators");
-        //LineSensors sensors = this->line_following_sensors();
-        //if(sensors.outer_left == LINE)
-            //this->rlink->command(WRITE_PORT_7, 1<<7);
-        //else if(sensors.outer_right == LINE)
-            //this->rlink->command(WRITE_PORT_7, 1<<6);
-        //else
-            //this->rlink->command(WRITE_PORT_7, 0);
-        //}
-
     }
 
     /**
@@ -364,7 +353,13 @@ namespace IDP {
     void HardwareAbstractionLayer::grabber_jaw(const bool status)
     {
         TRACE("grabber_jaw("<<status<<")");
-        UNUSED(status);
+        if (status) {
+            DEBUG("Clamping");
+            this->rlink->command(WRITE_PORT_7, 1<<7);
+        } else {
+            DEBUG("Releasing clamp");
+            this->rlink->command(WRITE_PORT_7, 0<<7);
+        }
     }
 
     /**
@@ -374,7 +369,13 @@ namespace IDP {
     void HardwareAbstractionLayer::grabber_lift(const bool status)
     {
         TRACE("grabber_lift("<<status<<")");
-        UNUSED(status);
+        if (status) {
+            DEBUG("Lifting grabber");
+            this->rlink->command(WRITE_PORT_7, 1<<6);
+        } else {
+            DEBUG("Lowering grabber");
+            this->rlink->command(WRITE_PORT_7, 0<<6);
+        }
     }
 
     /**

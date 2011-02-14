@@ -5,6 +5,7 @@
 // Clamp Control class implementation
 
 #include "clamp_control.h"
+#include "hal.h"
 
 // Debug functionality
 #define MODULE_NAME "Clamp"
@@ -49,6 +50,10 @@ namespace IDP {
     void ClampControl::pick_up()
     {
         TRACE("pick_up()");
+        this->_hal->grabber_jaw(false);
+        this->_hal->grabber_lift(false);
+        this->_hal->grabber_jaw(true);
+        this->_hal->grabber_lift(true);
     }
 
     /**
@@ -57,6 +62,8 @@ namespace IDP {
     void ClampControl::put_down()
     {
         TRACE("put_down()");
+        this->_hal->grabber_lift(false);
+        this->_hal->grabber_jaw(false);
     }
 
     /**
