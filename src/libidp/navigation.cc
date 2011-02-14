@@ -10,7 +10,7 @@
 
 // Debug functionality
 #define MODULE_NAME "Navigation"
-#define TRACE_ENABLED   false
+#define TRACE_ENABLED   true
 #define DEBUG_ENABLED   true
 #define INFO_ENABLED    true
 #define ERROR_ENABLED   true
@@ -139,7 +139,8 @@ namespace IDP {
         if(this->_cached_junction == NO_TURNS) {
             this->_cached_junction = NO_CACHE;
             LineFollowingStatus status = this->_lf->follow_line();
-            UNUSED(status);
+            if(status == LOST)
+                return NAVIGATION_LOST;
             return NAVIGATION_ENROUTE;
         } else {
             return this->handle_junction(target);
@@ -155,6 +156,10 @@ namespace IDP {
     bool Navigation::turn_around_required(const NavigationNode target) const
     {
         TRACE("turn_around_required(" << NavigationNodeStrings[target]<<")");
+
+        // If target is to, we don't need to turn.
+        if(target == this->_to)
+            return false;
 
         // Determine direction we need to be travelling to get to
         // the target, and also the direction we are currently
@@ -255,7 +260,7 @@ namespace IDP {
      */
     NavigationStatus Navigation::handle_junction(const NavigationNode target)
     {
-        TRACE("handle_junction("<<NavigationNodeString[target]<<")");
+        TRACE("handle_junction("<<NavigationNodeStrings[target]<<")");
 
         // See if we're there!
         if(target == this->_to) {
@@ -321,10 +326,9 @@ namespace IDP {
             this->_cached_junction = NO_CACHE;
             this->_from = this->_to;
             this->_to = NAVIGATION_ROUTE_MAP[current_direction][this->_to];
-            return NAVIGATION_ARRIVED;
-        } else {
-            return NAVIGATION_ENROUTE;
         }
+
+        return NAVIGATION_ENROUTE;
     }
 }
 

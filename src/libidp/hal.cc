@@ -14,7 +14,7 @@
 // Debug functionality
 #define MODULE_NAME "HAL"
 #define TRACE_ENABLED   false
-#define DEBUG_ENABLED   false
+#define DEBUG_ENABLED   true
 #define INFO_ENABLED    true
 #define ERROR_ENABLED   true
 #include "debug.h"
@@ -54,6 +54,17 @@ namespace IDP {
         // Set motor ramp speed
         DEBUG("Setting motor ramp speed to " << MOTOR_RAMP_TIME);
         this->rlink->command(RAMP_TIME, MOTOR_RAMP_TIME);
+
+        //for(;;) {
+        //DEBUG("Setting actuators");
+        //LineSensors sensors = this->line_following_sensors();
+        //if(sensors.outer_left == LINE)
+            //this->rlink->command(WRITE_PORT_7, 1<<7);
+        //else if(sensors.outer_right == LINE)
+            //this->rlink->command(WRITE_PORT_7, 1<<6);
+        //else
+            //this->rlink->command(WRITE_PORT_7, 0);
+        //}
 
     }
 

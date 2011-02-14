@@ -17,7 +17,7 @@ namespace IDP {
     /**
      * Constant for integral control in line following.
      */
-    const double INTEGRAL_GAIN = 4.0;
+    const double INTEGRAL_GAIN = 5.0;
 
     /**
      * Maximum differential correction value before it gets capped
