@@ -130,11 +130,17 @@ int main()
         tests->LDRs();
     } else if(choice == IDP::MENU_INDICATOR_LEDS) {
         tests = new IDP::SelfTests(ROBOT);
-        tests->colour_sensor_LEDs();
+        tests->indicator_LEDs();
     } else if(choice == IDP::MENU_ACTUATORS) {
         tests = new IDP::SelfTests(ROBOT);
         tests->actuators();
-        // TODO: badness_LED test, status_LED test (?), position test
+    } else if(choice == IDP::MENU_COLOUR_SENSOR_LEDS) {
+        tests = new IDP::SelfTests(ROBOT);
+        tests->colour_sensor_LEDs();
+    } else if(choice == IDP::MENU_BAD_BOBBIN_LED) {
+        tests = new IDP::SelfTests(ROBOT);
+        tests->bad_bobbin_LED();
+        // TODO: position test
     } else {
         std::cout << "Invalid selection received from menu, quitting.";
         std::cout << std::endl;

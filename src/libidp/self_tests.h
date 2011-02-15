@@ -43,7 +43,7 @@ namespace IDP {
             void position(void);
             void indicator_LEDs(void);
             void colour_sensor_LEDs(void);
-            void badness_LED(void);
+            void bad_bobbin_LED(void);
         private:
             int _robot;
             HardwareAbstractionLayer* _hal;

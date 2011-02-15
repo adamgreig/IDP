@@ -174,24 +174,24 @@ namespace IDP {
         unsigned short int colour, badness;
         
         // Set red on, take value
-        this->_hal->colour_leds(true, false);
+        this->_hal->colour_LEDs(true, false);
         colour = this->_hal->colour_ldr();
         std::cout << "RED: " << colour << std::endl;
 
         // Now try with green
-        this->_hal->colour_leds(false, true);
+        this->_hal->colour_LEDs(false, true);
         colour = this->_hal->colour_ldr();
         std::cout << "GREEN: " << colour << std::endl;
 
         // And both
-        this->_hal->colour_leds(true, true);
+        this->_hal->colour_LEDs(true, true);
         colour = this->_hal->colour_ldr();
         std::cout << "BOTH: " << colour << std::endl;
 
         // And finally badness
-        this->_hal->colour_leds(false, false);
-        this->_hal->badness_led(true);
-        badness = this->_hal->badness_ldr();
+        this->_hal->colour_LEDs(false, false);
+        this->_hal->bad_bobbin_LED(true);
+        badness = this->_hal->bad_bobbin_ldr();
         std::cout << "BADNESS: " << badness << std::endl;
     }
 
@@ -318,25 +318,25 @@ namespace IDP {
     void SelfTests::colour_sensor_LEDs()
     {
         TRACE("colour_sensor_LEDs()");
-        this->_hal->colour_leds(true, false);
+        this->_hal->colour_LEDs(true, false);
         usleep(500000);
-        this->_hal->colour_leds(true, true);
+        this->_hal->colour_LEDs(true, true);
         usleep(500000);
-        this->_hal->colour_leds(false, true);
+        this->_hal->colour_LEDs(false, true);
         usleep(500000);
-        this->_hal->colour_leds(false, false);
+        this->_hal->colour_LEDs(false, false);
         usleep(500000);
     }
 
     /**
      * Turn on the LED used for detecting bad bobbins
      */
-    void SelfTests::badness_LED()
+    void SelfTests::bad_bobbin_LED()
     {
-        TRACE("badness_LED()");
-        this->_hal->bad_bobbin_led(true);
+        TRACE("bad_bobbin_LED()");
+        this->_hal->bad_bobbin_LED(true);
         usleep(500000);
-        this->_hal->bad_bobbin_led(false);
+        this->_hal->bad_bobbin_LED(false);
         usleep(500000);
     }
 }
