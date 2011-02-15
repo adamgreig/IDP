@@ -72,8 +72,8 @@ namespace IDP {
             unsigned short int bad_bobbin_ldr() const;
             void indication_LEDs(const bool led_0, const bool led_1,
                 const bool led_2);
-            void colour_leds(const bool red, const bool green);
-            void bad_bobbin_led(const bool status);
+            void colour_LEDs(const bool red, const bool green);
+            void bad_bobbin_LED(const bool status);
             void grabber_jaw(const bool status);
             void grabber_lift(const bool status);
         private:
