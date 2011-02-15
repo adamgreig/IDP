@@ -54,6 +54,7 @@ namespace IDP {
     {
         public:
             HardwareAbstractionLayer(const int robot);
+            ~HardwareAbstractionLayer();
             void motors_forward(const unsigned short int speed);
             void motors_backward(const unsigned short int speed);
             void motor_left_forward(const unsigned short int speed);

@@ -348,7 +348,7 @@ namespace IDP {
                 (dir == TURN_LEFT &&
                     (s.line_left == LINE && s.line_right == NO_LINE)) ||
                 (dir == TURN_RIGHT &&
-                    (s.line_left == LINE && s.line_right == NO_LINE)) ||
+                    (s.line_left == NO_LINE && s.line_right == LINE)) ||
                 (dir == TURN_AROUND_CW &&
                     (s.outer_right == LINE)) ||
                 (dir == TURN_AROUND_CCW &&

@@ -64,6 +64,17 @@ namespace IDP {
     }
 
     /**
+     * Destruct the robot link.
+     */
+    HardwareAbstractionLayer::~HardwareAbstractionLayer()
+    {
+        TRACE("~HardwareAbstractionLayer()");
+
+        if(this->rlink)
+            delete this->rlink;
+    }
+
+    /**
      * Drive both motors forwards at a given speed.
      * \param speed The speed to drive at, 0 to 127
      */
@@ -104,7 +115,7 @@ namespace IDP {
     void HardwareAbstractionLayer::motor_left_forward(
         const unsigned short int speed)
     {
-        TRACE("motors_turn_right(" << speed << ")");
+        TRACE("motor_left_forward(" << speed << ")");
         DEBUG("Setting left motor forward at speed " << speed);
 
         if (this->check_max_speed(speed)) {
@@ -206,6 +217,7 @@ namespace IDP {
     {
         TRACE("motors_stop()");
         INFO("Stopping all motors");
+        this->rlink->command(BOTH_MOTORS_GO_SAME, 0);
         this->rlink->command(MOTOR_1_GO, 0);
         this->rlink->command(MOTOR_2_GO, 0);
         this->rlink->command(MOTOR_3_GO, 0);
@@ -279,7 +291,16 @@ namespace IDP {
     bool HardwareAbstractionLayer::reset_switch() const
     {
         TRACE("reset_switch()");
-        return false;
+        DEBUG("Reading reset switch");
+
+        // Get the port values
+        int port_values = this->rlink->request(READ_PORT_0);
+        
+        // Return true or false as appropriate
+        if(port_values & (1<<5))
+            return false;
+        else
+            return true;
     }
 
     /**
@@ -289,7 +310,16 @@ namespace IDP {
     bool HardwareAbstractionLayer::grabber_switch() const
     {
         TRACE("grabber_switch()");
-        return false;
+        DEBUG("Reading grabber switch");
+
+        // Get the port values
+        int port_values = this->rlink->request(READ_PORT_0);
+        
+        // Return true or false as appropriate
+        if(port_values & (1<<4))
+            return false;
+        else
+            return true;
     }
 
     /**
@@ -358,7 +388,7 @@ namespace IDP {
         if (green)
             this->_port7 = ~(1<<2) & this->_port7;
         else
-            this->_port7 = ~(1<<2) & this->_port7;
+            this->_port7 = 1<<2 | this->_port7;
 
         this->rlink->command(WRITE_PORT_7, this->_port7);
     }

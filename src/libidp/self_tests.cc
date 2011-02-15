@@ -91,8 +91,8 @@ namespace IDP {
     {
         TRACE("turn_left()");
         INFO("Turning left, both wheels driven");
-        this->_hal->motor_left_forward(64);
-        this->_hal->motor_right_backward(64);
+        this->_hal->motor_left_backward(64);
+        this->_hal->motor_right_forward(64);
         usleep(1E6);
         this->_hal->motors_stop();
         INFO("Finished driving.");
@@ -106,8 +106,8 @@ namespace IDP {
     {
         TRACE("turn_right()");
         INFO("Turning right, both wheels driven");
-        this->_hal->motor_right_forward(64);
-        this->_hal->motor_left_backward(64);
+        this->_hal->motor_left_forward(64);
+        this->_hal->motor_right_backward(64);
         usleep(1E6);
         this->_hal->motors_stop();
         INFO("Finished driving.");
@@ -121,8 +121,8 @@ namespace IDP {
     {
         TRACE("steer_left()");
         INFO("Turning left, only left wheel driven");
-        this->_hal->motor_left_forward(127);
-        this->_hal->motor_right_forward(0);
+        this->_hal->motor_right_forward(127);
+        this->_hal->motor_left_forward(0);
         usleep(1E6);
         this->_hal->motors_stop();
         INFO("Finished driving.");
@@ -136,8 +136,8 @@ namespace IDP {
     {
         TRACE("steer_right()");
         INFO("Turning right, only left wheel driven");
-        this->_hal->motor_right_forward(127);
-        this->_hal->motor_left_forward(0);
+        this->_hal->motor_left_forward(127);
+        this->_hal->motor_right_forward(0);
         usleep(1E6);
         this->_hal->motors_stop();
         INFO("Finished driving.");
@@ -185,6 +185,12 @@ namespace IDP {
     void SelfTests::microswitches()
     {
         TRACE("microswitches()");
+        INFO("Testing microswitches");
+        bool reset = this->_hal->reset_switch();
+        bool grabber = this->_hal->grabber_switch();
+
+        std::cout << "Reset switch: " << reset << std::endl;
+        std::cout << "Grabber switch: " << grabber << std::endl;
     }
     
     /**
