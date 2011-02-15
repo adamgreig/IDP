@@ -4,6 +4,8 @@
 // self_tests.cc
 // Self Tests class implementation
 
+// Use unistd.h for sleep functionality
+#include <unistd.h>
 
 #include "self_tests.h"
 #include "hal.h"
@@ -169,6 +171,28 @@ namespace IDP {
     void SelfTests::LDRs()
     {
         TRACE("LDRs()");
+        unsigned short int colour, badness;
+        
+        // Set red on, take value
+        this->_hal->colour_leds(true, false);
+        colour = this->_hal->colour_ldr();
+        std::cout << "RED: " << colour << std::endl;
+
+        // Now try with green
+        this->_hal->colour_leds(false, true);
+        colour = this->_hal->colour_ldr();
+        std::cout << "GREEN: " << colour << std::endl;
+
+        // And both
+        this->_hal->colour_leds(true, true);
+        colour = this->_hal->colour_ldr();
+        std::cout << "BOTH: " << colour << std::endl;
+
+        // And finally badness
+        this->_hal->colour_leds(false, false);
+        this->_hal->badness_led(true);
+        badness = this->_hal->badness_ldr();
+        std::cout << "BADNESS: " << badness << std::endl;
     }
 
     /**
@@ -266,9 +290,25 @@ namespace IDP {
      * Turn on each of the status LEDs (used for indicating bobbin
      * colour) in turn
      */
-    void SelfTests::status_LEDs()
+    void SelfTests::indicator_LEDs()
     {
-        TRACE("status_LEDs()");
+        TRACE("indicator_LEDs()");
+        this->_hal->indication_LEDs(false, false, true);
+        usleep(500000);
+        this->_hal->indication_LEDs(false, true, false);
+        usleep(500000);
+        this->_hal->indication_LEDs(false, true, true);
+        usleep(500000);
+        this->_hal->indication_LEDs(true, false, false);
+        usleep(500000);
+        this->_hal->indication_LEDs(true, false, true);
+        usleep(500000);
+        this->_hal->indication_LEDs(true, true, false);
+        usleep(500000);
+        this->_hal->indication_LEDs(true, true, true);
+        usleep(500000);
+        this->_hal->indication_LEDs(false, false, false);
+        usleep(500000);
     }
 
     /**
@@ -278,6 +318,14 @@ namespace IDP {
     void SelfTests::colour_sensor_LEDs()
     {
         TRACE("colour_sensor_LEDs()");
+        this->_hal->colour_leds(true, false);
+        usleep(500000);
+        this->_hal->colour_leds(true, true);
+        usleep(500000);
+        this->_hal->colour_leds(false, true);
+        usleep(500000);
+        this->_hal->colour_leds(false, false);
+        usleep(500000);
     }
 
     /**
@@ -286,5 +334,9 @@ namespace IDP {
     void SelfTests::badness_LED()
     {
         TRACE("badness_LED()");
+        this->_hal->bad_bobbin_led(true);
+        usleep(500000);
+        this->_hal->bad_bobbin_led(false);
+        usleep(500000);
     }
 }

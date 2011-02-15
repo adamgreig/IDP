@@ -41,7 +41,7 @@ namespace IDP {
             void bobbin_analyse(void);
             void navigate(void);
             void position(void);
-            void status_LEDs(void);
+            void indicator_LEDs(void);
             void colour_sensor_LEDs(void);
             void badness_LED(void);
         private:

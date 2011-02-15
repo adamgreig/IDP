@@ -245,6 +245,8 @@ namespace IDP {
             std::cout << "Select an output test:" << std::endl;
             std::cout << "1) Indicator LEDs" << std::endl;
             std::cout << "2) Actuators" << std::endl;
+            std::cout << "3) Colour sensing LEDs" << std::endl;
+            std::cout << "4) Bad bobbin LEDs" << std::endl;
             std::cout << "b) Back" << std::endl;
             std::cout << std::endl << "> ";
 
@@ -258,6 +260,10 @@ namespace IDP {
                 return MENU_INDICATOR_LEDS;
             } else if(choice == "2") {
                 return MENU_ACTUATORS;
+            } else if(choice == "3") {
+                return MENU_COLOUR_SENSOR_LEDS;
+            } else if(choice == "4") {
+                return MENU_BAD_BOBBIN_LED;
             } else if(choice == "b") {
                 return MENU_BACK;
             } else {
