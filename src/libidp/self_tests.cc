@@ -229,17 +229,17 @@ namespace IDP {
 
         std::cout << "Enter FROM node: ";
         std::cin >> input_node;
-        NavigationNode from = static_cast<NavigationNode>(input_node + 1);
+        NavigationNode from = static_cast<NavigationNode>(input_node - 1);
         std::cout << "FROM is " << NavigationNodeStrings[from] << std::endl;
 
         std::cout << "Enter TO node: ";
         std::cin >> input_node;
-        NavigationNode to = static_cast<NavigationNode>(input_node + 1);
+        NavigationNode to = static_cast<NavigationNode>(input_node - 1);
         std::cout << "TO is " << NavigationNodeStrings[to] << std::endl;
 
         std::cout << "Enter TARGET node: ";
         std::cin >> input_node;
-        NavigationNode target = static_cast<NavigationNode>(input_node + 1);
+        NavigationNode target = static_cast<NavigationNode>(input_node - 1);
         std::cout << "TARGET is " << NavigationNodeStrings[target];
         std::cout << std::endl;
 
