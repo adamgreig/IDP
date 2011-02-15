@@ -79,6 +79,7 @@ namespace IDP {
         private:
             bool check_max_speed(const unsigned short int speed) const;
             robot_link* rlink;
+            unsigned short int _port7;
     };
 }
 

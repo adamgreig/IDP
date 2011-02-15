@@ -55,6 +55,12 @@ namespace IDP {
         DEBUG("Setting motor ramp speed to " << MOTOR_RAMP_TIME);
         this->rlink->command(RAMP_TIME, MOTOR_RAMP_TIME);
 
+        // Initialise the value of the sensor port
+        DEBUG("Reading the value of the hardware port");
+        this->_port7 = this->rlink->request(READ_PORT_7);
+
+        // Setting PORT0 to all inputs
+        this->rlink->command(WRITE_PORT_0, 0xFF);
     }
 
     /**
@@ -316,9 +322,22 @@ namespace IDP {
         const bool led_1, const bool led_2)
     {
         TRACE("indication_LEDs("<<led_0<<", "<<led_1<<", "<<led_2<<")");
-        this->rlink->command(WRITE_PORT_7, static_cast<int>(!led_0)<<1);
-        this->rlink->command(WRITE_PORT_7, static_cast<int>(!led_1)<<3);
-        this->rlink->command(WRITE_PORT_7, static_cast<int>(!led_2)<<5);
+        if (led_0)
+            this->_port7 = ~(1<<1) & this->_port7;
+        else
+            this->_port7 = 1<<1 | this->_port7;
+        
+        if (led_1)
+            this->_port7 = ~(1<<3) & this->_port7;
+        else
+            this->_port7 = 1<<3 | this->_port7;
+        
+        if (led_2)
+            this->_port7 = ~(1<<5) & this->_port7;
+        else
+            this->_port7 = 1<<5 | this->_port7;
+        
+        this->rlink->command(WRITE_PORT_7, this->_port7);
     }
 
     /**
@@ -332,14 +351,16 @@ namespace IDP {
     {
         TRACE("colour_leds("<<red<<", "<<green<<")");
         if (red)
-            this->rlink->command(WRITE_PORT_7, 0<<0);
+            this->_port7 = ~(1<<0) & this->_port7;
         else
-            this->rlink->command(WRITE_PORT_7, 1<<0);
+            this->_port7 = 1<<0 | this->_port7;
 
         if (green)
-            this->rlink->command(WRITE_PORT_7, 0<<2);
+            this->_port7 = ~(1<<2) & this->_port7;
         else
-            this->rlink->command(WRITE_PORT_7, 1<<2);
+            this->_port7 = ~(1<<2) & this->_port7;
+
+        this->rlink->command(WRITE_PORT_7, this->_port7);
     }
 
     /**
@@ -351,9 +372,11 @@ namespace IDP {
     {
         TRACE("bad_bobbin_led("<<status<<")");
         if (status)
-            this->rlink->command(WRITE_PORT_7, 0<<4);
+            this->_port7 = ~(1<<4) & this->_port7; 
         else
-            this->rlink->command(WRITE_PORT_7, 1<<4);
+            this->_port7 = 1<<4 | this->_port7; 
+
+        this->rlink->command(WRITE_PORT_7, this->_port7);
     }
 
     /**
@@ -365,11 +388,13 @@ namespace IDP {
         TRACE("grabber_jaw("<<status<<")");
         if (status) {
             DEBUG("Clamping");
-            this->rlink->command(WRITE_PORT_7, 1<<7);
+            this->_port7 = 1<<7 | this->_port7;
         } else {
             DEBUG("Releasing clamp");
-            this->rlink->command(WRITE_PORT_7, 0<<7);
+            this->_port7 = ~(1<<7) & this->_port7;
         }
+
+        this->rlink->command(WRITE_PORT_7, this->_port7);
     }
 
     /**
@@ -381,11 +406,13 @@ namespace IDP {
         TRACE("grabber_lift("<<status<<")");
         if (status) {
             DEBUG("Lifting grabber");
-            this->rlink->command(WRITE_PORT_7, 1<<6);
+            this->_port7 = 1<<6 | this->_port7;
         } else {
             DEBUG("Lowering grabber");
-            this->rlink->command(WRITE_PORT_7, 0<<6);
+            this->_port7 = ~(1<<6) & this->_port7;
         }
+
+        this->rlink->command(WRITE_PORT_7, this->_port7);
     }
 
     /**
