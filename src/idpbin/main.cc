@@ -10,25 +10,23 @@
 #include <cstdlib>
 #include <libidp/libidp.h>
 
+#include "menu.h"
+
 /**
  * The robot number, or 0 if running embedded.
  */
 static const int ROBOT = 39;
 
 /**
- * Menu option consts
- */
-static const int MENU_DRIVE_FORWARD = 1;
-static const int MENU_DRIVE_BACKWARD = 2;
-static const int MENU_TEST_LINE_SENSOR = 3;
-static const int MENU_TEST_LINE_FOLLOWING = 4;
-static const int MENU_TEST_NAVIGATION = 5;
-
-/**
- * Global reference to our Mission Supervisor so we can
- * use it inside terminate()
+ * Global reference to our Mission Supervisor so we can use it inside
+ * terminate()
  */
 static IDP::MissionSupervisor* missup = 0;
+
+/*
+ * Global reference to SelfTests so they can be stopped inside terminate()
+ */
+static IDP::SelfTests* tests = 0;
 
 /**
  * Handle program termination cleanly.
@@ -41,65 +39,17 @@ void terminate(int param)
         return;
     }
 
-    // Stop the robot
+    // Stop the robot if either missup or tests was constructed
     if(missup) {
         missup->stop();
     }
 
+    if(tests) {
+        tests->stop();
+    }
+
     // Exit OK
     exit(1);
-}
-
-/**
- * Print the UI menu options and check their selection for validity.
- * \return The user's selection
- */
-int menu()
-{
-    while(true) {
-        // Display menu options
-        std::cout << "What would you like to do?" << std::endl;
-        std::cout << "1) Drive forward" << std::endl;
-        std::cout << "2) Drive backward" << std::endl;
-        std::cout << "3) Test line sensor" << std::endl;
-        std::cout << "4) Test line following" << std::endl;
-        std::cout << "5) Test navigation" << std::endl;
-        std::cout << std::endl;
-        std::cout << "> ";
-
-        std::string choice;
-        std::getline(std::cin, choice);
-
-        // If they selected a valid choice, return the constant
-        // related to that choice. If they selected an invalid choice,
-        // return an error and re-display the menu.
-        if(std::cin.eof()) {
-            std::cin.clear();
-            std::cin.ignore();
-            std::cout << "Invalid selection." << std::endl << std::endl;
-        } else if(choice == "1") {
-            return MENU_DRIVE_FORWARD;
-        } else if(choice == "2") {
-            return MENU_DRIVE_BACKWARD;
-        } else if(choice == "3") {
-            return MENU_TEST_LINE_SENSOR;
-        } else if(choice == "4") {
-            return MENU_TEST_LINE_FOLLOWING;
-        } else if(choice == "5") {
-            return MENU_TEST_NAVIGATION;
-        } else if(choice == "Open the pod bay doors, HAL.") {
-            std::cout << "I'm sorry, Dave. I'm afraid I can't do that.";
-            std::cout << std::endl << std::endl;
-        } else if(choice == "Hello, Joshua.") {
-            std::cout << "A strange game. The only winning move is";
-            std::cout << " not to play." << std::endl;
-            std::cout << "How about a nice game of chess?";
-            std::cout << std::endl << std::endl;
-        } else {
-            std::cout << "Invalid selection." << std::endl << std::endl;
-        }
-
-    }
 }
 
 /**
@@ -114,27 +64,87 @@ int main()
     sigint_handler.sa_flags = 0;
     sigaction(SIGINT, &sigint_handler, NULL);
 
-    // Initialise the robot link
-    missup = new IDP::MissionSupervisor(ROBOT);
-    
-    std::cout << "Welcome to The El Theta's IDP Mission Control.";
-    std::cout << std::endl;
-
     // Get user action choice
-    int choice = menu();
-    if(choice == MENU_DRIVE_FORWARD) {
-        missup->drive_forward();
-    } else if(choice == MENU_DRIVE_BACKWARD) {
-        missup->drive_backward();
-    } else if(choice == MENU_TEST_LINE_SENSOR) {
-        missup->test_line_sensor();
-    } else if(choice == MENU_TEST_LINE_FOLLOWING) {
-        missup->test_line_following();
-    } else if(choice == MENU_TEST_NAVIGATION) {
-        missup->test_navigation();
+    IDP::MenuChoice choice = IDP::Menu::get_choice();
+    
+    // Act appropriately. Unfortunately no way besides a large if/else if
+    // statement seems particularly appropriate (in particular a switch
+    // will not work and in any case is hardly any neater).
+    if(choice == IDP::MENU_QUIT) {
+        return 0;
+    } else if(choice == IDP::MENU_RUN_MAIN_TASK) {
+        // 1. check for existing state files
+        // 2. see if we should load them
+        // 3. initialise a missionsupervisor appropriately
+        // 4. run it
+    } else if(choice == IDP::MENU_RUN_ALL_SELF_TESTS) {
+        // this should be interesting, work out a good way to do this
+        // interatively in a bit
+    } else if(choice == IDP::MENU_LINE_FOLLOWING_TEST) {
+        tests = new IDP::SelfTests(ROBOT);
+        tests->line_following();
+    } else if(choice == IDP::MENU_NAVIGATION_TEST) {
+        tests = new IDP::SelfTests(ROBOT);
+        tests->navigate();
+    } else if(choice == IDP::MENU_DRIVE_FORWARD) {
+        tests = new IDP::SelfTests(ROBOT);
+        tests->drive_forward();
+    } else if(choice == IDP::MENU_DRIVE_BACKWARD) {
+        tests = new IDP::SelfTests(ROBOT);
+        tests->drive_backward();
+    } else if(choice == IDP::MENU_TURN_LEFT) {
+        tests = new IDP::SelfTests(ROBOT);
+        tests->turn_left();
+    } else if(choice == IDP::MENU_TURN_RIGHT) {
+        tests = new IDP::SelfTests(ROBOT);
+        tests->turn_right();
+    } else if(choice == IDP::MENU_STEER_LEFT) {
+        tests = new IDP::SelfTests(ROBOT);
+        tests->steer_left();
+    } else if(choice == IDP::MENU_STEER_RIGHT) {
+        tests = new IDP::SelfTests(ROBOT);
+        tests->steer_right();
+    } else if(choice == IDP::MENU_STOP) {
+        tests = new IDP::SelfTests(ROBOT);
+        tests->stop();
+    } else if(choice == IDP::MENU_ANALYSE) {
+        tests = new IDP::SelfTests(ROBOT);
+        tests->bobbin_analyse();
+    } else if(choice == IDP::MENU_PICK_UP) {
+        // TODO: this just calls clamp_control! it should really
+        // call something to pick something up
+        tests = new IDP::SelfTests(ROBOT);
+        tests->clamp_control();
+    } else if(choice == IDP::MENU_PUT_DOWN) {
+        // TODO: see above!
+        tests = new IDP::SelfTests(ROBOT);
+        tests->clamp_control();
+    } else if(choice == IDP::MENU_LINE_SENSORS) {
+        tests = new IDP::SelfTests(ROBOT);
+        tests->line_sensors();
+    } else if(choice == IDP::MENU_SWITCHES) {
+        tests = new IDP::SelfTests(ROBOT);
+        tests->microswitches();
+    } else if(choice == IDP::MENU_LDRS) {
+        tests = new IDP::SelfTests(ROBOT);
+        tests->LDRs();
+    } else if(choice == IDP::MENU_INDICATOR_LEDS) {
+        tests = new IDP::SelfTests(ROBOT);
+        tests->colour_sensor_LEDs();
+    } else if(choice == IDP::MENU_ACTUATORS) {
+        tests = new IDP::SelfTests(ROBOT);
+        tests->actuators();
+        // TODO: badness_LED test, status_LED test (?), position test
+    } else {
+        std::cout << "Invalid selection received from menu, quitting.";
+        std::cout << std::endl;
+        return 0;
     }
 
-    // Wait forever (MissionSupervisor should take care of things)
+    // Wait forever (Tests/MissionSupervisor can loop or something)
+    // TODO: this shouldn't really wait forever here, ideally
+    // we should loop on calling MissionSupervisor as it is in the
+    // library and all that.
     for(;;);
 
     return 0;

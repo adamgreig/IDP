@@ -15,6 +15,8 @@
 
 namespace IDP {
 
+    class HardwareAbstractionLayer;
+
     /**
      * Execute a variety of functionality self tests
      */
@@ -22,6 +24,7 @@ namespace IDP {
     {
         public:
             SelfTests(int robot);
+            ~SelfTests();
             void drive_forward(void);
             void drive_backward(void);
             void stop(void);
@@ -43,6 +46,7 @@ namespace IDP {
             void badness_LED(void);
         private:
             int _robot;
+            HardwareAbstractionLayer* _hal;
     };
 }
 

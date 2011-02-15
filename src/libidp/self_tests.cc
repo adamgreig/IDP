@@ -6,8 +6,9 @@
 
 
 #include "self_tests.h"
-#include "mission_supervisor.h"
 #include "hal.h"
+#include "mission_supervisor.h"
+#include "navigation.h"
 #include "line_following.h"
 
 // Debug functionality
@@ -20,15 +21,26 @@
 
 namespace IDP {
     /**
-     * Constuct a SelfTest instance
+     * Constuct a SelfTests instance
      * Completely seperate to mission supervisor and initialises own
      * link to robot, with its own HAL instance
      * \param robot Which robot to link to, or 0 if embedded
      */
-    SelfTests::SelfTests(int robot = 0): _robot(robot)
+    SelfTests::SelfTests(int robot = 0): _robot(robot), _hal(0)
     {
         TRACE("SelfTests("<<robot<<")");
-        INFO("Initialising a SelfTests");
+        INFO("Initialising SelfTests");
+        this->_hal = new HardwareAbstractionLayer(robot);
+    }
+
+    /**
+     * Destruct the SelfTests, deleting the HAL
+     */
+    SelfTests::~SelfTests()
+    {
+        TRACE("~SelfTests()");
+        if(this->_hal)
+            delete this->_hal;
     }
 
     /**
@@ -37,6 +49,8 @@ namespace IDP {
     void SelfTests::drive_forward()
     {
         TRACE("drive_forward()");
+        INFO("Driving forwards");
+        this->_hal->motors_forward(127);
     }
 
     /**
@@ -45,6 +59,8 @@ namespace IDP {
     void SelfTests::drive_backward()
     {
         TRACE("drive_backwardi()");
+        INFO("Driving backwards");
+        this->_hal->motors_backward(127);
     }
 
     /**
@@ -53,6 +69,8 @@ namespace IDP {
     void SelfTests::stop()
     {
         TRACE("stop()");
+        INFO("Stopping all motors");
+        this->_hal->motors_stop();
     }
 
     /**
@@ -62,6 +80,9 @@ namespace IDP {
     void SelfTests::turn_left()
     {
         TRACE("turn_left()");
+        INFO("Turning left, both wheels driven");
+        this->_hal->motor_left_forward(64);
+        this->_hal->motor_right_backward(64);
     }
 
     /**
@@ -71,6 +92,9 @@ namespace IDP {
     void SelfTests::turn_right()
     {
         TRACE("turn_right()");
+        INFO("Turning right, both wheels driven");
+        this->_hal->motor_right_forward(64);
+        this->_hal->motor_left_backward(64);
     }
     
     /**
@@ -80,6 +104,9 @@ namespace IDP {
     void SelfTests::steer_left()
     {
         TRACE("steer_left()");
+        INFO("Turning left, only left wheel driven");
+        this->_hal->motor_left_forward(127);
+        this->_hal->motor_right_forward(0);
     }
 
     /**
@@ -89,6 +116,9 @@ namespace IDP {
     void SelfTests::steer_right()
     {
         TRACE("steer_right()");
+        INFO("Turning right, only left wheel driven");
+        this->_hal->motor_right_forward(127);
+        this->_hal->motor_left_forward(0);
     }
 
     /**
@@ -98,6 +128,31 @@ namespace IDP {
     void SelfTests::line_sensors()
     {
         TRACE("line_sensors()");
+        INFO("Testing line sensors");
+
+        this->_hal->clear_status_register();
+        LineSensors sensors = this->_hal->line_following_sensors();
+        std::cout << "Sensors: ";
+        
+        if(sensors.outer_left == LINE)
+            std::cout << "line, ";
+        else
+            std::cout << "no line, ";
+
+        if(sensors.line_left == LINE)
+            std::cout << "line, ";
+        else
+            std::cout << "no line, ";
+
+        if(sensors.line_right == LINE)
+            std::cout << "line, ";
+        else
+            std::cout << "no line, ";
+
+        if(sensors.outer_right == LINE)
+            std::cout << "line             \r";
+        else
+            std::cout << "no line          \r";
     }
 
     /**
@@ -125,11 +180,22 @@ namespace IDP {
     }
 
     /**
-     * Follow a line until further notice, without caring where we end up
+     * Follow a line until a junction
      */
     void SelfTests::line_following()
     {
         TRACE("line_following()");
+        INFO("Testing line following");
+
+        LineFollowing lf(this->_hal);
+        LineFollowingStatus status;
+
+        lf.set_speed(127);
+        
+        INFO("following a line");
+        do {
+            status = lf.follow_line();
+        } while(status == ACTION_IN_PROGRESS);
     }
 
     /**
@@ -157,6 +223,33 @@ namespace IDP {
     void SelfTests::navigate()
     {
         TRACE("navigate()");
+        INFO("Testing navigation");
+
+        int input_node;
+
+        std::cout << "Enter FROM node: ";
+        std::cin >> input_node;
+        NavigationNode from = static_cast<NavigationNode>(input_node + 1);
+        std::cout << "FROM is " << NavigationNodeStrings[from] << std::endl;
+
+        std::cout << "Enter TO node: ";
+        std::cin >> input_node;
+        NavigationNode to = static_cast<NavigationNode>(input_node + 1);
+        std::cout << "TO is " << NavigationNodeStrings[from] << std::endl;
+
+        std::cout << "Enter TARGET node: ";
+        std::cin >> input_node;
+        NavigationNode target = static_cast<NavigationNode>(input_node + 1);
+        std::cout << "TARGET is " << NavigationNodeStrings[from] << std::endl;
+
+        Navigation nav(this->_hal, from, to);
+        NavigationStatus status;
+        do {
+            status = nav.go_node(target);
+        } while(status == NAVIGATION_ENROUTE);
+
+        this->_hal->motors_stop();
+        return;
     }
 
     /**

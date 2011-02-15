@@ -8,6 +8,6 @@ set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR}/bin)
 
 # Build idp
 file(GLOB srcs "*.cc")
-add_executable(idpbin "${srcs}")
+add_executable(idpbin ${srcs})
 target_link_libraries(idpbin idp)
 
