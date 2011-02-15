@@ -104,13 +104,40 @@ namespace IDP {
     }
 
     /**
-     * Go to a NavigationLocation.
+     * Navigate to the line parallel to the rack, then drive along
+     * slowly until a bobbin is found.
      * \returns A NavigationStatus code
      */
-    NavigationStatus Navigation::go(const NavigationLocation location)
+    NavigationStatus Navigation::find_bobbin()
     {
-        TRACE("go(" << NavigationLocationStrings[location] << ")");
-        UNUSED(location);
+        return NAVIGATION_ARRIVED;
+    }
+
+    /**
+     * Navigate to the start box and align to find one of the two boxes.
+     * \returns A NavigationStatus code
+     */
+    NavigationStatus Navigation::find_box(Box box)
+    {
+        UNUSED(box);
+        return NAVIGATION_ARRIVED;
+    }
+
+    /**
+     * Navigate to the delivery area and align for delivery.
+     * \returns A NavigationStatus code
+     */
+    NavigationStatus Navigation::go_to_delivery()
+    {
+        return NAVIGATION_ARRIVED;
+    }
+
+    /**
+     * Navigate out of the delivery area and get back onto the path.
+     * \returns A NavigationStatus code
+     */
+    NavigationStatus Navigation::finished_delivery()
+    {
         return NAVIGATION_ARRIVED;
     }
 

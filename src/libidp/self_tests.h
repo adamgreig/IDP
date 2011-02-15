@@ -40,6 +40,9 @@ namespace IDP {
             void clamp_control(void);
             void bobbin_analyse(void);
             void navigate(void);
+            void navigate_to_bobbin(void);
+            void navigate_to_box(void);
+            void navigate_to_delivery(void);
             void position(void);
             void indicator_LEDs(void);
             void colour_sensor_LEDs(void);

@@ -54,6 +54,13 @@ namespace IDP {
     };
 
     /**
+     * Box identifiers
+     */
+    enum Box {
+        BOX1, BOX2, MAX_BOX
+    };
+
+    /**
      * Cached junction information for use while driving over a junction
      * or executing a turn.
      */
@@ -101,6 +108,13 @@ namespace IDP {
     };
 
     /**
+     * String representation of Box
+     */
+    static const char* const BoxStrings[] = {
+        "BOX1", "BOX2"
+    };
+
+    /**
      * String representations of NavigationCachedJunction
      */
     static const char* const NavigationCachedJunctionStrings[] = {
@@ -117,7 +131,10 @@ namespace IDP {
             Navigation(HardwareAbstractionLayer* hal,
                 const NavigationNode from, const NavigationNode to);
             ~Navigation();
-            NavigationStatus go(const NavigationLocation location);
+            NavigationStatus find_bobbin();
+            NavigationStatus find_box(Box box);
+            NavigationStatus go_to_delivery();
+            NavigationStatus finished_delivery();
             NavigationStatus go_node(const NavigationNode target);
         private:
             void update_cache();

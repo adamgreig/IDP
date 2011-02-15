@@ -96,7 +96,9 @@ namespace IDP {
             } else if(choice == "3") {
                 return MENU_LINE_FOLLOWING_TEST;
             } else if(choice == "4") {
-                return MENU_NAVIGATION_TEST;
+                MenuChoice option = Menu::navigation();
+                if(option != MENU_BACK)
+                    return option;
             } else if(choice == "5") {
                 MenuChoice option = Menu::clamp_control();
                 if(option != MENU_BACK)
@@ -158,6 +160,41 @@ namespace IDP {
                 return MENU_STOP;
             } else if(choice == "b") {
                 return MENU_BACK;
+            } else {
+                std::cout << "Invalid selection." << std::endl << std::endl;
+            }
+        }
+    }
+
+    /**
+     * The navigation submenu.
+     * \returns A MenuChoice to indicate the user's selection.
+     */
+    MenuChoice Menu::navigation()
+    {
+        // See get_choice for comments, code is indentical in form.
+        while(true) {
+            std::cout << "Select a navigation test:" << std::endl;
+            std::cout << "1) Navigate to a specific node" << std::endl;
+            std::cout << "2) Navigate to a bobbin" << std::endl;
+            std::cout << "3) Navigate to a box" << std::endl;
+            std::cout << "4) Navigate to the delivery zone" << std::endl;
+            std::cout << std::endl << "> ";
+
+            std::string choice;
+            std::getline(std::cin, choice);
+            if(std::cin.eof()) {
+                std::cin.clear();
+                std::cin.ignore();
+                std::cout << "Invalid selection." << std::endl << std::endl;
+            } else if(choice == "1") {
+                return MENU_NAVIGATION_TEST;
+            } else if(choice == "2") {
+                return MENU_NAVIGATE_TO_BOBBIN;
+            } else if(choice == "3") {
+                return MENU_NAVIGATE_TO_BOX;
+            } else if(choice == "b") {
+                return MENU_NAVIGATE_TO_DELIVERY;
             } else {
                 std::cout << "Invalid selection." << std::endl << std::endl;
             }

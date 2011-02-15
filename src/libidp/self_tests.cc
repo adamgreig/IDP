@@ -6,6 +6,8 @@
 
 // Use unistd.h for sleep functionality
 #include <unistd.h>
+#include <cstdio>
+#include <iostream>
 
 #include "self_tests.h"
 #include "hal.h"
@@ -53,6 +55,9 @@ namespace IDP {
         TRACE("drive_forward()");
         INFO("Driving forwards");
         this->_hal->motors_forward(127);
+        usleep(1E6);
+        this->_hal->motors_stop();
+        INFO("Finished driving.");
     }
 
     /**
@@ -63,6 +68,9 @@ namespace IDP {
         TRACE("drive_backwardi()");
         INFO("Driving backwards");
         this->_hal->motors_backward(127);
+        usleep(1E6);
+        this->_hal->motors_stop();
+        INFO("Finished driving.");
     }
 
     /**
@@ -85,6 +93,9 @@ namespace IDP {
         INFO("Turning left, both wheels driven");
         this->_hal->motor_left_forward(64);
         this->_hal->motor_right_backward(64);
+        usleep(1E6);
+        this->_hal->motors_stop();
+        INFO("Finished driving.");
     }
 
     /**
@@ -97,6 +108,9 @@ namespace IDP {
         INFO("Turning right, both wheels driven");
         this->_hal->motor_right_forward(64);
         this->_hal->motor_left_backward(64);
+        usleep(1E6);
+        this->_hal->motors_stop();
+        INFO("Finished driving.");
     }
     
     /**
@@ -109,6 +123,9 @@ namespace IDP {
         INFO("Turning left, only left wheel driven");
         this->_hal->motor_left_forward(127);
         this->_hal->motor_right_forward(0);
+        usleep(1E6);
+        this->_hal->motors_stop();
+        INFO("Finished driving.");
     }
 
     /**
@@ -121,6 +138,9 @@ namespace IDP {
         INFO("Turning right, only left wheel driven");
         this->_hal->motor_right_forward(127);
         this->_hal->motor_left_forward(0);
+        usleep(1E6);
+        this->_hal->motors_stop();
+        INFO("Finished driving.");
     }
 
     /**
@@ -152,9 +172,11 @@ namespace IDP {
             std::cout << "no line, ";
 
         if(sensors.outer_right == LINE)
-            std::cout << "line             \r";
+            std::cout << "line";
         else
-            std::cout << "no line          \r";
+            std::cout << "no line";
+
+        std::cout << std::endl;
     }
 
     /**
@@ -201,6 +223,18 @@ namespace IDP {
     void SelfTests::actuators()
     {
         TRACE("actuators()");
+        INFO("Testing actuators");
+        std::cout << "Closing jaw..." << std::endl;
+        this->_hal->grabber_jaw(true);
+        usleep(1E6);
+        std::cout << "Opening jaw..." << std::endl;
+        this->_hal->grabber_jaw(false);
+        usleep(1E6);
+        std::cout << "Raising arm..." << std::endl;
+        this->_hal->grabber_lift(true);
+        usleep(1E6);
+        std::cout << "Lowing arm..." << std::endl;
+        this->_hal->grabber_lift(false);
     }
 
     /**
@@ -276,7 +310,97 @@ namespace IDP {
         this->_hal->motors_stop();
         return;
     }
+    
+    /**
+     * Drive to a bobbin and stop.
+     */
+    void SelfTests::navigate_to_bobbin()
+    {
+        TRACE("navigate_to_bobbin()");
+        INFO("Navigating to a bobbin");
 
+        std::cout << "Please position Fluffy in the start box facing";
+        std::cout << " the bobbins, then press enter." << std::endl;
+
+        std::getchar();
+
+        Navigation nav(this->_hal, NODE7, NODE8);
+        NavigationStatus status;
+        do {
+            status = nav.find_bobbin();
+        } while(status == NAVIGATION_ENROUTE);
+
+        this->_hal->motors_stop();
+        return;
+    }
+    
+    /**
+     * Locate a box and stop.
+     */
+    void SelfTests::navigate_to_box()
+    {
+        TRACE("navigate_to_box()");
+        INFO("Running navigate to box test");
+
+        std::cout << "Which box would you like to pick up? (1 or 2)";
+        std::cout << std::endl << "> ";
+
+        int box_number;
+        std::cin >> box_number;
+        Box box = static_cast<Box>(box_number - 1);
+
+        std::cout << "Going to box " << BoxStrings[box] << "." << std::endl;
+
+        std::cout << "Please position Fluffy on the line between nodes";
+        std::cout << " 9 and 8 (facing the start box), then press enter.";
+        std::cout << std::endl;
+
+        std::getchar();
+
+        Navigation nav(this->_hal, NODE8, NODE9);
+        NavigationStatus status;
+        do {
+            status = nav.find_box(box);
+        } while(status == NAVIGATION_ENROUTE);
+
+        this->_hal->motors_stop();
+        return;
+    }
+
+    /**
+     * Drive to a bobbin and stop.
+     */
+    void SelfTests::navigate_to_delivery()
+    {
+        TRACE("navigate_to_delivery()");
+        INFO("Running navigate to delivery test");
+
+        std::cout << "Please place Fluffy between junctions 4 and 3 (facing";
+        std::cout << " the delivery area) and press enter." << std::endl;
+
+        std::getchar();
+
+        Navigation nav(this->_hal, NODE4, NODE3);
+        NavigationStatus status;
+        do {
+            status = nav.go_to_delivery();
+        } while(status == NAVIGATION_ENROUTE);
+
+        this->_hal->motors_stop();
+
+        std::cout << "Now at delivery. Press enter to return to the path.";
+        std::cout << std::endl;
+
+        std::getchar();
+
+        do {
+            status = nav.finished_delivery();
+        } while(status == NAVIGATION_ENROUTE);
+
+        this->_hal->motors_stop();
+        return;
+    }
+    
     /**
      * Drive slowly looking for an object in range for pickup, 
      * then position self ready to clamp said object
@@ -294,21 +418,21 @@ namespace IDP {
     {
         TRACE("indicator_LEDs()");
         this->_hal->indication_LEDs(false, false, true);
-        usleep(500000);
+        usleep(5E5);
         this->_hal->indication_LEDs(false, true, false);
-        usleep(500000);
+        usleep(5E5);
         this->_hal->indication_LEDs(false, true, true);
-        usleep(500000);
+        usleep(5E5);
         this->_hal->indication_LEDs(true, false, false);
-        usleep(500000);
+        usleep(5E5);
         this->_hal->indication_LEDs(true, false, true);
-        usleep(500000);
+        usleep(5E5);
         this->_hal->indication_LEDs(true, true, false);
-        usleep(500000);
+        usleep(5E5);
         this->_hal->indication_LEDs(true, true, true);
-        usleep(500000);
+        usleep(5E5);
         this->_hal->indication_LEDs(false, false, false);
-        usleep(500000);
+        usleep(5E5);
     }
 
     /**
@@ -319,13 +443,13 @@ namespace IDP {
     {
         TRACE("colour_sensor_LEDs()");
         this->_hal->colour_LEDs(true, false);
-        usleep(500000);
+        usleep(5E5);
         this->_hal->colour_LEDs(true, true);
-        usleep(500000);
+        usleep(5E5);
         this->_hal->colour_LEDs(false, true);
-        usleep(500000);
+        usleep(5E5);
         this->_hal->colour_LEDs(false, false);
-        usleep(500000);
+        usleep(5E5);
     }
 
     /**
@@ -335,8 +459,8 @@ namespace IDP {
     {
         TRACE("bad_bobbin_LED()");
         this->_hal->bad_bobbin_LED(true);
-        usleep(500000);
+        usleep(5E5);
         this->_hal->bad_bobbin_LED(false);
-        usleep(500000);
+        usleep(5E5);
     }
 }
