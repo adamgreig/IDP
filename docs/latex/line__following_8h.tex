@@ -18,6 +18,10 @@ class \hyperlink{classIDP_1_1LineFollowing}{IDP::LineFollowing}
 \begin{DoxyCompactItemize}
 \item 
 namespace \hyperlink{namespaceIDP}{IDP}
+
+
+\begin{DoxyCompactList}\small\item\em Contains all the \hyperlink{namespaceIDP}{IDP} related functionality including libidp and some idpbin classes. \item\end{DoxyCompactList}
+
 \end{DoxyCompactItemize}
 \subsection*{Enumerations}
 \begin{DoxyCompactItemize}
@@ -56,11 +60,13 @@ unsigned short int \hyperlink{namespaceIDP_ae66b1b69bcde3ba7995f2fd46c6f21f5}{ID
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
-const double \hyperlink{namespaceIDP_a9107eef10d68ba30176633afd87f1ed4}{IDP::INTEGRAL\_\-GAIN} = 4.0
+const double \hyperlink{namespaceIDP_a9107eef10d68ba30176633afd87f1ed4}{IDP::INTEGRAL\_\-GAIN} = 5.0
 \begin{DoxyCompactList}\small\item\em Constant for integral control in line following. \item\end{DoxyCompactList}\item 
 const short unsigned int \hyperlink{namespaceIDP_a246919caaacabcb0399802d542d8330b}{IDP::MAX\_\-CORRECTION} = 127
 \begin{DoxyCompactList}\small\item\em Maximum differential correction value before it gets capped. \item\end{DoxyCompactList}\item 
 const unsigned int \hyperlink{namespaceIDP_ac845248570cca0705d43e2dbb085c3cb}{IDP::LOST\_\-TIMEOUT} = 50
-\begin{DoxyCompactList}\small\item\em The number of loop iterations before we count as lost. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em The number of loop iterations before we count as lost when driving straight. \item\end{DoxyCompactList}\item 
+const unsigned int \hyperlink{namespaceIDP_a518ca50cb25167a9930b2099282bb938}{IDP::LOST\_\-TURNING\_\-TIMEOUT} = 400
+\begin{DoxyCompactList}\small\item\em The number of loop iterations before we count as lost when turning around. \item\end{DoxyCompactList}\item 
 const unsigned int \hyperlink{namespaceIDP_afa01378acc238f4bd41d8eb304f7afd7}{IDP::EDGE\_\-ERROR} = 2
 \begin{DoxyCompactList}\small\item\em How much an outer sensor seeing the edge of a line should add to the appropriate error. \item\end{DoxyCompactList}\end{DoxyCompactItemize}

@@ -1,0 +1,167 @@
+\hypertarget{classIDP_1_1Menu}{
+\section{IDP::Menu Class Reference}
+\label{classIDP_1_1Menu}\index{IDP::Menu@{IDP::Menu}}
+}
+
+
+A menu organisation class to allow easy implementation and later additions to a multi-\/level menu system.  
+
+
+
+
+{\ttfamily \#include $<$menu.h$>$}
+
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{namespaceIDP_ac1d3c3b62448912be4da9f2728f2af99}{MenuChoice} \hyperlink{classIDP_1_1Menu_a5a2affbb79c5c58bcf92fabe7875a07e}{get\_\-choice} ()
+\begin{DoxyCompactList}\small\item\em Top level menu entrance. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{namespaceIDP_ac1d3c3b62448912be4da9f2728f2af99}{MenuChoice} \hyperlink{classIDP_1_1Menu_aebca2af9fb1ec279145eaeb3fd324491}{self\_\-tests} ()
+\begin{DoxyCompactList}\small\item\em The Self-\/Tests submenu. \item\end{DoxyCompactList}\item 
+static \hyperlink{namespaceIDP_ac1d3c3b62448912be4da9f2728f2af99}{MenuChoice} \hyperlink{classIDP_1_1Menu_a06ddcaf58c80fbe0d58e1633a7251e21}{motor\_\-control} ()
+\begin{DoxyCompactList}\small\item\em The motor control submenu. \item\end{DoxyCompactList}\item 
+static \hyperlink{namespaceIDP_ac1d3c3b62448912be4da9f2728f2af99}{MenuChoice} \hyperlink{classIDP_1_1Menu_a4fdf316988d3e78a39ded863001b92a9}{clamp\_\-control} ()
+\begin{DoxyCompactList}\small\item\em The clamp control submenu. \item\end{DoxyCompactList}\item 
+static \hyperlink{namespaceIDP_ac1d3c3b62448912be4da9f2728f2af99}{MenuChoice} \hyperlink{classIDP_1_1Menu_a1d459fa26899328e58cc13aae1e0c37e}{sensor\_\-tests} ()
+\begin{DoxyCompactList}\small\item\em The sensor tests submenu. \item\end{DoxyCompactList}\item 
+static \hyperlink{namespaceIDP_ac1d3c3b62448912be4da9f2728f2af99}{MenuChoice} \hyperlink{classIDP_1_1Menu_a14dd286871d1f36f49fad1ef0fca720d}{output\_\-tests} ()
+\begin{DoxyCompactList}\small\item\em The output tests submenu. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A menu organisation class to allow easy implementation and later additions to a multi-\/level menu system. get\_\-choice will eventually return a MenuChoice but does so by calling appropriate sublevel functions which in turn each pass back up a MenuChoice, allowing sublevels to be implemented somewhat independently of the higher level menus. 
+
+Definition at line 37 of file menu.h.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classIDP_1_1Menu_a4fdf316988d3e78a39ded863001b92a9}{
+\index{IDP::Menu@{IDP::Menu}!clamp\_\-control@{clamp\_\-control}}
+\index{clamp\_\-control@{clamp\_\-control}!IDP::Menu@{IDP::Menu}}
+\subsubsection[{clamp\_\-control}]{\setlength{\rightskip}{0pt plus 5cm}{\bf MenuChoice} IDP::Menu::clamp\_\-control (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static, private\mbox{]}}}}
+\label{classIDP_1_1Menu_a4fdf316988d3e78a39ded863001b92a9}
+
+
+The clamp control submenu. 
+
+\begin{DoxyReturn}{Returns}
+A MenuChoice to indicate the user's selection. 
+\end{DoxyReturn}
+
+
+Definition at line 171 of file menu.cc.
+
+\hypertarget{classIDP_1_1Menu_a5a2affbb79c5c58bcf92fabe7875a07e}{
+\index{IDP::Menu@{IDP::Menu}!get\_\-choice@{get\_\-choice}}
+\index{get\_\-choice@{get\_\-choice}!IDP::Menu@{IDP::Menu}}
+\subsubsection[{get\_\-choice}]{\setlength{\rightskip}{0pt plus 5cm}{\bf MenuChoice} IDP::Menu::get\_\-choice (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}
+\label{classIDP_1_1Menu_a5a2affbb79c5c58bcf92fabe7875a07e}
+
+
+Top level menu entrance. 
+
+Will eventually return a selection. \begin{DoxyReturn}{Returns}
+A MenuChoice to indicate the user's selection. 
+\end{DoxyReturn}
+
+
+Definition at line 16 of file menu.cc.
+
+\hypertarget{classIDP_1_1Menu_a06ddcaf58c80fbe0d58e1633a7251e21}{
+\index{IDP::Menu@{IDP::Menu}!motor\_\-control@{motor\_\-control}}
+\index{motor\_\-control@{motor\_\-control}!IDP::Menu@{IDP::Menu}}
+\subsubsection[{motor\_\-control}]{\setlength{\rightskip}{0pt plus 5cm}{\bf MenuChoice} IDP::Menu::motor\_\-control (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static, private\mbox{]}}}}
+\label{classIDP_1_1Menu_a06ddcaf58c80fbe0d58e1633a7251e21}
+
+
+The motor control submenu. 
+
+\begin{DoxyReturn}{Returns}
+A MenuChoice to indicate the user's selection. 
+\end{DoxyReturn}
+
+
+Definition at line 124 of file menu.cc.
+
+\hypertarget{classIDP_1_1Menu_a14dd286871d1f36f49fad1ef0fca720d}{
+\index{IDP::Menu@{IDP::Menu}!output\_\-tests@{output\_\-tests}}
+\index{output\_\-tests@{output\_\-tests}!IDP::Menu@{IDP::Menu}}
+\subsubsection[{output\_\-tests}]{\setlength{\rightskip}{0pt plus 5cm}{\bf MenuChoice} IDP::Menu::output\_\-tests (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static, private\mbox{]}}}}
+\label{classIDP_1_1Menu_a14dd286871d1f36f49fad1ef0fca720d}
+
+
+The output tests submenu. 
+
+\begin{DoxyReturn}{Returns}
+A MenuChoice to indicate the user's selection. 
+\end{DoxyReturn}
+
+
+Definition at line 241 of file menu.cc.
+
+\hypertarget{classIDP_1_1Menu_aebca2af9fb1ec279145eaeb3fd324491}{
+\index{IDP::Menu@{IDP::Menu}!self\_\-tests@{self\_\-tests}}
+\index{self\_\-tests@{self\_\-tests}!IDP::Menu@{IDP::Menu}}
+\subsubsection[{self\_\-tests}]{\setlength{\rightskip}{0pt plus 5cm}{\bf MenuChoice} IDP::Menu::self\_\-tests (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static, private\mbox{]}}}}
+\label{classIDP_1_1Menu_aebca2af9fb1ec279145eaeb3fd324491}
+
+
+The Self-\/Tests submenu. 
+
+\begin{DoxyReturn}{Returns}
+A MenuChoice to indicate the user's selection. 
+\end{DoxyReturn}
+
+
+Definition at line 69 of file menu.cc.
+
+\hypertarget{classIDP_1_1Menu_a1d459fa26899328e58cc13aae1e0c37e}{
+\index{IDP::Menu@{IDP::Menu}!sensor\_\-tests@{sensor\_\-tests}}
+\index{sensor\_\-tests@{sensor\_\-tests}!IDP::Menu@{IDP::Menu}}
+\subsubsection[{sensor\_\-tests}]{\setlength{\rightskip}{0pt plus 5cm}{\bf MenuChoice} IDP::Menu::sensor\_\-tests (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static, private\mbox{]}}}}
+\label{classIDP_1_1Menu_a1d459fa26899328e58cc13aae1e0c37e}
+
+
+The sensor tests submenu. 
+
+\begin{DoxyReturn}{Returns}
+A MenuChoice to indicate the user's selection. 
+\end{DoxyReturn}
+
+
+Definition at line 206 of file menu.cc.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+src/idpbin/\hyperlink{menu_8h}{menu.h}\item 
+src/idpbin/\hyperlink{menu_8cc}{menu.cc}\end{DoxyCompactItemize}

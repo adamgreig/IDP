@@ -58,6 +58,16 @@ void \hyperlink{classIDP_1_1HardwareAbstractionLayer_a44d5a4c942332ba9ffe027de3d
 \begin{DoxyCompactList}\small\item\em Turn the grabber jaw actuator on or off. \item\end{DoxyCompactList}\item 
 void \hyperlink{classIDP_1_1HardwareAbstractionLayer_a0f036b16f1f55a257c2b552035d2a1a9}{grabber\_\-lift} (const bool status)
 \begin{DoxyCompactList}\small\item\em Turn the grabber lift mechanism actuator on or off. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{classIDP_1_1HardwareAbstractionLayer_a965df71af228cf82465e4e9ef6a6e1b0}{check\_\-max\_\-speed} (const unsigned short int speed) const 
+\begin{DoxyCompactList}\small\item\em Check the motor speed against the set maximum, printing an error and returning true if the speed exceeds that value. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+robot\_\-link $\ast$ \hyperlink{classIDP_1_1HardwareAbstractionLayer_a1a363a3cab8fe7fa099b19395335c0ba}{rlink}
+\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -127,6 +137,29 @@ Turn on and off the LED used to light up the top of the bobbin, for bad bobbin d
 
 
 Definition at line 343 of file hal.cc.
+
+\hypertarget{classIDP_1_1HardwareAbstractionLayer_a965df71af228cf82465e4e9ef6a6e1b0}{
+\index{IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}!check\_\-max\_\-speed@{check\_\-max\_\-speed}}
+\index{check\_\-max\_\-speed@{check\_\-max\_\-speed}!IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}}
+\subsubsection[{check\_\-max\_\-speed}]{\setlength{\rightskip}{0pt plus 5cm}bool IDP::HardwareAbstractionLayer::check\_\-max\_\-speed (
+\begin{DoxyParamCaption}
+\item[{const unsigned short int}]{ speed}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classIDP_1_1HardwareAbstractionLayer_a965df71af228cf82465e4e9ef6a6e1b0}
+
+
+Check the motor speed against the set maximum, printing an error and returning true if the speed exceeds that value. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em speed}]The speed to check \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the speed is too high, false if okay 
+\end{DoxyReturn}
+
+
+Definition at line 375 of file hal.cc.
 
 \hypertarget{classIDP_1_1HardwareAbstractionLayer_a1902d9260758777966ab362e21f3be42}{
 \index{IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}!clear\_\-status\_\-register@{clear\_\-status\_\-register}}
@@ -504,6 +537,18 @@ The STATUS register
 
 
 Definition at line 262 of file hal.cc.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classIDP_1_1HardwareAbstractionLayer_a1a363a3cab8fe7fa099b19395335c0ba}{
+\index{IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}!rlink@{rlink}}
+\index{rlink@{rlink}!IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}}
+\subsubsection[{rlink}]{\setlength{\rightskip}{0pt plus 5cm}robot\_\-link$\ast$ {\bf IDP::HardwareAbstractionLayer::rlink}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classIDP_1_1HardwareAbstractionLayer_a1a363a3cab8fe7fa099b19395335c0ba}
+
+
+Definition at line 81 of file hal.h.
 
 
 

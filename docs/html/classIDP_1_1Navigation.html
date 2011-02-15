@@ -53,7 +53,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="header">
   <div class="summary">
-<a href="#pub-methods">Public Member Functions</a>  </div>
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a>  </div>
   <div class="headertitle">
 <h1>IDP::Navigation Class Reference</h1>  </div>
 </div>
@@ -83,11 +85,29 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Go to a NavigationLocation.  <a href="#aba1ab266d223b517fdc3cf6bc3d8e84c"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceIDP.html#a1a96e566e4d675fdf20780cc96d92283">NavigationStatus</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1Navigation.html#a24b977f20868a385251d4becf187b815">go_node</a> (const <a class="el" href="namespaceIDP.html#a286f26dda01010063dff761803b4cd16">NavigationNode</a> target)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Go to a particular NavigationNode.  <a href="#a24b977f20868a385251d4becf187b815"></a><br/></td></tr>
+<tr><td colspan="2"><h2><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1Navigation.html#aa7701df4743c75289360a32dfa56d4fc">update_cache</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Check if we should update the cached junction status and request a new one from <a class="el" href="classIDP_1_1LineFollowing.html" title="Maintain the robot position correctly with respect to the white line markers, during driving and mano...">LineFollowing</a> if required.  <a href="#aa7701df4743c75289360a32dfa56d4fc"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1Navigation.html#adeb3d2223cc6278ccef5d30e4fbeae82">turn_around_required</a> (const <a class="el" href="namespaceIDP.html#a286f26dda01010063dff761803b4cd16">NavigationNode</a> target) const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Check if we need to turn around.  <a href="#adeb3d2223cc6278ccef5d30e4fbeae82"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceIDP.html#a1a96e566e4d675fdf20780cc96d92283">NavigationStatus</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1Navigation.html#a7da6a103a61fec763688e875920837a4">turn_around</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Determine the current direction of travel and then execute an about turn.  <a href="#a7da6a103a61fec763688e875920837a4"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceIDP.html#a1a96e566e4d675fdf20780cc96d92283">NavigationStatus</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1Navigation.html#a96241d0be8e7442964c41c6e0e207aa8">handle_junction</a> (const <a class="el" href="namespaceIDP.html#a286f26dda01010063dff761803b4cd16">NavigationNode</a> target)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Handle arriving at a junction, either the target junction or an intermediate one where a turn may be required.  <a href="#a96241d0be8e7442964c41c6e0e207aa8"></a><br/></td></tr>
+<tr><td colspan="2"><h2><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classIDP_1_1HardwareAbstractionLayer.html">HardwareAbstractionLayer</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1Navigation.html#a640c36341bdf1e2d4ef194ad3aac9773">_hal</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceIDP.html#a286f26dda01010063dff761803b4cd16">NavigationNode</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1Navigation.html#a7ce2cbd9199af73b36d4e887282a38e6">_from</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceIDP.html#a286f26dda01010063dff761803b4cd16">NavigationNode</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1Navigation.html#a76df45b8316e55560e1adc9165700d0f">_to</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classIDP_1_1LineFollowing.html">LineFollowing</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1Navigation.html#a61d775069513302fa6b23c64da7a6ec4">_lf</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceIDP.html#a628dde0214c4c861deda405e77ad75a2">NavigationCachedJunction</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1Navigation.html#a5d511a56a6f3bdcfde2619ae4d75dcaa">_cached_junction</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1Navigation.html#aa0bdef936676bd9ba41ec24994c4adc8">_doing_second_turn</a></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>Find a route from one place to another on the board, and maintain an estimate of the current position. </p>
 
-<p>Definition at line <a class="el" href="navigation_8h_source.html#l00068">68</a> of file <a class="el" href="navigation_8h_source.html">navigation.h</a>.</p>
+<p>Definition at line <a class="el" href="navigation_8h_source.html#l00114">114</a> of file <a class="el" href="navigation_8h_source.html">navigation.h</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="afc2747e51acc44614f67cb0a785f76ac"></a><!-- doxytag: member="IDP::Navigation::Navigation" ref="afc2747e51acc44614f67cb0a785f76ac" args="(HardwareAbstractionLayer *hal, const NavigationNode from, const NavigationNode to)" -->
 <div class="memitem">
@@ -131,7 +151,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="navigation_8cc_source.html#l00126">126</a> of file <a class="el" href="navigation_8cc_source.html">navigation.cc</a>.</p>
+<p>Definition at line <a class="el" href="navigation_8cc_source.html#l00081">81</a> of file <a class="el" href="navigation_8cc_source.html">navigation.cc</a>.</p>
 
 </div>
 </div>
@@ -152,7 +172,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Destruct <a class="el" href="classIDP_1_1Navigation.html" title="Find a route from one place to another on the board, and maintain an estimate of the current position...">Navigation</a>, deleting the <a class="el" href="classIDP_1_1LineFollowing.html" title="Maintain the robot position correctly with respect to the white line markers, during driving and mano...">LineFollowing</a> object. </p>
 
-<p>Definition at line <a class="el" href="navigation_8cc_source.html#l00143">143</a> of file <a class="el" href="navigation_8cc_source.html">navigation.cc</a>.</p>
+<p>Definition at line <a class="el" href="navigation_8cc_source.html#l00098">98</a> of file <a class="el" href="navigation_8cc_source.html">navigation.cc</a>.</p>
 
 </div>
 </div>
@@ -176,7 +196,7 @@ Public Member Functions</h2></td></tr>
 <p>Go to a NavigationLocation. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A NavigationStatus code </dd></dl>
 
-<p>Definition at line <a class="el" href="navigation_8cc_source.html#l00155">155</a> of file <a class="el" href="navigation_8cc_source.html">navigation.cc</a>.</p>
+<p>Definition at line <a class="el" href="navigation_8cc_source.html#l00110">110</a> of file <a class="el" href="navigation_8cc_source.html">navigation.cc</a>.</p>
 
 </div>
 </div>
@@ -199,7 +219,194 @@ Public Member Functions</h2></td></tr>
 <p>Go to a particular NavigationNode. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A NavigationStatus code </dd></dl>
 
-<p>Definition at line <a class="el" href="navigation_8cc_source.html#l00166">166</a> of file <a class="el" href="navigation_8cc_source.html">navigation.cc</a>.</p>
+<p>Definition at line <a class="el" href="navigation_8cc_source.html#l00121">121</a> of file <a class="el" href="navigation_8cc_source.html">navigation.cc</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a96241d0be8e7442964c41c6e0e207aa8"></a><!-- doxytag: member="IDP::Navigation::handle_junction" ref="a96241d0be8e7442964c41c6e0e207aa8" args="(const NavigationNode target)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceIDP.html#a1a96e566e4d675fdf20780cc96d92283">NavigationStatus</a> IDP::Navigation::handle_junction </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespaceIDP.html#a286f26dda01010063dff761803b4cd16">NavigationNode</a>&nbsp;</td>
+          <td class="paramname"> <em>target</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Handle arriving at a junction, either the target junction or an intermediate one where a turn may be required. </p>
+<p>If we are at the target junction, return with NAVIGATION_ARRIVED, or at an intermediate junction look up the required action and then tell <a class="el" href="classIDP_1_1LineFollowing.html" title="Maintain the robot position correctly with respect to the white line markers, during driving and mano...">LineFollowing</a> whether to go straight forward or turn, and keep calling Navigation::turn() as appropriate to execute the turn.</p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>NAVIGATION_ARRIVED if at the target junction, or NAVIGATION_ENROUTE otherwise. </dd></dl>
+
+<p>Definition at line <a class="el" href="navigation_8cc_source.html#l00261">261</a> of file <a class="el" href="navigation_8cc_source.html">navigation.cc</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7da6a103a61fec763688e875920837a4"></a><!-- doxytag: member="IDP::Navigation::turn_around" ref="a7da6a103a61fec763688e875920837a4" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceIDP.html#a1a96e566e4d675fdf20780cc96d92283">NavigationStatus</a> IDP::Navigation::turn_around </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Determine the current direction of travel and then execute an about turn. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A NavigationStatus of NAVIGATION_ENROUTE if currently turning, or NAVIGATION_LOST if line following got lost during the turn. </dd></dl>
+
+<p>Definition at line <a class="el" href="navigation_8cc_source.html#l00187">187</a> of file <a class="el" href="navigation_8cc_source.html">navigation.cc</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="adeb3d2223cc6278ccef5d30e4fbeae82"></a><!-- doxytag: member="IDP::Navigation::turn_around_required" ref="adeb3d2223cc6278ccef5d30e4fbeae82" args="(const NavigationNode target) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool IDP::Navigation::turn_around_required </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespaceIDP.html#a286f26dda01010063dff761803b4cd16">NavigationNode</a>&nbsp;</td>
+          <td class="paramname"> <em>target</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Check if we need to turn around. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>target</em>&nbsp;</td><td>The NavigationNode we need to go to </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A bool, true if we need to turn around </dd></dl>
+
+<p>Definition at line <a class="el" href="navigation_8cc_source.html#l00156">156</a> of file <a class="el" href="navigation_8cc_source.html">navigation.cc</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa7701df4743c75289360a32dfa56d4fc"></a><!-- doxytag: member="IDP::Navigation::update_cache" ref="aa7701df4743c75289360a32dfa56d4fc" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void IDP::Navigation::update_cache </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Check if we should update the cached junction status and request a new one from <a class="el" href="classIDP_1_1LineFollowing.html" title="Maintain the robot position correctly with respect to the white line markers, during driving and mano...">LineFollowing</a> if required. </p>
+
+<p>Definition at line <a class="el" href="navigation_8cc_source.html#l00228">228</a> of file <a class="el" href="navigation_8cc_source.html">navigation.cc</a>.</p>
+
+</div>
+</div>
+<hr/><h2>Member Data Documentation</h2>
+<a class="anchor" id="a5d511a56a6f3bdcfde2619ae4d75dcaa"></a><!-- doxytag: member="IDP::Navigation::_cached_junction" ref="a5d511a56a6f3bdcfde2619ae4d75dcaa" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceIDP.html#a628dde0214c4c861deda405e77ad75a2">NavigationCachedJunction</a> <a class="el" href="classIDP_1_1Navigation.html#a5d511a56a6f3bdcfde2619ae4d75dcaa">IDP::Navigation::_cached_junction</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="navigation_8h_source.html#l00131">131</a> of file <a class="el" href="navigation_8h_source.html">navigation.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa0bdef936676bd9ba41ec24994c4adc8"></a><!-- doxytag: member="IDP::Navigation::_doing_second_turn" ref="aa0bdef936676bd9ba41ec24994c4adc8" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="classIDP_1_1Navigation.html#aa0bdef936676bd9ba41ec24994c4adc8">IDP::Navigation::_doing_second_turn</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="navigation_8h_source.html#l00132">132</a> of file <a class="el" href="navigation_8h_source.html">navigation.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7ce2cbd9199af73b36d4e887282a38e6"></a><!-- doxytag: member="IDP::Navigation::_from" ref="a7ce2cbd9199af73b36d4e887282a38e6" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceIDP.html#a286f26dda01010063dff761803b4cd16">NavigationNode</a> <a class="el" href="classIDP_1_1Navigation.html#a7ce2cbd9199af73b36d4e887282a38e6">IDP::Navigation::_from</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="navigation_8h_source.html#l00128">128</a> of file <a class="el" href="navigation_8h_source.html">navigation.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a640c36341bdf1e2d4ef194ad3aac9773"></a><!-- doxytag: member="IDP::Navigation::_hal" ref="a640c36341bdf1e2d4ef194ad3aac9773" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classIDP_1_1HardwareAbstractionLayer.html">HardwareAbstractionLayer</a>* <a class="el" href="classIDP_1_1Navigation.html#a640c36341bdf1e2d4ef194ad3aac9773">IDP::Navigation::_hal</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="navigation_8h_source.html#l00127">127</a> of file <a class="el" href="navigation_8h_source.html">navigation.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a61d775069513302fa6b23c64da7a6ec4"></a><!-- doxytag: member="IDP::Navigation::_lf" ref="a61d775069513302fa6b23c64da7a6ec4" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classIDP_1_1LineFollowing.html">LineFollowing</a>* <a class="el" href="classIDP_1_1Navigation.html#a61d775069513302fa6b23c64da7a6ec4">IDP::Navigation::_lf</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="navigation_8h_source.html#l00130">130</a> of file <a class="el" href="navigation_8h_source.html">navigation.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a76df45b8316e55560e1adc9165700d0f"></a><!-- doxytag: member="IDP::Navigation::_to" ref="a76df45b8316e55560e1adc9165700d0f" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceIDP.html#a286f26dda01010063dff761803b4cd16">NavigationNode</a> <a class="el" href="classIDP_1_1Navigation.html#a76df45b8316e55560e1adc9165700d0f">IDP::Navigation::_to</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="navigation_8h_source.html#l00129">129</a> of file <a class="el" href="navigation_8h_source.html">navigation.h</a>.</p>
 
 </div>
 </div>
@@ -222,7 +429,7 @@ Public Member Functions</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Tue Feb 8 2011 02:45:35 for IDPL108 by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Feb 15 2011 02:35:58 for IDPL108 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

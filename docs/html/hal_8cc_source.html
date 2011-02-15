@@ -81,14 +81,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00034"></a>00034         INFO(<span class="stringliteral">&quot;Constructing HAL&quot;</span>);
 <a name="l00035"></a>00035 
 <a name="l00036"></a>00036         <span class="keywordtype">int</span> status;
-<a name="l00037"></a>00037         this-&gt;rlink = <span class="keyword">new</span> robot_link;
+<a name="l00037"></a>00037         this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a1a363a3cab8fe7fa099b19395335c0ba">rlink</a> = <span class="keyword">new</span> robot_link;
 <a name="l00038"></a>00038 
 <a name="l00039"></a>00039         <span class="comment">// Initialise link</span>
 <a name="l00040"></a>00040         INFO(<span class="stringliteral">&quot;Initialising link&quot;</span>);
 <a name="l00041"></a>00041         <span class="keywordflow">if</span>(robot == 0) {
-<a name="l00042"></a>00042             status = this-&gt;rlink-&gt;initialise();
+<a name="l00042"></a>00042             status = this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a1a363a3cab8fe7fa099b19395335c0ba">rlink</a>-&gt;initialise();
 <a name="l00043"></a>00043         } <span class="keywordflow">else</span> {
-<a name="l00044"></a>00044             status = this-&gt;rlink-&gt;initialise(robot);
+<a name="l00044"></a>00044             status = this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a1a363a3cab8fe7fa099b19395335c0ba">rlink</a>-&gt;initialise(robot);
 <a name="l00045"></a>00045         }
 <a name="l00046"></a>00046 
 <a name="l00047"></a>00047         <span class="comment">// Check link, exit on failure</span>
@@ -100,7 +100,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00053"></a>00053 
 <a name="l00054"></a>00054         <span class="comment">// Set motor ramp speed</span>
 <a name="l00055"></a>00055         DEBUG(<span class="stringliteral">&quot;Setting motor ramp speed to &quot;</span> &lt;&lt; <a class="code" href="namespaceIDP.html#ab3a00a6cc8a6dba271e38d337daf4703" title="How fast to ramp the motors towards the desired speed.">MOTOR_RAMP_TIME</a>);
-<a name="l00056"></a>00056         this-&gt;rlink-&gt;command(RAMP_TIME, <a class="code" href="namespaceIDP.html#ab3a00a6cc8a6dba271e38d337daf4703" title="How fast to ramp the motors towards the desired speed.">MOTOR_RAMP_TIME</a>);
+<a name="l00056"></a>00056         this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a1a363a3cab8fe7fa099b19395335c0ba">rlink</a>-&gt;command(RAMP_TIME, <a class="code" href="namespaceIDP.html#ab3a00a6cc8a6dba271e38d337daf4703" title="How fast to ramp the motors towards the desired speed.">MOTOR_RAMP_TIME</a>);
 <a name="l00057"></a>00057 
 <a name="l00058"></a>00058     }
 <a name="l00059"></a>00059 
@@ -110,11 +110,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00067"></a>00067         TRACE(<span class="stringliteral">&quot;motors_forward(&quot;</span> &lt;&lt; speed &lt;&lt; <span class="stringliteral">&quot;)&quot;</span>);
 <a name="l00068"></a>00068         DEBUG(<span class="stringliteral">&quot;Driving motors forward, speed &quot;</span> &lt;&lt; speed);
 <a name="l00069"></a>00069 
-<a name="l00070"></a>00070         <span class="keywordflow">if</span>(this-&gt;check_max_speed(speed)) {
+<a name="l00070"></a>00070         <span class="keywordflow">if</span>(this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a965df71af228cf82465e4e9ef6a6e1b0" title="Check the motor speed against the set maximum, printing an error and returning true if the speed exce...">check_max_speed</a>(speed)) {
 <a name="l00071"></a>00071             <span class="keywordflow">return</span>;
 <a name="l00072"></a>00072         }
 <a name="l00073"></a>00073 
-<a name="l00074"></a>00074         this-&gt;rlink-&gt;command(BOTH_MOTORS_GO_OPPOSITE, (1&lt;&lt;7) | speed);
+<a name="l00074"></a>00074         this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a1a363a3cab8fe7fa099b19395335c0ba">rlink</a>-&gt;command(BOTH_MOTORS_GO_OPPOSITE, (1&lt;&lt;7) | speed);
 <a name="l00075"></a>00075     }
 <a name="l00076"></a>00076 
 <a name="l00081"></a><a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#ac81fbf6aa2bb93837ed276c47556a398">00081</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#ac81fbf6aa2bb93837ed276c47556a398" title="Drive both motors backwards at a given speed.">HardwareAbstractionLayer::motors_backward</a>(
@@ -123,11 +123,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00084"></a>00084         TRACE(<span class="stringliteral">&quot;motors_backward(&quot;</span> &lt;&lt; speed &lt;&lt; <span class="stringliteral">&quot;)&quot;</span>);
 <a name="l00085"></a>00085         DEBUG(<span class="stringliteral">&quot;Driving motors backward, speed &quot;</span> &lt;&lt; speed);
 <a name="l00086"></a>00086 
-<a name="l00087"></a>00087         <span class="keywordflow">if</span>(this-&gt;check_max_speed(speed)) {
+<a name="l00087"></a>00087         <span class="keywordflow">if</span>(this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a965df71af228cf82465e4e9ef6a6e1b0" title="Check the motor speed against the set maximum, printing an error and returning true if the speed exce...">check_max_speed</a>(speed)) {
 <a name="l00088"></a>00088             <span class="keywordflow">return</span>;
 <a name="l00089"></a>00089         }
 <a name="l00090"></a>00090 
-<a name="l00091"></a>00091         this-&gt;rlink-&gt;command(BOTH_MOTORS_GO_OPPOSITE, (0&lt;&lt;7) | speed);
+<a name="l00091"></a>00091         this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a1a363a3cab8fe7fa099b19395335c0ba">rlink</a>-&gt;command(BOTH_MOTORS_GO_OPPOSITE, (0&lt;&lt;7) | speed);
 <a name="l00092"></a>00092     }
 <a name="l00093"></a>00093 
 <a name="l00098"></a><a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#acf3d3dd4e05c4b50cb31b4d35f21abbf">00098</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#acf3d3dd4e05c4b50cb31b4d35f21abbf" title="Drive the left motor forward at the given speed.">HardwareAbstractionLayer::motor_left_forward</a>(
@@ -136,11 +136,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00101"></a>00101         TRACE(<span class="stringliteral">&quot;motors_turn_right(&quot;</span> &lt;&lt; speed &lt;&lt; <span class="stringliteral">&quot;)&quot;</span>);
 <a name="l00102"></a>00102         DEBUG(<span class="stringliteral">&quot;Setting left motor forward at speed &quot;</span> &lt;&lt; speed);
 <a name="l00103"></a>00103 
-<a name="l00104"></a>00104         <span class="keywordflow">if</span> (this-&gt;check_max_speed(speed)) {
+<a name="l00104"></a>00104         <span class="keywordflow">if</span> (this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a965df71af228cf82465e4e9ef6a6e1b0" title="Check the motor speed against the set maximum, printing an error and returning true if the speed exce...">check_max_speed</a>(speed)) {
 <a name="l00105"></a>00105             <span class="keywordflow">return</span>;
 <a name="l00106"></a>00106         }
 <a name="l00107"></a>00107 
-<a name="l00108"></a>00108         this-&gt;rlink-&gt;command(MOTOR_1_GO, (1&lt;&lt;7) | speed);
+<a name="l00108"></a>00108         this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a1a363a3cab8fe7fa099b19395335c0ba">rlink</a>-&gt;command(MOTOR_1_GO, (1&lt;&lt;7) | speed);
 <a name="l00109"></a>00109     }
 <a name="l00110"></a>00110 
 <a name="l00115"></a><a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#aa2e2e226f2313d769e3ce226dd24d22c">00115</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#aa2e2e226f2313d769e3ce226dd24d22c" title="Drive the right motor forward at the given speed.">HardwareAbstractionLayer::motor_right_forward</a>(
@@ -149,11 +149,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00118"></a>00118         TRACE(<span class="stringliteral">&quot;motor_right_forward(&quot;</span> &lt;&lt; speed &lt;&lt; <span class="stringliteral">&quot;)&quot;</span>);
 <a name="l00119"></a>00119         DEBUG(<span class="stringliteral">&quot;Setting right motor forward at speed &quot;</span> &lt;&lt; speed);
 <a name="l00120"></a>00120 
-<a name="l00121"></a>00121         <span class="keywordflow">if</span> (this-&gt;check_max_speed(speed)) {
+<a name="l00121"></a>00121         <span class="keywordflow">if</span> (this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a965df71af228cf82465e4e9ef6a6e1b0" title="Check the motor speed against the set maximum, printing an error and returning true if the speed exce...">check_max_speed</a>(speed)) {
 <a name="l00122"></a>00122             <span class="keywordflow">return</span>;
 <a name="l00123"></a>00123         }
 <a name="l00124"></a>00124 
-<a name="l00125"></a>00125         this-&gt;rlink-&gt;command(MOTOR_2_GO, speed);
+<a name="l00125"></a>00125         this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a1a363a3cab8fe7fa099b19395335c0ba">rlink</a>-&gt;command(MOTOR_2_GO, speed);
 <a name="l00126"></a>00126     }
 <a name="l00127"></a>00127 
 <a name="l00132"></a><a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a61b80e2bad5cc6a56a17350b015bfbcc">00132</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a61b80e2bad5cc6a56a17350b015bfbcc" title="Drive the left motor backward at the given speed.">HardwareAbstractionLayer::motor_left_backward</a>(
@@ -162,11 +162,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00135"></a>00135         TRACE(<span class="stringliteral">&quot;motor_left_backward(&quot;</span> &lt;&lt; speed &lt;&lt; <span class="stringliteral">&quot;)&quot;</span>);
 <a name="l00136"></a>00136         DEBUG(<span class="stringliteral">&quot;Setting left motor backward at speed &quot;</span> &lt;&lt; speed);
 <a name="l00137"></a>00137 
-<a name="l00138"></a>00138         <span class="keywordflow">if</span> (this-&gt;check_max_speed(speed)) {
+<a name="l00138"></a>00138         <span class="keywordflow">if</span> (this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a965df71af228cf82465e4e9ef6a6e1b0" title="Check the motor speed against the set maximum, printing an error and returning true if the speed exce...">check_max_speed</a>(speed)) {
 <a name="l00139"></a>00139             <span class="keywordflow">return</span>;
 <a name="l00140"></a>00140         }
 <a name="l00141"></a>00141 
-<a name="l00142"></a>00142         this-&gt;rlink-&gt;command(MOTOR_1_GO, speed);
+<a name="l00142"></a>00142         this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a1a363a3cab8fe7fa099b19395335c0ba">rlink</a>-&gt;command(MOTOR_1_GO, speed);
 <a name="l00143"></a>00143     }
 <a name="l00144"></a>00144 
 <a name="l00149"></a><a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#aac42c10ca431120a060f9b2c394492ae">00149</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#aac42c10ca431120a060f9b2c394492ae" title="Drive the right motor backward at the given speed.">HardwareAbstractionLayer::motor_right_backward</a>(
@@ -175,11 +175,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00152"></a>00152         TRACE(<span class="stringliteral">&quot;motor_right_backward(&quot;</span> &lt;&lt; speed &lt;&lt; <span class="stringliteral">&quot;)&quot;</span>);
 <a name="l00153"></a>00153         DEBUG(<span class="stringliteral">&quot;Setting right motor backward at speed &quot;</span> &lt;&lt; speed);
 <a name="l00154"></a>00154 
-<a name="l00155"></a>00155         <span class="keywordflow">if</span> (this-&gt;check_max_speed(speed)) {
+<a name="l00155"></a>00155         <span class="keywordflow">if</span> (this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a965df71af228cf82465e4e9ef6a6e1b0" title="Check the motor speed against the set maximum, printing an error and returning true if the speed exce...">check_max_speed</a>(speed)) {
 <a name="l00156"></a>00156             <span class="keywordflow">return</span>;
 <a name="l00157"></a>00157         }
 <a name="l00158"></a>00158 
-<a name="l00159"></a>00159         this-&gt;rlink-&gt;command(MOTOR_2_GO, (1&lt;&lt;7) | speed);
+<a name="l00159"></a>00159         this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a1a363a3cab8fe7fa099b19395335c0ba">rlink</a>-&gt;command(MOTOR_2_GO, (1&lt;&lt;7) | speed);
 <a name="l00160"></a>00160     }
 <a name="l00161"></a>00161 
 <a name="l00166"></a><a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#ae38aaced2f082b6b04ebdd662349b1d2">00166</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#ae38aaced2f082b6b04ebdd662349b1d2" title="Drive the motors to steer the robot to the left.">HardwareAbstractionLayer::motors_turn_left</a>(
@@ -188,11 +188,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00169"></a>00169         TRACE(<span class="stringliteral">&quot;motors_turn_left(&quot;</span> &lt;&lt; speed &lt;&lt; <span class="stringliteral">&quot;)&quot;</span>);
 <a name="l00170"></a>00170         DEBUG(<span class="stringliteral">&quot;Turning motors left, speed &quot;</span> &lt;&lt; speed);
 <a name="l00171"></a>00171 
-<a name="l00172"></a>00172         <span class="keywordflow">if</span>(this-&gt;check_max_speed(speed)) {
+<a name="l00172"></a>00172         <span class="keywordflow">if</span>(this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a965df71af228cf82465e4e9ef6a6e1b0" title="Check the motor speed against the set maximum, printing an error and returning true if the speed exce...">check_max_speed</a>(speed)) {
 <a name="l00173"></a>00173             <span class="keywordflow">return</span>;
 <a name="l00174"></a>00174         }
 <a name="l00175"></a>00175 
-<a name="l00176"></a>00176         this-&gt;rlink-&gt;command(BOTH_MOTORS_GO_SAME, (1&lt;&lt;7) | speed);
+<a name="l00176"></a>00176         this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a1a363a3cab8fe7fa099b19395335c0ba">rlink</a>-&gt;command(BOTH_MOTORS_GO_SAME, (1&lt;&lt;7) | speed);
 <a name="l00177"></a>00177     }
 <a name="l00178"></a>00178 
 <a name="l00183"></a><a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#ad1fba0e8cb2c9ad902c8e4ec34e5e622">00183</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#ad1fba0e8cb2c9ad902c8e4ec34e5e622" title="Drive the motors to steer the robot to the right.">HardwareAbstractionLayer::motors_turn_right</a>(
@@ -201,21 +201,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00186"></a>00186         TRACE(<span class="stringliteral">&quot;motors_turn_right(&quot;</span> &lt;&lt; speed &lt;&lt; <span class="stringliteral">&quot;)&quot;</span>);
 <a name="l00187"></a>00187         DEBUG(<span class="stringliteral">&quot;Turning motors right, speed &quot;</span> &lt;&lt; speed);
 <a name="l00188"></a>00188 
-<a name="l00189"></a>00189         <span class="keywordflow">if</span>(this-&gt;check_max_speed(speed)) {
+<a name="l00189"></a>00189         <span class="keywordflow">if</span>(this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a965df71af228cf82465e4e9ef6a6e1b0" title="Check the motor speed against the set maximum, printing an error and returning true if the speed exce...">check_max_speed</a>(speed)) {
 <a name="l00190"></a>00190             <span class="keywordflow">return</span>;
 <a name="l00191"></a>00191         }
 <a name="l00192"></a>00192 
-<a name="l00193"></a>00193         this-&gt;rlink-&gt;command(BOTH_MOTORS_GO_SAME, (0&lt;&lt;7) | speed);
+<a name="l00193"></a>00193         this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a1a363a3cab8fe7fa099b19395335c0ba">rlink</a>-&gt;command(BOTH_MOTORS_GO_SAME, (0&lt;&lt;7) | speed);
 <a name="l00194"></a>00194     }
 <a name="l00195"></a>00195 
 <a name="l00199"></a><a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a4f8f0340f3ac64c3f676b700b7e36229">00199</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a4f8f0340f3ac64c3f676b700b7e36229" title="Stop all motors.">HardwareAbstractionLayer::motors_stop</a>()
 <a name="l00200"></a>00200     {
 <a name="l00201"></a>00201         TRACE(<span class="stringliteral">&quot;motors_stop()&quot;</span>);
 <a name="l00202"></a>00202         INFO(<span class="stringliteral">&quot;Stopping all motors&quot;</span>);
-<a name="l00203"></a>00203         this-&gt;rlink-&gt;command(MOTOR_1_GO, 0);
-<a name="l00204"></a>00204         this-&gt;rlink-&gt;command(MOTOR_2_GO, 0);
-<a name="l00205"></a>00205         this-&gt;rlink-&gt;command(MOTOR_3_GO, 0);
-<a name="l00206"></a>00206         this-&gt;rlink-&gt;command(MOTOR_4_GO, 0);
+<a name="l00203"></a>00203         this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a1a363a3cab8fe7fa099b19395335c0ba">rlink</a>-&gt;command(MOTOR_1_GO, 0);
+<a name="l00204"></a>00204         this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a1a363a3cab8fe7fa099b19395335c0ba">rlink</a>-&gt;command(MOTOR_2_GO, 0);
+<a name="l00205"></a>00205         this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a1a363a3cab8fe7fa099b19395335c0ba">rlink</a>-&gt;command(MOTOR_3_GO, 0);
+<a name="l00206"></a>00206         this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a1a363a3cab8fe7fa099b19395335c0ba">rlink</a>-&gt;command(MOTOR_4_GO, 0);
 <a name="l00207"></a>00207     }
 <a name="l00208"></a>00208 
 <a name="l00214"></a><a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#aca143d627de2ff9942069ad922d17ee5">00214</a>     <span class="keyword">const</span> <a class="code" href="structIDP_1_1LineSensors.html" title="Contains the LINE or NO_LINE status of each of the four IR sensors used for line following.">LineSensors</a> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#aca143d627de2ff9942069ad922d17ee5" title="Read the I/O port connected to the line following sensors, then return a struct with their current st...">HardwareAbstractionLayer::line_following_sensors</a>()<span class="keyword"> const</span>
@@ -224,7 +224,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00217"></a>00217         DEBUG(<span class="stringliteral">&quot;Reading line following sensors&quot;</span>);
 <a name="l00218"></a>00218 
 <a name="l00219"></a>00219         <span class="comment">// Get the port values</span>
-<a name="l00220"></a>00220         <span class="keywordtype">int</span> port_values = this-&gt;rlink-&gt;request(READ_PORT_0);
+<a name="l00220"></a>00220         <span class="keywordtype">int</span> port_values = this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a1a363a3cab8fe7fa099b19395335c0ba">rlink</a>-&gt;request(READ_PORT_0);
 <a name="l00221"></a>00221         <a class="code" href="structIDP_1_1LineSensors.html" title="Contains the LINE or NO_LINE status of each of the four IR sensors used for line following.">LineSensors</a> sensor_values;
 <a name="l00222"></a>00222         
 <a name="l00223"></a>00223         <span class="comment">// Set the struct members appropriately</span>
@@ -256,14 +256,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00252"></a>00252 <span class="keyword">    </span>{
 <a name="l00253"></a>00253         TRACE(<span class="stringliteral">&quot;clear_status_register()&quot;</span>);
 <a name="l00254"></a>00254         DEBUG(<span class="stringliteral">&quot;Reading and discarding status register&quot;</span>);
-<a name="l00255"></a>00255         this-&gt;rlink-&gt;request(STATUS);
+<a name="l00255"></a>00255         this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a1a363a3cab8fe7fa099b19395335c0ba">rlink</a>-&gt;request(STATUS);
 <a name="l00256"></a>00256     }
 <a name="l00257"></a>00257 
 <a name="l00262"></a><a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a4867c291e34794d1bb9c0929d5514c5b">00262</a>     <span class="keywordtype">char</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a4867c291e34794d1bb9c0929d5514c5b" title="Read the status register and return it.">HardwareAbstractionLayer::status_register</a>()<span class="keyword"> const</span>
 <a name="l00263"></a>00263 <span class="keyword">    </span>{
 <a name="l00264"></a>00264         TRACE(<span class="stringliteral">&quot;status_register()&quot;</span>);
 <a name="l00265"></a>00265         DEBUG(<span class="stringliteral">&quot;Reading status register&quot;</span>);
-<a name="l00266"></a>00266         <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span><span class="keywordtype">char</span><span class="keyword">&gt;</span>(this-&gt;rlink-&gt;request(STATUS));
+<a name="l00266"></a>00266         <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span><span class="keywordtype">char</span><span class="keyword">&gt;</span>(this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a1a363a3cab8fe7fa099b19395335c0ba">rlink</a>-&gt;request(STATUS));
 <a name="l00267"></a>00267     }
 <a name="l00268"></a>00268 
 <a name="l00273"></a><a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a4ce4bec948d6449e7cab3cfcd0de513f">00273</a>     <span class="keywordtype">bool</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a4ce4bec948d6449e7cab3cfcd0de513f" title="Read the reset switch and return its status.">HardwareAbstractionLayer::reset_switch</a>()<span class="keyword"> const</span>
@@ -325,7 +325,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00366"></a>00366         <a class="code" href="hal_8cc.html#a86d500a34c624c2cae56bc25a31b12f3">UNUSED</a>(status);
 <a name="l00367"></a>00367     }
 <a name="l00368"></a>00368 
-<a name="l00375"></a>00375     <span class="keywordtype">bool</span> HardwareAbstractionLayer::check_max_speed(
+<a name="l00375"></a><a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a965df71af228cf82465e4e9ef6a6e1b0">00375</a>     <span class="keywordtype">bool</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a965df71af228cf82465e4e9ef6a6e1b0" title="Check the motor speed against the set maximum, printing an error and returning true if the speed exce...">HardwareAbstractionLayer::check_max_speed</a>(
 <a name="l00376"></a>00376         <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> speed)<span class="keyword"> const</span>
 <a name="l00377"></a>00377 <span class="keyword">    </span>{
 <a name="l00378"></a>00378         TRACE(<span class="stringliteral">&quot;check_max_speed(&quot;</span>&lt;&lt;speed&lt;&lt;<span class="stringliteral">&quot;)&quot;</span>);
@@ -354,7 +354,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Tue Feb 8 2011 02:45:35 for IDPL108 by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Feb 15 2011 02:35:58 for IDPL108 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

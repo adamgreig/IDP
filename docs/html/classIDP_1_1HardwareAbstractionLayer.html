@@ -53,7 +53,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="header">
   <div class="summary">
-<a href="#pub-methods">Public Member Functions</a>  </div>
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a>  </div>
   <div class="headertitle">
 <h1>IDP::HardwareAbstractionLayer Class Reference</h1>  </div>
 </div>
@@ -112,6 +114,13 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Turn the grabber jaw actuator on or off.  <a href="#a44d5a4c942332ba9ffe027de3dba83f0"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1HardwareAbstractionLayer.html#a0f036b16f1f55a257c2b552035d2a1a9">grabber_lift</a> (const bool status)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Turn the grabber lift mechanism actuator on or off.  <a href="#a0f036b16f1f55a257c2b552035d2a1a9"></a><br/></td></tr>
+<tr><td colspan="2"><h2><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1HardwareAbstractionLayer.html#a965df71af228cf82465e4e9ef6a6e1b0">check_max_speed</a> (const unsigned short int speed) const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Check the motor speed against the set maximum, printing an error and returning true if the speed exceeds that value.  <a href="#a965df71af228cf82465e4e9ef6a6e1b0"></a><br/></td></tr>
+<tr><td colspan="2"><h2><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">robot_link *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1HardwareAbstractionLayer.html#a1a363a3cab8fe7fa099b19395335c0ba">rlink</a></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>Provide a hardware agnostic interface to the required hardware functionality. </p>
@@ -189,6 +198,35 @@ Public Member Functions</h2></td></tr>
 </dl>
 
 <p>Definition at line <a class="el" href="hal_8cc_source.html#l00343">343</a> of file <a class="el" href="hal_8cc_source.html">hal.cc</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a965df71af228cf82465e4e9ef6a6e1b0"></a><!-- doxytag: member="IDP::HardwareAbstractionLayer::check_max_speed" ref="a965df71af228cf82465e4e9ef6a6e1b0" args="(const unsigned short int speed) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool IDP::HardwareAbstractionLayer::check_max_speed </td>
+          <td>(</td>
+          <td class="paramtype">const unsigned short int&nbsp;</td>
+          <td class="paramname"> <em>speed</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Check the motor speed against the set maximum, printing an error and returning true if the speed exceeds that value. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>speed</em>&nbsp;</td><td>The speed to check </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>true if the speed is too high, false if okay </dd></dl>
+
+<p>Definition at line <a class="el" href="hal_8cc_source.html#l00375">375</a> of file <a class="el" href="hal_8cc_source.html">hal.cc</a>.</p>
 
 </div>
 </div>
@@ -707,6 +745,22 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<hr/><h2>Member Data Documentation</h2>
+<a class="anchor" id="a1a363a3cab8fe7fa099b19395335c0ba"></a><!-- doxytag: member="IDP::HardwareAbstractionLayer::rlink" ref="a1a363a3cab8fe7fa099b19395335c0ba" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">robot_link* <a class="el" href="classIDP_1_1HardwareAbstractionLayer.html#a1a363a3cab8fe7fa099b19395335c0ba">IDP::HardwareAbstractionLayer::rlink</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="hal_8h_source.html#l00081">81</a> of file <a class="el" href="hal_8h_source.html">hal.h</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>src/libidp/<a class="el" href="hal_8h_source.html">hal.h</a></li>
 <li>src/libidp/<a class="el" href="hal_8cc_source.html">hal.cc</a></li>
@@ -726,7 +780,7 @@ Public Member Functions</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Tue Feb 8 2011 02:45:35 for IDPL108 by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Feb 15 2011 02:35:58 for IDPL108 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

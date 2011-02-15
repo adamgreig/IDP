@@ -61,7 +61,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00010"></a>00010 
 <a name="l00011"></a>00011 <span class="comment">// Debug functionality</span>
 <a name="l00012"></a><a class="code" href="navigation_8cc.html#a14ded244c47bbba850a8a4be6d16c7e3">00012</a> <span class="preprocessor">#define MODULE_NAME &quot;Navigation&quot;</span>
-<a name="l00013"></a><a class="code" href="navigation_8cc.html#ae04c5e41f64b51d21bc71565938a59d6">00013</a> <span class="preprocessor"></span><span class="preprocessor">#define TRACE_ENABLED   false</span>
+<a name="l00013"></a><a class="code" href="navigation_8cc.html#ae04c5e41f64b51d21bc71565938a59d6">00013</a> <span class="preprocessor"></span><span class="preprocessor">#define TRACE_ENABLED   true</span>
 <a name="l00014"></a><a class="code" href="navigation_8cc.html#a7d2ae674cad5299a52b0e7dceac10087">00014</a> <span class="preprocessor"></span><span class="preprocessor">#define DEBUG_ENABLED   true</span>
 <a name="l00015"></a><a class="code" href="navigation_8cc.html#a580f977f97ee7f7ceb91b1c42306f537">00015</a> <span class="preprocessor"></span><span class="preprocessor">#define INFO_ENABLED    true</span>
 <a name="l00016"></a><a class="code" href="navigation_8cc.html#a292d4ca4e07d63502916a17a853ab606">00016</a> <span class="preprocessor"></span><span class="preprocessor">#define ERROR_ENABLED   true</span>
@@ -101,205 +101,221 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00067"></a>00067             NODE9, <a class="code" href="namespaceIDP.html#a286f26dda01010063dff761803b4cd16ac1ad66fa991f24bbd3b7d38935ffefc3">NODE10</a>}
 <a name="l00068"></a>00068     };
 <a name="l00069"></a>00069 
-<a name="l00073"></a>00073     <span class="keyword">const</span> <span class="keywordtype">char</span>* NavigationStatusStrings[] = {
-<a name="l00074"></a>00074         <span class="stringliteral">&quot;NAVIGATION_ENROUTE&quot;</span>, <span class="stringliteral">&quot;NAVIGATION_ARRIVED&quot;</span>, <span class="stringliteral">&quot;NAVIGATION_LOST&quot;</span>,
-<a name="l00075"></a>00075         <span class="stringliteral">&quot;MAX_STATUS&quot;</span>
-<a name="l00076"></a>00076     };
-<a name="l00077"></a>00077 
-<a name="l00081"></a>00081     <span class="keyword">const</span> <span class="keywordtype">char</span>* NavigationLocationStrings[] = {
-<a name="l00082"></a>00082         <span class="stringliteral">&quot;NAVIGATION_BOXES&quot;</span>, <span class="stringliteral">&quot;NAVIGATION_RACK&quot;</span>, <span class="stringliteral">&quot;NAVIGATION_DELIVERY&quot;</span>,
-<a name="l00083"></a>00083         <span class="stringliteral">&quot;MAX_LOCATION&quot;</span>
-<a name="l00084"></a>00084     };
-<a name="l00085"></a>00085 
-<a name="l00089"></a>00089     <span class="keyword">const</span> <span class="keywordtype">char</span>* NavigationDirectionStrings[] = {
-<a name="l00090"></a>00090         <span class="stringliteral">&quot;NAVIGATION_CLOCKWISE&quot;</span>, <span class="stringliteral">&quot;NAVIGATION_ANTICLOCKWISE&quot;</span>, <span class="stringliteral">&quot;MAX_DIRECTION&quot;</span>
-<a name="l00091"></a>00091     };
-<a name="l00092"></a>00092 
-<a name="l00096"></a>00096     <span class="keyword">const</span> <span class="keywordtype">char</span>* NavigationNodeStrings[] = {
-<a name="l00097"></a>00097         <span class="stringliteral">&quot;NODE1&quot;</span>, <span class="stringliteral">&quot;NODE2&quot;</span>, <span class="stringliteral">&quot;NODE3&quot;</span>, <span class="stringliteral">&quot;NODE4&quot;</span>, <span class="stringliteral">&quot;NODE5&quot;</span>, <span class="stringliteral">&quot;NODE6&quot;</span>, <span class="stringliteral">&quot;NODE7&quot;</span>,
-<a name="l00098"></a>00098         <span class="stringliteral">&quot;NODE8&quot;</span>, <span class="stringliteral">&quot;NODE9&quot;</span>, <span class="stringliteral">&quot;NODE10&quot;</span>, <span class="stringliteral">&quot;NODE11&quot;</span>, <span class="stringliteral">&quot;MAX_NODE&quot;</span>
-<a name="l00099"></a>00099     };
-<a name="l00100"></a>00100 
-<a name="l00104"></a>00104     <span class="keyword">const</span> <span class="keywordtype">char</span>* NavigationTurnStrings[] = {
-<a name="l00105"></a>00105         <span class="stringliteral">&quot;STRIGHT&quot;</span>, <span class="stringliteral">&quot;LEFT&quot;</span>, <span class="stringliteral">&quot;RIGHT&quot;</span>, <span class="stringliteral">&quot;BOTH&quot;</span>, <span class="stringliteral">&quot;LEFT_AND_STRAIGHT&quot;</span>,
-<a name="l00106"></a>00106         <span class="stringliteral">&quot;RIGHT_AND_STRAIGHT&quot;</span>, <span class="stringliteral">&quot;BOTH_AND_STRAIGHT&quot;</span>, <span class="stringliteral">&quot;END_OF_LINE&quot;</span>, <span class="stringliteral">&quot;MAX_TURNS&quot;</span>
-<a name="l00107"></a>00107     };
-<a name="l00108"></a>00108 
-<a name="l00112"></a>00112     <span class="keyword">const</span> <span class="keywordtype">char</span>* NavigationCachedJunctionStrings[] = {
-<a name="l00113"></a>00113         <span class="stringliteral">&quot;NO_CACHE&quot;</span>, <span class="stringliteral">&quot;LEFT_TURN&quot;</span>, <span class="stringliteral">&quot;RIGHT_TURN&quot;</span>, <span class="stringliteral">&quot;BOTH_TURNS&quot;</span>, <span class="stringliteral">&quot;NO_TURNS&quot;</span>
-<a name="l00114"></a>00114     };
-<a name="l00115"></a>00115 
-<a name="l00126"></a><a class="code" href="classIDP_1_1Navigation.html#afc2747e51acc44614f67cb0a785f76ac">00126</a>     <a class="code" href="classIDP_1_1Navigation.html#afc2747e51acc44614f67cb0a785f76ac" title="Initialise the class, storing the const pointer to the HAL.">Navigation::Navigation</a>(<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html" title="Provide a hardware agnostic interface to the required hardware functionality.">HardwareAbstractionLayer</a>* hal,
-<a name="l00127"></a>00127         <span class="keyword">const</span> <a class="code" href="namespaceIDP.html#a286f26dda01010063dff761803b4cd16" title="Navigation nodes, numbered clockwise from the bottom right corner of the table.">NavigationNode</a> from=<a class="code" href="namespaceIDP.html#a286f26dda01010063dff761803b4cd16a64ef68f9f4ffd2a6b200d9667ae5ff69">NODE7</a>, <span class="keyword">const</span> <a class="code" href="namespaceIDP.html#a286f26dda01010063dff761803b4cd16" title="Navigation nodes, numbered clockwise from the bottom right corner of the table.">NavigationNode</a> to=<a class="code" href="namespaceIDP.html#a286f26dda01010063dff761803b4cd16af0865100370f00bba081b38a771aac19">NODE8</a>):
-<a name="l00128"></a>00128         _hal(hal), _from(from), _to(to), _lf(0), _cached_junction(<a class="code" href="namespaceIDP.html#a628dde0214c4c861deda405e77ad75a2a35431162cfca423a194c5680b2f56b4e">NO_CACHE</a>),
-<a name="l00129"></a>00129         _doing_second_turn(false)
-<a name="l00130"></a>00130     {
-<a name="l00131"></a>00131         TRACE(<span class="stringliteral">&quot;Navigation(&quot;</span> &lt;&lt; hal &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; NavigationNodeStrings[from] &lt;&lt;
-<a name="l00132"></a>00132             <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; NavigationNodeStrings[to] &lt;&lt; <span class="stringliteral">&quot;)&quot;</span>);
-<a name="l00133"></a>00133         INFO(<span class="stringliteral">&quot;Initialising Navigation&quot;</span>);
-<a name="l00134"></a>00134         
-<a name="l00135"></a>00135         <span class="comment">// Initialise a new lf object</span>
-<a name="l00136"></a>00136         this-&gt;_lf = <span class="keyword">new</span> <a class="code" href="classIDP_1_1LineFollowing.html" title="Maintain the robot position correctly with respect to the white line markers, during driving and mano...">LineFollowing</a>(hal);
-<a name="l00137"></a>00137         this-&gt;_lf-&gt;<a class="code" href="classIDP_1_1LineFollowing.html#af034f457aef1716d042606c71dddfd73" title="Set the speed that motors will be driven at.">set_speed</a>(127);
-<a name="l00138"></a>00138     }
-<a name="l00139"></a>00139 
-<a name="l00143"></a><a class="code" href="classIDP_1_1Navigation.html#a2af5390d05f2058beb841030f9aea0c0">00143</a>     <a class="code" href="classIDP_1_1Navigation.html#a2af5390d05f2058beb841030f9aea0c0" title="Destruct Navigation, deleting the LineFollowing object.">Navigation::~Navigation</a>()
-<a name="l00144"></a>00144     {
-<a name="l00145"></a>00145         TRACE(<span class="stringliteral">&quot;~Navigation()&quot;</span>);
-<a name="l00146"></a>00146         INFO(<span class="stringliteral">&quot;Destructing Navigation&quot;</span>);
-<a name="l00147"></a>00147         <span class="keywordflow">if</span>(this-&gt;_lf)
-<a name="l00148"></a>00148             <span class="keyword">delete</span> this-&gt;_lf;
+<a name="l00070"></a>00070 
+<a name="l00081"></a><a class="code" href="classIDP_1_1Navigation.html#afc2747e51acc44614f67cb0a785f76ac">00081</a>     <a class="code" href="classIDP_1_1Navigation.html#afc2747e51acc44614f67cb0a785f76ac" title="Initialise the class, storing the const pointer to the HAL.">Navigation::Navigation</a>(<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html" title="Provide a hardware agnostic interface to the required hardware functionality.">HardwareAbstractionLayer</a>* hal,
+<a name="l00082"></a>00082         <span class="keyword">const</span> <a class="code" href="namespaceIDP.html#a286f26dda01010063dff761803b4cd16" title="Navigation nodes, numbered clockwise from the bottom right corner of the table.">NavigationNode</a> from=<a class="code" href="namespaceIDP.html#a286f26dda01010063dff761803b4cd16a64ef68f9f4ffd2a6b200d9667ae5ff69">NODE7</a>, <span class="keyword">const</span> <a class="code" href="namespaceIDP.html#a286f26dda01010063dff761803b4cd16" title="Navigation nodes, numbered clockwise from the bottom right corner of the table.">NavigationNode</a> to=<a class="code" href="namespaceIDP.html#a286f26dda01010063dff761803b4cd16af0865100370f00bba081b38a771aac19">NODE8</a>):
+<a name="l00083"></a>00083         _hal(hal), _from(from), _to(to), _lf(0), _cached_junction(<a class="code" href="namespaceIDP.html#a628dde0214c4c861deda405e77ad75a2a35431162cfca423a194c5680b2f56b4e">NO_CACHE</a>),
+<a name="l00084"></a>00084         _doing_second_turn(false)
+<a name="l00085"></a>00085     {
+<a name="l00086"></a>00086         TRACE(<span class="stringliteral">&quot;Navigation(&quot;</span> &lt;&lt; hal &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; NavigationNodeStrings[from] &lt;&lt;
+<a name="l00087"></a>00087             <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; NavigationNodeStrings[to] &lt;&lt; <span class="stringliteral">&quot;)&quot;</span>);
+<a name="l00088"></a>00088         INFO(<span class="stringliteral">&quot;Initialising Navigation&quot;</span>);
+<a name="l00089"></a>00089         
+<a name="l00090"></a>00090         <span class="comment">// Initialise a new lf object</span>
+<a name="l00091"></a>00091         this-&gt;<a class="code" href="classIDP_1_1Navigation.html#a61d775069513302fa6b23c64da7a6ec4">_lf</a> = <span class="keyword">new</span> <a class="code" href="classIDP_1_1LineFollowing.html" title="Maintain the robot position correctly with respect to the white line markers, during driving and mano...">LineFollowing</a>(hal);
+<a name="l00092"></a>00092         this-&gt;<a class="code" href="classIDP_1_1Navigation.html#a61d775069513302fa6b23c64da7a6ec4">_lf</a>-&gt;<a class="code" href="classIDP_1_1LineFollowing.html#af034f457aef1716d042606c71dddfd73" title="Set the speed that motors will be driven at.">set_speed</a>(127);
+<a name="l00093"></a>00093     }
+<a name="l00094"></a>00094 
+<a name="l00098"></a><a class="code" href="classIDP_1_1Navigation.html#a2af5390d05f2058beb841030f9aea0c0">00098</a>     <a class="code" href="classIDP_1_1Navigation.html#a2af5390d05f2058beb841030f9aea0c0" title="Destruct Navigation, deleting the LineFollowing object.">Navigation::~Navigation</a>()
+<a name="l00099"></a>00099     {
+<a name="l00100"></a>00100         TRACE(<span class="stringliteral">&quot;~Navigation()&quot;</span>);
+<a name="l00101"></a>00101         INFO(<span class="stringliteral">&quot;Destructing Navigation&quot;</span>);
+<a name="l00102"></a>00102         <span class="keywordflow">if</span>(this-&gt;<a class="code" href="classIDP_1_1Navigation.html#a61d775069513302fa6b23c64da7a6ec4">_lf</a>)
+<a name="l00103"></a>00103             <span class="keyword">delete</span> this-&gt;<a class="code" href="classIDP_1_1Navigation.html#a61d775069513302fa6b23c64da7a6ec4">_lf</a>;
+<a name="l00104"></a>00104     }
+<a name="l00105"></a>00105 
+<a name="l00110"></a><a class="code" href="classIDP_1_1Navigation.html#aba1ab266d223b517fdc3cf6bc3d8e84c">00110</a>     <a class="code" href="namespaceIDP.html#a1a96e566e4d675fdf20780cc96d92283" title="Current navigation status.">NavigationStatus</a> <a class="code" href="classIDP_1_1Navigation.html#aba1ab266d223b517fdc3cf6bc3d8e84c" title="Go to a NavigationLocation.">Navigation::go</a>(<span class="keyword">const</span> <a class="code" href="namespaceIDP.html#ab9c412f0fd539b5d70385066c30465a0" title="Possible locations for navigation to be asked to go to.">NavigationLocation</a> location)
+<a name="l00111"></a>00111     {
+<a name="l00112"></a>00112         TRACE(<span class="stringliteral">&quot;go(&quot;</span> &lt;&lt; NavigationLocationStrings[location] &lt;&lt; <span class="stringliteral">&quot;)&quot;</span>);
+<a name="l00113"></a>00113         <a class="code" href="navigation_8cc.html#a86d500a34c624c2cae56bc25a31b12f3">UNUSED</a>(location);
+<a name="l00114"></a>00114         <span class="keywordflow">return</span> NAVIGATION_ARRIVED;
+<a name="l00115"></a>00115     }
+<a name="l00116"></a>00116 
+<a name="l00121"></a><a class="code" href="classIDP_1_1Navigation.html#a24b977f20868a385251d4becf187b815">00121</a>     <a class="code" href="namespaceIDP.html#a1a96e566e4d675fdf20780cc96d92283" title="Current navigation status.">NavigationStatus</a> <a class="code" href="classIDP_1_1Navigation.html#a24b977f20868a385251d4becf187b815" title="Go to a particular NavigationNode.">Navigation::go_node</a>(<span class="keyword">const</span> <a class="code" href="namespaceIDP.html#a286f26dda01010063dff761803b4cd16" title="Navigation nodes, numbered clockwise from the bottom right corner of the table.">NavigationNode</a> target)
+<a name="l00122"></a>00122     {
+<a name="l00123"></a>00123         TRACE(<span class="stringliteral">&quot;go_node(&quot;</span> &lt;&lt; NavigationNodeStrings[target] &lt;&lt; <span class="stringliteral">&quot;)&quot;</span>);
+<a name="l00124"></a>00124         DEBUG(<span class="stringliteral">&quot;From &quot;</span> &lt;&lt; NavigationNodeStrings[<a class="code" href="classIDP_1_1Navigation.html#a7ce2cbd9199af73b36d4e887282a38e6">_from</a>] &lt;&lt; <span class="stringliteral">&quot;, to &quot;</span> &lt;&lt;
+<a name="l00125"></a>00125             NavigationNodeStrings[<a class="code" href="classIDP_1_1Navigation.html#a76df45b8316e55560e1adc9165700d0f">_to</a>] &lt;&lt; <span class="stringliteral">&quot;, target &quot;</span> &lt;&lt;
+<a name="l00126"></a>00126             NavigationNodeStrings[target]);
+<a name="l00127"></a>00127 
+<a name="l00128"></a>00128         <span class="comment">// Check if we need to turn, and do so</span>
+<a name="l00129"></a>00129         <span class="keywordflow">if</span>(this-&gt;<a class="code" href="classIDP_1_1Navigation.html#adeb3d2223cc6278ccef5d30e4fbeae82" title="Check if we need to turn around.">turn_around_required</a>(target))
+<a name="l00130"></a>00130             <span class="keywordflow">return</span> this-&gt;<a class="code" href="classIDP_1_1Navigation.html#a7da6a103a61fec763688e875920837a4" title="Determine the current direction of travel and then execute an about turn.">turn_around</a>();
+<a name="l00131"></a>00131 
+<a name="l00132"></a>00132         <span class="comment">// Update our cached view of the junction status.</span>
+<a name="l00133"></a>00133         <span class="comment">// This stores the last known junction when we start</span>
+<a name="l00134"></a>00134         <span class="comment">// a turn so we don&#39;t get confused halfway through.</span>
+<a name="l00135"></a>00135         this-&gt;<a class="code" href="classIDP_1_1Navigation.html#aa7701df4743c75289360a32dfa56d4fc" title="Check if we should update the cached junction status and request a new one from LineFollowing if requ...">update_cache</a>();
+<a name="l00136"></a>00136 
+<a name="l00137"></a>00137         <span class="comment">// If we detect a junction, handle it, otherwise keep on</span>
+<a name="l00138"></a>00138         <span class="comment">// driving straight.</span>
+<a name="l00139"></a>00139         <span class="keywordflow">if</span>(this-&gt;<a class="code" href="classIDP_1_1Navigation.html#a5d511a56a6f3bdcfde2619ae4d75dcaa">_cached_junction</a> == <a class="code" href="namespaceIDP.html#a628dde0214c4c861deda405e77ad75a2a0a75c4d06bf2d5a2b4d1c37cede78ddd">NO_TURNS</a>) {
+<a name="l00140"></a>00140             this-&gt;<a class="code" href="classIDP_1_1Navigation.html#a5d511a56a6f3bdcfde2619ae4d75dcaa">_cached_junction</a> = NO_CACHE;
+<a name="l00141"></a>00141             <a class="code" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0" title="Line following return status codes.">LineFollowingStatus</a> status = this-&gt;<a class="code" href="classIDP_1_1Navigation.html#a61d775069513302fa6b23c64da7a6ec4">_lf</a>-&gt;<a class="code" href="classIDP_1_1LineFollowing.html#ad26d7726d2bb263658ed3140d3e30852" title="Read line sensors and correct motor movement to keep us going straight.">follow_line</a>();
+<a name="l00142"></a>00142             <span class="keywordflow">if</span>(status == <a class="code" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0ab68c7dd029c69ce53f446acabd19455c">LOST</a>)
+<a name="l00143"></a>00143                 <span class="keywordflow">return</span> NAVIGATION_LOST;
+<a name="l00144"></a>00144             <span class="keywordflow">return</span> NAVIGATION_ENROUTE;
+<a name="l00145"></a>00145         } <span class="keywordflow">else</span> {
+<a name="l00146"></a>00146             <span class="keywordflow">return</span> this-&gt;<a class="code" href="classIDP_1_1Navigation.html#a96241d0be8e7442964c41c6e0e207aa8" title="Handle arriving at a junction, either the target junction or an intermediate one where a turn may be ...">handle_junction</a>(target);
+<a name="l00147"></a>00147         }
+<a name="l00148"></a>00148 
 <a name="l00149"></a>00149     }
 <a name="l00150"></a>00150 
-<a name="l00155"></a><a class="code" href="classIDP_1_1Navigation.html#aba1ab266d223b517fdc3cf6bc3d8e84c">00155</a>     <a class="code" href="namespaceIDP.html#a1a96e566e4d675fdf20780cc96d92283" title="Current navigation status.">NavigationStatus</a> <a class="code" href="classIDP_1_1Navigation.html#aba1ab266d223b517fdc3cf6bc3d8e84c" title="Go to a NavigationLocation.">Navigation::go</a>(<span class="keyword">const</span> <a class="code" href="namespaceIDP.html#ab9c412f0fd539b5d70385066c30465a0" title="Possible locations for navigation to be asked to go to.">NavigationLocation</a> location)
-<a name="l00156"></a>00156     {
-<a name="l00157"></a>00157         TRACE(<span class="stringliteral">&quot;go(&quot;</span> &lt;&lt; NavigationLocationStrings[location] &lt;&lt; <span class="stringliteral">&quot;)&quot;</span>);
-<a name="l00158"></a>00158         <a class="code" href="navigation_8cc.html#a86d500a34c624c2cae56bc25a31b12f3">UNUSED</a>(location);
-<a name="l00159"></a>00159         <span class="keywordflow">return</span> NAVIGATION_ARRIVED;
-<a name="l00160"></a>00160     }
-<a name="l00161"></a>00161 
-<a name="l00166"></a><a class="code" href="classIDP_1_1Navigation.html#a24b977f20868a385251d4becf187b815">00166</a>     <a class="code" href="namespaceIDP.html#a1a96e566e4d675fdf20780cc96d92283" title="Current navigation status.">NavigationStatus</a> <a class="code" href="classIDP_1_1Navigation.html#a24b977f20868a385251d4becf187b815" title="Go to a particular NavigationNode.">Navigation::go_node</a>(<span class="keyword">const</span> <a class="code" href="namespaceIDP.html#a286f26dda01010063dff761803b4cd16" title="Navigation nodes, numbered clockwise from the bottom right corner of the table.">NavigationNode</a> target)
-<a name="l00167"></a>00167     {
-<a name="l00168"></a>00168         TRACE(<span class="stringliteral">&quot;go_node(&quot;</span> &lt;&lt; NavigationNodeStrings[target] &lt;&lt; <span class="stringliteral">&quot;)&quot;</span>);
-<a name="l00169"></a>00169         DEBUG(<span class="stringliteral">&quot;From &quot;</span> &lt;&lt; NavigationNodeStrings[_from] &lt;&lt; <span class="stringliteral">&quot;, to &quot;</span> &lt;&lt;
-<a name="l00170"></a>00170             NavigationNodeStrings[_to] &lt;&lt; <span class="stringliteral">&quot;, target &quot;</span> &lt;&lt;
-<a name="l00171"></a>00171             NavigationNodeStrings[target]);
-<a name="l00172"></a>00172 
-<a name="l00173"></a>00173         <span class="keywordflow">if</span>(target == this-&gt;_to) {
-<a name="l00174"></a>00174             <span class="comment">// Already heading in the right direction</span>
-<a name="l00175"></a>00175             <a class="code" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0" title="Line following return status codes.">LineFollowingStatus</a> status = this-&gt;_lf-&gt;<a class="code" href="classIDP_1_1LineFollowing.html#ad26d7726d2bb263658ed3140d3e30852" title="Read line sensors and correct motor movement to keep us going straight.">follow_line</a>();
-<a name="l00176"></a>00176             <span class="keywordflow">if</span>(status == <a class="code" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0a392b1fde04c7c0a442405be80f874159">ACTION_IN_PROGRESS</a>) {
-<a name="l00177"></a>00177                 <span class="comment">// Still driving</span>
-<a name="l00178"></a>00178                 <span class="keywordflow">return</span> NAVIGATION_ENROUTE;
-<a name="l00179"></a>00179             } <span class="keywordflow">else</span> <span class="keywordflow">if</span>(status == <a class="code" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0ab68c7dd029c69ce53f446acabd19455c">LOST</a>) {
-<a name="l00180"></a>00180                 DEBUG(<span class="stringliteral">&quot;LineFollowing got lost :(&quot;</span>);
-<a name="l00181"></a>00181                 <span class="keywordflow">return</span> NAVIGATION_LOST;
-<a name="l00182"></a>00182             } <span class="keywordflow">else</span> {
-<a name="l00183"></a>00183                 <span class="comment">// Found the junction</span>
-<a name="l00184"></a>00184                 <span class="comment">// Later, check this is the correct junction</span>
-<a name="l00185"></a>00185                 DEBUG(<span class="stringliteral">&quot;Found target junction&quot;</span>);
-<a name="l00186"></a>00186                 <span class="keywordflow">return</span> NAVIGATION_ARRIVED;
-<a name="l00187"></a>00187             }
-<a name="l00188"></a>00188         } <span class="keywordflow">else</span> {
-<a name="l00189"></a>00189             <span class="comment">// Determine direction we need to be travelling to get to</span>
-<a name="l00190"></a>00190             <span class="comment">// the target, and also the direction we are currently</span>
-<a name="l00191"></a>00191             <span class="comment">// travelling.</span>
-<a name="l00192"></a>00192             <a class="code" href="namespaceIDP.html#a899dbbc9d55dd4919ded1859281f503d" title="Directions around the circuit.">NavigationDirection</a> target_direction, current_direction;
-<a name="l00193"></a>00193             <span class="keywordflow">if</span>(target &gt; this-&gt;_to)
-<a name="l00194"></a>00194                 target_direction = NAVIGATION_CLOCKWISE;
-<a name="l00195"></a>00195             <span class="keywordflow">else</span>
-<a name="l00196"></a>00196                 target_direction = NAVIGATION_ANTICLOCKWISE;
-<a name="l00197"></a>00197             <span class="keywordflow">if</span>(this-&gt;_to &gt; this-&gt;_from)
-<a name="l00198"></a>00198                 current_direction = NAVIGATION_CLOCKWISE;
-<a name="l00199"></a>00199             <span class="keywordflow">else</span>
-<a name="l00200"></a>00200                 current_direction = NAVIGATION_ANTICLOCKWISE;
-<a name="l00201"></a>00201 
-<a name="l00202"></a>00202             <span class="comment">// If we need to turn around, work out which way and</span>
-<a name="l00203"></a>00203             <span class="comment">// do the turn.</span>
-<a name="l00204"></a>00204             <span class="keywordflow">if</span>(target_direction != current_direction) {
-<a name="l00205"></a>00205                 DEBUG(<span class="stringliteral">&quot;Need to turn around&quot;</span>);
-<a name="l00206"></a>00206                 <a class="code" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0" title="Line following return status codes.">LineFollowingStatus</a> turnstatus;
-<a name="l00207"></a>00207                 <span class="keywordflow">if</span>(current_direction == <a class="code" href="namespaceIDP.html#a899dbbc9d55dd4919ded1859281f503daf54b8983cf0d707430d34ada92ded9f6">NAVIGATION_CLOCKWISE</a>)
-<a name="l00208"></a>00208                     turnstatus = this-&gt;_lf-&gt;<a class="code" href="classIDP_1_1LineFollowing.html#a5bbdc1317ef04ea599a7d5583703660b" title="Turn the robot around clockwise until the sensors detect another line.">turn_around_cw</a>();
-<a name="l00209"></a>00209                 <span class="keywordflow">else</span>
-<a name="l00210"></a>00210                     turnstatus = this-&gt;_lf-&gt;<a class="code" href="classIDP_1_1LineFollowing.html#a3156dca6ebcbee20933949137dba6cf6" title="Turn the robot around counterclockwise until the sensors detect another line.">turn_around_ccw</a>();
-<a name="l00211"></a>00211                 <span class="keywordflow">if</span>(turnstatus == <a class="code" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0a392b1fde04c7c0a442405be80f874159">ACTION_IN_PROGRESS</a>)
-<a name="l00212"></a>00212                     <span class="keywordflow">return</span> NAVIGATION_ENROUTE;
-<a name="l00213"></a>00213                 <span class="keywordflow">else</span> <span class="keywordflow">if</span>(turnstatus == <a class="code" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0ab68c7dd029c69ce53f446acabd19455c">LOST</a>)
-<a name="l00214"></a>00214                     <span class="keywordflow">return</span> NAVIGATION_LOST;
-<a name="l00215"></a>00215 
-<a name="l00216"></a>00216                 DEBUG(<span class="stringliteral">&quot;Turn completed&quot;</span>);
-<a name="l00217"></a>00217 
-<a name="l00218"></a>00218                 <span class="comment">// Swap to and from now that we&#39;ve finished the turn</span>
-<a name="l00219"></a>00219                 <a class="code" href="namespaceIDP.html#a286f26dda01010063dff761803b4cd16" title="Navigation nodes, numbered clockwise from the bottom right corner of the table.">NavigationNode</a> placeholder = this-&gt;_to;
-<a name="l00220"></a>00220                 this-&gt;_to = this-&gt;_from;
-<a name="l00221"></a>00221                 this-&gt;_from = placeholder;
-<a name="l00222"></a>00222                 current_direction = target_direction;
-<a name="l00223"></a>00223             }
-<a name="l00224"></a>00224 
-<a name="l00225"></a>00225             <span class="keywordflow">if</span>(this-&gt;_cached_junction == <a class="code" href="namespaceIDP.html#a628dde0214c4c861deda405e77ad75a2a35431162cfca423a194c5680b2f56b4e">NO_CACHE</a>) {
-<a name="l00226"></a>00226                 <a class="code" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0" title="Line following return status codes.">LineFollowingStatus</a> status = this-&gt;_lf-&gt;<a class="code" href="classIDP_1_1LineFollowing.html#af4feccda1b15ebbdad8dd49178b28914" title="Return whether we can see a junction or not, without changing motor settings.">junction_status</a>();
-<a name="l00227"></a>00227                 <span class="keywordflow">if</span>(status == <a class="code" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0aaa2e9a813db91657570cf2eeb78d0983">NO_TURNS_FOUND</a>)
-<a name="l00228"></a>00228                     this-&gt;_cached_junction = NO_TURNS;
-<a name="l00229"></a>00229                 <span class="keywordflow">else</span> <span class="keywordflow">if</span>(status == <a class="code" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0a38cd4116cdddd4aa99a78dd5c3b37ed6">LEFT_TURN_FOUND</a>)
-<a name="l00230"></a>00230                     this-&gt;_cached_junction = LEFT_TURN;
-<a name="l00231"></a>00231                 <span class="keywordflow">else</span> <span class="keywordflow">if</span>(status == <a class="code" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0a4e943d3404f29cc547855d1097727e63">RIGHT_TURN_FOUND</a>)
-<a name="l00232"></a>00232                     this-&gt;_cached_junction = RIGHT_TURN;
-<a name="l00233"></a>00233                 <span class="keywordflow">else</span> <span class="keywordflow">if</span>(status == <a class="code" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0adb771c4661fabd68ed4c31c504088e93">BOTH_TURNS_FOUND</a>)
-<a name="l00234"></a>00234                     this-&gt;_cached_junction = BOTH_TURNS;
-<a name="l00235"></a>00235             } <span class="keywordflow">else</span> {
-<a name="l00236"></a>00236                 DEBUG(<span class="stringliteral">&quot;Using cached status &quot;</span> &lt;&lt; this-&gt;_cached_junction);
-<a name="l00237"></a>00237             }
-<a name="l00238"></a>00238             <span class="keywordflow">if</span>(this-&gt;_cached_junction == <a class="code" href="namespaceIDP.html#a628dde0214c4c861deda405e77ad75a2a0a75c4d06bf2d5a2b4d1c37cede78ddd">NO_TURNS</a>) {
-<a name="l00239"></a>00239                 <span class="comment">// Still driving forwards</span>
-<a name="l00240"></a>00240                 <span class="comment">// TODO catch this status and do something with it</span>
-<a name="l00241"></a>00241                 <a class="code" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0" title="Line following return status codes.">LineFollowingStatus</a> status = this-&gt;_lf-&gt;<a class="code" href="classIDP_1_1LineFollowing.html#ad26d7726d2bb263658ed3140d3e30852" title="Read line sensors and correct motor movement to keep us going straight.">follow_line</a>();
-<a name="l00242"></a>00242                 <a class="code" href="navigation_8cc.html#a86d500a34c624c2cae56bc25a31b12f3">UNUSED</a>(status);
-<a name="l00243"></a>00243                 this-&gt;_cached_junction = NO_CACHE; 
-<a name="l00244"></a>00244                 <span class="keywordflow">return</span> NAVIGATION_ENROUTE;
-<a name="l00245"></a>00245             } <span class="keywordflow">else</span> {
-<a name="l00246"></a>00246                 DEBUG(<span class="stringliteral">&quot;Arrived at junction &quot;</span> &lt;&lt; this-&gt;_to + 1);
-<a name="l00247"></a>00247                 <span class="comment">// We are at a junction or EOL</span>
-<a name="l00248"></a>00248                 <span class="keywordflow">if</span>(this-&gt;_to == target) {
-<a name="l00249"></a>00249                     DEBUG(<span class="stringliteral">&quot;Arrived at target! :)&quot;</span>);
-<a name="l00250"></a>00250                     <span class="keywordflow">return</span> NAVIGATION_ARRIVED;
-<a name="l00251"></a>00251                 } <span class="keywordflow">else</span> {
-<a name="l00252"></a>00252                     <span class="comment">// Look up which direction to go</span>
-<a name="l00253"></a>00253                     <a class="code" href="namespaceIDP.html#ab8b8e9ff9f7de27da30c1fffaeef4b72" title="Possible turns at a node.">NavigationTurn</a> turn;
-<a name="l00254"></a>00254                     turn = <a class="code" href="namespaceIDP.html#a0bada0608b684564e235786b3b38c10a" title="Turns that should be taken at each node in each direction.">NAVIGATION_TURN_MAP</a>[current_direction][this-&gt;_to];
-<a name="l00255"></a>00255                     <span class="keywordflow">if</span>(turn == <a class="code" href="namespaceIDP.html#ab8b8e9ff9f7de27da30c1fffaeef4b72a89e423fa73cc15b78c7a12d75358bc5d">STRAIGHT</a>) {
-<a name="l00256"></a>00256                         <span class="comment">// Go straight. Check we&#39;re over the junction by</span>
-<a name="l00257"></a>00257                         <span class="comment">// ensuring we get ACTION_IN_PROGRESS back before</span>
-<a name="l00258"></a>00258                         <span class="comment">// updating our position.</span>
-<a name="l00259"></a>00259                         DEBUG(<span class="stringliteral">&quot;Continuing straight over junction&quot;</span>);
-<a name="l00260"></a>00260                         <a class="code" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0" title="Line following return status codes.">LineFollowingStatus</a> status = this-&gt;_lf-&gt;<a class="code" href="classIDP_1_1LineFollowing.html#ad26d7726d2bb263658ed3140d3e30852" title="Read line sensors and correct motor movement to keep us going straight.">follow_line</a>();
-<a name="l00261"></a>00261                         <span class="keywordflow">if</span>(status == <a class="code" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0a392b1fde04c7c0a442405be80f874159">ACTION_IN_PROGRESS</a>) {
-<a name="l00262"></a>00262                             DEBUG(<span class="stringliteral">&quot;Driven over juntion&quot;</span>);
-<a name="l00263"></a>00263                             this-&gt;_cached_junction = NO_CACHE; 
-<a name="l00264"></a>00264                             this-&gt;_from = this-&gt;_to;
-<a name="l00265"></a>00265                             this-&gt;_to = <a class="code" href="namespaceIDP.html#a33ba7fcc78e0c8e5477d2ed6ac18e48f" title="The route to take, node by node.">NAVIGATION_ROUTE_MAP</a>
-<a name="l00266"></a>00266                                 [current_direction][this-&gt;_to];
-<a name="l00267"></a>00267                         }
-<a name="l00268"></a>00268                     } <span class="keywordflow">else</span> <span class="keywordflow">if</span>(turn == <a class="code" href="namespaceIDP.html#ab8b8e9ff9f7de27da30c1fffaeef4b72a06987c9e055bf2a24b28c83d93462f75">LEFT</a>) {
-<a name="l00269"></a>00269                         DEBUG(<span class="stringliteral">&quot;Turning left&quot;</span>);
-<a name="l00270"></a>00270                         <a class="code" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0" title="Line following return status codes.">LineFollowingStatus</a> status = this-&gt;_lf-&gt;<a class="code" href="classIDP_1_1LineFollowing.html#a551e979a503328c2f645a1af2798d940" title="Turn the robot left until the sensors encounter another line.">turn_left</a>();
-<a name="l00271"></a>00271                         <span class="keywordflow">if</span>(status == <a class="code" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0a1347f71adefd32a09a46af0c452f2884">ACTION_COMPLETED</a>) {
-<a name="l00272"></a>00272                             DEBUG(<span class="stringliteral">&quot;Left turn completed&quot;</span>);
-<a name="l00273"></a>00273                             this-&gt;_cached_junction = NO_CACHE; 
-<a name="l00274"></a>00274                             this-&gt;_from = this-&gt;_to;
-<a name="l00275"></a>00275                             this-&gt;_to = <a class="code" href="namespaceIDP.html#a33ba7fcc78e0c8e5477d2ed6ac18e48f" title="The route to take, node by node.">NAVIGATION_ROUTE_MAP</a>
-<a name="l00276"></a>00276                                 [current_direction][this-&gt;_to];
-<a name="l00277"></a>00277                         }
-<a name="l00278"></a>00278                     } <span class="keywordflow">else</span> <span class="keywordflow">if</span>(turn == <a class="code" href="namespaceIDP.html#ab8b8e9ff9f7de27da30c1fffaeef4b72accfe3edbad6f4b3795cee55d550c77da">RIGHT</a>) {
-<a name="l00279"></a>00279                         DEBUG(<span class="stringliteral">&quot;Turning right&quot;</span>);
-<a name="l00280"></a>00280                         <a class="code" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0" title="Line following return status codes.">LineFollowingStatus</a> status = this-&gt;_lf-&gt;<a class="code" href="classIDP_1_1LineFollowing.html#adc0b67e4dc93dfef246cdde6190b0745" title="Turn the robot right until the sensors detect another line.">turn_right</a>();
-<a name="l00281"></a>00281                         <span class="keywordflow">if</span>(status == <a class="code" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0a1347f71adefd32a09a46af0c452f2884">ACTION_COMPLETED</a>) {
-<a name="l00282"></a>00282                             DEBUG(<span class="stringliteral">&quot;Right turn completed&quot;</span>);
-<a name="l00283"></a>00283                             <span class="keywordflow">if</span>(this-&gt;_to == <a class="code" href="namespaceIDP.html#a286f26dda01010063dff761803b4cd16a82c1907a7289c9ae600c7597640c7999">NODE6</a> &amp;&amp;
-<a name="l00284"></a>00284                                     current_direction == <a class="code" href="namespaceIDP.html#a899dbbc9d55dd4919ded1859281f503daf54b8983cf0d707430d34ada92ded9f6">NAVIGATION_CLOCKWISE</a>){
-<a name="l00285"></a>00285                                 <span class="keywordflow">if</span>(!this-&gt;_doing_second_turn) {
-<a name="l00286"></a>00286                                     this-&gt;_doing_second_turn = <span class="keyword">true</span>;
-<a name="l00287"></a>00287                                     <span class="keywordflow">return</span> NAVIGATION_ENROUTE;
-<a name="l00288"></a>00288                                 }
-<a name="l00289"></a>00289                             }
-<a name="l00290"></a>00290                             this-&gt;_doing_second_turn = <span class="keyword">false</span>;
-<a name="l00291"></a>00291                             this-&gt;_cached_junction = NO_CACHE; 
-<a name="l00292"></a>00292                             this-&gt;_from = this-&gt;_to;
-<a name="l00293"></a>00293                             this-&gt;_to = <a class="code" href="namespaceIDP.html#a33ba7fcc78e0c8e5477d2ed6ac18e48f" title="The route to take, node by node.">NAVIGATION_ROUTE_MAP</a>
-<a name="l00294"></a>00294                                 [current_direction][this-&gt;_to];
-<a name="l00295"></a>00295                         }
-<a name="l00296"></a>00296                     } <span class="keywordflow">else</span> <span class="keywordflow">if</span>(turn == <a class="code" href="namespaceIDP.html#ab8b8e9ff9f7de27da30c1fffaeef4b72adbcc0fdad00650bfc91fbd20d64ad6e4">END_OF_LINE</a>) {
-<a name="l00297"></a>00297                         DEBUG(<span class="stringliteral">&quot;end of line :(&quot;</span>);
-<a name="l00298"></a>00298                         this-&gt;_hal-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a4f8f0340f3ac64c3f676b700b7e36229" title="Stop all motors.">motors_stop</a>();
-<a name="l00299"></a>00299                         <span class="keywordflow">return</span> NAVIGATION_ARRIVED;
-<a name="l00300"></a>00300                     }
-<a name="l00301"></a>00301                     <span class="keywordflow">return</span> NAVIGATION_ENROUTE;
-<a name="l00302"></a>00302                 }
-<a name="l00303"></a>00303             }
+<a name="l00156"></a><a class="code" href="classIDP_1_1Navigation.html#adeb3d2223cc6278ccef5d30e4fbeae82">00156</a>     <span class="keywordtype">bool</span> <a class="code" href="classIDP_1_1Navigation.html#adeb3d2223cc6278ccef5d30e4fbeae82" title="Check if we need to turn around.">Navigation::turn_around_required</a>(<span class="keyword">const</span> <a class="code" href="namespaceIDP.html#a286f26dda01010063dff761803b4cd16" title="Navigation nodes, numbered clockwise from the bottom right corner of the table.">NavigationNode</a> target)<span class="keyword"> const</span>
+<a name="l00157"></a>00157 <span class="keyword">    </span>{
+<a name="l00158"></a>00158         TRACE(<span class="stringliteral">&quot;turn_around_required(&quot;</span> &lt;&lt; NavigationNodeStrings[target]&lt;&lt;<span class="stringliteral">&quot;)&quot;</span>);
+<a name="l00159"></a>00159 
+<a name="l00160"></a>00160         <span class="comment">// If target is to, we don&#39;t need to turn.</span>
+<a name="l00161"></a>00161         <span class="keywordflow">if</span>(target == this-&gt;<a class="code" href="classIDP_1_1Navigation.html#a76df45b8316e55560e1adc9165700d0f">_to</a>)
+<a name="l00162"></a>00162             <span class="keywordflow">return</span> <span class="keyword">false</span>;
+<a name="l00163"></a>00163 
+<a name="l00164"></a>00164         <span class="comment">// Determine direction we need to be travelling to get to</span>
+<a name="l00165"></a>00165         <span class="comment">// the target, and also the direction we are currently</span>
+<a name="l00166"></a>00166         <span class="comment">// travelling.</span>
+<a name="l00167"></a>00167         <a class="code" href="namespaceIDP.html#a899dbbc9d55dd4919ded1859281f503d" title="Directions around the circuit.">NavigationDirection</a> target_direction, current_direction;
+<a name="l00168"></a>00168         <span class="keywordflow">if</span>(target &gt; this-&gt;<a class="code" href="classIDP_1_1Navigation.html#a76df45b8316e55560e1adc9165700d0f">_to</a>)
+<a name="l00169"></a>00169             target_direction = NAVIGATION_CLOCKWISE;
+<a name="l00170"></a>00170         <span class="keywordflow">else</span>
+<a name="l00171"></a>00171             target_direction = NAVIGATION_ANTICLOCKWISE;
+<a name="l00172"></a>00172         <span class="keywordflow">if</span>(this-&gt;<a class="code" href="classIDP_1_1Navigation.html#a76df45b8316e55560e1adc9165700d0f">_to</a> &gt; this-&gt;<a class="code" href="classIDP_1_1Navigation.html#a7ce2cbd9199af73b36d4e887282a38e6">_from</a>)
+<a name="l00173"></a>00173             current_direction = NAVIGATION_CLOCKWISE;
+<a name="l00174"></a>00174         <span class="keywordflow">else</span>
+<a name="l00175"></a>00175             current_direction = NAVIGATION_ANTICLOCKWISE;
+<a name="l00176"></a>00176 
+<a name="l00177"></a>00177         <span class="keywordflow">return</span> target_direction != current_direction;
+<a name="l00178"></a>00178     }
+<a name="l00179"></a>00179 
+<a name="l00187"></a><a class="code" href="classIDP_1_1Navigation.html#a7da6a103a61fec763688e875920837a4">00187</a>     <a class="code" href="namespaceIDP.html#a1a96e566e4d675fdf20780cc96d92283" title="Current navigation status.">NavigationStatus</a> <a class="code" href="classIDP_1_1Navigation.html#a7da6a103a61fec763688e875920837a4" title="Determine the current direction of travel and then execute an about turn.">Navigation::turn_around</a>()
+<a name="l00188"></a>00188     {
+<a name="l00189"></a>00189         TRACE(<span class="stringliteral">&quot;turn_around()&quot;</span>);
+<a name="l00190"></a>00190 
+<a name="l00191"></a>00191         <span class="comment">// Determine the current direction of travel around the course</span>
+<a name="l00192"></a>00192         <a class="code" href="namespaceIDP.html#a899dbbc9d55dd4919ded1859281f503d" title="Directions around the circuit.">NavigationDirection</a> current_direction;
+<a name="l00193"></a>00193         <span class="keywordflow">if</span>(this-&gt;<a class="code" href="classIDP_1_1Navigation.html#a76df45b8316e55560e1adc9165700d0f">_to</a> &gt; this-&gt;<a class="code" href="classIDP_1_1Navigation.html#a7ce2cbd9199af73b36d4e887282a38e6">_from</a>) {
+<a name="l00194"></a>00194             DEBUG(<span class="stringliteral">&quot;We are travelling clockwise&quot;</span>);
+<a name="l00195"></a>00195             current_direction = NAVIGATION_CLOCKWISE;
+<a name="l00196"></a>00196         } <span class="keywordflow">else</span> {
+<a name="l00197"></a>00197             DEBUG(<span class="stringliteral">&quot;We are travelling anticlockwise&quot;</span>);
+<a name="l00198"></a>00198             current_direction = NAVIGATION_ANTICLOCKWISE;
+<a name="l00199"></a>00199         }
+<a name="l00200"></a>00200 
+<a name="l00201"></a>00201         <span class="comment">// Request LineFollowing to execute the required turn.</span>
+<a name="l00202"></a>00202         <a class="code" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0" title="Line following return status codes.">LineFollowingStatus</a> turnstatus;
+<a name="l00203"></a>00203         <span class="keywordflow">if</span>(current_direction == <a class="code" href="namespaceIDP.html#a899dbbc9d55dd4919ded1859281f503daf54b8983cf0d707430d34ada92ded9f6">NAVIGATION_CLOCKWISE</a>) {
+<a name="l00204"></a>00204             DEBUG(<span class="stringliteral">&quot;Turning clockwise&quot;</span>);
+<a name="l00205"></a>00205             turnstatus = this-&gt;<a class="code" href="classIDP_1_1Navigation.html#a61d775069513302fa6b23c64da7a6ec4">_lf</a>-&gt;<a class="code" href="classIDP_1_1LineFollowing.html#a5bbdc1317ef04ea599a7d5583703660b" title="Turn the robot around clockwise until the sensors detect another line.">turn_around_cw</a>();
+<a name="l00206"></a>00206         } <span class="keywordflow">else</span> {
+<a name="l00207"></a>00207             DEBUG(<span class="stringliteral">&quot;Turning anticlockwise&quot;</span>);
+<a name="l00208"></a>00208             turnstatus = this-&gt;<a class="code" href="classIDP_1_1Navigation.html#a61d775069513302fa6b23c64da7a6ec4">_lf</a>-&gt;<a class="code" href="classIDP_1_1LineFollowing.html#a3156dca6ebcbee20933949137dba6cf6" title="Turn the robot around counterclockwise until the sensors detect another line.">turn_around_ccw</a>();
+<a name="l00209"></a>00209         }
+<a name="l00210"></a>00210         
+<a name="l00211"></a>00211         <span class="keywordflow">if</span>(turnstatus == <a class="code" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0a1347f71adefd32a09a46af0c452f2884">ACTION_COMPLETED</a>) {
+<a name="l00212"></a>00212             <span class="comment">// Swap around to and from nodes</span>
+<a name="l00213"></a>00213             <a class="code" href="namespaceIDP.html#a286f26dda01010063dff761803b4cd16" title="Navigation nodes, numbered clockwise from the bottom right corner of the table.">NavigationNode</a> placeholder = this-&gt;<a class="code" href="classIDP_1_1Navigation.html#a76df45b8316e55560e1adc9165700d0f">_to</a>;
+<a name="l00214"></a>00214             this-&gt;<a class="code" href="classIDP_1_1Navigation.html#a76df45b8316e55560e1adc9165700d0f">_to</a> = this-&gt;<a class="code" href="classIDP_1_1Navigation.html#a7ce2cbd9199af73b36d4e887282a38e6">_from</a>;
+<a name="l00215"></a>00215             this-&gt;<a class="code" href="classIDP_1_1Navigation.html#a7ce2cbd9199af73b36d4e887282a38e6">_from</a> = placeholder;
+<a name="l00216"></a>00216         } <span class="keywordflow">else</span> <span class="keywordflow">if</span>(turnstatus == <a class="code" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0ab68c7dd029c69ce53f446acabd19455c">LOST</a>) {
+<a name="l00217"></a>00217             <span class="comment">// If lost, bubble that up</span>
+<a name="l00218"></a>00218             <span class="keywordflow">return</span> NAVIGATION_LOST;
+<a name="l00219"></a>00219         }
+<a name="l00220"></a>00220 
+<a name="l00221"></a>00221         <span class="keywordflow">return</span> NAVIGATION_ENROUTE;
+<a name="l00222"></a>00222     }
+<a name="l00223"></a>00223 
+<a name="l00228"></a><a class="code" href="classIDP_1_1Navigation.html#aa7701df4743c75289360a32dfa56d4fc">00228</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1Navigation.html#aa7701df4743c75289360a32dfa56d4fc" title="Check if we should update the cached junction status and request a new one from LineFollowing if requ...">Navigation::update_cache</a>()
+<a name="l00229"></a>00229     {
+<a name="l00230"></a>00230         TRACE(<span class="stringliteral">&quot;update_cache()&quot;</span>);
+<a name="l00231"></a>00231 
+<a name="l00232"></a>00232         <span class="keywordflow">if</span>(this-&gt;<a class="code" href="classIDP_1_1Navigation.html#a5d511a56a6f3bdcfde2619ae4d75dcaa">_cached_junction</a> == <a class="code" href="namespaceIDP.html#a628dde0214c4c861deda405e77ad75a2a35431162cfca423a194c5680b2f56b4e">NO_CACHE</a>) {
+<a name="l00233"></a>00233             <a class="code" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0" title="Line following return status codes.">LineFollowingStatus</a> status = this-&gt;<a class="code" href="classIDP_1_1Navigation.html#a61d775069513302fa6b23c64da7a6ec4">_lf</a>-&gt;<a class="code" href="classIDP_1_1LineFollowing.html#af4feccda1b15ebbdad8dd49178b28914" title="Return whether we can see a junction or not, without changing motor settings.">junction_status</a>();
+<a name="l00234"></a>00234             DEBUG(<span class="stringliteral">&quot;Updating cache with &quot;</span> &lt;&lt; LineFollowingStatusStrings[status]);
+<a name="l00235"></a>00235             <span class="keywordflow">if</span>(status == <a class="code" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0aaa2e9a813db91657570cf2eeb78d0983">NO_TURNS_FOUND</a>)
+<a name="l00236"></a>00236                 this-&gt;<a class="code" href="classIDP_1_1Navigation.html#a5d511a56a6f3bdcfde2619ae4d75dcaa">_cached_junction</a> = NO_TURNS;
+<a name="l00237"></a>00237             <span class="keywordflow">else</span> <span class="keywordflow">if</span>(status == <a class="code" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0a38cd4116cdddd4aa99a78dd5c3b37ed6">LEFT_TURN_FOUND</a>)
+<a name="l00238"></a>00238                 this-&gt;<a class="code" href="classIDP_1_1Navigation.html#a5d511a56a6f3bdcfde2619ae4d75dcaa">_cached_junction</a> = LEFT_TURN;
+<a name="l00239"></a>00239             <span class="keywordflow">else</span> <span class="keywordflow">if</span>(status == <a class="code" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0a4e943d3404f29cc547855d1097727e63">RIGHT_TURN_FOUND</a>)
+<a name="l00240"></a>00240                 this-&gt;<a class="code" href="classIDP_1_1Navigation.html#a5d511a56a6f3bdcfde2619ae4d75dcaa">_cached_junction</a> = RIGHT_TURN;
+<a name="l00241"></a>00241             <span class="keywordflow">else</span> <span class="keywordflow">if</span>(status == <a class="code" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0adb771c4661fabd68ed4c31c504088e93">BOTH_TURNS_FOUND</a>)
+<a name="l00242"></a>00242                 this-&gt;<a class="code" href="classIDP_1_1Navigation.html#a5d511a56a6f3bdcfde2619ae4d75dcaa">_cached_junction</a> = BOTH_TURNS;
+<a name="l00243"></a>00243         } <span class="keywordflow">else</span> {
+<a name="l00244"></a>00244             DEBUG(<span class="stringliteral">&quot;Using cached status &quot;</span> &lt;&lt; this-&gt;<a class="code" href="classIDP_1_1Navigation.html#a5d511a56a6f3bdcfde2619ae4d75dcaa">_cached_junction</a>);
+<a name="l00245"></a>00245         }
+<a name="l00246"></a>00246     }
+<a name="l00247"></a>00247 
+<a name="l00261"></a><a class="code" href="classIDP_1_1Navigation.html#a96241d0be8e7442964c41c6e0e207aa8">00261</a>     <a class="code" href="namespaceIDP.html#a1a96e566e4d675fdf20780cc96d92283" title="Current navigation status.">NavigationStatus</a> <a class="code" href="classIDP_1_1Navigation.html#a96241d0be8e7442964c41c6e0e207aa8" title="Handle arriving at a junction, either the target junction or an intermediate one where a turn may be ...">Navigation::handle_junction</a>(<span class="keyword">const</span> <a class="code" href="namespaceIDP.html#a286f26dda01010063dff761803b4cd16" title="Navigation nodes, numbered clockwise from the bottom right corner of the table.">NavigationNode</a> target)
+<a name="l00262"></a>00262     {
+<a name="l00263"></a>00263         TRACE(<span class="stringliteral">&quot;handle_junction(&quot;</span>&lt;&lt;NavigationNodeStrings[target]&lt;&lt;<span class="stringliteral">&quot;)&quot;</span>);
+<a name="l00264"></a>00264 
+<a name="l00265"></a>00265         <span class="comment">// See if we&#39;re there!</span>
+<a name="l00266"></a>00266         <span class="keywordflow">if</span>(target == this-&gt;<a class="code" href="classIDP_1_1Navigation.html#a76df45b8316e55560e1adc9165700d0f">_to</a>) {
+<a name="l00267"></a>00267             DEBUG(<span class="stringliteral">&quot;Found target junction&quot;</span>);
+<a name="l00268"></a>00268             <span class="keywordflow">return</span> NAVIGATION_ARRIVED;
+<a name="l00269"></a>00269         }
+<a name="l00270"></a>00270 
+<a name="l00271"></a>00271         <span class="comment">// Determine the current direction of travel around the course</span>
+<a name="l00272"></a>00272         <a class="code" href="namespaceIDP.html#a899dbbc9d55dd4919ded1859281f503d" title="Directions around the circuit.">NavigationDirection</a> current_direction;
+<a name="l00273"></a>00273         <span class="keywordflow">if</span>(this-&gt;<a class="code" href="classIDP_1_1Navigation.html#a76df45b8316e55560e1adc9165700d0f">_to</a> &gt; this-&gt;<a class="code" href="classIDP_1_1Navigation.html#a7ce2cbd9199af73b36d4e887282a38e6">_from</a>) {
+<a name="l00274"></a>00274             DEBUG(<span class="stringliteral">&quot;We are travelling clockwise&quot;</span>);
+<a name="l00275"></a>00275             current_direction = NAVIGATION_CLOCKWISE;
+<a name="l00276"></a>00276         } <span class="keywordflow">else</span> {
+<a name="l00277"></a>00277             DEBUG(<span class="stringliteral">&quot;We are travelling anticlockwise&quot;</span>);
+<a name="l00278"></a>00278             current_direction = NAVIGATION_ANTICLOCKWISE;
+<a name="l00279"></a>00279         }
+<a name="l00280"></a>00280 
+<a name="l00281"></a>00281         <span class="comment">// Look up which direction to go</span>
+<a name="l00282"></a>00282         <a class="code" href="namespaceIDP.html#ab8b8e9ff9f7de27da30c1fffaeef4b72" title="Possible turns at a node.">NavigationTurn</a> turn;
+<a name="l00283"></a>00283         turn = <a class="code" href="namespaceIDP.html#a0bada0608b684564e235786b3b38c10a" title="Turns that should be taken at each node in each direction.">NAVIGATION_TURN_MAP</a>[current_direction][this-&gt;<a class="code" href="classIDP_1_1Navigation.html#a76df45b8316e55560e1adc9165700d0f">_to</a>];
+<a name="l00284"></a>00284 
+<a name="l00285"></a>00285         <span class="comment">// Store the result of the LineFollowing operation</span>
+<a name="l00286"></a>00286         <a class="code" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0" title="Line following return status codes.">LineFollowingStatus</a> status;
+<a name="l00287"></a>00287 
+<a name="l00288"></a>00288         <span class="comment">// Initialise status to a somewhat harmless default</span>
+<a name="l00289"></a>00289         status = ACTION_IN_PROGRESS;
+<a name="l00290"></a>00290 
+<a name="l00291"></a>00291         <span class="keywordflow">if</span>(turn == <a class="code" href="namespaceIDP.html#ab8b8e9ff9f7de27da30c1fffaeef4b72a89e423fa73cc15b78c7a12d75358bc5d">STRAIGHT</a>) {
+<a name="l00292"></a>00292             DEBUG(<span class="stringliteral">&quot;Continuing straight over junction&quot;</span>);
+<a name="l00293"></a>00293             status = this-&gt;<a class="code" href="classIDP_1_1Navigation.html#a61d775069513302fa6b23c64da7a6ec4">_lf</a>-&gt;<a class="code" href="classIDP_1_1LineFollowing.html#ad26d7726d2bb263658ed3140d3e30852" title="Read line sensors and correct motor movement to keep us going straight.">follow_line</a>();
+<a name="l00294"></a>00294         } <span class="keywordflow">else</span> <span class="keywordflow">if</span>(turn == <a class="code" href="namespaceIDP.html#ab8b8e9ff9f7de27da30c1fffaeef4b72a06987c9e055bf2a24b28c83d93462f75">LEFT</a>) {
+<a name="l00295"></a>00295             DEBUG(<span class="stringliteral">&quot;Turning left&quot;</span>);
+<a name="l00296"></a>00296             status = this-&gt;<a class="code" href="classIDP_1_1Navigation.html#a61d775069513302fa6b23c64da7a6ec4">_lf</a>-&gt;<a class="code" href="classIDP_1_1LineFollowing.html#a551e979a503328c2f645a1af2798d940" title="Turn the robot left until the sensors encounter another line.">turn_left</a>();
+<a name="l00297"></a>00297         } <span class="keywordflow">else</span> <span class="keywordflow">if</span>(turn == <a class="code" href="namespaceIDP.html#ab8b8e9ff9f7de27da30c1fffaeef4b72accfe3edbad6f4b3795cee55d550c77da">RIGHT</a>) {
+<a name="l00298"></a>00298             DEBUG(<span class="stringliteral">&quot;Turning right&quot;</span>);
+<a name="l00299"></a>00299             status = this-&gt;<a class="code" href="classIDP_1_1Navigation.html#a61d775069513302fa6b23c64da7a6ec4">_lf</a>-&gt;<a class="code" href="classIDP_1_1LineFollowing.html#adc0b67e4dc93dfef246cdde6190b0745" title="Turn the robot right until the sensors detect another line.">turn_right</a>();
+<a name="l00300"></a>00300         } <span class="keywordflow">else</span> <span class="keywordflow">if</span>(turn == <a class="code" href="namespaceIDP.html#ab8b8e9ff9f7de27da30c1fffaeef4b72adbcc0fdad00650bfc91fbd20d64ad6e4">END_OF_LINE</a>) {
+<a name="l00301"></a>00301             DEBUG(<span class="stringliteral">&quot;end of line :(&quot;</span>);
+<a name="l00302"></a>00302             this-&gt;<a class="code" href="classIDP_1_1Navigation.html#a640c36341bdf1e2d4ef194ad3aac9773">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a4f8f0340f3ac64c3f676b700b7e36229" title="Stop all motors.">motors_stop</a>();
+<a name="l00303"></a>00303             <span class="keywordflow">return</span> NAVIGATION_ARRIVED;
 <a name="l00304"></a>00304         }
-<a name="l00305"></a>00305     }
-<a name="l00306"></a>00306 }
-<a name="l00307"></a>00307 
+<a name="l00305"></a>00305 
+<a name="l00306"></a>00306         <span class="comment">// Special case the right hand turn after NODE6 as the</span>
+<a name="l00307"></a>00307         <span class="comment">// robot will see the starting box line and believe</span>
+<a name="l00308"></a>00308         <span class="comment">// that to be the end of the turn when in fact it is not.</span>
+<a name="l00309"></a>00309         <span class="keywordflow">if</span>(turn == <a class="code" href="namespaceIDP.html#ab8b8e9ff9f7de27da30c1fffaeef4b72accfe3edbad6f4b3795cee55d550c77da">RIGHT</a> &amp;&amp; this-&gt;<a class="code" href="classIDP_1_1Navigation.html#a76df45b8316e55560e1adc9165700d0f">_to</a> == <a class="code" href="namespaceIDP.html#a286f26dda01010063dff761803b4cd16a82c1907a7289c9ae600c7597640c7999">NODE6</a> &amp;&amp;
+<a name="l00310"></a>00310             current_direction == <a class="code" href="namespaceIDP.html#a899dbbc9d55dd4919ded1859281f503daf54b8983cf0d707430d34ada92ded9f6">NAVIGATION_CLOCKWISE</a> &amp;&amp;
+<a name="l00311"></a>00311             status == <a class="code" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0a1347f71adefd32a09a46af0c452f2884">ACTION_COMPLETED</a> &amp;&amp; !this-&gt;<a class="code" href="classIDP_1_1Navigation.html#aa0bdef936676bd9ba41ec24994c4adc8">_doing_second_turn</a>)
+<a name="l00312"></a>00312         {
+<a name="l00313"></a>00313             INFO(<span class="stringliteral">&quot;Executing special case second right turn at NODE6&quot;</span>);
+<a name="l00314"></a>00314             this-&gt;<a class="code" href="classIDP_1_1Navigation.html#aa0bdef936676bd9ba41ec24994c4adc8">_doing_second_turn</a> = <span class="keyword">true</span>;
+<a name="l00315"></a>00315             <span class="keywordflow">return</span> NAVIGATION_ENROUTE;
+<a name="l00316"></a>00316         }
+<a name="l00317"></a>00317 
+<a name="l00318"></a>00318         <span class="comment">// If we&#39;re going straight, ACTION_IN_PROGRESS is an</span>
+<a name="l00319"></a>00319         <span class="comment">// indication of completion, while ACTION_COMPLETED means</span>
+<a name="l00320"></a>00320         <span class="comment">// a turn completed.</span>
+<a name="l00321"></a>00321         <span class="keywordflow">if</span>((turn == <a class="code" href="namespaceIDP.html#ab8b8e9ff9f7de27da30c1fffaeef4b72a89e423fa73cc15b78c7a12d75358bc5d">STRAIGHT</a> &amp;&amp; status == <a class="code" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0a392b1fde04c7c0a442405be80f874159">ACTION_IN_PROGRESS</a>)
+<a name="l00322"></a>00322             || status == <a class="code" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0a1347f71adefd32a09a46af0c452f2884">ACTION_COMPLETED</a>)
+<a name="l00323"></a>00323         {
+<a name="l00324"></a>00324             DEBUG(<span class="stringliteral">&quot;Completed junction action&quot;</span>);
+<a name="l00325"></a>00325             this-&gt;<a class="code" href="classIDP_1_1Navigation.html#aa0bdef936676bd9ba41ec24994c4adc8">_doing_second_turn</a> = <span class="keyword">false</span>;
+<a name="l00326"></a>00326             this-&gt;<a class="code" href="classIDP_1_1Navigation.html#a5d511a56a6f3bdcfde2619ae4d75dcaa">_cached_junction</a> = NO_CACHE;
+<a name="l00327"></a>00327             this-&gt;<a class="code" href="classIDP_1_1Navigation.html#a7ce2cbd9199af73b36d4e887282a38e6">_from</a> = this-&gt;<a class="code" href="classIDP_1_1Navigation.html#a76df45b8316e55560e1adc9165700d0f">_to</a>;
+<a name="l00328"></a>00328             this-&gt;<a class="code" href="classIDP_1_1Navigation.html#a76df45b8316e55560e1adc9165700d0f">_to</a> = <a class="code" href="namespaceIDP.html#a33ba7fcc78e0c8e5477d2ed6ac18e48f" title="The route to take, node by node.">NAVIGATION_ROUTE_MAP</a>[current_direction][this-&gt;<a class="code" href="classIDP_1_1Navigation.html#a76df45b8316e55560e1adc9165700d0f">_to</a>];
+<a name="l00329"></a>00329         }
+<a name="l00330"></a>00330 
+<a name="l00331"></a>00331         <span class="keywordflow">return</span> NAVIGATION_ENROUTE;
+<a name="l00332"></a>00332     }
+<a name="l00333"></a>00333 }
+<a name="l00334"></a>00334 
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -316,7 +332,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Tue Feb 8 2011 02:45:35 for IDPL108 by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Feb 15 2011 02:35:58 for IDPL108 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

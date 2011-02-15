@@ -11,11 +11,22 @@ Execute a variety of functionality self tests.
 
 {\ttfamily \#include $<$self\_\-tests.h$>$}
 
+
+
+Collaboration diagram for IDP::SelfTests:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=232pt]{classIDP_1_1SelfTests__coll__graph}
+\end{center}
+\end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \hyperlink{classIDP_1_1SelfTests_a6864b03502cc5d1ac3728b456b04238f}{SelfTests} (int robot)
-\begin{DoxyCompactList}\small\item\em Constuct a SelfTest instance Completely seperate to mission supervisor and initialises own link to robot, with its own HAL instance. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Constuct a \hyperlink{classIDP_1_1SelfTests}{SelfTests} instance Completely seperate to mission supervisor and initialises own link to robot, with its own HAL instance. \item\end{DoxyCompactList}\item 
+\hyperlink{classIDP_1_1SelfTests_a5a49e246d28af6332dd46f8b22dcddc7}{$\sim$SelfTests} ()
+\begin{DoxyCompactList}\small\item\em Destruct the \hyperlink{classIDP_1_1SelfTests}{SelfTests}, deleting the HAL. \item\end{DoxyCompactList}\item 
 void \hyperlink{classIDP_1_1SelfTests_a4ff456e74d55e13599cf64db76bd2ed4}{drive\_\-forward} (void)
 \begin{DoxyCompactList}\small\item\em Drive the robot forwards for a moment. \item\end{DoxyCompactList}\item 
 void \hyperlink{classIDP_1_1SelfTests_a38ddef7ecdf9b7dfa69d689c9c1ac8ca}{drive\_\-backward} (void)
@@ -39,7 +50,7 @@ void \hyperlink{classIDP_1_1SelfTests_a56952650637691f869ef21f7d43f1226}{LDRs} (
 void \hyperlink{classIDP_1_1SelfTests_a0ca765ac144fafaab502f4326a480486}{actuators} (void)
 \begin{DoxyCompactList}\small\item\em Fire each of the actuators in turn. \item\end{DoxyCompactList}\item 
 void \hyperlink{classIDP_1_1SelfTests_a0a1a40b56fee5249def567bebdb05dc1}{line\_\-following} (void)
-\begin{DoxyCompactList}\small\item\em Follow a line until further notice, without caring where we end up. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Follow a line until a junction. \item\end{DoxyCompactList}\item 
 void \hyperlink{classIDP_1_1SelfTests_a896204355ca039660a12e8131578b6c3}{clamp\_\-control} (void)
 \begin{DoxyCompactList}\small\item\em Use the actuators to pick up an object before placing it back down again. \item\end{DoxyCompactList}\item 
 void \hyperlink{classIDP_1_1SelfTests_a66f0a3bad277e36b963b2bf3cd5df9dd}{bobbin\_\-analyse} (void)
@@ -54,12 +65,19 @@ void \hyperlink{classIDP_1_1SelfTests_a1380b0222eef47f6d50e7cf334e4c9e7}{colour\
 \begin{DoxyCompactList}\small\item\em Turn on each of the coloured LEDs used for colour detection in turn. \item\end{DoxyCompactList}\item 
 void \hyperlink{classIDP_1_1SelfTests_aee90c71e9e93398f06dc1ad67002d7bf}{badness\_\-LED} (void)
 \begin{DoxyCompactList}\small\item\em Turn on the LED used for detecting bad bobbins. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{classIDP_1_1SelfTests_a90c60ce647f723e9a37339aadba4770c}{\_\-robot}
+\item 
+\hyperlink{classIDP_1_1HardwareAbstractionLayer}{HardwareAbstractionLayer} $\ast$ \hyperlink{classIDP_1_1SelfTests_a1f8a6f6c2ff26182311c8a7766db6f5a}{\_\-hal}
+\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 Execute a variety of functionality self tests. 
 
-Definition at line 21 of file self\_\-tests.h.
+Definition at line 23 of file self\_\-tests.h.
 
 
 
@@ -75,14 +93,31 @@ Definition at line 21 of file self\_\-tests.h.
 \label{classIDP_1_1SelfTests_a6864b03502cc5d1ac3728b456b04238f}
 
 
-Constuct a SelfTest instance Completely seperate to mission supervisor and initialises own link to robot, with its own HAL instance. 
+Constuct a \hyperlink{classIDP_1_1SelfTests}{SelfTests} instance Completely seperate to mission supervisor and initialises own link to robot, with its own HAL instance. 
 
 
 \begin{DoxyParams}{Parameters}
 \item[{\em robot}]Which robot to link to, or 0 if embedded \end{DoxyParams}
 
 
-Definition at line 28 of file self\_\-tests.cc.
+Definition at line 29 of file self\_\-tests.cc.
+
+\hypertarget{classIDP_1_1SelfTests_a5a49e246d28af6332dd46f8b22dcddc7}{
+\index{IDP::SelfTests@{IDP::SelfTests}!$\sim$SelfTests@{$\sim$SelfTests}}
+\index{$\sim$SelfTests@{$\sim$SelfTests}!IDP::SelfTests@{IDP::SelfTests}}
+\subsubsection[{$\sim$SelfTests}]{\setlength{\rightskip}{0pt plus 5cm}IDP::SelfTests::$\sim$SelfTests (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{classIDP_1_1SelfTests_a5a49e246d28af6332dd46f8b22dcddc7}
+
+
+Destruct the \hyperlink{classIDP_1_1SelfTests}{SelfTests}, deleting the HAL. 
+
+
+
+Definition at line 39 of file self\_\-tests.cc.
 
 
 
@@ -102,7 +137,7 @@ Fire each of the actuators in turn.
 
 
 
-Definition at line 122 of file self\_\-tests.cc.
+Definition at line 177 of file self\_\-tests.cc.
 
 \hypertarget{classIDP_1_1SelfTests_aee90c71e9e93398f06dc1ad67002d7bf}{
 \index{IDP::SelfTests@{IDP::SelfTests}!badness\_\-LED@{badness\_\-LED}}
@@ -119,7 +154,7 @@ Turn on the LED used for detecting bad bobbins.
 
 
 
-Definition at line 192 of file self\_\-tests.cc.
+Definition at line 285 of file self\_\-tests.cc.
 
 \hypertarget{classIDP_1_1SelfTests_a66f0a3bad277e36b963b2bf3cd5df9dd}{
 \index{IDP::SelfTests@{IDP::SelfTests}!bobbin\_\-analyse@{bobbin\_\-analyse}}
@@ -136,7 +171,7 @@ Analyse the colour of the bobbin that is currently being held in the clamp.
 
 
 
-Definition at line 148 of file self\_\-tests.cc.
+Definition at line 214 of file self\_\-tests.cc.
 
 \hypertarget{classIDP_1_1SelfTests_a896204355ca039660a12e8131578b6c3}{
 \index{IDP::SelfTests@{IDP::SelfTests}!clamp\_\-control@{clamp\_\-control}}
@@ -153,7 +188,7 @@ Use the actuators to pick up an object before placing it back down again.
 
 
 
-Definition at line 139 of file self\_\-tests.cc.
+Definition at line 205 of file self\_\-tests.cc.
 
 \hypertarget{classIDP_1_1SelfTests_a1380b0222eef47f6d50e7cf334e4c9e7}{
 \index{IDP::SelfTests@{IDP::SelfTests}!colour\_\-sensor\_\-LEDs@{colour\_\-sensor\_\-LEDs}}
@@ -170,7 +205,7 @@ Turn on each of the coloured LEDs used for colour detection in turn.
 
 
 
-Definition at line 184 of file self\_\-tests.cc.
+Definition at line 277 of file self\_\-tests.cc.
 
 \hypertarget{classIDP_1_1SelfTests_a38ddef7ecdf9b7dfa69d689c9c1ac8ca}{
 \index{IDP::SelfTests@{IDP::SelfTests}!drive\_\-backward@{drive\_\-backward}}
@@ -187,7 +222,7 @@ Drive the robot backwards for a moment.
 
 
 
-Definition at line 45 of file self\_\-tests.cc.
+Definition at line 59 of file self\_\-tests.cc.
 
 \hypertarget{classIDP_1_1SelfTests_a4ff456e74d55e13599cf64db76bd2ed4}{
 \index{IDP::SelfTests@{IDP::SelfTests}!drive\_\-forward@{drive\_\-forward}}
@@ -204,7 +239,7 @@ Drive the robot forwards for a moment.
 
 
 
-Definition at line 37 of file self\_\-tests.cc.
+Definition at line 49 of file self\_\-tests.cc.
 
 \hypertarget{classIDP_1_1SelfTests_a56952650637691f869ef21f7d43f1226}{
 \index{IDP::SelfTests@{IDP::SelfTests}!LDRs@{LDRs}}
@@ -221,7 +256,7 @@ Display the current ADC read from the light dependent resistor.
 
 
 
-Definition at line 114 of file self\_\-tests.cc.
+Definition at line 169 of file self\_\-tests.cc.
 
 \hypertarget{classIDP_1_1SelfTests_a0a1a40b56fee5249def567bebdb05dc1}{
 \index{IDP::SelfTests@{IDP::SelfTests}!line\_\-following@{line\_\-following}}
@@ -234,11 +269,11 @@ Definition at line 114 of file self\_\-tests.cc.
 \label{classIDP_1_1SelfTests_a0a1a40b56fee5249def567bebdb05dc1}
 
 
-Follow a line until further notice, without caring where we end up. 
+Follow a line until a junction. 
 
 
 
-Definition at line 130 of file self\_\-tests.cc.
+Definition at line 185 of file self\_\-tests.cc.
 
 \hypertarget{classIDP_1_1SelfTests_aa73ad4de6c1d2b725ed796c10f54ab7c}{
 \index{IDP::SelfTests@{IDP::SelfTests}!line\_\-sensors@{line\_\-sensors}}
@@ -255,7 +290,7 @@ Display the status (LINE or NO\_\-LINE) of each of the four IR line following se
 
 
 
-Definition at line 98 of file self\_\-tests.cc.
+Definition at line 128 of file self\_\-tests.cc.
 
 \hypertarget{classIDP_1_1SelfTests_a6b2e4d0517de4b73c63f1b1a475b602f}{
 \index{IDP::SelfTests@{IDP::SelfTests}!microswitches@{microswitches}}
@@ -272,7 +307,7 @@ Display the state of each of the two microswitches.
 
 
 
-Definition at line 106 of file self\_\-tests.cc.
+Definition at line 161 of file self\_\-tests.cc.
 
 \hypertarget{classIDP_1_1SelfTests_a710347081427c05706f92bdd12f62fbe}{
 \index{IDP::SelfTests@{IDP::SelfTests}!navigate@{navigate}}
@@ -289,7 +324,7 @@ Select a source and destination and then navigate to the destination assuming we
 
 
 
-Definition at line 157 of file self\_\-tests.cc.
+Definition at line 223 of file self\_\-tests.cc.
 
 \hypertarget{classIDP_1_1SelfTests_ada3dfe991573fc6b0922cace927fc4e0}{
 \index{IDP::SelfTests@{IDP::SelfTests}!position@{position}}
@@ -306,7 +341,7 @@ Drive slowly looking for an object in range for pickup, then position self ready
 
 
 
-Definition at line 166 of file self\_\-tests.cc.
+Definition at line 259 of file self\_\-tests.cc.
 
 \hypertarget{classIDP_1_1SelfTests_abbe6e3e29b00f760e0b65f2aeb772fb5}{
 \index{IDP::SelfTests@{IDP::SelfTests}!status\_\-LEDs@{status\_\-LEDs}}
@@ -323,7 +358,7 @@ Turn on each of the status LEDs (used for indicating bobbin colour) in turn.
 
 
 
-Definition at line 175 of file self\_\-tests.cc.
+Definition at line 268 of file self\_\-tests.cc.
 
 \hypertarget{classIDP_1_1SelfTests_ae54bd0e6c01c5d1d794363cc676dbb92}{
 \index{IDP::SelfTests@{IDP::SelfTests}!steer\_\-left@{steer\_\-left}}
@@ -340,7 +375,7 @@ Drive forwards for a moment whilst reducing the speed of the left motor relative
 
 
 
-Definition at line 80 of file self\_\-tests.cc.
+Definition at line 104 of file self\_\-tests.cc.
 
 \hypertarget{classIDP_1_1SelfTests_a7f9c5999de2e7c4f59c8c5a60965e876}{
 \index{IDP::SelfTests@{IDP::SelfTests}!steer\_\-right@{steer\_\-right}}
@@ -357,7 +392,7 @@ Drive forwards for a moment whilst reducing the speed of the right motor relativ
 
 
 
-Definition at line 89 of file self\_\-tests.cc.
+Definition at line 116 of file self\_\-tests.cc.
 
 \hypertarget{classIDP_1_1SelfTests_a33adf462d8c408b1c7b4858e9a4ff000}{
 \index{IDP::SelfTests@{IDP::SelfTests}!stop@{stop}}
@@ -374,7 +409,7 @@ Stop all of the robot's motors.
 
 
 
-Definition at line 53 of file self\_\-tests.cc.
+Definition at line 69 of file self\_\-tests.cc.
 
 \hypertarget{classIDP_1_1SelfTests_a3ba14e5a1ed52ff112bc742b94f06d61}{
 \index{IDP::SelfTests@{IDP::SelfTests}!turn\_\-left@{turn\_\-left}}
@@ -391,7 +426,7 @@ Drive motors in opposite directions to turn the robot left on the spot.
 
 
 
-Definition at line 62 of file self\_\-tests.cc.
+Definition at line 80 of file self\_\-tests.cc.
 
 \hypertarget{classIDP_1_1SelfTests_a4e4b66ddff2de3444f1e9383dcf463a6}{
 \index{IDP::SelfTests@{IDP::SelfTests}!turn\_\-right@{turn\_\-right}}
@@ -408,7 +443,28 @@ Drive motors in opposite directions to turn the robot right on the spot.
 
 
 
-Definition at line 71 of file self\_\-tests.cc.
+Definition at line 92 of file self\_\-tests.cc.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classIDP_1_1SelfTests_a1f8a6f6c2ff26182311c8a7766db6f5a}{
+\index{IDP::SelfTests@{IDP::SelfTests}!\_\-hal@{\_\-hal}}
+\index{\_\-hal@{\_\-hal}!IDP::SelfTests@{IDP::SelfTests}}
+\subsubsection[{\_\-hal}]{\setlength{\rightskip}{0pt plus 5cm}{\bf HardwareAbstractionLayer}$\ast$ {\bf IDP::SelfTests::\_\-hal}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classIDP_1_1SelfTests_a1f8a6f6c2ff26182311c8a7766db6f5a}
+
+
+Definition at line 49 of file self\_\-tests.h.
+
+\hypertarget{classIDP_1_1SelfTests_a90c60ce647f723e9a37339aadba4770c}{
+\index{IDP::SelfTests@{IDP::SelfTests}!\_\-robot@{\_\-robot}}
+\index{\_\-robot@{\_\-robot}!IDP::SelfTests@{IDP::SelfTests}}
+\subsubsection[{\_\-robot}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf IDP::SelfTests::\_\-robot}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classIDP_1_1SelfTests_a90c60ce647f723e9a37339aadba4770c}
+
+
+Definition at line 48 of file self\_\-tests.h.
 
 
 

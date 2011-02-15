@@ -31,12 +31,38 @@ Collaboration diagram for IDP::Navigation:\nopagebreak
 \begin{DoxyCompactList}\small\item\em Go to a NavigationLocation. \item\end{DoxyCompactList}\item 
 \hyperlink{namespaceIDP_a1a96e566e4d675fdf20780cc96d92283}{NavigationStatus} \hyperlink{classIDP_1_1Navigation_a24b977f20868a385251d4becf187b815}{go\_\-node} (const \hyperlink{namespaceIDP_a286f26dda01010063dff761803b4cd16}{NavigationNode} target)
 \begin{DoxyCompactList}\small\item\em Go to a particular NavigationNode. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classIDP_1_1Navigation_aa7701df4743c75289360a32dfa56d4fc}{update\_\-cache} ()
+\begin{DoxyCompactList}\small\item\em Check if we should update the cached junction status and request a new one from \hyperlink{classIDP_1_1LineFollowing}{LineFollowing} if required. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classIDP_1_1Navigation_adeb3d2223cc6278ccef5d30e4fbeae82}{turn\_\-around\_\-required} (const \hyperlink{namespaceIDP_a286f26dda01010063dff761803b4cd16}{NavigationNode} target) const 
+\begin{DoxyCompactList}\small\item\em Check if we need to turn around. \item\end{DoxyCompactList}\item 
+\hyperlink{namespaceIDP_a1a96e566e4d675fdf20780cc96d92283}{NavigationStatus} \hyperlink{classIDP_1_1Navigation_a7da6a103a61fec763688e875920837a4}{turn\_\-around} ()
+\begin{DoxyCompactList}\small\item\em Determine the current direction of travel and then execute an about turn. \item\end{DoxyCompactList}\item 
+\hyperlink{namespaceIDP_a1a96e566e4d675fdf20780cc96d92283}{NavigationStatus} \hyperlink{classIDP_1_1Navigation_a96241d0be8e7442964c41c6e0e207aa8}{handle\_\-junction} (const \hyperlink{namespaceIDP_a286f26dda01010063dff761803b4cd16}{NavigationNode} target)
+\begin{DoxyCompactList}\small\item\em Handle arriving at a junction, either the target junction or an intermediate one where a turn may be required. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classIDP_1_1HardwareAbstractionLayer}{HardwareAbstractionLayer} $\ast$ \hyperlink{classIDP_1_1Navigation_a640c36341bdf1e2d4ef194ad3aac9773}{\_\-hal}
+\item 
+\hyperlink{namespaceIDP_a286f26dda01010063dff761803b4cd16}{NavigationNode} \hyperlink{classIDP_1_1Navigation_a7ce2cbd9199af73b36d4e887282a38e6}{\_\-from}
+\item 
+\hyperlink{namespaceIDP_a286f26dda01010063dff761803b4cd16}{NavigationNode} \hyperlink{classIDP_1_1Navigation_a76df45b8316e55560e1adc9165700d0f}{\_\-to}
+\item 
+\hyperlink{classIDP_1_1LineFollowing}{LineFollowing} $\ast$ \hyperlink{classIDP_1_1Navigation_a61d775069513302fa6b23c64da7a6ec4}{\_\-lf}
+\item 
+\hyperlink{namespaceIDP_a628dde0214c4c861deda405e77ad75a2}{NavigationCachedJunction} \hyperlink{classIDP_1_1Navigation_a5d511a56a6f3bdcfde2619ae4d75dcaa}{\_\-cached\_\-junction}
+\item 
+bool \hyperlink{classIDP_1_1Navigation_aa0bdef936676bd9ba41ec24994c4adc8}{\_\-doing\_\-second\_\-turn}
+\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 Find a route from one place to another on the board, and maintain an estimate of the current position. 
 
-Definition at line 68 of file navigation.h.
+Definition at line 114 of file navigation.h.
 
 
 
@@ -63,7 +89,7 @@ The optional parameters from and to can be used to define the starting position,
 \item[{\em hal}]A const pointer to an instance of the HAL \item[{\em from}]The node behind the robot at the start \item[{\em to}]The node in front of the robot at the start \end{DoxyParams}
 
 
-Definition at line 126 of file navigation.cc.
+Definition at line 81 of file navigation.cc.
 
 \hypertarget{classIDP_1_1Navigation_a2af5390d05f2058beb841030f9aea0c0}{
 \index{IDP::Navigation@{IDP::Navigation}!$\sim$Navigation@{$\sim$Navigation}}
@@ -80,7 +106,7 @@ Destruct \hyperlink{classIDP_1_1Navigation}{Navigation}, deleting the \hyperlink
 
 
 
-Definition at line 143 of file navigation.cc.
+Definition at line 98 of file navigation.cc.
 
 
 
@@ -103,7 +129,7 @@ A NavigationStatus code
 \end{DoxyReturn}
 
 
-Definition at line 155 of file navigation.cc.
+Definition at line 110 of file navigation.cc.
 
 \hypertarget{classIDP_1_1Navigation_a24b977f20868a385251d4becf187b815}{
 \index{IDP::Navigation@{IDP::Navigation}!go\_\-node@{go\_\-node}}
@@ -123,7 +149,146 @@ A NavigationStatus code
 \end{DoxyReturn}
 
 
-Definition at line 166 of file navigation.cc.
+Definition at line 121 of file navigation.cc.
+
+\hypertarget{classIDP_1_1Navigation_a96241d0be8e7442964c41c6e0e207aa8}{
+\index{IDP::Navigation@{IDP::Navigation}!handle\_\-junction@{handle\_\-junction}}
+\index{handle\_\-junction@{handle\_\-junction}!IDP::Navigation@{IDP::Navigation}}
+\subsubsection[{handle\_\-junction}]{\setlength{\rightskip}{0pt plus 5cm}{\bf NavigationStatus} IDP::Navigation::handle\_\-junction (
+\begin{DoxyParamCaption}
+\item[{const {\bf NavigationNode}}]{ target}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classIDP_1_1Navigation_a96241d0be8e7442964c41c6e0e207aa8}
+
+
+Handle arriving at a junction, either the target junction or an intermediate one where a turn may be required. 
+
+If we are at the target junction, return with NAVIGATION\_\-ARRIVED, or at an intermediate junction look up the required action and then tell \hyperlink{classIDP_1_1LineFollowing}{LineFollowing} whether to go straight forward or turn, and keep calling Navigation::turn() as appropriate to execute the turn.
+
+\begin{DoxyReturn}{Returns}
+NAVIGATION\_\-ARRIVED if at the target junction, or NAVIGATION\_\-ENROUTE otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 261 of file navigation.cc.
+
+\hypertarget{classIDP_1_1Navigation_a7da6a103a61fec763688e875920837a4}{
+\index{IDP::Navigation@{IDP::Navigation}!turn\_\-around@{turn\_\-around}}
+\index{turn\_\-around@{turn\_\-around}!IDP::Navigation@{IDP::Navigation}}
+\subsubsection[{turn\_\-around}]{\setlength{\rightskip}{0pt plus 5cm}{\bf NavigationStatus} IDP::Navigation::turn\_\-around (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classIDP_1_1Navigation_a7da6a103a61fec763688e875920837a4}
+
+
+Determine the current direction of travel and then execute an about turn. 
+
+\begin{DoxyReturn}{Returns}
+A NavigationStatus of NAVIGATION\_\-ENROUTE if currently turning, or NAVIGATION\_\-LOST if line following got lost during the turn. 
+\end{DoxyReturn}
+
+
+Definition at line 187 of file navigation.cc.
+
+\hypertarget{classIDP_1_1Navigation_adeb3d2223cc6278ccef5d30e4fbeae82}{
+\index{IDP::Navigation@{IDP::Navigation}!turn\_\-around\_\-required@{turn\_\-around\_\-required}}
+\index{turn\_\-around\_\-required@{turn\_\-around\_\-required}!IDP::Navigation@{IDP::Navigation}}
+\subsubsection[{turn\_\-around\_\-required}]{\setlength{\rightskip}{0pt plus 5cm}bool IDP::Navigation::turn\_\-around\_\-required (
+\begin{DoxyParamCaption}
+\item[{const {\bf NavigationNode}}]{ target}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classIDP_1_1Navigation_adeb3d2223cc6278ccef5d30e4fbeae82}
+
+
+Check if we need to turn around. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em target}]The NavigationNode we need to go to \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A bool, true if we need to turn around 
+\end{DoxyReturn}
+
+
+Definition at line 156 of file navigation.cc.
+
+\hypertarget{classIDP_1_1Navigation_aa7701df4743c75289360a32dfa56d4fc}{
+\index{IDP::Navigation@{IDP::Navigation}!update\_\-cache@{update\_\-cache}}
+\index{update\_\-cache@{update\_\-cache}!IDP::Navigation@{IDP::Navigation}}
+\subsubsection[{update\_\-cache}]{\setlength{\rightskip}{0pt plus 5cm}void IDP::Navigation::update\_\-cache (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classIDP_1_1Navigation_aa7701df4743c75289360a32dfa56d4fc}
+
+
+Check if we should update the cached junction status and request a new one from \hyperlink{classIDP_1_1LineFollowing}{LineFollowing} if required. 
+
+
+
+Definition at line 228 of file navigation.cc.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classIDP_1_1Navigation_a5d511a56a6f3bdcfde2619ae4d75dcaa}{
+\index{IDP::Navigation@{IDP::Navigation}!\_\-cached\_\-junction@{\_\-cached\_\-junction}}
+\index{\_\-cached\_\-junction@{\_\-cached\_\-junction}!IDP::Navigation@{IDP::Navigation}}
+\subsubsection[{\_\-cached\_\-junction}]{\setlength{\rightskip}{0pt plus 5cm}{\bf NavigationCachedJunction} {\bf IDP::Navigation::\_\-cached\_\-junction}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classIDP_1_1Navigation_a5d511a56a6f3bdcfde2619ae4d75dcaa}
+
+
+Definition at line 131 of file navigation.h.
+
+\hypertarget{classIDP_1_1Navigation_aa0bdef936676bd9ba41ec24994c4adc8}{
+\index{IDP::Navigation@{IDP::Navigation}!\_\-doing\_\-second\_\-turn@{\_\-doing\_\-second\_\-turn}}
+\index{\_\-doing\_\-second\_\-turn@{\_\-doing\_\-second\_\-turn}!IDP::Navigation@{IDP::Navigation}}
+\subsubsection[{\_\-doing\_\-second\_\-turn}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf IDP::Navigation::\_\-doing\_\-second\_\-turn}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classIDP_1_1Navigation_aa0bdef936676bd9ba41ec24994c4adc8}
+
+
+Definition at line 132 of file navigation.h.
+
+\hypertarget{classIDP_1_1Navigation_a7ce2cbd9199af73b36d4e887282a38e6}{
+\index{IDP::Navigation@{IDP::Navigation}!\_\-from@{\_\-from}}
+\index{\_\-from@{\_\-from}!IDP::Navigation@{IDP::Navigation}}
+\subsubsection[{\_\-from}]{\setlength{\rightskip}{0pt plus 5cm}{\bf NavigationNode} {\bf IDP::Navigation::\_\-from}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classIDP_1_1Navigation_a7ce2cbd9199af73b36d4e887282a38e6}
+
+
+Definition at line 128 of file navigation.h.
+
+\hypertarget{classIDP_1_1Navigation_a640c36341bdf1e2d4ef194ad3aac9773}{
+\index{IDP::Navigation@{IDP::Navigation}!\_\-hal@{\_\-hal}}
+\index{\_\-hal@{\_\-hal}!IDP::Navigation@{IDP::Navigation}}
+\subsubsection[{\_\-hal}]{\setlength{\rightskip}{0pt plus 5cm}{\bf HardwareAbstractionLayer}$\ast$ {\bf IDP::Navigation::\_\-hal}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classIDP_1_1Navigation_a640c36341bdf1e2d4ef194ad3aac9773}
+
+
+Definition at line 127 of file navigation.h.
+
+\hypertarget{classIDP_1_1Navigation_a61d775069513302fa6b23c64da7a6ec4}{
+\index{IDP::Navigation@{IDP::Navigation}!\_\-lf@{\_\-lf}}
+\index{\_\-lf@{\_\-lf}!IDP::Navigation@{IDP::Navigation}}
+\subsubsection[{\_\-lf}]{\setlength{\rightskip}{0pt plus 5cm}{\bf LineFollowing}$\ast$ {\bf IDP::Navigation::\_\-lf}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classIDP_1_1Navigation_a61d775069513302fa6b23c64da7a6ec4}
+
+
+Definition at line 130 of file navigation.h.
+
+\hypertarget{classIDP_1_1Navigation_a76df45b8316e55560e1adc9165700d0f}{
+\index{IDP::Navigation@{IDP::Navigation}!\_\-to@{\_\-to}}
+\index{\_\-to@{\_\-to}!IDP::Navigation@{IDP::Navigation}}
+\subsubsection[{\_\-to}]{\setlength{\rightskip}{0pt plus 5cm}{\bf NavigationNode} {\bf IDP::Navigation::\_\-to}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classIDP_1_1Navigation_a76df45b8316e55560e1adc9165700d0f}
+
+
+Definition at line 129 of file navigation.h.
 
 
 

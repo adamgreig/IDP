@@ -64,30 +64,30 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00013"></a>00013 <span class="preprocessor"></span>
 <a name="l00014"></a>00014 <span class="preprocessor">#include &lt;robot_link.h&gt;</span>
 <a name="l00015"></a>00015 
-<a name="l00016"></a>00016 <span class="keyword">namespace </span>IDP {
-<a name="l00017"></a>00017 
-<a name="l00018"></a>00018     <span class="keyword">class </span>HardwareAbstractionLayer;
-<a name="l00019"></a>00019 
-<a name="l00024"></a><a class="code" href="classIDP_1_1MissionSupervisor.html">00024</a>     <span class="keyword">class </span><a class="code" href="classIDP_1_1MissionSupervisor.html" title="Control the overall robot behaviour and objective fulfillment.">MissionSupervisor</a>
-<a name="l00025"></a>00025     {
-<a name="l00026"></a>00026         <span class="keyword">public</span>:
-<a name="l00027"></a>00027             <a class="code" href="classIDP_1_1MissionSupervisor.html#afc6a54e04718d919b2b48458a47304b2" title="Construct the MissionSupervisor.">MissionSupervisor</a>(<span class="keywordtype">int</span> robot);
-<a name="l00028"></a>00028             <a class="code" href="classIDP_1_1MissionSupervisor.html#aa43dab8c02cd596d0f5df6b3af5aade4" title="Destruct the MissionSupervisor, deleting the HAL.">~MissionSupervisor</a>();
-<a name="l00029"></a>00029             <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1MissionSupervisor.html#a06fc1fcf6272651d50938fd94306ac24" title="Commence running the main task.">run_task</a>();
-<a name="l00030"></a>00030             <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1MissionSupervisor.html#af8c6a3073190a4479211753fe5f50a36" title="Set both motors driving forwards.">drive_forward</a>();
-<a name="l00031"></a>00031             <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1MissionSupervisor.html#ae5d6e9a37417126da780583349b48d44" title="Set both motors driving backwards.">drive_backward</a>();
-<a name="l00032"></a>00032             <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1MissionSupervisor.html#ad11e444b6be1d51c3339bd6397d45fd4" title="Stop all motors.">stop</a>();
-<a name="l00033"></a>00033             <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1MissionSupervisor.html#af147b0bec9464bb7e956a40a7f3d0fda" title="Attempt to read the line sensor status.">test_line_sensor</a>();
-<a name="l00034"></a>00034             <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1MissionSupervisor.html#a21be0b52e2f13c7fb373c90dae77ba23" title="Test line following on a straight line.">test_line_following</a>();
-<a name="l00035"></a>00035             <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1MissionSupervisor.html#a7c0f8d9bc56e3ec9da1b1294fa828541" title="Test navigation code.">test_navigation</a>();
-<a name="l00036"></a>00036             <span class="keyword">const</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html" title="Provide a hardware agnostic interface to the required hardware functionality.">HardwareAbstractionLayer</a>* <a class="code" href="classIDP_1_1MissionSupervisor.html#ae19d0c2123fda158cc45e649128fbc09" title="Const accessor for the HAL.">hal</a>() <span class="keyword">const</span>;
-<a name="l00037"></a>00037         <span class="keyword">private</span>:
-<a name="l00038"></a>00038             <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html" title="Provide a hardware agnostic interface to the required hardware functionality.">HardwareAbstractionLayer</a>* _hal;
-<a name="l00039"></a>00039     };
-<a name="l00040"></a>00040 }
-<a name="l00041"></a>00041 
-<a name="l00042"></a>00042 <span class="preprocessor">#endif </span><span class="comment">/* LIBIDP_MISSION_SUPERVISOR_H */</span>
-<a name="l00043"></a>00043 
+<a name="l00020"></a>00020 <span class="keyword">namespace </span>IDP {
+<a name="l00021"></a>00021 
+<a name="l00022"></a>00022     <span class="keyword">class </span>HardwareAbstractionLayer;
+<a name="l00023"></a>00023 
+<a name="l00028"></a><a class="code" href="classIDP_1_1MissionSupervisor.html">00028</a>     <span class="keyword">class </span><a class="code" href="classIDP_1_1MissionSupervisor.html" title="Control the overall robot behaviour and objective fulfillment.">MissionSupervisor</a>
+<a name="l00029"></a>00029     {
+<a name="l00030"></a>00030         <span class="keyword">public</span>:
+<a name="l00031"></a>00031             <a class="code" href="classIDP_1_1MissionSupervisor.html#afc6a54e04718d919b2b48458a47304b2" title="Construct the MissionSupervisor.">MissionSupervisor</a>(<span class="keywordtype">int</span> robot);
+<a name="l00032"></a>00032             <a class="code" href="classIDP_1_1MissionSupervisor.html#aa43dab8c02cd596d0f5df6b3af5aade4" title="Destruct the MissionSupervisor, deleting the HAL.">~MissionSupervisor</a>();
+<a name="l00033"></a>00033             <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1MissionSupervisor.html#a06fc1fcf6272651d50938fd94306ac24" title="Commence running the main task.">run_task</a>();
+<a name="l00034"></a>00034             <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1MissionSupervisor.html#af8c6a3073190a4479211753fe5f50a36">drive_forward</a>();
+<a name="l00035"></a>00035             <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1MissionSupervisor.html#ae5d6e9a37417126da780583349b48d44">drive_backward</a>();
+<a name="l00036"></a>00036             <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1MissionSupervisor.html#ad11e444b6be1d51c3339bd6397d45fd4">stop</a>();
+<a name="l00037"></a>00037             <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1MissionSupervisor.html#af147b0bec9464bb7e956a40a7f3d0fda">test_line_sensor</a>();
+<a name="l00038"></a>00038             <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1MissionSupervisor.html#a21be0b52e2f13c7fb373c90dae77ba23">test_line_following</a>();
+<a name="l00039"></a>00039             <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1MissionSupervisor.html#a7c0f8d9bc56e3ec9da1b1294fa828541">test_navigation</a>();
+<a name="l00040"></a>00040             <span class="keyword">const</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html" title="Provide a hardware agnostic interface to the required hardware functionality.">HardwareAbstractionLayer</a>* <a class="code" href="classIDP_1_1MissionSupervisor.html#ae19d0c2123fda158cc45e649128fbc09" title="Const accessor for the HAL.">hal</a>() <span class="keyword">const</span>;
+<a name="l00041"></a>00041         <span class="keyword">private</span>:
+<a name="l00042"></a><a class="code" href="classIDP_1_1MissionSupervisor.html#a31c1a6a71d93c8ae4024eb97b934eb56">00042</a>             <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html" title="Provide a hardware agnostic interface to the required hardware functionality.">HardwareAbstractionLayer</a>* <a class="code" href="classIDP_1_1MissionSupervisor.html#a31c1a6a71d93c8ae4024eb97b934eb56">_hal</a>;
+<a name="l00043"></a>00043     };
+<a name="l00044"></a>00044 }
+<a name="l00045"></a>00045 
+<a name="l00046"></a>00046 <span class="preprocessor">#endif </span><span class="comment">/* LIBIDP_MISSION_SUPERVISOR_H */</span>
+<a name="l00047"></a>00047 
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -104,7 +104,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Tue Feb 8 2011 02:45:35 for IDPL108 by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Feb 15 2011 02:35:58 for IDPL108 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

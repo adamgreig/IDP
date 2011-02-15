@@ -53,7 +53,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="header">
   <div class="summary">
-<a href="#pub-methods">Public Member Functions</a>  </div>
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a>  </div>
   <div class="headertitle">
 <h1>IDP::MissionSupervisor Class Reference</h1>  </div>
 </div>
@@ -82,24 +83,21 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1MissionSupervisor.html#a06fc1fcf6272651d50938fd94306ac24">run_task</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Commence running the main task.  <a href="#a06fc1fcf6272651d50938fd94306ac24"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1MissionSupervisor.html#af8c6a3073190a4479211753fe5f50a36">drive_forward</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Set both motors driving forwards.  <a href="#af8c6a3073190a4479211753fe5f50a36"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1MissionSupervisor.html#ae5d6e9a37417126da780583349b48d44">drive_backward</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Set both motors driving backwards.  <a href="#ae5d6e9a37417126da780583349b48d44"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1MissionSupervisor.html#ad11e444b6be1d51c3339bd6397d45fd4">stop</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Stop all motors.  <a href="#ad11e444b6be1d51c3339bd6397d45fd4"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1MissionSupervisor.html#af147b0bec9464bb7e956a40a7f3d0fda">test_line_sensor</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Attempt to read the line sensor status.  <a href="#af147b0bec9464bb7e956a40a7f3d0fda"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1MissionSupervisor.html#a21be0b52e2f13c7fb373c90dae77ba23">test_line_following</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Test line following on a straight line.  <a href="#a21be0b52e2f13c7fb373c90dae77ba23"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1MissionSupervisor.html#a7c0f8d9bc56e3ec9da1b1294fa828541">test_navigation</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Test navigation code.  <a href="#a7c0f8d9bc56e3ec9da1b1294fa828541"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classIDP_1_1HardwareAbstractionLayer.html">HardwareAbstractionLayer</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1MissionSupervisor.html#ae19d0c2123fda158cc45e649128fbc09">hal</a> () const </td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Const accessor for the HAL.  <a href="#ae19d0c2123fda158cc45e649128fbc09"></a><br/></td></tr>
+<tr><td colspan="2"><h2><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classIDP_1_1HardwareAbstractionLayer.html">HardwareAbstractionLayer</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1MissionSupervisor.html#a31c1a6a71d93c8ae4024eb97b934eb56">_hal</a></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>Control the overall robot behaviour and objective fulfillment. </p>
 
-<p>Definition at line <a class="el" href="mission__supervisor_8h_source.html#l00024">24</a> of file <a class="el" href="mission__supervisor_8h_source.html">mission_supervisor.h</a>.</p>
+<p>Definition at line <a class="el" href="mission__supervisor_8h_source.html#l00028">28</a> of file <a class="el" href="mission__supervisor_8h_source.html">mission_supervisor.h</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="afc6a54e04718d919b2b48458a47304b2"></a><!-- doxytag: member="IDP::MissionSupervisor::MissionSupervisor" ref="afc6a54e04718d919b2b48458a47304b2" args="(int robot)" -->
 <div class="memitem">
@@ -167,10 +165,6 @@ Public Member Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Set both motors driving backwards. </p>
-
-<p>Definition at line <a class="el" href="mission__supervisor_8cc_source.html#l00070">70</a> of file <a class="el" href="mission__supervisor_8cc_source.html">mission_supervisor.cc</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="af8c6a3073190a4479211753fe5f50a36"></a><!-- doxytag: member="IDP::MissionSupervisor::drive_forward" ref="af8c6a3073190a4479211753fe5f50a36" args="()" -->
@@ -187,10 +181,6 @@ Public Member Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-
-<p>Set both motors driving forwards. </p>
-
-<p>Definition at line <a class="el" href="mission__supervisor_8cc_source.html#l00059">59</a> of file <a class="el" href="mission__supervisor_8cc_source.html">mission_supervisor.cc</a>.</p>
 
 </div>
 </div>
@@ -211,7 +201,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Const accessor for the HAL. </p>
 
-<p>Definition at line <a class="el" href="mission__supervisor_8cc_source.html#l00256">256</a> of file <a class="el" href="mission__supervisor_8cc_source.html">mission_supervisor.cc</a>.</p>
+<p>Definition at line <a class="el" href="mission__supervisor_8cc_source.html#l00059">59</a> of file <a class="el" href="mission__supervisor_8cc_source.html">mission_supervisor.cc</a>.</p>
 
 </div>
 </div>
@@ -251,10 +241,6 @@ Public Member Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Stop all motors. </p>
-
-<p>Definition at line <a class="el" href="mission__supervisor_8cc_source.html#l00080">80</a> of file <a class="el" href="mission__supervisor_8cc_source.html">mission_supervisor.cc</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a21be0b52e2f13c7fb373c90dae77ba23"></a><!-- doxytag: member="IDP::MissionSupervisor::test_line_following" ref="a21be0b52e2f13c7fb373c90dae77ba23" args="()" -->
@@ -271,10 +257,6 @@ Public Member Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-
-<p>Test line following on a straight line. </p>
-
-<p>Definition at line <a class="el" href="mission__supervisor_8cc_source.html#l00125">125</a> of file <a class="el" href="mission__supervisor_8cc_source.html">mission_supervisor.cc</a>.</p>
 
 </div>
 </div>
@@ -293,10 +275,6 @@ Public Member Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Attempt to read the line sensor status. </p>
-
-<p>Definition at line <a class="el" href="mission__supervisor_8cc_source.html#l00090">90</a> of file <a class="el" href="mission__supervisor_8cc_source.html">mission_supervisor.cc</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a7c0f8d9bc56e3ec9da1b1294fa828541"></a><!-- doxytag: member="IDP::MissionSupervisor::test_navigation" ref="a7c0f8d9bc56e3ec9da1b1294fa828541" args="()" -->
@@ -314,9 +292,21 @@ Public Member Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Test navigation code. </p>
+</div>
+</div>
+<hr/><h2>Member Data Documentation</h2>
+<a class="anchor" id="a31c1a6a71d93c8ae4024eb97b934eb56"></a><!-- doxytag: member="IDP::MissionSupervisor::_hal" ref="a31c1a6a71d93c8ae4024eb97b934eb56" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classIDP_1_1HardwareAbstractionLayer.html">HardwareAbstractionLayer</a>* <a class="el" href="classIDP_1_1MissionSupervisor.html#a31c1a6a71d93c8ae4024eb97b934eb56">IDP::MissionSupervisor::_hal</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
 
-<p>Definition at line <a class="el" href="mission__supervisor_8cc_source.html#l00234">234</a> of file <a class="el" href="mission__supervisor_8cc_source.html">mission_supervisor.cc</a>.</p>
+<p>Definition at line <a class="el" href="mission__supervisor_8h_source.html#l00042">42</a> of file <a class="el" href="mission__supervisor_8h_source.html">mission_supervisor.h</a>.</p>
 
 </div>
 </div>
@@ -339,7 +329,7 @@ Public Member Functions</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Tue Feb 8 2011 02:45:35 for IDPL108 by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Feb 15 2011 02:35:58 for IDPL108 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

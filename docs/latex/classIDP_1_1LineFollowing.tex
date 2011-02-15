@@ -39,12 +39,38 @@ Collaboration diagram for IDP::LineFollowing:\nopagebreak
 \begin{DoxyCompactList}\small\item\em Return whether we can see a junction or not, without changing motor settings. \item\end{DoxyCompactList}\item 
 void \hyperlink{classIDP_1_1LineFollowing_af034f457aef1716d042606c71dddfd73}{set\_\-speed} (unsigned short int speed)
 \begin{DoxyCompactList}\small\item\em Set the speed that motors will be driven at. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classIDP_1_1LineFollowing_a91695c96ef09bd407b9b57dd7f6fcdfa}{correct\_\-steering} (void)
+\begin{DoxyCompactList}\small\item\em Correct the steering of the robot after the error has been calculated in follow\_\-line. \item\end{DoxyCompactList}\item 
+void \hyperlink{classIDP_1_1LineFollowing_a5eeec6030c425b39a8571dcb55454465}{set\_\-motors\_\-turning} (\hyperlink{namespaceIDP_aba52d8ae6ecf9eb4c7edb518bcc02544}{LineFollowingTurnDirection} dir)
+\begin{DoxyCompactList}\small\item\em Set the motors to the correct steering speeds. \item\end{DoxyCompactList}\item 
+\hyperlink{namespaceIDP_a5993bdfdd901fc5521c8df42dca43bd0}{LineFollowingStatus} \hyperlink{classIDP_1_1LineFollowing_a99884d2660c7425f54b3bf90e207c6da}{turn} (\hyperlink{namespaceIDP_aba52d8ae6ecf9eb4c7edb518bcc02544}{LineFollowingTurnDirection} dir)
+\begin{DoxyCompactList}\small\item\em Perform a turn in the given direction. \item\end{DoxyCompactList}\item 
+\hyperlink{namespaceIDP_ac3688e4c6bc9b671b09672d71ebccc40}{LineFollowingLineStatus} \hyperlink{classIDP_1_1LineFollowing_a4acd259fcdb1b2e2885fec9716eb0b93}{line\_\-status} (\hyperlink{namespaceIDP_aba52d8ae6ecf9eb4c7edb518bcc02544}{LineFollowingTurnDirection} dir)
+\begin{DoxyCompactList}\small\item\em Return the current line status, depending on turning direction. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classIDP_1_1HardwareAbstractionLayer}{HardwareAbstractionLayer} $\ast$ \hyperlink{classIDP_1_1LineFollowing_a9adfbcd956e7d6373f28ea60073c92fa}{\_\-hal}
+\item 
+unsigned short int \hyperlink{classIDP_1_1LineFollowing_a73eb5dbd030d04809ffe8bf08956517d}{\_\-left\_\-error}
+\item 
+unsigned short int \hyperlink{classIDP_1_1LineFollowing_ac74d1f91775296a217ff1aa4ecf00ae9}{\_\-right\_\-error}
+\item 
+unsigned short int \hyperlink{classIDP_1_1LineFollowing_a67d4ac53d4cd8fa53d6b61ec839ce8bc}{\_\-speed}
+\item 
+bool \hyperlink{classIDP_1_1LineFollowing_a76fe578bf4bbd847e74bb1b9bfab7149}{\_\-lost\_\-turning\_\-line}
+\item 
+unsigned short int \hyperlink{classIDP_1_1LineFollowing_acc5f7d1d33c49ae1be9de702122aac02}{\_\-lost\_\-time}
+\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 Maintain the robot position correctly with respect to the white line markers, during driving and manouvering. 
 
-Definition at line 95 of file line\_\-following.h.
+Definition at line 136 of file line\_\-following.h.
 
 
 
@@ -64,11 +90,28 @@ Construct the Line Follower.
 
 
 
-Definition at line 57 of file line\_\-following.cc.
+Definition at line 23 of file line\_\-following.cc.
 
 
 
 \subsection{Member Function Documentation}
+\hypertarget{classIDP_1_1LineFollowing_a91695c96ef09bd407b9b57dd7f6fcdfa}{
+\index{IDP::LineFollowing@{IDP::LineFollowing}!correct\_\-steering@{correct\_\-steering}}
+\index{correct\_\-steering@{correct\_\-steering}!IDP::LineFollowing@{IDP::LineFollowing}}
+\subsubsection[{correct\_\-steering}]{\setlength{\rightskip}{0pt plus 5cm}void IDP::LineFollowing::correct\_\-steering (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classIDP_1_1LineFollowing_a91695c96ef09bd407b9b57dd7f6fcdfa}
+
+
+Correct the steering of the robot after the error has been calculated in follow\_\-line. 
+
+
+
+Definition at line 158 of file line\_\-following.cc.
+
 \hypertarget{classIDP_1_1LineFollowing_ad26d7726d2bb263658ed3140d3e30852}{
 \index{IDP::LineFollowing@{IDP::LineFollowing}!follow\_\-line@{follow\_\-line}}
 \index{follow\_\-line@{follow\_\-line}!IDP::LineFollowing@{IDP::LineFollowing}}
@@ -87,7 +130,7 @@ A LineFollowingStatus to indicate that either we are going fine, we are lost, or
 \end{DoxyReturn}
 
 
-Definition at line 71 of file line\_\-following.cc.
+Definition at line 37 of file line\_\-following.cc.
 
 \hypertarget{classIDP_1_1LineFollowing_af4feccda1b15ebbdad8dd49178b28914}{
 \index{IDP::LineFollowing@{IDP::LineFollowing}!junction\_\-status@{junction\_\-status}}
@@ -107,7 +150,50 @@ A LineFollowingStatus indicating junctions or NO\_\-TURNS\_\-FOUND if no junctio
 \end{DoxyReturn}
 
 
-Definition at line 304 of file line\_\-following.cc.
+Definition at line 270 of file line\_\-following.cc.
+
+\hypertarget{classIDP_1_1LineFollowing_a4acd259fcdb1b2e2885fec9716eb0b93}{
+\index{IDP::LineFollowing@{IDP::LineFollowing}!line\_\-status@{line\_\-status}}
+\index{line\_\-status@{line\_\-status}!IDP::LineFollowing@{IDP::LineFollowing}}
+\subsubsection[{line\_\-status}]{\setlength{\rightskip}{0pt plus 5cm}{\bf LineFollowingLineStatus} IDP::LineFollowing::line\_\-status (
+\begin{DoxyParamCaption}
+\item[{{\bf LineFollowingTurnDirection}}]{ dir}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classIDP_1_1LineFollowing_a4acd259fcdb1b2e2885fec9716eb0b93}
+
+
+Return the current line status, depending on turning direction. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em dir}]The turning direction \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a LineFollowingLineStatus 
+\end{DoxyReturn}
+
+
+Definition at line 325 of file line\_\-following.cc.
+
+\hypertarget{classIDP_1_1LineFollowing_a5eeec6030c425b39a8571dcb55454465}{
+\index{IDP::LineFollowing@{IDP::LineFollowing}!set\_\-motors\_\-turning@{set\_\-motors\_\-turning}}
+\index{set\_\-motors\_\-turning@{set\_\-motors\_\-turning}!IDP::LineFollowing@{IDP::LineFollowing}}
+\subsubsection[{set\_\-motors\_\-turning}]{\setlength{\rightskip}{0pt plus 5cm}void IDP::LineFollowing::set\_\-motors\_\-turning (
+\begin{DoxyParamCaption}
+\item[{{\bf LineFollowingTurnDirection}}]{ dir}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classIDP_1_1LineFollowing_a5eeec6030c425b39a8571dcb55454465}
+
+
+Set the motors to the correct steering speeds. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em dir}]Which direction to turn in\end{DoxyParams}
+This will set the left and right motors either forwards, backwards or stationary as appropriate to execute a turn. 
+
+Definition at line 437 of file line\_\-following.cc.
 
 \hypertarget{classIDP_1_1LineFollowing_af034f457aef1716d042606c71dddfd73}{
 \index{IDP::LineFollowing@{IDP::LineFollowing}!set\_\-speed@{set\_\-speed}}
@@ -127,7 +213,29 @@ Set the speed that motors will be driven at.
 \item[{\em speed}]How fast to drive the motors, 0 to MOTOR\_\-MAX\_\-SPEED. \end{DoxyParams}
 
 
-Definition at line 339 of file line\_\-following.cc.
+Definition at line 305 of file line\_\-following.cc.
+
+\hypertarget{classIDP_1_1LineFollowing_a99884d2660c7425f54b3bf90e207c6da}{
+\index{IDP::LineFollowing@{IDP::LineFollowing}!turn@{turn}}
+\index{turn@{turn}!IDP::LineFollowing@{IDP::LineFollowing}}
+\subsubsection[{turn}]{\setlength{\rightskip}{0pt plus 5cm}{\bf LineFollowingStatus} IDP::LineFollowing::turn (
+\begin{DoxyParamCaption}
+\item[{{\bf LineFollowingTurnDirection}}]{ dir}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classIDP_1_1LineFollowing_a99884d2660c7425f54b3bf90e207c6da}
+
+
+Perform a turn in the given direction. 
+
+turn\_\-left, turn\_\-right, turn\_\-around\_\-cw and turn\_\-around\_\-ccw are all essentially just wrappers for this functions. They stop it being called with silly arguments, at least.
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em dir}]The direction to turn in \end{DoxyParams}
+
+
+Definition at line 378 of file line\_\-following.cc.
 
 \hypertarget{classIDP_1_1LineFollowing_a3156dca6ebcbee20933949137dba6cf6}{
 \index{IDP::LineFollowing@{IDP::LineFollowing}!turn\_\-around\_\-ccw@{turn\_\-around\_\-ccw}}
@@ -147,7 +255,7 @@ A LineFollowingStatus code
 \end{DoxyReturn}
 
 
-Definition at line 292 of file line\_\-following.cc.
+Definition at line 258 of file line\_\-following.cc.
 
 \hypertarget{classIDP_1_1LineFollowing_a5bbdc1317ef04ea599a7d5583703660b}{
 \index{IDP::LineFollowing@{IDP::LineFollowing}!turn\_\-around\_\-cw@{turn\_\-around\_\-cw}}
@@ -167,7 +275,7 @@ A LineFollowingStatus code
 \end{DoxyReturn}
 
 
-Definition at line 281 of file line\_\-following.cc.
+Definition at line 247 of file line\_\-following.cc.
 
 \hypertarget{classIDP_1_1LineFollowing_a551e979a503328c2f645a1af2798d940}{
 \index{IDP::LineFollowing@{IDP::LineFollowing}!turn\_\-left@{turn\_\-left}}
@@ -187,7 +295,7 @@ A LineFollowingStatus code
 \end{DoxyReturn}
 
 
-Definition at line 261 of file line\_\-following.cc.
+Definition at line 227 of file line\_\-following.cc.
 
 \hypertarget{classIDP_1_1LineFollowing_adc0b67e4dc93dfef246cdde6190b0745}{
 \index{IDP::LineFollowing@{IDP::LineFollowing}!turn\_\-right@{turn\_\-right}}
@@ -207,7 +315,64 @@ A LineFollowingStatus code
 \end{DoxyReturn}
 
 
-Definition at line 271 of file line\_\-following.cc.
+Definition at line 237 of file line\_\-following.cc.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classIDP_1_1LineFollowing_a9adfbcd956e7d6373f28ea60073c92fa}{
+\index{IDP::LineFollowing@{IDP::LineFollowing}!\_\-hal@{\_\-hal}}
+\index{\_\-hal@{\_\-hal}!IDP::LineFollowing@{IDP::LineFollowing}}
+\subsubsection[{\_\-hal}]{\setlength{\rightskip}{0pt plus 5cm}{\bf HardwareAbstractionLayer}$\ast$ {\bf IDP::LineFollowing::\_\-hal}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classIDP_1_1LineFollowing_a9adfbcd956e7d6373f28ea60073c92fa}
+
+
+Definition at line 155 of file line\_\-following.h.
+
+\hypertarget{classIDP_1_1LineFollowing_a73eb5dbd030d04809ffe8bf08956517d}{
+\index{IDP::LineFollowing@{IDP::LineFollowing}!\_\-left\_\-error@{\_\-left\_\-error}}
+\index{\_\-left\_\-error@{\_\-left\_\-error}!IDP::LineFollowing@{IDP::LineFollowing}}
+\subsubsection[{\_\-left\_\-error}]{\setlength{\rightskip}{0pt plus 5cm}unsigned short int {\bf IDP::LineFollowing::\_\-left\_\-error}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classIDP_1_1LineFollowing_a73eb5dbd030d04809ffe8bf08956517d}
+
+
+Definition at line 156 of file line\_\-following.h.
+
+\hypertarget{classIDP_1_1LineFollowing_acc5f7d1d33c49ae1be9de702122aac02}{
+\index{IDP::LineFollowing@{IDP::LineFollowing}!\_\-lost\_\-time@{\_\-lost\_\-time}}
+\index{\_\-lost\_\-time@{\_\-lost\_\-time}!IDP::LineFollowing@{IDP::LineFollowing}}
+\subsubsection[{\_\-lost\_\-time}]{\setlength{\rightskip}{0pt plus 5cm}unsigned short int {\bf IDP::LineFollowing::\_\-lost\_\-time}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classIDP_1_1LineFollowing_acc5f7d1d33c49ae1be9de702122aac02}
+
+
+Definition at line 160 of file line\_\-following.h.
+
+\hypertarget{classIDP_1_1LineFollowing_a76fe578bf4bbd847e74bb1b9bfab7149}{
+\index{IDP::LineFollowing@{IDP::LineFollowing}!\_\-lost\_\-turning\_\-line@{\_\-lost\_\-turning\_\-line}}
+\index{\_\-lost\_\-turning\_\-line@{\_\-lost\_\-turning\_\-line}!IDP::LineFollowing@{IDP::LineFollowing}}
+\subsubsection[{\_\-lost\_\-turning\_\-line}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf IDP::LineFollowing::\_\-lost\_\-turning\_\-line}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classIDP_1_1LineFollowing_a76fe578bf4bbd847e74bb1b9bfab7149}
+
+
+Definition at line 159 of file line\_\-following.h.
+
+\hypertarget{classIDP_1_1LineFollowing_ac74d1f91775296a217ff1aa4ecf00ae9}{
+\index{IDP::LineFollowing@{IDP::LineFollowing}!\_\-right\_\-error@{\_\-right\_\-error}}
+\index{\_\-right\_\-error@{\_\-right\_\-error}!IDP::LineFollowing@{IDP::LineFollowing}}
+\subsubsection[{\_\-right\_\-error}]{\setlength{\rightskip}{0pt plus 5cm}unsigned short int {\bf IDP::LineFollowing::\_\-right\_\-error}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classIDP_1_1LineFollowing_ac74d1f91775296a217ff1aa4ecf00ae9}
+
+
+Definition at line 157 of file line\_\-following.h.
+
+\hypertarget{classIDP_1_1LineFollowing_a67d4ac53d4cd8fa53d6b61ec839ce8bc}{
+\index{IDP::LineFollowing@{IDP::LineFollowing}!\_\-speed@{\_\-speed}}
+\index{\_\-speed@{\_\-speed}!IDP::LineFollowing@{IDP::LineFollowing}}
+\subsubsection[{\_\-speed}]{\setlength{\rightskip}{0pt plus 5cm}unsigned short int {\bf IDP::LineFollowing::\_\-speed}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classIDP_1_1LineFollowing_a67d4ac53d4cd8fa53d6b61ec839ce8bc}
+
+
+Definition at line 158 of file line\_\-following.h.
 
 
 

@@ -13,6 +13,10 @@
 
 #include <robot_link.h>
 
+/**
+ * Contains all the IDP related functionality including libidp and some idpbin
+ * classes.
+ */
 namespace IDP {
 
     class HardwareAbstractionLayer;

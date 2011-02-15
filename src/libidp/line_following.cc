@@ -373,7 +373,7 @@ namespace IDP {
      * all essentially just wrappers for this functions. They stop it
      * being called with silly arguments, at least.
      *
-     * \params dir The direction to turn in
+     * \param dir The direction to turn in
      */
     LineFollowingStatus LineFollowing::turn(LineFollowingTurnDirection dir)
     {

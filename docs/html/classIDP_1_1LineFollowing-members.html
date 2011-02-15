@@ -51,10 +51,20 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="contents">
 This is the complete list of members for <a class="el" href="classIDP_1_1LineFollowing.html">IDP::LineFollowing</a>, including all inherited members.<table>
+  <tr class="memlist"><td><a class="el" href="classIDP_1_1LineFollowing.html#a9adfbcd956e7d6373f28ea60073c92fa">_hal</a></td><td><a class="el" href="classIDP_1_1LineFollowing.html">IDP::LineFollowing</a></td><td><code> [private]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="classIDP_1_1LineFollowing.html#a73eb5dbd030d04809ffe8bf08956517d">_left_error</a></td><td><a class="el" href="classIDP_1_1LineFollowing.html">IDP::LineFollowing</a></td><td><code> [private]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="classIDP_1_1LineFollowing.html#acc5f7d1d33c49ae1be9de702122aac02">_lost_time</a></td><td><a class="el" href="classIDP_1_1LineFollowing.html">IDP::LineFollowing</a></td><td><code> [private]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="classIDP_1_1LineFollowing.html#a76fe578bf4bbd847e74bb1b9bfab7149">_lost_turning_line</a></td><td><a class="el" href="classIDP_1_1LineFollowing.html">IDP::LineFollowing</a></td><td><code> [private]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="classIDP_1_1LineFollowing.html#ac74d1f91775296a217ff1aa4ecf00ae9">_right_error</a></td><td><a class="el" href="classIDP_1_1LineFollowing.html">IDP::LineFollowing</a></td><td><code> [private]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="classIDP_1_1LineFollowing.html#a67d4ac53d4cd8fa53d6b61ec839ce8bc">_speed</a></td><td><a class="el" href="classIDP_1_1LineFollowing.html">IDP::LineFollowing</a></td><td><code> [private]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="classIDP_1_1LineFollowing.html#a91695c96ef09bd407b9b57dd7f6fcdfa">correct_steering</a>(void)</td><td><a class="el" href="classIDP_1_1LineFollowing.html">IDP::LineFollowing</a></td><td><code> [private]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classIDP_1_1LineFollowing.html#ad26d7726d2bb263658ed3140d3e30852">follow_line</a>(void)</td><td><a class="el" href="classIDP_1_1LineFollowing.html">IDP::LineFollowing</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classIDP_1_1LineFollowing.html#af4feccda1b15ebbdad8dd49178b28914">junction_status</a>(void)</td><td><a class="el" href="classIDP_1_1LineFollowing.html">IDP::LineFollowing</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="classIDP_1_1LineFollowing.html#a4acd259fcdb1b2e2885fec9716eb0b93">line_status</a>(LineFollowingTurnDirection dir)</td><td><a class="el" href="classIDP_1_1LineFollowing.html">IDP::LineFollowing</a></td><td><code> [private]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classIDP_1_1LineFollowing.html#a0a8b7e1ecdff2e4d0949b01fcf7609ef">LineFollowing</a>(HardwareAbstractionLayer *hal)</td><td><a class="el" href="classIDP_1_1LineFollowing.html">IDP::LineFollowing</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="classIDP_1_1LineFollowing.html#a5eeec6030c425b39a8571dcb55454465">set_motors_turning</a>(LineFollowingTurnDirection dir)</td><td><a class="el" href="classIDP_1_1LineFollowing.html">IDP::LineFollowing</a></td><td><code> [private]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classIDP_1_1LineFollowing.html#af034f457aef1716d042606c71dddfd73">set_speed</a>(unsigned short int speed)</td><td><a class="el" href="classIDP_1_1LineFollowing.html">IDP::LineFollowing</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="classIDP_1_1LineFollowing.html#a99884d2660c7425f54b3bf90e207c6da">turn</a>(LineFollowingTurnDirection dir)</td><td><a class="el" href="classIDP_1_1LineFollowing.html">IDP::LineFollowing</a></td><td><code> [private]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classIDP_1_1LineFollowing.html#a3156dca6ebcbee20933949137dba6cf6">turn_around_ccw</a>(void)</td><td><a class="el" href="classIDP_1_1LineFollowing.html">IDP::LineFollowing</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classIDP_1_1LineFollowing.html#a5bbdc1317ef04ea599a7d5583703660b">turn_around_cw</a>(void)</td><td><a class="el" href="classIDP_1_1LineFollowing.html">IDP::LineFollowing</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classIDP_1_1LineFollowing.html#a551e979a503328c2f645a1af2798d940">turn_left</a>(void)</td><td><a class="el" href="classIDP_1_1LineFollowing.html">IDP::LineFollowing</a></td><td></td></tr>
@@ -74,7 +84,7 @@ This is the complete list of members for <a class="el" href="classIDP_1_1LineFol
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Tue Feb 8 2011 02:45:35 for IDPL108 by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Feb 15 2011 02:35:58 for IDPL108 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

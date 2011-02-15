@@ -30,25 +30,30 @@ Collaboration diagram for IDP::MissionSupervisor:\nopagebreak
 void \hyperlink{classIDP_1_1MissionSupervisor_a06fc1fcf6272651d50938fd94306ac24}{run\_\-task} ()
 \begin{DoxyCompactList}\small\item\em Commence running the main task. \item\end{DoxyCompactList}\item 
 void \hyperlink{classIDP_1_1MissionSupervisor_af8c6a3073190a4479211753fe5f50a36}{drive\_\-forward} ()
-\begin{DoxyCompactList}\small\item\em Set both motors driving forwards. \item\end{DoxyCompactList}\item 
+\item 
 void \hyperlink{classIDP_1_1MissionSupervisor_ae5d6e9a37417126da780583349b48d44}{drive\_\-backward} ()
-\begin{DoxyCompactList}\small\item\em Set both motors driving backwards. \item\end{DoxyCompactList}\item 
+\item 
 void \hyperlink{classIDP_1_1MissionSupervisor_ad11e444b6be1d51c3339bd6397d45fd4}{stop} ()
-\begin{DoxyCompactList}\small\item\em Stop all motors. \item\end{DoxyCompactList}\item 
+\item 
 void \hyperlink{classIDP_1_1MissionSupervisor_af147b0bec9464bb7e956a40a7f3d0fda}{test\_\-line\_\-sensor} ()
-\begin{DoxyCompactList}\small\item\em Attempt to read the line sensor status. \item\end{DoxyCompactList}\item 
+\item 
 void \hyperlink{classIDP_1_1MissionSupervisor_a21be0b52e2f13c7fb373c90dae77ba23}{test\_\-line\_\-following} ()
-\begin{DoxyCompactList}\small\item\em Test line following on a straight line. \item\end{DoxyCompactList}\item 
+\item 
 void \hyperlink{classIDP_1_1MissionSupervisor_a7c0f8d9bc56e3ec9da1b1294fa828541}{test\_\-navigation} ()
-\begin{DoxyCompactList}\small\item\em Test navigation code. \item\end{DoxyCompactList}\item 
+\item 
 const \hyperlink{classIDP_1_1HardwareAbstractionLayer}{HardwareAbstractionLayer} $\ast$ \hyperlink{classIDP_1_1MissionSupervisor_ae19d0c2123fda158cc45e649128fbc09}{hal} () const 
 \begin{DoxyCompactList}\small\item\em Const accessor for the HAL. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classIDP_1_1HardwareAbstractionLayer}{HardwareAbstractionLayer} $\ast$ \hyperlink{classIDP_1_1MissionSupervisor_a31c1a6a71d93c8ae4024eb97b934eb56}{\_\-hal}
+\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 Control the overall robot behaviour and objective fulfillment. 
 
-Definition at line 24 of file mission\_\-supervisor.h.
+Definition at line 28 of file mission\_\-supervisor.h.
 
 
 
@@ -102,14 +107,6 @@ Definition at line 42 of file mission\_\-supervisor.cc.
 \end{DoxyParamCaption}
 )}}
 \label{classIDP_1_1MissionSupervisor_ae5d6e9a37417126da780583349b48d44}
-
-
-Set both motors driving backwards. 
-
-
-
-Definition at line 70 of file mission\_\-supervisor.cc.
-
 \hypertarget{classIDP_1_1MissionSupervisor_af8c6a3073190a4479211753fe5f50a36}{
 \index{IDP::MissionSupervisor@{IDP::MissionSupervisor}!drive\_\-forward@{drive\_\-forward}}
 \index{drive\_\-forward@{drive\_\-forward}!IDP::MissionSupervisor@{IDP::MissionSupervisor}}
@@ -119,14 +116,6 @@ Definition at line 70 of file mission\_\-supervisor.cc.
 \end{DoxyParamCaption}
 )}}
 \label{classIDP_1_1MissionSupervisor_af8c6a3073190a4479211753fe5f50a36}
-
-
-Set both motors driving forwards. 
-
-
-
-Definition at line 59 of file mission\_\-supervisor.cc.
-
 \hypertarget{classIDP_1_1MissionSupervisor_ae19d0c2123fda158cc45e649128fbc09}{
 \index{IDP::MissionSupervisor@{IDP::MissionSupervisor}!hal@{hal}}
 \index{hal@{hal}!IDP::MissionSupervisor@{IDP::MissionSupervisor}}
@@ -142,7 +131,7 @@ Const accessor for the HAL.
 
 
 
-Definition at line 256 of file mission\_\-supervisor.cc.
+Definition at line 59 of file mission\_\-supervisor.cc.
 
 \hypertarget{classIDP_1_1MissionSupervisor_a06fc1fcf6272651d50938fd94306ac24}{
 \index{IDP::MissionSupervisor@{IDP::MissionSupervisor}!run\_\-task@{run\_\-task}}
@@ -170,14 +159,6 @@ Definition at line 51 of file mission\_\-supervisor.cc.
 \end{DoxyParamCaption}
 )}}
 \label{classIDP_1_1MissionSupervisor_ad11e444b6be1d51c3339bd6397d45fd4}
-
-
-Stop all motors. 
-
-
-
-Definition at line 80 of file mission\_\-supervisor.cc.
-
 \hypertarget{classIDP_1_1MissionSupervisor_a21be0b52e2f13c7fb373c90dae77ba23}{
 \index{IDP::MissionSupervisor@{IDP::MissionSupervisor}!test\_\-line\_\-following@{test\_\-line\_\-following}}
 \index{test\_\-line\_\-following@{test\_\-line\_\-following}!IDP::MissionSupervisor@{IDP::MissionSupervisor}}
@@ -187,14 +168,6 @@ Definition at line 80 of file mission\_\-supervisor.cc.
 \end{DoxyParamCaption}
 )}}
 \label{classIDP_1_1MissionSupervisor_a21be0b52e2f13c7fb373c90dae77ba23}
-
-
-Test line following on a straight line. 
-
-
-
-Definition at line 125 of file mission\_\-supervisor.cc.
-
 \hypertarget{classIDP_1_1MissionSupervisor_af147b0bec9464bb7e956a40a7f3d0fda}{
 \index{IDP::MissionSupervisor@{IDP::MissionSupervisor}!test\_\-line\_\-sensor@{test\_\-line\_\-sensor}}
 \index{test\_\-line\_\-sensor@{test\_\-line\_\-sensor}!IDP::MissionSupervisor@{IDP::MissionSupervisor}}
@@ -204,14 +177,6 @@ Definition at line 125 of file mission\_\-supervisor.cc.
 \end{DoxyParamCaption}
 )}}
 \label{classIDP_1_1MissionSupervisor_af147b0bec9464bb7e956a40a7f3d0fda}
-
-
-Attempt to read the line sensor status. 
-
-
-
-Definition at line 90 of file mission\_\-supervisor.cc.
-
 \hypertarget{classIDP_1_1MissionSupervisor_a7c0f8d9bc56e3ec9da1b1294fa828541}{
 \index{IDP::MissionSupervisor@{IDP::MissionSupervisor}!test\_\-navigation@{test\_\-navigation}}
 \index{test\_\-navigation@{test\_\-navigation}!IDP::MissionSupervisor@{IDP::MissionSupervisor}}
@@ -223,11 +188,15 @@ Definition at line 90 of file mission\_\-supervisor.cc.
 \label{classIDP_1_1MissionSupervisor_a7c0f8d9bc56e3ec9da1b1294fa828541}
 
 
-Test navigation code. 
+\subsection{Member Data Documentation}
+\hypertarget{classIDP_1_1MissionSupervisor_a31c1a6a71d93c8ae4024eb97b934eb56}{
+\index{IDP::MissionSupervisor@{IDP::MissionSupervisor}!\_\-hal@{\_\-hal}}
+\index{\_\-hal@{\_\-hal}!IDP::MissionSupervisor@{IDP::MissionSupervisor}}
+\subsubsection[{\_\-hal}]{\setlength{\rightskip}{0pt plus 5cm}{\bf HardwareAbstractionLayer}$\ast$ {\bf IDP::MissionSupervisor::\_\-hal}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classIDP_1_1MissionSupervisor_a31c1a6a71d93c8ae4024eb97b934eb56}
 
 
-
-Definition at line 234 of file mission\_\-supervisor.cc.
+Definition at line 42 of file mission\_\-supervisor.h.
 
 
 
