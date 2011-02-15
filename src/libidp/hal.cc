@@ -293,7 +293,7 @@ namespace IDP {
     unsigned short int HardwareAbstractionLayer::colour_ldr() const
     {
         TRACE("colour_ldr()");
-        return 0;
+        return this->rlink->request(ADC0);
     }
 
     /**
@@ -303,7 +303,7 @@ namespace IDP {
     unsigned short int HardwareAbstractionLayer::bad_bobbin_ldr() const
     {
         TRACE("bad_bobbin_ldr()");
-        return 0;
+        return this->rlink->request(ADC1);
     }
 
     /**
@@ -316,9 +316,9 @@ namespace IDP {
         const bool led_1, const bool led_2)
     {
         TRACE("indication_LEDs("<<led_0<<", "<<led_1<<", "<<led_2<<")");
-        UNUSED(led_0);
-        UNUSED(led_1);
-        UNUSED(led_2);
+        this->rlink->command(WRITE_PORT_7, static_cast<int>(!led_0)<<1);
+        this->rlink->command(WRITE_PORT_7, static_cast<int>(!led_1)<<3);
+        this->rlink->command(WRITE_PORT_7, static_cast<int>(!led_2)<<5);
     }
 
     /**
@@ -327,12 +327,19 @@ namespace IDP {
      * \param red Whether the red LED should be on or off (true=on)
      * \param green Whether the green LED should be on or off (true=on)
      */
-    void HardwareAbstractionLayer::colour_leds(const bool red,
+    void HardwareAbstractionLayer::colour_LEDs(const bool red,
         const bool green)
     {
         TRACE("colour_leds("<<red<<", "<<green<<")");
-        UNUSED(red);
-        UNUSED(green);
+        if (red)
+            this->rlink->command(WRITE_PORT_7, 0<<0);
+        else
+            this->rlink->command(WRITE_PORT_7, 1<<0);
+
+        if (green)
+            this->rlink->command(WRITE_PORT_7, 0<<2);
+        else
+            this->rlink->command(WRITE_PORT_7, 1<<2);
     }
 
     /**
@@ -340,10 +347,13 @@ namespace IDP {
      * bad bobbin detection.
      * \param status Whether the LED should be on or off (true=on)
      */
-    void HardwareAbstractionLayer::bad_bobbin_led(const bool status)
+    void HardwareAbstractionLayer::bad_bobbin_LED(const bool status)
     {
         TRACE("bad_bobbin_led("<<status<<")");
-        UNUSED(status);
+        if (status)
+            this->rlink->command(WRITE_PORT_7, 0<<4);
+        else
+            this->rlink->command(WRITE_PORT_7, 1<<4);
     }
 
     /**
@@ -353,7 +363,13 @@ namespace IDP {
     void HardwareAbstractionLayer::grabber_jaw(const bool status)
     {
         TRACE("grabber_jaw("<<status<<")");
-        UNUSED(status);
+        if (status) {
+            DEBUG("Clamping");
+            this->rlink->command(WRITE_PORT_7, 1<<7);
+        } else {
+            DEBUG("Releasing clamp");
+            this->rlink->command(WRITE_PORT_7, 0<<7);
+        }
     }
 
     /**
@@ -363,7 +379,13 @@ namespace IDP {
     void HardwareAbstractionLayer::grabber_lift(const bool status)
     {
         TRACE("grabber_lift("<<status<<")");
-        UNUSED(status);
+        if (status) {
+            DEBUG("Lifting grabber");
+            this->rlink->command(WRITE_PORT_7, 1<<6);
+        } else {
+            DEBUG("Lowering grabber");
+            this->rlink->command(WRITE_PORT_7, 0<<6);
+        }
     }
 
     /**
