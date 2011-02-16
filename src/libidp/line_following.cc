@@ -22,8 +22,8 @@ namespace IDP {
      */
     LineFollowing::LineFollowing(HardwareAbstractionLayer* hal)
         : _hal(hal), _left_error(0), _right_error(0), _speed(0),
-        _lost_turning_line(false), _lost_time(0), _integral_gain(5.0),
-        _lost_timeout(50), _turning_timeout(400)
+        _lost_turning_line(false), _lost_time(0), _lines_seen(0),
+        _integral_gain(5.0), _lost_timeout(50), _turning_timeout(400)
     {
         INFO("Initialising a Line Follower");
         TRACE("LineFollowing(" << hal << ")");
@@ -46,6 +46,7 @@ namespace IDP {
 
         // We're not turning, so reset the state in case it's incorrect
         this->_lost_turning_line = false;
+        this->_lines_seen = 0;
 
         // Read the state of the IR sensors from hal
         const LineSensors s = _hal->line_following_sensors();
@@ -223,43 +224,51 @@ namespace IDP {
 
     /**
      * Turn the robot left until the sensors encounter another line
+     * \param skip_lines How many lines we should detect and skip over
      * \returns A LineFollowingStatus code
      */
-    LineFollowingStatus LineFollowing::turn_left()
+    LineFollowingStatus LineFollowing::turn_left(
+            unsigned short int skip_lines)
     {
-        TRACE("turn_left()");
-        return this->turn(TURN_LEFT);
+        TRACE("turn_left(" << skip_lines << ")");
+        return this->turn(TURN_LEFT, skip_lines);
     }
 
     /**
      * Turn the robot right until the sensors detect another line
+     * \param skip_lines How many lines we should detect and skip over
      * \returns A LineFollowingStatus code
      */
-    LineFollowingStatus LineFollowing::turn_right()
+    LineFollowingStatus LineFollowing::turn_right(
+            unsigned short int skip_lines)
     {
-        TRACE("turn_right()");
-        return this->turn(TURN_RIGHT);
+        TRACE("turn_right(" << skip_lines << ")");
+        return this->turn(TURN_RIGHT, skip_lines);
     }
 
     /**
      * Turn the robot around clockwise until the sensors detect another line
+     * \param skip_lines How many lines we should detect and skip over
      * \returns A LineFollowingStatus code
      */
-    LineFollowingStatus LineFollowing::turn_around_cw()
+    LineFollowingStatus LineFollowing::turn_around_cw(
+            unsigned short int skip_lines)
     {
-        TRACE("turn_around_cw()");
-        return this->turn(TURN_AROUND_CW);
+        TRACE("turn_around_cw(" << skip_lines << ")");
+        return this->turn(TURN_AROUND_CW, skip_lines);
     }
 
     /**
      * Turn the robot around counterclockwise until the sensors detect another
      * line
+     * \param skip_lines How many lines we should detect and skip over
      * \returns A LineFollowingStatus code
      */
-    LineFollowingStatus LineFollowing::turn_around_ccw()
+    LineFollowingStatus LineFollowing::turn_around_ccw(
+            unsigned short int skip_lines)
     {
-        TRACE("turn_around_ccw()");
-        return this->turn(TURN_AROUND_CCW);
+        TRACE("turn_around_ccw(" << skip_lines << ")");
+        return this->turn(TURN_AROUND_CCW, skip_lines);
     }
 
     /**
@@ -393,8 +402,10 @@ namespace IDP {
      * being called with silly arguments, at least.
      *
      * \param dir The direction to turn in
+     * \param skip_lines How many lines we should detect and skip over
      */
-    LineFollowingStatus LineFollowing::turn(LineFollowingTurnDirection dir)
+    LineFollowingStatus LineFollowing::turn(LineFollowingTurnDirection dir,
+            unsigned short int skip_lines)
     {
         TRACE("turn(" << LineFollowingTurnDirectionStrings[dir] << ")");
         INFO("Executing a " << LineFollowingTurnDirectionStrings[dir]);
@@ -414,9 +425,17 @@ namespace IDP {
                 DEBUG("Still starting the turn");
                 return ACTION_IN_PROGRESS;
             } else {
-                INFO("Found the line after a turn, turn complete");
+                INFO("Found a line again");
                 this->_lost_turning_line = false;
-                return ACTION_COMPLETED;
+                if(this->_lines_seen < skip_lines) {
+                    INFO("Skipping this line");
+                    this->_lines_seen++;
+                    return ACTION_IN_PROGRESS;
+                } else {
+                    INFO("Found final line, ending turn");
+                    this->_lines_seen = 0;
+                    return ACTION_COMPLETED;
+                }
             }
         } else if(status == LOST_LINE) {
             // If we've lost the line, we are properly into the turn now.
