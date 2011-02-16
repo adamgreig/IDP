@@ -22,7 +22,8 @@ namespace IDP {
      */
     LineFollowing::LineFollowing(HardwareAbstractionLayer* hal)
         : _hal(hal), _left_error(0), _right_error(0), _speed(0),
-        _lost_turning_line(false), _lost_time(0), _integral_gain(5.0)
+        _lost_turning_line(false), _lost_time(0), _integral_gain(5.0),
+        _lost_timeout(50), _turning_timeout(400)
     {
         INFO("Initialising a Line Follower");
         TRACE("LineFollowing(" << hal << ")");
@@ -128,7 +129,7 @@ namespace IDP {
             // the last known direction.
             DEBUG("No line visible");
             this->_lost_time++;
-            if(this->_lost_time > LOST_TIMEOUT) {
+            if(this->_lost_time > this->_lost_timeout) {
                 // Prevent lost_time from overflowing
                 INFO("Haven't seen a line for a while, LOST");
                 this->_lost_time--;
@@ -322,6 +323,17 @@ namespace IDP {
         double new_gain = 5.0 - (static_cast<double>(diff) / 32.0);
         DEBUG("Setting new gain to " << new_gain);
         this->_integral_gain = new_gain;
+
+        // Update the LOST_TIMEOUT loop iterations to account for
+        // the change in robot speed
+        unsigned int new_timeout = BASELINE_STRAIGHT_TIMEOUT + diff;
+        DEBUG("Setting new LOST timeout to " << new_timeout);
+        this->_lost_timeout = new_timeout;
+
+        // Now update the LOST_TIMEOUT for turning actions
+        new_timeout = BASELINE_TURN_TIMEOUT + (6 * diff);
+        DEBUG("Setting new LOST TURNING timeout to " << new_timeout);
+        this->_turning_timeout = new_timeout;
     }
 
     /**
@@ -419,7 +431,7 @@ namespace IDP {
             // we can think about recovering rather than going in circles
             // forever.
             this->_lost_time++;
-            if(this->_lost_time > LOST_TURNING_TIMEOUT) {
+            if(this->_lost_time > this->_turning_timeout) {
                 ERROR("Haven't seen the line for ages while turning, LOST");
                 this->_lost_time--; //prevent overflow
                 return LOST;

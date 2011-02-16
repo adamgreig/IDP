@@ -20,16 +20,19 @@ namespace IDP {
     const short unsigned int MAX_CORRECTION = 127;
 
     /**
-     * The number of loop iterations before we count as lost when driving
-     * straight
+     * Baseline integral gain for full speed operation
      */
-    const unsigned int LOST_TIMEOUT = 50;
+    const double BASELINE_INTEGRAL_GAIN = 5.0;
 
     /**
-     * The number of loop iterations before we count as lost when turning
-     * around
+     * Baseline LOST timeout for full speed straight line navigation
      */
-    const unsigned int LOST_TURNING_TIMEOUT = 400;
+    const short unsigned int BASELINE_STRAIGHT_TIMEOUT = 50;
+
+    /**
+     * Baseline LOST timeout for full speed turning actions
+     */
+    const short unsigned int BASELINE_TURN_TIMEOUT = 400;
 
     /**
      * How much an outer sensor seeing the edge of a line should add
@@ -154,6 +157,8 @@ namespace IDP {
             bool _lost_turning_line;
             unsigned short int _lost_time;
             double _integral_gain;
+            unsigned int _lost_timeout;
+            unsigned int _turning_timeout;
     };
 }
 
