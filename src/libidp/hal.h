@@ -73,10 +73,11 @@ namespace IDP {
             unsigned short int bad_bobbin_ldr() const;
             void indication_LEDs(const bool led_0, const bool led_1,
                 const bool led_2);
-            void colour_LEDs(const bool red, const bool green);
+            void colour_LED(const bool status);
             void bad_bobbin_LED(const bool status);
             void grabber_jaw(const bool status);
             void grabber_lift(const bool status);
+            void enable_emergency_stop(void);
         private:
             bool check_max_speed(const unsigned short int speed) const;
             robot_link* rlink;

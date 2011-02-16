@@ -200,28 +200,43 @@ namespace IDP {
     void SelfTests::LDRs()
     {
         TRACE("LDRs()");
-        unsigned short int colour, badness;
-        
-        // Set red on, take value
-        this->_hal->colour_LEDs(true, false);
-        colour = this->_hal->colour_ldr();
-        std::cout << "RED: " << colour << std::endl;
+        unsigned short int reading;
 
-        // Now try with green
-        this->_hal->colour_LEDs(false, true);
-        colour = this->_hal->colour_ldr();
-        std::cout << "GREEN: " << colour << std::endl;
+        // Read without LEDs
+        this->_hal->colour_LED(false);
+        this->_hal->bad_bobbin_LED(false);
+        reading = this->_hal->colour_ldr();
+        std::cout << "* No lights, colour: " << reading << std::endl;
+        reading = this->_hal->bad_bobbin_ldr();
+        std::cout << "* No lights, badness: " << reading << std::endl;
 
-        // And both
-        this->_hal->colour_LEDs(true, true);
-        colour = this->_hal->colour_ldr();
-        std::cout << "BOTH: " << colour << std::endl;
+        // Again with colour LED
+        this->_hal->colour_LED(true);
+        this->_hal->bad_bobbin_LED(false);
+        reading = this->_hal->colour_ldr();
+        std::cout << "* Colour LED, colour: " << reading << std::endl;
+        reading = this->_hal->bad_bobbin_ldr();
+        std::cout << "* Colour LED, badness: " << reading << std::endl;
 
-        // And finally badness
-        this->_hal->colour_LEDs(false, false);
+        // Now with the badness LED
+        this->_hal->colour_LED(false);
         this->_hal->bad_bobbin_LED(true);
-        badness = this->_hal->bad_bobbin_ldr();
-        std::cout << "BADNESS: " << badness << std::endl;
+        reading = this->_hal->colour_ldr();
+        std::cout << "* Badness LED, colour: " << reading << std::endl;
+        reading = this->_hal->bad_bobbin_ldr();
+        std::cout << "* Badness LED, badness: " << reading << std::endl;
+
+        // And finally with both
+        this->_hal->colour_LED(true);
+        this->_hal->bad_bobbin_LED(true);
+        reading = this->_hal->colour_ldr();
+        std::cout << "* Both LEDs, colour: " << reading << std::endl;
+        reading = this->_hal->bad_bobbin_ldr();
+        std::cout << "* Both LEDs, badness: " << reading << std::endl;
+
+        this->_hal->colour_LED(false);
+        this->_hal->bad_bobbin_LED(false);
+        std::cout << "Done." << std::endl;
     }
 
     /**
@@ -311,6 +326,37 @@ namespace IDP {
         std::cout << "Read badness as " << BobbinBadnessStrings[bad];
         std::cout << std::endl << "Done." << std::endl;
 
+    }
+
+    /**
+     * See if a bobbin is under the clamp
+     */
+    void SelfTests::bobbin_present()
+    {
+        TRACE("bobbin_present()");
+
+        ClampControl cc(this->_hal);
+        
+        std::cout << "Make sure the clamp is not over a bobbin and press";
+        std::cout << " enter." << std::endl;
+
+        std::getchar();
+
+        cc.store_no_bobbin();
+
+        std::cout << "Now press enter to test for a bobbin." << std::endl;
+
+        std::getchar();
+
+        for(;;) {
+
+            bool present = cc.bobbin_present();
+
+            if(present)
+                std::cout << "Bobbin found!" << std::endl;
+            else
+                std::cout << "No bobbin found." << std::endl;
+        }
     }
 
     /**
@@ -481,14 +527,9 @@ namespace IDP {
     void SelfTests::colour_sensor_LEDs()
     {
         TRACE("colour_sensor_LEDs()");
-        this->_hal->colour_LEDs(true, false);
-        usleep(5E5);
-        this->_hal->colour_LEDs(true, true);
-        usleep(5E5);
-        this->_hal->colour_LEDs(false, true);
-        usleep(5E5);
-        this->_hal->colour_LEDs(false, false);
-        usleep(5E5);
+        this->_hal->colour_LED(true);
+        usleep(1E5);
+        this->_hal->colour_LED(false);
     }
 
     /**

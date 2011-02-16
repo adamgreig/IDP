@@ -212,6 +212,7 @@ namespace IDP {
             std::cout << "Select a clamp control test:" << std::endl;
             std::cout << "1) Analyse Sensors" << std::endl;
             std::cout << "2) Pick up and put down box/bobbin" << std::endl;
+            std::cout << "3) Check for bobbin presence" << std::endl;
             std::cout << "b) Back" << std::endl;
             std::cout << std::endl << "> ";
 
@@ -225,6 +226,8 @@ namespace IDP {
                 return MENU_ANALYSE;
             } else if(choice == "2") {
                 return MENU_CLAMP_TESTS;
+            } else if(choice == "3") {
+                return MENU_BOBBIN_PRESENT;
             } else if(choice == "b") {
                 return MENU_BACK;
             } else {

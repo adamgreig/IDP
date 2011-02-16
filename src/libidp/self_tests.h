@@ -39,6 +39,7 @@ namespace IDP {
             void line_following(void);
             void clamp_control(void);
             void bobbin_analyse(void);
+            void bobbin_present(void);
             void navigate(void);
             void navigate_to_bobbin(void);
             void navigate_to_box(void);

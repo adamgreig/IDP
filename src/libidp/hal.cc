@@ -13,8 +13,8 @@
 
 // Debug functionality
 #define MODULE_NAME "HAL"
-#define TRACE_ENABLED   true
-#define DEBUG_ENABLED   true
+#define TRACE_ENABLED   false
+#define DEBUG_ENABLED   false
 #define INFO_ENABLED    true
 #define ERROR_ENABLED   true
 #include "debug.h"
@@ -61,6 +61,9 @@ namespace IDP {
 
         // Setting PORT0 to all inputs
         this->rlink->command(WRITE_PORT_0, 0xFF);
+
+        // Set emergency stop to the appropriate pin (front microswitch)
+        this->enable_emergency_stop();
     }
 
     /**
@@ -371,25 +374,17 @@ namespace IDP {
     }
 
     /**
-     * Turn on and off the LEDs used to light up the bobbin for colour
+     * Turn on and off the LED used to light up the bobbin for colour
      * detection.
-     * \param red Whether the red LED should be on or off (true=on)
-     * \param green Whether the green LED should be on or off (true=on)
+     * \param status Whether the LED should be on (true) or off (false).
      */
-    void HardwareAbstractionLayer::colour_LEDs(const bool red,
-        const bool green)
+    void HardwareAbstractionLayer::colour_LED(const bool status)
     {
-        TRACE("colour_leds("<<red<<", "<<green<<")");
-        if (red)
+        TRACE("colour_LED("<<status<<")");
+        if (status)
             this->_port7 = ~(1<<0) & this->_port7;
         else
             this->_port7 = 1<<0 | this->_port7;
-
-        if (green)
-            this->_port7 = ~(1<<2) & this->_port7;
-        else
-            this->_port7 = 1<<2 | this->_port7;
-
         this->rlink->command(WRITE_PORT_7, this->_port7);
     }
 
@@ -443,6 +438,18 @@ namespace IDP {
         }
 
         this->rlink->command(WRITE_PORT_7, this->_port7);
+    }
+
+    /**
+     * Set the emergency stop registers so that the front microswitch
+     * will trigger a stop.
+     */
+    void HardwareAbstractionLayer::enable_emergency_stop()
+    {
+        TRACE("enable_emergency_stop()");
+        INFO("Enabling emergency stop.");
+        this->rlink->command(STOP_SELECT, 0x00);
+        this->rlink->command(STOP_IF_LOW, (1<<5));
     }
 
     /**

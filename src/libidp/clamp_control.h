@@ -16,6 +16,12 @@ namespace IDP {
     class HardwareAbstractionLayer;
 
     /**
+     * The increase in light to the bad bobbin LDR that indicates
+     * a bobbin is present.
+     */
+    const unsigned short int BOBBIN_DETECTION_DELTA_THRESHOLD = 5;
+
+    /**
      * Bobbin colours
      */
     enum BobbinColour {
@@ -63,9 +69,15 @@ namespace IDP {
             void put_down();
             BobbinColour colour() const;
             BobbinBadness badness() const;
+            bool bobbin_present();
+            void store_no_bobbin();
             void calibrate(unsigned short int red, unsigned short int green,
                     unsigned short int white);
         private:
+            unsigned short int average_bad_ldr(unsigned short int n = 3)
+                const;
+            unsigned short int average_colour_ldr(unsigned short int n = 3)
+                const;
             HardwareAbstractionLayer* _hal;
             const unsigned short int _colour_tolerance;
             const unsigned short int _badness_tolerance;
@@ -73,6 +85,7 @@ namespace IDP {
             unsigned short int _green_level;
             unsigned short int _white_level;
             unsigned short int _bad_level;
+            unsigned short int _no_bobbin_reading;
     };
 }
 

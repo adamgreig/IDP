@@ -108,6 +108,8 @@ int main()
                 tests->bobbin_analyse();
             } else if(choice == IDP::MENU_CLAMP_TESTS) {
                 tests->clamp_control();
+            } else if(choice == IDP::MENU_BOBBIN_PRESENT) {
+                tests->bobbin_present();
             } else if(choice == IDP::MENU_LINE_SENSORS) {
                 tests->line_sensors();
             } else if(choice == IDP::MENU_SWITCHES) {

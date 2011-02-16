@@ -7,6 +7,9 @@
 // Use unistd.h for sleep functionality
 #include <unistd.h>
 
+// abs()
+#include <cstdlib>
+
 #include "clamp_control.h"
 #include "hal.h"
 
@@ -26,7 +29,8 @@ namespace IDP {
      */
     ClampControl::ClampControl(HardwareAbstractionLayer* hal): _hal(hal),
     _colour_tolerance(5), _badness_tolerance(10), _red_level(165),
-    _green_level(144),_white_level(191),_bad_level(203)
+    _green_level(144), _white_level(191), _bad_level(203),
+    _no_bobbin_reading(0)
     {
         TRACE("ClampControl("<<hal<<")");
         INFO("Initialising a ClampControl");
@@ -38,12 +42,22 @@ namespace IDP {
     void ClampControl::pick_up()
     {
         TRACE("pick_up()");
+
+        INFO("Picking something up");
+        
+        DEBUG("Opening grabber jaw");
         this->_hal->grabber_jaw(false);
         usleep(1E6);
+
+        DEBUG("Lowering grabber arm");
         this->_hal->grabber_lift(false);
         usleep(1E6);
+
+        DEBUG("Closing grabber jaw");
         this->_hal->grabber_jaw(true);
         usleep(1E6);
+
+        DEBUG("Raising grabber arm");
         this->_hal->grabber_lift(true);
         usleep(1E6);
     }
@@ -54,8 +68,13 @@ namespace IDP {
     void ClampControl::put_down()
     {
         TRACE("put_down()");
+        INFO("Putting something down");
+
+        DEBUG("Lowering grabber arm");
         this->_hal->grabber_lift(false);
         usleep(1E6);
+
+        DEBUG("Opening grabber jaw");
         this->_hal->grabber_jaw(false);
         usleep(1E6);
     }
@@ -67,35 +86,36 @@ namespace IDP {
     BobbinColour ClampControl::colour() const
     {
         TRACE("colour()");
-        this->_hal->colour_LEDs(true, true);
-        unsigned short int reading = this->_hal->colour_ldr();
+        INFO("Checking bobbin colour");
+        this->_hal->colour_LED(true);
+        unsigned short int reading = this->average_colour_ldr();
         DEBUG("Got an ADC read of " << reading);
         if(reading > _red_level - _colour_tolerance
                 && reading < _red_level + _colour_tolerance)
         {
-            DEBUG("Found a red bobbin");
-            this->_hal->colour_LEDs(false, false);
+            INFO("Found a red bobbin");
+            this->_hal->colour_LED(false);
             return BOBBIN_RED;
         }
         else if(reading > _green_level - _colour_tolerance
                 && reading < _green_level + _colour_tolerance)
         {
-            DEBUG("Found a green bobbin");
-            this->_hal->colour_LEDs(false, false);
+            INFO("Found a green bobbin");
+            this->_hal->colour_LED(false);
             return BOBBIN_GREEN;
         }
         else if(reading > _white_level - _colour_tolerance
                 && reading < _white_level + _colour_tolerance)
         {
-            DEBUG("Found a white bobbin");
-            this->_hal->colour_LEDs(false, false);
+            INFO("Found a white bobbin");
+            this->_hal->colour_LED(false);
             return BOBBIN_WHITE;
         }
         else
         {
             // No idea what colour this bobbin is
             ERROR("Couldn't identify bobbin colour");
-            this->_hal->colour_LEDs(false, false);
+            this->_hal->colour_LED(false);
             return BOBBIN_UNKNOWN_COLOUR;
         }
     }
@@ -107,30 +127,112 @@ namespace IDP {
     BobbinBadness ClampControl::badness() const
     {
         TRACE("badness()");
+        INFO("Checking for bobbin badness");
         this->_hal->bad_bobbin_LED(true);
-        short unsigned int reading = this->_hal->bad_bobbin_ldr();
+        short unsigned int reading = this->average_bad_ldr();
         DEBUG("Got a badness LDR value of " << reading);
         if(reading > _bad_level - _badness_tolerance
                 && reading < _bad_level + _badness_tolerance)
         {
-            DEBUG("Found a bad bobbin");
+            INFO("Found a bad bobbin");
             this->_hal->bad_bobbin_LED(false);
             return BOBBIN_BAD;
         }
         else
         {
-            DEBUG("Found a good bobbin");
+            INFO("Found a good bobbin");
             this->_hal->bad_bobbin_LED(false);
             return BOBBIN_GOOD;
         }
     }
 
+    /**
+     * See if a bobbin is in the jaw.
+     * 
+     * Used especially when navigating down the rack to check when we've found
+     * something.
+     * \returns True when a bobbin is found
+     */
+    bool ClampControl::bobbin_present()
+    {
+        TRACE("bobbin_present()");
+        DEBUG("Checking for bobbins..."); 
+
+        // If we haven't read this before, store the value. Next time
+        // we'll find a delta.
+        if(_no_bobbin_reading == 0) {
+            ERROR("No previous baseline was set, reading one now instead.");
+            this->store_no_bobbin();
+        }
+
+        // Get a new reading
+        unsigned short int reading = this->average_bad_ldr();
+        short int delta = reading - this->_no_bobbin_reading;
+
+        DEBUG("Reading " << reading << ", delta " << delta);
+
+        return (std::abs(delta) > BOBBIN_DETECTION_DELTA_THRESHOLD);
+    }
+
+    /**
+     * Take an LDR reading and use that as the no-bobbin baseline.
+     */
+    void ClampControl::store_no_bobbin()
+    {
+        TRACE("store_no_bobbin()");
+        this->_no_bobbin_reading = this->average_bad_ldr(10);
+        INFO("Baseline no-bobbin reading taken as " <<
+            this->_no_bobbin_reading);
+    }
+
+    /**
+     * Set the three levels used for bobbin colour detection.
+     * \param red The red level (0 to 255)
+     * \param green The green level (0 to 255)
+     * \param white The white level (0 to 255)
+     */
     void ClampControl::calibrate(unsigned short int red, 
             unsigned short int green, unsigned short int white)
     {
+        TRACE("calibrate(" << red << ", " << green << ", " << white << ")");
+        DEBUG("Setting bobbin colour levels to red:" << red << ", green:" <<
+            green << ", white:" << white << ".");
+
         this->_red_level = red;
         this->_green_level = green;
         this->_white_level = white;
+    }
+
+    /**
+     * Take an average bad bobbin LDR reading of n samples.
+     * \param n Number of samples to take, default 3
+     */
+    unsigned short int ClampControl::average_bad_ldr(unsigned short int n)
+        const
+    {
+        TRACE("average_bad_ldr(" << n << ")");
+        DEBUG("Taking a badness LDR average reading");
+        unsigned int total = 0;
+        unsigned short int i;
+        for(i = 0; i < n; i++)
+            total += this->_hal->bad_bobbin_ldr();
+        return static_cast<unsigned short int>(total / n);
+    }
+
+    /**
+     * Take an average colour LDR reading of n samples.
+     * \param n Number of samples to take, default 3
+     */
+    unsigned short int ClampControl::average_colour_ldr(unsigned short int n)
+        const
+    {
+        TRACE("average_colour_ldr(" << n << ")");
+        DEBUG("Taking a colour LDR average reading");
+        unsigned int total = 0;
+        unsigned short int i;
+        for(i = 0; i < n; i++)
+            total += this->_hal->colour_ldr();
+        return static_cast<unsigned short int>(total / n);
     }
 
 }
