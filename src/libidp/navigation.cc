@@ -80,8 +80,7 @@ namespace IDP {
      */
     Navigation::Navigation(HardwareAbstractionLayer* hal,
         const NavigationNode from=NODE7, const NavigationNode to=NODE8):
-        _hal(hal), _from(from), _to(to), _lf(0), _cached_junction(NO_CACHE),
-        _doing_second_turn(false)
+        _hal(hal), _from(from), _to(to), _lf(0), _cached_junction(NO_CACHE)
     {
         TRACE("Navigation(" << hal << ", " << NavigationNodeStrings[from] <<
             ", " << NavigationNodeStrings[to] << ")");
@@ -315,6 +314,17 @@ namespace IDP {
         // Initialise status to a somewhat harmless default
         status = ACTION_IN_PROGRESS;
 
+        // Number of lines to skip on the turn.
+        // Almost always zero, except when we are doing a
+        // right hand turn after NODE6 due to the starting
+        // box getting in the way.
+        unsigned short int skip_lines = 0;
+        if(turn == RIGHT && this->_to == NODE6 &&
+           current_direction == NAVIGATION_CLOCKWISE)
+        {
+            skip_lines = 1;
+        }
+
         if(turn == STRAIGHT) {
             DEBUG("Continuing straight over junction");
             status = this->_lf->follow_line();
@@ -323,23 +333,11 @@ namespace IDP {
             status = this->_lf->turn_left();
         } else if(turn == RIGHT) {
             DEBUG("Turning right");
-            status = this->_lf->turn_right();
+            status = this->_lf->turn_right(skip_lines);
         } else if(turn == END_OF_LINE) {
             DEBUG("end of line :(");
             this->_hal->motors_stop();
             return NAVIGATION_ARRIVED;
-        }
-
-        // Special case the right hand turn after NODE6 as the
-        // robot will see the starting box line and believe
-        // that to be the end of the turn when in fact it is not.
-        if(turn == RIGHT && this->_to == NODE6 &&
-            current_direction == NAVIGATION_CLOCKWISE &&
-            status == ACTION_COMPLETED && !this->_doing_second_turn)
-        {
-            INFO("Executing special case second right turn at NODE6");
-            this->_doing_second_turn = true;
-            return NAVIGATION_ENROUTE;
         }
 
         // If we're going straight, ACTION_IN_PROGRESS is an
@@ -349,7 +347,6 @@ namespace IDP {
             || status == ACTION_COMPLETED)
         {
             DEBUG("Completed junction action");
-            this->_doing_second_turn = false;
             this->_cached_junction = NO_CACHE;
             this->_from = this->_to;
             this->_to = NAVIGATION_ROUTE_MAP[current_direction][this->_to];

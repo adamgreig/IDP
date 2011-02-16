@@ -146,7 +146,6 @@ namespace IDP {
             NavigationNode _to;
             LineFollowing* _lf;
             NavigationCachedJunction _cached_junction;
-            bool _doing_second_turn;
     };
 }
 
