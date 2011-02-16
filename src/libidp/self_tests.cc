@@ -14,6 +14,7 @@
 #include "mission_supervisor.h"
 #include "navigation.h"
 #include "line_following.h"
+#include "clamp_control.h"
 
 // Debug functionality
 #define MODULE_NAME "SelfTests"
