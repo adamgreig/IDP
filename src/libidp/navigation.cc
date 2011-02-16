@@ -69,7 +69,7 @@ namespace IDP {
 
 
     /**
-     * Initialise the class, storing the const pointer to the HAL.
+     * Initialise the class, storing the pointer to the HAL.
      *
      * The optional parameters from and to can be used to define the
      * starting position, but default to the 'start box'.
@@ -151,14 +151,14 @@ namespace IDP {
             NavigationNodeStrings[_to] << ", target " <<
             NavigationNodeStrings[target]);
 
-        // Check if we need to turn, and do so
-        if(this->turn_around_required(target))
-            return this->turn_around();
-
         // Update our cached view of the junction status.
         // This stores the last known junction when we start
         // a turn so we don't get confused halfway through.
         this->update_cache();
+
+        // Check if we need to turn, and do so
+        if(this->turn_around_required(target))
+            return this->turn_around();
 
         // If we detect a junction, handle it, otherwise keep on
         // driving straight.
@@ -224,14 +224,37 @@ namespace IDP {
             current_direction = NAVIGATION_ANTICLOCKWISE;
         }
 
+        // Turning around is a dangerous business!
+        // Mostly we only want to turn around between nodes 8 and 9, or 9 and
+        // 10, as we drive along picking up bobbins. In either of these cases,
+        // drive until we get to the end node, then do the turn safely as we
+        // know where we are. In other cases, just turn and hope for the best -
+        // this is pretty unlikely to happen.
+        unsigned short int skip_lines = 0;
+        if((this->_from == NODE8 && this->_to == NODE9) ||
+           (this->_from == NODE9 && this->_to == NODE10))
+        {
+            LineFollowingStatus forwardstatus;
+            forwardstatus = this->_lf->follow_line();
+            if(forwardstatus == ACTION_IN_PROGRESS) {
+                return NAVIGATION_ENROUTE;
+            } else if(forwardstatus == LOST) {
+                return NAVIGATION_LOST;
+            } else {
+                // We found the junction, so tell LF to skip a line
+                // and then do the turn.
+                skip_lines = 1;
+            }
+        }
+
         // Request LineFollowing to execute the required turn.
         LineFollowingStatus turnstatus;
         if(current_direction == NAVIGATION_CLOCKWISE) {
             DEBUG("Turning clockwise");
-            turnstatus = this->_lf->turn_around_cw();
+            turnstatus = this->_lf->turn_around_cw(skip_lines);
         } else {
             DEBUG("Turning anticlockwise");
-            turnstatus = this->_lf->turn_around_ccw();
+            turnstatus = this->_lf->turn_around_ccw(skip_lines);
         }
         
         if(turnstatus == ACTION_COMPLETED) {
@@ -322,6 +345,7 @@ namespace IDP {
         if(turn == RIGHT && this->_to == NODE6 &&
            current_direction == NAVIGATION_CLOCKWISE)
         {
+            DEBUG("Telling LineFollowing to skip one line for NODE6");
             skip_lines = 1;
         }
 
