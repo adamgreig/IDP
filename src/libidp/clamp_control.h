@@ -69,11 +69,11 @@ namespace IDP {
                     unsigned short int white);
         private:
             HardwareAbstractionLayer* _hal;
+            const unsigned short int _tolerance;
             unsigned short int _red_level;
             unsigned short int _green_level;
             unsigned short int _white_level;
             unsigned short int _bad_level;
-            const unsigned short int _tolerance;
     };
 }
 

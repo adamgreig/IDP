@@ -27,7 +27,8 @@ namespace IDP {
      * \param hal A const pointer to an instance of the HAL
      */
     ClampControl::ClampControl(HardwareAbstractionLayer* hal): _hal(hal),
-    _tolerance(5), _red_level(135), _green_level(117), _white_level(155)
+    _tolerance(5), _red_level(135), _green_level(117), _white_level(155),
+    _bad_level(100)
     {
         TRACE("ClampControl("<<hal<<")");
         INFO("Initialising a ClampControl");
@@ -68,31 +69,35 @@ namespace IDP {
     BobbinColour ClampControl::colour() const
     {
         TRACE("colour()");
-        this->_hal->bobbin_LEDs(true, true);
+        this->_hal->colour_LEDs(true, true);
         unsigned short int reading = this->_hal->colour_ldr();
         DEBUG("Got an ADC read of " << reading);
         if(reading > _red_level - _tolerance
                 && reading < _red_level + _tolerance)
         {
             DEBUG("Found a red bobbin");
+            this->_hal->colour_LEDs(false, false);
             return BOBBIN_RED;
         }
         else if(reading > _green_level - _tolerance
                 && reading < _green_level + _tolerance)
         {
             DEBUG("Found a green bobbin");
+            this->_hal->colour_LEDs(false, false);
             return BOBBIN_GREEN;
         }
         else if(reading > _white_level - _tolerance
                 && reading < _white_level + _tolerance)
         {
             DEBUG("Found a white bobbin");
+            this->_hal->colour_LEDs(false, false);
             return BOBBIN_WHITE;
         }
         else
         {
             // No idea what colour this bobbin is
             ERROR("Couldn't identify bobbin colour");
+            this->_hal->colour_LEDs(false, false);
             return BOBBIN_UNKNOWN_COLOUR;
         }
     }
@@ -110,9 +115,9 @@ namespace IDP {
     void ClampControl::calibrate(unsigned short int red, 
             unsigned short int green, unsigned short int white)
     {
-        this->_red_level(red);
-        this->_green_level(green);
-        this->_white_level(white);
+        this->_red_level = red;
+        this->_green_level = green;
+        this->_white_level = white;
     }
 
 }
