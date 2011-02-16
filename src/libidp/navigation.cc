@@ -175,6 +175,17 @@ namespace IDP {
     }
 
     /**
+     * Return to home, which is to say the starting box. In addition,
+     * ensure we are facing the right direction (clockwise)
+     */
+    NavigationStatus Navigation::go_home()
+    {
+        TRACE("go_home()");
+        NavigationStatus status = this->go_node(NODE8);
+        return status
+    }
+
+    /**
      * Check if we need to turn around
      * \param target The NavigationNode we need to go to
      * \returns A bool, true if we need to turn around

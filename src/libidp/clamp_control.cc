@@ -42,24 +42,19 @@ namespace IDP {
     void ClampControl::pick_up()
     {
         TRACE("pick_up()");
-
         INFO("Picking something up");
         
         DEBUG("Opening grabber jaw");
-        this->_hal->grabber_jaw(false);
-        usleep(1E6);
+        this->open_jaw();
 
         DEBUG("Lowering grabber arm");
-        this->_hal->grabber_lift(false);
-        usleep(1E6);
+        this->lower_arm();
 
         DEBUG("Closing grabber jaw");
-        this->_hal->grabber_jaw(true);
-        usleep(1E6);
+        this->close_jaw();
 
         DEBUG("Raising grabber arm");
-        this->_hal->grabber_lift(true);
-        usleep(1E6);
+        this->raise_arm();
     }
 
     /**
@@ -71,11 +66,57 @@ namespace IDP {
         INFO("Putting something down");
 
         DEBUG("Lowering grabber arm");
-        this->_hal->grabber_lift(false);
-        usleep(1E6);
+        this->lower_arm();
 
         DEBUG("Opening grabber jaw");
+        this->open_jaw();
+
+        // Make sure we return with the grabber lifted
+        DEBUG("Raising grabber arm");
+        this->raise_arm();
+    }
+
+    /**
+     * Raise the grabber arm.
+     */
+    void ClampControl::raise_arm()
+    {
+        TRACE("raise_arm()");
+        DEBUG("Lifting the grabber");
+        this->_hal->grabber_lift(true);
+        usleep(2E6);
+    }
+
+    /**
+     * Lower the grabber arm.
+     */
+    void ClampControl::lower_arm()
+    {
+        TRACE("lower_arm()");
+        DEBUG("Lowering the grabber");
+        this->_hal->grabber_lift(false);
+        usleep(1E6);
+    }
+
+    /**
+     * Open the grabber jaw.
+     */
+    void ClampControl::open_jaw()
+    {
+        TRACE("open_jaw()");
+        DEBUG("Releasing the grabber jaw");
         this->_hal->grabber_jaw(false);
+        usleep(1E6);
+    }
+
+    /**
+     * Close the grabber jaw.
+     */
+    void ClampControl::close_jaw()
+    {
+        TRACE("open_jaw()");
+        DEBUG("Clamping the grabber jaw");
+        this->_hal->grabber_jaw(true);
         usleep(1E6);
     }
 

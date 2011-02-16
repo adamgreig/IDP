@@ -136,6 +136,7 @@ namespace IDP {
             NavigationStatus go_to_delivery();
             NavigationStatus finished_delivery();
             NavigationStatus go_node(const NavigationNode target);
+            NavigationStatus go_home();
         private:
             void update_cache();
             bool turn_around_required(const NavigationNode target) const;

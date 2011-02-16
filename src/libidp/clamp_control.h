@@ -73,6 +73,8 @@ namespace IDP {
             void store_no_bobbin();
             void calibrate(unsigned short int red, unsigned short int green,
                     unsigned short int white);
+            void lift(bool status);
+            void clamp(bool status);
         private:
             unsigned short int average_bad_ldr(unsigned short int n = 3)
                 const;
