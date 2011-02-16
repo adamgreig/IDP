@@ -269,6 +269,22 @@ namespace IDP {
     void SelfTests::clamp_control()
     {
         TRACE("clamp_control()");
+        INFO("Testing clamp control");
+
+        std::cout << "Position the lowered, opened clamp over a bobbin";
+        std::cout << " and press enter." << std::endl;
+
+        std::getchar();
+
+        ClampControl cc(this->_hal);
+        cc.pick_up();
+
+        std::cout << "Picked up, press enter to put down again." << std::endl;
+
+        std::getchar();
+        cc.put_down();
+
+        std::cout << "Done." << std::endl;
     }
 
     /**
@@ -278,6 +294,22 @@ namespace IDP {
     void SelfTests::bobbin_analyse()
     {
         TRACE("bobbin_analyse()");
+
+        std::cout << "Position a bobbin inside the clamp and press enter.";
+        std::cout << std::endl;
+
+        std::getchar();
+
+        ClampControl cc(this->_hal);
+        
+        BobbinColour colour = cc.colour();
+        std::cout << "Read colour as " << BobbinColourStrings[colour];
+        std::cout << std::endl;
+
+        BobbinBadness bad = cc.badness();
+        std::cout << "Read badness as " << BobbinBadnessStrings[bad];
+        std::cout << std::endl << "Done." << std::endl;
+
     }
 
     /**
