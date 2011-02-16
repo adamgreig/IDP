@@ -22,7 +22,7 @@ namespace IDP {
      */
     LineFollowing::LineFollowing(HardwareAbstractionLayer* hal)
         : _hal(hal), _left_error(0), _right_error(0), _speed(0),
-        _lost_turning_line(false), _lost_time(0)
+        _lost_turning_line(false), _lost_time(0), _integral_gain(5.0)
     {
         INFO("Initialising a Line Follower");
         TRACE("LineFollowing(" << hal << ")");
@@ -169,7 +169,7 @@ namespace IDP {
 
             // Calculate the required differential correction
             unsigned short int correction = static_cast<unsigned short int>(
-                static_cast<double>(_left_error) * INTEGRAL_GAIN);
+                static_cast<double>(_left_error) * this->_integral_gain);
             
             DEBUG("Pre-cap correction: " << correction);
 
@@ -194,7 +194,7 @@ namespace IDP {
 
             // Calculate the required differential correction
             unsigned short int correction = static_cast<unsigned short int>(
-                static_cast<double>(_right_error) * INTEGRAL_GAIN);
+                static_cast<double>(_right_error) * this->_integral_gain);
             
             DEBUG("Pre-cap correction: " << correction);
 
@@ -315,6 +315,13 @@ namespace IDP {
                 MOTOR_MAX_SPEED << ")");
             this->_speed = MOTOR_MAX_SPEED;
         }
+
+        // Update the gain of LineFollowing's integral controller
+        // to compensate for the new speed
+        unsigned short int diff = MOTOR_MAX_SPEED - this->_speed;
+        double new_gain = 5.0 - (static_cast<double>(diff) / 32.0);
+        DEBUG("Setting new gain to " << new_gain);
+        this->_integral_gain = new_gain;
     }
 
     /**

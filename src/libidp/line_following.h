@@ -15,11 +15,6 @@ namespace IDP {
     class HardwareAbstractionLayer;
 
     /**
-     * Constant for integral control in line following.
-     */
-    const double INTEGRAL_GAIN = 5.0;
-
-    /**
      * Maximum differential correction value before it gets capped
      */
     const short unsigned int MAX_CORRECTION = 127;
@@ -158,6 +153,7 @@ namespace IDP {
             unsigned short int _speed;
             bool _lost_turning_line;
             unsigned short int _lost_time;
+            double _integral_gain;
     };
 }
 
