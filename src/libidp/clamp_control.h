@@ -30,8 +30,7 @@ namespace IDP {
      */
     enum BobbinBadness {
         BOBBIN_GOOD,
-        BOBBIN_BAD,
-        BOBBIN_UNKNOWN_BADNESS
+        BOBBIN_BAD
     };
     
     /**
@@ -49,8 +48,7 @@ namespace IDP {
      */
     static const char* const BobbinBadnessStrings[] = {
         "BOBBIN_GOOD",
-        "BOBBIN_BAD",
-        "BOBBIN_UNKNOWN_BADNESS"
+        "BOBBIN_BAD"
     };
 
     /**
@@ -69,7 +67,8 @@ namespace IDP {
                     unsigned short int white);
         private:
             HardwareAbstractionLayer* _hal;
-            const unsigned short int _tolerance;
+            const unsigned short int _colour_tolerance;
+            const unsigned short int _badness_tolerance;
             unsigned short int _red_level;
             unsigned short int _green_level;
             unsigned short int _white_level;

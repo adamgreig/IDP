@@ -27,8 +27,8 @@ namespace IDP {
      * \param hal A const pointer to an instance of the HAL
      */
     ClampControl::ClampControl(HardwareAbstractionLayer* hal): _hal(hal),
-    _tolerance(5), _red_level(135), _green_level(117), _white_level(155),
-    _bad_level(100)
+    _colour_tolerance(5), _badness_tolerance(10), _red_level(135),
+    _green_level(117),_white_level(155),_bad_level(100)
     {
         TRACE("ClampControl("<<hal<<")");
         INFO("Initialising a ClampControl");
@@ -72,22 +72,22 @@ namespace IDP {
         this->_hal->colour_LEDs(true, true);
         unsigned short int reading = this->_hal->colour_ldr();
         DEBUG("Got an ADC read of " << reading);
-        if(reading > _red_level - _tolerance
-                && reading < _red_level + _tolerance)
+        if(reading > _red_level - _colour_tolerance
+                && reading < _red_level + _colour_tolerance)
         {
             DEBUG("Found a red bobbin");
             this->_hal->colour_LEDs(false, false);
             return BOBBIN_RED;
         }
-        else if(reading > _green_level - _tolerance
-                && reading < _green_level + _tolerance)
+        else if(reading > _green_level - _colour_tolerance
+                && reading < _green_level + _colour_tolerance)
         {
             DEBUG("Found a green bobbin");
             this->_hal->colour_LEDs(false, false);
             return BOBBIN_GREEN;
         }
-        else if(reading > _white_level - _tolerance
-                && reading < _white_level + _tolerance)
+        else if(reading > _white_level - _colour_tolerance
+                && reading < _white_level + _colour_tolerance)
         {
             DEBUG("Found a white bobbin");
             this->_hal->colour_LEDs(false, false);
@@ -109,7 +109,22 @@ namespace IDP {
     BobbinBadness ClampControl::badness() const
     {
         TRACE("badness()");
-        return BOBBIN_BAD;
+        this->_hal->bad_bobbin_LED(true);
+        short unsigned int reading = this->_hal->bad_bobbin_ldr();
+        DEBUG("Got a badness LDR value of " << reading);
+        if(reading > _bad_level - _badness_tolerance
+                && reading < _bad_level + _badness_tolerance)
+        {
+            DEBUG("Found a bad bobbin");
+            this->_hal->bad_bobbin_LED(false);
+            return BOBBIN_BAD;
+        }
+        else
+        {
+            DEBUG("Found a good bobbin");
+            this->_hal->bad_bobbin_LED(false);
+            return BOBBIN_GOOD;
+        }
     }
 
     void ClampControl::calibrate(unsigned short int red, 
