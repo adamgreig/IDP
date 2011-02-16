@@ -4,6 +4,9 @@
 // clamp_control.cc
 // Clamp Control class implementation
 
+// Use unistd.h for sleep functionality
+#include <unistd.h>
+
 #include "clamp_control.h"
 #include "hal.h"
 
@@ -51,9 +54,13 @@ namespace IDP {
     {
         TRACE("pick_up()");
         this->_hal->grabber_jaw(false);
+        usleep(1E6);
         this->_hal->grabber_lift(false);
+        usleep(1E6);
         this->_hal->grabber_jaw(true);
+        usleep(1E6);
         this->_hal->grabber_lift(true);
+        usleep(1E6);
     }
 
     /**
@@ -63,7 +70,9 @@ namespace IDP {
     {
         TRACE("put_down()");
         this->_hal->grabber_lift(false);
+        usleep(1E6);
         this->_hal->grabber_jaw(false);
+        usleep(1E6);
     }
 
     /**
