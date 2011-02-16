@@ -20,28 +20,14 @@
 
 namespace IDP {
 
-    /**
-     * String representation of BobbinColour
-     */
-    const char* BobbinColourStrings[] = {
-        "BOBBIN_RED",
-        "BOBBIN_GREEN",
-        "BOBBIN_WHITE"
-    };
 
-    /**
-     * String representation of BobbinBadness
-     */
-    const char* BobbinBadnessStrings[] = {
-        "BOBBIN_GOOD",
-        "BOBBIN_BAD"
-    };
 
     /**
      * Initialise the class, storing the const pointer to the HAL.
      * \param hal A const pointer to an instance of the HAL
      */
-    ClampControl::ClampControl(HardwareAbstractionLayer* hal): _hal(hal)
+    ClampControl::ClampControl(HardwareAbstractionLayer* hal): _hal(hal),
+    _tolerance(5), _red_level(135), _green_level(117), _white_level(155)
     {
         TRACE("ClampControl("<<hal<<")");
         INFO("Initialising a ClampControl");
@@ -82,7 +68,33 @@ namespace IDP {
     BobbinColour ClampControl::colour() const
     {
         TRACE("colour()");
-        return BOBBIN_WHITE;
+        this->_hal->bobbin_LEDs(true, true);
+        unsigned short int reading = this->_hal->colour_ldr();
+        DEBUG("Got an ADC read of " << reading);
+        if(reading > _red_level - _tolerance
+                && reading < _red_level + _tolerance)
+        {
+            DEBUG("Found a red bobbin");
+            return BOBBIN_RED;
+        }
+        else if(reading > _green_level - _tolerance
+                && reading < _green_level + _tolerance)
+        {
+            DEBUG("Found a green bobbin");
+            return BOBBIN_GREEN;
+        }
+        else if(reading > _white_level - _tolerance
+                && reading < _white_level + _tolerance)
+        {
+            DEBUG("Found a white bobbin");
+            return BOBBIN_WHITE;
+        }
+        else
+        {
+            // No idea what colour this bobbin is
+            ERROR("Couldn't identify bobbin colour");
+            return BOBBIN_UNKNOWN_COLOUR;
+        }
     }
 
     /**
@@ -93,6 +105,14 @@ namespace IDP {
     {
         TRACE("badness()");
         return BOBBIN_BAD;
+    }
+
+    void ClampControl::calibrate(unsigned short int red, 
+            unsigned short int green, unsigned short int white)
+    {
+        this->_red_level(red);
+        this->_green_level(green);
+        this->_white_level(white);
     }
 
 }
