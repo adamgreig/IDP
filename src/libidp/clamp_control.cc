@@ -20,15 +20,13 @@
 
 namespace IDP {
 
-
-
     /**
      * Initialise the class, storing the const pointer to the HAL.
      * \param hal A const pointer to an instance of the HAL
      */
     ClampControl::ClampControl(HardwareAbstractionLayer* hal): _hal(hal),
-    _colour_tolerance(5), _badness_tolerance(10), _red_level(135),
-    _green_level(117),_white_level(155),_bad_level(100)
+    _colour_tolerance(5), _badness_tolerance(10), _red_level(165),
+    _green_level(144),_white_level(191),_bad_level(203)
     {
         TRACE("ClampControl("<<hal<<")");
         INFO("Initialising a ClampControl");

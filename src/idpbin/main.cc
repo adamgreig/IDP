@@ -106,12 +106,7 @@ int main()
                 tests->stop();
             } else if(choice == IDP::MENU_ANALYSE) {
                 tests->bobbin_analyse();
-            } else if(choice == IDP::MENU_PICK_UP) {
-                // TODO: this just calls clamp_control! it should really
-                // call something to pick something up
-                tests->clamp_control();
-            } else if(choice == IDP::MENU_PUT_DOWN) {
-                // TODO: see above!
+            } else if(choice == IDP::MENU_CLAMP_TESTS) {
                 tests->clamp_control();
             } else if(choice == IDP::MENU_LINE_SENSORS) {
                 tests->line_sensors();

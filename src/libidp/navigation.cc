@@ -88,7 +88,7 @@ namespace IDP {
         
         // Initialise a new lf object
         this->_lf = new LineFollowing(hal);
-        this->_lf->set_speed(127);
+        this->_lf->set_speed(64);
     }
 
     /**

@@ -335,12 +335,12 @@ namespace IDP {
 
         // Update the LOST_TIMEOUT loop iterations to account for
         // the change in robot speed
-        unsigned int new_timeout = BASELINE_STRAIGHT_TIMEOUT + diff;
+        unsigned int new_timeout = BASELINE_STRAIGHT_TIMEOUT + (diff/5);
         DEBUG("Setting new LOST timeout to " << new_timeout);
         this->_lost_timeout = new_timeout;
 
         // Now update the LOST_TIMEOUT for turning actions
-        new_timeout = BASELINE_TURN_TIMEOUT + (6 * diff);
+        new_timeout = BASELINE_TURN_TIMEOUT + (diff/5);
         DEBUG("Setting new LOST TURNING timeout to " << new_timeout);
         this->_turning_timeout = new_timeout;
     }
