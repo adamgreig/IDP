@@ -138,17 +138,22 @@ namespace IDP {
         public:
             LineFollowing(HardwareAbstractionLayer* hal);
             LineFollowingStatus follow_line(void);
-            LineFollowingStatus turn_left(void);
-            LineFollowingStatus turn_right(void);
-            LineFollowingStatus turn_around_cw(void);
-            LineFollowingStatus turn_around_ccw(void);
+            LineFollowingStatus turn_left(
+                    unsigned short int skip_lines = 0);
+            LineFollowingStatus turn_right(
+                    unsigned short int skip_lines = 0);
+            LineFollowingStatus turn_around_cw(
+                    unsigned short int skip_lines = 0);
+            LineFollowingStatus turn_around_ccw(
+                    unsigned short int skip_lines = 0);
             LineFollowingStatus junction_status(void);
             void set_speed(unsigned short int speed);
 
         private:
             void correct_steering(void);
             void set_motors_turning(LineFollowingTurnDirection dir);
-            LineFollowingStatus turn(LineFollowingTurnDirection dir);
+            LineFollowingStatus turn(LineFollowingTurnDirection dir,
+                    unsigned short int skip_lines);
             LineFollowingLineStatus line_status(
                 LineFollowingTurnDirection dir);
 
@@ -158,6 +163,7 @@ namespace IDP {
             unsigned short int _speed;
             bool _lost_turning_line;
             unsigned short int _lost_time;
+            unsigned short int _lines_seen;
     };
 }
 
