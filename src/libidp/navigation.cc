@@ -184,6 +184,47 @@ namespace IDP {
     }
 
     /**
+     * Navigate to the starting box and commence a run along
+     * the bobbin rack.
+     */
+    void Navigation::find_bobbin(){
+        TRACE("find_bobbin()");
+
+        // Get to the start box
+        NavigationStatus nav_status;
+        do {
+            nav_status = this->go_node(NODE8);
+        } while (nav_status == NAVIGATION_ENROUTE);
+
+        // Start the bobbin run
+        do {
+            nav_status = this->find_next_bobbin();
+        } while (nav_status == NAVIGATION_ENROUTE);
+
+        return nav_status;
+    }
+
+    /**
+     * Drive forwards at a slow speed, and return only when a bobbin
+     * is present.
+     */
+    void Navigation::find_next_bobbin() {
+        TRACE("find_next_bobbin()");
+        
+        // Reduce the speed of the robot
+        this->_lf->set_speed(64);
+
+        bool presence;
+        presence = this->_cc->bobbin_present();
+        if (!presence) {
+            this->_lf->follow_line();
+            return NAVIGATION_ENROUTE;
+        }
+
+        return NAVIGATION_ARRIVED;
+    }
+
+    /**
      * Navigate to the delivery area and align for delivery.
      * \returns A NavigationStatus code
      */
