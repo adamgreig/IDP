@@ -30,7 +30,8 @@ namespace IDP {
     ClampControl::ClampControl(HardwareAbstractionLayer* hal): _hal(hal),
     _colour_tolerance(5), _badness_tolerance(10), _red_level(165),
     _green_level(144), _white_level(191), _bad_level(203),
-    _bad_zero_reading(0), _colour_zero_reading(0)
+    _badness_light_zero(0), _badness_dark_zero(0), _colour_light_zero(0),
+    _colour_dark_zero(0)
     {
         TRACE("ClampControl("<<hal<<")");
         INFO("Initialising a ClampControl");
@@ -84,7 +85,7 @@ namespace IDP {
         TRACE("raise_arm()");
         DEBUG("Lifting the grabber");
         this->_hal->grabber_lift(true);
-        usleep(15E5);
+        usleep(1500000);
     }
 
     /**
@@ -95,7 +96,7 @@ namespace IDP {
         TRACE("lower_arm()");
         DEBUG("Lowering the grabber");
         this->_hal->grabber_lift(false);
-        usleep(2E6);
+        usleep(2000000);
     }
 
     /**
@@ -106,7 +107,7 @@ namespace IDP {
         TRACE("open_jaw()");
         DEBUG("Releasing the grabber jaw");
         this->_hal->grabber_jaw(false);
-        usleep(1E6);
+        usleep(1000000);
     }
 
     /**
@@ -117,7 +118,7 @@ namespace IDP {
         TRACE("open_jaw()");
         DEBUG("Clamping the grabber jaw");
         this->_hal->grabber_jaw(true);
-        usleep(1E6);
+        usleep(1000000);
     }
 
     /**
@@ -192,6 +193,11 @@ namespace IDP {
      * 
      * Used especially when navigating down the rack to check when we've found
      * something.
+     * The red and green bobbins block a lot of reflected light from the metal
+     * backplate, so use this large drop in light to notice them. The white
+     * bobbins reflect about the same amount, but when present without lights
+     * on they will block a good deal of light from hitting the sensor anyway,
+     * so we can detect them as such.
      * \returns True when a bobbin is found
      */
     bool ClampControl::bobbin_present()
@@ -201,7 +207,7 @@ namespace IDP {
 
         // If we haven't read this before, store the value. Next time
         // we'll find a delta.
-        if(_colour_zero_reading == 0) {
+        if(_colour_light_zero == 0 || _colour_dark_zero == 0) {
             ERROR("No previous baseline was set, reading one now instead.");
             this->store_zero();
         }
@@ -210,28 +216,22 @@ namespace IDP {
         this->_hal->colour_LED(true);
         this->_hal->bad_bobbin_LED(false);
 
-        // Get a new reading
-        unsigned short int reading_light = this->average_colour_ldr();
-        short int delta_light = reading_light - this->_colour_zero_reading;
+        // Get a reading in the light (for red and green)
+        unsigned short int reading = this->average_colour_ldr();
+        short int delta = reading - this->_colour_light_zero;
         
         // Turn off the light
         this->_hal->colour_LED(false);
 
-        // Take a reading with lights off
-        unsigned short int reading_dark = this->average_bad_ldr();
-        short int delta_dark = reading_dark - this->_colour_zero_reading;
-
-        DEBUG("reading_light=" << reading_light << ", delta_light="<<
-            delta_light << ", reading_dark=" << reading_dark <<
-            ", delta_dark=" << delta_dark);
-
-        if(delta_light < -BOBBIN_DETECTION_DELTA_THRESHOLD) {
+        // If the light reading indicates that we found an LED, we can return
+        if(delta < -BOBBIN_DETECTION_DELTA_THRESHOLD)
             return true;
-        } else if(delta_dark < -BOBBIN_DETECTION_DELTA_THRESHOLD) {
-            return true;
-        } else {
-            return false;
-        }
+
+        // Take a reading with lights off (for white)
+        reading = this->average_bad_ldr();
+        delta = reading - this->_colour_dark_zero;
+
+        return (delta < -BOBBIN_DETECTION_DELTA_THRESHOLD);
     }
 
     /**
@@ -247,7 +247,7 @@ namespace IDP {
         
         // If we haven't read this before, store the value. Next time
         // we'll find a delta.
-        if(_bad_zero_reading == 0) {
+        if(_badness_light_zero == 0) {
             ERROR("No previous baseline was set, reading one now instead.");
             this->store_zero();
         }
@@ -258,7 +258,7 @@ namespace IDP {
 
         // Read the LDR
         unsigned short int reading = this->average_bad_ldr();
-        short int delta = reading - this->_bad_zero_reading;
+        short int delta = reading - this->_badness_light_zero;
 
         // Turn off the light
         this->_hal->bad_bobbin_LED(false);
@@ -275,17 +275,28 @@ namespace IDP {
     void ClampControl::store_zero()
     {
         TRACE("store_zero()");
-        this->_hal->bad_bobbin_LED(true);
+        DEBUG("Taking zero-level readings");
+
+        // Take the two dark readings
         this->_hal->colour_LED(false);
-        this->_bad_zero_reading = this->average_bad_ldr(10);
         this->_hal->bad_bobbin_LED(false);
+        this->_colour_dark_zero = this->average_colour_ldr(10);
+        this->_badness_dark_zero = this->average_colour_ldr(10);
+
+        // Turn on the colour light
         this->_hal->colour_LED(true);
-        this->_colour_zero_reading = this->average_colour_ldr(10);
+        this->_colour_light_zero = this->average_colour_ldr(10);
         this->_hal->colour_LED(false);
-        INFO("Baseline bad-no-bobbin reading taken as " <<
-            this->_bad_zero_reading);
-        INFO("Baseline colour-no-bobbin reading taken as " <<
-            this->_colour_zero_reading);
+
+        // Turn on the badness light
+        this->_hal->bad_bobbin_LED(true);
+        this->_badness_light_zero = this->average_bad_ldr(10);
+        this->_hal->bad_bobbin_LED(false);
+
+        INFO("Colour LDR dark level: " << this->_colour_dark_zero);
+        INFO("Colour LDR light level: " << this->_colour_light_zero);
+        INFO("Badness LDR dark level: " << this->_badness_dark_zero);
+        INFO("Badness LDR light level: " << this->_badness_light_zero);
     }
 
     /**

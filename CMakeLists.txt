@@ -20,24 +20,24 @@ if("${CMAKE_BUILD_TYPE}" STREQUAL "Debug")
 endif()
 
 # Function to add a google test binary
-function(googletest test_name test_sources test_libs test_data_root)
-    # The executable itself, plus the gtest_main.cc test running
-    add_executable(${test_name} ${test_sources})
-    # Set libraries to be linked in
-    target_link_libraries(${test_name} gmock ${test_libs})
-    # Run the test command after building
-    add_custom_command(TARGET ${test_name}
-        POST_BUILD COMMAND ${test_name}
-        ARGS "--test_data_root" "${test_data_root}" "--gtest_color=yes")
-    # Add the test command to the global test runner (make test)
-    add_test(${test_name} ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${test_name}
-        "--test_data_root" "${test_data_root}" "--gtest_color=yes")
-endfunction(googletest)
+#function(googletest test_name test_sources test_libs test_data_root)
+    ## The executable itself, plus the gtest_main.cc test running
+    #add_executable(${test_name} ${test_sources})
+    ## Set libraries to be linked in
+    #target_link_libraries(${test_name} gmock ${test_libs})
+    ## Run the test command after building
+    #add_custom_command(TARGET ${test_name}
+        #POST_BUILD COMMAND ${test_name}
+        #ARGS "--test_data_root" "${test_data_root}" "--gtest_color=yes")
+    ## Add the test command to the global test runner (make test)
+    #add_test(${test_name} ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${test_name}
+        #"--test_data_root" "${test_data_root}" "--gtest_color=yes")
+#endfunction(googletest)
 
 # Set include headers
 include_directories(
-    "${IDP_SOURCE_DIR}/lib/gmock/gmock/include"
-    "${IDP_SOURCE_DIR}/lib/gmock/gmock/gtest/include"
+    #"${IDP_SOURCE_DIR}/lib/gmock/gmock/include"
+    #"${IDP_SOURCE_DIR}/lib/gmock/gmock/gtest/include"
     "${IDP_SOURCE_DIR}/lib/librobot"
     "${IDP_SOURCE_DIR}/src"
 )

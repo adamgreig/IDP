@@ -96,8 +96,10 @@ namespace IDP {
             unsigned short int _green_level;
             unsigned short int _white_level;
             unsigned short int _bad_level;
-            unsigned short int _bad_zero_reading;
-            unsigned short int _colour_zero_reading;
+            unsigned short int _badness_light_zero;
+            unsigned short int _badness_dark_zero;
+            unsigned short int _colour_light_zero;
+            unsigned short int _colour_dark_zero;
     };
 }
 

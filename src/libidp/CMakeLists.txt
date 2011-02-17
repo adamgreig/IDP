@@ -11,7 +11,7 @@ add_library(idp STATIC ${srcs})
 target_link_libraries(idp "${IDP_SOURCE_DIR}/lib/librobot/librobot.a")
 
 # Build test executable
-file(GLOB test_srcs "test/*.cc")
-googletest(test_idp
-    "${test_srcs}" idp ${CMAKE_CURRENT_SOURCE_DIR}/test/data)
+#file(GLOB test_srcs "test/*.cc")
+#googletest(test_idp
+    #"${test_srcs}" idp ${CMAKE_CURRENT_SOURCE_DIR}/test/data)
 

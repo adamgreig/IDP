@@ -56,7 +56,7 @@ namespace IDP {
         TRACE("drive_forward()");
         INFO("Driving forwards");
         this->_hal->motors_forward(127);
-        usleep(1E6);
+        usleep(1000000);
         this->_hal->motors_stop();
         INFO("Finished driving.");
     }
@@ -69,7 +69,7 @@ namespace IDP {
         TRACE("drive_backwardi()");
         INFO("Driving backwards");
         this->_hal->motors_backward(127);
-        usleep(1E6);
+        usleep(1000000);
         this->_hal->motors_stop();
         INFO("Finished driving.");
     }
@@ -94,7 +94,7 @@ namespace IDP {
         INFO("Turning left, both wheels driven");
         this->_hal->motor_left_backward(64);
         this->_hal->motor_right_forward(64);
-        usleep(1E6);
+        usleep(1000000);
         this->_hal->motors_stop();
         INFO("Finished driving.");
     }
@@ -109,7 +109,7 @@ namespace IDP {
         INFO("Turning right, both wheels driven");
         this->_hal->motor_left_forward(64);
         this->_hal->motor_right_backward(64);
-        usleep(1E6);
+        usleep(1000000);
         this->_hal->motors_stop();
         INFO("Finished driving.");
     }
@@ -124,7 +124,7 @@ namespace IDP {
         INFO("Turning left, only left wheel driven");
         this->_hal->motor_right_forward(127);
         this->_hal->motor_left_forward(0);
-        usleep(1E6);
+        usleep(1000000);
         this->_hal->motors_stop();
         INFO("Finished driving.");
     }
@@ -139,7 +139,7 @@ namespace IDP {
         INFO("Turning right, only left wheel driven");
         this->_hal->motor_left_forward(127);
         this->_hal->motor_right_forward(0);
-        usleep(1E6);
+        usleep(1000000);
         this->_hal->motors_stop();
         INFO("Finished driving.");
     }
@@ -248,13 +248,13 @@ namespace IDP {
         INFO("Testing actuators");
         std::cout << "Closing jaw..." << std::endl;
         this->_hal->grabber_jaw(true);
-        usleep(1E6);
+        usleep(1000000);
         std::cout << "Opening jaw..." << std::endl;
         this->_hal->grabber_jaw(false);
-        usleep(1E6);
+        usleep(1000000);
         std::cout << "Raising arm..." << std::endl;
         this->_hal->grabber_lift(true);
-        usleep(1E6);
+        usleep(1000000);
         std::cout << "Lowing arm..." << std::endl;
         this->_hal->grabber_lift(false);
     }
@@ -631,21 +631,21 @@ namespace IDP {
     {
         TRACE("indicator_LEDs()");
         this->_hal->indication_LEDs(false, false, true);
-        usleep(5E5);
+        usleep(500000);
         this->_hal->indication_LEDs(false, true, false);
-        usleep(5E5);
+        usleep(500000);
         this->_hal->indication_LEDs(false, true, true);
-        usleep(5E5);
+        usleep(500000);
         this->_hal->indication_LEDs(true, false, false);
-        usleep(5E5);
+        usleep(500000);
         this->_hal->indication_LEDs(true, false, true);
-        usleep(5E5);
+        usleep(500000);
         this->_hal->indication_LEDs(true, true, false);
-        usleep(5E5);
+        usleep(500000);
         this->_hal->indication_LEDs(true, true, true);
-        usleep(5E5);
+        usleep(500000);
         this->_hal->indication_LEDs(false, false, false);
-        usleep(5E5);
+        usleep(500000);
     }
 
     /**
@@ -656,7 +656,7 @@ namespace IDP {
     {
         TRACE("colour_sensor_LEDs()");
         this->_hal->colour_LED(true);
-        usleep(1E5);
+        usleep(100000);
         this->_hal->colour_LED(false);
     }
 
@@ -667,8 +667,8 @@ namespace IDP {
     {
         TRACE("bad_bobbin_LED()");
         this->_hal->bad_bobbin_LED(true);
-        usleep(5E5);
+        usleep(500000);
         this->_hal->bad_bobbin_LED(false);
-        usleep(5E5);
+        usleep(500000);
     }
 }
