@@ -136,7 +136,7 @@ namespace IDP {
      */
     NavigationStatus Navigation::find_box_for_drop(Box box)
     {
-        TRACE("find_box_for_drop()");
+        TRACE("find_box_for_drop(" << BoxStrings[box] << )");
 
         // Reduce the speed whilst looking for a box so we don't
         // overshoot the node
@@ -167,7 +167,7 @@ namespace IDP {
      */
     NavigationStatus Navigation::find_box_for_pickup(Box box)
     {
-        TRACE("find_box_for_pickup()");
+        TRACE("find_box_for_pickup(" << BoxStrings[box] << ")");
 
         // Go to the relevant node for the box
         this->find_box_for_drop(box);
@@ -222,7 +222,7 @@ namespace IDP {
             nav_status = this->find_next_bobbin();
         } while (nav_status == NAVIGATION_ENROUTE);
 
-        DEBUG("Found a bobbin");
+        DEBUG("Found a bobbin!");
 
         return nav_status;
     }
