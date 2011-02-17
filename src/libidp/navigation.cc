@@ -133,6 +133,8 @@ namespace IDP {
     /**
      * Go and find a box and position the robot such that dropping a
      * bobbin will land it in the box.
+     * \param box The Box to which to navigate for bobbin drop.
+     * \returns A NavigationStatus code.
      */
     NavigationStatus Navigation::find_box_for_drop(Box box)
     {
@@ -164,6 +166,8 @@ namespace IDP {
     /**
      * Go and find a box and position the robot ready to pick the box
      * up, or analyse its contents.
+     * \param box The Box to which to navigate for pickup.
+     * \returns A NavigationStatus code.
      */
     NavigationStatus Navigation::find_box_for_pickup(Box box)
     {
@@ -204,6 +208,7 @@ namespace IDP {
     /**
      * Navigate to the starting box and commence a run along
      * the bobbin rack.
+     * \returns A NavigationStatus code.
      */
     void Navigation::find_bobbin(){
         TRACE("find_bobbin()");
@@ -230,6 +235,7 @@ namespace IDP {
     /**
      * Drive forwards at a slow speed, and return only when a bobbin
      * is present.
+     * \returns A NavigationStatus code
      */
     void Navigation::find_next_bobbin() {
         TRACE("find_next_bobbin()");
