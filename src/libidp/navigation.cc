@@ -224,6 +224,7 @@ namespace IDP {
         DEBUG("Reducing speed to 48 for bobbin detection");
         this->_lf->set_speed(48);
 
+        // Follow the line until ClampControl says we're at a bobbin
         bool presence;
         presence = this->_cc->bobbin_present();
         if (!presence) {
@@ -245,6 +246,8 @@ namespace IDP {
     NavigationStatus Navigation::go_to_delivery()
     {
         TRACE("go_to_delivery()");
+
+        // Reduce speed to minimise positioning errors caused by inertia
         DEBUG("Reducing speed for delivery action");
         this->_lf->set_speed(80);
 
@@ -276,20 +279,25 @@ namespace IDP {
     NavigationStatus Navigation::finished_delivery()
     {
         TRACE("finished_delivery()");
+
+        // Reduce speed as this action can easily overshoot
+        DEBUG("Setting speed to 80 to get back onto line");
+        this->_lf->set_speed(80);
+
         DEBUG("Turning back onto the line towards node 4");
         LineFollowingStatus lf_status;
         do {
             lf_status = this->_lf->turn_around_cw();
         } while(lf_status == ACTION_IN_PROGRESS);
 
+        DEBUG("Back on the line");
+
         this->_to = NODE4;
         this->_from = NODE3;
 
         this->_cached_junction = NO_CACHE;
 
-        DEBUG("Back on the line");
-
-        // Set the speed back to full (if it isn't already)
+        // Set the speed back to full
         DEBUG("Setting speed back to 127");
         this->_lf->set_speed(127);
 
