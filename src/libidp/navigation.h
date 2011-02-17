@@ -14,6 +14,7 @@ namespace IDP {
     
     class HardwareAbstractionLayer;
     class LineFollowing;
+    class ClampControl;
 
     /**
      * Current navigation status

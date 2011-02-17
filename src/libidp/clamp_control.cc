@@ -30,7 +30,7 @@ namespace IDP {
     ClampControl::ClampControl(HardwareAbstractionLayer* hal): _hal(hal),
     _colour_tolerance(5), _badness_tolerance(10), _red_level(165),
     _green_level(144), _white_level(191), _bad_level(203),
-    _zero_reading(0)
+    _bad_zero_reading(0), _colour_zero_reading(0)
     {
         TRACE("ClampControl("<<hal<<")");
         INFO("Initialising a ClampControl");
@@ -84,7 +84,7 @@ namespace IDP {
         TRACE("raise_arm()");
         DEBUG("Lifting the grabber");
         this->_hal->grabber_lift(true);
-        usleep(2E6);
+        usleep(15E5);
     }
 
     /**
@@ -201,18 +201,37 @@ namespace IDP {
 
         // If we haven't read this before, store the value. Next time
         // we'll find a delta.
-        if(_zero_reading == 0) {
+        if(_colour_zero_reading == 0) {
             ERROR("No previous baseline was set, reading one now instead.");
             this->store_zero();
         }
 
+        // Turn on the light
+        this->_hal->colour_LED(true);
+        this->_hal->bad_bobbin_LED(false);
+
         // Get a new reading
-        unsigned short int reading = this->average_bad_ldr();
-        short int delta = reading - this->_zero_reading;
+        unsigned short int reading_light = this->average_colour_ldr();
+        short int delta_light = reading_light - this->_colour_zero_reading;
+        
+        // Turn off the light
+        this->_hal->colour_LED(false);
 
-        DEBUG("Reading " << reading << ", delta " << delta);
+        // Take a reading with lights off
+        unsigned short int reading_dark = this->average_bad_ldr();
+        short int delta_dark = reading_dark - this->_colour_zero_reading;
 
-        return (std::abs(delta) > BOBBIN_DETECTION_DELTA_THRESHOLD);
+        DEBUG("reading_light=" << reading_light << ", delta_light="<<
+            delta_light << ", reading_dark=" << reading_dark <<
+            ", delta_dark=" << delta_dark);
+
+        if(delta_light < -BOBBIN_DETECTION_DELTA_THRESHOLD) {
+            return true;
+        } else if(delta_dark < -BOBBIN_DETECTION_DELTA_THRESHOLD) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -225,20 +244,21 @@ namespace IDP {
     {
         TRACE("box_present()");
         DEBUG("Checking for a box...");
-        //
+        
         // If we haven't read this before, store the value. Next time
         // we'll find a delta.
-        if(_zero_reading == 0) {
+        if(_bad_zero_reading == 0) {
             ERROR("No previous baseline was set, reading one now instead.");
             this->store_zero();
         }
 
         // Turn on the light
         this->_hal->bad_bobbin_LED(true);
+        this->_hal->colour_LED(false);
 
         // Read the LDR
         unsigned short int reading = this->average_bad_ldr();
-        short int delta = reading - this->_zero_reading;
+        short int delta = reading - this->_bad_zero_reading;
 
         // Turn off the light
         this->_hal->bad_bobbin_LED(false);
@@ -255,9 +275,17 @@ namespace IDP {
     void ClampControl::store_zero()
     {
         TRACE("store_zero()");
-        this->_zero_reading = this->average_bad_ldr(10);
-        INFO("Baseline no-bobbin reading taken as " <<
-            this->_zero_reading);
+        this->_hal->bad_bobbin_LED(true);
+        this->_hal->colour_LED(false);
+        this->_bad_zero_reading = this->average_bad_ldr(10);
+        this->_hal->bad_bobbin_LED(false);
+        this->_hal->colour_LED(true);
+        this->_colour_zero_reading = this->average_colour_ldr(10);
+        this->_hal->colour_LED(false);
+        INFO("Baseline bad-no-bobbin reading taken as " <<
+            this->_bad_zero_reading);
+        INFO("Baseline colour-no-bobbin reading taken as " <<
+            this->_colour_zero_reading);
     }
 
     /**

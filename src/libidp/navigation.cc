@@ -94,6 +94,7 @@ namespace IDP {
 
         // Initialise a new cc object
         this->_cc = new ClampControl(hal);
+        this->_cc->store_zero();
     }
 
     /**
@@ -105,6 +106,8 @@ namespace IDP {
         INFO("Destructing Navigation");
         if(this->_lf)
             delete this->_lf;
+        if(this->_cc)
+            delete this->_cc;
     }
 
     /**
@@ -133,6 +136,7 @@ namespace IDP {
      */
     NavigationStatus Navigation::find_box_for_drop(Box box)
     {
+        this->_lf->set_speed(80);
         NavigationStatus nav_status;
         if (box == BOX1)
         {
@@ -158,15 +162,23 @@ namespace IDP {
         // Go to the relevant node for the box
         this->find_box_for_drop(box);
 
-        // Move slowly forwards until we detect a box top with the
-        // badness LDR
+        // Slow down to find the box by reflection
         this->_lf->set_speed(48);
 
+        // Stop while the jars and arms open
+        this->_hal->motors_stop();
+
+        // Open the jaw and lower the arm
+        this->_cc->open_jaw();
+        this->_cc->lower_arm();
+
+        // Move slowly forwards until we detect a box top with the
+        // badness LDR
         bool box_present;
         do {
             box_present = this->_cc->box_present();
             this->_lf->follow_line();
-        } while (!box_present)
+        } while (!box_present);
 
         return NAVIGATION_ARRIVED;
     }
@@ -306,6 +318,23 @@ namespace IDP {
             current_direction = NAVIGATION_ANTICLOCKWISE;
         }
 
+        // If we're starting in the start box, leave before turning
+        if(this->_from == NODE7 && this->_to == NODE8) {
+            DEBUG("Leaving the start box before turning");
+            LineFollowingStatus forwardstatus;
+            forwardstatus = this->_lf->follow_line();
+            if(forwardstatus == ACTION_IN_PROGRESS) {
+                DEBUG("LF is in progress *");
+                return NAVIGATION_ENROUTE;
+            } else if(forwardstatus == LOST) {
+                return NAVIGATION_LOST;
+            } else {
+                this->_cached_junction = BOTH_TURNS;
+                this->handle_junction(NODE9);
+                return NAVIGATION_ENROUTE;
+            }
+        }
+
         // Turning around is a dangerous business!
         // Mostly we only want to turn around between nodes 8 and 9, or 9 and
         // 10, as we drive along picking up bobbins. In either of these cases,
@@ -335,7 +364,11 @@ namespace IDP {
 
         unsigned short int skip_lines = 0;
         if(this->_reached_special_case_junction)
-            skip_lines = 1;
+            //skip_lines = 1;
+            skip_lines = 0;
+
+        DEBUG("skip_lines="<<skip_lines<<", reached_s_c_j="<<
+                this->_reached_special_case_junction);
 
         // Request LineFollowing to execute the required turn.
         LineFollowingStatus turnstatus;

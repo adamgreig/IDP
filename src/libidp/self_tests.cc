@@ -445,6 +445,7 @@ namespace IDP {
         } while(status == NAVIGATION_ENROUTE);
 
         this->_hal->motors_stop();
+
         return;
     }
     
@@ -470,14 +471,25 @@ namespace IDP {
         std::cout << std::endl;
 
         std::getchar();
+        std::getchar();
 
-        Navigation nav(this->_hal, NODE8, NODE9);
+        Navigation nav(this->_hal, NODE7, NODE8);
         NavigationStatus status;
         do {
             status = nav.find_box_for_pickup(box);
         } while(status == NAVIGATION_ENROUTE);
 
         this->_hal->motors_stop();
+
+        INFO("Found box for pickup. Press 'p' to pick up or anything"
+            << " else to quit");
+
+        char in = std::getchar();
+        if(in == 'p') {
+            ClampControl cc(this->_hal);
+            cc.pick_up();
+        }
+
         return;
     }
 
@@ -503,14 +515,25 @@ namespace IDP {
         std::cout << std::endl;
 
         std::getchar();
+        std::getchar();
 
-        Navigation nav(this->_hal, NODE8, NODE9);
+        Navigation nav(this->_hal, NODE9, NODE8);
         NavigationStatus status;
         do {
             status = nav.find_box_for_drop(box);
         } while(status == NAVIGATION_ENROUTE);
 
         this->_hal->motors_stop();
+
+        INFO("Found box for dropoff. Press 'd' to drop or anything"
+            << " else to quit");
+
+        char in = std::getchar();
+        if(in == 'd') {
+            ClampControl cc(this->_hal);
+            cc.put_down();
+        }
+
         return;
     }
 

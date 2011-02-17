@@ -9,7 +9,7 @@
 
 // Debug functionality
 #define MODULE_NAME "LineFollowing"
-#define TRACE_ENABLED   false
+#define TRACE_ENABLED   true
 #define DEBUG_ENABLED   true
 #define INFO_ENABLED    true
 #define ERROR_ENABLED   true

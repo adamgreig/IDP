@@ -19,7 +19,7 @@ namespace IDP {
      * The increase in light to the bad bobbin LDR that indicates
      * a bobbin is present.
      */
-    const unsigned short int BOBBIN_DETECTION_DELTA_THRESHOLD = 5;
+    const unsigned short int BOBBIN_DETECTION_DELTA_THRESHOLD = 10;
 
     /**
      * The increase in light to the bad bobbin LDR that indicates
@@ -96,7 +96,8 @@ namespace IDP {
             unsigned short int _green_level;
             unsigned short int _white_level;
             unsigned short int _bad_level;
-            unsigned short int _zero_reading;
+            unsigned short int _bad_zero_reading;
+            unsigned short int _colour_zero_reading;
     };
 }
 
