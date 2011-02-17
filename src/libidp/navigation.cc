@@ -136,7 +136,13 @@ namespace IDP {
      */
     NavigationStatus Navigation::find_box_for_drop(Box box)
     {
+        TRACE("find_box_for_drop()");
+
+        // Reduce the speed whilst looking for a box so we don't
+        // overshoot the node
+        DEBUG("Setting speed to 80 to avoid node overshoot");
         this->_lf->set_speed(80);
+
         NavigationStatus nav_status;
         if (box == BOX1)
         {
@@ -150,6 +156,8 @@ namespace IDP {
                 nav_status = this->go_node(NODE8);
             } while (nav_status == NAVIGATION_ENROUTE);
         }
+
+        DEBUG("Found a box!");
         return NAVIGATION_ARRIVED;
     }
 
@@ -159,6 +167,8 @@ namespace IDP {
      */
     NavigationStatus Navigation::find_box_for_pickup(Box box)
     {
+        TRACE("find_box_for_pickup()");
+
         // Go to the relevant node for the box
         this->find_box_for_drop(box);
 
@@ -292,6 +302,10 @@ namespace IDP {
         this->_cached_junction = NO_CACHE;
 
         DEBUG("Back on the line");
+
+        // Set the speed back to full (if it isn't already)
+        DEBUG("Setting speed back to 127");
+        this->_lf->set_speed(127);
 
         return NAVIGATION_ARRIVED;
     }
