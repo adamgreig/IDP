@@ -111,26 +111,6 @@ namespace IDP {
     }
 
     /**
-     * Navigate to the line parallel to the rack, then drive along
-     * slowly until a bobbin is found.
-     * \returns A NavigationStatus code
-     */
-    NavigationStatus Navigation::find_bobbin()
-    {
-        return NAVIGATION_ARRIVED;
-    }
-
-    /**
-     * Navigate to the line parallel to the rack, then drive along
-     * slowly until a bobbin is found.
-     * \returns A NavigationStatus code
-     */
-    NavigationStatus Navigation::find_next_bobbin()
-    {
-        return NAVIGATION_ARRIVED;
-    }
-
-    /**
      * Go and find a box and position the robot such that dropping a
      * bobbin will land it in the box.
      * \param box The Box to which to navigate for bobbin drop.
@@ -210,7 +190,7 @@ namespace IDP {
      * the bobbin rack.
      * \returns A NavigationStatus code.
      */
-    void Navigation::find_bobbin(){
+    NavigationStatus Navigation::find_bobbin(){
         TRACE("find_bobbin()");
 
         // Get to the start box
@@ -237,7 +217,7 @@ namespace IDP {
      * is present.
      * \returns A NavigationStatus code
      */
-    void Navigation::find_next_bobbin() {
+    NavigationStatus Navigation::find_next_bobbin() {
         TRACE("find_next_bobbin()");
         
         // Reduce the speed of the robot
