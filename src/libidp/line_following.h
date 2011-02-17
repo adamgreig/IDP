@@ -32,7 +32,7 @@ namespace IDP {
     /**
      * Baseline LOST timeout for full speed turning actions
      */
-    const short unsigned int BASELINE_TURN_TIMEOUT = 50;
+    const short unsigned int BASELINE_TURN_TIMEOUT = 150;
 
     /**
      * How much an outer sensor seeing the edge of a line should add
@@ -144,6 +144,7 @@ namespace IDP {
                     unsigned short int skip_lines = 0);
             LineFollowingStatus turn_around_ccw(
                     unsigned short int skip_lines = 0);
+            LineFollowingStatus turn_around_delivery();
             LineFollowingStatus junction_status(void);
             void set_speed(unsigned short int speed);
 

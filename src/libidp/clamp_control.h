@@ -22,6 +22,12 @@ namespace IDP {
     const unsigned short int BOBBIN_DETECTION_DELTA_THRESHOLD = 5;
 
     /**
+     * The increase in light to the bad bobbin LDR that indicates
+     * a box is present.
+     */
+    const unsigned short int BOX_DETECTION_DELTA_THRESHOLD = 20;
+
+    /**
      * Bobbin colours
      */
     enum BobbinColour {
@@ -70,11 +76,14 @@ namespace IDP {
             BobbinColour colour() const;
             BobbinBadness badness() const;
             bool bobbin_present();
-            void store_no_bobbin();
+            bool box_present();
+            void store_zero();
             void calibrate(unsigned short int red, unsigned short int green,
                     unsigned short int white);
-            void lift(bool status);
-            void clamp(bool status);
+            void open_jaw(void);
+            void close_jaw(void);
+            void raise_arm(void);
+            void lower_arm(void);
         private:
             unsigned short int average_bad_ldr(unsigned short int n = 3)
                 const;
@@ -87,7 +96,7 @@ namespace IDP {
             unsigned short int _green_level;
             unsigned short int _white_level;
             unsigned short int _bad_level;
-            unsigned short int _no_bobbin_reading;
+            unsigned short int _zero_reading;
     };
 }
 

@@ -78,6 +78,7 @@ namespace IDP {
             std::cout << "5) Clamp Control Tests" << std::endl;
             std::cout << "6) Sensor Tests" << std::endl;
             std::cout << "7) Output Tests" << std::endl;
+            std::cout << "8) Task Tests" << std::endl;
             std::cout << "b) Back" << std::endl;
             std::cout << std::endl << "> ";
             
@@ -109,6 +110,10 @@ namespace IDP {
                     return option;
             } else if(choice == "7") {
                 MenuChoice option = Menu::output_tests();
+                if(option != MENU_BACK)
+                    return option;
+            } else if(choice == "8") {
+                MenuChoice option = Menu::task_tests();
                 if(option != MENU_BACK)
                     return option;
             } else if(choice == "b") {
@@ -179,6 +184,7 @@ namespace IDP {
             std::cout << "2) Navigate to a bobbin" << std::endl;
             std::cout << "3) Navigate to a box" << std::endl;
             std::cout << "4) Navigate to the delivery zone" << std::endl;
+            std::cout << "b) Back" << std::endl;
             std::cout << std::endl << "> ";
 
             std::string choice;
@@ -193,8 +199,10 @@ namespace IDP {
                 return MENU_NAVIGATE_TO_BOBBIN;
             } else if(choice == "3") {
                 return MENU_NAVIGATE_TO_BOX;
-            } else if(choice == "b") {
+            } else if(choice == "4") {
                 return MENU_NAVIGATE_TO_DELIVERY;
+            } else if(choice == "b") {
+                return MENU_BACK;
             } else {
                 std::cout << "Invalid selection." << std::endl << std::endl;
             }
@@ -213,6 +221,7 @@ namespace IDP {
             std::cout << "1) Analyse Sensors" << std::endl;
             std::cout << "2) Pick up and put down box/bobbin" << std::endl;
             std::cout << "3) Check for bobbin presence" << std::endl;
+            std::cout << "4) Check for box presence" << std::endl;
             std::cout << "b) Back" << std::endl;
             std::cout << std::endl << "> ";
 
@@ -228,6 +237,8 @@ namespace IDP {
                 return MENU_CLAMP_TESTS;
             } else if(choice == "3") {
                 return MENU_BOBBIN_PRESENT;
+            } else if(choice == "4") {
+                return MENU_BOX_PRESENT;
             } else if(choice == "b") {
                 return MENU_BACK;
             } else {
@@ -301,6 +312,35 @@ namespace IDP {
                 return MENU_COLOUR_SENSOR_LEDS;
             } else if(choice == "4") {
                 return MENU_BAD_BOBBIN_LED;
+            } else if(choice == "b") {
+                return MENU_BACK;
+            } else {
+                std::cout << "Invalid selection." << std::endl << std::endl;
+            }
+        }
+    }
+
+    /**
+     * The task tests submenu.
+     * \returns A MenuChoice to indicate the user's selection.
+     */
+    MenuChoice Menu::task_tests()
+    {
+        // See get_choice for comments, code is identical in form.
+        while(true) {
+            std::cout << "Select a task test:" << std::endl;
+            std::cout << "1) Delivery" << std::endl;
+            std::cout << "b) Back" << std::endl;
+            std::cout << std::endl << "> ";
+
+            std::string choice;
+            std::getline(std::cin, choice);
+            if(std::cin.eof()) {
+                std::cin.clear();
+                std::cin.ignore();
+                std::cout << "Invalid selection." << std::endl << std::endl;
+            } else if(choice == "1") {
+                return MENU_DELIVERY;
             } else if(choice == "b") {
                 return MENU_BACK;
             } else {

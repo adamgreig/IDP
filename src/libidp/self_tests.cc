@@ -342,7 +342,7 @@ namespace IDP {
 
         std::getchar();
 
-        cc.store_no_bobbin();
+        cc.store_zero();
 
         std::cout << "Now press enter to test for a bobbin." << std::endl;
 
@@ -356,6 +356,35 @@ namespace IDP {
                 std::cout << "Bobbin found!" << std::endl;
             else
                 std::cout << "No bobbin found." << std::endl;
+        }
+    }
+
+    /**
+     * See if a box is under the clamp
+     */
+    void SelfTests::box_present()
+    {
+        TRACE("box_present()");
+        ClampControl cc(this->_hal);
+        std::cout << "Testing for box...";
+
+        std::cout << "Make sure the clamp is not over a box and press";
+        std::cout << " enter." << std::endl;
+
+        std::getchar();
+
+        cc.store_zero();
+
+        std::cout << "Now press enter to test for a box." << std::endl;
+
+        std::getchar();
+
+        for(;;) {
+            bool present = cc.box_present();
+            if(present)
+                std::cout << "Box found!" << std::endl;
+            else
+                std::cout << "No box found." << std::endl;
         }
     }
 
@@ -453,7 +482,7 @@ namespace IDP {
     }
 
     /**
-     * Drive to a bobbin and stop.
+     * Drive to the delivery zone and stop.
      */
     void SelfTests::navigate_to_delivery()
     {
@@ -480,6 +509,49 @@ namespace IDP {
 
         do {
             status = nav.finished_delivery();
+        } while(status == NAVIGATION_ENROUTE);
+
+        this->_hal->motors_stop();
+        return;
+    }
+
+    /**
+     * Drive to the delivery zone and drop something off then return.
+     */
+    void SelfTests::delivery()
+    {
+        TRACE("delivery()");
+        INFO("Running delivery test");
+
+        std::cout << "Please place Fluffy between junctions 4 and 3 (facing";
+        std::cout << " the delivery area) and press enter." << std::endl;
+
+        std::getchar();
+
+        std::cout << "Please place a box under Fluffy's jaws and press enter.";
+        std::cout << std::endl;
+
+        std::getchar();
+
+        ClampControl cc(this->_hal);
+        cc.pick_up();
+
+        Navigation nav(this->_hal, NODE4, NODE3);
+        NavigationStatus status;
+        do {
+            status = nav.go_to_delivery();
+        } while(status == NAVIGATION_ENROUTE);
+
+        this->_hal->motors_stop();
+
+        cc.put_down();
+
+        do {
+            status = nav.finished_delivery();
+        } while(status == NAVIGATION_ENROUTE);
+
+        do {
+            status = nav.go_node(NODE4);
         } while(status == NAVIGATION_ENROUTE);
 
         this->_hal->motors_stop();

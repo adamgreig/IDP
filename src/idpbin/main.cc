@@ -79,7 +79,9 @@ int main()
             // 1. check for existing state files
             // 2. see if we should load them
             // 3. initialise a missionsupervisor appropriately
+            missup = new IDP::MissionSupervisor(ROBOT);
             // 4. run it
+            missup->run_task();
         } else {
             // One of the tests was selected, so initialise tests
             tests = new IDP::SelfTests(ROBOT);
@@ -90,6 +92,14 @@ int main()
                 tests->line_following();
             } else if(choice == IDP::MENU_NAVIGATION_TEST) {
                 tests->navigate();
+            } else if(choice == IDP::MENU_NAVIGATE_TO_BOX) {
+                tests->navigate_to_box();
+            } else if(choice == IDP::MENU_NAVIGATE_TO_BOBBIN) {
+                tests->navigate_to_bobbin();
+            } else if(choice == IDP::MENU_NAVIGATE_TO_DELIVERY) {
+                tests->navigate_to_delivery();
+            } else if(choice == IDP::MENU_DELIVERY) {
+                tests->delivery();
             } else if(choice == IDP::MENU_DRIVE_FORWARD) {
                 tests->drive_forward();
             } else if(choice == IDP::MENU_DRIVE_BACKWARD) {
@@ -110,6 +120,8 @@ int main()
                 tests->clamp_control();
             } else if(choice == IDP::MENU_BOBBIN_PRESENT) {
                 tests->bobbin_present();
+            } else if(choice == IDP::MENU_BOX_PRESENT) {
+                tests->box_present();
             } else if(choice == IDP::MENU_LINE_SENSORS) {
                 tests->line_sensors();
             } else if(choice == IDP::MENU_SWITCHES) {

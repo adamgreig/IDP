@@ -23,7 +23,7 @@ namespace IDP {
         MENU_SWITCHES, MENU_LDRS, MENU_NAVIGATION_TEST, MENU_INDICATOR_LEDS,
         MENU_ACTUATORS, MENU_COLOUR_SENSOR_LEDS, MENU_BAD_BOBBIN_LED,
         MENU_NAVIGATE_TO_BOBBIN, MENU_NAVIGATE_TO_BOX, MENU_BOBBIN_PRESENT,
-        MENU_NAVIGATE_TO_DELIVERY,
+        MENU_NAVIGATE_TO_DELIVERY, MENU_DELIVERY, MENU_BOX_PRESENT,
         MAX_MENU_CHOICE
     };
 
@@ -47,6 +47,7 @@ namespace IDP {
             static MenuChoice clamp_control();
             static MenuChoice sensor_tests();
             static MenuChoice output_tests();
+            static MenuChoice task_tests();
     };
 }
 

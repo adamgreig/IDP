@@ -272,6 +272,22 @@ namespace IDP {
     }
 
     /**
+     * Turn around, but stop as soon as we lose the line
+     */
+    LineFollowingStatus LineFollowing::turn_around_delivery()
+    {
+        TRACE("turn_around_delivery()");
+        LineFollowingStatus status = this->turn(TURN_AROUND_CW, 0);
+        if(this->_lost_turning_line) {
+            this->_lost_turning_line = false;
+            this->_lost_time = 0;
+            return ACTION_COMPLETED;
+        } else {
+            return status;
+        }
+    }
+
+    /**
      * Return whether we can see a junction or not, without
      * changing motor settings.
      * \returns A LineFollowingStatus indicating junctions or

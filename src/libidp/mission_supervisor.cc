@@ -29,7 +29,7 @@ namespace IDP {
      * \param robot Which robot to link to, or 0 if embedded
      */
     MissionSupervisor::MissionSupervisor(int robot = 0):
-        _hal(0), _box_has_red(false), _box_has_green(false),
+        _hal(0), _nav(0), _cc(0), _box_has_red(false), _box_has_green(false),
         _box_has_white(false)
     {
         TRACE("MissionSupervisor(" << robot << ")");
@@ -37,6 +37,12 @@ namespace IDP {
 
         // Construct the hardware abstraction layer
         this->_hal = new HardwareAbstractionLayer(robot);
+
+        // Construct a Navigation
+        this->_nav = new Navigation(this->_hal);
+
+        // Construct a ClampControl
+        this->_cc = new ClampControl(this->_hal);
     }
 
     /**
@@ -45,7 +51,12 @@ namespace IDP {
     MissionSupervisor::~MissionSupervisor()
     {
         TRACE("~MissionSupervisor()");
-        delete this->_hal;
+        if(this->_hal)
+            delete this->_hal;
+        if(this->_nav)
+            delete this->_nav;
+        if(this->_cc)
+            delete this->_cc;
     }
 
     /**
@@ -77,27 +88,22 @@ namespace IDP {
      */
     void MissionSupervisor::fill_and_deliver(Box box)
     {
-        // A Navigation will be useful
-        Navigation nav(this->_hal);
         NavigationStatus nav_status;
-
-        // So will Clamp Control
-        ClampControl cc(this->_hal);
 
         // We're at the start zone to begin with, so navigate to the box.
         INFO("Navigating to the box (" << BoxStrings[box] << ")");
         do {
-            nav_status = nav.find_box(box);
-        } while(status == NAVIGATION_ENROUTE);
+            nav_status = this->_nav->find_box(box);
+        } while(nav_status == NAVIGATION_ENROUTE);
 
         // Ensure the grabber jaw is open, then lower the arm to the box
         INFO("Lowering arm to box");
-        cc.open_jaw();
-        cc.lower_arm();
+        this->_cc->open_jaw();
+        this->_cc->lower_arm();
 
         // Check box colour
         INFO("Checking box colour...");
-        BobbinColour box_colour = cc.colour();
+        BobbinColour box_colour = this->_cc->colour();
         INFO("Detected box colour: " << BobbinColourStrings[box_colour]);
 
         // Store box contents status
@@ -113,8 +119,8 @@ namespace IDP {
             // Go find the first bobbin on the rack
             INFO("Going to the first bobbin on the rack");
             do {
-                nav_status = nav.find_bobbin();
-            } while(status == NAVIGATION_ENROUTE);
+                nav_status = this->_nav->find_bobbin();
+            } while(nav_status == NAVIGATION_ENROUTE);
 
             // Check bobbin colour and move to next until we find something
             // we like
@@ -122,17 +128,17 @@ namespace IDP {
 
             // Pick the bobbin up
             INFO("Picking the bobbin up");
-            cc.pick_up();
+            this->_cc->pick_up();
 
             // Return to our box
             INFO("Returning to box");
             do {
-                nav_status = nav.find_box(box);
+                nav_status = this->_nav->find_box(box);
             } while(nav_status == NAVIGATION_ENROUTE);
 
             // Drop the bobbin
             INFO("Putting the bobbin down in the box");
-            cc.put_down();
+            this->_cc->put_down();
 
             // Update box contents
             this->update_box_contents(bobbin_colour);
@@ -142,22 +148,35 @@ namespace IDP {
         INFO("Box filled! Delivery time.");
 
         INFO("Picking box up");
-        cc.pick_up();
+        this->_cc->pick_up();
 
         INFO("Taking box to delivery");
         do {
-            nav_status = nav.go_delivery();
+            nav_status = this->_nav->go_to_delivery();
         } while(nav_status == NAVIGATION_ENROUTE);
 
         INFO("Delivering box");
-        cc.put_down();
+        this->_cc->put_down();
+
+        INFO("Leaving delivery zone");
+        do {
+            nav_status = this->_nav->finished_delivery();
+        } while(nav_status == NAVIGATION_ENROUTE);
 
         INFO("Returning to start zone");
         do {
-            nav_status = nav.go_home();
+            nav_status = this->_nav->go_home();
         } while(nav_status == NAVIGATION_ENROUTE);
 
         INFO("Back home");
+    }
+
+    /**
+     * Stop.
+     */
+    void MissionSupervisor::stop()
+    {
+        this->_hal->motors_stop();
     }
 
     /**
@@ -170,12 +189,12 @@ namespace IDP {
         INFO("Updating box contents to include " <<
             BobbinColourStrings[colour]);
 
-        if(bobbin_colour == BOBBIN_WHITE)
-            box_has_white = true;
-        else if(bobbin_colour == BOBBIN_RED)
-            box_has_red = true;
-        else if(bobbin_colour == BOBBIN_GREEN)
-            box_has_green = true;
+        if(colour == BOBBIN_WHITE)
+            this->_box_has_white = true;
+        else if(colour == BOBBIN_RED)
+            this->_box_has_red = true;
+        else if(colour == BOBBIN_GREEN)
+            this->_box_has_green = true;
     }
 
     /**
@@ -188,10 +207,10 @@ namespace IDP {
         BobbinColour bobbin_colour;
         for(;;) {
             // Check the colour
-            bobbin_colour = cc.colour();
-            if((!box_has_white && bobbin_colour == BOBBIN_WHITE) ||
-               (!box_has_red   && bobbin_colour == BOBBIN_RED  ) ||
-               (!box_has_green && bobbin_colour == BOBBIN_GREEN))
+            bobbin_colour = this->_cc->colour();
+            if((!this->_box_has_white && bobbin_colour == BOBBIN_WHITE) ||
+               (!this->_box_has_red   && bobbin_colour == BOBBIN_RED  ) ||
+               (!this->_box_has_green && bobbin_colour == BOBBIN_GREEN))
             {
                 // Stop looking if it's a good colour
                 INFO("Found a colour we like (" << 
@@ -201,8 +220,9 @@ namespace IDP {
                 // Go to the next bobbin
                 INFO("Don't like this bobbin, moving on (it was " <<
                     BobbinColourStrings[bobbin_colour] << ")");
+                NavigationStatus nav_status;
                 do {
-                    nav_status = nav.find_next_bobbin();
+                    nav_status = this->_nav->find_next_bobbin();
                 } while(nav_status == NAVIGATION_ENROUTE);
             }
         }

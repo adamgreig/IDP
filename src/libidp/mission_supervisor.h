@@ -11,6 +11,10 @@
 #ifndef LIBIDP_MISSION_SUPERVISOR_H
 #define LIBIDP_MISSION_SUPERVISOR_H
 
+// Required for their various enums
+#include "clamp_control.h"
+#include "navigation.h"
+
 /**
  * Contains all the IDP related functionality including libidp and some idpbin
  * classes.
@@ -18,8 +22,6 @@
 namespace IDP {
 
     class HardwareAbstractionLayer;
-    enum BobbinColour;
-    enum Box;
 
     /**
      * Control the overall robot behaviour and objective
@@ -30,15 +32,19 @@ namespace IDP {
         public:
             MissionSupervisor(int robot);
             ~MissionSupervisor();
-            void run_task();
+            void run_task(void);
+            void stop(void);
             const HardwareAbstractionLayer* hal() const;
         private:
             void update_box_contents(BobbinColour colour);
-            BobbinColour find_useful_bobbin();
+            BobbinColour find_useful_bobbin(void);
+            void fill_and_deliver(Box box);
             HardwareAbstractionLayer* _hal;
-            bool _box_has_white;
+            Navigation* _nav;
+            ClampControl* _cc;
             bool _box_has_red;
             bool _box_has_green;
+            bool _box_has_white;
     };
 }
 

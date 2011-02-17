@@ -413,10 +413,10 @@ namespace IDP {
         TRACE("grabber_jaw("<<status<<")");
         if (status) {
             DEBUG("Clamping");
-            this->_port7 = 1<<6 | this->_port7;
+            this->_port7 = ~(1<<6) & this->_port7;
         } else {
             DEBUG("Releasing clamp");
-            this->_port7 = ~(1<<6) & this->_port7;
+            this->_port7 = 1<<6 | this->_port7;
         }
 
         this->rlink->command(WRITE_PORT_7, this->_port7);
@@ -431,10 +431,10 @@ namespace IDP {
         TRACE("grabber_lift("<<status<<")");
         if (status) {
             DEBUG("Lifting grabber");
-            this->_port7 = ~(1<<7) & this->_port7;
+            this->_port7 = 1<<7 | this->_port7;
         } else {
             DEBUG("Lowering grabber");
-            this->_port7 = 1<<7 | this->_port7;
+            this->_port7 = ~(1<<7) & this->_port7;
         }
 
         this->rlink->command(WRITE_PORT_7, this->_port7);

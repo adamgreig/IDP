@@ -79,8 +79,9 @@ namespace IDP {
      * \param to The node in front of the robot at the start
      */
     Navigation::Navigation(HardwareAbstractionLayer* hal,
-        const NavigationNode from=NODE7, const NavigationNode to=NODE8):
-        _hal(hal), _from(from), _to(to), _lf(0), _cached_junction(NO_CACHE)
+        const NavigationNode from, const NavigationNode to):
+        _hal(hal), _from(from), _to(to), _lf(0), _cached_junction(NO_CACHE),
+        _reached_special_case_junction(false)
     {
         TRACE("Navigation(" << hal << ", " << NavigationNodeStrings[from] <<
             ", " << NavigationNodeStrings[to] << ")");
@@ -88,7 +89,7 @@ namespace IDP {
         
         // Initialise a new lf object
         this->_lf = new LineFollowing(hal);
-        this->_lf->set_speed(64);
+        this->_lf->set_speed(127);
     }
 
     /**
@@ -113,6 +114,16 @@ namespace IDP {
     }
 
     /**
+     * Navigate to the line parallel to the rack, then drive along
+     * slowly until a bobbin is found.
+     * \returns A NavigationStatus code
+     */
+    NavigationStatus Navigation::find_next_bobbin()
+    {
+        return NAVIGATION_ARRIVED;
+    }
+
+    /**
      * Navigate to the start box and align to find one of the two boxes.
      * \returns A NavigationStatus code
      */
@@ -128,6 +139,18 @@ namespace IDP {
      */
     NavigationStatus Navigation::go_to_delivery()
     {
+        this->_lf->set_speed(80);
+
+        NavigationStatus nav_status;
+        do {
+            nav_status = this->go_node(NODE3);
+        } while(nav_status == NAVIGATION_ENROUTE);
+
+        LineFollowingStatus lf_status;
+        do {
+            lf_status = this->_lf->turn_around_delivery();
+        } while(lf_status == ACTION_IN_PROGRESS);
+
         return NAVIGATION_ARRIVED;
     }
 
@@ -137,6 +160,16 @@ namespace IDP {
      */
     NavigationStatus Navigation::finished_delivery()
     {
+        LineFollowingStatus lf_status;
+        do {
+            lf_status = this->_lf->turn_around_cw();
+        } while(lf_status == ACTION_IN_PROGRESS);
+
+        this->_to = NODE4;
+        this->_from = NODE3;
+
+        this->_cached_junction = NO_CACHE;
+
         return NAVIGATION_ARRIVED;
     }
 
@@ -182,7 +215,7 @@ namespace IDP {
     {
         TRACE("go_home()");
         NavigationStatus status = this->go_node(NODE8);
-        return status
+        return status;
     }
 
     /**
@@ -241,22 +274,30 @@ namespace IDP {
         // drive until we get to the end node, then do the turn safely as we
         // know where we are. In other cases, just turn and hope for the best -
         // this is pretty unlikely to happen.
-        unsigned short int skip_lines = 0;
-        if((this->_from == NODE8 && this->_to == NODE9) ||
-           (this->_from == NODE9 && this->_to == NODE10))
+        if(((this->_from == NODE8 && this->_to == NODE9) ||
+           (this->_from == NODE9 && this->_to == NODE10)) &&
+            !this->_reached_special_case_junction)
         {
+            DEBUG("Turning around on top line, special casing");
             LineFollowingStatus forwardstatus;
             forwardstatus = this->_lf->follow_line();
             if(forwardstatus == ACTION_IN_PROGRESS) {
+                DEBUG("LF is in progress");
                 return NAVIGATION_ENROUTE;
             } else if(forwardstatus == LOST) {
+                DEBUG("Got lost");
                 return NAVIGATION_LOST;
             } else {
                 // We found the junction, so tell LF to skip a line
                 // and then do the turn.
-                skip_lines = 1;
+                DEBUG("Found end junction on turn around special case");
+                this->_reached_special_case_junction = true;
             }
         }
+
+        unsigned short int skip_lines = 0;
+        if(this->_reached_special_case_junction)
+            skip_lines = 1;
 
         // Request LineFollowing to execute the required turn.
         LineFollowingStatus turnstatus;
@@ -273,6 +314,7 @@ namespace IDP {
             NavigationNode placeholder = this->_to;
             this->_to = this->_from;
             this->_from = placeholder;
+            this->_reached_special_case_junction = false;
         } else if(turnstatus == LOST) {
             // If lost, bubble that up
             return NAVIGATION_LOST;

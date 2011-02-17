@@ -30,7 +30,7 @@ namespace IDP {
     ClampControl::ClampControl(HardwareAbstractionLayer* hal): _hal(hal),
     _colour_tolerance(5), _badness_tolerance(10), _red_level(165),
     _green_level(144), _white_level(191), _bad_level(203),
-    _no_bobbin_reading(0)
+    _zero_reading(0)
     {
         TRACE("ClampControl("<<hal<<")");
         INFO("Initialising a ClampControl");
@@ -95,7 +95,7 @@ namespace IDP {
         TRACE("lower_arm()");
         DEBUG("Lowering the grabber");
         this->_hal->grabber_lift(false);
-        usleep(1E6);
+        usleep(2E6);
     }
 
     /**
@@ -201,14 +201,14 @@ namespace IDP {
 
         // If we haven't read this before, store the value. Next time
         // we'll find a delta.
-        if(_no_bobbin_reading == 0) {
+        if(_zero_reading == 0) {
             ERROR("No previous baseline was set, reading one now instead.");
-            this->store_no_bobbin();
+            this->store_zero();
         }
 
         // Get a new reading
         unsigned short int reading = this->average_bad_ldr();
-        short int delta = reading - this->_no_bobbin_reading;
+        short int delta = reading - this->_zero_reading;
 
         DEBUG("Reading " << reading << ", delta " << delta);
 
@@ -216,14 +216,48 @@ namespace IDP {
     }
 
     /**
+     * See if a box is under the jaw.
+     *
+     * We do this by checking for reflections of the steel box under the bad
+     * bobbin sensor.
+     */
+    bool ClampControl::box_present()
+    {
+        TRACE("box_present()");
+        DEBUG("Checking for a box...");
+        //
+        // If we haven't read this before, store the value. Next time
+        // we'll find a delta.
+        if(_zero_reading == 0) {
+            ERROR("No previous baseline was set, reading one now instead.");
+            this->store_zero();
+        }
+
+        // Turn on the light
+        this->_hal->bad_bobbin_LED(true);
+
+        // Read the LDR
+        unsigned short int reading = this->average_bad_ldr();
+        short int delta = reading - this->_zero_reading;
+
+        // Turn off the light
+        this->_hal->bad_bobbin_LED(false);
+
+        DEBUG("Reading " << reading << ", delta " << delta);
+
+        return (std::abs(delta) > BOX_DETECTION_DELTA_THRESHOLD);
+    }
+
+
+    /**
      * Take an LDR reading and use that as the no-bobbin baseline.
      */
-    void ClampControl::store_no_bobbin()
+    void ClampControl::store_zero()
     {
-        TRACE("store_no_bobbin()");
-        this->_no_bobbin_reading = this->average_bad_ldr(10);
+        TRACE("store_zero()");
+        this->_zero_reading = this->average_bad_ldr(10);
         INFO("Baseline no-bobbin reading taken as " <<
-            this->_no_bobbin_reading);
+            this->_zero_reading);
     }
 
     /**
