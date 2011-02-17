@@ -134,6 +134,8 @@ namespace IDP {
             NavigationStatus find_bobbin();
             NavigationStatus find_next_bobbin();
             NavigationStatus find_box(Box box);
+            NavigationStatus find_box_for_pickup(Box box);
+            NavigationStatus find_box_for_drop(Box box);
             NavigationStatus go_to_delivery();
             NavigationStatus finished_delivery();
             NavigationStatus go_node(const NavigationNode target);
@@ -147,6 +149,7 @@ namespace IDP {
             NavigationNode _from;
             NavigationNode _to;
             LineFollowing* _lf;
+            ClampControl* _cc;
             NavigationCachedJunction _cached_junction;
             bool _reached_special_case_junction;
     };

@@ -6,6 +6,7 @@
 
 #include "navigation.h"
 #include "line_following.h"
+#include "clamp_control.h"
 #include "hal.h"
 
 // Debug functionality
@@ -80,8 +81,8 @@ namespace IDP {
      */
     Navigation::Navigation(HardwareAbstractionLayer* hal,
         const NavigationNode from, const NavigationNode to):
-        _hal(hal), _from(from), _to(to), _lf(0), _cached_junction(NO_CACHE),
-        _reached_special_case_junction(false)
+        _hal(hal), _from(from), _to(to), _lf(0), _cc(0), 
+        _cached_junction(NO_CACHE), _reached_special_case_junction(false)
     {
         TRACE("Navigation(" << hal << ", " << NavigationNodeStrings[from] <<
             ", " << NavigationNodeStrings[to] << ")");
@@ -90,6 +91,9 @@ namespace IDP {
         // Initialise a new lf object
         this->_lf = new LineFollowing(hal);
         this->_lf->set_speed(127);
+
+        // Initialise a new cc object
+        this->_cc = new ClampControl(hal);
     }
 
     /**
@@ -124,12 +128,46 @@ namespace IDP {
     }
 
     /**
-     * Navigate to the start box and align to find one of the two boxes.
-     * \returns A NavigationStatus code
+     * Go and find a box and position the robot such that dropping a
+     * bobbin will land it in the box.
      */
-    NavigationStatus Navigation::find_box(Box box)
+    NavigationStatus Navigation::find_box_for_drop(Box box)
     {
-        UNUSED(box);
+        NavigationStatus nav_status;
+        if (box == BOX1)
+        {
+            do {
+                nav_status = this->go_node(NODE7);
+            } while (nav_status == NAVIGATION_ENROUTE);
+        }
+        else if (box == BOX2)
+        {
+            do {
+                nav_status = this->go_node(NODE8);
+            } while (nav_status == NAVIGATION_ENROUTE);
+        }
+        return NAVIGATION_ARRIVED;
+    }
+
+    /**
+     * Go and find a box and position the robot ready to pick the box
+     * up, or analyse its contents.
+     */
+    NavigationStatus Navigation::find_box_for_pickup(Box box)
+    {
+        // Go to the relevant node for the box
+        this->find_box_for_drop(box);
+
+        // Move slowly forwards until we detect a box top with the
+        // badness LDR
+        this->_lf->set_speed(48);
+
+        bool box_present;
+        do {
+            box_present = this->_cc->box_present();
+            this->_lf->follow_line();
+        } while (!box_present)
+
         return NAVIGATION_ARRIVED;
     }
 
