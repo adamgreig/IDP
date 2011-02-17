@@ -163,12 +163,15 @@ namespace IDP {
         this->find_box_for_drop(box);
 
         // Slow down to find the box by reflection
+        DEBUG("Reducing the speed to 48 for box detection");
         this->_lf->set_speed(48);
 
         // Stop while the jars and arms open
+        DEBUG("Stopping the motors to wait for actuators");
         this->_hal->motors_stop();
 
         // Open the jaw and lower the arm
+        DEBUG("Opening jaw and lowering arm");
         this->_cc->open_jaw();
         this->_cc->lower_arm();
 
@@ -179,6 +182,11 @@ namespace IDP {
             box_present = this->_cc->box_present();
             this->_lf->follow_line();
         } while (!box_present);
+
+        // Set the speed back to normal ready to continue driving
+        DEBUG("Found box!");
+        DEBUG("Resetting speed to 127");
+        this->_lf->set_speed(127);
 
         return NAVIGATION_ARRIVED;
     }
@@ -191,15 +199,20 @@ namespace IDP {
         TRACE("find_bobbin()");
 
         // Get to the start box
+        DEBUG("Moving to the start box");
         NavigationStatus nav_status;
         do {
             nav_status = this->go_node(NODE8);
         } while (nav_status == NAVIGATION_ENROUTE);
 
+        DEBUG("Got to the start box, starting bobbin run");
+
         // Start the bobbin run
         do {
             nav_status = this->find_next_bobbin();
         } while (nav_status == NAVIGATION_ENROUTE);
+
+        DEBUG("Found a bobbin");
 
         return nav_status;
     }
@@ -212,7 +225,8 @@ namespace IDP {
         TRACE("find_next_bobbin()");
         
         // Reduce the speed of the robot
-        this->_lf->set_speed(64);
+        DEBUG("Reducing speed to 48 for bobbin detection");
+        this->_lf->set_speed(48);
 
         bool presence;
         presence = this->_cc->bobbin_present();
@@ -220,6 +234,10 @@ namespace IDP {
             this->_lf->follow_line();
             return NAVIGATION_ENROUTE;
         }
+
+        // Reset the speed back to full
+        DEBUG("Got a bobbin, resetting speed to 127");
+        this->_lf->set_speed(127);
 
         return NAVIGATION_ARRIVED;
     }
@@ -230,6 +248,8 @@ namespace IDP {
      */
     NavigationStatus Navigation::go_to_delivery()
     {
+        TRACE("go_to_delivery()");
+        DEBUG("Reducing speed for delivery action");
         this->_lf->set_speed(80);
 
         NavigationStatus nav_status;
@@ -237,10 +257,18 @@ namespace IDP {
             nav_status = this->go_node(NODE3);
         } while(nav_status == NAVIGATION_ENROUTE);
 
+        DEBUG("At node 3, turning...");
+
         LineFollowingStatus lf_status;
         do {
             lf_status = this->_lf->turn_around_delivery();
         } while(lf_status == ACTION_IN_PROGRESS);
+
+        DEBUG("Finished delivery turn, ready to drop");
+
+        // Reset the speed to full
+        DEBUG("Resetting speed to 127");
+        this->_lf->set_speed(127);
 
         return NAVIGATION_ARRIVED;
     }
@@ -251,6 +279,8 @@ namespace IDP {
      */
     NavigationStatus Navigation::finished_delivery()
     {
+        TRACE("finished_delivery()");
+        DEBUG("Turning back onto the line towards node 4");
         LineFollowingStatus lf_status;
         do {
             lf_status = this->_lf->turn_around_cw();
@@ -260,6 +290,8 @@ namespace IDP {
         this->_from = NODE3;
 
         this->_cached_junction = NO_CACHE;
+
+        DEBUG("Back on the line");
 
         return NAVIGATION_ARRIVED;
     }
