@@ -93,7 +93,7 @@ namespace IDP {
         // We're at the start zone to begin with, so navigate to the box.
         INFO("Navigating to the box (" << BoxStrings[box] << ")");
         do {
-            nav_status = this->_nav->find_box(box);
+            nav_status = this->_nav->find_box_for_pickup(box);
         } while(nav_status == NAVIGATION_ENROUTE);
 
         // Ensure the grabber jaw is open, then lower the arm to the box
@@ -133,7 +133,7 @@ namespace IDP {
             // Return to our box
             INFO("Returning to box");
             do {
-                nav_status = this->_nav->find_box(box);
+                nav_status = this->_nav->find_box_for_drop(box);
             } while(nav_status == NAVIGATION_ENROUTE);
 
             // Drop the bobbin
@@ -146,6 +146,7 @@ namespace IDP {
         }
         
         INFO("Box filled! Delivery time.");
+        this->_nav->find_box_for_pickup(box);
 
         INFO("Picking box up");
         this->_cc->pick_up();

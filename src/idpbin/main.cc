@@ -92,8 +92,10 @@ int main()
                 tests->line_following();
             } else if(choice == IDP::MENU_NAVIGATION_TEST) {
                 tests->navigate();
-            } else if(choice == IDP::MENU_NAVIGATE_TO_BOX) {
-                tests->navigate_to_box();
+            } else if(choice == IDP::MENU_NAVIGATE_TO_BOX_FOR_DROP) {
+                tests->navigate_to_box_for_drop();
+            } else if(choice == IDP::MENU_NAVIGATE_TO_BOX_FOR_PICKUP) {
+                tests->navigate_to_box_for_pickup();
             } else if(choice == IDP::MENU_NAVIGATE_TO_BOBBIN) {
                 tests->navigate_to_bobbin();
             } else if(choice == IDP::MENU_NAVIGATE_TO_DELIVERY) {

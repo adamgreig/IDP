@@ -451,12 +451,45 @@ namespace IDP {
     /**
      * Locate a box and stop.
      */
-    void SelfTests::navigate_to_box()
+    void SelfTests::navigate_to_box_for_pickup()
     {
-        TRACE("navigate_to_box()");
-        INFO("Running navigate to box test");
+        TRACE("navigate_to_box_for_pickup()");
+        INFO("Running navigate to box for pickup test");
 
         std::cout << "Which box would you like to pick up? (1 or 2)";
+        std::cout << std::endl << "> ";
+
+        int box_number;
+        std::cin >> box_number;
+        Box box = static_cast<Box>(box_number - 1);
+
+        std::cout << "Going to box " << BoxStrings[box] << "." << std::endl;
+
+        std::cout << "Please position Fluffy on the line between nodes";
+        std::cout << " 7 and 8 (in the start box), then press enter.";
+        std::cout << std::endl;
+
+        std::getchar();
+
+        Navigation nav(this->_hal, NODE8, NODE9);
+        NavigationStatus status;
+        do {
+            status = nav.find_box_for_pickup(box);
+        } while(status == NAVIGATION_ENROUTE);
+
+        this->_hal->motors_stop();
+        return;
+    }
+
+    /**
+     * Locate a box and stop.
+     */
+    void SelfTests::navigate_to_box_for_drop()
+    {
+        TRACE("navigate_to_box_for_drop()");
+        INFO("Running navigate to box for drop test");
+
+        std::cout << "Which box would you like to deliver to? (1 or 2)";
         std::cout << std::endl << "> ";
 
         int box_number;
@@ -474,7 +507,7 @@ namespace IDP {
         Navigation nav(this->_hal, NODE8, NODE9);
         NavigationStatus status;
         do {
-            status = nav.find_box(box);
+            status = nav.find_box_for_drop(box);
         } while(status == NAVIGATION_ENROUTE);
 
         this->_hal->motors_stop();

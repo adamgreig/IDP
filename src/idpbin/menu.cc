@@ -182,8 +182,9 @@ namespace IDP {
             std::cout << "Select a navigation test:" << std::endl;
             std::cout << "1) Navigate to a specific node" << std::endl;
             std::cout << "2) Navigate to a bobbin" << std::endl;
-            std::cout << "3) Navigate to a box" << std::endl;
-            std::cout << "4) Navigate to the delivery zone" << std::endl;
+            std::cout << "3) Navigate to a box for drop" << std::endl;
+            std::cout << "4) Navigate to a box for pickup" << std::endl;
+            std::cout << "5) Navigate to the delivery zone" << std::endl;
             std::cout << "b) Back" << std::endl;
             std::cout << std::endl << "> ";
 
@@ -198,8 +199,10 @@ namespace IDP {
             } else if(choice == "2") {
                 return MENU_NAVIGATE_TO_BOBBIN;
             } else if(choice == "3") {
-                return MENU_NAVIGATE_TO_BOX;
+                return MENU_NAVIGATE_TO_BOX_FOR_DROP;
             } else if(choice == "4") {
+                return MENU_NAVIGATE_TO_BOX_FOR_PICKUP;
+            } else if(choice == "5") {
                 return MENU_NAVIGATE_TO_DELIVERY;
             } else if(choice == "b") {
                 return MENU_BACK;

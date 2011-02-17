@@ -43,7 +43,8 @@ namespace IDP {
             void box_present(void);
             void navigate(void);
             void navigate_to_bobbin(void);
-            void navigate_to_box(void);
+            void navigate_to_box_for_pickup(void);
+            void navigate_to_box_for_drop(void);
             void navigate_to_delivery(void);
             void delivery(void);
             void position(void);
