@@ -413,6 +413,27 @@ namespace IDP {
             current_direction = NAVIGATION_ANTICLOCKWISE;
         }
 
+        // If we're in the start box and facing ccw, get to node 6 and then
+        // turn around. this is a bit awful in that it uses a loop, but times
+        // needs must
+        if((this->_from == NODE8 && this->_to == NODE7) ||
+           (this->_from == NODE7 && this->_to == NODE6))
+        {
+            NavigationStatus status;
+            do {
+                status = this->go_node(NODE6);
+            } while(status == NAVIGATION_ENROUTE);
+
+            LineFollowingStatus lf_status;
+            do {
+                lf_status = this->_lf->turn_around_cw(2);
+            } while(lf_status == ACTION_IN_PROGRESS);
+
+            this->_from = NODE6;
+            this->_to = NODE7;
+            return NAVIGATION_ENROUTE;
+        }
+
         // If we're starting in the start box, leave before turning
         if(this->_from == NODE7 && this->_to == NODE8) {
             DEBUG("Leaving the start box before turning");

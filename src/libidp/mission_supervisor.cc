@@ -142,7 +142,7 @@ namespace IDP {
 
         // Check box colour
         INFO("Checking box colour...");
-        BobbinColour box_colour = this->_cc->colour();
+        BobbinColour box_colour = this->_cc->box_colour();
         INFO("Detected box colour: " << BobbinColourStrings[box_colour]);
 
         // Store box contents status
