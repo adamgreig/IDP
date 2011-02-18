@@ -30,7 +30,7 @@ namespace IDP {
      */
     MissionSupervisor::MissionSupervisor(int robot = 0):
         _hal(0), _nav(0), _cc(0), _box_has_red(false), _box_has_green(false),
-        _box_has_white(false)
+        _box_has_white(false), _already_delivered_box_one(false)
     {
         TRACE("MissionSupervisor(" << robot << ")");
         INFO("Constructing a MisionSupervisor, robot=" << robot);
@@ -60,6 +60,42 @@ namespace IDP {
     }
 
     /**
+     * Export the internal state via pass-by-reference variables.
+     * \param red Whether a red bobbin is in the box.
+     * \param green Whether a green bobbin is in the box.
+     * \param white Whether a white bobbin is in the box.
+     * \param box1 Whether the first box has already been delivered.
+     */
+    void MissionSupervisor::export_state(bool &red, bool &green, bool &white,
+            bool &box1)
+    {
+        TRACE("export_state(..)");
+        INFO("Exporting state from Mission Supervisor");
+        red = this->_box_has_red;
+        green = this->_box_has_green;
+        white = this->_box_has_white;
+        box1 = this->_already_delivered_box_one;
+    }
+
+    /**
+     * Load state from provided values.
+     * \param red Whether a red bobbin is in the box.
+     * \param green Whether a green bobbin is in the box.
+     * \param white Whether a white bobbin is in the box.
+     * \param box1 Whether the first box has already been delivered.
+     */
+    void MissionSupervisor::load_state(bool red, bool green, bool white,
+            bool box1)
+    {
+        TRACE("load_state("<<red<<", "<<green<<", "<<white<<", "<<box1);
+        INFO("Importing state: " << red << green << white << box1);
+        this->_box_has_red = red;
+        this->_box_has_green = green;
+        this->_box_has_white = white;
+        this->_already_delivered_box_one = box1;
+    }
+
+    /**
      * Commence running the main task. Return when two filled boxes have
      * been delivered to the delivery area.
      */
@@ -69,8 +105,11 @@ namespace IDP {
 
         INFO("Starting task run");
 
-        INFO("Filling box one");
-        this->fill_and_deliver(BOX1);
+        if(!this->_already_delivered_box_one) {
+            INFO("Filling box one");
+            this->fill_and_deliver(BOX1);
+            this->_already_delivered_box_one = true;
+        }
 
         INFO("Filling box two");
         this->fill_and_deliver(BOX2);

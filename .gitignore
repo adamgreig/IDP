@@ -1,3 +1,4 @@
 /build/
+/build_arm/
 *.swp
 .DS_Store

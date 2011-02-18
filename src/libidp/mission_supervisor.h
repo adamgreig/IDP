@@ -34,6 +34,8 @@ namespace IDP {
             ~MissionSupervisor();
             void run_task(void);
             void stop(void);
+            void export_state(bool &red, bool &green, bool &white, bool &box1);
+            void load_state(bool red, bool green, bool white, bool box1);
             const HardwareAbstractionLayer* hal() const;
         private:
             void update_box_contents(BobbinColour colour);
@@ -45,6 +47,7 @@ namespace IDP {
             bool _box_has_red;
             bool _box_has_green;
             bool _box_has_white;
+            bool _already_delivered_box_one;
     };
 }
 

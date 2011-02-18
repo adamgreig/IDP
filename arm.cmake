@@ -1,0 +1,5 @@
+# Platform file for the ARM boxes
+SET(CMAKE_SYSTEM_NAME Linux)
+SET(CMAKE_SYSTEM_PROCESSOR ARM)
+SET(CMAKE_CXX_COMPILER /usr/bin/arm-linux-gnu-g++)
+SET(CMAKE_CROSSCOMPILING True)

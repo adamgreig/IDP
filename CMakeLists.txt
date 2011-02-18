@@ -43,7 +43,7 @@ include_directories(
 )
 
 # Build required libraries
-add_subdirectory("lib")
+#add_subdirectory("lib")
 
 # Build IDP
 add_subdirectory("src")

@@ -8,7 +8,12 @@ cmake_minimum_required(VERSION 2.6)
 file(GLOB srcs "*.cc")
 add_library(idp STATIC ${srcs})
 
-target_link_libraries(idp "${IDP_SOURCE_DIR}/lib/librobot/librobot.a")
+if(NOT CMAKE_CROSSCOMPILING)
+    target_link_libraries(idp "${IDP_SOURCE_DIR}/lib/librobot/librobot.a")
+else()
+    target_link_libraries(idp "${IDP_SOURCE_DIR}/lib/librobot/librobot.arm.a")
+    add_definitions(-DRUNNING_EMBEDDED)
+endif()
 
 # Build test executable
 #file(GLOB test_srcs "test/*.cc")
