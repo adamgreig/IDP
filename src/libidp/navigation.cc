@@ -190,7 +190,8 @@ namespace IDP {
      * the bobbin rack.
      * \returns A NavigationStatus code.
      */
-    NavigationStatus Navigation::find_bobbin(){
+    NavigationStatus Navigation::find_bobbin()
+    {
         TRACE("find_bobbin()");
 
         // Get to the start box
@@ -217,7 +218,8 @@ namespace IDP {
      * is present.
      * \returns A NavigationStatus code
      */
-    NavigationStatus Navigation::find_next_bobbin() {
+    NavigationStatus Navigation::find_next_bobbin()
+    {
         TRACE("find_next_bobbin()");
         
         // Reduce the speed of the robot
