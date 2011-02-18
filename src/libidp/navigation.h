@@ -137,6 +137,8 @@ namespace IDP {
             NavigationStatus find_box(Box box);
             NavigationStatus find_box_for_pickup(Box box);
             NavigationStatus find_box_for_drop(Box box);
+            NavigationStatus find_bobbin();
+            NavigationStatus find_next_bobbin();
             NavigationStatus go_to_delivery();
             NavigationStatus finished_delivery();
             NavigationStatus go_node(const NavigationNode target);

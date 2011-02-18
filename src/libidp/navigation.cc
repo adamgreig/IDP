@@ -111,32 +111,20 @@ namespace IDP {
     }
 
     /**
-     * Navigate to the line parallel to the rack, then drive along
-     * slowly until a bobbin is found.
-     * \returns A NavigationStatus code
-     */
-    NavigationStatus Navigation::find_bobbin()
-    {
-        return NAVIGATION_ARRIVED;
-    }
-
-    /**
-     * Navigate to the line parallel to the rack, then drive along
-     * slowly until a bobbin is found.
-     * \returns A NavigationStatus code
-     */
-    NavigationStatus Navigation::find_next_bobbin()
-    {
-        return NAVIGATION_ARRIVED;
-    }
-
-    /**
      * Go and find a box and position the robot such that dropping a
      * bobbin will land it in the box.
+     * \param box The Box to which to navigate for bobbin drop.
+     * \returns A NavigationStatus code.
      */
     NavigationStatus Navigation::find_box_for_drop(Box box)
     {
+        TRACE("find_box_for_drop(" << BoxStrings[box] << )");
+
+        // Reduce the speed whilst looking for a box so we don't
+        // overshoot the node
+        DEBUG("Setting speed to 80 to avoid node overshoot");
         this->_lf->set_speed(80);
+
         NavigationStatus nav_status;
         if (box == BOX1)
         {
@@ -150,25 +138,34 @@ namespace IDP {
                 nav_status = this->go_node(NODE8);
             } while (nav_status == NAVIGATION_ENROUTE);
         }
+
+        DEBUG("Found a box!");
         return NAVIGATION_ARRIVED;
     }
 
     /**
      * Go and find a box and position the robot ready to pick the box
      * up, or analyse its contents.
+     * \param box The Box to which to navigate for pickup.
+     * \returns A NavigationStatus code.
      */
     NavigationStatus Navigation::find_box_for_pickup(Box box)
     {
+        TRACE("find_box_for_pickup(" << BoxStrings[box] << ")");
+
         // Go to the relevant node for the box
         this->find_box_for_drop(box);
 
         // Slow down to find the box by reflection
+        DEBUG("Reducing the speed to 48 for box detection");
         this->_lf->set_speed(48);
 
         // Stop while the jars and arms open
+        DEBUG("Stopping the motors to wait for actuators");
         this->_hal->motors_stop();
 
         // Open the jaw and lower the arm
+        DEBUG("Opening jaw and lowering arm");
         this->_cc->open_jaw();
         this->_cc->lower_arm();
 
@@ -180,6 +177,77 @@ namespace IDP {
             this->_lf->follow_line();
         } while (!box_present);
 
+        // Set the speed back to normal ready to continue driving
+        DEBUG("Found box!");
+        DEBUG("Resetting speed to 127");
+        this->_lf->set_speed(127);
+
+        return NAVIGATION_ARRIVED;
+    }
+
+    /**
+     * Navigate to the starting box and commence a run along
+     * the bobbin rack.
+     * \returns A NavigationStatus code.
+     */
+    NavigationStatus Navigation::find_bobbin()
+    {
+        TRACE("find_bobbin()");
+
+        // Get to the start box
+        DEBUG("Moving to the start box");
+        NavigationStatus nav_status;
+        do {
+            nav_status = this->go_node(NODE8);
+        } while (nav_status == NAVIGATION_ENROUTE);
+
+        // Stop while the jars and arms open
+        DEBUG("Stopping the motors to wait for actuators");
+        this->_hal->motors_stop();
+
+        // Open the jaw and lower the arm
+        DEBUG("Opening jaw and lowering arm");
+        this->_cc->open_jaw();
+        this->_cc->lower_arm();
+
+        DEBUG("Ready to begin the bobbin run");
+
+        // Start the bobbin run
+        do {
+            nav_status = this->find_next_bobbin();
+        } while (nav_status == NAVIGATION_ENROUTE);
+
+        DEBUG("Found a bobbin!");
+
+        return nav_status;
+    }
+
+    /**
+     * Drive forwards at a slow speed, and return only when a bobbin
+     * is present.
+     * \returns A NavigationStatus code
+     */
+    NavigationStatus Navigation::find_next_bobbin()
+    {
+        TRACE("find_next_bobbin()");
+        
+        // Reduce the speed of the robot
+        DEBUG("Reducing speed to 48 for bobbin detection");
+        this->_lf->set_speed(48);
+
+        // Follow the line until ClampControl says we're at a bobbin
+        bool presence;
+        presence = this->_cc->bobbin_present();
+        if (!presence) {
+            this->_lf->follow_line();
+            return NAVIGATION_ENROUTE;
+        }
+
+        // Reset the speed back to full
+        DEBUG("Got a bobbin, stopping & resetting speed to 127");
+        this->_hal->motors_stop();
+        this->_lf->set_speed(127);
+
         return NAVIGATION_ARRIVED;
     }
 
@@ -189,6 +257,10 @@ namespace IDP {
      */
     NavigationStatus Navigation::go_to_delivery()
     {
+        TRACE("go_to_delivery()");
+
+        // Reduce speed to minimise positioning errors caused by inertia
+        DEBUG("Reducing speed for delivery action");
         this->_lf->set_speed(80);
 
         NavigationStatus nav_status;
@@ -196,10 +268,18 @@ namespace IDP {
             nav_status = this->go_node(NODE3);
         } while(nav_status == NAVIGATION_ENROUTE);
 
+        DEBUG("At node 3, turning...");
+
         LineFollowingStatus lf_status;
         do {
             lf_status = this->_lf->turn_around_delivery();
         } while(lf_status == ACTION_IN_PROGRESS);
+
+        DEBUG("Finished delivery turn, ready to drop");
+
+        // Reset the speed to full
+        DEBUG("Resetting speed to 127");
+        this->_lf->set_speed(127);
 
         return NAVIGATION_ARRIVED;
     }
@@ -210,15 +290,28 @@ namespace IDP {
      */
     NavigationStatus Navigation::finished_delivery()
     {
+        TRACE("finished_delivery()");
+
+        // Reduce speed as this action can easily overshoot
+        DEBUG("Setting speed to 80 to get back onto line");
+        this->_lf->set_speed(80);
+
+        DEBUG("Turning back onto the line towards node 4");
         LineFollowingStatus lf_status;
         do {
             lf_status = this->_lf->turn_around_cw();
         } while(lf_status == ACTION_IN_PROGRESS);
 
+        DEBUG("Back on the line");
+
         this->_to = NODE4;
         this->_from = NODE3;
 
         this->_cached_junction = NO_CACHE;
+
+        // Set the speed back to full
+        DEBUG("Setting speed back to 127");
+        this->_lf->set_speed(127);
 
         return NAVIGATION_ARRIVED;
     }
