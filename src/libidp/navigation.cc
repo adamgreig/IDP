@@ -201,7 +201,14 @@ namespace IDP {
             nav_status = this->go_node(NODE8);
         } while (nav_status == NAVIGATION_ENROUTE);
 
-        DEBUG("Got to the start box, starting bobbin run");
+        // Stop while the jars and arms open
+        DEBUG("Stopping the motors to wait for actuators");
+        this->_hal->motors_stop();
+
+        // Open the jaw and lower the arm
+        DEBUG("Opening jaw and lowering arm");
+        this->_cc->open_jaw();
+        this->_cc->lower_arm();
 
         // Start the bobbin run
         do {
