@@ -11,3 +11,6 @@ file(GLOB srcs "*.cc")
 add_executable(idpbin ${srcs})
 target_link_libraries(idpbin idp)
 
+if(CMAKE_CROSSCOMPILING)
+    add_definitions(-DRUNNING_EMBEDDED)
+endif()

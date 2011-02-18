@@ -16,7 +16,7 @@
 // Debug functionality
 #define MODULE_NAME "Clamp"
 #define TRACE_ENABLED   false
-#define DEBUG_ENABLED   true
+#define DEBUG_ENABLED   false
 #define INFO_ENABLED    true
 #define ERROR_ENABLED   true
 #include "debug.h"
@@ -223,15 +223,22 @@ namespace IDP {
         // Turn off the light
         this->_hal->colour_LED(false);
 
+        DEBUG("Light: Read " << reading << ", delta " << delta);
+
         // If the light reading indicates that we found an LED, we can return
-        if(delta < -BOBBIN_DETECTION_DELTA_THRESHOLD)
+        if(delta < -15)
             return true;
+
+        // Discard readings while it settles
+        this->average_bad_ldr(10);
 
         // Take a reading with lights off (for white)
         reading = this->average_bad_ldr();
-        delta = reading - this->_colour_dark_zero;
+        delta = reading - this->_badness_dark_zero;
 
-        return (delta < -BOBBIN_DETECTION_DELTA_THRESHOLD);
+        DEBUG("Dark: Read " << reading << ", delta " << delta);
+
+        return (delta > 20);
     }
 
     /**
@@ -281,7 +288,7 @@ namespace IDP {
         this->_hal->colour_LED(false);
         this->_hal->bad_bobbin_LED(false);
         this->_colour_dark_zero = this->average_colour_ldr(10);
-        this->_badness_dark_zero = this->average_colour_ldr(10);
+        this->_badness_dark_zero = this->average_bad_ldr(10);
 
         // Turn on the colour light
         this->_hal->colour_LED(true);

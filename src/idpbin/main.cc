@@ -71,7 +71,7 @@ void terminate(int param)
  * A big if statement to run the chosen test.
  * \param choice The user's menu selection
  */
-void run_test(MenuChoice choice)
+void run_self_test(IDP::MenuChoice choice)
 {
     // One of the tests was selected, so initialise tests
     tests = new IDP::SelfTests(ROBOT);
@@ -179,7 +179,7 @@ int main()
             // Run the task
             missup->run_task();
         } else {
-            run_test(choice);
+            run_self_test(choice);
         }
     }
 

@@ -12,7 +12,6 @@ if(NOT CMAKE_CROSSCOMPILING)
     target_link_libraries(idp "${IDP_SOURCE_DIR}/lib/librobot/librobot.a")
 else()
     target_link_libraries(idp "${IDP_SOURCE_DIR}/lib/librobot/librobot.arm.a")
-    add_definitions(-DRUNNING_EMBEDDED)
 endif()
 
 # Build test executable
