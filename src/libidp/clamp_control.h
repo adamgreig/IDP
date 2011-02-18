@@ -74,6 +74,7 @@ namespace IDP {
             void pick_up();
             void put_down();
             BobbinColour colour() const;
+            BobbinColour box_colour() const;
             BobbinBadness badness() const;
             bool bobbin_present();
             bool box_present();

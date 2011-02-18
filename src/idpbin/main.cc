@@ -107,6 +107,8 @@ void run_self_test(IDP::MenuChoice choice)
         tests->stop();
     } else if(choice == IDP::MENU_ANALYSE) {
         tests->bobbin_analyse();
+    } else if(choice == IDP::MENU_BOX_COLOUR) {
+        tests->box_analyse();
     } else if(choice == IDP::MENU_CLAMP_TESTS) {
         tests->clamp_control();
     } else if(choice == IDP::MENU_BOBBIN_PRESENT) {

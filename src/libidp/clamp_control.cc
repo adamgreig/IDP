@@ -16,7 +16,7 @@
 // Debug functionality
 #define MODULE_NAME "Clamp"
 #define TRACE_ENABLED   false
-#define DEBUG_ENABLED   false
+#define DEBUG_ENABLED   true
 #define INFO_ENABLED    true
 #define ERROR_ENABLED   true
 #include "debug.h"
@@ -131,35 +131,41 @@ namespace IDP {
         INFO("Checking bobbin colour");
         this->_hal->colour_LED(true);
         unsigned short int reading = this->average_colour_ldr();
-        DEBUG("Got an ADC read of " << reading);
-        if(reading > _red_level - _colour_tolerance
-                && reading < _red_level + _colour_tolerance)
-        {
-            INFO("Found a red bobbin");
-            this->_hal->colour_LED(false);
+        DEBUG("Read " << reading);
+        this->_hal->colour_LED(false);
+
+        short int delta = reading - this->_colour_light_zero;
+        DEBUG("Delta " << delta);
+
+        if(delta < -80)
             return BOBBIN_RED;
-        }
-        else if(reading > _green_level - _colour_tolerance
-                && reading < _green_level + _colour_tolerance)
-        {
-            INFO("Found a green bobbin");
-            this->_hal->colour_LED(false);
+        else if(delta < -60)
             return BOBBIN_GREEN;
-        }
-        else if(reading > _white_level - _colour_tolerance
-                && reading < _white_level + _colour_tolerance)
-        {
-            INFO("Found a white bobbin");
-            this->_hal->colour_LED(false);
-            return BOBBIN_WHITE;
-        }
         else
-        {
-            // No idea what colour this bobbin is
-            ERROR("Couldn't identify bobbin colour");
-            this->_hal->colour_LED(false);
-            return BOBBIN_UNKNOWN_COLOUR;
-        }
+            return BOBBIN_WHITE;
+    }
+
+    /**
+     * Check the bobbin colour while it is in a box
+     */
+    BobbinColour ClampControl::box_colour() const
+    {
+        TRACE("box_colour()");
+        INFO("Checking box colour");
+        this->_hal->colour_LED(true);
+        unsigned short int reading = this->average_colour_ldr();
+        DEBUG("Read " << reading);
+        this->_hal->colour_LED(false);
+
+        short int delta = reading - this->_colour_light_zero;
+        DEBUG("Delta " << delta);
+
+        if(delta < -10)
+            return BOBBIN_RED;
+        else if(delta < -3)
+            return BOBBIN_GREEN;
+        else
+            return BOBBIN_WHITE;
     }
 
     /**
@@ -225,8 +231,8 @@ namespace IDP {
 
         DEBUG("Light: Read " << reading << ", delta " << delta);
 
-        // If the light reading indicates that we found an LED, we can return
-        if(delta < -15)
+        // If the light reading indicates that we found a bobbin, we can return
+        if(delta < -7)
             return true;
 
         // Discard readings while it settles
@@ -238,7 +244,7 @@ namespace IDP {
 
         DEBUG("Dark: Read " << reading << ", delta " << delta);
 
-        return (delta > 20);
+        return (delta > 15);
     }
 
     /**

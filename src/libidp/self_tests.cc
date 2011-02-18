@@ -311,13 +311,20 @@ namespace IDP {
     {
         TRACE("bobbin_analyse()");
 
+        ClampControl cc(this->_hal);
+        
+        std::cout << "Make sure the clamp is not over a bobbin and press";
+        std::cout << " enter." << std::endl;
+
+        std::getchar();
+
+        cc.store_zero();
+
         std::cout << "Position a bobbin inside the clamp and press enter.";
         std::cout << std::endl;
 
         std::getchar();
 
-        ClampControl cc(this->_hal);
-        
         BobbinColour colour = cc.colour();
         std::cout << "Read colour as " << BobbinColourStrings[colour];
         std::cout << std::endl;
@@ -325,6 +332,34 @@ namespace IDP {
         BobbinBadness bad = cc.badness();
         std::cout << "Read badness as " << BobbinBadnessStrings[bad];
         std::cout << std::endl << "Done." << std::endl;
+
+    }
+
+    /**
+     * Analyse the colour of the bobbin in a box
+     */
+    void SelfTests::box_analyse()
+    {
+        TRACE("box_analyse()");
+
+        ClampControl cc(this->_hal);
+        
+        std::cout << "Make sure the clamp is not over a bobbin and press";
+        std::cout << " enter." << std::endl;
+
+        std::getchar();
+
+        cc.store_zero();
+
+        std::cout << "Position a box inside the clamp and press enter.";
+        std::cout << std::endl;
+
+        std::getchar();
+
+        
+        BobbinColour colour = cc.box_colour();
+        std::cout << "Read colour as " << BobbinColourStrings[colour];
+        std::cout << std::endl;
 
     }
 
@@ -445,6 +480,15 @@ namespace IDP {
         } while(status == NAVIGATION_ENROUTE);
 
         this->_hal->motors_stop();
+
+        INFO("Found bobbin. Press 'p' to pick up or anything"
+            << " else to quit");
+
+        char in = std::getchar();
+        if(in == 'p') {
+            ClampControl cc(this->_hal);
+            cc.pick_up();
+        }
 
         return;
     }

@@ -94,6 +94,8 @@ namespace IDP {
 
         // Initialise a new cc object
         this->_cc = new ClampControl(hal);
+        this->_cc->open_jaw();
+        this->_cc->lower_arm();
         this->_cc->store_zero();
     }
 
@@ -118,7 +120,7 @@ namespace IDP {
      */
     NavigationStatus Navigation::find_box_for_drop(Box box)
     {
-        TRACE("find_box_for_drop(" << BoxStrings[box] << )");
+        TRACE("find_box_for_drop(" << BoxStrings[box] << ")");
 
         // Reduce the speed whilst looking for a box so we don't
         // overshoot the node
@@ -233,7 +235,7 @@ namespace IDP {
         
         // Reduce the speed of the robot
         DEBUG("Reducing speed to 48 for bobbin detection");
-        this->_lf->set_speed(48);
+        this->_lf->set_speed(20);
 
         // Follow the line until ClampControl says we're at a bobbin
         bool presence;

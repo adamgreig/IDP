@@ -221,10 +221,11 @@ namespace IDP {
         // See get_choice for comments, code is identical in form.
         while(true) {
             std::cout << "Select a clamp control test:" << std::endl;
-            std::cout << "1) Analyse Sensors" << std::endl;
+            std::cout << "1) Analyse bobbin" << std::endl;
             std::cout << "2) Pick up and put down box/bobbin" << std::endl;
             std::cout << "3) Check for bobbin presence" << std::endl;
             std::cout << "4) Check for box presence" << std::endl;
+            std::cout << "5) Analyse box" << std::endl;
             std::cout << "b) Back" << std::endl;
             std::cout << std::endl << "> ";
 
@@ -242,6 +243,8 @@ namespace IDP {
                 return MENU_BOBBIN_PRESENT;
             } else if(choice == "4") {
                 return MENU_BOX_PRESENT;
+            } else if(choice == "5") {
+                return MENU_BOX_COLOUR;
             } else if(choice == "b") {
                 return MENU_BACK;
             } else {

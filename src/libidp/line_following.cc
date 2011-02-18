@@ -9,8 +9,8 @@
 
 // Debug functionality
 #define MODULE_NAME "LineFollowing"
-#define TRACE_ENABLED   true
-#define DEBUG_ENABLED   true
+#define TRACE_ENABLED   false
+#define DEBUG_ENABLED   false
 #define INFO_ENABLED    true
 #define ERROR_ENABLED   true
 #include "debug.h"
@@ -345,7 +345,7 @@ namespace IDP {
         // Update the gain of LineFollowing's integral controller
         // to compensate for the new speed
         unsigned short int diff = MOTOR_MAX_SPEED - this->_speed;
-        double new_gain = 5.0 - (static_cast<double>(diff) / 32.0);
+        double new_gain = 5.0 - (static_cast<double>(diff) / 36.0);
         DEBUG("Setting new gain to " << new_gain);
         this->_integral_gain = new_gain;
 
