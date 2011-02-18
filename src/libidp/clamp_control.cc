@@ -16,7 +16,7 @@
 // Debug functionality
 #define MODULE_NAME "Clamp"
 #define TRACE_ENABLED   false
-#define DEBUG_ENABLED   false
+#define DEBUG_ENABLED   true
 #define INFO_ENABLED    true
 #define ERROR_ENABLED   true
 #include "debug.h"
@@ -151,6 +151,7 @@ namespace IDP {
 
         if(delta < -80)
         {
+            DEBUG("Found a red bobbin");
             this->_hal->indication_LEDs(false, false, true);
             usleep(500000);
             this->_hal->indication_LEDs(true, true, true);
@@ -158,6 +159,7 @@ namespace IDP {
         }
         else if(delta < -60)
         {
+            DEBUG("Found a green bobbin");
             this->_hal->indication_LEDs(false, true, false);
             usleep(500000);
             this->_hal->indication_LEDs(true, true, true);
@@ -165,6 +167,7 @@ namespace IDP {
         }
         else
         {
+            DEBUG("Found a white bobbin");
             this->_hal->indication_LEDs(true, false, false);
             usleep(500000);
             this->_hal->indication_LEDs(true, true, true);
@@ -188,11 +191,29 @@ namespace IDP {
         DEBUG("Delta " << delta);
 
         if(delta < -10)
+        {
+            DEBUG("Found a red bobbin in a box");
+            this->_hal->indication_LEDs(false, false, true);
+            usleep(500000);
+            this->_hal->indication_LEDs(true, true, true);
             return BOBBIN_RED;
+        }
         else if(delta < -3)
+        {
+            DEBUG("Found a green bobbin in a box");
+            this->_hal->indication_LEDs(false, true, false);
+            usleep(500000);
+            this->_hal->indication_LEDs(true, true, true);
             return BOBBIN_GREEN;
+        }
         else
+        {
+            DEBUG("Found a white bobbin in a box");
+            this->_hal->indication_LEDs(true, false, false);
+            usleep(500000);
+            this->_hal->indication_LEDs(true, true, true);
             return BOBBIN_WHITE;
+        }
     }
 
     /**
@@ -209,18 +230,19 @@ namespace IDP {
         unsigned int delta = reading - this->_badness_light_zero;
         //if(reading > _bad_level - _badness_tolerance
                 //&& reading < _bad_level + _badness_tolerance)
-        if(delta > 20)
-        {
-            INFO("Found a bad bobbin");
-            this->_hal->bad_bobbin_LED(false);
-            return BOBBIN_BAD;
-        }
-        else
-        {
-            INFO("Found a good bobbin");
-            this->_hal->bad_bobbin_LED(false);
-            return BOBBIN_GOOD;
-        }
+        return BOBBIN_GOOD;
+        //if(delta > 110)
+        //{
+            //INFO("Found a bad bobbin");
+            //this->_hal->bad_bobbin_LED(false);
+            //return BOBBIN_BAD;
+        //}
+        //else
+        //{
+            //INFO("Found a good bobbin");
+            //this->_hal->bad_bobbin_LED(false);
+            //return BOBBIN_GOOD;
+        //}
     }
 
     /**

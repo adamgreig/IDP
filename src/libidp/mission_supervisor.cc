@@ -111,6 +111,9 @@ namespace IDP {
             INFO("Filling box one");
             this->fill_and_deliver(BOX1);
             this->_already_delivered_box_one = true;
+            int counter;
+            for(counter = 0; counter < 5; counter++)
+                this->_nav->go_node(NODE9);
         }
 
         INFO("Filling box two");
