@@ -210,6 +210,8 @@ namespace IDP {
         this->_cc->open_jaw();
         this->_cc->lower_arm();
 
+        DEBUG("Ready to begin the bobbin run");
+
         // Start the bobbin run
         do {
             nav_status = this->find_next_bobbin();
@@ -242,7 +244,8 @@ namespace IDP {
         }
 
         // Reset the speed back to full
-        DEBUG("Got a bobbin, resetting speed to 127");
+        DEBUG("Got a bobbin, stopping & resetting speed to 127");
+        this->_hal->motors_stop();
         this->_lf->set_speed(127);
 
         return NAVIGATION_ARRIVED;
