@@ -64,6 +64,9 @@ namespace IDP {
 
         // Set emergency stop to the appropriate pin (front microswitch)
         this->enable_emergency_stop();
+
+        // Turn on the indication LEDs
+        this->indication_LEDs(true, true, true);
     }
 
     /**

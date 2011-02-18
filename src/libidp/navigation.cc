@@ -440,8 +440,10 @@ namespace IDP {
                 lf_status = this->_lf->turn_around_cw(2);
             } while(lf_status == ACTION_IN_PROGRESS);
 
-            this->_from = NODE6;
-            this->_to = NODE7;
+            this->_from = NODE7;
+            this->_to = NODE8;
+            this->_cached_junction = NO_CACHE;
+            this->_reached_special_case_junction = false;
             return NAVIGATION_ENROUTE;
         }
 
@@ -562,12 +564,6 @@ namespace IDP {
     {
         TRACE("handle_junction("<<NavigationNodeStrings[target]<<")");
 
-        // See if we're there!
-        if(target == this->_to) {
-            DEBUG("Found target junction");
-            return NAVIGATION_ARRIVED;
-        }
-
         // Determine the current direction of travel around the course
         NavigationDirection current_direction;
         if(this->_to > this->_from) {
@@ -576,6 +572,14 @@ namespace IDP {
         } else {
             DEBUG("We are travelling anticlockwise");
             current_direction = NAVIGATION_ANTICLOCKWISE;
+        }
+
+        // See if we're there!
+        if(target == this->_to) {
+            DEBUG("Found target junction");
+            this->_from = this->_to;
+            this->_to = NAVIGATION_ROUTE_MAP[current_direction][this->_to];
+            return NAVIGATION_ARRIVED;
         }
 
         // Look up which direction to go

@@ -247,13 +247,16 @@ namespace IDP {
     BobbinColour MissionSupervisor::find_useful_bobbin()
     {
         BobbinColour bobbin_colour;
+        BobbinBadness badness;
         for(;;) {
             // Check the colour
             this->_cc->close_jaw();
             bobbin_colour = this->_cc->colour();
-            if((!this->_box_has_white && bobbin_colour == BOBBIN_WHITE) ||
+            badness = this->_cc->badness();
+            if(((!this->_box_has_white && bobbin_colour == BOBBIN_WHITE) ||
                (!this->_box_has_red   && bobbin_colour == BOBBIN_RED  ) ||
-               (!this->_box_has_green && bobbin_colour == BOBBIN_GREEN))
+               (!this->_box_has_green && bobbin_colour == BOBBIN_GREEN)) &&
+                badness == BOBBIN_GOOD)
             {
                 // Stop looking if it's a good colour
                 INFO("Found a colour we like (" << 
@@ -263,6 +266,8 @@ namespace IDP {
                 // Go to the next bobbin
                 INFO("Don't like this bobbin, moving on (it was " <<
                     BobbinColourStrings[bobbin_colour] << ")");
+                if (badness == BOBBIN_BAD)
+                    INFO("This bobbin was bad");
                 this->_cc->open_jaw();
                 NavigationStatus nav_status;
                 do {

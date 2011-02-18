@@ -102,6 +102,8 @@ namespace IDP {
             unsigned short int _colour_light_zero;
             unsigned short int _colour_dark_zero;
             unsigned short int _colour_light_closed_zero;
+            bool _arm_up;
+            bool _jaw_open;
     };
 }
 

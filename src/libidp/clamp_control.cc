@@ -16,7 +16,7 @@
 // Debug functionality
 #define MODULE_NAME "Clamp"
 #define TRACE_ENABLED   false
-#define DEBUG_ENABLED   true
+#define DEBUG_ENABLED   false
 #define INFO_ENABLED    true
 #define ERROR_ENABLED   true
 #include "debug.h"
@@ -31,7 +31,7 @@ namespace IDP {
     _colour_tolerance(5), _badness_tolerance(10), _red_level(165),
     _green_level(144), _white_level(191), _bad_level(203),
     _badness_light_zero(0), _badness_dark_zero(0), _colour_light_zero(0),
-    _colour_dark_zero(0)
+    _colour_dark_zero(0), _arm_up(true), _jaw_open(true)
     {
         TRACE("ClampControl("<<hal<<")");
         INFO("Initialising a ClampControl");
@@ -83,9 +83,12 @@ namespace IDP {
     void ClampControl::raise_arm()
     {
         TRACE("raise_arm()");
-        DEBUG("Lifting the grabber");
-        this->_hal->grabber_lift(true);
-        usleep(1500000);
+        if(!this->_arm_up) {
+            DEBUG("Lifting the grabber");
+            this->_hal->grabber_lift(true);
+            usleep(1500000);
+            this->_arm_up = true;
+        }
     }
 
     /**
@@ -94,9 +97,12 @@ namespace IDP {
     void ClampControl::lower_arm()
     {
         TRACE("lower_arm()");
-        DEBUG("Lowering the grabber");
-        this->_hal->grabber_lift(false);
-        usleep(2000000);
+        if(this->_arm_up) {
+            DEBUG("Lowering the grabber");
+            this->_hal->grabber_lift(false);
+            usleep(2000000);
+            this->_arm_up = false;
+        }
     }
 
     /**
@@ -105,9 +111,12 @@ namespace IDP {
     void ClampControl::open_jaw()
     {
         TRACE("open_jaw()");
-        DEBUG("Releasing the grabber jaw");
-        this->_hal->grabber_jaw(false);
-        usleep(1000000);
+        if(!this->_jaw_open) {
+            DEBUG("Releasing the grabber jaw");
+            this->_hal->grabber_jaw(false);
+            usleep(1000000);
+            this->_jaw_open = true;
+        }
     }
 
     /**
@@ -116,9 +125,12 @@ namespace IDP {
     void ClampControl::close_jaw()
     {
         TRACE("open_jaw()");
-        DEBUG("Clamping the grabber jaw");
-        this->_hal->grabber_jaw(true);
-        usleep(1000000);
+        if(this->_jaw_open) {
+            DEBUG("Clamping the grabber jaw");
+            this->_hal->grabber_jaw(true);
+            usleep(1000000);
+            this->_jaw_open = false;
+        }
     }
 
     /**
@@ -138,11 +150,26 @@ namespace IDP {
         DEBUG("Delta " << delta);
 
         if(delta < -80)
+        {
+            this->_hal->indication_LEDs(false, false, true);
+            usleep(500000);
+            this->_hal->indication_LEDs(true, true, true);
             return BOBBIN_RED;
+        }
         else if(delta < -60)
+        {
+            this->_hal->indication_LEDs(false, true, false);
+            usleep(500000);
+            this->_hal->indication_LEDs(true, true, true);
             return BOBBIN_GREEN;
+        }
         else
+        {
+            this->_hal->indication_LEDs(true, false, false);
+            usleep(500000);
+            this->_hal->indication_LEDs(true, true, true);
             return BOBBIN_WHITE;
+        }
     }
 
     /**
@@ -179,8 +206,10 @@ namespace IDP {
         this->_hal->bad_bobbin_LED(true);
         short unsigned int reading = this->average_bad_ldr();
         DEBUG("Got a badness LDR value of " << reading);
-        if(reading > _bad_level - _badness_tolerance
-                && reading < _bad_level + _badness_tolerance)
+        unsigned int delta = reading - this->_badness_light_zero;
+        //if(reading > _bad_level - _badness_tolerance
+                //&& reading < _bad_level + _badness_tolerance)
+        if(delta > 20)
         {
             INFO("Found a bad bobbin");
             this->_hal->bad_bobbin_LED(false);
