@@ -142,6 +142,7 @@ namespace IDP {
         }
 
         DEBUG("Found a box!");
+        this->_hal->motors_stop();
         return NAVIGATION_ARRIVED;
     }
 
@@ -181,6 +182,8 @@ namespace IDP {
 
         // Set the speed back to normal ready to continue driving
         DEBUG("Found box!");
+        DEBUG("Stopping motors");
+        this->_hal->motors_stop();
         DEBUG("Resetting speed to 127");
         this->_lf->set_speed(127);
 
@@ -234,11 +237,19 @@ namespace IDP {
         TRACE("find_next_bobbin()");
         
         // Reduce the speed of the robot
-        DEBUG("Reducing speed to 48 for bobbin detection");
+        DEBUG("Reducing speed to 20 for bobbin detection");
         this->_lf->set_speed(20);
 
-        // Follow the line until ClampControl says we're at a bobbin
+        // Lose the current bobbin
         bool presence;
+        DEBUG("Losing current bobbin");
+        do {
+            presence = this->_cc->bobbin_present();
+            this->_lf->follow_line();
+        } while(presence);
+        DEBUG("Lost current bobbin");
+
+        // Follow the line until ClampControl says we're at a bobbin
         presence = this->_cc->bobbin_present();
         if (!presence) {
             this->_lf->follow_line();

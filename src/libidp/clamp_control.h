@@ -25,7 +25,7 @@ namespace IDP {
      * The increase in light to the bad bobbin LDR that indicates
      * a box is present.
      */
-    const unsigned short int BOX_DETECTION_DELTA_THRESHOLD = 20;
+    const unsigned short int BOX_DETECTION_DELTA_THRESHOLD = 15;
 
     /**
      * Bobbin colours
@@ -101,6 +101,7 @@ namespace IDP {
             unsigned short int _badness_dark_zero;
             unsigned short int _colour_light_zero;
             unsigned short int _colour_dark_zero;
+            unsigned short int _colour_light_closed_zero;
     };
 }
 

@@ -43,6 +43,8 @@ namespace IDP {
 
         // Construct a ClampControl
         this->_cc = new ClampControl(this->_hal);
+
+        this->_cc->store_zero();
     }
 
     /**
@@ -167,7 +169,7 @@ namespace IDP {
 
             // Pick the bobbin up
             INFO("Picking the bobbin up");
-            this->_cc->pick_up();
+            this->_cc->raise_arm();
 
             // Return to our box
             INFO("Returning to box");
@@ -247,6 +249,7 @@ namespace IDP {
         BobbinColour bobbin_colour;
         for(;;) {
             // Check the colour
+            this->_cc->close_jaw();
             bobbin_colour = this->_cc->colour();
             if((!this->_box_has_white && bobbin_colour == BOBBIN_WHITE) ||
                (!this->_box_has_red   && bobbin_colour == BOBBIN_RED  ) ||
@@ -260,6 +263,7 @@ namespace IDP {
                 // Go to the next bobbin
                 INFO("Don't like this bobbin, moving on (it was " <<
                     BobbinColourStrings[bobbin_colour] << ")");
+                this->_cc->open_jaw();
                 NavigationStatus nav_status;
                 do {
                     nav_status = this->_nav->find_next_bobbin();

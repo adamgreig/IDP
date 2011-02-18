@@ -134,7 +134,7 @@ namespace IDP {
         DEBUG("Read " << reading);
         this->_hal->colour_LED(false);
 
-        short int delta = reading - this->_colour_light_zero;
+        short int delta = reading - this->_colour_light_closed_zero;
         DEBUG("Delta " << delta);
 
         if(delta < -80)
@@ -290,6 +290,10 @@ namespace IDP {
         TRACE("store_zero()");
         DEBUG("Taking zero-level readings");
 
+        // Lower and open the arm
+        this->open_jaw();
+        this->lower_arm();
+
         // Take the two dark readings
         this->_hal->colour_LED(false);
         this->_hal->bad_bobbin_LED(false);
@@ -305,6 +309,14 @@ namespace IDP {
         this->_hal->bad_bobbin_LED(true);
         this->_badness_light_zero = this->average_bad_ldr(10);
         this->_hal->bad_bobbin_LED(false);
+
+        // Close the jaw
+        this->close_jaw();
+        this->_hal->colour_LED(true);
+        this->_colour_light_closed_zero = this->average_colour_ldr(10);
+        this->_hal->colour_LED(false);
+        this->open_jaw();
+        this->raise_arm();
 
         INFO("Colour LDR dark level: " << this->_colour_dark_zero);
         INFO("Colour LDR light level: " << this->_colour_light_zero);

@@ -130,7 +130,7 @@ namespace IDP {
     {
         public:
             Navigation(HardwareAbstractionLayer* hal,
-                const NavigationNode from=NODE7, const NavigationNode to=NODE8);
+                const NavigationNode from=NODE8, const NavigationNode to=NODE7);
             ~Navigation();
             NavigationStatus find_bobbin();
             NavigationStatus find_next_bobbin();
