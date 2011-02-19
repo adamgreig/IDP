@@ -102,7 +102,13 @@ The optional parameters from and to can be used to define the starting position,
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em hal}]A const pointer to an instance of the HAL \item[{\em from}]The node behind the robot at the start \item[{\em to}]The node in front of the robot at the start \end{DoxyParams}
+{\em hal} & A const pointer to an instance of the HAL \\
+\hline
+{\em from} & The node behind the robot at the start \\
+\hline
+{\em to} & The node in front of the robot at the start \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 82 of file navigation.cc.
@@ -171,7 +177,9 @@ Go and find a box and position the robot such that dropping a bobbin will land i
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em box}]The Box to which to navigate for bobbin drop. \end{DoxyParams}
+{\em box} & The Box to which to navigate for bobbin drop. \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 A NavigationStatus code. 
 \end{DoxyReturn}
@@ -194,7 +202,9 @@ Go and find a box and position the robot ready to pick the box up, or analyse it
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em box}]The Box to which to navigate for pickup. \end{DoxyParams}
+{\em box} & The Box to which to navigate for pickup. \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 A NavigationStatus code. 
 \end{DoxyReturn}
@@ -240,7 +250,7 @@ A NavigationStatus code
 \end{DoxyReturn}
 
 
-Definition at line 303 of file navigation.cc.
+Definition at line 315 of file navigation.cc.
 
 \hypertarget{classIDP_1_1Navigation_ab387bedd6d9f052b935565ac05aec2c4}{
 \index{IDP::Navigation@{IDP::Navigation}!go\_\-home@{go\_\-home}}
@@ -257,7 +267,7 @@ Return to home, which is to say the starting box.
 
 In addition, ensure we are facing the right direction (clockwise) 
 
-Definition at line 369 of file navigation.cc.
+Definition at line 381 of file navigation.cc.
 
 \hypertarget{classIDP_1_1Navigation_a24b977f20868a385251d4becf187b815}{
 \index{IDP::Navigation@{IDP::Navigation}!go\_\-node@{go\_\-node}}
@@ -277,7 +287,7 @@ A NavigationStatus code
 \end{DoxyReturn}
 
 
-Definition at line 335 of file navigation.cc.
+Definition at line 347 of file navigation.cc.
 
 \hypertarget{classIDP_1_1Navigation_a86127033cad467249583319cde79a18e}{
 \index{IDP::Navigation@{IDP::Navigation}!go\_\-to\_\-delivery@{go\_\-to\_\-delivery}}
@@ -297,7 +307,7 @@ A NavigationStatus code
 \end{DoxyReturn}
 
 
-Definition at line 270 of file navigation.cc.
+Definition at line 282 of file navigation.cc.
 
 \hypertarget{classIDP_1_1Navigation_a96241d0be8e7442964c41c6e0e207aa8}{
 \index{IDP::Navigation@{IDP::Navigation}!handle\_\-junction@{handle\_\-junction}}
@@ -319,7 +329,7 @@ NAVIGATION\_\-ARRIVED if at the target junction, or NAVIGATION\_\-ENROUTE otherw
 \end{DoxyReturn}
 
 
-Definition at line 562 of file navigation.cc.
+Definition at line 578 of file navigation.cc.
 
 \hypertarget{classIDP_1_1Navigation_a7da6a103a61fec763688e875920837a4}{
 \index{IDP::Navigation@{IDP::Navigation}!turn\_\-around@{turn\_\-around}}
@@ -339,7 +349,7 @@ A NavigationStatus of NAVIGATION\_\-ENROUTE if currently turning, or NAVIGATION\
 \end{DoxyReturn}
 
 
-Definition at line 412 of file navigation.cc.
+Definition at line 424 of file navigation.cc.
 
 \hypertarget{classIDP_1_1Navigation_adeb3d2223cc6278ccef5d30e4fbeae82}{
 \index{IDP::Navigation@{IDP::Navigation}!turn\_\-around\_\-required@{turn\_\-around\_\-required}}
@@ -356,13 +366,15 @@ Check if we need to turn around.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em target}]The NavigationNode we need to go to \end{DoxyParams}
+{\em target} & The NavigationNode we need to go to \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 A bool, true if we need to turn around 
 \end{DoxyReturn}
 
 
-Definition at line 381 of file navigation.cc.
+Definition at line 393 of file navigation.cc.
 
 \hypertarget{classIDP_1_1Navigation_aa7701df4743c75289360a32dfa56d4fc}{
 \index{IDP::Navigation@{IDP::Navigation}!update\_\-cache@{update\_\-cache}}
@@ -379,7 +391,7 @@ Check if we should update the cached junction status and request a new one from 
 
 
 
-Definition at line 529 of file navigation.cc.
+Definition at line 545 of file navigation.cc.
 
 
 

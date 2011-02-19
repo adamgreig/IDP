@@ -177,7 +177,9 @@ Return the current line status, depending on turning direction.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em dir}]The turning direction \end{DoxyParams}
+{\em dir} & The turning direction \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 a LineFollowingLineStatus 
 \end{DoxyReturn}
@@ -200,7 +202,9 @@ Set the motors to the correct steering speeds.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em dir}]Which direction to turn in\end{DoxyParams}
+{\em dir} & Which direction to turn in\\
+\hline
+\end{DoxyParams}
 This will set the left and right motors either forwards, backwards or stationary as appropriate to execute a turn. 
 
 Definition at line 491 of file line\_\-following.cc.
@@ -220,7 +224,9 @@ Set the speed that motors will be driven at.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em speed}]How fast to drive the motors, 0 to MOTOR\_\-MAX\_\-SPEED. \end{DoxyParams}
+{\em speed} & How fast to drive the motors, 0 to MOTOR\_\-MAX\_\-SPEED. \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 331 of file line\_\-following.cc.
@@ -243,7 +249,11 @@ turn\_\-left, turn\_\-right, turn\_\-around\_\-cw and turn\_\-around\_\-ccw are 
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em dir}]The direction to turn in \item[{\em skip\_\-lines}]How many lines we should detect and skip over \end{DoxyParams}
+{\em dir} & The direction to turn in \\
+\hline
+{\em skip\_\-lines} & How many lines we should detect and skip over \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 423 of file line\_\-following.cc.
@@ -263,7 +273,9 @@ Turn the robot around counterclockwise until the sensors detect another line.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em skip\_\-lines}]How many lines we should detect and skip over \end{DoxyParams}
+{\em skip\_\-lines} & How many lines we should detect and skip over \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 A LineFollowingStatus code 
 \end{DoxyReturn}
@@ -286,7 +298,9 @@ Turn the robot around clockwise until the sensors detect another line.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em skip\_\-lines}]How many lines we should detect and skip over \end{DoxyParams}
+{\em skip\_\-lines} & How many lines we should detect and skip over \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 A LineFollowingStatus code 
 \end{DoxyReturn}
@@ -326,7 +340,9 @@ Turn the robot left until the sensors encounter another line.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em skip\_\-lines}]How many lines we should detect and skip over \end{DoxyParams}
+{\em skip\_\-lines} & How many lines we should detect and skip over \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 A LineFollowingStatus code 
 \end{DoxyReturn}
@@ -349,7 +365,9 @@ Turn the robot right until the sensors detect another line.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em skip\_\-lines}]How many lines we should detect and skip over \end{DoxyParams}
+{\em skip\_\-lines} & How many lines we should detect and skip over \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 A LineFollowingStatus code 
 \end{DoxyReturn}
