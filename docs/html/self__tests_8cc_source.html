@@ -55,212 +55,758 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00004"></a>00004 <span class="comment">// self_tests.cc</span>
 <a name="l00005"></a>00005 <span class="comment">// Self Tests class implementation</span>
 <a name="l00006"></a>00006 
-<a name="l00007"></a>00007 
-<a name="l00008"></a>00008 <span class="preprocessor">#include &quot;<a class="code" href="self__tests_8h.html">self_tests.h</a>&quot;</span>
-<a name="l00009"></a>00009 <span class="preprocessor">#include &quot;<a class="code" href="hal_8h.html">hal.h</a>&quot;</span>
-<a name="l00010"></a>00010 <span class="preprocessor">#include &quot;<a class="code" href="mission__supervisor_8h.html">mission_supervisor.h</a>&quot;</span>
-<a name="l00011"></a>00011 <span class="preprocessor">#include &quot;<a class="code" href="navigation_8h.html">navigation.h</a>&quot;</span>
-<a name="l00012"></a>00012 <span class="preprocessor">#include &quot;<a class="code" href="line__following_8h.html">line_following.h</a>&quot;</span>
-<a name="l00013"></a>00013 
-<a name="l00014"></a>00014 <span class="comment">// Debug functionality</span>
-<a name="l00015"></a><a class="code" href="self__tests_8cc.html#a14ded244c47bbba850a8a4be6d16c7e3">00015</a> <span class="preprocessor">#define MODULE_NAME &quot;SelfTests&quot;</span>
-<a name="l00016"></a><a class="code" href="self__tests_8cc.html#ae04c5e41f64b51d21bc71565938a59d6">00016</a> <span class="preprocessor"></span><span class="preprocessor">#define TRACE_ENABLED   false</span>
-<a name="l00017"></a><a class="code" href="self__tests_8cc.html#a7d2ae674cad5299a52b0e7dceac10087">00017</a> <span class="preprocessor"></span><span class="preprocessor">#define DEBUG_ENABLED   true</span>
-<a name="l00018"></a><a class="code" href="self__tests_8cc.html#a580f977f97ee7f7ceb91b1c42306f537">00018</a> <span class="preprocessor"></span><span class="preprocessor">#define INFO_ENABLED    true</span>
-<a name="l00019"></a><a class="code" href="self__tests_8cc.html#a292d4ca4e07d63502916a17a853ab606">00019</a> <span class="preprocessor"></span><span class="preprocessor">#define ERROR_ENABLED   true</span>
-<a name="l00020"></a>00020 <span class="preprocessor"></span><span class="preprocessor">#include &quot;<a class="code" href="debug_8h.html">debug.h</a>&quot;</span>
-<a name="l00021"></a>00021 
-<a name="l00022"></a>00022 <span class="keyword">namespace </span>IDP {
-<a name="l00029"></a><a class="code" href="classIDP_1_1SelfTests.html#a6864b03502cc5d1ac3728b456b04238f">00029</a>     <a class="code" href="classIDP_1_1SelfTests.html#a6864b03502cc5d1ac3728b456b04238f" title="Constuct a SelfTests instance Completely seperate to mission supervisor and initialises own link to r...">SelfTests::SelfTests</a>(<span class="keywordtype">int</span> robot = 0): _robot(robot), _hal(0)
-<a name="l00030"></a>00030     {
-<a name="l00031"></a>00031         TRACE(<span class="stringliteral">&quot;SelfTests(&quot;</span>&lt;&lt;robot&lt;&lt;<span class="stringliteral">&quot;)&quot;</span>);
-<a name="l00032"></a>00032         INFO(<span class="stringliteral">&quot;Initialising SelfTests&quot;</span>);
-<a name="l00033"></a>00033         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a> = <span class="keyword">new</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html" title="Provide a hardware agnostic interface to the required hardware functionality.">HardwareAbstractionLayer</a>(robot);
-<a name="l00034"></a>00034     }
-<a name="l00035"></a>00035 
-<a name="l00039"></a><a class="code" href="classIDP_1_1SelfTests.html#a5a49e246d28af6332dd46f8b22dcddc7">00039</a>     <a class="code" href="classIDP_1_1SelfTests.html#a5a49e246d28af6332dd46f8b22dcddc7" title="Destruct the SelfTests, deleting the HAL.">SelfTests::~SelfTests</a>()
-<a name="l00040"></a>00040     {
-<a name="l00041"></a>00041         TRACE(<span class="stringliteral">&quot;~SelfTests()&quot;</span>);
-<a name="l00042"></a>00042         <span class="keywordflow">if</span>(this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>)
-<a name="l00043"></a>00043             <span class="keyword">delete</span> this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>;
-<a name="l00044"></a>00044     }
-<a name="l00045"></a>00045 
-<a name="l00049"></a><a class="code" href="classIDP_1_1SelfTests.html#a4ff456e74d55e13599cf64db76bd2ed4">00049</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1SelfTests.html#a4ff456e74d55e13599cf64db76bd2ed4" title="Drive the robot forwards for a moment.">SelfTests::drive_forward</a>()
-<a name="l00050"></a>00050     {
-<a name="l00051"></a>00051         TRACE(<span class="stringliteral">&quot;drive_forward()&quot;</span>);
-<a name="l00052"></a>00052         INFO(<span class="stringliteral">&quot;Driving forwards&quot;</span>);
-<a name="l00053"></a>00053         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a300956b0e2e9f67e7f10baf036bf8616" title="Drive both motors forwards at a given speed.">motors_forward</a>(127);
-<a name="l00054"></a>00054     }
-<a name="l00055"></a>00055 
-<a name="l00059"></a><a class="code" href="classIDP_1_1SelfTests.html#a38ddef7ecdf9b7dfa69d689c9c1ac8ca">00059</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1SelfTests.html#a38ddef7ecdf9b7dfa69d689c9c1ac8ca" title="Drive the robot backwards for a moment.">SelfTests::drive_backward</a>()
-<a name="l00060"></a>00060     {
-<a name="l00061"></a>00061         TRACE(<span class="stringliteral">&quot;drive_backwardi()&quot;</span>);
-<a name="l00062"></a>00062         INFO(<span class="stringliteral">&quot;Driving backwards&quot;</span>);
-<a name="l00063"></a>00063         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#ac81fbf6aa2bb93837ed276c47556a398" title="Drive both motors backwards at a given speed.">motors_backward</a>(127);
-<a name="l00064"></a>00064     }
-<a name="l00065"></a>00065 
-<a name="l00069"></a><a class="code" href="classIDP_1_1SelfTests.html#a33adf462d8c408b1c7b4858e9a4ff000">00069</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1SelfTests.html#a33adf462d8c408b1c7b4858e9a4ff000" title="Stop all of the robot&amp;#39;s motors.">SelfTests::stop</a>()
-<a name="l00070"></a>00070     {
-<a name="l00071"></a>00071         TRACE(<span class="stringliteral">&quot;stop()&quot;</span>);
-<a name="l00072"></a>00072         INFO(<span class="stringliteral">&quot;Stopping all motors&quot;</span>);
-<a name="l00073"></a>00073         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a4f8f0340f3ac64c3f676b700b7e36229" title="Stop all motors.">motors_stop</a>();
-<a name="l00074"></a>00074     }
-<a name="l00075"></a>00075 
-<a name="l00080"></a><a class="code" href="classIDP_1_1SelfTests.html#a3ba14e5a1ed52ff112bc742b94f06d61">00080</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1SelfTests.html#a3ba14e5a1ed52ff112bc742b94f06d61" title="Drive motors in opposite directions to turn the robot left on the spot.">SelfTests::turn_left</a>()
-<a name="l00081"></a>00081     {
-<a name="l00082"></a>00082         TRACE(<span class="stringliteral">&quot;turn_left()&quot;</span>);
-<a name="l00083"></a>00083         INFO(<span class="stringliteral">&quot;Turning left, both wheels driven&quot;</span>);
-<a name="l00084"></a>00084         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#acf3d3dd4e05c4b50cb31b4d35f21abbf" title="Drive the left motor forward at the given speed.">motor_left_forward</a>(64);
-<a name="l00085"></a>00085         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#aac42c10ca431120a060f9b2c394492ae" title="Drive the right motor backward at the given speed.">motor_right_backward</a>(64);
+<a name="l00007"></a>00007 <span class="comment">// Use unistd.h for sleep functionality</span>
+<a name="l00008"></a>00008 <span class="preprocessor">#include &lt;unistd.h&gt;</span>
+<a name="l00009"></a>00009 <span class="preprocessor">#include &lt;cstdio&gt;</span>
+<a name="l00010"></a>00010 <span class="preprocessor">#include &lt;iostream&gt;</span>
+<a name="l00011"></a>00011 <span class="preprocessor">#include &lt;fstream&gt;</span>
+<a name="l00012"></a>00012 
+<a name="l00013"></a>00013 <span class="preprocessor">#include &quot;<a class="code" href="self__tests_8h.html">self_tests.h</a>&quot;</span>
+<a name="l00014"></a>00014 <span class="preprocessor">#include &quot;<a class="code" href="hal_8h.html">hal.h</a>&quot;</span>
+<a name="l00015"></a>00015 <span class="preprocessor">#include &quot;<a class="code" href="mission__supervisor_8h.html">mission_supervisor.h</a>&quot;</span>
+<a name="l00016"></a>00016 <span class="preprocessor">#include &quot;<a class="code" href="navigation_8h.html">navigation.h</a>&quot;</span>
+<a name="l00017"></a>00017 <span class="preprocessor">#include &quot;<a class="code" href="line__following_8h.html">line_following.h</a>&quot;</span>
+<a name="l00018"></a>00018 <span class="preprocessor">#include &quot;<a class="code" href="clamp__control_8h.html">clamp_control.h</a>&quot;</span>
+<a name="l00019"></a>00019 
+<a name="l00020"></a>00020 <span class="comment">// Debug functionality</span>
+<a name="l00021"></a><a class="code" href="self__tests_8cc.html#a14ded244c47bbba850a8a4be6d16c7e3">00021</a> <span class="preprocessor">#define MODULE_NAME &quot;SelfTests&quot;</span>
+<a name="l00022"></a><a class="code" href="self__tests_8cc.html#ae04c5e41f64b51d21bc71565938a59d6">00022</a> <span class="preprocessor"></span><span class="preprocessor">#define TRACE_ENABLED   false</span>
+<a name="l00023"></a><a class="code" href="self__tests_8cc.html#a7d2ae674cad5299a52b0e7dceac10087">00023</a> <span class="preprocessor"></span><span class="preprocessor">#define DEBUG_ENABLED   true</span>
+<a name="l00024"></a><a class="code" href="self__tests_8cc.html#a580f977f97ee7f7ceb91b1c42306f537">00024</a> <span class="preprocessor"></span><span class="preprocessor">#define INFO_ENABLED    true</span>
+<a name="l00025"></a><a class="code" href="self__tests_8cc.html#a292d4ca4e07d63502916a17a853ab606">00025</a> <span class="preprocessor"></span><span class="preprocessor">#define ERROR_ENABLED   true</span>
+<a name="l00026"></a>00026 <span class="preprocessor"></span><span class="preprocessor">#include &quot;<a class="code" href="debug_8h.html">debug.h</a>&quot;</span>
+<a name="l00027"></a>00027 
+<a name="l00028"></a>00028 <span class="keyword">namespace </span>IDP {
+<a name="l00035"></a><a class="code" href="classIDP_1_1SelfTests.html#a6864b03502cc5d1ac3728b456b04238f">00035</a>     <a class="code" href="classIDP_1_1SelfTests.html#a6864b03502cc5d1ac3728b456b04238f" title="Constuct a SelfTests instance Completely seperate to mission supervisor and initialises own link to r...">SelfTests::SelfTests</a>(<span class="keywordtype">int</span> robot = 0): _robot(robot), _hal(0)
+<a name="l00036"></a>00036     {
+<a name="l00037"></a>00037         TRACE(<span class="stringliteral">&quot;SelfTests(&quot;</span>&lt;&lt;robot&lt;&lt;<span class="stringliteral">&quot;)&quot;</span>);
+<a name="l00038"></a>00038         INFO(<span class="stringliteral">&quot;Initialising SelfTests&quot;</span>);
+<a name="l00039"></a>00039         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a> = <span class="keyword">new</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html" title="Provide a hardware agnostic interface to the required hardware functionality.">HardwareAbstractionLayer</a>(robot);
+<a name="l00040"></a>00040     }
+<a name="l00041"></a>00041 
+<a name="l00045"></a><a class="code" href="classIDP_1_1SelfTests.html#a5a49e246d28af6332dd46f8b22dcddc7">00045</a>     <a class="code" href="classIDP_1_1SelfTests.html#a5a49e246d28af6332dd46f8b22dcddc7" title="Destruct the SelfTests, deleting the HAL.">SelfTests::~SelfTests</a>()
+<a name="l00046"></a>00046     {
+<a name="l00047"></a>00047         TRACE(<span class="stringliteral">&quot;~SelfTests()&quot;</span>);
+<a name="l00048"></a>00048         <span class="keywordflow">if</span>(this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>)
+<a name="l00049"></a>00049             <span class="keyword">delete</span> this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>;
+<a name="l00050"></a>00050     }
+<a name="l00051"></a>00051 
+<a name="l00055"></a><a class="code" href="classIDP_1_1SelfTests.html#a4ff456e74d55e13599cf64db76bd2ed4">00055</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1SelfTests.html#a4ff456e74d55e13599cf64db76bd2ed4" title="Drive the robot forwards for a moment.">SelfTests::drive_forward</a>()
+<a name="l00056"></a>00056     {
+<a name="l00057"></a>00057         TRACE(<span class="stringliteral">&quot;drive_forward()&quot;</span>);
+<a name="l00058"></a>00058         INFO(<span class="stringliteral">&quot;Driving forwards&quot;</span>);
+<a name="l00059"></a>00059         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a300956b0e2e9f67e7f10baf036bf8616" title="Drive both motors forwards at a given speed.">motors_forward</a>(127);
+<a name="l00060"></a>00060         usleep(1000000);
+<a name="l00061"></a>00061         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a4f8f0340f3ac64c3f676b700b7e36229" title="Stop all motors.">motors_stop</a>();
+<a name="l00062"></a>00062         INFO(<span class="stringliteral">&quot;Finished driving.&quot;</span>);
+<a name="l00063"></a>00063     }
+<a name="l00064"></a>00064 
+<a name="l00068"></a><a class="code" href="classIDP_1_1SelfTests.html#a38ddef7ecdf9b7dfa69d689c9c1ac8ca">00068</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1SelfTests.html#a38ddef7ecdf9b7dfa69d689c9c1ac8ca" title="Drive the robot backwards for a moment.">SelfTests::drive_backward</a>()
+<a name="l00069"></a>00069     {
+<a name="l00070"></a>00070         TRACE(<span class="stringliteral">&quot;drive_backwardi()&quot;</span>);
+<a name="l00071"></a>00071         INFO(<span class="stringliteral">&quot;Driving backwards&quot;</span>);
+<a name="l00072"></a>00072         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#ac81fbf6aa2bb93837ed276c47556a398" title="Drive both motors backwards at a given speed.">motors_backward</a>(127);
+<a name="l00073"></a>00073         usleep(1000000);
+<a name="l00074"></a>00074         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a4f8f0340f3ac64c3f676b700b7e36229" title="Stop all motors.">motors_stop</a>();
+<a name="l00075"></a>00075         INFO(<span class="stringliteral">&quot;Finished driving.&quot;</span>);
+<a name="l00076"></a>00076     }
+<a name="l00077"></a>00077 
+<a name="l00081"></a><a class="code" href="classIDP_1_1SelfTests.html#a33adf462d8c408b1c7b4858e9a4ff000">00081</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1SelfTests.html#a33adf462d8c408b1c7b4858e9a4ff000" title="Stop all of the robot&amp;#39;s motors.">SelfTests::stop</a>()
+<a name="l00082"></a>00082     {
+<a name="l00083"></a>00083         TRACE(<span class="stringliteral">&quot;stop()&quot;</span>);
+<a name="l00084"></a>00084         INFO(<span class="stringliteral">&quot;Stopping all motors&quot;</span>);
+<a name="l00085"></a>00085         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a4f8f0340f3ac64c3f676b700b7e36229" title="Stop all motors.">motors_stop</a>();
 <a name="l00086"></a>00086     }
 <a name="l00087"></a>00087 
-<a name="l00092"></a><a class="code" href="classIDP_1_1SelfTests.html#a4e4b66ddff2de3444f1e9383dcf463a6">00092</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1SelfTests.html#a4e4b66ddff2de3444f1e9383dcf463a6" title="Drive motors in opposite directions to turn the robot right on the spot.">SelfTests::turn_right</a>()
+<a name="l00092"></a><a class="code" href="classIDP_1_1SelfTests.html#a3ba14e5a1ed52ff112bc742b94f06d61">00092</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1SelfTests.html#a3ba14e5a1ed52ff112bc742b94f06d61" title="Drive motors in opposite directions to turn the robot left on the spot.">SelfTests::turn_left</a>()
 <a name="l00093"></a>00093     {
-<a name="l00094"></a>00094         TRACE(<span class="stringliteral">&quot;turn_right()&quot;</span>);
-<a name="l00095"></a>00095         INFO(<span class="stringliteral">&quot;Turning right, both wheels driven&quot;</span>);
-<a name="l00096"></a>00096         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#aa2e2e226f2313d769e3ce226dd24d22c" title="Drive the right motor forward at the given speed.">motor_right_forward</a>(64);
-<a name="l00097"></a>00097         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a61b80e2bad5cc6a56a17350b015bfbcc" title="Drive the left motor backward at the given speed.">motor_left_backward</a>(64);
-<a name="l00098"></a>00098     }
-<a name="l00099"></a>00099     
-<a name="l00104"></a><a class="code" href="classIDP_1_1SelfTests.html#ae54bd0e6c01c5d1d794363cc676dbb92">00104</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1SelfTests.html#ae54bd0e6c01c5d1d794363cc676dbb92" title="Drive forwards for a moment whilst reducing the speed of the left motor relative to the right to stee...">SelfTests::steer_left</a>()
-<a name="l00105"></a>00105     {
-<a name="l00106"></a>00106         TRACE(<span class="stringliteral">&quot;steer_left()&quot;</span>);
-<a name="l00107"></a>00107         INFO(<span class="stringliteral">&quot;Turning left, only left wheel driven&quot;</span>);
-<a name="l00108"></a>00108         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#acf3d3dd4e05c4b50cb31b4d35f21abbf" title="Drive the left motor forward at the given speed.">motor_left_forward</a>(127);
-<a name="l00109"></a>00109         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#aa2e2e226f2313d769e3ce226dd24d22c" title="Drive the right motor forward at the given speed.">motor_right_forward</a>(0);
-<a name="l00110"></a>00110     }
-<a name="l00111"></a>00111 
-<a name="l00116"></a><a class="code" href="classIDP_1_1SelfTests.html#a7f9c5999de2e7c4f59c8c5a60965e876">00116</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1SelfTests.html#a7f9c5999de2e7c4f59c8c5a60965e876" title="Drive forwards for a moment whilst reducing the speed of the right motor relative to the left to stee...">SelfTests::steer_right</a>()
-<a name="l00117"></a>00117     {
-<a name="l00118"></a>00118         TRACE(<span class="stringliteral">&quot;steer_right()&quot;</span>);
-<a name="l00119"></a>00119         INFO(<span class="stringliteral">&quot;Turning right, only left wheel driven&quot;</span>);
-<a name="l00120"></a>00120         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#aa2e2e226f2313d769e3ce226dd24d22c" title="Drive the right motor forward at the given speed.">motor_right_forward</a>(127);
-<a name="l00121"></a>00121         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#acf3d3dd4e05c4b50cb31b4d35f21abbf" title="Drive the left motor forward at the given speed.">motor_left_forward</a>(0);
-<a name="l00122"></a>00122     }
-<a name="l00123"></a>00123 
-<a name="l00128"></a><a class="code" href="classIDP_1_1SelfTests.html#aa73ad4de6c1d2b725ed796c10f54ab7c">00128</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1SelfTests.html#aa73ad4de6c1d2b725ed796c10f54ab7c" title="Display the status (LINE or NO_LINE) of each of the four IR line following sensors.">SelfTests::line_sensors</a>()
-<a name="l00129"></a>00129     {
-<a name="l00130"></a>00130         TRACE(<span class="stringliteral">&quot;line_sensors()&quot;</span>);
-<a name="l00131"></a>00131         INFO(<span class="stringliteral">&quot;Testing line sensors&quot;</span>);
+<a name="l00094"></a>00094         TRACE(<span class="stringliteral">&quot;turn_left()&quot;</span>);
+<a name="l00095"></a>00095         INFO(<span class="stringliteral">&quot;Turning left, both wheels driven&quot;</span>);
+<a name="l00096"></a>00096         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a61b80e2bad5cc6a56a17350b015bfbcc" title="Drive the left motor backward at the given speed.">motor_left_backward</a>(64);
+<a name="l00097"></a>00097         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#aa2e2e226f2313d769e3ce226dd24d22c" title="Drive the right motor forward at the given speed.">motor_right_forward</a>(64);
+<a name="l00098"></a>00098         usleep(1000000);
+<a name="l00099"></a>00099         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a4f8f0340f3ac64c3f676b700b7e36229" title="Stop all motors.">motors_stop</a>();
+<a name="l00100"></a>00100         INFO(<span class="stringliteral">&quot;Finished driving.&quot;</span>);
+<a name="l00101"></a>00101     }
+<a name="l00102"></a>00102 
+<a name="l00107"></a><a class="code" href="classIDP_1_1SelfTests.html#a4e4b66ddff2de3444f1e9383dcf463a6">00107</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1SelfTests.html#a4e4b66ddff2de3444f1e9383dcf463a6" title="Drive motors in opposite directions to turn the robot right on the spot.">SelfTests::turn_right</a>()
+<a name="l00108"></a>00108     {
+<a name="l00109"></a>00109         TRACE(<span class="stringliteral">&quot;turn_right()&quot;</span>);
+<a name="l00110"></a>00110         INFO(<span class="stringliteral">&quot;Turning right, both wheels driven&quot;</span>);
+<a name="l00111"></a>00111         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#acf3d3dd4e05c4b50cb31b4d35f21abbf" title="Drive the left motor forward at the given speed.">motor_left_forward</a>(64);
+<a name="l00112"></a>00112         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#aac42c10ca431120a060f9b2c394492ae" title="Drive the right motor backward at the given speed.">motor_right_backward</a>(64);
+<a name="l00113"></a>00113         usleep(1000000);
+<a name="l00114"></a>00114         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a4f8f0340f3ac64c3f676b700b7e36229" title="Stop all motors.">motors_stop</a>();
+<a name="l00115"></a>00115         INFO(<span class="stringliteral">&quot;Finished driving.&quot;</span>);
+<a name="l00116"></a>00116     }
+<a name="l00117"></a>00117     
+<a name="l00122"></a><a class="code" href="classIDP_1_1SelfTests.html#ae54bd0e6c01c5d1d794363cc676dbb92">00122</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1SelfTests.html#ae54bd0e6c01c5d1d794363cc676dbb92" title="Drive forwards for a moment whilst reducing the speed of the left motor relative to the right to stee...">SelfTests::steer_left</a>()
+<a name="l00123"></a>00123     {
+<a name="l00124"></a>00124         TRACE(<span class="stringliteral">&quot;steer_left()&quot;</span>);
+<a name="l00125"></a>00125         INFO(<span class="stringliteral">&quot;Turning left, only left wheel driven&quot;</span>);
+<a name="l00126"></a>00126         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#aa2e2e226f2313d769e3ce226dd24d22c" title="Drive the right motor forward at the given speed.">motor_right_forward</a>(127);
+<a name="l00127"></a>00127         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#acf3d3dd4e05c4b50cb31b4d35f21abbf" title="Drive the left motor forward at the given speed.">motor_left_forward</a>(0);
+<a name="l00128"></a>00128         usleep(1000000);
+<a name="l00129"></a>00129         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a4f8f0340f3ac64c3f676b700b7e36229" title="Stop all motors.">motors_stop</a>();
+<a name="l00130"></a>00130         INFO(<span class="stringliteral">&quot;Finished driving.&quot;</span>);
+<a name="l00131"></a>00131     }
 <a name="l00132"></a>00132 
-<a name="l00133"></a>00133         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a1902d9260758777966ab362e21f3be42" title="Read the status register, discarding its value.">clear_status_register</a>();
-<a name="l00134"></a>00134         <a class="code" href="structIDP_1_1LineSensors.html" title="Contains the LINE or NO_LINE status of each of the four IR sensors used for line following.">LineSensors</a> sensors = this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#aca143d627de2ff9942069ad922d17ee5" title="Read the I/O port connected to the line following sensors, then return a struct with their current st...">line_following_sensors</a>();
-<a name="l00135"></a>00135         std::cout &lt;&lt; <span class="stringliteral">&quot;Sensors: &quot;</span>;
-<a name="l00136"></a>00136         
-<a name="l00137"></a>00137         <span class="keywordflow">if</span>(sensors.<a class="code" href="structIDP_1_1LineSensors.html#a009bf6abf88cf3c732545da20148ba5e">outer_left</a> == <a class="code" href="namespaceIDP.html#afc3b1d4cbb313bfc854f49d6f23b25f7ab8f6b528c0b2fd3edfdd6463cc6a2fd2">LINE</a>)
-<a name="l00138"></a>00138             std::cout &lt;&lt; <span class="stringliteral">&quot;line, &quot;</span>;
-<a name="l00139"></a>00139         <span class="keywordflow">else</span>
-<a name="l00140"></a>00140             std::cout &lt;&lt; <span class="stringliteral">&quot;no line, &quot;</span>;
-<a name="l00141"></a>00141 
-<a name="l00142"></a>00142         <span class="keywordflow">if</span>(sensors.<a class="code" href="structIDP_1_1LineSensors.html#ab986b625016c2f99536299b6d0af3f29">line_left</a> == <a class="code" href="namespaceIDP.html#afc3b1d4cbb313bfc854f49d6f23b25f7ab8f6b528c0b2fd3edfdd6463cc6a2fd2">LINE</a>)
-<a name="l00143"></a>00143             std::cout &lt;&lt; <span class="stringliteral">&quot;line, &quot;</span>;
-<a name="l00144"></a>00144         <span class="keywordflow">else</span>
-<a name="l00145"></a>00145             std::cout &lt;&lt; <span class="stringliteral">&quot;no line, &quot;</span>;
-<a name="l00146"></a>00146 
-<a name="l00147"></a>00147         <span class="keywordflow">if</span>(sensors.<a class="code" href="structIDP_1_1LineSensors.html#a03e1692ac462e2e6744c9d5a7656c6f1">line_right</a> == <a class="code" href="namespaceIDP.html#afc3b1d4cbb313bfc854f49d6f23b25f7ab8f6b528c0b2fd3edfdd6463cc6a2fd2">LINE</a>)
-<a name="l00148"></a>00148             std::cout &lt;&lt; <span class="stringliteral">&quot;line, &quot;</span>;
-<a name="l00149"></a>00149         <span class="keywordflow">else</span>
-<a name="l00150"></a>00150             std::cout &lt;&lt; <span class="stringliteral">&quot;no line, &quot;</span>;
-<a name="l00151"></a>00151 
-<a name="l00152"></a>00152         <span class="keywordflow">if</span>(sensors.<a class="code" href="structIDP_1_1LineSensors.html#afa87dc008f415429d15e35a49d52083c">outer_right</a> == <a class="code" href="namespaceIDP.html#afc3b1d4cbb313bfc854f49d6f23b25f7ab8f6b528c0b2fd3edfdd6463cc6a2fd2">LINE</a>)
-<a name="l00153"></a>00153             std::cout &lt;&lt; <span class="stringliteral">&quot;line             \r&quot;</span>;
-<a name="l00154"></a>00154         <span class="keywordflow">else</span>
-<a name="l00155"></a>00155             std::cout &lt;&lt; <span class="stringliteral">&quot;no line          \r&quot;</span>;
-<a name="l00156"></a>00156     }
-<a name="l00157"></a>00157 
-<a name="l00161"></a><a class="code" href="classIDP_1_1SelfTests.html#a6b2e4d0517de4b73c63f1b1a475b602f">00161</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1SelfTests.html#a6b2e4d0517de4b73c63f1b1a475b602f" title="Display the state of each of the two microswitches.">SelfTests::microswitches</a>()
-<a name="l00162"></a>00162     {
-<a name="l00163"></a>00163         TRACE(<span class="stringliteral">&quot;microswitches()&quot;</span>);
-<a name="l00164"></a>00164     }
-<a name="l00165"></a>00165     
-<a name="l00169"></a><a class="code" href="classIDP_1_1SelfTests.html#a56952650637691f869ef21f7d43f1226">00169</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1SelfTests.html#a56952650637691f869ef21f7d43f1226" title="Display the current ADC read from the light dependent resistor.">SelfTests::LDRs</a>()
-<a name="l00170"></a>00170     {
-<a name="l00171"></a>00171         TRACE(<span class="stringliteral">&quot;LDRs()&quot;</span>);
-<a name="l00172"></a>00172     }
-<a name="l00173"></a>00173 
-<a name="l00177"></a><a class="code" href="classIDP_1_1SelfTests.html#a0ca765ac144fafaab502f4326a480486">00177</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1SelfTests.html#a0ca765ac144fafaab502f4326a480486" title="Fire each of the actuators in turn.">SelfTests::actuators</a>()
-<a name="l00178"></a>00178     {
-<a name="l00179"></a>00179         TRACE(<span class="stringliteral">&quot;actuators()&quot;</span>);
-<a name="l00180"></a>00180     }
-<a name="l00181"></a>00181 
-<a name="l00185"></a><a class="code" href="classIDP_1_1SelfTests.html#a0a1a40b56fee5249def567bebdb05dc1">00185</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1SelfTests.html#a0a1a40b56fee5249def567bebdb05dc1" title="Follow a line until a junction.">SelfTests::line_following</a>()
-<a name="l00186"></a>00186     {
-<a name="l00187"></a>00187         TRACE(<span class="stringliteral">&quot;line_following()&quot;</span>);
-<a name="l00188"></a>00188         INFO(<span class="stringliteral">&quot;Testing line following&quot;</span>);
-<a name="l00189"></a>00189 
-<a name="l00190"></a>00190         <a class="code" href="classIDP_1_1LineFollowing.html" title="Maintain the robot position correctly with respect to the white line markers, during driving and mano...">LineFollowing</a> lf(this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>);
-<a name="l00191"></a>00191         <a class="code" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0" title="Line following return status codes.">LineFollowingStatus</a> status;
-<a name="l00192"></a>00192 
-<a name="l00193"></a>00193         lf.<a class="code" href="classIDP_1_1LineFollowing.html#af034f457aef1716d042606c71dddfd73" title="Set the speed that motors will be driven at.">set_speed</a>(127);
-<a name="l00194"></a>00194         
-<a name="l00195"></a>00195         INFO(<span class="stringliteral">&quot;following a line&quot;</span>);
-<a name="l00196"></a>00196         <span class="keywordflow">do</span> {
-<a name="l00197"></a>00197             status = lf.<a class="code" href="classIDP_1_1LineFollowing.html#ad26d7726d2bb263658ed3140d3e30852" title="Read line sensors and correct motor movement to keep us going straight.">follow_line</a>();
-<a name="l00198"></a>00198         } <span class="keywordflow">while</span>(status == <a class="code" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0a392b1fde04c7c0a442405be80f874159">ACTION_IN_PROGRESS</a>);
-<a name="l00199"></a>00199     }
-<a name="l00200"></a>00200 
-<a name="l00205"></a><a class="code" href="classIDP_1_1SelfTests.html#a896204355ca039660a12e8131578b6c3">00205</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1SelfTests.html#a896204355ca039660a12e8131578b6c3" title="Use the actuators to pick up an object before placing it back down again.">SelfTests::clamp_control</a>()
-<a name="l00206"></a>00206     {
-<a name="l00207"></a>00207         TRACE(<span class="stringliteral">&quot;clamp_control()&quot;</span>);
-<a name="l00208"></a>00208     }
-<a name="l00209"></a>00209 
-<a name="l00214"></a><a class="code" href="classIDP_1_1SelfTests.html#a66f0a3bad277e36b963b2bf3cd5df9dd">00214</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1SelfTests.html#a66f0a3bad277e36b963b2bf3cd5df9dd" title="Analyse the colour of the bobbin that is currently being held in the clamp.">SelfTests::bobbin_analyse</a>()
-<a name="l00215"></a>00215     {
-<a name="l00216"></a>00216         TRACE(<span class="stringliteral">&quot;bobbin_analyse()&quot;</span>);
-<a name="l00217"></a>00217     }
-<a name="l00218"></a>00218 
-<a name="l00223"></a><a class="code" href="classIDP_1_1SelfTests.html#a710347081427c05706f92bdd12f62fbe">00223</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1SelfTests.html#a710347081427c05706f92bdd12f62fbe" title="Select a source and destination and then navigate to the destination assuming we are starting at the ...">SelfTests::navigate</a>()
-<a name="l00224"></a>00224     {
-<a name="l00225"></a>00225         TRACE(<span class="stringliteral">&quot;navigate()&quot;</span>);
-<a name="l00226"></a>00226         INFO(<span class="stringliteral">&quot;Testing navigation&quot;</span>);
-<a name="l00227"></a>00227 
-<a name="l00228"></a>00228         <span class="keywordtype">int</span> input_node;
+<a name="l00137"></a><a class="code" href="classIDP_1_1SelfTests.html#a7f9c5999de2e7c4f59c8c5a60965e876">00137</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1SelfTests.html#a7f9c5999de2e7c4f59c8c5a60965e876" title="Drive forwards for a moment whilst reducing the speed of the right motor relative to the left to stee...">SelfTests::steer_right</a>()
+<a name="l00138"></a>00138     {
+<a name="l00139"></a>00139         TRACE(<span class="stringliteral">&quot;steer_right()&quot;</span>);
+<a name="l00140"></a>00140         INFO(<span class="stringliteral">&quot;Turning right, only left wheel driven&quot;</span>);
+<a name="l00141"></a>00141         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#acf3d3dd4e05c4b50cb31b4d35f21abbf" title="Drive the left motor forward at the given speed.">motor_left_forward</a>(127);
+<a name="l00142"></a>00142         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#aa2e2e226f2313d769e3ce226dd24d22c" title="Drive the right motor forward at the given speed.">motor_right_forward</a>(0);
+<a name="l00143"></a>00143         usleep(1000000);
+<a name="l00144"></a>00144         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a4f8f0340f3ac64c3f676b700b7e36229" title="Stop all motors.">motors_stop</a>();
+<a name="l00145"></a>00145         INFO(<span class="stringliteral">&quot;Finished driving.&quot;</span>);
+<a name="l00146"></a>00146     }
+<a name="l00147"></a>00147 
+<a name="l00152"></a><a class="code" href="classIDP_1_1SelfTests.html#aa73ad4de6c1d2b725ed796c10f54ab7c">00152</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1SelfTests.html#aa73ad4de6c1d2b725ed796c10f54ab7c" title="Display the status (LINE or NO_LINE) of each of the four IR line following sensors.">SelfTests::line_sensors</a>()
+<a name="l00153"></a>00153     {
+<a name="l00154"></a>00154         TRACE(<span class="stringliteral">&quot;line_sensors()&quot;</span>);
+<a name="l00155"></a>00155         INFO(<span class="stringliteral">&quot;Testing line sensors&quot;</span>);
+<a name="l00156"></a>00156 
+<a name="l00157"></a>00157         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a1902d9260758777966ab362e21f3be42" title="Read the status register, discarding its value.">clear_status_register</a>();
+<a name="l00158"></a>00158         <a class="code" href="structIDP_1_1LineSensors.html" title="Contains the LINE or NO_LINE status of each of the four IR sensors used for line following.">LineSensors</a> sensors = this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#aca143d627de2ff9942069ad922d17ee5" title="Read the I/O port connected to the line following sensors, then return a struct with their current st...">line_following_sensors</a>();
+<a name="l00159"></a>00159         std::cout &lt;&lt; <span class="stringliteral">&quot;Sensors: &quot;</span>;
+<a name="l00160"></a>00160         
+<a name="l00161"></a>00161         <span class="keywordflow">if</span>(sensors.<a class="code" href="structIDP_1_1LineSensors.html#a009bf6abf88cf3c732545da20148ba5e">outer_left</a> == <a class="code" href="namespaceIDP.html#afc3b1d4cbb313bfc854f49d6f23b25f7ab8f6b528c0b2fd3edfdd6463cc6a2fd2">LINE</a>)
+<a name="l00162"></a>00162             std::cout &lt;&lt; <span class="stringliteral">&quot;line, &quot;</span>;
+<a name="l00163"></a>00163         <span class="keywordflow">else</span>
+<a name="l00164"></a>00164             std::cout &lt;&lt; <span class="stringliteral">&quot;no line, &quot;</span>;
+<a name="l00165"></a>00165 
+<a name="l00166"></a>00166         <span class="keywordflow">if</span>(sensors.<a class="code" href="structIDP_1_1LineSensors.html#ab986b625016c2f99536299b6d0af3f29">line_left</a> == <a class="code" href="namespaceIDP.html#afc3b1d4cbb313bfc854f49d6f23b25f7ab8f6b528c0b2fd3edfdd6463cc6a2fd2">LINE</a>)
+<a name="l00167"></a>00167             std::cout &lt;&lt; <span class="stringliteral">&quot;line, &quot;</span>;
+<a name="l00168"></a>00168         <span class="keywordflow">else</span>
+<a name="l00169"></a>00169             std::cout &lt;&lt; <span class="stringliteral">&quot;no line, &quot;</span>;
+<a name="l00170"></a>00170 
+<a name="l00171"></a>00171         <span class="keywordflow">if</span>(sensors.<a class="code" href="structIDP_1_1LineSensors.html#a03e1692ac462e2e6744c9d5a7656c6f1">line_right</a> == <a class="code" href="namespaceIDP.html#afc3b1d4cbb313bfc854f49d6f23b25f7ab8f6b528c0b2fd3edfdd6463cc6a2fd2">LINE</a>)
+<a name="l00172"></a>00172             std::cout &lt;&lt; <span class="stringliteral">&quot;line, &quot;</span>;
+<a name="l00173"></a>00173         <span class="keywordflow">else</span>
+<a name="l00174"></a>00174             std::cout &lt;&lt; <span class="stringliteral">&quot;no line, &quot;</span>;
+<a name="l00175"></a>00175 
+<a name="l00176"></a>00176         <span class="keywordflow">if</span>(sensors.<a class="code" href="structIDP_1_1LineSensors.html#afa87dc008f415429d15e35a49d52083c">outer_right</a> == <a class="code" href="namespaceIDP.html#afc3b1d4cbb313bfc854f49d6f23b25f7ab8f6b528c0b2fd3edfdd6463cc6a2fd2">LINE</a>)
+<a name="l00177"></a>00177             std::cout &lt;&lt; <span class="stringliteral">&quot;line&quot;</span>;
+<a name="l00178"></a>00178         <span class="keywordflow">else</span>
+<a name="l00179"></a>00179             std::cout &lt;&lt; <span class="stringliteral">&quot;no line&quot;</span>;
+<a name="l00180"></a>00180 
+<a name="l00181"></a>00181         std::cout &lt;&lt; std::endl;
+<a name="l00182"></a>00182     }
+<a name="l00183"></a>00183 
+<a name="l00187"></a><a class="code" href="classIDP_1_1SelfTests.html#a6b2e4d0517de4b73c63f1b1a475b602f">00187</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1SelfTests.html#a6b2e4d0517de4b73c63f1b1a475b602f" title="Display the state of each of the two microswitches.">SelfTests::microswitches</a>()
+<a name="l00188"></a>00188     {
+<a name="l00189"></a>00189         TRACE(<span class="stringliteral">&quot;microswitches()&quot;</span>);
+<a name="l00190"></a>00190         INFO(<span class="stringliteral">&quot;Testing microswitches&quot;</span>);
+<a name="l00191"></a>00191         <span class="keywordtype">bool</span> reset = this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a4ce4bec948d6449e7cab3cfcd0de513f" title="Read the reset switch and return its status.">reset_switch</a>();
+<a name="l00192"></a>00192         <span class="keywordtype">bool</span> grabber = this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a82ef6744041c174edb7f8982f44685b7" title="Read the switch mounted on the grabber arm and return its status.">grabber_switch</a>();
+<a name="l00193"></a>00193 
+<a name="l00194"></a>00194         std::cout &lt;&lt; <span class="stringliteral">&quot;Reset switch: &quot;</span> &lt;&lt; reset &lt;&lt; std::endl;
+<a name="l00195"></a>00195         std::cout &lt;&lt; <span class="stringliteral">&quot;Grabber switch: &quot;</span> &lt;&lt; grabber &lt;&lt; std::endl;
+<a name="l00196"></a>00196     }
+<a name="l00197"></a>00197     
+<a name="l00201"></a><a class="code" href="classIDP_1_1SelfTests.html#a56952650637691f869ef21f7d43f1226">00201</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1SelfTests.html#a56952650637691f869ef21f7d43f1226" title="Display the current ADC read from the light dependent resistor.">SelfTests::LDRs</a>()
+<a name="l00202"></a>00202     {
+<a name="l00203"></a>00203         TRACE(<span class="stringliteral">&quot;LDRs()&quot;</span>);
+<a name="l00204"></a>00204         <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> reading;
+<a name="l00205"></a>00205 
+<a name="l00206"></a>00206         <span class="comment">// Read without LEDs</span>
+<a name="l00207"></a>00207         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a6574abe8852976bfa94c00e13d8c1686" title="Turn on and off the LED used to light up the bobbin for colour detection.">colour_LED</a>(<span class="keyword">false</span>);
+<a name="l00208"></a>00208         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#ad2feaf269fbcda10fb1192b575a4963a" title="Turn on and off the LED used to light up the top of the bobbin, for bad bobbin detection.">bad_bobbin_LED</a>(<span class="keyword">false</span>);
+<a name="l00209"></a>00209         reading = this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#ae4f163981d213ff3dea4b21e8aa92063" title="Get the analogue reading from the LDR used to detect colour.">colour_ldr</a>();
+<a name="l00210"></a>00210         std::cout &lt;&lt; <span class="stringliteral">&quot;* No lights, colour: &quot;</span> &lt;&lt; reading &lt;&lt; std::endl;
+<a name="l00211"></a>00211         reading = this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#af4a8cb5072cf89263b97a3e8e1727da8" title="Get the analogue reading from the LDR used to detect the bad bobbin.">bad_bobbin_ldr</a>();
+<a name="l00212"></a>00212         std::cout &lt;&lt; <span class="stringliteral">&quot;* No lights, badness: &quot;</span> &lt;&lt; reading &lt;&lt; std::endl;
+<a name="l00213"></a>00213 
+<a name="l00214"></a>00214         <span class="comment">// Again with colour LED</span>
+<a name="l00215"></a>00215         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a6574abe8852976bfa94c00e13d8c1686" title="Turn on and off the LED used to light up the bobbin for colour detection.">colour_LED</a>(<span class="keyword">true</span>);
+<a name="l00216"></a>00216         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#ad2feaf269fbcda10fb1192b575a4963a" title="Turn on and off the LED used to light up the top of the bobbin, for bad bobbin detection.">bad_bobbin_LED</a>(<span class="keyword">false</span>);
+<a name="l00217"></a>00217         reading = this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#ae4f163981d213ff3dea4b21e8aa92063" title="Get the analogue reading from the LDR used to detect colour.">colour_ldr</a>();
+<a name="l00218"></a>00218         std::cout &lt;&lt; <span class="stringliteral">&quot;* Colour LED, colour: &quot;</span> &lt;&lt; reading &lt;&lt; std::endl;
+<a name="l00219"></a>00219         reading = this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#af4a8cb5072cf89263b97a3e8e1727da8" title="Get the analogue reading from the LDR used to detect the bad bobbin.">bad_bobbin_ldr</a>();
+<a name="l00220"></a>00220         std::cout &lt;&lt; <span class="stringliteral">&quot;* Colour LED, badness: &quot;</span> &lt;&lt; reading &lt;&lt; std::endl;
+<a name="l00221"></a>00221 
+<a name="l00222"></a>00222         <span class="comment">// Now with the badness LED</span>
+<a name="l00223"></a>00223         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a6574abe8852976bfa94c00e13d8c1686" title="Turn on and off the LED used to light up the bobbin for colour detection.">colour_LED</a>(<span class="keyword">false</span>);
+<a name="l00224"></a>00224         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#ad2feaf269fbcda10fb1192b575a4963a" title="Turn on and off the LED used to light up the top of the bobbin, for bad bobbin detection.">bad_bobbin_LED</a>(<span class="keyword">true</span>);
+<a name="l00225"></a>00225         reading = this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#ae4f163981d213ff3dea4b21e8aa92063" title="Get the analogue reading from the LDR used to detect colour.">colour_ldr</a>();
+<a name="l00226"></a>00226         std::cout &lt;&lt; <span class="stringliteral">&quot;* Badness LED, colour: &quot;</span> &lt;&lt; reading &lt;&lt; std::endl;
+<a name="l00227"></a>00227         reading = this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#af4a8cb5072cf89263b97a3e8e1727da8" title="Get the analogue reading from the LDR used to detect the bad bobbin.">bad_bobbin_ldr</a>();
+<a name="l00228"></a>00228         std::cout &lt;&lt; <span class="stringliteral">&quot;* Badness LED, badness: &quot;</span> &lt;&lt; reading &lt;&lt; std::endl;
 <a name="l00229"></a>00229 
-<a name="l00230"></a>00230         std::cout &lt;&lt; <span class="stringliteral">&quot;Enter FROM node: &quot;</span>;
-<a name="l00231"></a>00231         std::cin &gt;&gt; input_node;
-<a name="l00232"></a>00232         <a class="code" href="namespaceIDP.html#a286f26dda01010063dff761803b4cd16" title="Navigation nodes, numbered clockwise from the bottom right corner of the table.">NavigationNode</a> from = <span class="keyword">static_cast&lt;</span><a class="code" href="namespaceIDP.html#a286f26dda01010063dff761803b4cd16" title="Navigation nodes, numbered clockwise from the bottom right corner of the table.">NavigationNode</a><span class="keyword">&gt;</span>(input_node + 1);
-<a name="l00233"></a>00233         std::cout &lt;&lt; <span class="stringliteral">&quot;FROM is &quot;</span> &lt;&lt; NavigationNodeStrings[from] &lt;&lt; std::endl;
-<a name="l00234"></a>00234 
-<a name="l00235"></a>00235         std::cout &lt;&lt; <span class="stringliteral">&quot;Enter TO node: &quot;</span>;
-<a name="l00236"></a>00236         std::cin &gt;&gt; input_node;
-<a name="l00237"></a>00237         <a class="code" href="namespaceIDP.html#a286f26dda01010063dff761803b4cd16" title="Navigation nodes, numbered clockwise from the bottom right corner of the table.">NavigationNode</a> to = <span class="keyword">static_cast&lt;</span><a class="code" href="namespaceIDP.html#a286f26dda01010063dff761803b4cd16" title="Navigation nodes, numbered clockwise from the bottom right corner of the table.">NavigationNode</a><span class="keyword">&gt;</span>(input_node + 1);
-<a name="l00238"></a>00238         std::cout &lt;&lt; <span class="stringliteral">&quot;TO is &quot;</span> &lt;&lt; NavigationNodeStrings[from] &lt;&lt; std::endl;
-<a name="l00239"></a>00239 
-<a name="l00240"></a>00240         std::cout &lt;&lt; <span class="stringliteral">&quot;Enter TARGET node: &quot;</span>;
-<a name="l00241"></a>00241         std::cin &gt;&gt; input_node;
-<a name="l00242"></a>00242         <a class="code" href="namespaceIDP.html#a286f26dda01010063dff761803b4cd16" title="Navigation nodes, numbered clockwise from the bottom right corner of the table.">NavigationNode</a> target = <span class="keyword">static_cast&lt;</span><a class="code" href="namespaceIDP.html#a286f26dda01010063dff761803b4cd16" title="Navigation nodes, numbered clockwise from the bottom right corner of the table.">NavigationNode</a><span class="keyword">&gt;</span>(input_node + 1);
-<a name="l00243"></a>00243         std::cout &lt;&lt; <span class="stringliteral">&quot;TARGET is &quot;</span> &lt;&lt; NavigationNodeStrings[from] &lt;&lt; std::endl;
-<a name="l00244"></a>00244 
-<a name="l00245"></a>00245         <a class="code" href="classIDP_1_1Navigation.html" title="Find a route from one place to another on the board, and maintain an estimate of the current position...">Navigation</a> nav(this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>, from, to);
-<a name="l00246"></a>00246         <a class="code" href="namespaceIDP.html#a1a96e566e4d675fdf20780cc96d92283" title="Current navigation status.">NavigationStatus</a> status;
-<a name="l00247"></a>00247         <span class="keywordflow">do</span> {
-<a name="l00248"></a>00248             status = nav.<a class="code" href="classIDP_1_1Navigation.html#a24b977f20868a385251d4becf187b815" title="Go to a particular NavigationNode.">go_node</a>(target);
-<a name="l00249"></a>00249         } <span class="keywordflow">while</span>(status == <a class="code" href="namespaceIDP.html#a1a96e566e4d675fdf20780cc96d92283a9f52fe7970aefcb1b74e9aea3798f39d">NAVIGATION_ENROUTE</a>);
-<a name="l00250"></a>00250 
-<a name="l00251"></a>00251         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a4f8f0340f3ac64c3f676b700b7e36229" title="Stop all motors.">motors_stop</a>();
-<a name="l00252"></a>00252         <span class="keywordflow">return</span>;
-<a name="l00253"></a>00253     }
-<a name="l00254"></a>00254 
-<a name="l00259"></a><a class="code" href="classIDP_1_1SelfTests.html#ada3dfe991573fc6b0922cace927fc4e0">00259</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1SelfTests.html#ada3dfe991573fc6b0922cace927fc4e0" title="Drive slowly looking for an object in range for pickup, then position self ready to clamp said object...">SelfTests::position</a>()
-<a name="l00260"></a>00260     {
-<a name="l00261"></a>00261         TRACE(<span class="stringliteral">&quot;position()&quot;</span>);
-<a name="l00262"></a>00262     }
-<a name="l00263"></a>00263 
-<a name="l00268"></a><a class="code" href="classIDP_1_1SelfTests.html#abbe6e3e29b00f760e0b65f2aeb772fb5">00268</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1SelfTests.html#abbe6e3e29b00f760e0b65f2aeb772fb5" title="Turn on each of the status LEDs (used for indicating bobbin colour) in turn.">SelfTests::status_LEDs</a>()
-<a name="l00269"></a>00269     {
-<a name="l00270"></a>00270         TRACE(<span class="stringliteral">&quot;status_LEDs()&quot;</span>);
-<a name="l00271"></a>00271     }
-<a name="l00272"></a>00272 
-<a name="l00277"></a><a class="code" href="classIDP_1_1SelfTests.html#a1380b0222eef47f6d50e7cf334e4c9e7">00277</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1SelfTests.html#a1380b0222eef47f6d50e7cf334e4c9e7" title="Turn on each of the coloured LEDs used for colour detection in turn.">SelfTests::colour_sensor_LEDs</a>()
-<a name="l00278"></a>00278     {
-<a name="l00279"></a>00279         TRACE(<span class="stringliteral">&quot;colour_sensor_LEDs()&quot;</span>);
+<a name="l00230"></a>00230         <span class="comment">// And finally with both</span>
+<a name="l00231"></a>00231         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a6574abe8852976bfa94c00e13d8c1686" title="Turn on and off the LED used to light up the bobbin for colour detection.">colour_LED</a>(<span class="keyword">true</span>);
+<a name="l00232"></a>00232         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#ad2feaf269fbcda10fb1192b575a4963a" title="Turn on and off the LED used to light up the top of the bobbin, for bad bobbin detection.">bad_bobbin_LED</a>(<span class="keyword">true</span>);
+<a name="l00233"></a>00233         reading = this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#ae4f163981d213ff3dea4b21e8aa92063" title="Get the analogue reading from the LDR used to detect colour.">colour_ldr</a>();
+<a name="l00234"></a>00234         std::cout &lt;&lt; <span class="stringliteral">&quot;* Both LEDs, colour: &quot;</span> &lt;&lt; reading &lt;&lt; std::endl;
+<a name="l00235"></a>00235         reading = this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#af4a8cb5072cf89263b97a3e8e1727da8" title="Get the analogue reading from the LDR used to detect the bad bobbin.">bad_bobbin_ldr</a>();
+<a name="l00236"></a>00236         std::cout &lt;&lt; <span class="stringliteral">&quot;* Both LEDs, badness: &quot;</span> &lt;&lt; reading &lt;&lt; std::endl;
+<a name="l00237"></a>00237 
+<a name="l00238"></a>00238         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a6574abe8852976bfa94c00e13d8c1686" title="Turn on and off the LED used to light up the bobbin for colour detection.">colour_LED</a>(<span class="keyword">false</span>);
+<a name="l00239"></a>00239         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#ad2feaf269fbcda10fb1192b575a4963a" title="Turn on and off the LED used to light up the top of the bobbin, for bad bobbin detection.">bad_bobbin_LED</a>(<span class="keyword">false</span>);
+<a name="l00240"></a>00240         std::cout &lt;&lt; <span class="stringliteral">&quot;Done.&quot;</span> &lt;&lt; std::endl;
+<a name="l00241"></a>00241     }
+<a name="l00242"></a>00242 
+<a name="l00246"></a><a class="code" href="classIDP_1_1SelfTests.html#a0ca765ac144fafaab502f4326a480486">00246</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1SelfTests.html#a0ca765ac144fafaab502f4326a480486" title="Fire each of the actuators in turn.">SelfTests::actuators</a>()
+<a name="l00247"></a>00247     {
+<a name="l00248"></a>00248         TRACE(<span class="stringliteral">&quot;actuators()&quot;</span>);
+<a name="l00249"></a>00249         INFO(<span class="stringliteral">&quot;Testing actuators&quot;</span>);
+<a name="l00250"></a>00250         std::cout &lt;&lt; <span class="stringliteral">&quot;Closing jaw...&quot;</span> &lt;&lt; std::endl;
+<a name="l00251"></a>00251         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a44d5a4c942332ba9ffe027de3dba83f0" title="Turn the grabber jaw actuator on or off.">grabber_jaw</a>(<span class="keyword">true</span>);
+<a name="l00252"></a>00252         usleep(1000000);
+<a name="l00253"></a>00253         std::cout &lt;&lt; <span class="stringliteral">&quot;Opening jaw...&quot;</span> &lt;&lt; std::endl;
+<a name="l00254"></a>00254         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a44d5a4c942332ba9ffe027de3dba83f0" title="Turn the grabber jaw actuator on or off.">grabber_jaw</a>(<span class="keyword">false</span>);
+<a name="l00255"></a>00255         usleep(1000000);
+<a name="l00256"></a>00256         std::cout &lt;&lt; <span class="stringliteral">&quot;Raising arm...&quot;</span> &lt;&lt; std::endl;
+<a name="l00257"></a>00257         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a0f036b16f1f55a257c2b552035d2a1a9" title="Turn the grabber lift mechanism actuator on or off.">grabber_lift</a>(<span class="keyword">true</span>);
+<a name="l00258"></a>00258         usleep(1000000);
+<a name="l00259"></a>00259         std::cout &lt;&lt; <span class="stringliteral">&quot;Lowing arm...&quot;</span> &lt;&lt; std::endl;
+<a name="l00260"></a>00260         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a0f036b16f1f55a257c2b552035d2a1a9" title="Turn the grabber lift mechanism actuator on or off.">grabber_lift</a>(<span class="keyword">false</span>);
+<a name="l00261"></a>00261     }
+<a name="l00262"></a>00262 
+<a name="l00266"></a><a class="code" href="classIDP_1_1SelfTests.html#a0a1a40b56fee5249def567bebdb05dc1">00266</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1SelfTests.html#a0a1a40b56fee5249def567bebdb05dc1" title="Follow a line until a junction.">SelfTests::line_following</a>()
+<a name="l00267"></a>00267     {
+<a name="l00268"></a>00268         TRACE(<span class="stringliteral">&quot;line_following()&quot;</span>);
+<a name="l00269"></a>00269         INFO(<span class="stringliteral">&quot;Testing line following&quot;</span>);
+<a name="l00270"></a>00270 
+<a name="l00271"></a>00271         <a class="code" href="classIDP_1_1LineFollowing.html" title="Maintain the robot position correctly with respect to the white line markers, during driving and mano...">LineFollowing</a> lf(this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>);
+<a name="l00272"></a>00272         <a class="code" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0" title="Line following return status codes.">LineFollowingStatus</a> status;
+<a name="l00273"></a>00273 
+<a name="l00274"></a>00274         lf.<a class="code" href="classIDP_1_1LineFollowing.html#af034f457aef1716d042606c71dddfd73" title="Set the speed that motors will be driven at.">set_speed</a>(127);
+<a name="l00275"></a>00275         
+<a name="l00276"></a>00276         INFO(<span class="stringliteral">&quot;following a line&quot;</span>);
+<a name="l00277"></a>00277         <span class="keywordflow">do</span> {
+<a name="l00278"></a>00278             status = lf.<a class="code" href="classIDP_1_1LineFollowing.html#ad26d7726d2bb263658ed3140d3e30852" title="Read line sensors and correct motor movement to keep us going straight.">follow_line</a>();
+<a name="l00279"></a>00279         } <span class="keywordflow">while</span>(status == <a class="code" href="namespaceIDP.html#a5993bdfdd901fc5521c8df42dca43bd0a392b1fde04c7c0a442405be80f874159">ACTION_IN_PROGRESS</a>);
 <a name="l00280"></a>00280     }
 <a name="l00281"></a>00281 
-<a name="l00285"></a><a class="code" href="classIDP_1_1SelfTests.html#aee90c71e9e93398f06dc1ad67002d7bf">00285</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1SelfTests.html#aee90c71e9e93398f06dc1ad67002d7bf" title="Turn on the LED used for detecting bad bobbins.">SelfTests::badness_LED</a>()
-<a name="l00286"></a>00286     {
-<a name="l00287"></a>00287         TRACE(<span class="stringliteral">&quot;badness_LED()&quot;</span>);
-<a name="l00288"></a>00288     }
-<a name="l00289"></a>00289 }
+<a name="l00286"></a><a class="code" href="classIDP_1_1SelfTests.html#a896204355ca039660a12e8131578b6c3">00286</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1SelfTests.html#a896204355ca039660a12e8131578b6c3" title="Use the actuators to pick up an object before placing it back down again.">SelfTests::clamp_control</a>()
+<a name="l00287"></a>00287     {
+<a name="l00288"></a>00288         TRACE(<span class="stringliteral">&quot;clamp_control()&quot;</span>);
+<a name="l00289"></a>00289         INFO(<span class="stringliteral">&quot;Testing clamp control&quot;</span>);
+<a name="l00290"></a>00290 
+<a name="l00291"></a>00291         <a class="code" href="classIDP_1_1ClampControl.html" title="Manage the actuation of the clamp, as well as the detection and analysis of bobbins for their colour ...">ClampControl</a> cc(this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>);
+<a name="l00292"></a>00292         cc.<a class="code" href="classIDP_1_1ClampControl.html#a881ecc4fbc73c47594ecc675b9dbf3e1" title="Pick up something using the clamp.">pick_up</a>();
+<a name="l00293"></a>00293 
+<a name="l00294"></a>00294         std::cout &lt;&lt; <span class="stringliteral">&quot;Picked up, press enter to put down again.&quot;</span> &lt;&lt; std::endl;
+<a name="l00295"></a>00295 
+<a name="l00296"></a>00296         std::getchar();
+<a name="l00297"></a>00297         cc.<a class="code" href="classIDP_1_1ClampControl.html#a31573846d9f7c61a6133b9dd465eca25" title="Put something in the clamp down.">put_down</a>();
+<a name="l00298"></a>00298 
+<a name="l00299"></a>00299         std::cout &lt;&lt; <span class="stringliteral">&quot;Done.&quot;</span> &lt;&lt; std::endl;
+<a name="l00300"></a>00300     }
+<a name="l00301"></a>00301 
+<a name="l00306"></a><a class="code" href="classIDP_1_1SelfTests.html#a66f0a3bad277e36b963b2bf3cd5df9dd">00306</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1SelfTests.html#a66f0a3bad277e36b963b2bf3cd5df9dd" title="Analyse the colour of the bobbin that is currently being held in the clamp.">SelfTests::bobbin_analyse</a>()
+<a name="l00307"></a>00307     {
+<a name="l00308"></a>00308         TRACE(<span class="stringliteral">&quot;bobbin_analyse()&quot;</span>);
+<a name="l00309"></a>00309 
+<a name="l00310"></a>00310         <a class="code" href="classIDP_1_1ClampControl.html" title="Manage the actuation of the clamp, as well as the detection and analysis of bobbins for their colour ...">ClampControl</a> cc(this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>);
+<a name="l00311"></a>00311         
+<a name="l00312"></a>00312 
+<a name="l00313"></a>00313         std::cout &lt;&lt; <span class="stringliteral">&quot;Position a bobbin inside the clamp and press enter.&quot;</span>;
+<a name="l00314"></a>00314         std::cout &lt;&lt; std::endl;
+<a name="l00315"></a>00315 
+<a name="l00316"></a>00316         std::getchar();
+<a name="l00317"></a>00317 
+<a name="l00318"></a>00318         <a class="code" href="namespaceIDP.html#a6efd2cca14c0dae1c6458714ce0218df" title="Bobbin colours.">BobbinColour</a> colour = cc.<a class="code" href="classIDP_1_1ClampControl.html#adcb72d77aa298264c67b42e9252f7688" title="Check the bobbin colour.">colour</a>();
+<a name="l00319"></a>00319         std::cout &lt;&lt; <span class="stringliteral">&quot;Read colour as &quot;</span> &lt;&lt; BobbinColourStrings[colour];
+<a name="l00320"></a>00320         std::cout &lt;&lt; std::endl;
+<a name="l00321"></a>00321 
+<a name="l00322"></a>00322         <a class="code" href="namespaceIDP.html#adf12b2c1e1c228810b18c34a3c88c32d" title="Bobbin good or bad.">BobbinBadness</a> bad = cc.<a class="code" href="classIDP_1_1ClampControl.html#ab9431b1477cb0785194ed1cfe0b8b328" title="Check the bobbin badness.">badness</a>();
+<a name="l00323"></a>00323         std::cout &lt;&lt; <span class="stringliteral">&quot;Read badness as &quot;</span> &lt;&lt; BobbinBadnessStrings[bad];
+<a name="l00324"></a>00324         std::cout &lt;&lt; std::endl &lt;&lt; <span class="stringliteral">&quot;Done.&quot;</span> &lt;&lt; std::endl;
+<a name="l00325"></a>00325 
+<a name="l00326"></a>00326     }
+<a name="l00327"></a>00327 
+<a name="l00331"></a><a class="code" href="classIDP_1_1SelfTests.html#ad112f0e0a9ef078b394585742d23fbbf">00331</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1SelfTests.html#ad112f0e0a9ef078b394585742d23fbbf" title="Analyse the colour of the bobbin in a box.">SelfTests::box_analyse</a>()
+<a name="l00332"></a>00332     {
+<a name="l00333"></a>00333         TRACE(<span class="stringliteral">&quot;box_analyse()&quot;</span>);
+<a name="l00334"></a>00334 
+<a name="l00335"></a>00335         <a class="code" href="classIDP_1_1ClampControl.html" title="Manage the actuation of the clamp, as well as the detection and analysis of bobbins for their colour ...">ClampControl</a> cc(this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>);
+<a name="l00336"></a>00336 
+<a name="l00337"></a>00337         std::cout &lt;&lt; <span class="stringliteral">&quot;Position a box inside the clamp and press enter.&quot;</span>;
+<a name="l00338"></a>00338         std::cout &lt;&lt; std::endl;
+<a name="l00339"></a>00339 
+<a name="l00340"></a>00340         std::getchar();
+<a name="l00341"></a>00341 
+<a name="l00342"></a>00342         
+<a name="l00343"></a>00343         <a class="code" href="namespaceIDP.html#a6efd2cca14c0dae1c6458714ce0218df" title="Bobbin colours.">BobbinColour</a> colour = cc.<a class="code" href="classIDP_1_1ClampControl.html#a7f9e7fdd2f09f3aa7eff620073181f23" title="Check the bobbin colour while it is in a box.">box_colour</a>();
+<a name="l00344"></a>00344         std::cout &lt;&lt; <span class="stringliteral">&quot;Read colour as &quot;</span> &lt;&lt; BobbinColourStrings[colour];
+<a name="l00345"></a>00345         std::cout &lt;&lt; std::endl;
+<a name="l00346"></a>00346 
+<a name="l00347"></a>00347     }
+<a name="l00348"></a>00348 
+<a name="l00352"></a><a class="code" href="classIDP_1_1SelfTests.html#a9914eb4c83e3613311d1b4656631db01">00352</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1SelfTests.html#a9914eb4c83e3613311d1b4656631db01" title="See if a bobbin is under the clamp.">SelfTests::bobbin_present</a>()
+<a name="l00353"></a>00353     {
+<a name="l00354"></a>00354         TRACE(<span class="stringliteral">&quot;bobbin_present()&quot;</span>);
+<a name="l00355"></a>00355 
+<a name="l00356"></a>00356         <a class="code" href="classIDP_1_1ClampControl.html" title="Manage the actuation of the clamp, as well as the detection and analysis of bobbins for their colour ...">ClampControl</a> cc(this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>);
+<a name="l00357"></a>00357         
+<a name="l00358"></a>00358         std::cout &lt;&lt; <span class="stringliteral">&quot;Make sure the clamp is not over a bobbin and press&quot;</span>;
+<a name="l00359"></a>00359         std::cout &lt;&lt; <span class="stringliteral">&quot; enter.&quot;</span> &lt;&lt; std::endl;
+<a name="l00360"></a>00360 
+<a name="l00361"></a>00361         std::getchar();
+<a name="l00362"></a>00362 
+<a name="l00363"></a>00363 
+<a name="l00364"></a>00364         std::cout &lt;&lt; <span class="stringliteral">&quot;Now press enter to test for a bobbin.&quot;</span> &lt;&lt; std::endl;
+<a name="l00365"></a>00365 
+<a name="l00366"></a>00366         std::getchar();
+<a name="l00367"></a>00367 
+<a name="l00368"></a>00368         <span class="keywordflow">for</span>(;;) {
+<a name="l00369"></a>00369 
+<a name="l00370"></a>00370             <span class="keywordtype">bool</span> present = cc.<a class="code" href="classIDP_1_1ClampControl.html#acc9ea5549b9eaeb9c53fb8e1b7dd0a7d" title="See if a bobbin is in the jaw.">bobbin_present</a>();
+<a name="l00371"></a>00371 
+<a name="l00372"></a>00372             <span class="keywordflow">if</span>(present)
+<a name="l00373"></a>00373                 std::cout &lt;&lt; <span class="stringliteral">&quot;Bobbin found!&quot;</span> &lt;&lt; std::endl;
+<a name="l00374"></a>00374             <span class="keywordflow">else</span>
+<a name="l00375"></a>00375                 std::cout &lt;&lt; <span class="stringliteral">&quot;No bobbin found.&quot;</span> &lt;&lt; std::endl;
+<a name="l00376"></a>00376         }
+<a name="l00377"></a>00377     }
+<a name="l00378"></a>00378 
+<a name="l00382"></a><a class="code" href="classIDP_1_1SelfTests.html#a04ec400b90a5fa3203db667aa97ec99d">00382</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1SelfTests.html#a04ec400b90a5fa3203db667aa97ec99d" title="See if a box is under the clamp.">SelfTests::box_present</a>()
+<a name="l00383"></a>00383     {
+<a name="l00384"></a>00384         TRACE(<span class="stringliteral">&quot;box_present()&quot;</span>);
+<a name="l00385"></a>00385         <a class="code" href="classIDP_1_1ClampControl.html" title="Manage the actuation of the clamp, as well as the detection and analysis of bobbins for their colour ...">ClampControl</a> cc(this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>);
+<a name="l00386"></a>00386         std::cout &lt;&lt; <span class="stringliteral">&quot;Testing for box...&quot;</span>;
+<a name="l00387"></a>00387 
+<a name="l00388"></a>00388         std::cout &lt;&lt; <span class="stringliteral">&quot;Make sure the clamp is not over a box and press&quot;</span>;
+<a name="l00389"></a>00389         std::cout &lt;&lt; <span class="stringliteral">&quot; enter.&quot;</span> &lt;&lt; std::endl;
+<a name="l00390"></a>00390 
+<a name="l00391"></a>00391         std::getchar();
+<a name="l00392"></a>00392 
+<a name="l00393"></a>00393 
+<a name="l00394"></a>00394         std::cout &lt;&lt; <span class="stringliteral">&quot;Now press enter to test for a box.&quot;</span> &lt;&lt; std::endl;
+<a name="l00395"></a>00395 
+<a name="l00396"></a>00396         std::getchar();
+<a name="l00397"></a>00397 
+<a name="l00398"></a>00398         <span class="keywordflow">for</span>(;;) {
+<a name="l00399"></a>00399             <span class="keywordtype">bool</span> present = cc.<a class="code" href="classIDP_1_1ClampControl.html#a1731e2025ab33c430d3e4bf1a941ce23" title="See if a box is under the jaw.">box_present</a>();
+<a name="l00400"></a>00400             <span class="keywordflow">if</span>(present)
+<a name="l00401"></a>00401                 std::cout &lt;&lt; <span class="stringliteral">&quot;Box found!&quot;</span> &lt;&lt; std::endl;
+<a name="l00402"></a>00402             <span class="keywordflow">else</span>
+<a name="l00403"></a>00403                 std::cout &lt;&lt; <span class="stringliteral">&quot;No box found.&quot;</span> &lt;&lt; std::endl;
+<a name="l00404"></a>00404         }
+<a name="l00405"></a>00405     }
+<a name="l00406"></a>00406 
+<a name="l00411"></a><a class="code" href="classIDP_1_1SelfTests.html#a710347081427c05706f92bdd12f62fbe">00411</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1SelfTests.html#a710347081427c05706f92bdd12f62fbe" title="Select a source and destination and then navigate to the destination assuming we are starting at the ...">SelfTests::navigate</a>()
+<a name="l00412"></a>00412     {
+<a name="l00413"></a>00413         TRACE(<span class="stringliteral">&quot;navigate()&quot;</span>);
+<a name="l00414"></a>00414         INFO(<span class="stringliteral">&quot;Testing navigation&quot;</span>);
+<a name="l00415"></a>00415 
+<a name="l00416"></a>00416         <span class="keywordtype">int</span> input_node;
+<a name="l00417"></a>00417 
+<a name="l00418"></a>00418         std::cout &lt;&lt; <span class="stringliteral">&quot;Enter FROM node: &quot;</span>;
+<a name="l00419"></a>00419         std::cin &gt;&gt; input_node;
+<a name="l00420"></a>00420         <a class="code" href="namespaceIDP.html#a286f26dda01010063dff761803b4cd16" title="Navigation nodes, numbered clockwise from the bottom right corner of the table.">NavigationNode</a> from = <span class="keyword">static_cast&lt;</span><a class="code" href="namespaceIDP.html#a286f26dda01010063dff761803b4cd16" title="Navigation nodes, numbered clockwise from the bottom right corner of the table.">NavigationNode</a><span class="keyword">&gt;</span>(input_node - 1);
+<a name="l00421"></a>00421         std::cout &lt;&lt; <span class="stringliteral">&quot;FROM is &quot;</span> &lt;&lt; NavigationNodeStrings[from] &lt;&lt; std::endl;
+<a name="l00422"></a>00422 
+<a name="l00423"></a>00423         std::cout &lt;&lt; <span class="stringliteral">&quot;Enter TO node: &quot;</span>;
+<a name="l00424"></a>00424         std::cin &gt;&gt; input_node;
+<a name="l00425"></a>00425         <a class="code" href="namespaceIDP.html#a286f26dda01010063dff761803b4cd16" title="Navigation nodes, numbered clockwise from the bottom right corner of the table.">NavigationNode</a> to = <span class="keyword">static_cast&lt;</span><a class="code" href="namespaceIDP.html#a286f26dda01010063dff761803b4cd16" title="Navigation nodes, numbered clockwise from the bottom right corner of the table.">NavigationNode</a><span class="keyword">&gt;</span>(input_node - 1);
+<a name="l00426"></a>00426         std::cout &lt;&lt; <span class="stringliteral">&quot;TO is &quot;</span> &lt;&lt; NavigationNodeStrings[to] &lt;&lt; std::endl;
+<a name="l00427"></a>00427 
+<a name="l00428"></a>00428         std::cout &lt;&lt; <span class="stringliteral">&quot;Enter TARGET node: &quot;</span>;
+<a name="l00429"></a>00429         std::cin &gt;&gt; input_node;
+<a name="l00430"></a>00430         <a class="code" href="namespaceIDP.html#a286f26dda01010063dff761803b4cd16" title="Navigation nodes, numbered clockwise from the bottom right corner of the table.">NavigationNode</a> target = <span class="keyword">static_cast&lt;</span><a class="code" href="namespaceIDP.html#a286f26dda01010063dff761803b4cd16" title="Navigation nodes, numbered clockwise from the bottom right corner of the table.">NavigationNode</a><span class="keyword">&gt;</span>(input_node - 1);
+<a name="l00431"></a>00431         std::cout &lt;&lt; <span class="stringliteral">&quot;TARGET is &quot;</span> &lt;&lt; NavigationNodeStrings[target];
+<a name="l00432"></a>00432         std::cout &lt;&lt; std::endl;
+<a name="l00433"></a>00433 
+<a name="l00434"></a>00434         <a class="code" href="classIDP_1_1Navigation.html" title="Find a route from one place to another on the board, and maintain an estimate of the current position...">Navigation</a> nav(this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>, from, to);
+<a name="l00435"></a>00435         <a class="code" href="namespaceIDP.html#a1a96e566e4d675fdf20780cc96d92283" title="Current navigation status.">NavigationStatus</a> status;
+<a name="l00436"></a>00436         <span class="keywordflow">do</span> {
+<a name="l00437"></a>00437             status = nav.<a class="code" href="classIDP_1_1Navigation.html#a24b977f20868a385251d4becf187b815" title="Go to a particular NavigationNode.">go_node</a>(target);
+<a name="l00438"></a>00438         } <span class="keywordflow">while</span>(status == <a class="code" href="namespaceIDP.html#a1a96e566e4d675fdf20780cc96d92283a9f52fe7970aefcb1b74e9aea3798f39d">NAVIGATION_ENROUTE</a>);
+<a name="l00439"></a>00439 
+<a name="l00440"></a>00440         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a4f8f0340f3ac64c3f676b700b7e36229" title="Stop all motors.">motors_stop</a>();
+<a name="l00441"></a>00441         <span class="keywordflow">return</span>;
+<a name="l00442"></a>00442     }
+<a name="l00443"></a>00443     
+<a name="l00447"></a><a class="code" href="classIDP_1_1SelfTests.html#a74774d0867234315043af155d7d6ab2e">00447</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1SelfTests.html#a74774d0867234315043af155d7d6ab2e" title="Drive to a bobbin and stop.">SelfTests::navigate_to_bobbin</a>()
+<a name="l00448"></a>00448     {
+<a name="l00449"></a>00449         TRACE(<span class="stringliteral">&quot;navigate_to_bobbin()&quot;</span>);
+<a name="l00450"></a>00450         INFO(<span class="stringliteral">&quot;Navigating to a bobbin&quot;</span>);
+<a name="l00451"></a>00451 
+<a name="l00452"></a>00452         std::cout &lt;&lt; <span class="stringliteral">&quot;Please position Fluffy in the start box facing&quot;</span>;
+<a name="l00453"></a>00453         std::cout &lt;&lt; <span class="stringliteral">&quot; the bobbins, then press enter.&quot;</span> &lt;&lt; std::endl;
+<a name="l00454"></a>00454 
+<a name="l00455"></a>00455         std::getchar();
+<a name="l00456"></a>00456 
+<a name="l00457"></a>00457         <a class="code" href="classIDP_1_1Navigation.html" title="Find a route from one place to another on the board, and maintain an estimate of the current position...">Navigation</a> nav(this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>, <a class="code" href="namespaceIDP.html#a286f26dda01010063dff761803b4cd16a64ef68f9f4ffd2a6b200d9667ae5ff69">NODE7</a>, <a class="code" href="namespaceIDP.html#a286f26dda01010063dff761803b4cd16af0865100370f00bba081b38a771aac19">NODE8</a>);
+<a name="l00458"></a>00458         <a class="code" href="namespaceIDP.html#a1a96e566e4d675fdf20780cc96d92283" title="Current navigation status.">NavigationStatus</a> status;
+<a name="l00459"></a>00459         <span class="keywordflow">do</span> {
+<a name="l00460"></a>00460             status = nav.<a class="code" href="classIDP_1_1Navigation.html#af4d6ce82c7ca34bab80833d478b7b7c5" title="Navigate to the starting box and commence a run along the bobbin rack.">find_bobbin</a>();
+<a name="l00461"></a>00461         } <span class="keywordflow">while</span>(status == <a class="code" href="namespaceIDP.html#a1a96e566e4d675fdf20780cc96d92283a9f52fe7970aefcb1b74e9aea3798f39d">NAVIGATION_ENROUTE</a>);
+<a name="l00462"></a>00462 
+<a name="l00463"></a>00463         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a4f8f0340f3ac64c3f676b700b7e36229" title="Stop all motors.">motors_stop</a>();
+<a name="l00464"></a>00464 
+<a name="l00465"></a>00465         INFO(<span class="stringliteral">&quot;Found bobbin. Press &#39;p&#39; to pick up or anything&quot;</span>
+<a name="l00466"></a>00466             &lt;&lt; <span class="stringliteral">&quot; else to quit&quot;</span>);
+<a name="l00467"></a>00467 
+<a name="l00468"></a>00468         <span class="keywordtype">char</span> in = std::getchar();
+<a name="l00469"></a>00469         <span class="keywordflow">if</span>(in == <span class="charliteral">&#39;p&#39;</span>) {
+<a name="l00470"></a>00470             <a class="code" href="classIDP_1_1ClampControl.html" title="Manage the actuation of the clamp, as well as the detection and analysis of bobbins for their colour ...">ClampControl</a> cc(this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>);
+<a name="l00471"></a>00471             cc.<a class="code" href="classIDP_1_1ClampControl.html#a881ecc4fbc73c47594ecc675b9dbf3e1" title="Pick up something using the clamp.">pick_up</a>();
+<a name="l00472"></a>00472         }
+<a name="l00473"></a>00473 
+<a name="l00474"></a>00474         <span class="keywordflow">return</span>;
+<a name="l00475"></a>00475     }
+<a name="l00476"></a>00476     
+<a name="l00480"></a><a class="code" href="classIDP_1_1SelfTests.html#a0bc87b4b87714b787db2b9f0b185c7c0">00480</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1SelfTests.html#a0bc87b4b87714b787db2b9f0b185c7c0" title="Locate a box and stop.">SelfTests::navigate_to_box_for_pickup</a>()
+<a name="l00481"></a>00481     {
+<a name="l00482"></a>00482         TRACE(<span class="stringliteral">&quot;navigate_to_box_for_pickup()&quot;</span>);
+<a name="l00483"></a>00483         INFO(<span class="stringliteral">&quot;Running navigate to box for pickup test&quot;</span>);
+<a name="l00484"></a>00484 
+<a name="l00485"></a>00485         std::cout &lt;&lt; <span class="stringliteral">&quot;Which box would you like to pick up? (1 or 2)&quot;</span>;
+<a name="l00486"></a>00486         std::cout &lt;&lt; std::endl &lt;&lt; <span class="stringliteral">&quot;&gt; &quot;</span>;
+<a name="l00487"></a>00487 
+<a name="l00488"></a>00488         <span class="keywordtype">int</span> box_number;
+<a name="l00489"></a>00489         std::cin &gt;&gt; box_number;
+<a name="l00490"></a>00490         <a class="code" href="namespaceIDP.html#ad90955841bc9492fb53b1f89cc667e18" title="Box identifiers.">Box</a> box = <span class="keyword">static_cast&lt;</span><a class="code" href="namespaceIDP.html#ad90955841bc9492fb53b1f89cc667e18" title="Box identifiers.">Box</a><span class="keyword">&gt;</span>(box_number - 1);
+<a name="l00491"></a>00491 
+<a name="l00492"></a>00492         std::cout &lt;&lt; <span class="stringliteral">&quot;Going to box &quot;</span> &lt;&lt; BoxStrings[box] &lt;&lt; <span class="stringliteral">&quot;.&quot;</span> &lt;&lt; std::endl;
+<a name="l00493"></a>00493 
+<a name="l00494"></a>00494         std::cout &lt;&lt; <span class="stringliteral">&quot;Please position Fluffy on the line between nodes&quot;</span>;
+<a name="l00495"></a>00495         std::cout &lt;&lt; <span class="stringliteral">&quot; 7 and 8 (in the start box), then press enter.&quot;</span>;
+<a name="l00496"></a>00496         std::cout &lt;&lt; std::endl;
+<a name="l00497"></a>00497 
+<a name="l00498"></a>00498         std::getchar();
+<a name="l00499"></a>00499         std::getchar();
+<a name="l00500"></a>00500 
+<a name="l00501"></a>00501         <a class="code" href="classIDP_1_1Navigation.html" title="Find a route from one place to another on the board, and maintain an estimate of the current position...">Navigation</a> nav(this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>, <a class="code" href="namespaceIDP.html#a286f26dda01010063dff761803b4cd16a64ef68f9f4ffd2a6b200d9667ae5ff69">NODE7</a>, <a class="code" href="namespaceIDP.html#a286f26dda01010063dff761803b4cd16af0865100370f00bba081b38a771aac19">NODE8</a>);
+<a name="l00502"></a>00502         <a class="code" href="namespaceIDP.html#a1a96e566e4d675fdf20780cc96d92283" title="Current navigation status.">NavigationStatus</a> status;
+<a name="l00503"></a>00503         <span class="keywordflow">do</span> {
+<a name="l00504"></a>00504             status = nav.<a class="code" href="classIDP_1_1Navigation.html#a901e7ea6434975fb6e69b7764ce61793" title="Go and find a box and position the robot ready to pick the box up, or analyse its contents...">find_box_for_pickup</a>(box);
+<a name="l00505"></a>00505         } <span class="keywordflow">while</span>(status == <a class="code" href="namespaceIDP.html#a1a96e566e4d675fdf20780cc96d92283a9f52fe7970aefcb1b74e9aea3798f39d">NAVIGATION_ENROUTE</a>);
+<a name="l00506"></a>00506 
+<a name="l00507"></a>00507         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a4f8f0340f3ac64c3f676b700b7e36229" title="Stop all motors.">motors_stop</a>();
+<a name="l00508"></a>00508 
+<a name="l00509"></a>00509         INFO(<span class="stringliteral">&quot;Found box for pickup. Press &#39;p&#39; to pick up or anything&quot;</span>
+<a name="l00510"></a>00510             &lt;&lt; <span class="stringliteral">&quot; else to quit&quot;</span>);
+<a name="l00511"></a>00511 
+<a name="l00512"></a>00512         <span class="keywordtype">char</span> in = std::getchar();
+<a name="l00513"></a>00513         <span class="keywordflow">if</span>(in == <span class="charliteral">&#39;p&#39;</span>) {
+<a name="l00514"></a>00514             <a class="code" href="classIDP_1_1ClampControl.html" title="Manage the actuation of the clamp, as well as the detection and analysis of bobbins for their colour ...">ClampControl</a> cc(this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>);
+<a name="l00515"></a>00515             cc.<a class="code" href="classIDP_1_1ClampControl.html#a881ecc4fbc73c47594ecc675b9dbf3e1" title="Pick up something using the clamp.">pick_up</a>();
+<a name="l00516"></a>00516         }
+<a name="l00517"></a>00517 
+<a name="l00518"></a>00518         <span class="keywordflow">return</span>;
+<a name="l00519"></a>00519     }
+<a name="l00520"></a>00520 
+<a name="l00524"></a><a class="code" href="classIDP_1_1SelfTests.html#a6633d682d0126698d66392e1c750eeed">00524</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1SelfTests.html#a6633d682d0126698d66392e1c750eeed" title="Locate a box and stop.">SelfTests::navigate_to_box_for_drop</a>()
+<a name="l00525"></a>00525     {
+<a name="l00526"></a>00526         TRACE(<span class="stringliteral">&quot;navigate_to_box_for_drop()&quot;</span>);
+<a name="l00527"></a>00527         INFO(<span class="stringliteral">&quot;Running navigate to box for drop test&quot;</span>);
+<a name="l00528"></a>00528 
+<a name="l00529"></a>00529         std::cout &lt;&lt; <span class="stringliteral">&quot;Which box would you like to deliver to? (1 or 2)&quot;</span>;
+<a name="l00530"></a>00530         std::cout &lt;&lt; std::endl &lt;&lt; <span class="stringliteral">&quot;&gt; &quot;</span>;
+<a name="l00531"></a>00531 
+<a name="l00532"></a>00532         <span class="keywordtype">int</span> box_number;
+<a name="l00533"></a>00533         std::cin &gt;&gt; box_number;
+<a name="l00534"></a>00534         <a class="code" href="namespaceIDP.html#ad90955841bc9492fb53b1f89cc667e18" title="Box identifiers.">Box</a> box = <span class="keyword">static_cast&lt;</span><a class="code" href="namespaceIDP.html#ad90955841bc9492fb53b1f89cc667e18" title="Box identifiers.">Box</a><span class="keyword">&gt;</span>(box_number - 1);
+<a name="l00535"></a>00535 
+<a name="l00536"></a>00536         std::cout &lt;&lt; <span class="stringliteral">&quot;Going to box &quot;</span> &lt;&lt; BoxStrings[box] &lt;&lt; <span class="stringliteral">&quot;.&quot;</span> &lt;&lt; std::endl;
+<a name="l00537"></a>00537 
+<a name="l00538"></a>00538         std::cout &lt;&lt; <span class="stringliteral">&quot;Please position Fluffy on the line between nodes&quot;</span>;
+<a name="l00539"></a>00539         std::cout &lt;&lt; <span class="stringliteral">&quot; 9 and 8 (facing the start box), then press enter.&quot;</span>;
+<a name="l00540"></a>00540         std::cout &lt;&lt; std::endl;
+<a name="l00541"></a>00541 
+<a name="l00542"></a>00542         std::getchar();
+<a name="l00543"></a>00543         std::getchar();
+<a name="l00544"></a>00544 
+<a name="l00545"></a>00545         <a class="code" href="classIDP_1_1Navigation.html" title="Find a route from one place to another on the board, and maintain an estimate of the current position...">Navigation</a> nav(this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>, <a class="code" href="namespaceIDP.html#a286f26dda01010063dff761803b4cd16ae3e2ad58c131978b30cb565da7a28cce">NODE9</a>, <a class="code" href="namespaceIDP.html#a286f26dda01010063dff761803b4cd16af0865100370f00bba081b38a771aac19">NODE8</a>);
+<a name="l00546"></a>00546         <a class="code" href="namespaceIDP.html#a1a96e566e4d675fdf20780cc96d92283" title="Current navigation status.">NavigationStatus</a> status;
+<a name="l00547"></a>00547         <span class="keywordflow">do</span> {
+<a name="l00548"></a>00548             status = nav.<a class="code" href="classIDP_1_1Navigation.html#a3e660be6e13f87e3a354a2acc1b43e83" title="Go and find a box and position the robot such that dropping a bobbin will land it in the box...">find_box_for_drop</a>(box);
+<a name="l00549"></a>00549         } <span class="keywordflow">while</span>(status == <a class="code" href="namespaceIDP.html#a1a96e566e4d675fdf20780cc96d92283a9f52fe7970aefcb1b74e9aea3798f39d">NAVIGATION_ENROUTE</a>);
+<a name="l00550"></a>00550 
+<a name="l00551"></a>00551         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a4f8f0340f3ac64c3f676b700b7e36229" title="Stop all motors.">motors_stop</a>();
+<a name="l00552"></a>00552 
+<a name="l00553"></a>00553         INFO(<span class="stringliteral">&quot;Found box for dropoff. Press &#39;d&#39; to drop or anything&quot;</span>
+<a name="l00554"></a>00554             &lt;&lt; <span class="stringliteral">&quot; else to quit&quot;</span>);
+<a name="l00555"></a>00555 
+<a name="l00556"></a>00556         <span class="keywordtype">char</span> in = std::getchar();
+<a name="l00557"></a>00557         <span class="keywordflow">if</span>(in == <span class="charliteral">&#39;d&#39;</span>) {
+<a name="l00558"></a>00558             <a class="code" href="classIDP_1_1ClampControl.html" title="Manage the actuation of the clamp, as well as the detection and analysis of bobbins for their colour ...">ClampControl</a> cc(this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>);
+<a name="l00559"></a>00559             cc.<a class="code" href="classIDP_1_1ClampControl.html#a31573846d9f7c61a6133b9dd465eca25" title="Put something in the clamp down.">put_down</a>();
+<a name="l00560"></a>00560         }
+<a name="l00561"></a>00561 
+<a name="l00562"></a>00562         <span class="keywordflow">return</span>;
+<a name="l00563"></a>00563     }
+<a name="l00564"></a>00564 
+<a name="l00568"></a><a class="code" href="classIDP_1_1SelfTests.html#a7b656185650ea6c34563e3cb4795d47a">00568</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1SelfTests.html#a7b656185650ea6c34563e3cb4795d47a" title="Drive to the delivery zone and stop.">SelfTests::navigate_to_delivery</a>()
+<a name="l00569"></a>00569     {
+<a name="l00570"></a>00570         TRACE(<span class="stringliteral">&quot;navigate_to_delivery()&quot;</span>);
+<a name="l00571"></a>00571         INFO(<span class="stringliteral">&quot;Running navigate to delivery test&quot;</span>);
+<a name="l00572"></a>00572 
+<a name="l00573"></a>00573         std::cout &lt;&lt; <span class="stringliteral">&quot;Please place Fluffy between junctions 4 and 3 (facing&quot;</span>;
+<a name="l00574"></a>00574         std::cout &lt;&lt; <span class="stringliteral">&quot; the delivery area) and press enter.&quot;</span> &lt;&lt; std::endl;
+<a name="l00575"></a>00575 
+<a name="l00576"></a>00576         std::getchar();
+<a name="l00577"></a>00577 
+<a name="l00578"></a>00578         <a class="code" href="classIDP_1_1Navigation.html" title="Find a route from one place to another on the board, and maintain an estimate of the current position...">Navigation</a> nav(this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>, <a class="code" href="namespaceIDP.html#a286f26dda01010063dff761803b4cd16a52a02df944cc115f43d73ce2a3fb206a">NODE4</a>, <a class="code" href="namespaceIDP.html#a286f26dda01010063dff761803b4cd16ad8c020bde6a1a7b8ec426cea377c3220">NODE3</a>);
+<a name="l00579"></a>00579         <a class="code" href="namespaceIDP.html#a1a96e566e4d675fdf20780cc96d92283" title="Current navigation status.">NavigationStatus</a> status;
+<a name="l00580"></a>00580         <span class="keywordflow">do</span> {
+<a name="l00581"></a>00581             status = nav.<a class="code" href="classIDP_1_1Navigation.html#a86127033cad467249583319cde79a18e" title="Navigate to the delivery area and align for delivery.">go_to_delivery</a>();
+<a name="l00582"></a>00582         } <span class="keywordflow">while</span>(status == <a class="code" href="namespaceIDP.html#a1a96e566e4d675fdf20780cc96d92283a9f52fe7970aefcb1b74e9aea3798f39d">NAVIGATION_ENROUTE</a>);
+<a name="l00583"></a>00583 
+<a name="l00584"></a>00584         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a4f8f0340f3ac64c3f676b700b7e36229" title="Stop all motors.">motors_stop</a>();
+<a name="l00585"></a>00585 
+<a name="l00586"></a>00586         std::cout &lt;&lt; <span class="stringliteral">&quot;Now at delivery. Press enter to return to the path.&quot;</span>;
+<a name="l00587"></a>00587         std::cout &lt;&lt; std::endl;
+<a name="l00588"></a>00588 
+<a name="l00589"></a>00589         std::getchar();
+<a name="l00590"></a>00590 
+<a name="l00591"></a>00591         <span class="keywordflow">do</span> {
+<a name="l00592"></a>00592             status = nav.<a class="code" href="classIDP_1_1Navigation.html#a3cbe6924710b95c911d41612e9c4d862" title="Navigate out of the delivery area and get back onto the path.">finished_delivery</a>();
+<a name="l00593"></a>00593         } <span class="keywordflow">while</span>(status == <a class="code" href="namespaceIDP.html#a1a96e566e4d675fdf20780cc96d92283a9f52fe7970aefcb1b74e9aea3798f39d">NAVIGATION_ENROUTE</a>);
+<a name="l00594"></a>00594 
+<a name="l00595"></a>00595         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a4f8f0340f3ac64c3f676b700b7e36229" title="Stop all motors.">motors_stop</a>();
+<a name="l00596"></a>00596         <span class="keywordflow">return</span>;
+<a name="l00597"></a>00597     }
+<a name="l00598"></a>00598 
+<a name="l00602"></a><a class="code" href="classIDP_1_1SelfTests.html#a1fa6c28ff5e8aa554d3e1bea81018204">00602</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1SelfTests.html#a1fa6c28ff5e8aa554d3e1bea81018204" title="Drive to the delivery zone and drop something off then return.">SelfTests::delivery</a>()
+<a name="l00603"></a>00603     {
+<a name="l00604"></a>00604         TRACE(<span class="stringliteral">&quot;delivery()&quot;</span>);
+<a name="l00605"></a>00605         INFO(<span class="stringliteral">&quot;Running delivery test&quot;</span>);
+<a name="l00606"></a>00606 
+<a name="l00607"></a>00607         std::cout &lt;&lt; <span class="stringliteral">&quot;Please place Fluffy between junctions 4 and 3 (facing&quot;</span>;
+<a name="l00608"></a>00608         std::cout &lt;&lt; <span class="stringliteral">&quot; the delivery area) and press enter.&quot;</span> &lt;&lt; std::endl;
+<a name="l00609"></a>00609 
+<a name="l00610"></a>00610         std::getchar();
+<a name="l00611"></a>00611 
+<a name="l00612"></a>00612         std::cout &lt;&lt; <span class="stringliteral">&quot;Please place a box under Fluffy&#39;s jaws and press enter.&quot;</span>;
+<a name="l00613"></a>00613         std::cout &lt;&lt; std::endl;
+<a name="l00614"></a>00614 
+<a name="l00615"></a>00615         std::getchar();
+<a name="l00616"></a>00616 
+<a name="l00617"></a>00617         <a class="code" href="classIDP_1_1ClampControl.html" title="Manage the actuation of the clamp, as well as the detection and analysis of bobbins for their colour ...">ClampControl</a> cc(this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>);
+<a name="l00618"></a>00618         cc.<a class="code" href="classIDP_1_1ClampControl.html#a881ecc4fbc73c47594ecc675b9dbf3e1" title="Pick up something using the clamp.">pick_up</a>();
+<a name="l00619"></a>00619 
+<a name="l00620"></a>00620         <a class="code" href="classIDP_1_1Navigation.html" title="Find a route from one place to another on the board, and maintain an estimate of the current position...">Navigation</a> nav(this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>, <a class="code" href="namespaceIDP.html#a286f26dda01010063dff761803b4cd16a52a02df944cc115f43d73ce2a3fb206a">NODE4</a>, <a class="code" href="namespaceIDP.html#a286f26dda01010063dff761803b4cd16ad8c020bde6a1a7b8ec426cea377c3220">NODE3</a>);
+<a name="l00621"></a>00621         <a class="code" href="namespaceIDP.html#a1a96e566e4d675fdf20780cc96d92283" title="Current navigation status.">NavigationStatus</a> status;
+<a name="l00622"></a>00622         <span class="keywordflow">do</span> {
+<a name="l00623"></a>00623             status = nav.<a class="code" href="classIDP_1_1Navigation.html#a86127033cad467249583319cde79a18e" title="Navigate to the delivery area and align for delivery.">go_to_delivery</a>();
+<a name="l00624"></a>00624         } <span class="keywordflow">while</span>(status == <a class="code" href="namespaceIDP.html#a1a96e566e4d675fdf20780cc96d92283a9f52fe7970aefcb1b74e9aea3798f39d">NAVIGATION_ENROUTE</a>);
+<a name="l00625"></a>00625 
+<a name="l00626"></a>00626         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a4f8f0340f3ac64c3f676b700b7e36229" title="Stop all motors.">motors_stop</a>();
+<a name="l00627"></a>00627 
+<a name="l00628"></a>00628         cc.<a class="code" href="classIDP_1_1ClampControl.html#a31573846d9f7c61a6133b9dd465eca25" title="Put something in the clamp down.">put_down</a>();
+<a name="l00629"></a>00629 
+<a name="l00630"></a>00630         <span class="keywordflow">do</span> {
+<a name="l00631"></a>00631             status = nav.<a class="code" href="classIDP_1_1Navigation.html#a3cbe6924710b95c911d41612e9c4d862" title="Navigate out of the delivery area and get back onto the path.">finished_delivery</a>();
+<a name="l00632"></a>00632         } <span class="keywordflow">while</span>(status == <a class="code" href="namespaceIDP.html#a1a96e566e4d675fdf20780cc96d92283a9f52fe7970aefcb1b74e9aea3798f39d">NAVIGATION_ENROUTE</a>);
+<a name="l00633"></a>00633 
+<a name="l00634"></a>00634         <span class="keywordflow">do</span> {
+<a name="l00635"></a>00635             status = nav.<a class="code" href="classIDP_1_1Navigation.html#a24b977f20868a385251d4becf187b815" title="Go to a particular NavigationNode.">go_node</a>(<a class="code" href="namespaceIDP.html#a286f26dda01010063dff761803b4cd16a52a02df944cc115f43d73ce2a3fb206a">NODE4</a>);
+<a name="l00636"></a>00636         } <span class="keywordflow">while</span>(status == <a class="code" href="namespaceIDP.html#a1a96e566e4d675fdf20780cc96d92283a9f52fe7970aefcb1b74e9aea3798f39d">NAVIGATION_ENROUTE</a>);
+<a name="l00637"></a>00637 
+<a name="l00638"></a>00638         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a4f8f0340f3ac64c3f676b700b7e36229" title="Stop all motors.">motors_stop</a>();
+<a name="l00639"></a>00639         <span class="keywordflow">return</span>;
+<a name="l00640"></a>00640     }
+<a name="l00641"></a>00641     
+<a name="l00646"></a><a class="code" href="classIDP_1_1SelfTests.html#ada3dfe991573fc6b0922cace927fc4e0">00646</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1SelfTests.html#ada3dfe991573fc6b0922cace927fc4e0" title="Drive slowly looking for an object in range for pickup, then position self ready to clamp said object...">SelfTests::position</a>()
+<a name="l00647"></a>00647     {
+<a name="l00648"></a>00648         TRACE(<span class="stringliteral">&quot;position()&quot;</span>);
+<a name="l00649"></a>00649     }
+<a name="l00650"></a>00650 
+<a name="l00655"></a><a class="code" href="classIDP_1_1SelfTests.html#acd6d4a493850445419843cefc4d25bc3">00655</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1SelfTests.html#acd6d4a493850445419843cefc4d25bc3" title="Turn on each of the status LEDs (used for indicating bobbin colour) in turn.">SelfTests::indicator_LEDs</a>()
+<a name="l00656"></a>00656     {
+<a name="l00657"></a>00657         TRACE(<span class="stringliteral">&quot;indicator_LEDs()&quot;</span>);
+<a name="l00658"></a>00658         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a0ffde4a54900074b646efd285d9d6807" title="Set the bobbin colour indication LEDs.">indication_LEDs</a>(<span class="keyword">false</span>, <span class="keyword">false</span>, <span class="keyword">true</span>);
+<a name="l00659"></a>00659         usleep(500000);
+<a name="l00660"></a>00660         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a0ffde4a54900074b646efd285d9d6807" title="Set the bobbin colour indication LEDs.">indication_LEDs</a>(<span class="keyword">false</span>, <span class="keyword">true</span>, <span class="keyword">false</span>);
+<a name="l00661"></a>00661         usleep(500000);
+<a name="l00662"></a>00662         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a0ffde4a54900074b646efd285d9d6807" title="Set the bobbin colour indication LEDs.">indication_LEDs</a>(<span class="keyword">false</span>, <span class="keyword">true</span>, <span class="keyword">true</span>);
+<a name="l00663"></a>00663         usleep(500000);
+<a name="l00664"></a>00664         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a0ffde4a54900074b646efd285d9d6807" title="Set the bobbin colour indication LEDs.">indication_LEDs</a>(<span class="keyword">true</span>, <span class="keyword">false</span>, <span class="keyword">false</span>);
+<a name="l00665"></a>00665         usleep(500000);
+<a name="l00666"></a>00666         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a0ffde4a54900074b646efd285d9d6807" title="Set the bobbin colour indication LEDs.">indication_LEDs</a>(<span class="keyword">true</span>, <span class="keyword">false</span>, <span class="keyword">true</span>);
+<a name="l00667"></a>00667         usleep(500000);
+<a name="l00668"></a>00668         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a0ffde4a54900074b646efd285d9d6807" title="Set the bobbin colour indication LEDs.">indication_LEDs</a>(<span class="keyword">true</span>, <span class="keyword">true</span>, <span class="keyword">false</span>);
+<a name="l00669"></a>00669         usleep(500000);
+<a name="l00670"></a>00670         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a0ffde4a54900074b646efd285d9d6807" title="Set the bobbin colour indication LEDs.">indication_LEDs</a>(<span class="keyword">true</span>, <span class="keyword">true</span>, <span class="keyword">true</span>);
+<a name="l00671"></a>00671         usleep(500000);
+<a name="l00672"></a>00672         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a0ffde4a54900074b646efd285d9d6807" title="Set the bobbin colour indication LEDs.">indication_LEDs</a>(<span class="keyword">false</span>, <span class="keyword">false</span>, <span class="keyword">false</span>);
+<a name="l00673"></a>00673         usleep(500000);
+<a name="l00674"></a>00674     }
+<a name="l00675"></a>00675 
+<a name="l00680"></a><a class="code" href="classIDP_1_1SelfTests.html#a1380b0222eef47f6d50e7cf334e4c9e7">00680</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1SelfTests.html#a1380b0222eef47f6d50e7cf334e4c9e7" title="Turn on each of the coloured LEDs used for colour detection in turn.">SelfTests::colour_sensor_LEDs</a>()
+<a name="l00681"></a>00681     {
+<a name="l00682"></a>00682         TRACE(<span class="stringliteral">&quot;colour_sensor_LEDs()&quot;</span>);
+<a name="l00683"></a>00683         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a6574abe8852976bfa94c00e13d8c1686" title="Turn on and off the LED used to light up the bobbin for colour detection.">colour_LED</a>(<span class="keyword">true</span>);
+<a name="l00684"></a>00684         usleep(100000);
+<a name="l00685"></a>00685         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a6574abe8852976bfa94c00e13d8c1686" title="Turn on and off the LED used to light up the bobbin for colour detection.">colour_LED</a>(<span class="keyword">false</span>);
+<a name="l00686"></a>00686     }
+<a name="l00687"></a>00687 
+<a name="l00691"></a><a class="code" href="classIDP_1_1SelfTests.html#aa32598325a69ed2b02e1540704d8bc06">00691</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1SelfTests.html#aa32598325a69ed2b02e1540704d8bc06" title="Turn on the LED used for detecting bad bobbins.">SelfTests::bad_bobbin_LED</a>()
+<a name="l00692"></a>00692     {
+<a name="l00693"></a>00693         TRACE(<span class="stringliteral">&quot;bad_bobbin_LED()&quot;</span>);
+<a name="l00694"></a>00694         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#ad2feaf269fbcda10fb1192b575a4963a" title="Turn on and off the LED used to light up the top of the bobbin, for bad bobbin detection.">bad_bobbin_LED</a>(<span class="keyword">true</span>);
+<a name="l00695"></a>00695         usleep(500000);
+<a name="l00696"></a>00696         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#ad2feaf269fbcda10fb1192b575a4963a" title="Turn on and off the LED used to light up the top of the bobbin, for bad bobbin detection.">bad_bobbin_LED</a>(<span class="keyword">false</span>);
+<a name="l00697"></a>00697         usleep(500000);
+<a name="l00698"></a>00698     }
+<a name="l00699"></a>00699 
+<a name="l00703"></a><a class="code" href="classIDP_1_1SelfTests.html#a1f59c76873f58a7100cd1a4b7ac3e044">00703</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1SelfTests.html#a1f59c76873f58a7100cd1a4b7ac3e044" title="Read a lot of levels from the LDRs to store in a calibration file.">SelfTests::calibrate</a>()
+<a name="l00704"></a>00704     {
+<a name="l00705"></a>00705         TRACE(<span class="stringliteral">&quot;calibrate()&quot;</span>);
+<a name="l00706"></a>00706 
+<a name="l00707"></a>00707         INFO(<span class="stringliteral">&quot;Taking zero-level readings&quot;</span>);
+<a name="l00708"></a>00708         <a class="code" href="classIDP_1_1ClampControl.html" title="Manage the actuation of the clamp, as well as the detection and analysis of bobbins for their colour ...">ClampControl</a> cc(this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>);
+<a name="l00709"></a>00709         
+<a name="l00710"></a>00710         std::cout &lt;&lt; <span class="stringliteral">&quot;Please ensure the arm is down and press enter.&quot;</span>
+<a name="l00711"></a>00711             &lt;&lt; std::endl;
+<a name="l00712"></a>00712         cc.<a class="code" href="classIDP_1_1ClampControl.html#a011866d438336ee003774eccf7c207e0" title="Lower the grabber arm.">lower_arm</a>();
+<a name="l00713"></a>00713         std::getchar();
+<a name="l00714"></a>00714 
+<a name="l00715"></a>00715         std::cout &lt;&lt; <span class="stringliteral">&quot;Please ensure the jaw is closed and press enter.&quot;</span>
+<a name="l00716"></a>00716             &lt;&lt; std::endl;
+<a name="l00717"></a>00717         cc.<a class="code" href="classIDP_1_1ClampControl.html#a94364f9779f57df6e63f44968fc5c163" title="Close the grabber jaw.">close_jaw</a>();
+<a name="l00718"></a>00718         std::getchar();
+<a name="l00719"></a>00719         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a6574abe8852976bfa94c00e13d8c1686" title="Turn on and off the LED used to light up the bobbin for colour detection.">colour_LED</a>(<span class="keyword">true</span>);
+<a name="l00720"></a>00720         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#ad2feaf269fbcda10fb1192b575a4963a" title="Turn on and off the LED used to light up the top of the bobbin, for bad bobbin detection.">bad_bobbin_LED</a>(<span class="keyword">false</span>);
+<a name="l00721"></a>00721         <span class="keywordtype">short</span> <span class="keywordtype">int</span> colour_light_closed_zero = cc.<a class="code" href="classIDP_1_1ClampControl.html#abed3e9baa31872c8bd87521584f1e845" title="Take an average colour LDR reading of n samples.">average_colour_ldr</a>(15);
+<a name="l00722"></a>00722         
+<a name="l00723"></a>00723         std::cout &lt;&lt; <span class="stringliteral">&quot;Please ensure the jaw is open and press enter.&quot;</span>
+<a name="l00724"></a>00724             &lt;&lt; std::endl;
+<a name="l00725"></a>00725         cc.<a class="code" href="classIDP_1_1ClampControl.html#a5b67a46af3f8682b81cbf68f8693247e" title="Open the grabber jaw.">open_jaw</a>();
+<a name="l00726"></a>00726         std::getchar();
+<a name="l00727"></a>00727         <span class="keywordtype">short</span> <span class="keywordtype">int</span> colour_light_zero = cc.<a class="code" href="classIDP_1_1ClampControl.html#abed3e9baa31872c8bd87521584f1e845" title="Take an average colour LDR reading of n samples.">average_colour_ldr</a>(15);
+<a name="l00728"></a>00728         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a6574abe8852976bfa94c00e13d8c1686" title="Turn on and off the LED used to light up the bobbin for colour detection.">colour_LED</a>(<span class="keyword">false</span>);
+<a name="l00729"></a>00729         <span class="keywordtype">short</span> <span class="keywordtype">int</span> badness_dark_zero = cc.<a class="code" href="classIDP_1_1ClampControl.html#a3bb0dcc5ad18870b38a639ae30ae5466" title="Take an average bad bobbin LDR reading of n samples.">average_bad_ldr</a>(15);
+<a name="l00730"></a>00730         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#ad2feaf269fbcda10fb1192b575a4963a" title="Turn on and off the LED used to light up the top of the bobbin, for bad bobbin detection.">bad_bobbin_LED</a>(<span class="keyword">true</span>);
+<a name="l00731"></a>00731         <span class="keywordtype">short</span> <span class="keywordtype">int</span> badness_light_zero = cc.<a class="code" href="classIDP_1_1ClampControl.html#a3bb0dcc5ad18870b38a639ae30ae5466" title="Take an average bad bobbin LDR reading of n samples.">average_bad_ldr</a>(15);
+<a name="l00732"></a>00732         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#ad2feaf269fbcda10fb1192b575a4963a" title="Turn on and off the LED used to light up the top of the bobbin, for bad bobbin detection.">bad_bobbin_LED</a>(<span class="keyword">false</span>);
+<a name="l00733"></a>00733 
+<a name="l00734"></a>00734         std::cout &lt;&lt; <span class="stringliteral">&quot;Place an empty box in front of the sensor and press&quot;</span>
+<a name="l00735"></a>00735             &lt;&lt; <span class="stringliteral">&quot; enter.&quot;</span> &lt;&lt; std::endl;
+<a name="l00736"></a>00736         std::getchar();
+<a name="l00737"></a>00737 
+<a name="l00738"></a>00738         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a6574abe8852976bfa94c00e13d8c1686" title="Turn on and off the LED used to light up the bobbin for colour detection.">colour_LED</a>(<span class="keyword">true</span>);
+<a name="l00739"></a>00739         <span class="keywordtype">short</span> <span class="keywordtype">int</span> colour_light_box_zero = cc.<a class="code" href="classIDP_1_1ClampControl.html#abed3e9baa31872c8bd87521584f1e845" title="Take an average colour LDR reading of n samples.">average_colour_ldr</a>(15);
+<a name="l00740"></a>00740         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a6574abe8852976bfa94c00e13d8c1686" title="Turn on and off the LED used to light up the bobbin for colour detection.">colour_LED</a>(<span class="keyword">false</span>);
+<a name="l00741"></a>00741         
+<a name="l00742"></a>00742         std::cout &lt;&lt; <span class="stringliteral">&quot;Base levels taken: &quot;</span>
+<a name="l00743"></a>00743             &lt;&lt; <span class="stringliteral">&quot;colour_light_closed_zero &quot;</span> &lt;&lt; colour_light_closed_zero
+<a name="l00744"></a>00744             &lt;&lt; <span class="stringliteral">&quot;colour_light_zero &quot;</span> &lt;&lt; colour_light_zero
+<a name="l00745"></a>00745             &lt;&lt; <span class="stringliteral">&quot;badness_light_zero &quot;</span> &lt;&lt; badness_light_zero
+<a name="l00746"></a>00746             &lt;&lt; <span class="stringliteral">&quot;badness_dark_zero &quot;</span> &lt;&lt; badness_dark_zero
+<a name="l00747"></a>00747             &lt;&lt; <span class="stringliteral">&quot;colour_light_box_zero &quot;</span> &lt;&lt; colour_light_box_zero &lt;&lt; std::endl;
+<a name="l00748"></a>00748 
+<a name="l00749"></a>00749         std::cout &lt;&lt; <span class="stringliteral">&quot;Place a red bobbin in the box in the jaw and press enter&quot;</span>
+<a name="l00750"></a>00750             &lt;&lt; std::endl;
+<a name="l00751"></a>00751         std::getchar();
+<a name="l00752"></a>00752         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a6574abe8852976bfa94c00e13d8c1686" title="Turn on and off the LED used to light up the bobbin for colour detection.">colour_LED</a>(<span class="keyword">true</span>);
+<a name="l00753"></a>00753         <span class="keywordtype">short</span> <span class="keywordtype">int</span> red_box_level = cc.<a class="code" href="classIDP_1_1ClampControl.html#abed3e9baa31872c8bd87521584f1e845" title="Take an average colour LDR reading of n samples.">average_colour_ldr</a>(15);
+<a name="l00754"></a>00754         red_box_level -= colour_light_box_zero;
+<a name="l00755"></a>00755         std::cout &lt;&lt; <span class="stringliteral">&quot;Read &quot;</span> &lt;&lt; red_box_level &lt;&lt; <span class="stringliteral">&quot; for red box level, enter&quot;</span>
+<a name="l00756"></a>00756             &lt;&lt; <span class="stringliteral">&quot; the value you want used: &quot;</span>;
+<a name="l00757"></a>00757         std::cin &gt;&gt; red_box_level;
+<a name="l00758"></a>00758         std::cout &lt;&lt; <span class="stringliteral">&quot;Using &quot;</span> &lt;&lt; red_box_level &lt;&lt; std::endl;
+<a name="l00759"></a>00759 
+<a name="l00760"></a>00760         std::cout &lt;&lt; <span class="stringliteral">&quot;Place a green bobbin in the box in the jaw and press &quot;</span>
+<a name="l00761"></a>00761             &lt;&lt; <span class="stringliteral">&quot;enter&quot;</span> &lt;&lt; std::endl;
+<a name="l00762"></a>00762         std::getchar();
+<a name="l00763"></a>00763         <span class="keywordtype">short</span> <span class="keywordtype">int</span> green_box_level = cc.<a class="code" href="classIDP_1_1ClampControl.html#abed3e9baa31872c8bd87521584f1e845" title="Take an average colour LDR reading of n samples.">average_colour_ldr</a>(15);
+<a name="l00764"></a>00764         green_box_level -= colour_light_box_zero;
+<a name="l00765"></a>00765         std::cout &lt;&lt; <span class="stringliteral">&quot;Read &quot;</span> &lt;&lt; green_box_level &lt;&lt; <span class="stringliteral">&quot; for green box level, enter&quot;</span>
+<a name="l00766"></a>00766             &lt;&lt; <span class="stringliteral">&quot; the value you want used: &quot;</span>;
+<a name="l00767"></a>00767         std::cin &gt;&gt; green_box_level;
+<a name="l00768"></a>00768         std::cout &lt;&lt; <span class="stringliteral">&quot;Using &quot;</span> &lt;&lt; green_box_level &lt;&lt; std::endl;
+<a name="l00769"></a>00769 
+<a name="l00770"></a>00770         std::cout &lt;&lt; <span class="stringliteral">&quot;Please ensure the jaw is closed and press enter.&quot;</span>
+<a name="l00771"></a>00771             &lt;&lt; std::endl;
+<a name="l00772"></a>00772         cc.<a class="code" href="classIDP_1_1ClampControl.html#a94364f9779f57df6e63f44968fc5c163" title="Close the grabber jaw.">close_jaw</a>();
+<a name="l00773"></a>00773         std::getchar();
+<a name="l00774"></a>00774 
+<a name="l00775"></a>00775         std::cout &lt;&lt; <span class="stringliteral">&quot;Please place a red bobbin in the jaw (on the rack) and&quot;</span>
+<a name="l00776"></a>00776             &lt;&lt; <span class="stringliteral">&quot; press enter.&quot;</span> &lt;&lt; std::endl;
+<a name="l00777"></a>00777         std::getchar();
+<a name="l00778"></a>00778         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a6574abe8852976bfa94c00e13d8c1686" title="Turn on and off the LED used to light up the bobbin for colour detection.">colour_LED</a>(<span class="keyword">true</span>);
+<a name="l00779"></a>00779         <span class="keywordtype">short</span> <span class="keywordtype">int</span> red_rack_level = cc.<a class="code" href="classIDP_1_1ClampControl.html#abed3e9baa31872c8bd87521584f1e845" title="Take an average colour LDR reading of n samples.">average_colour_ldr</a>(15);
+<a name="l00780"></a>00780         red_rack_level -= colour_light_closed_zero;
+<a name="l00781"></a>00781         std::cout &lt;&lt; <span class="stringliteral">&quot;Read &quot;</span> &lt;&lt; red_rack_level &lt;&lt; <span class="stringliteral">&quot; for red rack level, enter&quot;</span>
+<a name="l00782"></a>00782             &lt;&lt; <span class="stringliteral">&quot; the value you want used: &quot;</span>;
+<a name="l00783"></a>00783         std::cin &gt;&gt; red_rack_level;
+<a name="l00784"></a>00784         std::cout &lt;&lt; <span class="stringliteral">&quot;Using &quot;</span> &lt;&lt; red_rack_level &lt;&lt; std::endl;
+<a name="l00785"></a>00785 
+<a name="l00786"></a>00786         std::cout &lt;&lt; <span class="stringliteral">&quot;Place a green bobbin in the jaw (on the rack) and press&quot;</span>
+<a name="l00787"></a>00787             &lt;&lt; <span class="stringliteral">&quot; enter.&quot;</span> &lt;&lt; std::endl;
+<a name="l00788"></a>00788         std::getchar();
+<a name="l00789"></a>00789         <span class="keywordtype">short</span> <span class="keywordtype">int</span> green_rack_level = cc.<a class="code" href="classIDP_1_1ClampControl.html#abed3e9baa31872c8bd87521584f1e845" title="Take an average colour LDR reading of n samples.">average_colour_ldr</a>(15);
+<a name="l00790"></a>00790         green_rack_level -= colour_light_closed_zero;
+<a name="l00791"></a>00791         std::cout &lt;&lt; <span class="stringliteral">&quot;Read &quot;</span> &lt;&lt; green_rack_level &lt;&lt; <span class="stringliteral">&quot; for green rack level, &quot;</span>
+<a name="l00792"></a>00792             &lt;&lt; <span class="stringliteral">&quot;enter the value you want used: &quot;</span>;
+<a name="l00793"></a>00793         std::cin &gt;&gt; green_rack_level;
+<a name="l00794"></a>00794         std::cout &lt;&lt; <span class="stringliteral">&quot;Using &quot;</span> &lt;&lt; green_rack_level &lt;&lt; std::endl;
+<a name="l00795"></a>00795         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a6574abe8852976bfa94c00e13d8c1686" title="Turn on and off the LED used to light up the bobbin for colour detection.">colour_LED</a>(<span class="keyword">false</span>);
+<a name="l00796"></a>00796 
+<a name="l00797"></a>00797         std::cout &lt;&lt; <span class="stringliteral">&quot;Please ensure the jaw is open and press enter.&quot;</span>
+<a name="l00798"></a>00798             &lt;&lt; std::endl;
+<a name="l00799"></a>00799         cc.<a class="code" href="classIDP_1_1ClampControl.html#a5b67a46af3f8682b81cbf68f8693247e" title="Open the grabber jaw.">open_jaw</a>();
+<a name="l00800"></a>00800         std::getchar();
+<a name="l00801"></a>00801 
+<a name="l00802"></a>00802         std::cout &lt;&lt; <span class="stringliteral">&quot;Place a box under the jaw and press enter.&quot;</span>
+<a name="l00803"></a>00803             &lt;&lt; std::endl;
+<a name="l00804"></a>00804         std::getchar();
+<a name="l00805"></a>00805         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#ad2feaf269fbcda10fb1192b575a4963a" title="Turn on and off the LED used to light up the top of the bobbin, for bad bobbin detection.">bad_bobbin_LED</a>(<span class="keyword">true</span>);
+<a name="l00806"></a>00806         <span class="keywordtype">short</span> <span class="keywordtype">int</span> box_present_level = cc.<a class="code" href="classIDP_1_1ClampControl.html#a3bb0dcc5ad18870b38a639ae30ae5466" title="Take an average bad bobbin LDR reading of n samples.">average_bad_ldr</a>(15);
+<a name="l00807"></a>00807         box_present_level -= badness_light_zero;
+<a name="l00808"></a>00808         std::cout &lt;&lt; <span class="stringliteral">&quot;Read &quot;</span> &lt;&lt; box_present_level &lt;&lt; <span class="stringliteral">&quot; for box present level, &quot;</span>
+<a name="l00809"></a>00809             &lt;&lt; <span class="stringliteral">&quot;enter the value you want used: &quot;</span>;
+<a name="l00810"></a>00810         std::cin &gt;&gt; box_present_level;
+<a name="l00811"></a>00811         std::cout &lt;&lt; <span class="stringliteral">&quot;Using &quot;</span> &lt;&lt; box_present_level &lt;&lt; std::endl;
+<a name="l00812"></a>00812         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#ad2feaf269fbcda10fb1192b575a4963a" title="Turn on and off the LED used to light up the top of the bobbin, for bad bobbin detection.">bad_bobbin_LED</a>(<span class="keyword">false</span>);
+<a name="l00813"></a>00813 
+<a name="l00814"></a>00814         std::cout &lt;&lt; <span class="stringliteral">&quot;Please place a white bobbin under the open jaw on the&quot;</span>
+<a name="l00815"></a>00815             &lt;&lt; <span class="stringliteral">&quot; rack and press enter.&quot;</span> &lt;&lt; std::endl;
+<a name="l00816"></a>00816         std::getchar();
+<a name="l00817"></a>00817         <span class="keywordtype">short</span> <span class="keywordtype">int</span> white_present_level = cc.<a class="code" href="classIDP_1_1ClampControl.html#a3bb0dcc5ad18870b38a639ae30ae5466" title="Take an average bad bobbin LDR reading of n samples.">average_bad_ldr</a>(15);
+<a name="l00818"></a>00818         white_present_level -= badness_dark_zero;
+<a name="l00819"></a>00819         std::cout &lt;&lt; <span class="stringliteral">&quot;Read &quot;</span> &lt;&lt; white_present_level &lt;&lt; <span class="stringliteral">&quot; for white present&quot;</span>
+<a name="l00820"></a>00820             &lt;&lt; <span class="stringliteral">&quot; level, enter the value you want used: &quot;</span>;
+<a name="l00821"></a>00821         std::cin &gt;&gt; white_present_level;
+<a name="l00822"></a>00822         std::cout &lt;&lt; <span class="stringliteral">&quot;Using &quot;</span> &lt;&lt; white_present_level &lt;&lt; std::endl;
+<a name="l00823"></a>00823         
+<a name="l00824"></a>00824         std::cout &lt;&lt; <span class="stringliteral">&quot;Please place a green bobbin under the open jaw on the&quot;</span>
+<a name="l00825"></a>00825             &lt;&lt; <span class="stringliteral">&quot; rack and press enter&quot;</span> &lt;&lt; std::endl;
+<a name="l00826"></a>00826         std::getchar();
+<a name="l00827"></a>00827         this-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a6574abe8852976bfa94c00e13d8c1686" title="Turn on and off the LED used to light up the bobbin for colour detection.">colour_LED</a>(<span class="keyword">true</span>);
+<a name="l00828"></a>00828         <span class="keywordtype">short</span> <span class="keywordtype">int</span> coloured_present_level = cc.<a class="code" href="classIDP_1_1ClampControl.html#abed3e9baa31872c8bd87521584f1e845" title="Take an average colour LDR reading of n samples.">average_colour_ldr</a>(15);
+<a name="l00829"></a>00829         coloured_present_level -= colour_light_zero;
+<a name="l00830"></a>00830         std::cout &lt;&lt; <span class="stringliteral">&quot;Read &quot;</span> &lt;&lt; coloured_present_level &lt;&lt; <span class="stringliteral">&quot; for green present,&quot;</span>
+<a name="l00831"></a>00831             &lt;&lt; <span class="stringliteral">&quot; place a red bobbin under the sensor and press enter.&quot;</span>
+<a name="l00832"></a>00832             &lt;&lt; std::endl;
+<a name="l00833"></a>00833         std::getchar();
+<a name="l00834"></a>00834         coloured_present_level = cc.<a class="code" href="classIDP_1_1ClampControl.html#abed3e9baa31872c8bd87521584f1e845" title="Take an average colour LDR reading of n samples.">average_colour_ldr</a>(15);
+<a name="l00835"></a>00835         coloured_present_level -= colour_light_zero;
+<a name="l00836"></a>00836         std::cout &lt;&lt; <span class="stringliteral">&quot;Read &quot;</span> &lt;&lt; coloured_present_level &lt;&lt; <span class="stringliteral">&quot; for red present, &quot;</span>
+<a name="l00837"></a>00837             &lt;&lt; <span class="stringliteral">&quot;enter the value you want used: &quot;</span>;
+<a name="l00838"></a>00838         std::cin &gt;&gt; coloured_present_level;
+<a name="l00839"></a>00839         std::cout &lt;&lt; <span class="stringliteral">&quot;Using &quot;</span> &lt;&lt; coloured_present_level;
+<a name="l00840"></a>00840 
+<a name="l00841"></a>00841         std::cout &lt;&lt; <span class="stringliteral">&quot;Writing file&quot;</span> &lt;&lt; std::endl;
+<a name="l00842"></a>00842         
+<a name="l00843"></a>00843         std::ofstream f(<span class="stringliteral">&quot;levelsfile&quot;</span>);
+<a name="l00844"></a>00844         f
+<a name="l00845"></a>00845             &lt;&lt; colour_light_closed_zero &lt;&lt; std::endl
+<a name="l00846"></a>00846             &lt;&lt; colour_light_zero &lt;&lt; std::endl
+<a name="l00847"></a>00847             &lt;&lt; badness_light_zero &lt;&lt; std::endl
+<a name="l00848"></a>00848             &lt;&lt; badness_dark_zero &lt;&lt; std::endl
+<a name="l00849"></a>00849             &lt;&lt; colour_light_box_zero &lt;&lt; std::endl
+<a name="l00850"></a>00850             &lt;&lt; red_box_level &lt;&lt; std::endl
+<a name="l00851"></a>00851             &lt;&lt; green_box_level &lt;&lt; std::endl
+<a name="l00852"></a>00852             &lt;&lt; red_rack_level &lt;&lt; std::endl
+<a name="l00853"></a>00853             &lt;&lt; green_rack_level &lt;&lt; std::endl
+<a name="l00854"></a>00854             &lt;&lt; box_present_level &lt;&lt; std::endl
+<a name="l00855"></a>00855             &lt;&lt; white_present_level &lt;&lt; std::endl
+<a name="l00856"></a>00856             &lt;&lt; coloured_present_level &lt;&lt; std::endl;
+<a name="l00857"></a>00857         f.close();
+<a name="l00858"></a>00858 
+<a name="l00859"></a>00859         std::cout &lt;&lt; <span class="stringliteral">&quot;Wrote file&quot;</span> &lt;&lt; std::endl;
+<a name="l00860"></a>00860 
+<a name="l00861"></a>00861     }
+<a name="l00862"></a>00862 }
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -277,7 +823,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Tue Feb 15 2011 02:35:58 for IDPL108 by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sat Feb 19 2011 01:29:45 for IDPL108 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

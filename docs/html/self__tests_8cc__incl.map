@@ -1,8 +1,9 @@
 <map id="G" name="G">
-<area shape="rect" id="node3" href="$self__tests_8h.html" title="self_tests.h" alt="" coords="5,86,96,117"/>
-<area shape="rect" id="node7" href="$hal_8h.html" title="hal.h" alt="" coords="120,86,171,117"/>
-<area shape="rect" id="node10" href="$mission__supervisor_8h.html" title="mission_supervisor.h" alt="" coords="195,86,339,117"/>
-<area shape="rect" id="node13" href="$navigation_8h.html" title="navigation.h" alt="" coords="363,86,453,117"/>
-<area shape="rect" id="node15" href="$line__following_8h.html" title="line_following.h" alt="" coords="477,86,587,117"/>
-<area shape="rect" id="node17" href="$debug_8h.html" title="debug.h" alt="" coords="611,86,677,117"/>
+<area shape="rect" id="node11" href="$self__tests_8h.html" title="self_tests.h" alt="" coords="363,86,453,117"/>
+<area shape="rect" id="node15" href="$hal_8h.html" title="hal.h" alt="" coords="477,86,528,117"/>
+<area shape="rect" id="node18" href="$mission__supervisor_8h.html" title="mission_supervisor.h" alt="" coords="603,86,747,117"/>
+<area shape="rect" id="node20" href="$clamp__control_8h.html" title="clamp_control.h" alt="" coords="531,166,645,197"/>
+<area shape="rect" id="node22" href="$navigation_8h.html" title="navigation.h" alt="" coords="715,166,805,197"/>
+<area shape="rect" id="node25" href="$line__following_8h.html" title="line_following.h" alt="" coords="821,86,931,117"/>
+<area shape="rect" id="node28" href="$debug_8h.html" title="debug.h" alt="" coords="955,86,1021,117"/>
 </map>

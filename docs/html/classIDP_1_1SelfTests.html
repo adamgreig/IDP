@@ -108,16 +108,34 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Use the actuators to pick up an object before placing it back down again.  <a href="#a896204355ca039660a12e8131578b6c3"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1SelfTests.html#a66f0a3bad277e36b963b2bf3cd5df9dd">bobbin_analyse</a> (void)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Analyse the colour of the bobbin that is currently being held in the clamp.  <a href="#a66f0a3bad277e36b963b2bf3cd5df9dd"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1SelfTests.html#ad112f0e0a9ef078b394585742d23fbbf">box_analyse</a> (void)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Analyse the colour of the bobbin in a box.  <a href="#ad112f0e0a9ef078b394585742d23fbbf"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1SelfTests.html#a9914eb4c83e3613311d1b4656631db01">bobbin_present</a> (void)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">See if a bobbin is under the clamp.  <a href="#a9914eb4c83e3613311d1b4656631db01"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1SelfTests.html#a04ec400b90a5fa3203db667aa97ec99d">box_present</a> (void)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">See if a box is under the clamp.  <a href="#a04ec400b90a5fa3203db667aa97ec99d"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1SelfTests.html#a710347081427c05706f92bdd12f62fbe">navigate</a> (void)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Select a source and destination and then navigate to the destination assuming we are starting at the source.  <a href="#a710347081427c05706f92bdd12f62fbe"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1SelfTests.html#a74774d0867234315043af155d7d6ab2e">navigate_to_bobbin</a> (void)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Drive to a bobbin and stop.  <a href="#a74774d0867234315043af155d7d6ab2e"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1SelfTests.html#a0bc87b4b87714b787db2b9f0b185c7c0">navigate_to_box_for_pickup</a> (void)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Locate a box and stop.  <a href="#a0bc87b4b87714b787db2b9f0b185c7c0"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1SelfTests.html#a6633d682d0126698d66392e1c750eeed">navigate_to_box_for_drop</a> (void)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Locate a box and stop.  <a href="#a6633d682d0126698d66392e1c750eeed"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1SelfTests.html#a7b656185650ea6c34563e3cb4795d47a">navigate_to_delivery</a> (void)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Drive to the delivery zone and stop.  <a href="#a7b656185650ea6c34563e3cb4795d47a"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1SelfTests.html#a1fa6c28ff5e8aa554d3e1bea81018204">delivery</a> (void)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Drive to the delivery zone and drop something off then return.  <a href="#a1fa6c28ff5e8aa554d3e1bea81018204"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1SelfTests.html#ada3dfe991573fc6b0922cace927fc4e0">position</a> (void)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Drive slowly looking for an object in range for pickup, then position self ready to clamp said object.  <a href="#ada3dfe991573fc6b0922cace927fc4e0"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1SelfTests.html#abbe6e3e29b00f760e0b65f2aeb772fb5">status_LEDs</a> (void)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Turn on each of the status LEDs (used for indicating bobbin colour) in turn.  <a href="#abbe6e3e29b00f760e0b65f2aeb772fb5"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1SelfTests.html#acd6d4a493850445419843cefc4d25bc3">indicator_LEDs</a> (void)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Turn on each of the status LEDs (used for indicating bobbin colour) in turn.  <a href="#acd6d4a493850445419843cefc4d25bc3"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1SelfTests.html#a1380b0222eef47f6d50e7cf334e4c9e7">colour_sensor_LEDs</a> (void)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Turn on each of the coloured LEDs used for colour detection in turn.  <a href="#a1380b0222eef47f6d50e7cf334e4c9e7"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1SelfTests.html#aee90c71e9e93398f06dc1ad67002d7bf">badness_LED</a> (void)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Turn on the LED used for detecting bad bobbins.  <a href="#aee90c71e9e93398f06dc1ad67002d7bf"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1SelfTests.html#aa32598325a69ed2b02e1540704d8bc06">bad_bobbin_LED</a> (void)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Turn on the LED used for detecting bad bobbins.  <a href="#aa32598325a69ed2b02e1540704d8bc06"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1SelfTests.html#a1f59c76873f58a7100cd1a4b7ac3e044">calibrate</a> (void)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Read a lot of levels from the LDRs to store in a calibration file.  <a href="#a1f59c76873f58a7100cd1a4b7ac3e044"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1SelfTests.html#a90c60ce647f723e9a37339aadba4770c">_robot</a></td></tr>
@@ -152,7 +170,7 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="self__tests_8cc_source.html#l00029">29</a> of file <a class="el" href="self__tests_8cc_source.html">self_tests.cc</a>.</p>
+<p>Definition at line <a class="el" href="self__tests_8cc_source.html#l00035">35</a> of file <a class="el" href="self__tests_8cc_source.html">self_tests.cc</a>.</p>
 
 </div>
 </div>
@@ -173,7 +191,7 @@ Private Attributes</h2></td></tr>
 
 <p>Destruct the <a class="el" href="classIDP_1_1SelfTests.html" title="Execute a variety of functionality self tests.">SelfTests</a>, deleting the HAL. </p>
 
-<p>Definition at line <a class="el" href="self__tests_8cc_source.html#l00039">39</a> of file <a class="el" href="self__tests_8cc_source.html">self_tests.cc</a>.</p>
+<p>Definition at line <a class="el" href="self__tests_8cc_source.html#l00045">45</a> of file <a class="el" href="self__tests_8cc_source.html">self_tests.cc</a>.</p>
 
 </div>
 </div>
@@ -196,16 +214,16 @@ Private Attributes</h2></td></tr>
 
 <p>Fire each of the actuators in turn. </p>
 
-<p>Definition at line <a class="el" href="self__tests_8cc_source.html#l00177">177</a> of file <a class="el" href="self__tests_8cc_source.html">self_tests.cc</a>.</p>
+<p>Definition at line <a class="el" href="self__tests_8cc_source.html#l00246">246</a> of file <a class="el" href="self__tests_8cc_source.html">self_tests.cc</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="aee90c71e9e93398f06dc1ad67002d7bf"></a><!-- doxytag: member="IDP::SelfTests::badness_LED" ref="aee90c71e9e93398f06dc1ad67002d7bf" args="(void)" -->
+<a class="anchor" id="aa32598325a69ed2b02e1540704d8bc06"></a><!-- doxytag: member="IDP::SelfTests::bad_bobbin_LED" ref="aa32598325a69ed2b02e1540704d8bc06" args="(void)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void IDP::SelfTests::badness_LED </td>
+          <td class="memname">void IDP::SelfTests::bad_bobbin_LED </td>
           <td>(</td>
           <td class="paramtype">void&nbsp;</td>
           <td class="paramname"></td>
@@ -218,7 +236,7 @@ Private Attributes</h2></td></tr>
 
 <p>Turn on the LED used for detecting bad bobbins. </p>
 
-<p>Definition at line <a class="el" href="self__tests_8cc_source.html#l00285">285</a> of file <a class="el" href="self__tests_8cc_source.html">self_tests.cc</a>.</p>
+<p>Definition at line <a class="el" href="self__tests_8cc_source.html#l00691">691</a> of file <a class="el" href="self__tests_8cc_source.html">self_tests.cc</a>.</p>
 
 </div>
 </div>
@@ -240,7 +258,95 @@ Private Attributes</h2></td></tr>
 
 <p>Analyse the colour of the bobbin that is currently being held in the clamp. </p>
 
-<p>Definition at line <a class="el" href="self__tests_8cc_source.html#l00214">214</a> of file <a class="el" href="self__tests_8cc_source.html">self_tests.cc</a>.</p>
+<p>Definition at line <a class="el" href="self__tests_8cc_source.html#l00306">306</a> of file <a class="el" href="self__tests_8cc_source.html">self_tests.cc</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9914eb4c83e3613311d1b4656631db01"></a><!-- doxytag: member="IDP::SelfTests::bobbin_present" ref="a9914eb4c83e3613311d1b4656631db01" args="(void)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void IDP::SelfTests::bobbin_present </td>
+          <td>(</td>
+          <td class="paramtype">void&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>See if a bobbin is under the clamp. </p>
+
+<p>Definition at line <a class="el" href="self__tests_8cc_source.html#l00352">352</a> of file <a class="el" href="self__tests_8cc_source.html">self_tests.cc</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad112f0e0a9ef078b394585742d23fbbf"></a><!-- doxytag: member="IDP::SelfTests::box_analyse" ref="ad112f0e0a9ef078b394585742d23fbbf" args="(void)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void IDP::SelfTests::box_analyse </td>
+          <td>(</td>
+          <td class="paramtype">void&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Analyse the colour of the bobbin in a box. </p>
+
+<p>Definition at line <a class="el" href="self__tests_8cc_source.html#l00331">331</a> of file <a class="el" href="self__tests_8cc_source.html">self_tests.cc</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a04ec400b90a5fa3203db667aa97ec99d"></a><!-- doxytag: member="IDP::SelfTests::box_present" ref="a04ec400b90a5fa3203db667aa97ec99d" args="(void)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void IDP::SelfTests::box_present </td>
+          <td>(</td>
+          <td class="paramtype">void&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>See if a box is under the clamp. </p>
+
+<p>Definition at line <a class="el" href="self__tests_8cc_source.html#l00382">382</a> of file <a class="el" href="self__tests_8cc_source.html">self_tests.cc</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1f59c76873f58a7100cd1a4b7ac3e044"></a><!-- doxytag: member="IDP::SelfTests::calibrate" ref="a1f59c76873f58a7100cd1a4b7ac3e044" args="(void)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void IDP::SelfTests::calibrate </td>
+          <td>(</td>
+          <td class="paramtype">void&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Read a lot of levels from the LDRs to store in a calibration file. </p>
+
+<p>Definition at line <a class="el" href="self__tests_8cc_source.html#l00703">703</a> of file <a class="el" href="self__tests_8cc_source.html">self_tests.cc</a>.</p>
 
 </div>
 </div>
@@ -262,7 +368,7 @@ Private Attributes</h2></td></tr>
 
 <p>Use the actuators to pick up an object before placing it back down again. </p>
 
-<p>Definition at line <a class="el" href="self__tests_8cc_source.html#l00205">205</a> of file <a class="el" href="self__tests_8cc_source.html">self_tests.cc</a>.</p>
+<p>Definition at line <a class="el" href="self__tests_8cc_source.html#l00286">286</a> of file <a class="el" href="self__tests_8cc_source.html">self_tests.cc</a>.</p>
 
 </div>
 </div>
@@ -284,7 +390,29 @@ Private Attributes</h2></td></tr>
 
 <p>Turn on each of the coloured LEDs used for colour detection in turn. </p>
 
-<p>Definition at line <a class="el" href="self__tests_8cc_source.html#l00277">277</a> of file <a class="el" href="self__tests_8cc_source.html">self_tests.cc</a>.</p>
+<p>Definition at line <a class="el" href="self__tests_8cc_source.html#l00680">680</a> of file <a class="el" href="self__tests_8cc_source.html">self_tests.cc</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1fa6c28ff5e8aa554d3e1bea81018204"></a><!-- doxytag: member="IDP::SelfTests::delivery" ref="a1fa6c28ff5e8aa554d3e1bea81018204" args="(void)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void IDP::SelfTests::delivery </td>
+          <td>(</td>
+          <td class="paramtype">void&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Drive to the delivery zone and drop something off then return. </p>
+
+<p>Definition at line <a class="el" href="self__tests_8cc_source.html#l00602">602</a> of file <a class="el" href="self__tests_8cc_source.html">self_tests.cc</a>.</p>
 
 </div>
 </div>
@@ -306,7 +434,7 @@ Private Attributes</h2></td></tr>
 
 <p>Drive the robot backwards for a moment. </p>
 
-<p>Definition at line <a class="el" href="self__tests_8cc_source.html#l00059">59</a> of file <a class="el" href="self__tests_8cc_source.html">self_tests.cc</a>.</p>
+<p>Definition at line <a class="el" href="self__tests_8cc_source.html#l00068">68</a> of file <a class="el" href="self__tests_8cc_source.html">self_tests.cc</a>.</p>
 
 </div>
 </div>
@@ -328,7 +456,29 @@ Private Attributes</h2></td></tr>
 
 <p>Drive the robot forwards for a moment. </p>
 
-<p>Definition at line <a class="el" href="self__tests_8cc_source.html#l00049">49</a> of file <a class="el" href="self__tests_8cc_source.html">self_tests.cc</a>.</p>
+<p>Definition at line <a class="el" href="self__tests_8cc_source.html#l00055">55</a> of file <a class="el" href="self__tests_8cc_source.html">self_tests.cc</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="acd6d4a493850445419843cefc4d25bc3"></a><!-- doxytag: member="IDP::SelfTests::indicator_LEDs" ref="acd6d4a493850445419843cefc4d25bc3" args="(void)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void IDP::SelfTests::indicator_LEDs </td>
+          <td>(</td>
+          <td class="paramtype">void&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Turn on each of the status LEDs (used for indicating bobbin colour) in turn. </p>
+
+<p>Definition at line <a class="el" href="self__tests_8cc_source.html#l00655">655</a> of file <a class="el" href="self__tests_8cc_source.html">self_tests.cc</a>.</p>
 
 </div>
 </div>
@@ -350,7 +500,7 @@ Private Attributes</h2></td></tr>
 
 <p>Display the current ADC read from the light dependent resistor. </p>
 
-<p>Definition at line <a class="el" href="self__tests_8cc_source.html#l00169">169</a> of file <a class="el" href="self__tests_8cc_source.html">self_tests.cc</a>.</p>
+<p>Definition at line <a class="el" href="self__tests_8cc_source.html#l00201">201</a> of file <a class="el" href="self__tests_8cc_source.html">self_tests.cc</a>.</p>
 
 </div>
 </div>
@@ -372,7 +522,7 @@ Private Attributes</h2></td></tr>
 
 <p>Follow a line until a junction. </p>
 
-<p>Definition at line <a class="el" href="self__tests_8cc_source.html#l00185">185</a> of file <a class="el" href="self__tests_8cc_source.html">self_tests.cc</a>.</p>
+<p>Definition at line <a class="el" href="self__tests_8cc_source.html#l00266">266</a> of file <a class="el" href="self__tests_8cc_source.html">self_tests.cc</a>.</p>
 
 </div>
 </div>
@@ -394,7 +544,7 @@ Private Attributes</h2></td></tr>
 
 <p>Display the status (LINE or NO_LINE) of each of the four IR line following sensors. </p>
 
-<p>Definition at line <a class="el" href="self__tests_8cc_source.html#l00128">128</a> of file <a class="el" href="self__tests_8cc_source.html">self_tests.cc</a>.</p>
+<p>Definition at line <a class="el" href="self__tests_8cc_source.html#l00152">152</a> of file <a class="el" href="self__tests_8cc_source.html">self_tests.cc</a>.</p>
 
 </div>
 </div>
@@ -416,7 +566,7 @@ Private Attributes</h2></td></tr>
 
 <p>Display the state of each of the two microswitches. </p>
 
-<p>Definition at line <a class="el" href="self__tests_8cc_source.html#l00161">161</a> of file <a class="el" href="self__tests_8cc_source.html">self_tests.cc</a>.</p>
+<p>Definition at line <a class="el" href="self__tests_8cc_source.html#l00187">187</a> of file <a class="el" href="self__tests_8cc_source.html">self_tests.cc</a>.</p>
 
 </div>
 </div>
@@ -438,7 +588,95 @@ Private Attributes</h2></td></tr>
 
 <p>Select a source and destination and then navigate to the destination assuming we are starting at the source. </p>
 
-<p>Definition at line <a class="el" href="self__tests_8cc_source.html#l00223">223</a> of file <a class="el" href="self__tests_8cc_source.html">self_tests.cc</a>.</p>
+<p>Definition at line <a class="el" href="self__tests_8cc_source.html#l00411">411</a> of file <a class="el" href="self__tests_8cc_source.html">self_tests.cc</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a74774d0867234315043af155d7d6ab2e"></a><!-- doxytag: member="IDP::SelfTests::navigate_to_bobbin" ref="a74774d0867234315043af155d7d6ab2e" args="(void)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void IDP::SelfTests::navigate_to_bobbin </td>
+          <td>(</td>
+          <td class="paramtype">void&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Drive to a bobbin and stop. </p>
+
+<p>Definition at line <a class="el" href="self__tests_8cc_source.html#l00447">447</a> of file <a class="el" href="self__tests_8cc_source.html">self_tests.cc</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6633d682d0126698d66392e1c750eeed"></a><!-- doxytag: member="IDP::SelfTests::navigate_to_box_for_drop" ref="a6633d682d0126698d66392e1c750eeed" args="(void)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void IDP::SelfTests::navigate_to_box_for_drop </td>
+          <td>(</td>
+          <td class="paramtype">void&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Locate a box and stop. </p>
+
+<p>Definition at line <a class="el" href="self__tests_8cc_source.html#l00524">524</a> of file <a class="el" href="self__tests_8cc_source.html">self_tests.cc</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a0bc87b4b87714b787db2b9f0b185c7c0"></a><!-- doxytag: member="IDP::SelfTests::navigate_to_box_for_pickup" ref="a0bc87b4b87714b787db2b9f0b185c7c0" args="(void)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void IDP::SelfTests::navigate_to_box_for_pickup </td>
+          <td>(</td>
+          <td class="paramtype">void&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Locate a box and stop. </p>
+
+<p>Definition at line <a class="el" href="self__tests_8cc_source.html#l00480">480</a> of file <a class="el" href="self__tests_8cc_source.html">self_tests.cc</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7b656185650ea6c34563e3cb4795d47a"></a><!-- doxytag: member="IDP::SelfTests::navigate_to_delivery" ref="a7b656185650ea6c34563e3cb4795d47a" args="(void)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void IDP::SelfTests::navigate_to_delivery </td>
+          <td>(</td>
+          <td class="paramtype">void&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Drive to the delivery zone and stop. </p>
+
+<p>Definition at line <a class="el" href="self__tests_8cc_source.html#l00568">568</a> of file <a class="el" href="self__tests_8cc_source.html">self_tests.cc</a>.</p>
 
 </div>
 </div>
@@ -460,29 +698,7 @@ Private Attributes</h2></td></tr>
 
 <p>Drive slowly looking for an object in range for pickup, then position self ready to clamp said object. </p>
 
-<p>Definition at line <a class="el" href="self__tests_8cc_source.html#l00259">259</a> of file <a class="el" href="self__tests_8cc_source.html">self_tests.cc</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="abbe6e3e29b00f760e0b65f2aeb772fb5"></a><!-- doxytag: member="IDP::SelfTests::status_LEDs" ref="abbe6e3e29b00f760e0b65f2aeb772fb5" args="(void)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void IDP::SelfTests::status_LEDs </td>
-          <td>(</td>
-          <td class="paramtype">void&nbsp;</td>
-          <td class="paramname"></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Turn on each of the status LEDs (used for indicating bobbin colour) in turn. </p>
-
-<p>Definition at line <a class="el" href="self__tests_8cc_source.html#l00268">268</a> of file <a class="el" href="self__tests_8cc_source.html">self_tests.cc</a>.</p>
+<p>Definition at line <a class="el" href="self__tests_8cc_source.html#l00646">646</a> of file <a class="el" href="self__tests_8cc_source.html">self_tests.cc</a>.</p>
 
 </div>
 </div>
@@ -504,7 +720,7 @@ Private Attributes</h2></td></tr>
 
 <p>Drive forwards for a moment whilst reducing the speed of the left motor relative to the right to steer left. </p>
 
-<p>Definition at line <a class="el" href="self__tests_8cc_source.html#l00104">104</a> of file <a class="el" href="self__tests_8cc_source.html">self_tests.cc</a>.</p>
+<p>Definition at line <a class="el" href="self__tests_8cc_source.html#l00122">122</a> of file <a class="el" href="self__tests_8cc_source.html">self_tests.cc</a>.</p>
 
 </div>
 </div>
@@ -526,7 +742,7 @@ Private Attributes</h2></td></tr>
 
 <p>Drive forwards for a moment whilst reducing the speed of the right motor relative to the left to steer right. </p>
 
-<p>Definition at line <a class="el" href="self__tests_8cc_source.html#l00116">116</a> of file <a class="el" href="self__tests_8cc_source.html">self_tests.cc</a>.</p>
+<p>Definition at line <a class="el" href="self__tests_8cc_source.html#l00137">137</a> of file <a class="el" href="self__tests_8cc_source.html">self_tests.cc</a>.</p>
 
 </div>
 </div>
@@ -548,7 +764,7 @@ Private Attributes</h2></td></tr>
 
 <p>Stop all of the robot's motors. </p>
 
-<p>Definition at line <a class="el" href="self__tests_8cc_source.html#l00069">69</a> of file <a class="el" href="self__tests_8cc_source.html">self_tests.cc</a>.</p>
+<p>Definition at line <a class="el" href="self__tests_8cc_source.html#l00081">81</a> of file <a class="el" href="self__tests_8cc_source.html">self_tests.cc</a>.</p>
 
 </div>
 </div>
@@ -570,7 +786,7 @@ Private Attributes</h2></td></tr>
 
 <p>Drive motors in opposite directions to turn the robot left on the spot. </p>
 
-<p>Definition at line <a class="el" href="self__tests_8cc_source.html#l00080">80</a> of file <a class="el" href="self__tests_8cc_source.html">self_tests.cc</a>.</p>
+<p>Definition at line <a class="el" href="self__tests_8cc_source.html#l00092">92</a> of file <a class="el" href="self__tests_8cc_source.html">self_tests.cc</a>.</p>
 
 </div>
 </div>
@@ -592,7 +808,7 @@ Private Attributes</h2></td></tr>
 
 <p>Drive motors in opposite directions to turn the robot right on the spot. </p>
 
-<p>Definition at line <a class="el" href="self__tests_8cc_source.html#l00092">92</a> of file <a class="el" href="self__tests_8cc_source.html">self_tests.cc</a>.</p>
+<p>Definition at line <a class="el" href="self__tests_8cc_source.html#l00107">107</a> of file <a class="el" href="self__tests_8cc_source.html">self_tests.cc</a>.</p>
 
 </div>
 </div>
@@ -608,7 +824,7 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="self__tests_8h_source.html#l00049">49</a> of file <a class="el" href="self__tests_8h_source.html">self_tests.h</a>.</p>
+<p>Definition at line <a class="el" href="self__tests_8h_source.html#l00058">58</a> of file <a class="el" href="self__tests_8h_source.html">self_tests.h</a>.</p>
 
 </div>
 </div>
@@ -623,7 +839,7 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="self__tests_8h_source.html#l00048">48</a> of file <a class="el" href="self__tests_8h_source.html">self_tests.h</a>.</p>
+<p>Definition at line <a class="el" href="self__tests_8h_source.html#l00057">57</a> of file <a class="el" href="self__tests_8h_source.html">self_tests.h</a>.</p>
 
 </div>
 </div>
@@ -646,7 +862,7 @@ Private Attributes</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Tue Feb 15 2011 02:35:58 for IDPL108 by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sat Feb 19 2011 01:29:45 for IDPL108 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

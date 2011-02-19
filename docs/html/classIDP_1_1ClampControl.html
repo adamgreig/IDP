@@ -84,16 +84,48 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Put something in the clamp down.  <a href="#a31573846d9f7c61a6133b9dd465eca25"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceIDP.html#a6efd2cca14c0dae1c6458714ce0218df">BobbinColour</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1ClampControl.html#adcb72d77aa298264c67b42e9252f7688">colour</a> () const </td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Check the bobbin colour.  <a href="#adcb72d77aa298264c67b42e9252f7688"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceIDP.html#a6efd2cca14c0dae1c6458714ce0218df">BobbinColour</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1ClampControl.html#a7f9e7fdd2f09f3aa7eff620073181f23">box_colour</a> () const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Check the bobbin colour while it is in a box.  <a href="#a7f9e7fdd2f09f3aa7eff620073181f23"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceIDP.html#adf12b2c1e1c228810b18c34a3c88c32d">BobbinBadness</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1ClampControl.html#ab9431b1477cb0785194ed1cfe0b8b328">badness</a> () const </td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Check the bobbin badness.  <a href="#ab9431b1477cb0785194ed1cfe0b8b328"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1ClampControl.html#acc9ea5549b9eaeb9c53fb8e1b7dd0a7d">bobbin_present</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">See if a bobbin is in the jaw.  <a href="#acc9ea5549b9eaeb9c53fb8e1b7dd0a7d"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1ClampControl.html#a1731e2025ab33c430d3e4bf1a941ce23">box_present</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">See if a box is under the jaw.  <a href="#a1731e2025ab33c430d3e4bf1a941ce23"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1ClampControl.html#a5b67a46af3f8682b81cbf68f8693247e">open_jaw</a> (void)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Open the grabber jaw.  <a href="#a5b67a46af3f8682b81cbf68f8693247e"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1ClampControl.html#a94364f9779f57df6e63f44968fc5c163">close_jaw</a> (void)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Close the grabber jaw.  <a href="#a94364f9779f57df6e63f44968fc5c163"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1ClampControl.html#a64f742aca4caf9797ef45ee40938cab3">raise_arm</a> (void)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Raise the grabber arm.  <a href="#a64f742aca4caf9797ef45ee40938cab3"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1ClampControl.html#a011866d438336ee003774eccf7c207e0">lower_arm</a> (void)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Lower the grabber arm.  <a href="#a011866d438336ee003774eccf7c207e0"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">unsigned short int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1ClampControl.html#a3bb0dcc5ad18870b38a639ae30ae5466">average_bad_ldr</a> (unsigned short int n=3) const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Take an average bad bobbin LDR reading of n samples.  <a href="#a3bb0dcc5ad18870b38a639ae30ae5466"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">unsigned short int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1ClampControl.html#abed3e9baa31872c8bd87521584f1e845">average_colour_ldr</a> (unsigned short int n=3) const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Take an average colour LDR reading of n samples.  <a href="#abed3e9baa31872c8bd87521584f1e845"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classIDP_1_1HardwareAbstractionLayer.html">HardwareAbstractionLayer</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1ClampControl.html#ac0c31fdbef30bc0c0d729843c8874475">_hal</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">short int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1ClampControl.html#ad6188d015d2f9f237abc81574715f6f6">_red_box_level</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">short int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1ClampControl.html#a4525ba276d66d2d29a8f1feb956bb769">_green_box_level</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">short int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1ClampControl.html#ac9d8d3c77082aa750ddb98b32596f636">_red_rack_level</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">short int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1ClampControl.html#af6424de6982b37b9aab8d190b06d51be">_green_rack_level</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">short int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1ClampControl.html#a486cebcf52979b03361cce9ecb84f2e3">_box_present_level</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">short int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1ClampControl.html#a1576dda5ebbae90e0861fa0212e5d743">_white_present_level</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">short int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1ClampControl.html#ab9e34e39d14e415e3a9b938451fe70a6">_coloured_present_level</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">short int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1ClampControl.html#a1391b175b26be6760be280f8e1b8bd4c">_badness_light_zero</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">short int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1ClampControl.html#aa17b2cb9431db23053f27a0955d26548">_badness_dark_zero</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">short int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1ClampControl.html#aa8dfb019900ee99b77e3eeb227d4de18">_colour_light_zero</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">short int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1ClampControl.html#a7639828ac6b5d83131718412b3dd5ca2">_colour_light_closed_zero</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">short int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1ClampControl.html#acca5d1d3e3e3fc8b148a4889c76b0dc2">_colour_light_box_zero</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1ClampControl.html#aa5103702b2e1a040a90bdb8199ff0e8b">_arm_up</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1ClampControl.html#a07bfb23f284fb25dacd0d22e5f218375">_jaw_open</a></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>Manage the actuation of the clamp, as well as the detection and analysis of bobbins for their colour and badness. </p>
 
-<p>Definition at line <a class="el" href="clamp__control_8h_source.html#l00039">39</a> of file <a class="el" href="clamp__control_8h_source.html">clamp_control.h</a>.</p>
+<p>Definition at line <a class="el" href="clamp__control_8h_source.html#l00058">58</a> of file <a class="el" href="clamp__control_8h_source.html">clamp_control.h</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a0359cb52415c35a06521d1130e4f0795"></a><!-- doxytag: member="IDP::ClampControl::ClampControl" ref="a0359cb52415c35a06521d1130e4f0795" args="(HardwareAbstractionLayer *hal)" -->
 <div class="memitem">
@@ -119,11 +151,67 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="clamp__control_8cc_source.html#l00039">39</a> of file <a class="el" href="clamp__control_8cc_source.html">clamp_control.cc</a>.</p>
+<p>Definition at line <a class="el" href="clamp__control_8cc_source.html#l00031">31</a> of file <a class="el" href="clamp__control_8cc_source.html">clamp_control.cc</a>.</p>
 
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a3bb0dcc5ad18870b38a639ae30ae5466"></a><!-- doxytag: member="IDP::ClampControl::average_bad_ldr" ref="a3bb0dcc5ad18870b38a639ae30ae5466" args="(unsigned short int n=3) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned short int IDP::ClampControl::average_bad_ldr </td>
+          <td>(</td>
+          <td class="paramtype">unsigned short int&nbsp;</td>
+          <td class="paramname"> <em>n</em> = <code>3</code></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Take an average bad bobbin LDR reading of n samples. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>n</em>&nbsp;</td><td>Number of samples to take, default 3 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="clamp__control_8cc_source.html#l00333">333</a> of file <a class="el" href="clamp__control_8cc_source.html">clamp_control.cc</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="abed3e9baa31872c8bd87521584f1e845"></a><!-- doxytag: member="IDP::ClampControl::average_colour_ldr" ref="abed3e9baa31872c8bd87521584f1e845" args="(unsigned short int n=3) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned short int IDP::ClampControl::average_colour_ldr </td>
+          <td>(</td>
+          <td class="paramtype">unsigned short int&nbsp;</td>
+          <td class="paramname"> <em>n</em> = <code>3</code></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Take an average colour LDR reading of n samples. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>n</em>&nbsp;</td><td>Number of samples to take, default 3 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="clamp__control_8cc_source.html#l00349">349</a> of file <a class="el" href="clamp__control_8cc_source.html">clamp_control.cc</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="ab9431b1477cb0785194ed1cfe0b8b328"></a><!-- doxytag: member="IDP::ClampControl::badness" ref="ab9431b1477cb0785194ed1cfe0b8b328" args="() const " -->
 <div class="memitem">
 <div class="memproto">
@@ -142,7 +230,95 @@ Private Attributes</h2></td></tr>
 <p>Check the bobbin badness. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A BobbinBadness value to indicate current bobbin status </dd></dl>
 
-<p>Definition at line <a class="el" href="clamp__control_8cc_source.html#l00075">75</a> of file <a class="el" href="clamp__control_8cc_source.html">clamp_control.cc</a>.</p>
+<p>Definition at line <a class="el" href="clamp__control_8cc_source.html#l00231">231</a> of file <a class="el" href="clamp__control_8cc_source.html">clamp_control.cc</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="acc9ea5549b9eaeb9c53fb8e1b7dd0a7d"></a><!-- doxytag: member="IDP::ClampControl::bobbin_present" ref="acc9ea5549b9eaeb9c53fb8e1b7dd0a7d" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool IDP::ClampControl::bobbin_present </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>See if a bobbin is in the jaw. </p>
+<p>Used especially when navigating down the rack to check when we've found something. The red and green bobbins block a lot of reflected light from the metal backplate, so use this large drop in light to notice them. The white bobbins reflect about the same amount, but when present without lights on they will block a good deal of light from hitting the sensor anyway, so we can detect them as such. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>True when a bobbin is found </dd></dl>
+
+<p>Definition at line <a class="el" href="clamp__control_8cc_source.html#l00268">268</a> of file <a class="el" href="clamp__control_8cc_source.html">clamp_control.cc</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7f9e7fdd2f09f3aa7eff620073181f23"></a><!-- doxytag: member="IDP::ClampControl::box_colour" ref="a7f9e7fdd2f09f3aa7eff620073181f23" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceIDP.html#a6efd2cca14c0dae1c6458714ce0218df">BobbinColour</a> IDP::ClampControl::box_colour </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Check the bobbin colour while it is in a box. </p>
+
+<p>Definition at line <a class="el" href="clamp__control_8cc_source.html#l00189">189</a> of file <a class="el" href="clamp__control_8cc_source.html">clamp_control.cc</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1731e2025ab33c430d3e4bf1a941ce23"></a><!-- doxytag: member="IDP::ClampControl::box_present" ref="a1731e2025ab33c430d3e4bf1a941ce23" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool IDP::ClampControl::box_present </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>See if a box is under the jaw. </p>
+<p>We do this by checking for reflections of the steel box under the bad bobbin sensor. </p>
+
+<p>Definition at line <a class="el" href="clamp__control_8cc_source.html#l00308">308</a> of file <a class="el" href="clamp__control_8cc_source.html">clamp_control.cc</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a94364f9779f57df6e63f44968fc5c163"></a><!-- doxytag: member="IDP::ClampControl::close_jaw" ref="a94364f9779f57df6e63f44968fc5c163" args="(void)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void IDP::ClampControl::close_jaw </td>
+          <td>(</td>
+          <td class="paramtype">void&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Close the grabber jaw. </p>
+
+<p>Definition at line <a class="el" href="clamp__control_8cc_source.html#l00133">133</a> of file <a class="el" href="clamp__control_8cc_source.html">clamp_control.cc</a>.</p>
 
 </div>
 </div>
@@ -164,7 +340,51 @@ Private Attributes</h2></td></tr>
 <p>Check the bobbin colour. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A BobbinColour value to indicate current bobbin colour </dd></dl>
 
-<p>Definition at line <a class="el" href="clamp__control_8cc_source.html#l00065">65</a> of file <a class="el" href="clamp__control_8cc_source.html">clamp_control.cc</a>.</p>
+<p>Definition at line <a class="el" href="clamp__control_8cc_source.html#l00148">148</a> of file <a class="el" href="clamp__control_8cc_source.html">clamp_control.cc</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a011866d438336ee003774eccf7c207e0"></a><!-- doxytag: member="IDP::ClampControl::lower_arm" ref="a011866d438336ee003774eccf7c207e0" args="(void)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void IDP::ClampControl::lower_arm </td>
+          <td>(</td>
+          <td class="paramtype">void&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Lower the grabber arm. </p>
+
+<p>Definition at line <a class="el" href="clamp__control_8cc_source.html#l00105">105</a> of file <a class="el" href="clamp__control_8cc_source.html">clamp_control.cc</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a5b67a46af3f8682b81cbf68f8693247e"></a><!-- doxytag: member="IDP::ClampControl::open_jaw" ref="a5b67a46af3f8682b81cbf68f8693247e" args="(void)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void IDP::ClampControl::open_jaw </td>
+          <td>(</td>
+          <td class="paramtype">void&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Open the grabber jaw. </p>
+
+<p>Definition at line <a class="el" href="clamp__control_8cc_source.html#l00119">119</a> of file <a class="el" href="clamp__control_8cc_source.html">clamp_control.cc</a>.</p>
 
 </div>
 </div>
@@ -185,7 +405,7 @@ Private Attributes</h2></td></tr>
 
 <p>Pick up something using the clamp. </p>
 
-<p>Definition at line <a class="el" href="clamp__control_8cc_source.html#l00048">48</a> of file <a class="el" href="clamp__control_8cc_source.html">clamp_control.cc</a>.</p>
+<p>Definition at line <a class="el" href="clamp__control_8cc_source.html#l00051">51</a> of file <a class="el" href="clamp__control_8cc_source.html">clamp_control.cc</a>.</p>
 
 </div>
 </div>
@@ -206,11 +426,183 @@ Private Attributes</h2></td></tr>
 
 <p>Put something in the clamp down. </p>
 
-<p>Definition at line <a class="el" href="clamp__control_8cc_source.html#l00056">56</a> of file <a class="el" href="clamp__control_8cc_source.html">clamp_control.cc</a>.</p>
+<p>Definition at line <a class="el" href="clamp__control_8cc_source.html#l00072">72</a> of file <a class="el" href="clamp__control_8cc_source.html">clamp_control.cc</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a64f742aca4caf9797ef45ee40938cab3"></a><!-- doxytag: member="IDP::ClampControl::raise_arm" ref="a64f742aca4caf9797ef45ee40938cab3" args="(void)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void IDP::ClampControl::raise_arm </td>
+          <td>(</td>
+          <td class="paramtype">void&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Raise the grabber arm. </p>
+
+<p>Definition at line <a class="el" href="clamp__control_8cc_source.html#l00091">91</a> of file <a class="el" href="clamp__control_8cc_source.html">clamp_control.cc</a>.</p>
 
 </div>
 </div>
 <hr/><h2>Member Data Documentation</h2>
+<a class="anchor" id="aa5103702b2e1a040a90bdb8199ff0e8b"></a><!-- doxytag: member="IDP::ClampControl::_arm_up" ref="aa5103702b2e1a040a90bdb8199ff0e8b" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="classIDP_1_1ClampControl.html#aa5103702b2e1a040a90bdb8199ff0e8b">IDP::ClampControl::_arm_up</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="clamp__control_8h_source.html#l00091">91</a> of file <a class="el" href="clamp__control_8h_source.html">clamp_control.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa17b2cb9431db23053f27a0955d26548"></a><!-- doxytag: member="IDP::ClampControl::_badness_dark_zero" ref="aa17b2cb9431db23053f27a0955d26548" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">short int <a class="el" href="classIDP_1_1ClampControl.html#aa17b2cb9431db23053f27a0955d26548">IDP::ClampControl::_badness_dark_zero</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="clamp__control_8h_source.html#l00087">87</a> of file <a class="el" href="clamp__control_8h_source.html">clamp_control.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1391b175b26be6760be280f8e1b8bd4c"></a><!-- doxytag: member="IDP::ClampControl::_badness_light_zero" ref="a1391b175b26be6760be280f8e1b8bd4c" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">short int <a class="el" href="classIDP_1_1ClampControl.html#a1391b175b26be6760be280f8e1b8bd4c">IDP::ClampControl::_badness_light_zero</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="clamp__control_8h_source.html#l00086">86</a> of file <a class="el" href="clamp__control_8h_source.html">clamp_control.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a486cebcf52979b03361cce9ecb84f2e3"></a><!-- doxytag: member="IDP::ClampControl::_box_present_level" ref="a486cebcf52979b03361cce9ecb84f2e3" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">short int <a class="el" href="classIDP_1_1ClampControl.html#a486cebcf52979b03361cce9ecb84f2e3">IDP::ClampControl::_box_present_level</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="clamp__control_8h_source.html#l00083">83</a> of file <a class="el" href="clamp__control_8h_source.html">clamp_control.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="acca5d1d3e3e3fc8b148a4889c76b0dc2"></a><!-- doxytag: member="IDP::ClampControl::_colour_light_box_zero" ref="acca5d1d3e3e3fc8b148a4889c76b0dc2" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">short int <a class="el" href="classIDP_1_1ClampControl.html#acca5d1d3e3e3fc8b148a4889c76b0dc2">IDP::ClampControl::_colour_light_box_zero</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="clamp__control_8h_source.html#l00090">90</a> of file <a class="el" href="clamp__control_8h_source.html">clamp_control.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7639828ac6b5d83131718412b3dd5ca2"></a><!-- doxytag: member="IDP::ClampControl::_colour_light_closed_zero" ref="a7639828ac6b5d83131718412b3dd5ca2" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">short int <a class="el" href="classIDP_1_1ClampControl.html#a7639828ac6b5d83131718412b3dd5ca2">IDP::ClampControl::_colour_light_closed_zero</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="clamp__control_8h_source.html#l00089">89</a> of file <a class="el" href="clamp__control_8h_source.html">clamp_control.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa8dfb019900ee99b77e3eeb227d4de18"></a><!-- doxytag: member="IDP::ClampControl::_colour_light_zero" ref="aa8dfb019900ee99b77e3eeb227d4de18" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">short int <a class="el" href="classIDP_1_1ClampControl.html#aa8dfb019900ee99b77e3eeb227d4de18">IDP::ClampControl::_colour_light_zero</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="clamp__control_8h_source.html#l00088">88</a> of file <a class="el" href="clamp__control_8h_source.html">clamp_control.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab9e34e39d14e415e3a9b938451fe70a6"></a><!-- doxytag: member="IDP::ClampControl::_coloured_present_level" ref="ab9e34e39d14e415e3a9b938451fe70a6" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">short int <a class="el" href="classIDP_1_1ClampControl.html#ab9e34e39d14e415e3a9b938451fe70a6">IDP::ClampControl::_coloured_present_level</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="clamp__control_8h_source.html#l00085">85</a> of file <a class="el" href="clamp__control_8h_source.html">clamp_control.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a4525ba276d66d2d29a8f1feb956bb769"></a><!-- doxytag: member="IDP::ClampControl::_green_box_level" ref="a4525ba276d66d2d29a8f1feb956bb769" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">short int <a class="el" href="classIDP_1_1ClampControl.html#a4525ba276d66d2d29a8f1feb956bb769">IDP::ClampControl::_green_box_level</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="clamp__control_8h_source.html#l00080">80</a> of file <a class="el" href="clamp__control_8h_source.html">clamp_control.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af6424de6982b37b9aab8d190b06d51be"></a><!-- doxytag: member="IDP::ClampControl::_green_rack_level" ref="af6424de6982b37b9aab8d190b06d51be" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">short int <a class="el" href="classIDP_1_1ClampControl.html#af6424de6982b37b9aab8d190b06d51be">IDP::ClampControl::_green_rack_level</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="clamp__control_8h_source.html#l00082">82</a> of file <a class="el" href="clamp__control_8h_source.html">clamp_control.h</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="ac0c31fdbef30bc0c0d729843c8874475"></a><!-- doxytag: member="IDP::ClampControl::_hal" ref="ac0c31fdbef30bc0c0d729843c8874475" args="" -->
 <div class="memitem">
 <div class="memproto">
@@ -222,7 +614,67 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="clamp__control_8h_source.html#l00048">48</a> of file <a class="el" href="clamp__control_8h_source.html">clamp_control.h</a>.</p>
+<p>Definition at line <a class="el" href="clamp__control_8h_source.html#l00078">78</a> of file <a class="el" href="clamp__control_8h_source.html">clamp_control.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a07bfb23f284fb25dacd0d22e5f218375"></a><!-- doxytag: member="IDP::ClampControl::_jaw_open" ref="a07bfb23f284fb25dacd0d22e5f218375" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="classIDP_1_1ClampControl.html#a07bfb23f284fb25dacd0d22e5f218375">IDP::ClampControl::_jaw_open</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="clamp__control_8h_source.html#l00092">92</a> of file <a class="el" href="clamp__control_8h_source.html">clamp_control.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad6188d015d2f9f237abc81574715f6f6"></a><!-- doxytag: member="IDP::ClampControl::_red_box_level" ref="ad6188d015d2f9f237abc81574715f6f6" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">short int <a class="el" href="classIDP_1_1ClampControl.html#ad6188d015d2f9f237abc81574715f6f6">IDP::ClampControl::_red_box_level</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="clamp__control_8h_source.html#l00079">79</a> of file <a class="el" href="clamp__control_8h_source.html">clamp_control.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac9d8d3c77082aa750ddb98b32596f636"></a><!-- doxytag: member="IDP::ClampControl::_red_rack_level" ref="ac9d8d3c77082aa750ddb98b32596f636" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">short int <a class="el" href="classIDP_1_1ClampControl.html#ac9d8d3c77082aa750ddb98b32596f636">IDP::ClampControl::_red_rack_level</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="clamp__control_8h_source.html#l00081">81</a> of file <a class="el" href="clamp__control_8h_source.html">clamp_control.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1576dda5ebbae90e0861fa0212e5d743"></a><!-- doxytag: member="IDP::ClampControl::_white_present_level" ref="a1576dda5ebbae90e0861fa0212e5d743" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">short int <a class="el" href="classIDP_1_1ClampControl.html#a1576dda5ebbae90e0861fa0212e5d743">IDP::ClampControl::_white_present_level</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="clamp__control_8h_source.html#l00084">84</a> of file <a class="el" href="clamp__control_8h_source.html">clamp_control.h</a>.</p>
 
 </div>
 </div>
@@ -245,7 +697,7 @@ Private Attributes</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Tue Feb 15 2011 02:35:58 for IDPL108 by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sat Feb 19 2011 01:29:45 for IDPL108 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

@@ -1,7 +1,8 @@
 <map id="G" name="G">
-<area shape="rect" id="node3" href="$libidp_8h.html" title="src/libidp/libidp.h" alt="" coords="11,86,128,117"/>
-<area shape="rect" id="node7" href="$mission__supervisor_8cc.html" title="src/libidp/mission_supervisor.cc" alt="" coords="152,86,360,117"/>
-<area shape="rect" id="node9" href="$navigation_8cc.html" title="src/libidp/navigation.cc" alt="" coords="384,86,539,117"/>
-<area shape="rect" id="node11" href="$self__tests_8cc.html" title="src/libidp/self_tests.cc" alt="" coords="563,86,715,117"/>
-<area shape="rect" id="node5" href="$main_8cc.html" title="src/idpbin/main.cc" alt="" coords="5,166,133,197"/>
+<area shape="rect" id="node3" href="$mission__supervisor_8h.html" title="src/libidp/mission_supervisor.h" alt="" coords="205,86,405,117"/>
+<area shape="rect" id="node5" href="$libidp_8h.html" title="src/libidp/libidp.h" alt="" coords="11,166,128,197"/>
+<area shape="rect" id="node9" href="$mission__supervisor_8cc.html" title="src/libidp/mission_supervisor.cc" alt="" coords="152,166,360,197"/>
+<area shape="rect" id="node11" href="$self__tests_8cc.html" title="src/libidp/self_tests.cc" alt="" coords="384,166,536,197"/>
+<area shape="rect" id="node15" href="$navigation_8cc.html" title="src/libidp/navigation.cc" alt="" coords="480,86,635,117"/>
+<area shape="rect" id="node7" href="$main_8cc.html" title="src/idpbin/main.cc" alt="" coords="5,246,133,277"/>
 </map>

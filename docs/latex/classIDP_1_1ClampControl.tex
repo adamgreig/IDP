@@ -31,19 +31,65 @@ void \hyperlink{classIDP_1_1ClampControl_a31573846d9f7c61a6133b9dd465eca25}{put\
 \begin{DoxyCompactList}\small\item\em Put something in the clamp down. \item\end{DoxyCompactList}\item 
 \hyperlink{namespaceIDP_a6efd2cca14c0dae1c6458714ce0218df}{BobbinColour} \hyperlink{classIDP_1_1ClampControl_adcb72d77aa298264c67b42e9252f7688}{colour} () const 
 \begin{DoxyCompactList}\small\item\em Check the bobbin colour. \item\end{DoxyCompactList}\item 
+\hyperlink{namespaceIDP_a6efd2cca14c0dae1c6458714ce0218df}{BobbinColour} \hyperlink{classIDP_1_1ClampControl_a7f9e7fdd2f09f3aa7eff620073181f23}{box\_\-colour} () const 
+\begin{DoxyCompactList}\small\item\em Check the bobbin colour while it is in a box. \item\end{DoxyCompactList}\item 
 \hyperlink{namespaceIDP_adf12b2c1e1c228810b18c34a3c88c32d}{BobbinBadness} \hyperlink{classIDP_1_1ClampControl_ab9431b1477cb0785194ed1cfe0b8b328}{badness} () const 
-\begin{DoxyCompactList}\small\item\em Check the bobbin badness. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Check the bobbin badness. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classIDP_1_1ClampControl_acc9ea5549b9eaeb9c53fb8e1b7dd0a7d}{bobbin\_\-present} ()
+\begin{DoxyCompactList}\small\item\em See if a bobbin is in the jaw. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classIDP_1_1ClampControl_a1731e2025ab33c430d3e4bf1a941ce23}{box\_\-present} ()
+\begin{DoxyCompactList}\small\item\em See if a box is under the jaw. \item\end{DoxyCompactList}\item 
+void \hyperlink{classIDP_1_1ClampControl_a5b67a46af3f8682b81cbf68f8693247e}{open\_\-jaw} (void)
+\begin{DoxyCompactList}\small\item\em Open the grabber jaw. \item\end{DoxyCompactList}\item 
+void \hyperlink{classIDP_1_1ClampControl_a94364f9779f57df6e63f44968fc5c163}{close\_\-jaw} (void)
+\begin{DoxyCompactList}\small\item\em Close the grabber jaw. \item\end{DoxyCompactList}\item 
+void \hyperlink{classIDP_1_1ClampControl_a64f742aca4caf9797ef45ee40938cab3}{raise\_\-arm} (void)
+\begin{DoxyCompactList}\small\item\em Raise the grabber arm. \item\end{DoxyCompactList}\item 
+void \hyperlink{classIDP_1_1ClampControl_a011866d438336ee003774eccf7c207e0}{lower\_\-arm} (void)
+\begin{DoxyCompactList}\small\item\em Lower the grabber arm. \item\end{DoxyCompactList}\item 
+unsigned short int \hyperlink{classIDP_1_1ClampControl_a3bb0dcc5ad18870b38a639ae30ae5466}{average\_\-bad\_\-ldr} (unsigned short int n=3) const 
+\begin{DoxyCompactList}\small\item\em Take an average bad bobbin LDR reading of n samples. \item\end{DoxyCompactList}\item 
+unsigned short int \hyperlink{classIDP_1_1ClampControl_abed3e9baa31872c8bd87521584f1e845}{average\_\-colour\_\-ldr} (unsigned short int n=3) const 
+\begin{DoxyCompactList}\small\item\em Take an average colour LDR reading of n samples. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
 \hyperlink{classIDP_1_1HardwareAbstractionLayer}{HardwareAbstractionLayer} $\ast$ \hyperlink{classIDP_1_1ClampControl_ac0c31fdbef30bc0c0d729843c8874475}{\_\-hal}
+\item 
+short int \hyperlink{classIDP_1_1ClampControl_ad6188d015d2f9f237abc81574715f6f6}{\_\-red\_\-box\_\-level}
+\item 
+short int \hyperlink{classIDP_1_1ClampControl_a4525ba276d66d2d29a8f1feb956bb769}{\_\-green\_\-box\_\-level}
+\item 
+short int \hyperlink{classIDP_1_1ClampControl_ac9d8d3c77082aa750ddb98b32596f636}{\_\-red\_\-rack\_\-level}
+\item 
+short int \hyperlink{classIDP_1_1ClampControl_af6424de6982b37b9aab8d190b06d51be}{\_\-green\_\-rack\_\-level}
+\item 
+short int \hyperlink{classIDP_1_1ClampControl_a486cebcf52979b03361cce9ecb84f2e3}{\_\-box\_\-present\_\-level}
+\item 
+short int \hyperlink{classIDP_1_1ClampControl_a1576dda5ebbae90e0861fa0212e5d743}{\_\-white\_\-present\_\-level}
+\item 
+short int \hyperlink{classIDP_1_1ClampControl_ab9e34e39d14e415e3a9b938451fe70a6}{\_\-coloured\_\-present\_\-level}
+\item 
+short int \hyperlink{classIDP_1_1ClampControl_a1391b175b26be6760be280f8e1b8bd4c}{\_\-badness\_\-light\_\-zero}
+\item 
+short int \hyperlink{classIDP_1_1ClampControl_aa17b2cb9431db23053f27a0955d26548}{\_\-badness\_\-dark\_\-zero}
+\item 
+short int \hyperlink{classIDP_1_1ClampControl_aa8dfb019900ee99b77e3eeb227d4de18}{\_\-colour\_\-light\_\-zero}
+\item 
+short int \hyperlink{classIDP_1_1ClampControl_a7639828ac6b5d83131718412b3dd5ca2}{\_\-colour\_\-light\_\-closed\_\-zero}
+\item 
+short int \hyperlink{classIDP_1_1ClampControl_acca5d1d3e3e3fc8b148a4889c76b0dc2}{\_\-colour\_\-light\_\-box\_\-zero}
+\item 
+bool \hyperlink{classIDP_1_1ClampControl_aa5103702b2e1a040a90bdb8199ff0e8b}{\_\-arm\_\-up}
+\item 
+bool \hyperlink{classIDP_1_1ClampControl_a07bfb23f284fb25dacd0d22e5f218375}{\_\-jaw\_\-open}
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 Manage the actuation of the clamp, as well as the detection and analysis of bobbins for their colour and badness. 
 
-Definition at line 39 of file clamp\_\-control.h.
+Definition at line 58 of file clamp\_\-control.h.
 
 
 
@@ -66,11 +112,51 @@ Initialise the class, storing the const pointer to the HAL.
 \item[{\em hal}]A const pointer to an instance of the HAL \end{DoxyParams}
 
 
-Definition at line 39 of file clamp\_\-control.cc.
+Definition at line 31 of file clamp\_\-control.cc.
 
 
 
 \subsection{Member Function Documentation}
+\hypertarget{classIDP_1_1ClampControl_a3bb0dcc5ad18870b38a639ae30ae5466}{
+\index{IDP::ClampControl@{IDP::ClampControl}!average\_\-bad\_\-ldr@{average\_\-bad\_\-ldr}}
+\index{average\_\-bad\_\-ldr@{average\_\-bad\_\-ldr}!IDP::ClampControl@{IDP::ClampControl}}
+\subsubsection[{average\_\-bad\_\-ldr}]{\setlength{\rightskip}{0pt plus 5cm}unsigned short int IDP::ClampControl::average\_\-bad\_\-ldr (
+\begin{DoxyParamCaption}
+\item[{unsigned short int}]{ n = {\ttfamily 3}}
+\end{DoxyParamCaption}
+) const}}
+\label{classIDP_1_1ClampControl_a3bb0dcc5ad18870b38a639ae30ae5466}
+
+
+Take an average bad bobbin LDR reading of n samples. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em n}]Number of samples to take, default 3 \end{DoxyParams}
+
+
+Definition at line 333 of file clamp\_\-control.cc.
+
+\hypertarget{classIDP_1_1ClampControl_abed3e9baa31872c8bd87521584f1e845}{
+\index{IDP::ClampControl@{IDP::ClampControl}!average\_\-colour\_\-ldr@{average\_\-colour\_\-ldr}}
+\index{average\_\-colour\_\-ldr@{average\_\-colour\_\-ldr}!IDP::ClampControl@{IDP::ClampControl}}
+\subsubsection[{average\_\-colour\_\-ldr}]{\setlength{\rightskip}{0pt plus 5cm}unsigned short int IDP::ClampControl::average\_\-colour\_\-ldr (
+\begin{DoxyParamCaption}
+\item[{unsigned short int}]{ n = {\ttfamily 3}}
+\end{DoxyParamCaption}
+) const}}
+\label{classIDP_1_1ClampControl_abed3e9baa31872c8bd87521584f1e845}
+
+
+Take an average colour LDR reading of n samples. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em n}]Number of samples to take, default 3 \end{DoxyParams}
+
+
+Definition at line 349 of file clamp\_\-control.cc.
+
 \hypertarget{classIDP_1_1ClampControl_ab9431b1477cb0785194ed1cfe0b8b328}{
 \index{IDP::ClampControl@{IDP::ClampControl}!badness@{badness}}
 \index{badness@{badness}!IDP::ClampControl@{IDP::ClampControl}}
@@ -89,7 +175,78 @@ A BobbinBadness value to indicate current bobbin status
 \end{DoxyReturn}
 
 
-Definition at line 75 of file clamp\_\-control.cc.
+Definition at line 231 of file clamp\_\-control.cc.
+
+\hypertarget{classIDP_1_1ClampControl_acc9ea5549b9eaeb9c53fb8e1b7dd0a7d}{
+\index{IDP::ClampControl@{IDP::ClampControl}!bobbin\_\-present@{bobbin\_\-present}}
+\index{bobbin\_\-present@{bobbin\_\-present}!IDP::ClampControl@{IDP::ClampControl}}
+\subsubsection[{bobbin\_\-present}]{\setlength{\rightskip}{0pt plus 5cm}bool IDP::ClampControl::bobbin\_\-present (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{classIDP_1_1ClampControl_acc9ea5549b9eaeb9c53fb8e1b7dd0a7d}
+
+
+See if a bobbin is in the jaw. 
+
+Used especially when navigating down the rack to check when we've found something. The red and green bobbins block a lot of reflected light from the metal backplate, so use this large drop in light to notice them. The white bobbins reflect about the same amount, but when present without lights on they will block a good deal of light from hitting the sensor anyway, so we can detect them as such. \begin{DoxyReturn}{Returns}
+True when a bobbin is found 
+\end{DoxyReturn}
+
+
+Definition at line 268 of file clamp\_\-control.cc.
+
+\hypertarget{classIDP_1_1ClampControl_a7f9e7fdd2f09f3aa7eff620073181f23}{
+\index{IDP::ClampControl@{IDP::ClampControl}!box\_\-colour@{box\_\-colour}}
+\index{box\_\-colour@{box\_\-colour}!IDP::ClampControl@{IDP::ClampControl}}
+\subsubsection[{box\_\-colour}]{\setlength{\rightskip}{0pt plus 5cm}{\bf BobbinColour} IDP::ClampControl::box\_\-colour (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}
+\label{classIDP_1_1ClampControl_a7f9e7fdd2f09f3aa7eff620073181f23}
+
+
+Check the bobbin colour while it is in a box. 
+
+
+
+Definition at line 189 of file clamp\_\-control.cc.
+
+\hypertarget{classIDP_1_1ClampControl_a1731e2025ab33c430d3e4bf1a941ce23}{
+\index{IDP::ClampControl@{IDP::ClampControl}!box\_\-present@{box\_\-present}}
+\index{box\_\-present@{box\_\-present}!IDP::ClampControl@{IDP::ClampControl}}
+\subsubsection[{box\_\-present}]{\setlength{\rightskip}{0pt plus 5cm}bool IDP::ClampControl::box\_\-present (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{classIDP_1_1ClampControl_a1731e2025ab33c430d3e4bf1a941ce23}
+
+
+See if a box is under the jaw. 
+
+We do this by checking for reflections of the steel box under the bad bobbin sensor. 
+
+Definition at line 308 of file clamp\_\-control.cc.
+
+\hypertarget{classIDP_1_1ClampControl_a94364f9779f57df6e63f44968fc5c163}{
+\index{IDP::ClampControl@{IDP::ClampControl}!close\_\-jaw@{close\_\-jaw}}
+\index{close\_\-jaw@{close\_\-jaw}!IDP::ClampControl@{IDP::ClampControl}}
+\subsubsection[{close\_\-jaw}]{\setlength{\rightskip}{0pt plus 5cm}void IDP::ClampControl::close\_\-jaw (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}
+\label{classIDP_1_1ClampControl_a94364f9779f57df6e63f44968fc5c163}
+
+
+Close the grabber jaw. 
+
+
+
+Definition at line 133 of file clamp\_\-control.cc.
 
 \hypertarget{classIDP_1_1ClampControl_adcb72d77aa298264c67b42e9252f7688}{
 \index{IDP::ClampControl@{IDP::ClampControl}!colour@{colour}}
@@ -109,7 +266,41 @@ A BobbinColour value to indicate current bobbin colour
 \end{DoxyReturn}
 
 
-Definition at line 65 of file clamp\_\-control.cc.
+Definition at line 148 of file clamp\_\-control.cc.
+
+\hypertarget{classIDP_1_1ClampControl_a011866d438336ee003774eccf7c207e0}{
+\index{IDP::ClampControl@{IDP::ClampControl}!lower\_\-arm@{lower\_\-arm}}
+\index{lower\_\-arm@{lower\_\-arm}!IDP::ClampControl@{IDP::ClampControl}}
+\subsubsection[{lower\_\-arm}]{\setlength{\rightskip}{0pt plus 5cm}void IDP::ClampControl::lower\_\-arm (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}
+\label{classIDP_1_1ClampControl_a011866d438336ee003774eccf7c207e0}
+
+
+Lower the grabber arm. 
+
+
+
+Definition at line 105 of file clamp\_\-control.cc.
+
+\hypertarget{classIDP_1_1ClampControl_a5b67a46af3f8682b81cbf68f8693247e}{
+\index{IDP::ClampControl@{IDP::ClampControl}!open\_\-jaw@{open\_\-jaw}}
+\index{open\_\-jaw@{open\_\-jaw}!IDP::ClampControl@{IDP::ClampControl}}
+\subsubsection[{open\_\-jaw}]{\setlength{\rightskip}{0pt plus 5cm}void IDP::ClampControl::open\_\-jaw (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}
+\label{classIDP_1_1ClampControl_a5b67a46af3f8682b81cbf68f8693247e}
+
+
+Open the grabber jaw. 
+
+
+
+Definition at line 119 of file clamp\_\-control.cc.
 
 \hypertarget{classIDP_1_1ClampControl_a881ecc4fbc73c47594ecc675b9dbf3e1}{
 \index{IDP::ClampControl@{IDP::ClampControl}!pick\_\-up@{pick\_\-up}}
@@ -126,7 +317,7 @@ Pick up something using the clamp.
 
 
 
-Definition at line 48 of file clamp\_\-control.cc.
+Definition at line 51 of file clamp\_\-control.cc.
 
 \hypertarget{classIDP_1_1ClampControl_a31573846d9f7c61a6133b9dd465eca25}{
 \index{IDP::ClampControl@{IDP::ClampControl}!put\_\-down@{put\_\-down}}
@@ -143,11 +334,118 @@ Put something in the clamp down.
 
 
 
-Definition at line 56 of file clamp\_\-control.cc.
+Definition at line 72 of file clamp\_\-control.cc.
+
+\hypertarget{classIDP_1_1ClampControl_a64f742aca4caf9797ef45ee40938cab3}{
+\index{IDP::ClampControl@{IDP::ClampControl}!raise\_\-arm@{raise\_\-arm}}
+\index{raise\_\-arm@{raise\_\-arm}!IDP::ClampControl@{IDP::ClampControl}}
+\subsubsection[{raise\_\-arm}]{\setlength{\rightskip}{0pt plus 5cm}void IDP::ClampControl::raise\_\-arm (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}
+\label{classIDP_1_1ClampControl_a64f742aca4caf9797ef45ee40938cab3}
+
+
+Raise the grabber arm. 
+
+
+
+Definition at line 91 of file clamp\_\-control.cc.
 
 
 
 \subsection{Member Data Documentation}
+\hypertarget{classIDP_1_1ClampControl_aa5103702b2e1a040a90bdb8199ff0e8b}{
+\index{IDP::ClampControl@{IDP::ClampControl}!\_\-arm\_\-up@{\_\-arm\_\-up}}
+\index{\_\-arm\_\-up@{\_\-arm\_\-up}!IDP::ClampControl@{IDP::ClampControl}}
+\subsubsection[{\_\-arm\_\-up}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf IDP::ClampControl::\_\-arm\_\-up}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classIDP_1_1ClampControl_aa5103702b2e1a040a90bdb8199ff0e8b}
+
+
+Definition at line 91 of file clamp\_\-control.h.
+
+\hypertarget{classIDP_1_1ClampControl_aa17b2cb9431db23053f27a0955d26548}{
+\index{IDP::ClampControl@{IDP::ClampControl}!\_\-badness\_\-dark\_\-zero@{\_\-badness\_\-dark\_\-zero}}
+\index{\_\-badness\_\-dark\_\-zero@{\_\-badness\_\-dark\_\-zero}!IDP::ClampControl@{IDP::ClampControl}}
+\subsubsection[{\_\-badness\_\-dark\_\-zero}]{\setlength{\rightskip}{0pt plus 5cm}short int {\bf IDP::ClampControl::\_\-badness\_\-dark\_\-zero}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classIDP_1_1ClampControl_aa17b2cb9431db23053f27a0955d26548}
+
+
+Definition at line 87 of file clamp\_\-control.h.
+
+\hypertarget{classIDP_1_1ClampControl_a1391b175b26be6760be280f8e1b8bd4c}{
+\index{IDP::ClampControl@{IDP::ClampControl}!\_\-badness\_\-light\_\-zero@{\_\-badness\_\-light\_\-zero}}
+\index{\_\-badness\_\-light\_\-zero@{\_\-badness\_\-light\_\-zero}!IDP::ClampControl@{IDP::ClampControl}}
+\subsubsection[{\_\-badness\_\-light\_\-zero}]{\setlength{\rightskip}{0pt plus 5cm}short int {\bf IDP::ClampControl::\_\-badness\_\-light\_\-zero}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classIDP_1_1ClampControl_a1391b175b26be6760be280f8e1b8bd4c}
+
+
+Definition at line 86 of file clamp\_\-control.h.
+
+\hypertarget{classIDP_1_1ClampControl_a486cebcf52979b03361cce9ecb84f2e3}{
+\index{IDP::ClampControl@{IDP::ClampControl}!\_\-box\_\-present\_\-level@{\_\-box\_\-present\_\-level}}
+\index{\_\-box\_\-present\_\-level@{\_\-box\_\-present\_\-level}!IDP::ClampControl@{IDP::ClampControl}}
+\subsubsection[{\_\-box\_\-present\_\-level}]{\setlength{\rightskip}{0pt plus 5cm}short int {\bf IDP::ClampControl::\_\-box\_\-present\_\-level}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classIDP_1_1ClampControl_a486cebcf52979b03361cce9ecb84f2e3}
+
+
+Definition at line 83 of file clamp\_\-control.h.
+
+\hypertarget{classIDP_1_1ClampControl_acca5d1d3e3e3fc8b148a4889c76b0dc2}{
+\index{IDP::ClampControl@{IDP::ClampControl}!\_\-colour\_\-light\_\-box\_\-zero@{\_\-colour\_\-light\_\-box\_\-zero}}
+\index{\_\-colour\_\-light\_\-box\_\-zero@{\_\-colour\_\-light\_\-box\_\-zero}!IDP::ClampControl@{IDP::ClampControl}}
+\subsubsection[{\_\-colour\_\-light\_\-box\_\-zero}]{\setlength{\rightskip}{0pt plus 5cm}short int {\bf IDP::ClampControl::\_\-colour\_\-light\_\-box\_\-zero}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classIDP_1_1ClampControl_acca5d1d3e3e3fc8b148a4889c76b0dc2}
+
+
+Definition at line 90 of file clamp\_\-control.h.
+
+\hypertarget{classIDP_1_1ClampControl_a7639828ac6b5d83131718412b3dd5ca2}{
+\index{IDP::ClampControl@{IDP::ClampControl}!\_\-colour\_\-light\_\-closed\_\-zero@{\_\-colour\_\-light\_\-closed\_\-zero}}
+\index{\_\-colour\_\-light\_\-closed\_\-zero@{\_\-colour\_\-light\_\-closed\_\-zero}!IDP::ClampControl@{IDP::ClampControl}}
+\subsubsection[{\_\-colour\_\-light\_\-closed\_\-zero}]{\setlength{\rightskip}{0pt plus 5cm}short int {\bf IDP::ClampControl::\_\-colour\_\-light\_\-closed\_\-zero}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classIDP_1_1ClampControl_a7639828ac6b5d83131718412b3dd5ca2}
+
+
+Definition at line 89 of file clamp\_\-control.h.
+
+\hypertarget{classIDP_1_1ClampControl_aa8dfb019900ee99b77e3eeb227d4de18}{
+\index{IDP::ClampControl@{IDP::ClampControl}!\_\-colour\_\-light\_\-zero@{\_\-colour\_\-light\_\-zero}}
+\index{\_\-colour\_\-light\_\-zero@{\_\-colour\_\-light\_\-zero}!IDP::ClampControl@{IDP::ClampControl}}
+\subsubsection[{\_\-colour\_\-light\_\-zero}]{\setlength{\rightskip}{0pt plus 5cm}short int {\bf IDP::ClampControl::\_\-colour\_\-light\_\-zero}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classIDP_1_1ClampControl_aa8dfb019900ee99b77e3eeb227d4de18}
+
+
+Definition at line 88 of file clamp\_\-control.h.
+
+\hypertarget{classIDP_1_1ClampControl_ab9e34e39d14e415e3a9b938451fe70a6}{
+\index{IDP::ClampControl@{IDP::ClampControl}!\_\-coloured\_\-present\_\-level@{\_\-coloured\_\-present\_\-level}}
+\index{\_\-coloured\_\-present\_\-level@{\_\-coloured\_\-present\_\-level}!IDP::ClampControl@{IDP::ClampControl}}
+\subsubsection[{\_\-coloured\_\-present\_\-level}]{\setlength{\rightskip}{0pt plus 5cm}short int {\bf IDP::ClampControl::\_\-coloured\_\-present\_\-level}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classIDP_1_1ClampControl_ab9e34e39d14e415e3a9b938451fe70a6}
+
+
+Definition at line 85 of file clamp\_\-control.h.
+
+\hypertarget{classIDP_1_1ClampControl_a4525ba276d66d2d29a8f1feb956bb769}{
+\index{IDP::ClampControl@{IDP::ClampControl}!\_\-green\_\-box\_\-level@{\_\-green\_\-box\_\-level}}
+\index{\_\-green\_\-box\_\-level@{\_\-green\_\-box\_\-level}!IDP::ClampControl@{IDP::ClampControl}}
+\subsubsection[{\_\-green\_\-box\_\-level}]{\setlength{\rightskip}{0pt plus 5cm}short int {\bf IDP::ClampControl::\_\-green\_\-box\_\-level}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classIDP_1_1ClampControl_a4525ba276d66d2d29a8f1feb956bb769}
+
+
+Definition at line 80 of file clamp\_\-control.h.
+
+\hypertarget{classIDP_1_1ClampControl_af6424de6982b37b9aab8d190b06d51be}{
+\index{IDP::ClampControl@{IDP::ClampControl}!\_\-green\_\-rack\_\-level@{\_\-green\_\-rack\_\-level}}
+\index{\_\-green\_\-rack\_\-level@{\_\-green\_\-rack\_\-level}!IDP::ClampControl@{IDP::ClampControl}}
+\subsubsection[{\_\-green\_\-rack\_\-level}]{\setlength{\rightskip}{0pt plus 5cm}short int {\bf IDP::ClampControl::\_\-green\_\-rack\_\-level}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classIDP_1_1ClampControl_af6424de6982b37b9aab8d190b06d51be}
+
+
+Definition at line 82 of file clamp\_\-control.h.
+
 \hypertarget{classIDP_1_1ClampControl_ac0c31fdbef30bc0c0d729843c8874475}{
 \index{IDP::ClampControl@{IDP::ClampControl}!\_\-hal@{\_\-hal}}
 \index{\_\-hal@{\_\-hal}!IDP::ClampControl@{IDP::ClampControl}}
@@ -155,7 +453,43 @@ Definition at line 56 of file clamp\_\-control.cc.
 \label{classIDP_1_1ClampControl_ac0c31fdbef30bc0c0d729843c8874475}
 
 
-Definition at line 48 of file clamp\_\-control.h.
+Definition at line 78 of file clamp\_\-control.h.
+
+\hypertarget{classIDP_1_1ClampControl_a07bfb23f284fb25dacd0d22e5f218375}{
+\index{IDP::ClampControl@{IDP::ClampControl}!\_\-jaw\_\-open@{\_\-jaw\_\-open}}
+\index{\_\-jaw\_\-open@{\_\-jaw\_\-open}!IDP::ClampControl@{IDP::ClampControl}}
+\subsubsection[{\_\-jaw\_\-open}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf IDP::ClampControl::\_\-jaw\_\-open}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classIDP_1_1ClampControl_a07bfb23f284fb25dacd0d22e5f218375}
+
+
+Definition at line 92 of file clamp\_\-control.h.
+
+\hypertarget{classIDP_1_1ClampControl_ad6188d015d2f9f237abc81574715f6f6}{
+\index{IDP::ClampControl@{IDP::ClampControl}!\_\-red\_\-box\_\-level@{\_\-red\_\-box\_\-level}}
+\index{\_\-red\_\-box\_\-level@{\_\-red\_\-box\_\-level}!IDP::ClampControl@{IDP::ClampControl}}
+\subsubsection[{\_\-red\_\-box\_\-level}]{\setlength{\rightskip}{0pt plus 5cm}short int {\bf IDP::ClampControl::\_\-red\_\-box\_\-level}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classIDP_1_1ClampControl_ad6188d015d2f9f237abc81574715f6f6}
+
+
+Definition at line 79 of file clamp\_\-control.h.
+
+\hypertarget{classIDP_1_1ClampControl_ac9d8d3c77082aa750ddb98b32596f636}{
+\index{IDP::ClampControl@{IDP::ClampControl}!\_\-red\_\-rack\_\-level@{\_\-red\_\-rack\_\-level}}
+\index{\_\-red\_\-rack\_\-level@{\_\-red\_\-rack\_\-level}!IDP::ClampControl@{IDP::ClampControl}}
+\subsubsection[{\_\-red\_\-rack\_\-level}]{\setlength{\rightskip}{0pt plus 5cm}short int {\bf IDP::ClampControl::\_\-red\_\-rack\_\-level}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classIDP_1_1ClampControl_ac9d8d3c77082aa750ddb98b32596f636}
+
+
+Definition at line 81 of file clamp\_\-control.h.
+
+\hypertarget{classIDP_1_1ClampControl_a1576dda5ebbae90e0861fa0212e5d743}{
+\index{IDP::ClampControl@{IDP::ClampControl}!\_\-white\_\-present\_\-level@{\_\-white\_\-present\_\-level}}
+\index{\_\-white\_\-present\_\-level@{\_\-white\_\-present\_\-level}!IDP::ClampControl@{IDP::ClampControl}}
+\subsubsection[{\_\-white\_\-present\_\-level}]{\setlength{\rightskip}{0pt plus 5cm}short int {\bf IDP::ClampControl::\_\-white\_\-present\_\-level}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classIDP_1_1ClampControl_a1576dda5ebbae90e0861fa0212e5d743}
+
+
+Definition at line 84 of file clamp\_\-control.h.
 
 
 

@@ -16,6 +16,8 @@ Provide a hardware agnostic interface to the required hardware functionality.
 \item 
 \hyperlink{classIDP_1_1HardwareAbstractionLayer_a424d40bbaed459f571b46dbb45bb8576}{HardwareAbstractionLayer} (const int robot)
 \begin{DoxyCompactList}\small\item\em Initialise the HAL class. \item\end{DoxyCompactList}\item 
+\hyperlink{classIDP_1_1HardwareAbstractionLayer_a0ddd51fb38c5fa8ecbfcd2004af2a468}{$\sim$HardwareAbstractionLayer} ()
+\begin{DoxyCompactList}\small\item\em Destruct the robot link. \item\end{DoxyCompactList}\item 
 void \hyperlink{classIDP_1_1HardwareAbstractionLayer_a300956b0e2e9f67e7f10baf036bf8616}{motors\_\-forward} (const unsigned short int speed)
 \begin{DoxyCompactList}\small\item\em Drive both motors forwards at a given speed. \item\end{DoxyCompactList}\item 
 void \hyperlink{classIDP_1_1HardwareAbstractionLayer_ac81fbf6aa2bb93837ed276c47556a398}{motors\_\-backward} (const unsigned short int speed)
@@ -50,14 +52,16 @@ unsigned short int \hyperlink{classIDP_1_1HardwareAbstractionLayer_af4a8cb5072cf
 \begin{DoxyCompactList}\small\item\em Get the analogue reading from the LDR used to detect the bad bobbin. \item\end{DoxyCompactList}\item 
 void \hyperlink{classIDP_1_1HardwareAbstractionLayer_a0ffde4a54900074b646efd285d9d6807}{indication\_\-LEDs} (const bool led\_\-0, const bool led\_\-1, const bool led\_\-2)
 \begin{DoxyCompactList}\small\item\em Set the bobbin colour indication LEDs. \item\end{DoxyCompactList}\item 
-void \hyperlink{classIDP_1_1HardwareAbstractionLayer_ad2fd680723fd2d919112cad122f5c790}{colour\_\-leds} (const bool red, const bool green)
-\begin{DoxyCompactList}\small\item\em Turn on and off the LEDs used to light up the bobbin for colour detection. \item\end{DoxyCompactList}\item 
-void \hyperlink{classIDP_1_1HardwareAbstractionLayer_a451695e9f26f367dc58952207dac187d}{bad\_\-bobbin\_\-led} (const bool status)
+void \hyperlink{classIDP_1_1HardwareAbstractionLayer_a6574abe8852976bfa94c00e13d8c1686}{colour\_\-LED} (const bool status)
+\begin{DoxyCompactList}\small\item\em Turn on and off the LED used to light up the bobbin for colour detection. \item\end{DoxyCompactList}\item 
+void \hyperlink{classIDP_1_1HardwareAbstractionLayer_ad2feaf269fbcda10fb1192b575a4963a}{bad\_\-bobbin\_\-LED} (const bool status)
 \begin{DoxyCompactList}\small\item\em Turn on and off the LED used to light up the top of the bobbin, for bad bobbin detection. \item\end{DoxyCompactList}\item 
 void \hyperlink{classIDP_1_1HardwareAbstractionLayer_a44d5a4c942332ba9ffe027de3dba83f0}{grabber\_\-jaw} (const bool status)
 \begin{DoxyCompactList}\small\item\em Turn the grabber jaw actuator on or off. \item\end{DoxyCompactList}\item 
 void \hyperlink{classIDP_1_1HardwareAbstractionLayer_a0f036b16f1f55a257c2b552035d2a1a9}{grabber\_\-lift} (const bool status)
-\begin{DoxyCompactList}\small\item\em Turn the grabber lift mechanism actuator on or off. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Turn the grabber lift mechanism actuator on or off. \item\end{DoxyCompactList}\item 
+void \hyperlink{classIDP_1_1HardwareAbstractionLayer_ad50b39b58566064c5bb5b0500f2d750e}{enable\_\-emergency\_\-stop} (void)
+\begin{DoxyCompactList}\small\item\em Set the emergency stop registers so that the front microswitch will trigger a stop. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Private Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -67,6 +71,8 @@ bool \hyperlink{classIDP_1_1HardwareAbstractionLayer_a965df71af228cf82465e4e9ef6
 \begin{DoxyCompactItemize}
 \item 
 robot\_\-link $\ast$ \hyperlink{classIDP_1_1HardwareAbstractionLayer_a1a363a3cab8fe7fa099b19395335c0ba}{rlink}
+\item 
+unsigned short int \hyperlink{classIDP_1_1HardwareAbstractionLayer_a89e089becb312ef6ffe0fbc18f409b99}{\_\-port7}
 \end{DoxyCompactItemize}
 
 
@@ -95,6 +101,23 @@ Establishes the link to the robot.
 
 Definition at line 31 of file hal.cc.
 
+\hypertarget{classIDP_1_1HardwareAbstractionLayer_a0ddd51fb38c5fa8ecbfcd2004af2a468}{
+\index{IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}!$\sim$HardwareAbstractionLayer@{$\sim$HardwareAbstractionLayer}}
+\index{$\sim$HardwareAbstractionLayer@{$\sim$HardwareAbstractionLayer}!IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}}
+\subsubsection[{$\sim$HardwareAbstractionLayer}]{\setlength{\rightskip}{0pt plus 5cm}IDP::HardwareAbstractionLayer::$\sim$HardwareAbstractionLayer (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{classIDP_1_1HardwareAbstractionLayer_a0ddd51fb38c5fa8ecbfcd2004af2a468}
+
+
+Destruct the robot link. 
+
+
+
+Definition at line 75 of file hal.cc.
+
 
 
 \subsection{Member Function Documentation}
@@ -116,17 +139,17 @@ The analogue reading value
 \end{DoxyReturn}
 
 
-Definition at line 303 of file hal.cc.
+Definition at line 345 of file hal.cc.
 
-\hypertarget{classIDP_1_1HardwareAbstractionLayer_a451695e9f26f367dc58952207dac187d}{
-\index{IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}!bad\_\-bobbin\_\-led@{bad\_\-bobbin\_\-led}}
-\index{bad\_\-bobbin\_\-led@{bad\_\-bobbin\_\-led}!IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}}
-\subsubsection[{bad\_\-bobbin\_\-led}]{\setlength{\rightskip}{0pt plus 5cm}void IDP::HardwareAbstractionLayer::bad\_\-bobbin\_\-led (
+\hypertarget{classIDP_1_1HardwareAbstractionLayer_ad2feaf269fbcda10fb1192b575a4963a}{
+\index{IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}!bad\_\-bobbin\_\-LED@{bad\_\-bobbin\_\-LED}}
+\index{bad\_\-bobbin\_\-LED@{bad\_\-bobbin\_\-LED}!IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}}
+\subsubsection[{bad\_\-bobbin\_\-LED}]{\setlength{\rightskip}{0pt plus 5cm}void IDP::HardwareAbstractionLayer::bad\_\-bobbin\_\-LED (
 \begin{DoxyParamCaption}
 \item[{const bool}]{ status}
 \end{DoxyParamCaption}
 )}}
-\label{classIDP_1_1HardwareAbstractionLayer_a451695e9f26f367dc58952207dac187d}
+\label{classIDP_1_1HardwareAbstractionLayer_ad2feaf269fbcda10fb1192b575a4963a}
 
 
 Turn on and off the LED used to light up the top of the bobbin, for bad bobbin detection. 
@@ -136,7 +159,7 @@ Turn on and off the LED used to light up the top of the bobbin, for bad bobbin d
 \item[{\em status}]Whether the LED should be on or off (true=on) \end{DoxyParams}
 
 
-Definition at line 343 of file hal.cc.
+Definition at line 399 of file hal.cc.
 
 \hypertarget{classIDP_1_1HardwareAbstractionLayer_a965df71af228cf82465e4e9ef6a6e1b0}{
 \index{IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}!check\_\-max\_\-speed@{check\_\-max\_\-speed}}
@@ -159,7 +182,7 @@ true if the speed is too high, false if okay
 \end{DoxyReturn}
 
 
-Definition at line 375 of file hal.cc.
+Definition at line 464 of file hal.cc.
 
 \hypertarget{classIDP_1_1HardwareAbstractionLayer_a1902d9260758777966ab362e21f3be42}{
 \index{IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}!clear\_\-status\_\-register@{clear\_\-status\_\-register}}
@@ -176,7 +199,7 @@ Read the status register, discarding its value.
 
 
 
-Definition at line 251 of file hal.cc.
+Definition at line 275 of file hal.cc.
 
 \hypertarget{classIDP_1_1HardwareAbstractionLayer_ae4f163981d213ff3dea4b21e8aa92063}{
 \index{IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}!colour\_\-ldr@{colour\_\-ldr}}
@@ -196,28 +219,44 @@ The analogue reading value
 \end{DoxyReturn}
 
 
-Definition at line 293 of file hal.cc.
+Definition at line 335 of file hal.cc.
 
-\hypertarget{classIDP_1_1HardwareAbstractionLayer_ad2fd680723fd2d919112cad122f5c790}{
-\index{IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}!colour\_\-leds@{colour\_\-leds}}
-\index{colour\_\-leds@{colour\_\-leds}!IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}}
-\subsubsection[{colour\_\-leds}]{\setlength{\rightskip}{0pt plus 5cm}void IDP::HardwareAbstractionLayer::colour\_\-leds (
+\hypertarget{classIDP_1_1HardwareAbstractionLayer_a6574abe8852976bfa94c00e13d8c1686}{
+\index{IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}!colour\_\-LED@{colour\_\-LED}}
+\index{colour\_\-LED@{colour\_\-LED}!IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}}
+\subsubsection[{colour\_\-LED}]{\setlength{\rightskip}{0pt plus 5cm}void IDP::HardwareAbstractionLayer::colour\_\-LED (
 \begin{DoxyParamCaption}
-\item[{const bool}]{ red, }
-\item[{const bool}]{ green}
+\item[{const bool}]{ status}
 \end{DoxyParamCaption}
 )}}
-\label{classIDP_1_1HardwareAbstractionLayer_ad2fd680723fd2d919112cad122f5c790}
+\label{classIDP_1_1HardwareAbstractionLayer_a6574abe8852976bfa94c00e13d8c1686}
 
 
-Turn on and off the LEDs used to light up the bobbin for colour detection. 
+Turn on and off the LED used to light up the bobbin for colour detection. 
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em red}]Whether the red LED should be on or off (true=on) \item[{\em green}]Whether the green LED should be on or off (true=on) \end{DoxyParams}
+\item[{\em status}]Whether the LED should be on (true) or off (false). \end{DoxyParams}
 
 
-Definition at line 330 of file hal.cc.
+Definition at line 384 of file hal.cc.
+
+\hypertarget{classIDP_1_1HardwareAbstractionLayer_ad50b39b58566064c5bb5b0500f2d750e}{
+\index{IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}!enable\_\-emergency\_\-stop@{enable\_\-emergency\_\-stop}}
+\index{enable\_\-emergency\_\-stop@{enable\_\-emergency\_\-stop}!IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}}
+\subsubsection[{enable\_\-emergency\_\-stop}]{\setlength{\rightskip}{0pt plus 5cm}void IDP::HardwareAbstractionLayer::enable\_\-emergency\_\-stop (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}
+\label{classIDP_1_1HardwareAbstractionLayer_ad50b39b58566064c5bb5b0500f2d750e}
+
+
+Set the emergency stop registers so that the front microswitch will trigger a stop. 
+
+
+
+Definition at line 450 of file hal.cc.
 
 \hypertarget{classIDP_1_1HardwareAbstractionLayer_a44d5a4c942332ba9ffe027de3dba83f0}{
 \index{IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}!grabber\_\-jaw@{grabber\_\-jaw}}
@@ -237,7 +276,7 @@ Turn the grabber jaw actuator on or off.
 \item[{\em status}]Jaw actuator status (true=on) \end{DoxyParams}
 
 
-Definition at line 353 of file hal.cc.
+Definition at line 414 of file hal.cc.
 
 \hypertarget{classIDP_1_1HardwareAbstractionLayer_a0f036b16f1f55a257c2b552035d2a1a9}{
 \index{IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}!grabber\_\-lift@{grabber\_\-lift}}
@@ -257,7 +296,7 @@ Turn the grabber lift mechanism actuator on or off.
 \item[{\em status}]Lift actuator status (true=on) \end{DoxyParams}
 
 
-Definition at line 363 of file hal.cc.
+Definition at line 432 of file hal.cc.
 
 \hypertarget{classIDP_1_1HardwareAbstractionLayer_a82ef6744041c174edb7f8982f44685b7}{
 \index{IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}!grabber\_\-switch@{grabber\_\-switch}}
@@ -277,7 +316,7 @@ The current value of the switch, true if pressed
 \end{DoxyReturn}
 
 
-Definition at line 283 of file hal.cc.
+Definition at line 316 of file hal.cc.
 
 \hypertarget{classIDP_1_1HardwareAbstractionLayer_a0ffde4a54900074b646efd285d9d6807}{
 \index{IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}!indication\_\-LEDs@{indication\_\-LEDs}}
@@ -299,7 +338,7 @@ Set the bobbin colour indication LEDs.
 \item[{\em led\_\-0}]Whether LED0 should be on or off (true=on) \item[{\em led\_\-1}]Whether LED1 should be on or off (true=on) \item[{\em led\_\-2}]Whether LED2 should be on or off (true=on) \end{DoxyParams}
 
 
-Definition at line 315 of file hal.cc.
+Definition at line 357 of file hal.cc.
 
 \hypertarget{classIDP_1_1HardwareAbstractionLayer_aca143d627de2ff9942069ad922d17ee5}{
 \index{IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}!line\_\-following\_\-sensors@{line\_\-following\_\-sensors}}
@@ -319,7 +358,7 @@ A \hyperlink{structIDP_1_1LineSensors}{LineSensors} struct containing the curren
 \end{DoxyReturn}
 
 
-Definition at line 214 of file hal.cc.
+Definition at line 238 of file hal.cc.
 
 \hypertarget{classIDP_1_1HardwareAbstractionLayer_a61b80e2bad5cc6a56a17350b015bfbcc}{
 \index{IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}!motor\_\-left\_\-backward@{motor\_\-left\_\-backward}}
@@ -339,7 +378,7 @@ Drive the left motor backward at the given speed.
 \item[{\em speed}]The speed at which to drive the motor \end{DoxyParams}
 
 
-Definition at line 132 of file hal.cc.
+Definition at line 155 of file hal.cc.
 
 \hypertarget{classIDP_1_1HardwareAbstractionLayer_acf3d3dd4e05c4b50cb31b4d35f21abbf}{
 \index{IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}!motor\_\-left\_\-forward@{motor\_\-left\_\-forward}}
@@ -359,7 +398,7 @@ Drive the left motor forward at the given speed.
 \item[{\em speed}]The speed at which to drive the motor \end{DoxyParams}
 
 
-Definition at line 98 of file hal.cc.
+Definition at line 121 of file hal.cc.
 
 \hypertarget{classIDP_1_1HardwareAbstractionLayer_aac42c10ca431120a060f9b2c394492ae}{
 \index{IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}!motor\_\-right\_\-backward@{motor\_\-right\_\-backward}}
@@ -379,7 +418,7 @@ Drive the right motor backward at the given speed.
 \item[{\em speed}]The speed at which to drive the motor \end{DoxyParams}
 
 
-Definition at line 149 of file hal.cc.
+Definition at line 172 of file hal.cc.
 
 \hypertarget{classIDP_1_1HardwareAbstractionLayer_aa2e2e226f2313d769e3ce226dd24d22c}{
 \index{IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}!motor\_\-right\_\-forward@{motor\_\-right\_\-forward}}
@@ -399,7 +438,7 @@ Drive the right motor forward at the given speed.
 \item[{\em speed}]The speed at which to drive the motor \end{DoxyParams}
 
 
-Definition at line 115 of file hal.cc.
+Definition at line 138 of file hal.cc.
 
 \hypertarget{classIDP_1_1HardwareAbstractionLayer_ac81fbf6aa2bb93837ed276c47556a398}{
 \index{IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}!motors\_\-backward@{motors\_\-backward}}
@@ -419,7 +458,7 @@ Drive both motors backwards at a given speed.
 \item[{\em speed}]The speed to drive at, 0 to 127 \end{DoxyParams}
 
 
-Definition at line 81 of file hal.cc.
+Definition at line 104 of file hal.cc.
 
 \hypertarget{classIDP_1_1HardwareAbstractionLayer_a300956b0e2e9f67e7f10baf036bf8616}{
 \index{IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}!motors\_\-forward@{motors\_\-forward}}
@@ -439,7 +478,7 @@ Drive both motors forwards at a given speed.
 \item[{\em speed}]The speed to drive at, 0 to 127 \end{DoxyParams}
 
 
-Definition at line 64 of file hal.cc.
+Definition at line 87 of file hal.cc.
 
 \hypertarget{classIDP_1_1HardwareAbstractionLayer_a4f8f0340f3ac64c3f676b700b7e36229}{
 \index{IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}!motors\_\-stop@{motors\_\-stop}}
@@ -456,7 +495,7 @@ Stop all motors.
 
 
 
-Definition at line 199 of file hal.cc.
+Definition at line 222 of file hal.cc.
 
 \hypertarget{classIDP_1_1HardwareAbstractionLayer_ae38aaced2f082b6b04ebdd662349b1d2}{
 \index{IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}!motors\_\-turn\_\-left@{motors\_\-turn\_\-left}}
@@ -476,7 +515,7 @@ Drive the motors to steer the robot to the left.
 \item[{\em speed}]The speed to drive at, 0 to 127 \end{DoxyParams}
 
 
-Definition at line 166 of file hal.cc.
+Definition at line 189 of file hal.cc.
 
 \hypertarget{classIDP_1_1HardwareAbstractionLayer_ad1fba0e8cb2c9ad902c8e4ec34e5e622}{
 \index{IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}!motors\_\-turn\_\-right@{motors\_\-turn\_\-right}}
@@ -496,7 +535,7 @@ Drive the motors to steer the robot to the right.
 \item[{\em speed}]The speed to drive at, 0 to 127 \end{DoxyParams}
 
 
-Definition at line 183 of file hal.cc.
+Definition at line 206 of file hal.cc.
 
 \hypertarget{classIDP_1_1HardwareAbstractionLayer_a4ce4bec948d6449e7cab3cfcd0de513f}{
 \index{IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}!reset\_\-switch@{reset\_\-switch}}
@@ -516,7 +555,7 @@ The current value of the switch, true if pressed
 \end{DoxyReturn}
 
 
-Definition at line 273 of file hal.cc.
+Definition at line 297 of file hal.cc.
 
 \hypertarget{classIDP_1_1HardwareAbstractionLayer_a4867c291e34794d1bb9c0929d5514c5b}{
 \index{IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}!status\_\-register@{status\_\-register}}
@@ -536,11 +575,20 @@ The STATUS register
 \end{DoxyReturn}
 
 
-Definition at line 262 of file hal.cc.
+Definition at line 286 of file hal.cc.
 
 
 
 \subsection{Member Data Documentation}
+\hypertarget{classIDP_1_1HardwareAbstractionLayer_a89e089becb312ef6ffe0fbc18f409b99}{
+\index{IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}!\_\-port7@{\_\-port7}}
+\index{\_\-port7@{\_\-port7}!IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}}
+\subsubsection[{\_\-port7}]{\setlength{\rightskip}{0pt plus 5cm}unsigned short int {\bf IDP::HardwareAbstractionLayer::\_\-port7}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classIDP_1_1HardwareAbstractionLayer_a89e089becb312ef6ffe0fbc18f409b99}
+
+
+Definition at line 84 of file hal.h.
+
 \hypertarget{classIDP_1_1HardwareAbstractionLayer_a1a363a3cab8fe7fa099b19395335c0ba}{
 \index{IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}!rlink@{rlink}}
 \index{rlink@{rlink}!IDP::HardwareAbstractionLayer@{IDP::HardwareAbstractionLayer}}
@@ -548,7 +596,7 @@ Definition at line 262 of file hal.cc.
 \label{classIDP_1_1HardwareAbstractionLayer_a1a363a3cab8fe7fa099b19395335c0ba}
 
 
-Definition at line 81 of file hal.h.
+Definition at line 83 of file hal.h.
 
 
 

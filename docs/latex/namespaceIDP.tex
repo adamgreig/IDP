@@ -33,7 +33,8 @@ class \hyperlink{classIDP_1_1Menu}{Menu}
 \item 
 enum \hyperlink{namespaceIDP_a6efd2cca14c0dae1c6458714ce0218df}{BobbinColour} \{ \hyperlink{namespaceIDP_a6efd2cca14c0dae1c6458714ce0218dfa1bbb59488c1d089eefb9b54146bcdb26}{BOBBIN\_\-RED}, 
 \hyperlink{namespaceIDP_a6efd2cca14c0dae1c6458714ce0218dfa047d7c5fcd5669f1a819d05fb5319f0b}{BOBBIN\_\-GREEN}, 
-\hyperlink{namespaceIDP_a6efd2cca14c0dae1c6458714ce0218dfa8f427bfb1c335650a7ada595e1607d00}{BOBBIN\_\-WHITE}
+\hyperlink{namespaceIDP_a6efd2cca14c0dae1c6458714ce0218dfa8f427bfb1c335650a7ada595e1607d00}{BOBBIN\_\-WHITE}, 
+\hyperlink{namespaceIDP_a6efd2cca14c0dae1c6458714ce0218dfae984bae9f90d601380152191c3c1b460}{BOBBIN\_\-UNKNOWN\_\-COLOUR}
  \}
 \begin{DoxyCompactList}\small\item\em Bobbin colours. \item\end{DoxyCompactList}\item 
 enum \hyperlink{namespaceIDP_adf12b2c1e1c228810b18c34a3c88c32d}{BobbinBadness} \{ \hyperlink{namespaceIDP_adf12b2c1e1c228810b18c34a3c88c32dafdc1b8b5a9d849fd99ac2ae438b632dd}{BOBBIN\_\-GOOD}, 
@@ -118,6 +119,11 @@ enum \hyperlink{namespaceIDP_ab8b8e9ff9f7de27da30c1fffaeef4b72}{NavigationTurn} 
 \hyperlink{namespaceIDP_ab8b8e9ff9f7de27da30c1fffaeef4b72a46fc0b6ab4752131480e4a05b09e1280}{MAX\_\-TURNS}
  \}
 \begin{DoxyCompactList}\small\item\em Possible turns at a node. \item\end{DoxyCompactList}\item 
+enum \hyperlink{namespaceIDP_ad90955841bc9492fb53b1f89cc667e18}{Box} \{ \hyperlink{namespaceIDP_ad90955841bc9492fb53b1f89cc667e18a41f638c88385a199ace07f9aab842408}{BOX1}, 
+\hyperlink{namespaceIDP_ad90955841bc9492fb53b1f89cc667e18a56ba93aa81e5743059bdc8de30517883}{BOX2}, 
+\hyperlink{namespaceIDP_ad90955841bc9492fb53b1f89cc667e18a097c15f1986d57076de6fbf8b02b22f3}{MAX\_\-BOX}
+ \}
+\begin{DoxyCompactList}\small\item\em Box identifiers. \item\end{DoxyCompactList}\item 
 enum \hyperlink{namespaceIDP_a628dde0214c4c861deda405e77ad75a2}{NavigationCachedJunction} \{ \par
 \hyperlink{namespaceIDP_a628dde0214c4c861deda405e77ad75a2a35431162cfca423a194c5680b2f56b4e}{NO\_\-CACHE}, 
 \hyperlink{namespaceIDP_a628dde0214c4c861deda405e77ad75a2a145fe4dd7949a83a0dec44b73c2ec852}{LEFT\_\-TURN}, 
@@ -144,16 +150,28 @@ enum \hyperlink{namespaceIDP_ac1d3c3b62448912be4da9f2728f2af99}{MenuChoice} \{ \
 \hyperlink{namespaceIDP_ac1d3c3b62448912be4da9f2728f2af99a1a3e265ab5e1a2afda873da8c1cb7d9f}{MENU\_\-STOP}, 
 \par
 \hyperlink{namespaceIDP_ac1d3c3b62448912be4da9f2728f2af99aa80af753125b39e64ca61a80af90a880}{MENU\_\-ANALYSE}, 
-\hyperlink{namespaceIDP_ac1d3c3b62448912be4da9f2728f2af99ab11c40c94a75f45496a1898bc99516e4}{MENU\_\-PICK\_\-UP}, 
-\hyperlink{namespaceIDP_ac1d3c3b62448912be4da9f2728f2af99a85d840a85645d3a127b785df78387d6f}{MENU\_\-PUT\_\-DOWN}, 
+\hyperlink{namespaceIDP_ac1d3c3b62448912be4da9f2728f2af99aaa8e1942bc82d177052cd99e827dd601}{MENU\_\-CLAMP\_\-TESTS}, 
 \hyperlink{namespaceIDP_ac1d3c3b62448912be4da9f2728f2af99a1454106f5e7503695da693c6acc3157d}{MENU\_\-LINE\_\-SENSORS}, 
-\par
 \hyperlink{namespaceIDP_ac1d3c3b62448912be4da9f2728f2af99a88c747088c71c27488b3f6b7329c82d1}{MENU\_\-SWITCHES}, 
+\par
 \hyperlink{namespaceIDP_ac1d3c3b62448912be4da9f2728f2af99a23b85d38bad05a11ce6e04afa51e0739}{MENU\_\-LDRS}, 
 \hyperlink{namespaceIDP_ac1d3c3b62448912be4da9f2728f2af99abab1528689e53a7505abeef47c6ca67e}{MENU\_\-NAVIGATION\_\-TEST}, 
 \hyperlink{namespaceIDP_ac1d3c3b62448912be4da9f2728f2af99afddaf453d9ae15169ca218fa9e0ab077}{MENU\_\-INDICATOR\_\-LEDS}, 
-\par
 \hyperlink{namespaceIDP_ac1d3c3b62448912be4da9f2728f2af99af06417b3ca00a4111eca5d60d0ac4c5a}{MENU\_\-ACTUATORS}, 
+\par
+\hyperlink{namespaceIDP_ac1d3c3b62448912be4da9f2728f2af99a8bb2f8096a6412f0d34e4d8eb1a4457c}{MENU\_\-COLOUR\_\-SENSOR\_\-LEDS}, 
+\hyperlink{namespaceIDP_ac1d3c3b62448912be4da9f2728f2af99a8f1ae04cc067d7075792c69b7236267f}{MENU\_\-BAD\_\-BOBBIN\_\-LED}, 
+\hyperlink{namespaceIDP_ac1d3c3b62448912be4da9f2728f2af99aed8778056e639b819d48ede426997a01}{MENU\_\-NAVIGATE\_\-TO\_\-BOBBIN}, 
+\hyperlink{namespaceIDP_ac1d3c3b62448912be4da9f2728f2af99af9cbb35cc3ca99c19edbf7918287ff12}{MENU\_\-NAVIGATE\_\-TO\_\-BOX\_\-FOR\_\-PICKUP}, 
+\par
+\hyperlink{namespaceIDP_ac1d3c3b62448912be4da9f2728f2af99ab4bf7000587f9abb5d369dccbd5ae73e}{MENU\_\-NAVIGATE\_\-TO\_\-BOX\_\-FOR\_\-DROP}, 
+\hyperlink{namespaceIDP_ac1d3c3b62448912be4da9f2728f2af99a07b420112886818adfaa606881ecc79a}{MENU\_\-BOBBIN\_\-PRESENT}, 
+\hyperlink{namespaceIDP_ac1d3c3b62448912be4da9f2728f2af99a4eb6cc58b42d6752a2dd912e209b5beb}{MENU\_\-NAVIGATE\_\-TO\_\-DELIVERY}, 
+\hyperlink{namespaceIDP_ac1d3c3b62448912be4da9f2728f2af99a214282dca7a3b28d826953353d51ead6}{MENU\_\-DELIVERY}, 
+\par
+\hyperlink{namespaceIDP_ac1d3c3b62448912be4da9f2728f2af99aecf2d0dcd0e5b837249a59d55cd9bbde}{MENU\_\-BOX\_\-PRESENT}, 
+\hyperlink{namespaceIDP_ac1d3c3b62448912be4da9f2728f2af99a50d558d829ec96bbbc4188d19e49f2a9}{MENU\_\-BOX\_\-COLOUR}, 
+\hyperlink{namespaceIDP_ac1d3c3b62448912be4da9f2728f2af99a61501b095eedafec05618df7b904a7d8}{MENU\_\-CALIBRATE}, 
 \hyperlink{namespaceIDP_ac1d3c3b62448912be4da9f2728f2af99a01973890c4a02e0650a9043c790228fd}{MAX\_\-MENU\_\-CHOICE}
  \}
 \begin{DoxyCompactList}\small\item\em The list of all possible menu choices. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -169,14 +187,14 @@ const int \hyperlink{namespaceIDP_a4ead0b21ad2c507b542445695182d4cd}{MOTOR\_\-MA
 \begin{DoxyCompactList}\small\item\em Highest allowable motor speed in either direction. \item\end{DoxyCompactList}\item 
 const int \hyperlink{namespaceIDP_ab3a00a6cc8a6dba271e38d337daf4703}{MOTOR\_\-RAMP\_\-TIME} = 16
 \begin{DoxyCompactList}\small\item\em How fast to ramp the motors towards the desired speed. \item\end{DoxyCompactList}\item 
-const double \hyperlink{namespaceIDP_a9107eef10d68ba30176633afd87f1ed4}{INTEGRAL\_\-GAIN} = 5.0
-\begin{DoxyCompactList}\small\item\em Constant for integral control in line following. \item\end{DoxyCompactList}\item 
 const short unsigned int \hyperlink{namespaceIDP_a246919caaacabcb0399802d542d8330b}{MAX\_\-CORRECTION} = 127
 \begin{DoxyCompactList}\small\item\em Maximum differential correction value before it gets capped. \item\end{DoxyCompactList}\item 
-const unsigned int \hyperlink{namespaceIDP_ac845248570cca0705d43e2dbb085c3cb}{LOST\_\-TIMEOUT} = 50
-\begin{DoxyCompactList}\small\item\em The number of loop iterations before we count as lost when driving straight. \item\end{DoxyCompactList}\item 
-const unsigned int \hyperlink{namespaceIDP_a518ca50cb25167a9930b2099282bb938}{LOST\_\-TURNING\_\-TIMEOUT} = 400
-\begin{DoxyCompactList}\small\item\em The number of loop iterations before we count as lost when turning around. \item\end{DoxyCompactList}\item 
+const double \hyperlink{namespaceIDP_a13d57d0e366139689356754d049ca38b}{BASELINE\_\-INTEGRAL\_\-GAIN} = 5.0
+\begin{DoxyCompactList}\small\item\em Baseline integral gain for full speed operation. \item\end{DoxyCompactList}\item 
+const short unsigned int \hyperlink{namespaceIDP_ad49ae86fe58241291415f56ea64c8ac8}{BASELINE\_\-STRAIGHT\_\-TIMEOUT} = 50
+\begin{DoxyCompactList}\small\item\em Baseline LOST timeout for full speed straight line navigation. \item\end{DoxyCompactList}\item 
+const short unsigned int \hyperlink{namespaceIDP_ad315440c84ff5573297a088ffafc1b92}{BASELINE\_\-TURN\_\-TIMEOUT} = 200
+\begin{DoxyCompactList}\small\item\em Baseline LOST timeout for full speed turning actions. \item\end{DoxyCompactList}\item 
 const unsigned int \hyperlink{namespaceIDP_afa01378acc238f4bd41d8eb304f7afd7}{EDGE\_\-ERROR} = 2
 \begin{DoxyCompactList}\small\item\em How much an outer sensor seeing the edge of a line should add to the appropriate error. \item\end{DoxyCompactList}\item 
 const \hyperlink{namespaceIDP_ab8b8e9ff9f7de27da30c1fffaeef4b72}{NavigationTurn} \hyperlink{namespaceIDP_aa117cb76acf18e6af22830d5f2468ff4}{NAVIGATION\_\-NODE\_\-TURNS} \mbox{[}MAX\_\-DIRECTION\mbox{]}\mbox{[}MAX\_\-NODE\mbox{]}
@@ -218,7 +236,7 @@ BOBBIN\_\-BAD}
 
 
 
-Definition at line 30 of file clamp\_\-control.h.
+Definition at line 31 of file clamp\_\-control.h.
 
 \hypertarget{namespaceIDP_a6efd2cca14c0dae1c6458714ce0218df}{
 \index{IDP@{IDP}!BobbinColour@{BobbinColour}}
@@ -244,12 +262,47 @@ BOBBIN\_\-GREEN}
 \hypertarget{namespaceIDP_a6efd2cca14c0dae1c6458714ce0218dfa8f427bfb1c335650a7ada595e1607d00}{
 BOBBIN\_\-WHITE}
 \label{namespaceIDP_a6efd2cca14c0dae1c6458714ce0218dfa8f427bfb1c335650a7ada595e1607d00}
+}]\index{BOBBIN\_\-UNKNOWN\_\-COLOUR@{BOBBIN\_\-UNKNOWN\_\-COLOUR}!IDP@{IDP}}\index{IDP@{IDP}!BOBBIN\_\-UNKNOWN\_\-COLOUR@{BOBBIN\_\-UNKNOWN\_\-COLOUR}}\item[{\em 
+\hypertarget{namespaceIDP_a6efd2cca14c0dae1c6458714ce0218dfae984bae9f90d601380152191c3c1b460}{
+BOBBIN\_\-UNKNOWN\_\-COLOUR}
+\label{namespaceIDP_a6efd2cca14c0dae1c6458714ce0218dfae984bae9f90d601380152191c3c1b460}
 }]\end{description}
 \end{Desc}
 
 
 
 Definition at line 21 of file clamp\_\-control.h.
+
+\hypertarget{namespaceIDP_ad90955841bc9492fb53b1f89cc667e18}{
+\index{IDP@{IDP}!Box@{Box}}
+\index{Box@{Box}!IDP@{IDP}}
+\subsubsection[{Box}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf IDP::Box}}}
+\label{namespaceIDP_ad90955841bc9492fb53b1f89cc667e18}
+
+
+Box identifiers. 
+
+\begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{BOX1@{BOX1}!IDP@{IDP}}\index{IDP@{IDP}!BOX1@{BOX1}}\item[{\em 
+\hypertarget{namespaceIDP_ad90955841bc9492fb53b1f89cc667e18a41f638c88385a199ace07f9aab842408}{
+BOX1}
+\label{namespaceIDP_ad90955841bc9492fb53b1f89cc667e18a41f638c88385a199ace07f9aab842408}
+}]\index{BOX2@{BOX2}!IDP@{IDP}}\index{IDP@{IDP}!BOX2@{BOX2}}\item[{\em 
+\hypertarget{namespaceIDP_ad90955841bc9492fb53b1f89cc667e18a56ba93aa81e5743059bdc8de30517883}{
+BOX2}
+\label{namespaceIDP_ad90955841bc9492fb53b1f89cc667e18a56ba93aa81e5743059bdc8de30517883}
+}]\index{MAX\_\-BOX@{MAX\_\-BOX}!IDP@{IDP}}\index{IDP@{IDP}!MAX\_\-BOX@{MAX\_\-BOX}}\item[{\em 
+\hypertarget{namespaceIDP_ad90955841bc9492fb53b1f89cc667e18a097c15f1986d57076de6fbf8b02b22f3}{
+MAX\_\-BOX}
+\label{namespaceIDP_ad90955841bc9492fb53b1f89cc667e18a097c15f1986d57076de6fbf8b02b22f3}
+}]\end{description}
+\end{Desc}
+
+
+
+Definition at line 60 of file navigation.h.
 
 \hypertarget{namespaceIDP_ac3688e4c6bc9b671b09672d71ebccc40}{
 \index{IDP@{IDP}!LineFollowingLineStatus@{LineFollowingLineStatus}}
@@ -284,7 +337,7 @@ MAX\_\-LINE\_\-STATUS}
 
 
 
-Definition at line 83 of file line\_\-following.h.
+Definition at line 81 of file line\_\-following.h.
 
 \hypertarget{namespaceIDP_a5993bdfdd901fc5521c8df42dca43bd0}{
 \index{IDP@{IDP}!LineFollowingStatus@{LineFollowingStatus}}
@@ -337,7 +390,7 @@ NO\_\-TURNS\_\-FOUND}
 
 
 
-Definition at line 59 of file line\_\-following.h.
+Definition at line 57 of file line\_\-following.h.
 
 \hypertarget{namespaceIDP_aba52d8ae6ecf9eb4c7edb518bcc02544}{
 \index{IDP@{IDP}!LineFollowingTurnDirection@{LineFollowingTurnDirection}}
@@ -376,7 +429,7 @@ MAX\_\-TURN\_\-DIRECTION}
 
 
 
-Definition at line 72 of file line\_\-following.h.
+Definition at line 70 of file line\_\-following.h.
 
 \hypertarget{namespaceIDP_afc3b1d4cbb313bfc854f49d6f23b25f7}{
 \index{IDP@{IDP}!LineSensorStatus@{LineSensorStatus}}
@@ -469,14 +522,10 @@ MENU\_\-STOP}
 \hypertarget{namespaceIDP_ac1d3c3b62448912be4da9f2728f2af99aa80af753125b39e64ca61a80af90a880}{
 MENU\_\-ANALYSE}
 \label{namespaceIDP_ac1d3c3b62448912be4da9f2728f2af99aa80af753125b39e64ca61a80af90a880}
-}]\index{MENU\_\-PICK\_\-UP@{MENU\_\-PICK\_\-UP}!IDP@{IDP}}\index{IDP@{IDP}!MENU\_\-PICK\_\-UP@{MENU\_\-PICK\_\-UP}}\item[{\em 
-\hypertarget{namespaceIDP_ac1d3c3b62448912be4da9f2728f2af99ab11c40c94a75f45496a1898bc99516e4}{
-MENU\_\-PICK\_\-UP}
-\label{namespaceIDP_ac1d3c3b62448912be4da9f2728f2af99ab11c40c94a75f45496a1898bc99516e4}
-}]\index{MENU\_\-PUT\_\-DOWN@{MENU\_\-PUT\_\-DOWN}!IDP@{IDP}}\index{IDP@{IDP}!MENU\_\-PUT\_\-DOWN@{MENU\_\-PUT\_\-DOWN}}\item[{\em 
-\hypertarget{namespaceIDP_ac1d3c3b62448912be4da9f2728f2af99a85d840a85645d3a127b785df78387d6f}{
-MENU\_\-PUT\_\-DOWN}
-\label{namespaceIDP_ac1d3c3b62448912be4da9f2728f2af99a85d840a85645d3a127b785df78387d6f}
+}]\index{MENU\_\-CLAMP\_\-TESTS@{MENU\_\-CLAMP\_\-TESTS}!IDP@{IDP}}\index{IDP@{IDP}!MENU\_\-CLAMP\_\-TESTS@{MENU\_\-CLAMP\_\-TESTS}}\item[{\em 
+\hypertarget{namespaceIDP_ac1d3c3b62448912be4da9f2728f2af99aaa8e1942bc82d177052cd99e827dd601}{
+MENU\_\-CLAMP\_\-TESTS}
+\label{namespaceIDP_ac1d3c3b62448912be4da9f2728f2af99aaa8e1942bc82d177052cd99e827dd601}
 }]\index{MENU\_\-LINE\_\-SENSORS@{MENU\_\-LINE\_\-SENSORS}!IDP@{IDP}}\index{IDP@{IDP}!MENU\_\-LINE\_\-SENSORS@{MENU\_\-LINE\_\-SENSORS}}\item[{\em 
 \hypertarget{namespaceIDP_ac1d3c3b62448912be4da9f2728f2af99a1454106f5e7503695da693c6acc3157d}{
 MENU\_\-LINE\_\-SENSORS}
@@ -501,6 +550,50 @@ MENU\_\-INDICATOR\_\-LEDS}
 \hypertarget{namespaceIDP_ac1d3c3b62448912be4da9f2728f2af99af06417b3ca00a4111eca5d60d0ac4c5a}{
 MENU\_\-ACTUATORS}
 \label{namespaceIDP_ac1d3c3b62448912be4da9f2728f2af99af06417b3ca00a4111eca5d60d0ac4c5a}
+}]\index{MENU\_\-COLOUR\_\-SENSOR\_\-LEDS@{MENU\_\-COLOUR\_\-SENSOR\_\-LEDS}!IDP@{IDP}}\index{IDP@{IDP}!MENU\_\-COLOUR\_\-SENSOR\_\-LEDS@{MENU\_\-COLOUR\_\-SENSOR\_\-LEDS}}\item[{\em 
+\hypertarget{namespaceIDP_ac1d3c3b62448912be4da9f2728f2af99a8bb2f8096a6412f0d34e4d8eb1a4457c}{
+MENU\_\-COLOUR\_\-SENSOR\_\-LEDS}
+\label{namespaceIDP_ac1d3c3b62448912be4da9f2728f2af99a8bb2f8096a6412f0d34e4d8eb1a4457c}
+}]\index{MENU\_\-BAD\_\-BOBBIN\_\-LED@{MENU\_\-BAD\_\-BOBBIN\_\-LED}!IDP@{IDP}}\index{IDP@{IDP}!MENU\_\-BAD\_\-BOBBIN\_\-LED@{MENU\_\-BAD\_\-BOBBIN\_\-LED}}\item[{\em 
+\hypertarget{namespaceIDP_ac1d3c3b62448912be4da9f2728f2af99a8f1ae04cc067d7075792c69b7236267f}{
+MENU\_\-BAD\_\-BOBBIN\_\-LED}
+\label{namespaceIDP_ac1d3c3b62448912be4da9f2728f2af99a8f1ae04cc067d7075792c69b7236267f}
+}]\index{MENU\_\-NAVIGATE\_\-TO\_\-BOBBIN@{MENU\_\-NAVIGATE\_\-TO\_\-BOBBIN}!IDP@{IDP}}\index{IDP@{IDP}!MENU\_\-NAVIGATE\_\-TO\_\-BOBBIN@{MENU\_\-NAVIGATE\_\-TO\_\-BOBBIN}}\item[{\em 
+\hypertarget{namespaceIDP_ac1d3c3b62448912be4da9f2728f2af99aed8778056e639b819d48ede426997a01}{
+MENU\_\-NAVIGATE\_\-TO\_\-BOBBIN}
+\label{namespaceIDP_ac1d3c3b62448912be4da9f2728f2af99aed8778056e639b819d48ede426997a01}
+}]\index{MENU\_\-NAVIGATE\_\-TO\_\-BOX\_\-FOR\_\-PICKUP@{MENU\_\-NAVIGATE\_\-TO\_\-BOX\_\-FOR\_\-PICKUP}!IDP@{IDP}}\index{IDP@{IDP}!MENU\_\-NAVIGATE\_\-TO\_\-BOX\_\-FOR\_\-PICKUP@{MENU\_\-NAVIGATE\_\-TO\_\-BOX\_\-FOR\_\-PICKUP}}\item[{\em 
+\hypertarget{namespaceIDP_ac1d3c3b62448912be4da9f2728f2af99af9cbb35cc3ca99c19edbf7918287ff12}{
+MENU\_\-NAVIGATE\_\-TO\_\-BOX\_\-FOR\_\-PICKUP}
+\label{namespaceIDP_ac1d3c3b62448912be4da9f2728f2af99af9cbb35cc3ca99c19edbf7918287ff12}
+}]\index{MENU\_\-NAVIGATE\_\-TO\_\-BOX\_\-FOR\_\-DROP@{MENU\_\-NAVIGATE\_\-TO\_\-BOX\_\-FOR\_\-DROP}!IDP@{IDP}}\index{IDP@{IDP}!MENU\_\-NAVIGATE\_\-TO\_\-BOX\_\-FOR\_\-DROP@{MENU\_\-NAVIGATE\_\-TO\_\-BOX\_\-FOR\_\-DROP}}\item[{\em 
+\hypertarget{namespaceIDP_ac1d3c3b62448912be4da9f2728f2af99ab4bf7000587f9abb5d369dccbd5ae73e}{
+MENU\_\-NAVIGATE\_\-TO\_\-BOX\_\-FOR\_\-DROP}
+\label{namespaceIDP_ac1d3c3b62448912be4da9f2728f2af99ab4bf7000587f9abb5d369dccbd5ae73e}
+}]\index{MENU\_\-BOBBIN\_\-PRESENT@{MENU\_\-BOBBIN\_\-PRESENT}!IDP@{IDP}}\index{IDP@{IDP}!MENU\_\-BOBBIN\_\-PRESENT@{MENU\_\-BOBBIN\_\-PRESENT}}\item[{\em 
+\hypertarget{namespaceIDP_ac1d3c3b62448912be4da9f2728f2af99a07b420112886818adfaa606881ecc79a}{
+MENU\_\-BOBBIN\_\-PRESENT}
+\label{namespaceIDP_ac1d3c3b62448912be4da9f2728f2af99a07b420112886818adfaa606881ecc79a}
+}]\index{MENU\_\-NAVIGATE\_\-TO\_\-DELIVERY@{MENU\_\-NAVIGATE\_\-TO\_\-DELIVERY}!IDP@{IDP}}\index{IDP@{IDP}!MENU\_\-NAVIGATE\_\-TO\_\-DELIVERY@{MENU\_\-NAVIGATE\_\-TO\_\-DELIVERY}}\item[{\em 
+\hypertarget{namespaceIDP_ac1d3c3b62448912be4da9f2728f2af99a4eb6cc58b42d6752a2dd912e209b5beb}{
+MENU\_\-NAVIGATE\_\-TO\_\-DELIVERY}
+\label{namespaceIDP_ac1d3c3b62448912be4da9f2728f2af99a4eb6cc58b42d6752a2dd912e209b5beb}
+}]\index{MENU\_\-DELIVERY@{MENU\_\-DELIVERY}!IDP@{IDP}}\index{IDP@{IDP}!MENU\_\-DELIVERY@{MENU\_\-DELIVERY}}\item[{\em 
+\hypertarget{namespaceIDP_ac1d3c3b62448912be4da9f2728f2af99a214282dca7a3b28d826953353d51ead6}{
+MENU\_\-DELIVERY}
+\label{namespaceIDP_ac1d3c3b62448912be4da9f2728f2af99a214282dca7a3b28d826953353d51ead6}
+}]\index{MENU\_\-BOX\_\-PRESENT@{MENU\_\-BOX\_\-PRESENT}!IDP@{IDP}}\index{IDP@{IDP}!MENU\_\-BOX\_\-PRESENT@{MENU\_\-BOX\_\-PRESENT}}\item[{\em 
+\hypertarget{namespaceIDP_ac1d3c3b62448912be4da9f2728f2af99aecf2d0dcd0e5b837249a59d55cd9bbde}{
+MENU\_\-BOX\_\-PRESENT}
+\label{namespaceIDP_ac1d3c3b62448912be4da9f2728f2af99aecf2d0dcd0e5b837249a59d55cd9bbde}
+}]\index{MENU\_\-BOX\_\-COLOUR@{MENU\_\-BOX\_\-COLOUR}!IDP@{IDP}}\index{IDP@{IDP}!MENU\_\-BOX\_\-COLOUR@{MENU\_\-BOX\_\-COLOUR}}\item[{\em 
+\hypertarget{namespaceIDP_ac1d3c3b62448912be4da9f2728f2af99a50d558d829ec96bbbc4188d19e49f2a9}{
+MENU\_\-BOX\_\-COLOUR}
+\label{namespaceIDP_ac1d3c3b62448912be4da9f2728f2af99a50d558d829ec96bbbc4188d19e49f2a9}
+}]\index{MENU\_\-CALIBRATE@{MENU\_\-CALIBRATE}!IDP@{IDP}}\index{IDP@{IDP}!MENU\_\-CALIBRATE@{MENU\_\-CALIBRATE}}\item[{\em 
+\hypertarget{namespaceIDP_ac1d3c3b62448912be4da9f2728f2af99a61501b095eedafec05618df7b904a7d8}{
+MENU\_\-CALIBRATE}
+\label{namespaceIDP_ac1d3c3b62448912be4da9f2728f2af99a61501b095eedafec05618df7b904a7d8}
 }]\index{MAX\_\-MENU\_\-CHOICE@{MAX\_\-MENU\_\-CHOICE}!IDP@{IDP}}\index{IDP@{IDP}!MAX\_\-MENU\_\-CHOICE@{MAX\_\-MENU\_\-CHOICE}}\item[{\em 
 \hypertarget{namespaceIDP_ac1d3c3b62448912be4da9f2728f2af99a01973890c4a02e0650a9043c790228fd}{
 MAX\_\-MENU\_\-CHOICE}
@@ -549,7 +642,7 @@ NO\_\-TURNS}
 
 
 
-Definition at line 60 of file navigation.h.
+Definition at line 68 of file navigation.h.
 
 \hypertarget{namespaceIDP_a899dbbc9d55dd4919ded1859281f503d}{
 \index{IDP@{IDP}!NavigationDirection@{NavigationDirection}}
@@ -580,7 +673,7 @@ MAX\_\-DIRECTION}
 
 
 
-Definition at line 35 of file navigation.h.
+Definition at line 36 of file navigation.h.
 
 \hypertarget{namespaceIDP_ab9c412f0fd539b5d70385066c30465a0}{
 \index{IDP@{IDP}!NavigationLocation@{NavigationLocation}}
@@ -615,7 +708,7 @@ MAX\_\-LOCATION}
 
 
 
-Definition at line 28 of file navigation.h.
+Definition at line 29 of file navigation.h.
 
 \hypertarget{namespaceIDP_a286f26dda01010063dff761803b4cd16}{
 \index{IDP@{IDP}!NavigationNode@{NavigationNode}}
@@ -682,7 +775,7 @@ MAX\_\-NODE}
 
 
 
-Definition at line 43 of file navigation.h.
+Definition at line 44 of file navigation.h.
 
 \hypertarget{namespaceIDP_a1a96e566e4d675fdf20780cc96d92283}{
 \index{IDP@{IDP}!NavigationStatus@{NavigationStatus}}
@@ -717,7 +810,7 @@ MAX\_\-STATUS}
 
 
 
-Definition at line 21 of file navigation.h.
+Definition at line 22 of file navigation.h.
 
 \hypertarget{namespaceIDP_ab8b8e9ff9f7de27da30c1fffaeef4b72}{
 \index{IDP@{IDP}!NavigationTurn@{NavigationTurn}}
@@ -772,7 +865,7 @@ MAX\_\-TURNS}
 
 
 
-Definition at line 51 of file navigation.h.
+Definition at line 52 of file navigation.h.
 
 
 
@@ -799,6 +892,45 @@ The capped correction value
 
 
 \subsection{Variable Documentation}
+\hypertarget{namespaceIDP_a13d57d0e366139689356754d049ca38b}{
+\index{IDP@{IDP}!BASELINE\_\-INTEGRAL\_\-GAIN@{BASELINE\_\-INTEGRAL\_\-GAIN}}
+\index{BASELINE\_\-INTEGRAL\_\-GAIN@{BASELINE\_\-INTEGRAL\_\-GAIN}!IDP@{IDP}}
+\subsubsection[{BASELINE\_\-INTEGRAL\_\-GAIN}]{\setlength{\rightskip}{0pt plus 5cm}const double {\bf IDP::BASELINE\_\-INTEGRAL\_\-GAIN} = 5.0}}
+\label{namespaceIDP_a13d57d0e366139689356754d049ca38b}
+
+
+Baseline integral gain for full speed operation. 
+
+
+
+Definition at line 25 of file line\_\-following.h.
+
+\hypertarget{namespaceIDP_ad49ae86fe58241291415f56ea64c8ac8}{
+\index{IDP@{IDP}!BASELINE\_\-STRAIGHT\_\-TIMEOUT@{BASELINE\_\-STRAIGHT\_\-TIMEOUT}}
+\index{BASELINE\_\-STRAIGHT\_\-TIMEOUT@{BASELINE\_\-STRAIGHT\_\-TIMEOUT}!IDP@{IDP}}
+\subsubsection[{BASELINE\_\-STRAIGHT\_\-TIMEOUT}]{\setlength{\rightskip}{0pt plus 5cm}const short unsigned int {\bf IDP::BASELINE\_\-STRAIGHT\_\-TIMEOUT} = 50}}
+\label{namespaceIDP_ad49ae86fe58241291415f56ea64c8ac8}
+
+
+Baseline LOST timeout for full speed straight line navigation. 
+
+
+
+Definition at line 30 of file line\_\-following.h.
+
+\hypertarget{namespaceIDP_ad315440c84ff5573297a088ffafc1b92}{
+\index{IDP@{IDP}!BASELINE\_\-TURN\_\-TIMEOUT@{BASELINE\_\-TURN\_\-TIMEOUT}}
+\index{BASELINE\_\-TURN\_\-TIMEOUT@{BASELINE\_\-TURN\_\-TIMEOUT}!IDP@{IDP}}
+\subsubsection[{BASELINE\_\-TURN\_\-TIMEOUT}]{\setlength{\rightskip}{0pt plus 5cm}const short unsigned int {\bf IDP::BASELINE\_\-TURN\_\-TIMEOUT} = 200}}
+\label{namespaceIDP_ad315440c84ff5573297a088ffafc1b92}
+
+
+Baseline LOST timeout for full speed turning actions. 
+
+
+
+Definition at line 35 of file line\_\-following.h.
+
 \hypertarget{namespaceIDP_afa01378acc238f4bd41d8eb304f7afd7}{
 \index{IDP@{IDP}!EDGE\_\-ERROR@{EDGE\_\-ERROR}}
 \index{EDGE\_\-ERROR@{EDGE\_\-ERROR}!IDP@{IDP}}
@@ -810,46 +942,7 @@ How much an outer sensor seeing the edge of a line should add to the appropriate
 
 
 
-Definition at line 43 of file line\_\-following.h.
-
-\hypertarget{namespaceIDP_a9107eef10d68ba30176633afd87f1ed4}{
-\index{IDP@{IDP}!INTEGRAL\_\-GAIN@{INTEGRAL\_\-GAIN}}
-\index{INTEGRAL\_\-GAIN@{INTEGRAL\_\-GAIN}!IDP@{IDP}}
-\subsubsection[{INTEGRAL\_\-GAIN}]{\setlength{\rightskip}{0pt plus 5cm}const double {\bf IDP::INTEGRAL\_\-GAIN} = 5.0}}
-\label{namespaceIDP_a9107eef10d68ba30176633afd87f1ed4}
-
-
-Constant for integral control in line following. 
-
-
-
-Definition at line 20 of file line\_\-following.h.
-
-\hypertarget{namespaceIDP_ac845248570cca0705d43e2dbb085c3cb}{
-\index{IDP@{IDP}!LOST\_\-TIMEOUT@{LOST\_\-TIMEOUT}}
-\index{LOST\_\-TIMEOUT@{LOST\_\-TIMEOUT}!IDP@{IDP}}
-\subsubsection[{LOST\_\-TIMEOUT}]{\setlength{\rightskip}{0pt plus 5cm}const unsigned int {\bf IDP::LOST\_\-TIMEOUT} = 50}}
-\label{namespaceIDP_ac845248570cca0705d43e2dbb085c3cb}
-
-
-The number of loop iterations before we count as lost when driving straight. 
-
-
-
-Definition at line 31 of file line\_\-following.h.
-
-\hypertarget{namespaceIDP_a518ca50cb25167a9930b2099282bb938}{
-\index{IDP@{IDP}!LOST\_\-TURNING\_\-TIMEOUT@{LOST\_\-TURNING\_\-TIMEOUT}}
-\index{LOST\_\-TURNING\_\-TIMEOUT@{LOST\_\-TURNING\_\-TIMEOUT}!IDP@{IDP}}
-\subsubsection[{LOST\_\-TURNING\_\-TIMEOUT}]{\setlength{\rightskip}{0pt plus 5cm}const unsigned int {\bf IDP::LOST\_\-TURNING\_\-TIMEOUT} = 400}}
-\label{namespaceIDP_a518ca50cb25167a9930b2099282bb938}
-
-
-The number of loop iterations before we count as lost when turning around. 
-
-
-
-Definition at line 37 of file line\_\-following.h.
+Definition at line 41 of file line\_\-following.h.
 
 \hypertarget{namespaceIDP_a246919caaacabcb0399802d542d8330b}{
 \index{IDP@{IDP}!MAX\_\-CORRECTION@{MAX\_\-CORRECTION}}
@@ -862,7 +955,7 @@ Maximum differential correction value before it gets capped.
 
 
 
-Definition at line 25 of file line\_\-following.h.
+Definition at line 20 of file line\_\-following.h.
 
 \hypertarget{namespaceIDP_a4ead0b21ad2c507b542445695182d4cd}{
 \index{IDP@{IDP}!MOTOR\_\-MAX\_\-SPEED@{MOTOR\_\-MAX\_\-SPEED}}
@@ -909,7 +1002,7 @@ The lookup table of NavigationLocations to a pair of NavigationNodes indicating 
 
 
 
-Definition at line 54 of file navigation.cc.
+Definition at line 55 of file navigation.cc.
 
 \hypertarget{namespaceIDP_aa117cb76acf18e6af22830d5f2468ff4}{
 \index{IDP@{IDP}!NAVIGATION\_\-NODE\_\-TURNS@{NAVIGATION\_\-NODE\_\-TURNS}}
@@ -933,7 +1026,7 @@ The turns at each node.
 
 Indexed by NavigationDirection and then by NavigationNode 
 
-Definition at line 29 of file navigation.cc.
+Definition at line 30 of file navigation.cc.
 
 \hypertarget{namespaceIDP_a33ba7fcc78e0c8e5477d2ed6ac18e48f}{
 \index{IDP@{IDP}!NAVIGATION\_\-ROUTE\_\-MAP@{NAVIGATION\_\-ROUTE\_\-MAP}}
@@ -955,7 +1048,7 @@ The route to take, node by node.
 
 
 
-Definition at line 63 of file navigation.cc.
+Definition at line 64 of file navigation.cc.
 
 \hypertarget{namespaceIDP_a0bada0608b684564e235786b3b38c10a}{
 \index{IDP@{IDP}!NAVIGATION\_\-TURN\_\-MAP@{NAVIGATION\_\-TURN\_\-MAP}}
@@ -977,5 +1070,5 @@ Turns that should be taken at each node in each direction.
 
 Indexed by NavigationDirection and then by NavigationNode 
 
-Definition at line 43 of file navigation.cc.
+Definition at line 44 of file navigation.cc.
 

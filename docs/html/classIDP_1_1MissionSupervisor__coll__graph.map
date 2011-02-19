@@ -1,3 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node2" href="$classIDP_1_1HardwareAbstractionLayer.html" title="Provide a hardware agnostic interface to the required hardware functionality." alt="" coords="5,6,208,37"/>
+<area shape="rect" id="node2" href="$classIDP_1_1Navigation.html" title="Find a route from one place to another on the board, and maintain an estimate of the current position..." alt="" coords="128,203,240,234"/>
+<area shape="rect" id="node4" href="$classIDP_1_1ClampControl.html" title="Manage the actuation of the clamp, as well as the detection and analysis of bobbins for their colour ..." alt="" coords="5,105,136,135"/>
+<area shape="rect" id="node6" href="$classIDP_1_1HardwareAbstractionLayer.html" title="Provide a hardware agnostic interface to the required hardware functionality." alt="" coords="123,6,325,37"/>
+<area shape="rect" id="node9" href="$classIDP_1_1LineFollowing.html" title="Maintain the robot position correctly with respect to the white line markers, during driving and mano..." alt="" coords="233,105,364,135"/>
 </map>

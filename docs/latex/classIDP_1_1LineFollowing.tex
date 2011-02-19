@@ -27,14 +27,16 @@ Collaboration diagram for IDP::LineFollowing:\nopagebreak
 \begin{DoxyCompactList}\small\item\em Construct the Line Follower. \item\end{DoxyCompactList}\item 
 \hyperlink{namespaceIDP_a5993bdfdd901fc5521c8df42dca43bd0}{LineFollowingStatus} \hyperlink{classIDP_1_1LineFollowing_ad26d7726d2bb263658ed3140d3e30852}{follow\_\-line} (void)
 \begin{DoxyCompactList}\small\item\em Read line sensors and correct motor movement to keep us going straight. \item\end{DoxyCompactList}\item 
-\hyperlink{namespaceIDP_a5993bdfdd901fc5521c8df42dca43bd0}{LineFollowingStatus} \hyperlink{classIDP_1_1LineFollowing_a551e979a503328c2f645a1af2798d940}{turn\_\-left} (void)
+\hyperlink{namespaceIDP_a5993bdfdd901fc5521c8df42dca43bd0}{LineFollowingStatus} \hyperlink{classIDP_1_1LineFollowing_a9ea6fb8c919ae5004900b85eed57da1e}{turn\_\-left} (unsigned short int skip\_\-lines=0)
 \begin{DoxyCompactList}\small\item\em Turn the robot left until the sensors encounter another line. \item\end{DoxyCompactList}\item 
-\hyperlink{namespaceIDP_a5993bdfdd901fc5521c8df42dca43bd0}{LineFollowingStatus} \hyperlink{classIDP_1_1LineFollowing_adc0b67e4dc93dfef246cdde6190b0745}{turn\_\-right} (void)
+\hyperlink{namespaceIDP_a5993bdfdd901fc5521c8df42dca43bd0}{LineFollowingStatus} \hyperlink{classIDP_1_1LineFollowing_a4efba97b525541668fd4d260273e0eff}{turn\_\-right} (unsigned short int skip\_\-lines=0)
 \begin{DoxyCompactList}\small\item\em Turn the robot right until the sensors detect another line. \item\end{DoxyCompactList}\item 
-\hyperlink{namespaceIDP_a5993bdfdd901fc5521c8df42dca43bd0}{LineFollowingStatus} \hyperlink{classIDP_1_1LineFollowing_a5bbdc1317ef04ea599a7d5583703660b}{turn\_\-around\_\-cw} (void)
+\hyperlink{namespaceIDP_a5993bdfdd901fc5521c8df42dca43bd0}{LineFollowingStatus} \hyperlink{classIDP_1_1LineFollowing_aee1db6498424887b8c6c2e02a92ff997}{turn\_\-around\_\-cw} (unsigned short int skip\_\-lines=0)
 \begin{DoxyCompactList}\small\item\em Turn the robot around clockwise until the sensors detect another line. \item\end{DoxyCompactList}\item 
-\hyperlink{namespaceIDP_a5993bdfdd901fc5521c8df42dca43bd0}{LineFollowingStatus} \hyperlink{classIDP_1_1LineFollowing_a3156dca6ebcbee20933949137dba6cf6}{turn\_\-around\_\-ccw} (void)
+\hyperlink{namespaceIDP_a5993bdfdd901fc5521c8df42dca43bd0}{LineFollowingStatus} \hyperlink{classIDP_1_1LineFollowing_a4ec0ca8ee4107b4f218f41f437d49e97}{turn\_\-around\_\-ccw} (unsigned short int skip\_\-lines=0)
 \begin{DoxyCompactList}\small\item\em Turn the robot around counterclockwise until the sensors detect another line. \item\end{DoxyCompactList}\item 
+\hyperlink{namespaceIDP_a5993bdfdd901fc5521c8df42dca43bd0}{LineFollowingStatus} \hyperlink{classIDP_1_1LineFollowing_aac16cbc1fe80f6f97cecf2bf51ef3bae}{turn\_\-around\_\-delivery} ()
+\begin{DoxyCompactList}\small\item\em Turn around, but stop as soon as we lose the line. \item\end{DoxyCompactList}\item 
 \hyperlink{namespaceIDP_a5993bdfdd901fc5521c8df42dca43bd0}{LineFollowingStatus} \hyperlink{classIDP_1_1LineFollowing_af4feccda1b15ebbdad8dd49178b28914}{junction\_\-status} (void)
 \begin{DoxyCompactList}\small\item\em Return whether we can see a junction or not, without changing motor settings. \item\end{DoxyCompactList}\item 
 void \hyperlink{classIDP_1_1LineFollowing_af034f457aef1716d042606c71dddfd73}{set\_\-speed} (unsigned short int speed)
@@ -46,7 +48,7 @@ void \hyperlink{classIDP_1_1LineFollowing_a91695c96ef09bd407b9b57dd7f6fcdfa}{cor
 \begin{DoxyCompactList}\small\item\em Correct the steering of the robot after the error has been calculated in follow\_\-line. \item\end{DoxyCompactList}\item 
 void \hyperlink{classIDP_1_1LineFollowing_a5eeec6030c425b39a8571dcb55454465}{set\_\-motors\_\-turning} (\hyperlink{namespaceIDP_aba52d8ae6ecf9eb4c7edb518bcc02544}{LineFollowingTurnDirection} dir)
 \begin{DoxyCompactList}\small\item\em Set the motors to the correct steering speeds. \item\end{DoxyCompactList}\item 
-\hyperlink{namespaceIDP_a5993bdfdd901fc5521c8df42dca43bd0}{LineFollowingStatus} \hyperlink{classIDP_1_1LineFollowing_a99884d2660c7425f54b3bf90e207c6da}{turn} (\hyperlink{namespaceIDP_aba52d8ae6ecf9eb4c7edb518bcc02544}{LineFollowingTurnDirection} dir)
+\hyperlink{namespaceIDP_a5993bdfdd901fc5521c8df42dca43bd0}{LineFollowingStatus} \hyperlink{classIDP_1_1LineFollowing_a64b6d9188e8382c1f73d0cb06b54174c}{turn} (\hyperlink{namespaceIDP_aba52d8ae6ecf9eb4c7edb518bcc02544}{LineFollowingTurnDirection} dir, unsigned short int skip\_\-lines)
 \begin{DoxyCompactList}\small\item\em Perform a turn in the given direction. \item\end{DoxyCompactList}\item 
 \hyperlink{namespaceIDP_ac3688e4c6bc9b671b09672d71ebccc40}{LineFollowingLineStatus} \hyperlink{classIDP_1_1LineFollowing_a4acd259fcdb1b2e2885fec9716eb0b93}{line\_\-status} (\hyperlink{namespaceIDP_aba52d8ae6ecf9eb4c7edb518bcc02544}{LineFollowingTurnDirection} dir)
 \begin{DoxyCompactList}\small\item\em Return the current line status, depending on turning direction. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -64,13 +66,21 @@ unsigned short int \hyperlink{classIDP_1_1LineFollowing_a67d4ac53d4cd8fa53d6b61e
 bool \hyperlink{classIDP_1_1LineFollowing_a76fe578bf4bbd847e74bb1b9bfab7149}{\_\-lost\_\-turning\_\-line}
 \item 
 unsigned short int \hyperlink{classIDP_1_1LineFollowing_acc5f7d1d33c49ae1be9de702122aac02}{\_\-lost\_\-time}
+\item 
+unsigned short int \hyperlink{classIDP_1_1LineFollowing_a21b74d0156ada50603330cc70b17e072}{\_\-lines\_\-seen}
+\item 
+double \hyperlink{classIDP_1_1LineFollowing_ac5bcda6c1e88072fbe3868e3135fda27}{\_\-integral\_\-gain}
+\item 
+unsigned int \hyperlink{classIDP_1_1LineFollowing_a93b2293cd1f5fe2795b0cca37b38f403}{\_\-lost\_\-timeout}
+\item 
+unsigned int \hyperlink{classIDP_1_1LineFollowing_a2b929e24688cbc116b1f95b295cbc914}{\_\-turning\_\-timeout}
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 Maintain the robot position correctly with respect to the white line markers, during driving and manouvering. 
 
-Definition at line 136 of file line\_\-following.h.
+Definition at line 134 of file line\_\-following.h.
 
 
 
@@ -110,7 +120,7 @@ Correct the steering of the robot after the error has been calculated in follow\
 
 
 
-Definition at line 158 of file line\_\-following.cc.
+Definition at line 160 of file line\_\-following.cc.
 
 \hypertarget{classIDP_1_1LineFollowing_ad26d7726d2bb263658ed3140d3e30852}{
 \index{IDP::LineFollowing@{IDP::LineFollowing}!follow\_\-line@{follow\_\-line}}
@@ -130,7 +140,7 @@ A LineFollowingStatus to indicate that either we are going fine, we are lost, or
 \end{DoxyReturn}
 
 
-Definition at line 37 of file line\_\-following.cc.
+Definition at line 38 of file line\_\-following.cc.
 
 \hypertarget{classIDP_1_1LineFollowing_af4feccda1b15ebbdad8dd49178b28914}{
 \index{IDP::LineFollowing@{IDP::LineFollowing}!junction\_\-status@{junction\_\-status}}
@@ -150,7 +160,7 @@ A LineFollowingStatus indicating junctions or NO\_\-TURNS\_\-FOUND if no junctio
 \end{DoxyReturn}
 
 
-Definition at line 270 of file line\_\-following.cc.
+Definition at line 296 of file line\_\-following.cc.
 
 \hypertarget{classIDP_1_1LineFollowing_a4acd259fcdb1b2e2885fec9716eb0b93}{
 \index{IDP::LineFollowing@{IDP::LineFollowing}!line\_\-status@{line\_\-status}}
@@ -173,7 +183,7 @@ a LineFollowingLineStatus
 \end{DoxyReturn}
 
 
-Definition at line 325 of file line\_\-following.cc.
+Definition at line 369 of file line\_\-following.cc.
 
 \hypertarget{classIDP_1_1LineFollowing_a5eeec6030c425b39a8571dcb55454465}{
 \index{IDP::LineFollowing@{IDP::LineFollowing}!set\_\-motors\_\-turning@{set\_\-motors\_\-turning}}
@@ -193,7 +203,7 @@ Set the motors to the correct steering speeds.
 \item[{\em dir}]Which direction to turn in\end{DoxyParams}
 This will set the left and right motors either forwards, backwards or stationary as appropriate to execute a turn. 
 
-Definition at line 437 of file line\_\-following.cc.
+Definition at line 491 of file line\_\-following.cc.
 
 \hypertarget{classIDP_1_1LineFollowing_af034f457aef1716d042606c71dddfd73}{
 \index{IDP::LineFollowing@{IDP::LineFollowing}!set\_\-speed@{set\_\-speed}}
@@ -213,17 +223,18 @@ Set the speed that motors will be driven at.
 \item[{\em speed}]How fast to drive the motors, 0 to MOTOR\_\-MAX\_\-SPEED. \end{DoxyParams}
 
 
-Definition at line 305 of file line\_\-following.cc.
+Definition at line 331 of file line\_\-following.cc.
 
-\hypertarget{classIDP_1_1LineFollowing_a99884d2660c7425f54b3bf90e207c6da}{
+\hypertarget{classIDP_1_1LineFollowing_a64b6d9188e8382c1f73d0cb06b54174c}{
 \index{IDP::LineFollowing@{IDP::LineFollowing}!turn@{turn}}
 \index{turn@{turn}!IDP::LineFollowing@{IDP::LineFollowing}}
 \subsubsection[{turn}]{\setlength{\rightskip}{0pt plus 5cm}{\bf LineFollowingStatus} IDP::LineFollowing::turn (
 \begin{DoxyParamCaption}
-\item[{{\bf LineFollowingTurnDirection}}]{ dir}
+\item[{{\bf LineFollowingTurnDirection}}]{ dir, }
+\item[{unsigned short int}]{ skip\_\-lines}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
-\label{classIDP_1_1LineFollowing_a99884d2660c7425f54b3bf90e207c6da}
+\label{classIDP_1_1LineFollowing_a64b6d9188e8382c1f73d0cb06b54174c}
 
 
 Perform a turn in the given direction. 
@@ -232,90 +243,119 @@ turn\_\-left, turn\_\-right, turn\_\-around\_\-cw and turn\_\-around\_\-ccw are 
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em dir}]The direction to turn in \end{DoxyParams}
+\item[{\em dir}]The direction to turn in \item[{\em skip\_\-lines}]How many lines we should detect and skip over \end{DoxyParams}
 
 
-Definition at line 378 of file line\_\-following.cc.
+Definition at line 423 of file line\_\-following.cc.
 
-\hypertarget{classIDP_1_1LineFollowing_a3156dca6ebcbee20933949137dba6cf6}{
+\hypertarget{classIDP_1_1LineFollowing_a4ec0ca8ee4107b4f218f41f437d49e97}{
 \index{IDP::LineFollowing@{IDP::LineFollowing}!turn\_\-around\_\-ccw@{turn\_\-around\_\-ccw}}
 \index{turn\_\-around\_\-ccw@{turn\_\-around\_\-ccw}!IDP::LineFollowing@{IDP::LineFollowing}}
 \subsubsection[{turn\_\-around\_\-ccw}]{\setlength{\rightskip}{0pt plus 5cm}{\bf LineFollowingStatus} IDP::LineFollowing::turn\_\-around\_\-ccw (
 \begin{DoxyParamCaption}
-\item[{void}]{}
+\item[{unsigned short int}]{ skip\_\-lines = {\ttfamily 0}}
 \end{DoxyParamCaption}
 )}}
-\label{classIDP_1_1LineFollowing_a3156dca6ebcbee20933949137dba6cf6}
+\label{classIDP_1_1LineFollowing_a4ec0ca8ee4107b4f218f41f437d49e97}
 
 
 Turn the robot around counterclockwise until the sensors detect another line. 
 
+
+\begin{DoxyParams}{Parameters}
+\item[{\em skip\_\-lines}]How many lines we should detect and skip over \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 A LineFollowingStatus code 
 \end{DoxyReturn}
 
 
-Definition at line 258 of file line\_\-following.cc.
+Definition at line 267 of file line\_\-following.cc.
 
-\hypertarget{classIDP_1_1LineFollowing_a5bbdc1317ef04ea599a7d5583703660b}{
+\hypertarget{classIDP_1_1LineFollowing_aee1db6498424887b8c6c2e02a92ff997}{
 \index{IDP::LineFollowing@{IDP::LineFollowing}!turn\_\-around\_\-cw@{turn\_\-around\_\-cw}}
 \index{turn\_\-around\_\-cw@{turn\_\-around\_\-cw}!IDP::LineFollowing@{IDP::LineFollowing}}
 \subsubsection[{turn\_\-around\_\-cw}]{\setlength{\rightskip}{0pt plus 5cm}{\bf LineFollowingStatus} IDP::LineFollowing::turn\_\-around\_\-cw (
 \begin{DoxyParamCaption}
-\item[{void}]{}
+\item[{unsigned short int}]{ skip\_\-lines = {\ttfamily 0}}
 \end{DoxyParamCaption}
 )}}
-\label{classIDP_1_1LineFollowing_a5bbdc1317ef04ea599a7d5583703660b}
+\label{classIDP_1_1LineFollowing_aee1db6498424887b8c6c2e02a92ff997}
 
 
 Turn the robot around clockwise until the sensors detect another line. 
 
+
+\begin{DoxyParams}{Parameters}
+\item[{\em skip\_\-lines}]How many lines we should detect and skip over \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 A LineFollowingStatus code 
 \end{DoxyReturn}
 
 
-Definition at line 247 of file line\_\-following.cc.
+Definition at line 254 of file line\_\-following.cc.
 
-\hypertarget{classIDP_1_1LineFollowing_a551e979a503328c2f645a1af2798d940}{
+\hypertarget{classIDP_1_1LineFollowing_aac16cbc1fe80f6f97cecf2bf51ef3bae}{
+\index{IDP::LineFollowing@{IDP::LineFollowing}!turn\_\-around\_\-delivery@{turn\_\-around\_\-delivery}}
+\index{turn\_\-around\_\-delivery@{turn\_\-around\_\-delivery}!IDP::LineFollowing@{IDP::LineFollowing}}
+\subsubsection[{turn\_\-around\_\-delivery}]{\setlength{\rightskip}{0pt plus 5cm}{\bf LineFollowingStatus} IDP::LineFollowing::turn\_\-around\_\-delivery (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{classIDP_1_1LineFollowing_aac16cbc1fe80f6f97cecf2bf51ef3bae}
+
+
+Turn around, but stop as soon as we lose the line. 
+
+
+
+Definition at line 277 of file line\_\-following.cc.
+
+\hypertarget{classIDP_1_1LineFollowing_a9ea6fb8c919ae5004900b85eed57da1e}{
 \index{IDP::LineFollowing@{IDP::LineFollowing}!turn\_\-left@{turn\_\-left}}
 \index{turn\_\-left@{turn\_\-left}!IDP::LineFollowing@{IDP::LineFollowing}}
 \subsubsection[{turn\_\-left}]{\setlength{\rightskip}{0pt plus 5cm}{\bf LineFollowingStatus} IDP::LineFollowing::turn\_\-left (
 \begin{DoxyParamCaption}
-\item[{void}]{}
+\item[{unsigned short int}]{ skip\_\-lines = {\ttfamily 0}}
 \end{DoxyParamCaption}
 )}}
-\label{classIDP_1_1LineFollowing_a551e979a503328c2f645a1af2798d940}
+\label{classIDP_1_1LineFollowing_a9ea6fb8c919ae5004900b85eed57da1e}
 
 
 Turn the robot left until the sensors encounter another line. 
 
+
+\begin{DoxyParams}{Parameters}
+\item[{\em skip\_\-lines}]How many lines we should detect and skip over \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 A LineFollowingStatus code 
 \end{DoxyReturn}
 
 
-Definition at line 227 of file line\_\-following.cc.
+Definition at line 230 of file line\_\-following.cc.
 
-\hypertarget{classIDP_1_1LineFollowing_adc0b67e4dc93dfef246cdde6190b0745}{
+\hypertarget{classIDP_1_1LineFollowing_a4efba97b525541668fd4d260273e0eff}{
 \index{IDP::LineFollowing@{IDP::LineFollowing}!turn\_\-right@{turn\_\-right}}
 \index{turn\_\-right@{turn\_\-right}!IDP::LineFollowing@{IDP::LineFollowing}}
 \subsubsection[{turn\_\-right}]{\setlength{\rightskip}{0pt plus 5cm}{\bf LineFollowingStatus} IDP::LineFollowing::turn\_\-right (
 \begin{DoxyParamCaption}
-\item[{void}]{}
+\item[{unsigned short int}]{ skip\_\-lines = {\ttfamily 0}}
 \end{DoxyParamCaption}
 )}}
-\label{classIDP_1_1LineFollowing_adc0b67e4dc93dfef246cdde6190b0745}
+\label{classIDP_1_1LineFollowing_a4efba97b525541668fd4d260273e0eff}
 
 
 Turn the robot right until the sensors detect another line. 
 
+
+\begin{DoxyParams}{Parameters}
+\item[{\em skip\_\-lines}]How many lines we should detect and skip over \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 A LineFollowingStatus code 
 \end{DoxyReturn}
 
 
-Definition at line 237 of file line\_\-following.cc.
+Definition at line 242 of file line\_\-following.cc.
 
 
 
@@ -327,7 +367,16 @@ Definition at line 237 of file line\_\-following.cc.
 \label{classIDP_1_1LineFollowing_a9adfbcd956e7d6373f28ea60073c92fa}
 
 
-Definition at line 155 of file line\_\-following.h.
+Definition at line 159 of file line\_\-following.h.
+
+\hypertarget{classIDP_1_1LineFollowing_ac5bcda6c1e88072fbe3868e3135fda27}{
+\index{IDP::LineFollowing@{IDP::LineFollowing}!\_\-integral\_\-gain@{\_\-integral\_\-gain}}
+\index{\_\-integral\_\-gain@{\_\-integral\_\-gain}!IDP::LineFollowing@{IDP::LineFollowing}}
+\subsubsection[{\_\-integral\_\-gain}]{\setlength{\rightskip}{0pt plus 5cm}double {\bf IDP::LineFollowing::\_\-integral\_\-gain}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classIDP_1_1LineFollowing_ac5bcda6c1e88072fbe3868e3135fda27}
+
+
+Definition at line 166 of file line\_\-following.h.
 
 \hypertarget{classIDP_1_1LineFollowing_a73eb5dbd030d04809ffe8bf08956517d}{
 \index{IDP::LineFollowing@{IDP::LineFollowing}!\_\-left\_\-error@{\_\-left\_\-error}}
@@ -336,7 +385,16 @@ Definition at line 155 of file line\_\-following.h.
 \label{classIDP_1_1LineFollowing_a73eb5dbd030d04809ffe8bf08956517d}
 
 
-Definition at line 156 of file line\_\-following.h.
+Definition at line 160 of file line\_\-following.h.
+
+\hypertarget{classIDP_1_1LineFollowing_a21b74d0156ada50603330cc70b17e072}{
+\index{IDP::LineFollowing@{IDP::LineFollowing}!\_\-lines\_\-seen@{\_\-lines\_\-seen}}
+\index{\_\-lines\_\-seen@{\_\-lines\_\-seen}!IDP::LineFollowing@{IDP::LineFollowing}}
+\subsubsection[{\_\-lines\_\-seen}]{\setlength{\rightskip}{0pt plus 5cm}unsigned short int {\bf IDP::LineFollowing::\_\-lines\_\-seen}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classIDP_1_1LineFollowing_a21b74d0156ada50603330cc70b17e072}
+
+
+Definition at line 165 of file line\_\-following.h.
 
 \hypertarget{classIDP_1_1LineFollowing_acc5f7d1d33c49ae1be9de702122aac02}{
 \index{IDP::LineFollowing@{IDP::LineFollowing}!\_\-lost\_\-time@{\_\-lost\_\-time}}
@@ -345,7 +403,16 @@ Definition at line 156 of file line\_\-following.h.
 \label{classIDP_1_1LineFollowing_acc5f7d1d33c49ae1be9de702122aac02}
 
 
-Definition at line 160 of file line\_\-following.h.
+Definition at line 164 of file line\_\-following.h.
+
+\hypertarget{classIDP_1_1LineFollowing_a93b2293cd1f5fe2795b0cca37b38f403}{
+\index{IDP::LineFollowing@{IDP::LineFollowing}!\_\-lost\_\-timeout@{\_\-lost\_\-timeout}}
+\index{\_\-lost\_\-timeout@{\_\-lost\_\-timeout}!IDP::LineFollowing@{IDP::LineFollowing}}
+\subsubsection[{\_\-lost\_\-timeout}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int {\bf IDP::LineFollowing::\_\-lost\_\-timeout}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classIDP_1_1LineFollowing_a93b2293cd1f5fe2795b0cca37b38f403}
+
+
+Definition at line 167 of file line\_\-following.h.
 
 \hypertarget{classIDP_1_1LineFollowing_a76fe578bf4bbd847e74bb1b9bfab7149}{
 \index{IDP::LineFollowing@{IDP::LineFollowing}!\_\-lost\_\-turning\_\-line@{\_\-lost\_\-turning\_\-line}}
@@ -354,7 +421,7 @@ Definition at line 160 of file line\_\-following.h.
 \label{classIDP_1_1LineFollowing_a76fe578bf4bbd847e74bb1b9bfab7149}
 
 
-Definition at line 159 of file line\_\-following.h.
+Definition at line 163 of file line\_\-following.h.
 
 \hypertarget{classIDP_1_1LineFollowing_ac74d1f91775296a217ff1aa4ecf00ae9}{
 \index{IDP::LineFollowing@{IDP::LineFollowing}!\_\-right\_\-error@{\_\-right\_\-error}}
@@ -363,7 +430,7 @@ Definition at line 159 of file line\_\-following.h.
 \label{classIDP_1_1LineFollowing_ac74d1f91775296a217ff1aa4ecf00ae9}
 
 
-Definition at line 157 of file line\_\-following.h.
+Definition at line 161 of file line\_\-following.h.
 
 \hypertarget{classIDP_1_1LineFollowing_a67d4ac53d4cd8fa53d6b61ec839ce8bc}{
 \index{IDP::LineFollowing@{IDP::LineFollowing}!\_\-speed@{\_\-speed}}
@@ -372,7 +439,16 @@ Definition at line 157 of file line\_\-following.h.
 \label{classIDP_1_1LineFollowing_a67d4ac53d4cd8fa53d6b61ec839ce8bc}
 
 
-Definition at line 158 of file line\_\-following.h.
+Definition at line 162 of file line\_\-following.h.
+
+\hypertarget{classIDP_1_1LineFollowing_a2b929e24688cbc116b1f95b295cbc914}{
+\index{IDP::LineFollowing@{IDP::LineFollowing}!\_\-turning\_\-timeout@{\_\-turning\_\-timeout}}
+\index{\_\-turning\_\-timeout@{\_\-turning\_\-timeout}!IDP::LineFollowing@{IDP::LineFollowing}}
+\subsubsection[{\_\-turning\_\-timeout}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int {\bf IDP::LineFollowing::\_\-turning\_\-timeout}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classIDP_1_1LineFollowing_a2b929e24688cbc116b1f95b295cbc914}
+
+
+Definition at line 168 of file line\_\-following.h.
 
 
 

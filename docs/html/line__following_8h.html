@@ -116,14 +116,14 @@ Functions</h2></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Cap a line following correction value to MAX_CORRECTION.  <a href="#ae66b1b69bcde3ba7995f2fd46c6f21f5"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">const double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceIDP.html#a9107eef10d68ba30176633afd87f1ed4">IDP::INTEGRAL_GAIN</a> = 5.0</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constant for integral control in line following.  <a href="#a9107eef10d68ba30176633afd87f1ed4"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const short unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceIDP.html#a246919caaacabcb0399802d542d8330b">IDP::MAX_CORRECTION</a> = 127</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Maximum differential correction value before it gets capped.  <a href="#a246919caaacabcb0399802d542d8330b"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">const unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceIDP.html#ac845248570cca0705d43e2dbb085c3cb">IDP::LOST_TIMEOUT</a> = 50</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">The number of loop iterations before we count as lost when driving straight.  <a href="#ac845248570cca0705d43e2dbb085c3cb"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">const unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceIDP.html#a518ca50cb25167a9930b2099282bb938">IDP::LOST_TURNING_TIMEOUT</a> = 400</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">The number of loop iterations before we count as lost when turning around.  <a href="#a518ca50cb25167a9930b2099282bb938"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceIDP.html#a13d57d0e366139689356754d049ca38b">IDP::BASELINE_INTEGRAL_GAIN</a> = 5.0</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Baseline integral gain for full speed operation.  <a href="#a13d57d0e366139689356754d049ca38b"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const short unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceIDP.html#ad49ae86fe58241291415f56ea64c8ac8">IDP::BASELINE_STRAIGHT_TIMEOUT</a> = 50</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Baseline LOST timeout for full speed straight line navigation.  <a href="#ad49ae86fe58241291415f56ea64c8ac8"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const short unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceIDP.html#ad315440c84ff5573297a088ffafc1b92">IDP::BASELINE_TURN_TIMEOUT</a> = 200</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Baseline LOST timeout for full speed turning actions.  <a href="#ad315440c84ff5573297a088ffafc1b92"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceIDP.html#afa01378acc238f4bd41d8eb304f7afd7">IDP::EDGE_ERROR</a> = 2</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">How much an outer sensor seeing the edge of a line should add to the appropriate error.  <a href="#afa01378acc238f4bd41d8eb304f7afd7"></a><br/></td></tr>
 </table>
@@ -142,7 +142,7 @@ Variables</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Tue Feb 15 2011 02:35:58 for IDPL108 by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sat Feb 19 2011 01:29:45 for IDPL108 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

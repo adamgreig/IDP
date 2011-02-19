@@ -17,7 +17,7 @@ Collaboration diagram for IDP::MissionSupervisor:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=232pt]{classIDP_1_1MissionSupervisor__coll__graph}
+\includegraphics[width=367pt]{classIDP_1_1MissionSupervisor__coll__graph}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
@@ -27,33 +27,48 @@ Collaboration diagram for IDP::MissionSupervisor:\nopagebreak
 \begin{DoxyCompactList}\small\item\em Construct the \hyperlink{classIDP_1_1MissionSupervisor}{MissionSupervisor}. \item\end{DoxyCompactList}\item 
 \hyperlink{classIDP_1_1MissionSupervisor_aa43dab8c02cd596d0f5df6b3af5aade4}{$\sim$MissionSupervisor} ()
 \begin{DoxyCompactList}\small\item\em Destruct the \hyperlink{classIDP_1_1MissionSupervisor}{MissionSupervisor}, deleting the HAL. \item\end{DoxyCompactList}\item 
-void \hyperlink{classIDP_1_1MissionSupervisor_a06fc1fcf6272651d50938fd94306ac24}{run\_\-task} ()
+void \hyperlink{classIDP_1_1MissionSupervisor_a76ff7fad2edcb7f7181b43c3fc01b01e}{run\_\-task} (void)
 \begin{DoxyCompactList}\small\item\em Commence running the main task. \item\end{DoxyCompactList}\item 
-void \hyperlink{classIDP_1_1MissionSupervisor_af8c6a3073190a4479211753fe5f50a36}{drive\_\-forward} ()
-\item 
-void \hyperlink{classIDP_1_1MissionSupervisor_ae5d6e9a37417126da780583349b48d44}{drive\_\-backward} ()
-\item 
-void \hyperlink{classIDP_1_1MissionSupervisor_ad11e444b6be1d51c3339bd6397d45fd4}{stop} ()
-\item 
-void \hyperlink{classIDP_1_1MissionSupervisor_af147b0bec9464bb7e956a40a7f3d0fda}{test\_\-line\_\-sensor} ()
-\item 
-void \hyperlink{classIDP_1_1MissionSupervisor_a21be0b52e2f13c7fb373c90dae77ba23}{test\_\-line\_\-following} ()
-\item 
-void \hyperlink{classIDP_1_1MissionSupervisor_a7c0f8d9bc56e3ec9da1b1294fa828541}{test\_\-navigation} ()
-\item 
+void \hyperlink{classIDP_1_1MissionSupervisor_ae0c5ee275ed6d1a40a47bea80ef59f6a}{stop} (void)
+\begin{DoxyCompactList}\small\item\em Stop. \item\end{DoxyCompactList}\item 
+void \hyperlink{classIDP_1_1MissionSupervisor_a9de3aaeb91da90961de5938eda7c7d08}{export\_\-state} (bool \&red, bool \&green, bool \&white, bool \&box1)
+\begin{DoxyCompactList}\small\item\em Export the internal state via pass-\/by-\/reference variables. \item\end{DoxyCompactList}\item 
+void \hyperlink{classIDP_1_1MissionSupervisor_aaacc8e7082596ecf603d05fdc01e5245}{load\_\-state} (bool red, bool green, bool white, bool box1)
+\begin{DoxyCompactList}\small\item\em Load state from provided values. \item\end{DoxyCompactList}\item 
 const \hyperlink{classIDP_1_1HardwareAbstractionLayer}{HardwareAbstractionLayer} $\ast$ \hyperlink{classIDP_1_1MissionSupervisor_ae19d0c2123fda158cc45e649128fbc09}{hal} () const 
 \begin{DoxyCompactList}\small\item\em Const accessor for the HAL. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classIDP_1_1MissionSupervisor_a850c2805af7b3de4abdc10a92ce51bcf}{update\_\-box\_\-contents} (\hyperlink{namespaceIDP_a6efd2cca14c0dae1c6458714ce0218df}{BobbinColour} colour)
+\begin{DoxyCompactList}\small\item\em Update the current box contents given the new colour. \item\end{DoxyCompactList}\item 
+\hyperlink{namespaceIDP_a6efd2cca14c0dae1c6458714ce0218df}{BobbinColour} \hyperlink{classIDP_1_1MissionSupervisor_ae6b46542637f7c9fba8724ca27f225ce}{find\_\-useful\_\-bobbin} (void)
+\begin{DoxyCompactList}\small\item\em Go to the first bobbin, check its colour, then keep moving down the rack until we find a bobbin we like. \item\end{DoxyCompactList}\item 
+void \hyperlink{classIDP_1_1MissionSupervisor_a23d153155e296b5134a24ef943189acd}{fill\_\-and\_\-deliver} (\hyperlink{namespaceIDP_ad90955841bc9492fb53b1f89cc667e18}{Box} box)
+\begin{DoxyCompactList}\small\item\em From the start zone, go to the given box, identify its colour, then find the complementary two bobbins and place them in the box before picking the box up, driving to the delivery area and dropping it off, then return to the start. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
 \hyperlink{classIDP_1_1HardwareAbstractionLayer}{HardwareAbstractionLayer} $\ast$ \hyperlink{classIDP_1_1MissionSupervisor_a31c1a6a71d93c8ae4024eb97b934eb56}{\_\-hal}
+\item 
+\hyperlink{classIDP_1_1Navigation}{Navigation} $\ast$ \hyperlink{classIDP_1_1MissionSupervisor_a37b2c2cd7a79ecfbc7459382b7febcc3}{\_\-nav}
+\item 
+\hyperlink{classIDP_1_1ClampControl}{ClampControl} $\ast$ \hyperlink{classIDP_1_1MissionSupervisor_a6409987b663ac1b5c9b989f6dd725e3d}{\_\-cc}
+\item 
+bool \hyperlink{classIDP_1_1MissionSupervisor_a18492ac38ddfaef7c58fefbbdd699099}{\_\-box\_\-has\_\-red}
+\item 
+bool \hyperlink{classIDP_1_1MissionSupervisor_ad1c1d2934e9d4ed0308fc2679db1b31d}{\_\-box\_\-has\_\-green}
+\item 
+bool \hyperlink{classIDP_1_1MissionSupervisor_a44f8ed8b4608c8f607afac445dbb7191}{\_\-box\_\-has\_\-white}
+\item 
+bool \hyperlink{classIDP_1_1MissionSupervisor_a7a7d76ef314e3da5d18c241f6b24f322}{\_\-already\_\-delivered\_\-box\_\-one}
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 Control the overall robot behaviour and objective fulfillment. 
 
-Definition at line 28 of file mission\_\-supervisor.h.
+Definition at line 30 of file mission\_\-supervisor.h.
 
 
 
@@ -76,7 +91,7 @@ Initialises a link to the specified robot number, or 0 if running embedded.
 \item[{\em robot}]Which robot to link to, or 0 if embedded \end{DoxyParams}
 
 
-Definition at line 30 of file mission\_\-supervisor.cc.
+Definition at line 31 of file mission\_\-supervisor.cc.
 
 \hypertarget{classIDP_1_1MissionSupervisor_aa43dab8c02cd596d0f5df6b3af5aade4}{
 \index{IDP::MissionSupervisor@{IDP::MissionSupervisor}!$\sim$MissionSupervisor@{$\sim$MissionSupervisor}}
@@ -93,29 +108,71 @@ Destruct the \hyperlink{classIDP_1_1MissionSupervisor}{MissionSupervisor}, delet
 
 
 
-Definition at line 42 of file mission\_\-supervisor.cc.
+Definition at line 51 of file mission\_\-supervisor.cc.
 
 
 
 \subsection{Member Function Documentation}
-\hypertarget{classIDP_1_1MissionSupervisor_ae5d6e9a37417126da780583349b48d44}{
-\index{IDP::MissionSupervisor@{IDP::MissionSupervisor}!drive\_\-backward@{drive\_\-backward}}
-\index{drive\_\-backward@{drive\_\-backward}!IDP::MissionSupervisor@{IDP::MissionSupervisor}}
-\subsubsection[{drive\_\-backward}]{\setlength{\rightskip}{0pt plus 5cm}void IDP::MissionSupervisor::drive\_\-backward (
+\hypertarget{classIDP_1_1MissionSupervisor_a9de3aaeb91da90961de5938eda7c7d08}{
+\index{IDP::MissionSupervisor@{IDP::MissionSupervisor}!export\_\-state@{export\_\-state}}
+\index{export\_\-state@{export\_\-state}!IDP::MissionSupervisor@{IDP::MissionSupervisor}}
+\subsubsection[{export\_\-state}]{\setlength{\rightskip}{0pt plus 5cm}void IDP::MissionSupervisor::export\_\-state (
 \begin{DoxyParamCaption}
-{}
+\item[{bool \&}]{ red, }
+\item[{bool \&}]{ green, }
+\item[{bool \&}]{ white, }
+\item[{bool \&}]{ box1}
 \end{DoxyParamCaption}
 )}}
-\label{classIDP_1_1MissionSupervisor_ae5d6e9a37417126da780583349b48d44}
-\hypertarget{classIDP_1_1MissionSupervisor_af8c6a3073190a4479211753fe5f50a36}{
-\index{IDP::MissionSupervisor@{IDP::MissionSupervisor}!drive\_\-forward@{drive\_\-forward}}
-\index{drive\_\-forward@{drive\_\-forward}!IDP::MissionSupervisor@{IDP::MissionSupervisor}}
-\subsubsection[{drive\_\-forward}]{\setlength{\rightskip}{0pt plus 5cm}void IDP::MissionSupervisor::drive\_\-forward (
+\label{classIDP_1_1MissionSupervisor_a9de3aaeb91da90961de5938eda7c7d08}
+
+
+Export the internal state via pass-\/by-\/reference variables. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em red}]Whether a red bobbin is in the box. \item[{\em green}]Whether a green bobbin is in the box. \item[{\em white}]Whether a white bobbin is in the box. \item[{\em box1}]Whether the first box has already been delivered. \end{DoxyParams}
+
+
+Definition at line 69 of file mission\_\-supervisor.cc.
+
+\hypertarget{classIDP_1_1MissionSupervisor_a23d153155e296b5134a24ef943189acd}{
+\index{IDP::MissionSupervisor@{IDP::MissionSupervisor}!fill\_\-and\_\-deliver@{fill\_\-and\_\-deliver}}
+\index{fill\_\-and\_\-deliver@{fill\_\-and\_\-deliver}!IDP::MissionSupervisor@{IDP::MissionSupervisor}}
+\subsubsection[{fill\_\-and\_\-deliver}]{\setlength{\rightskip}{0pt plus 5cm}void IDP::MissionSupervisor::fill\_\-and\_\-deliver (
 \begin{DoxyParamCaption}
-{}
+\item[{{\bf Box}}]{ box}
 \end{DoxyParamCaption}
-)}}
-\label{classIDP_1_1MissionSupervisor_af8c6a3073190a4479211753fe5f50a36}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classIDP_1_1MissionSupervisor_a23d153155e296b5134a24ef943189acd}
+
+
+From the start zone, go to the given box, identify its colour, then find the complementary two bobbins and place them in the box before picking the box up, driving to the delivery area and dropping it off, then return to the start. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em box}]Which Box to fill \end{DoxyParams}
+
+
+Definition at line 138 of file mission\_\-supervisor.cc.
+
+\hypertarget{classIDP_1_1MissionSupervisor_ae6b46542637f7c9fba8724ca27f225ce}{
+\index{IDP::MissionSupervisor@{IDP::MissionSupervisor}!find\_\-useful\_\-bobbin@{find\_\-useful\_\-bobbin}}
+\index{find\_\-useful\_\-bobbin@{find\_\-useful\_\-bobbin}!IDP::MissionSupervisor@{IDP::MissionSupervisor}}
+\subsubsection[{find\_\-useful\_\-bobbin}]{\setlength{\rightskip}{0pt plus 5cm}{\bf BobbinColour} IDP::MissionSupervisor::find\_\-useful\_\-bobbin (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classIDP_1_1MissionSupervisor_ae6b46542637f7c9fba8724ca27f225ce}
+
+
+Go to the first bobbin, check its colour, then keep moving down the rack until we find a bobbin we like. 
+
+TODO: termination conditions! 
+
+Definition at line 255 of file mission\_\-supervisor.cc.
+
 \hypertarget{classIDP_1_1MissionSupervisor_ae19d0c2123fda158cc45e649128fbc09}{
 \index{IDP::MissionSupervisor@{IDP::MissionSupervisor}!hal@{hal}}
 \index{hal@{hal}!IDP::MissionSupervisor@{IDP::MissionSupervisor}}
@@ -131,64 +188,133 @@ Const accessor for the HAL.
 
 
 
-Definition at line 59 of file mission\_\-supervisor.cc.
+Definition at line 293 of file mission\_\-supervisor.cc.
 
-\hypertarget{classIDP_1_1MissionSupervisor_a06fc1fcf6272651d50938fd94306ac24}{
+\hypertarget{classIDP_1_1MissionSupervisor_aaacc8e7082596ecf603d05fdc01e5245}{
+\index{IDP::MissionSupervisor@{IDP::MissionSupervisor}!load\_\-state@{load\_\-state}}
+\index{load\_\-state@{load\_\-state}!IDP::MissionSupervisor@{IDP::MissionSupervisor}}
+\subsubsection[{load\_\-state}]{\setlength{\rightskip}{0pt plus 5cm}void IDP::MissionSupervisor::load\_\-state (
+\begin{DoxyParamCaption}
+\item[{bool}]{ red, }
+\item[{bool}]{ green, }
+\item[{bool}]{ white, }
+\item[{bool}]{ box1}
+\end{DoxyParamCaption}
+)}}
+\label{classIDP_1_1MissionSupervisor_aaacc8e7082596ecf603d05fdc01e5245}
+
+
+Load state from provided values. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em red}]Whether a red bobbin is in the box. \item[{\em green}]Whether a green bobbin is in the box. \item[{\em white}]Whether a white bobbin is in the box. \item[{\em box1}]Whether the first box has already been delivered. \end{DoxyParams}
+
+
+Definition at line 87 of file mission\_\-supervisor.cc.
+
+\hypertarget{classIDP_1_1MissionSupervisor_a76ff7fad2edcb7f7181b43c3fc01b01e}{
 \index{IDP::MissionSupervisor@{IDP::MissionSupervisor}!run\_\-task@{run\_\-task}}
 \index{run\_\-task@{run\_\-task}!IDP::MissionSupervisor@{IDP::MissionSupervisor}}
 \subsubsection[{run\_\-task}]{\setlength{\rightskip}{0pt plus 5cm}void IDP::MissionSupervisor::run\_\-task (
 \begin{DoxyParamCaption}
-{}
+\item[{void}]{}
 \end{DoxyParamCaption}
 )}}
-\label{classIDP_1_1MissionSupervisor_a06fc1fcf6272651d50938fd94306ac24}
+\label{classIDP_1_1MissionSupervisor_a76ff7fad2edcb7f7181b43c3fc01b01e}
 
 
 Commence running the main task. 
 
+Return when two filled boxes have been delivered to the delivery area. 
 
+Definition at line 102 of file mission\_\-supervisor.cc.
 
-Definition at line 51 of file mission\_\-supervisor.cc.
-
-\hypertarget{classIDP_1_1MissionSupervisor_ad11e444b6be1d51c3339bd6397d45fd4}{
+\hypertarget{classIDP_1_1MissionSupervisor_ae0c5ee275ed6d1a40a47bea80ef59f6a}{
 \index{IDP::MissionSupervisor@{IDP::MissionSupervisor}!stop@{stop}}
 \index{stop@{stop}!IDP::MissionSupervisor@{IDP::MissionSupervisor}}
 \subsubsection[{stop}]{\setlength{\rightskip}{0pt plus 5cm}void IDP::MissionSupervisor::stop (
 \begin{DoxyParamCaption}
-{}
+\item[{void}]{}
 \end{DoxyParamCaption}
 )}}
-\label{classIDP_1_1MissionSupervisor_ad11e444b6be1d51c3339bd6397d45fd4}
-\hypertarget{classIDP_1_1MissionSupervisor_a21be0b52e2f13c7fb373c90dae77ba23}{
-\index{IDP::MissionSupervisor@{IDP::MissionSupervisor}!test\_\-line\_\-following@{test\_\-line\_\-following}}
-\index{test\_\-line\_\-following@{test\_\-line\_\-following}!IDP::MissionSupervisor@{IDP::MissionSupervisor}}
-\subsubsection[{test\_\-line\_\-following}]{\setlength{\rightskip}{0pt plus 5cm}void IDP::MissionSupervisor::test\_\-line\_\-following (
+\label{classIDP_1_1MissionSupervisor_ae0c5ee275ed6d1a40a47bea80ef59f6a}
+
+
+Stop. 
+
+
+
+Definition at line 227 of file mission\_\-supervisor.cc.
+
+\hypertarget{classIDP_1_1MissionSupervisor_a850c2805af7b3de4abdc10a92ce51bcf}{
+\index{IDP::MissionSupervisor@{IDP::MissionSupervisor}!update\_\-box\_\-contents@{update\_\-box\_\-contents}}
+\index{update\_\-box\_\-contents@{update\_\-box\_\-contents}!IDP::MissionSupervisor@{IDP::MissionSupervisor}}
+\subsubsection[{update\_\-box\_\-contents}]{\setlength{\rightskip}{0pt plus 5cm}void IDP::MissionSupervisor::update\_\-box\_\-contents (
 \begin{DoxyParamCaption}
-{}
+\item[{{\bf BobbinColour}}]{ colour}
 \end{DoxyParamCaption}
-)}}
-\label{classIDP_1_1MissionSupervisor_a21be0b52e2f13c7fb373c90dae77ba23}
-\hypertarget{classIDP_1_1MissionSupervisor_af147b0bec9464bb7e956a40a7f3d0fda}{
-\index{IDP::MissionSupervisor@{IDP::MissionSupervisor}!test\_\-line\_\-sensor@{test\_\-line\_\-sensor}}
-\index{test\_\-line\_\-sensor@{test\_\-line\_\-sensor}!IDP::MissionSupervisor@{IDP::MissionSupervisor}}
-\subsubsection[{test\_\-line\_\-sensor}]{\setlength{\rightskip}{0pt plus 5cm}void IDP::MissionSupervisor::test\_\-line\_\-sensor (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}}
-\label{classIDP_1_1MissionSupervisor_af147b0bec9464bb7e956a40a7f3d0fda}
-\hypertarget{classIDP_1_1MissionSupervisor_a7c0f8d9bc56e3ec9da1b1294fa828541}{
-\index{IDP::MissionSupervisor@{IDP::MissionSupervisor}!test\_\-navigation@{test\_\-navigation}}
-\index{test\_\-navigation@{test\_\-navigation}!IDP::MissionSupervisor@{IDP::MissionSupervisor}}
-\subsubsection[{test\_\-navigation}]{\setlength{\rightskip}{0pt plus 5cm}void IDP::MissionSupervisor::test\_\-navigation (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}}
-\label{classIDP_1_1MissionSupervisor_a7c0f8d9bc56e3ec9da1b1294fa828541}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classIDP_1_1MissionSupervisor_a850c2805af7b3de4abdc10a92ce51bcf}
+
+
+Update the current box contents given the new colour. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em colour}]Which colour to put into the box \end{DoxyParams}
+
+
+Definition at line 236 of file mission\_\-supervisor.cc.
+
 
 
 \subsection{Member Data Documentation}
+\hypertarget{classIDP_1_1MissionSupervisor_a7a7d76ef314e3da5d18c241f6b24f322}{
+\index{IDP::MissionSupervisor@{IDP::MissionSupervisor}!\_\-already\_\-delivered\_\-box\_\-one@{\_\-already\_\-delivered\_\-box\_\-one}}
+\index{\_\-already\_\-delivered\_\-box\_\-one@{\_\-already\_\-delivered\_\-box\_\-one}!IDP::MissionSupervisor@{IDP::MissionSupervisor}}
+\subsubsection[{\_\-already\_\-delivered\_\-box\_\-one}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf IDP::MissionSupervisor::\_\-already\_\-delivered\_\-box\_\-one}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classIDP_1_1MissionSupervisor_a7a7d76ef314e3da5d18c241f6b24f322}
+
+
+Definition at line 50 of file mission\_\-supervisor.h.
+
+\hypertarget{classIDP_1_1MissionSupervisor_ad1c1d2934e9d4ed0308fc2679db1b31d}{
+\index{IDP::MissionSupervisor@{IDP::MissionSupervisor}!\_\-box\_\-has\_\-green@{\_\-box\_\-has\_\-green}}
+\index{\_\-box\_\-has\_\-green@{\_\-box\_\-has\_\-green}!IDP::MissionSupervisor@{IDP::MissionSupervisor}}
+\subsubsection[{\_\-box\_\-has\_\-green}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf IDP::MissionSupervisor::\_\-box\_\-has\_\-green}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classIDP_1_1MissionSupervisor_ad1c1d2934e9d4ed0308fc2679db1b31d}
+
+
+Definition at line 48 of file mission\_\-supervisor.h.
+
+\hypertarget{classIDP_1_1MissionSupervisor_a18492ac38ddfaef7c58fefbbdd699099}{
+\index{IDP::MissionSupervisor@{IDP::MissionSupervisor}!\_\-box\_\-has\_\-red@{\_\-box\_\-has\_\-red}}
+\index{\_\-box\_\-has\_\-red@{\_\-box\_\-has\_\-red}!IDP::MissionSupervisor@{IDP::MissionSupervisor}}
+\subsubsection[{\_\-box\_\-has\_\-red}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf IDP::MissionSupervisor::\_\-box\_\-has\_\-red}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classIDP_1_1MissionSupervisor_a18492ac38ddfaef7c58fefbbdd699099}
+
+
+Definition at line 47 of file mission\_\-supervisor.h.
+
+\hypertarget{classIDP_1_1MissionSupervisor_a44f8ed8b4608c8f607afac445dbb7191}{
+\index{IDP::MissionSupervisor@{IDP::MissionSupervisor}!\_\-box\_\-has\_\-white@{\_\-box\_\-has\_\-white}}
+\index{\_\-box\_\-has\_\-white@{\_\-box\_\-has\_\-white}!IDP::MissionSupervisor@{IDP::MissionSupervisor}}
+\subsubsection[{\_\-box\_\-has\_\-white}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf IDP::MissionSupervisor::\_\-box\_\-has\_\-white}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classIDP_1_1MissionSupervisor_a44f8ed8b4608c8f607afac445dbb7191}
+
+
+Definition at line 49 of file mission\_\-supervisor.h.
+
+\hypertarget{classIDP_1_1MissionSupervisor_a6409987b663ac1b5c9b989f6dd725e3d}{
+\index{IDP::MissionSupervisor@{IDP::MissionSupervisor}!\_\-cc@{\_\-cc}}
+\index{\_\-cc@{\_\-cc}!IDP::MissionSupervisor@{IDP::MissionSupervisor}}
+\subsubsection[{\_\-cc}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ClampControl}$\ast$ {\bf IDP::MissionSupervisor::\_\-cc}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classIDP_1_1MissionSupervisor_a6409987b663ac1b5c9b989f6dd725e3d}
+
+
+Definition at line 46 of file mission\_\-supervisor.h.
+
 \hypertarget{classIDP_1_1MissionSupervisor_a31c1a6a71d93c8ae4024eb97b934eb56}{
 \index{IDP::MissionSupervisor@{IDP::MissionSupervisor}!\_\-hal@{\_\-hal}}
 \index{\_\-hal@{\_\-hal}!IDP::MissionSupervisor@{IDP::MissionSupervisor}}
@@ -196,7 +322,16 @@ Definition at line 51 of file mission\_\-supervisor.cc.
 \label{classIDP_1_1MissionSupervisor_a31c1a6a71d93c8ae4024eb97b934eb56}
 
 
-Definition at line 42 of file mission\_\-supervisor.h.
+Definition at line 44 of file mission\_\-supervisor.h.
+
+\hypertarget{classIDP_1_1MissionSupervisor_a37b2c2cd7a79ecfbc7459382b7febcc3}{
+\index{IDP::MissionSupervisor@{IDP::MissionSupervisor}!\_\-nav@{\_\-nav}}
+\index{\_\-nav@{\_\-nav}!IDP::MissionSupervisor@{IDP::MissionSupervisor}}
+\subsubsection[{\_\-nav}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Navigation}$\ast$ {\bf IDP::MissionSupervisor::\_\-nav}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classIDP_1_1MissionSupervisor_a37b2c2cd7a79ecfbc7459382b7febcc3}
+
+
+Definition at line 45 of file mission\_\-supervisor.h.
 
 
 

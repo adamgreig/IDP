@@ -3,6 +3,7 @@
 \label{main_8cc}\index{src/idpbin/main.cc@{src/idpbin/main.cc}}
 }
 {\ttfamily \#include $<$iostream$>$}\par
+{\ttfamily \#include $<$fstream$>$}\par
 {\ttfamily \#include $<$string$>$}\par
 {\ttfamily \#include $<$signal.h$>$}\par
 {\ttfamily \#include $<$cstdlib$>$}\par
@@ -20,6 +21,8 @@ Include dependency graph for main.cc:\nopagebreak
 \item 
 void \hyperlink{main_8cc_abc1eb5b73937c21f0c857b478dea17c0}{terminate} (int param)
 \begin{DoxyCompactList}\small\item\em Handle program termination cleanly. \item\end{DoxyCompactList}\item 
+void \hyperlink{main_8cc_af1118685ab62ba7b0e3981ff97b3e35b}{run\_\-self\_\-test} (\hyperlink{namespaceIDP_ac1d3c3b62448912be4da9f2728f2af99}{IDP::MenuChoice} choice)
+\begin{DoxyCompactList}\small\item\em A big if statement to run the chosen test. \item\end{DoxyCompactList}\item 
 int \hyperlink{main_8cc_ae66f6b31b5ad750f1fe042a706a4e3d4}{main} ()
 \begin{DoxyCompactList}\small\item\em Code entry point and main loop. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Variables}
@@ -49,7 +52,27 @@ Code entry point and main loop.
 
 
 
-Definition at line 58 of file main.cc.
+Definition at line 147 of file main.cc.
+
+\hypertarget{main_8cc_af1118685ab62ba7b0e3981ff97b3e35b}{
+\index{main.cc@{main.cc}!run\_\-self\_\-test@{run\_\-self\_\-test}}
+\index{run\_\-self\_\-test@{run\_\-self\_\-test}!main.cc@{main.cc}}
+\subsubsection[{run\_\-self\_\-test}]{\setlength{\rightskip}{0pt plus 5cm}void run\_\-self\_\-test (
+\begin{DoxyParamCaption}
+\item[{{\bf IDP::MenuChoice}}]{ choice}
+\end{DoxyParamCaption}
+)}}
+\label{main_8cc_af1118685ab62ba7b0e3981ff97b3e35b}
+
+
+A big if statement to run the chosen test. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em choice}]The user's menu selection \end{DoxyParams}
+
+
+Definition at line 74 of file main.cc.
 
 \hypertarget{main_8cc_abc1eb5b73937c21f0c857b478dea17c0}{
 \index{main.cc@{main.cc}!terminate@{terminate}}
@@ -69,7 +92,7 @@ Handle program termination cleanly.
 \item[{\em param}]Signal number (typically SIGINT) \end{DoxyParams}
 
 
-Definition at line 35 of file main.cc.
+Definition at line 40 of file main.cc.
 
 
 
@@ -85,7 +108,7 @@ Global reference to our Mission Supervisor so we can use it inside \hyperlink{ma
 
 
 
-Definition at line 24 of file main.cc.
+Definition at line 29 of file main.cc.
 
 \hypertarget{main_8cc_a94c3385db89ae04c38bc37cc0fbff092}{
 \index{main.cc@{main.cc}!ROBOT@{ROBOT}}
@@ -98,7 +121,7 @@ The robot number, or 0 if running embedded.
 
 
 
-Definition at line 18 of file main.cc.
+Definition at line 22 of file main.cc.
 
 \hypertarget{main_8cc_a4c87dbb1fa925ffb0cc1f3b5fc911b05}{
 \index{main.cc@{main.cc}!tests@{tests}}
@@ -107,5 +130,5 @@ Definition at line 18 of file main.cc.
 \label{main_8cc_a4c87dbb1fa925ffb0cc1f3b5fc911b05}
 
 
-Definition at line 29 of file main.cc.
+Definition at line 34 of file main.cc.
 

@@ -67,26 +67,32 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00019"></a><a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99ab6a8ae6d050d587d31cbe4d0bf960f14">00019</a>         MENU_QUIT, MENU_BACK, MENU_RUN_MAIN_TASK, MENU_RUN_ALL_SELF_TESTS,
 <a name="l00020"></a><a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99a1aa3dace9f087c1336551f4beda7492e">00020</a>         MENU_LINE_FOLLOWING_TEST, MENU_DRIVE_FORWARD, MENU_DRIVE_BACKWARD,
 <a name="l00021"></a><a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99af972ee0a2346477962f78898dfe4523a">00021</a>         MENU_TURN_LEFT, MENU_TURN_RIGHT, MENU_STEER_LEFT, MENU_STEER_RIGHT,
-<a name="l00022"></a><a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99a1a3e265ab5e1a2afda873da8c1cb7d9f">00022</a>         MENU_STOP, MENU_ANALYSE, MENU_PICK_UP, MENU_PUT_DOWN,
-<a name="l00023"></a><a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99a88c747088c71c27488b3f6b7329c82d1">00023</a>         MENU_LINE_SENSORS, MENU_SWITCHES, MENU_LDRS, MENU_NAVIGATION_TEST,
-<a name="l00024"></a><a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99afddaf453d9ae15169ca218fa9e0ab077">00024</a>         MENU_INDICATOR_LEDS, MENU_ACTUATORS,
-<a name="l00025"></a><a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99a01973890c4a02e0650a9043c790228fd">00025</a>         <a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99a01973890c4a02e0650a9043c790228fd">MAX_MENU_CHOICE</a>
-<a name="l00026"></a>00026     };
-<a name="l00027"></a>00027 
-<a name="l00037"></a><a class="code" href="classIDP_1_1Menu.html">00037</a>     <span class="keyword">class </span><a class="code" href="classIDP_1_1Menu.html" title="A menu organisation class to allow easy implementation and later additions to a multi-level menu syst...">Menu</a>
-<a name="l00038"></a>00038     {
-<a name="l00039"></a>00039         <span class="keyword">public</span>:
-<a name="l00040"></a>00040             <span class="keyword">static</span> <a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99" title="The list of all possible menu choices.">MenuChoice</a> <a class="code" href="classIDP_1_1Menu.html#a5a2affbb79c5c58bcf92fabe7875a07e" title="Top level menu entrance.">get_choice</a>();
-<a name="l00041"></a>00041         <span class="keyword">private</span>:
-<a name="l00042"></a>00042             <span class="keyword">static</span> <a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99" title="The list of all possible menu choices.">MenuChoice</a> <a class="code" href="classIDP_1_1Menu.html#aebca2af9fb1ec279145eaeb3fd324491" title="The Self-Tests submenu.">self_tests</a>();
-<a name="l00043"></a>00043             <span class="keyword">static</span> <a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99" title="The list of all possible menu choices.">MenuChoice</a> <a class="code" href="classIDP_1_1Menu.html#a06ddcaf58c80fbe0d58e1633a7251e21" title="The motor control submenu.">motor_control</a>();
-<a name="l00044"></a>00044             <span class="keyword">static</span> <a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99" title="The list of all possible menu choices.">MenuChoice</a> <a class="code" href="classIDP_1_1Menu.html#a4fdf316988d3e78a39ded863001b92a9" title="The clamp control submenu.">clamp_control</a>();
-<a name="l00045"></a>00045             <span class="keyword">static</span> <a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99" title="The list of all possible menu choices.">MenuChoice</a> <a class="code" href="classIDP_1_1Menu.html#a1d459fa26899328e58cc13aae1e0c37e" title="The sensor tests submenu.">sensor_tests</a>();
-<a name="l00046"></a>00046             <span class="keyword">static</span> <a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99" title="The list of all possible menu choices.">MenuChoice</a> <a class="code" href="classIDP_1_1Menu.html#a14dd286871d1f36f49fad1ef0fca720d" title="The output tests submenu.">output_tests</a>();
-<a name="l00047"></a>00047     };
-<a name="l00048"></a>00048 }
-<a name="l00049"></a>00049 
-<a name="l00050"></a>00050 <span class="preprocessor">#endif </span><span class="comment">/* IDPBIN_MENU_H */</span>
+<a name="l00022"></a><a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99a1a3e265ab5e1a2afda873da8c1cb7d9f">00022</a>         MENU_STOP, MENU_ANALYSE, MENU_CLAMP_TESTS, MENU_LINE_SENSORS,
+<a name="l00023"></a><a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99a88c747088c71c27488b3f6b7329c82d1">00023</a>         MENU_SWITCHES, MENU_LDRS, MENU_NAVIGATION_TEST, MENU_INDICATOR_LEDS,
+<a name="l00024"></a><a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99a8bb2f8096a6412f0d34e4d8eb1a4457c">00024</a>         MENU_ACTUATORS, MENU_COLOUR_SENSOR_LEDS, MENU_BAD_BOBBIN_LED,
+<a name="l00025"></a><a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99af9cbb35cc3ca99c19edbf7918287ff12">00025</a>         MENU_NAVIGATE_TO_BOBBIN, MENU_NAVIGATE_TO_BOX_FOR_PICKUP,
+<a name="l00026"></a><a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99ab4bf7000587f9abb5d369dccbd5ae73e">00026</a>         MENU_NAVIGATE_TO_BOX_FOR_DROP, MENU_BOBBIN_PRESENT,
+<a name="l00027"></a><a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99a4eb6cc58b42d6752a2dd912e209b5beb">00027</a>         MENU_NAVIGATE_TO_DELIVERY, MENU_DELIVERY, MENU_BOX_PRESENT,
+<a name="l00028"></a><a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99a61501b095eedafec05618df7b904a7d8">00028</a>         MENU_BOX_COLOUR, MENU_CALIBRATE,
+<a name="l00029"></a><a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99a01973890c4a02e0650a9043c790228fd">00029</a>         <a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99a01973890c4a02e0650a9043c790228fd">MAX_MENU_CHOICE</a>
+<a name="l00030"></a>00030     };
+<a name="l00031"></a>00031 
+<a name="l00041"></a><a class="code" href="classIDP_1_1Menu.html">00041</a>     <span class="keyword">class </span><a class="code" href="classIDP_1_1Menu.html" title="A menu organisation class to allow easy implementation and later additions to a multi-level menu syst...">Menu</a>
+<a name="l00042"></a>00042     {
+<a name="l00043"></a>00043         <span class="keyword">public</span>:
+<a name="l00044"></a>00044             <span class="keyword">static</span> <a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99" title="The list of all possible menu choices.">MenuChoice</a> <a class="code" href="classIDP_1_1Menu.html#a5a2affbb79c5c58bcf92fabe7875a07e" title="Top level menu entrance.">get_choice</a>();
+<a name="l00045"></a>00045         <span class="keyword">private</span>:
+<a name="l00046"></a>00046             <span class="keyword">static</span> <a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99" title="The list of all possible menu choices.">MenuChoice</a> <a class="code" href="classIDP_1_1Menu.html#aebca2af9fb1ec279145eaeb3fd324491" title="The Self-Tests submenu.">self_tests</a>();
+<a name="l00047"></a>00047             <span class="keyword">static</span> <a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99" title="The list of all possible menu choices.">MenuChoice</a> <a class="code" href="classIDP_1_1Menu.html#a06ddcaf58c80fbe0d58e1633a7251e21" title="The motor control submenu.">motor_control</a>();
+<a name="l00048"></a>00048             <span class="keyword">static</span> <a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99" title="The list of all possible menu choices.">MenuChoice</a> <a class="code" href="classIDP_1_1Menu.html#a1ab505975b4b0984e32226adc62235f3" title="The navigation submenu.">navigation</a>();
+<a name="l00049"></a>00049             <span class="keyword">static</span> <a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99" title="The list of all possible menu choices.">MenuChoice</a> <a class="code" href="classIDP_1_1Menu.html#a4fdf316988d3e78a39ded863001b92a9" title="The clamp control submenu.">clamp_control</a>();
+<a name="l00050"></a>00050             <span class="keyword">static</span> <a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99" title="The list of all possible menu choices.">MenuChoice</a> <a class="code" href="classIDP_1_1Menu.html#a1d459fa26899328e58cc13aae1e0c37e" title="The sensor tests submenu.">sensor_tests</a>();
+<a name="l00051"></a>00051             <span class="keyword">static</span> <a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99" title="The list of all possible menu choices.">MenuChoice</a> <a class="code" href="classIDP_1_1Menu.html#a14dd286871d1f36f49fad1ef0fca720d" title="The output tests submenu.">output_tests</a>();
+<a name="l00052"></a>00052             <span class="keyword">static</span> <a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99" title="The list of all possible menu choices.">MenuChoice</a> <a class="code" href="classIDP_1_1Menu.html#a84ee10a2e9ee841158cca8b242f425be" title="The task tests submenu.">task_tests</a>();
+<a name="l00053"></a>00053     };
+<a name="l00054"></a>00054 }
+<a name="l00055"></a>00055 
+<a name="l00056"></a>00056 <span class="preprocessor">#endif </span><span class="comment">/* IDPBIN_MENU_H */</span>
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -103,7 +109,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Tue Feb 15 2011 02:35:58 for IDPL108 by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sat Feb 19 2011 01:29:45 for IDPL108 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

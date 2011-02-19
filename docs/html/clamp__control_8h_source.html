@@ -69,29 +69,67 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00021"></a><a class="code" href="namespaceIDP.html#a6efd2cca14c0dae1c6458714ce0218df">00021</a>     <span class="keyword">enum</span> <a class="code" href="namespaceIDP.html#a6efd2cca14c0dae1c6458714ce0218df" title="Bobbin colours.">BobbinColour</a> {
 <a name="l00022"></a><a class="code" href="namespaceIDP.html#a6efd2cca14c0dae1c6458714ce0218dfa1bbb59488c1d089eefb9b54146bcdb26">00022</a>         BOBBIN_RED,
 <a name="l00023"></a><a class="code" href="namespaceIDP.html#a6efd2cca14c0dae1c6458714ce0218dfa047d7c5fcd5669f1a819d05fb5319f0b">00023</a>         BOBBIN_GREEN,
-<a name="l00024"></a><a class="code" href="namespaceIDP.html#a6efd2cca14c0dae1c6458714ce0218dfa8f427bfb1c335650a7ada595e1607d00">00024</a>         <a class="code" href="namespaceIDP.html#a6efd2cca14c0dae1c6458714ce0218dfa8f427bfb1c335650a7ada595e1607d00">BOBBIN_WHITE</a>
-<a name="l00025"></a>00025     };
-<a name="l00026"></a>00026 
-<a name="l00030"></a><a class="code" href="namespaceIDP.html#adf12b2c1e1c228810b18c34a3c88c32d">00030</a>     <span class="keyword">enum</span> <a class="code" href="namespaceIDP.html#adf12b2c1e1c228810b18c34a3c88c32d" title="Bobbin good or bad.">BobbinBadness</a> {
-<a name="l00031"></a><a class="code" href="namespaceIDP.html#adf12b2c1e1c228810b18c34a3c88c32dafdc1b8b5a9d849fd99ac2ae438b632dd">00031</a>         BOBBIN_GOOD,
-<a name="l00032"></a><a class="code" href="namespaceIDP.html#adf12b2c1e1c228810b18c34a3c88c32da6cb4993a316e9d4dc9836d3d990fd0f6">00032</a>         <a class="code" href="namespaceIDP.html#adf12b2c1e1c228810b18c34a3c88c32da6cb4993a316e9d4dc9836d3d990fd0f6">BOBBIN_BAD</a>
-<a name="l00033"></a>00033     };
-<a name="l00034"></a>00034     
-<a name="l00039"></a><a class="code" href="classIDP_1_1ClampControl.html">00039</a>     <span class="keyword">class </span><a class="code" href="classIDP_1_1ClampControl.html" title="Manage the actuation of the clamp, as well as the detection and analysis of bobbins for their colour ...">ClampControl</a>
-<a name="l00040"></a>00040     {
-<a name="l00041"></a>00041         <span class="keyword">public</span>:
-<a name="l00042"></a>00042             <a class="code" href="classIDP_1_1ClampControl.html#a0359cb52415c35a06521d1130e4f0795" title="Initialise the class, storing the const pointer to the HAL.">ClampControl</a>(<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html" title="Provide a hardware agnostic interface to the required hardware functionality.">HardwareAbstractionLayer</a>* hal);
-<a name="l00043"></a>00043             <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1ClampControl.html#a881ecc4fbc73c47594ecc675b9dbf3e1" title="Pick up something using the clamp.">pick_up</a>();
-<a name="l00044"></a>00044             <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1ClampControl.html#a31573846d9f7c61a6133b9dd465eca25" title="Put something in the clamp down.">put_down</a>();
-<a name="l00045"></a>00045             <a class="code" href="namespaceIDP.html#a6efd2cca14c0dae1c6458714ce0218df" title="Bobbin colours.">BobbinColour</a> <a class="code" href="classIDP_1_1ClampControl.html#adcb72d77aa298264c67b42e9252f7688" title="Check the bobbin colour.">colour</a>() <span class="keyword">const</span>;
-<a name="l00046"></a>00046             <a class="code" href="namespaceIDP.html#adf12b2c1e1c228810b18c34a3c88c32d" title="Bobbin good or bad.">BobbinBadness</a> <a class="code" href="classIDP_1_1ClampControl.html#ab9431b1477cb0785194ed1cfe0b8b328" title="Check the bobbin badness.">badness</a>() <span class="keyword">const</span>;
-<a name="l00047"></a>00047         <span class="keyword">private</span>:
-<a name="l00048"></a><a class="code" href="classIDP_1_1ClampControl.html#ac0c31fdbef30bc0c0d729843c8874475">00048</a>             <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html" title="Provide a hardware agnostic interface to the required hardware functionality.">HardwareAbstractionLayer</a>* <a class="code" href="classIDP_1_1ClampControl.html#ac0c31fdbef30bc0c0d729843c8874475">_hal</a>;
-<a name="l00049"></a>00049     };
-<a name="l00050"></a>00050 }
-<a name="l00051"></a>00051 
-<a name="l00052"></a>00052 <span class="preprocessor">#endif </span><span class="comment">/* LIBIDP_CLAMP_CONTROL_H */</span>
+<a name="l00024"></a><a class="code" href="namespaceIDP.html#a6efd2cca14c0dae1c6458714ce0218dfa8f427bfb1c335650a7ada595e1607d00">00024</a>         BOBBIN_WHITE,
+<a name="l00025"></a><a class="code" href="namespaceIDP.html#a6efd2cca14c0dae1c6458714ce0218dfae984bae9f90d601380152191c3c1b460">00025</a>         <a class="code" href="namespaceIDP.html#a6efd2cca14c0dae1c6458714ce0218dfae984bae9f90d601380152191c3c1b460">BOBBIN_UNKNOWN_COLOUR</a>
+<a name="l00026"></a>00026     };
+<a name="l00027"></a>00027 
+<a name="l00031"></a><a class="code" href="namespaceIDP.html#adf12b2c1e1c228810b18c34a3c88c32d">00031</a>     <span class="keyword">enum</span> <a class="code" href="namespaceIDP.html#adf12b2c1e1c228810b18c34a3c88c32d" title="Bobbin good or bad.">BobbinBadness</a> {
+<a name="l00032"></a><a class="code" href="namespaceIDP.html#adf12b2c1e1c228810b18c34a3c88c32dafdc1b8b5a9d849fd99ac2ae438b632dd">00032</a>         BOBBIN_GOOD,
+<a name="l00033"></a><a class="code" href="namespaceIDP.html#adf12b2c1e1c228810b18c34a3c88c32da6cb4993a316e9d4dc9836d3d990fd0f6">00033</a>         <a class="code" href="namespaceIDP.html#adf12b2c1e1c228810b18c34a3c88c32da6cb4993a316e9d4dc9836d3d990fd0f6">BOBBIN_BAD</a>
+<a name="l00034"></a>00034     };
+<a name="l00035"></a>00035     
+<a name="l00039"></a>00039     <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span>* <span class="keyword">const</span> BobbinColourStrings[] = {
+<a name="l00040"></a>00040         <span class="stringliteral">&quot;BOBBIN_RED&quot;</span>,
+<a name="l00041"></a>00041         <span class="stringliteral">&quot;BOBBIN_GREEN&quot;</span>,
+<a name="l00042"></a>00042         <span class="stringliteral">&quot;BOBBIN_WHITE&quot;</span>,
+<a name="l00043"></a>00043         <span class="stringliteral">&quot;BOBBIN_UNKNOWN_COLOUR&quot;</span>
+<a name="l00044"></a>00044     };
+<a name="l00045"></a>00045 
+<a name="l00049"></a>00049     <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span>* <span class="keyword">const</span> BobbinBadnessStrings[] = {
+<a name="l00050"></a>00050         <span class="stringliteral">&quot;BOBBIN_GOOD&quot;</span>,
+<a name="l00051"></a>00051         <span class="stringliteral">&quot;BOBBIN_BAD&quot;</span>
+<a name="l00052"></a>00052     };
 <a name="l00053"></a>00053 
+<a name="l00058"></a><a class="code" href="classIDP_1_1ClampControl.html">00058</a>     <span class="keyword">class </span><a class="code" href="classIDP_1_1ClampControl.html" title="Manage the actuation of the clamp, as well as the detection and analysis of bobbins for their colour ...">ClampControl</a>
+<a name="l00059"></a>00059     {
+<a name="l00060"></a>00060         <span class="keyword">public</span>:
+<a name="l00061"></a>00061             <a class="code" href="classIDP_1_1ClampControl.html#a0359cb52415c35a06521d1130e4f0795" title="Initialise the class, storing the const pointer to the HAL.">ClampControl</a>(<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html" title="Provide a hardware agnostic interface to the required hardware functionality.">HardwareAbstractionLayer</a>* hal);
+<a name="l00062"></a>00062             <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1ClampControl.html#a881ecc4fbc73c47594ecc675b9dbf3e1" title="Pick up something using the clamp.">pick_up</a>();
+<a name="l00063"></a>00063             <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1ClampControl.html#a31573846d9f7c61a6133b9dd465eca25" title="Put something in the clamp down.">put_down</a>();
+<a name="l00064"></a>00064             <a class="code" href="namespaceIDP.html#a6efd2cca14c0dae1c6458714ce0218df" title="Bobbin colours.">BobbinColour</a> <a class="code" href="classIDP_1_1ClampControl.html#adcb72d77aa298264c67b42e9252f7688" title="Check the bobbin colour.">colour</a>() <span class="keyword">const</span>;
+<a name="l00065"></a>00065             <a class="code" href="namespaceIDP.html#a6efd2cca14c0dae1c6458714ce0218df" title="Bobbin colours.">BobbinColour</a> <a class="code" href="classIDP_1_1ClampControl.html#a7f9e7fdd2f09f3aa7eff620073181f23" title="Check the bobbin colour while it is in a box.">box_colour</a>() <span class="keyword">const</span>;
+<a name="l00066"></a>00066             <a class="code" href="namespaceIDP.html#adf12b2c1e1c228810b18c34a3c88c32d" title="Bobbin good or bad.">BobbinBadness</a> <a class="code" href="classIDP_1_1ClampControl.html#ab9431b1477cb0785194ed1cfe0b8b328" title="Check the bobbin badness.">badness</a>() <span class="keyword">const</span>;
+<a name="l00067"></a>00067             <span class="keywordtype">bool</span> <a class="code" href="classIDP_1_1ClampControl.html#acc9ea5549b9eaeb9c53fb8e1b7dd0a7d" title="See if a bobbin is in the jaw.">bobbin_present</a>();
+<a name="l00068"></a>00068             <span class="keywordtype">bool</span> <a class="code" href="classIDP_1_1ClampControl.html#a1731e2025ab33c430d3e4bf1a941ce23" title="See if a box is under the jaw.">box_present</a>();
+<a name="l00069"></a>00069             <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1ClampControl.html#a5b67a46af3f8682b81cbf68f8693247e" title="Open the grabber jaw.">open_jaw</a>(<span class="keywordtype">void</span>);
+<a name="l00070"></a>00070             <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1ClampControl.html#a94364f9779f57df6e63f44968fc5c163" title="Close the grabber jaw.">close_jaw</a>(<span class="keywordtype">void</span>);
+<a name="l00071"></a>00071             <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1ClampControl.html#a64f742aca4caf9797ef45ee40938cab3" title="Raise the grabber arm.">raise_arm</a>(<span class="keywordtype">void</span>);
+<a name="l00072"></a>00072             <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1ClampControl.html#a011866d438336ee003774eccf7c207e0" title="Lower the grabber arm.">lower_arm</a>(<span class="keywordtype">void</span>);
+<a name="l00073"></a>00073             <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> <a class="code" href="classIDP_1_1ClampControl.html#a3bb0dcc5ad18870b38a639ae30ae5466" title="Take an average bad bobbin LDR reading of n samples.">average_bad_ldr</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> n = 3)
+<a name="l00074"></a>00074                 <span class="keyword">const</span>;
+<a name="l00075"></a>00075             <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> <a class="code" href="classIDP_1_1ClampControl.html#abed3e9baa31872c8bd87521584f1e845" title="Take an average colour LDR reading of n samples.">average_colour_ldr</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> n = 3)
+<a name="l00076"></a>00076                 <span class="keyword">const</span>;
+<a name="l00077"></a>00077         <span class="keyword">private</span>:
+<a name="l00078"></a><a class="code" href="classIDP_1_1ClampControl.html#ac0c31fdbef30bc0c0d729843c8874475">00078</a>             <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html" title="Provide a hardware agnostic interface to the required hardware functionality.">HardwareAbstractionLayer</a>* <a class="code" href="classIDP_1_1ClampControl.html#ac0c31fdbef30bc0c0d729843c8874475">_hal</a>;
+<a name="l00079"></a><a class="code" href="classIDP_1_1ClampControl.html#ad6188d015d2f9f237abc81574715f6f6">00079</a>             <span class="keywordtype">short</span> <span class="keywordtype">int</span> <a class="code" href="classIDP_1_1ClampControl.html#ad6188d015d2f9f237abc81574715f6f6">_red_box_level</a>;
+<a name="l00080"></a><a class="code" href="classIDP_1_1ClampControl.html#a4525ba276d66d2d29a8f1feb956bb769">00080</a>             <span class="keywordtype">short</span> <span class="keywordtype">int</span> <a class="code" href="classIDP_1_1ClampControl.html#a4525ba276d66d2d29a8f1feb956bb769">_green_box_level</a>;
+<a name="l00081"></a><a class="code" href="classIDP_1_1ClampControl.html#ac9d8d3c77082aa750ddb98b32596f636">00081</a>             <span class="keywordtype">short</span> <span class="keywordtype">int</span> <a class="code" href="classIDP_1_1ClampControl.html#ac9d8d3c77082aa750ddb98b32596f636">_red_rack_level</a>;
+<a name="l00082"></a><a class="code" href="classIDP_1_1ClampControl.html#af6424de6982b37b9aab8d190b06d51be">00082</a>             <span class="keywordtype">short</span> <span class="keywordtype">int</span> <a class="code" href="classIDP_1_1ClampControl.html#af6424de6982b37b9aab8d190b06d51be">_green_rack_level</a>;
+<a name="l00083"></a><a class="code" href="classIDP_1_1ClampControl.html#a486cebcf52979b03361cce9ecb84f2e3">00083</a>             <span class="keywordtype">short</span> <span class="keywordtype">int</span> <a class="code" href="classIDP_1_1ClampControl.html#a486cebcf52979b03361cce9ecb84f2e3">_box_present_level</a>;
+<a name="l00084"></a><a class="code" href="classIDP_1_1ClampControl.html#a1576dda5ebbae90e0861fa0212e5d743">00084</a>             <span class="keywordtype">short</span> <span class="keywordtype">int</span> <a class="code" href="classIDP_1_1ClampControl.html#a1576dda5ebbae90e0861fa0212e5d743">_white_present_level</a>;
+<a name="l00085"></a><a class="code" href="classIDP_1_1ClampControl.html#ab9e34e39d14e415e3a9b938451fe70a6">00085</a>             <span class="keywordtype">short</span> <span class="keywordtype">int</span> <a class="code" href="classIDP_1_1ClampControl.html#ab9e34e39d14e415e3a9b938451fe70a6">_coloured_present_level</a>;
+<a name="l00086"></a><a class="code" href="classIDP_1_1ClampControl.html#a1391b175b26be6760be280f8e1b8bd4c">00086</a>             <span class="keywordtype">short</span> <span class="keywordtype">int</span> <a class="code" href="classIDP_1_1ClampControl.html#a1391b175b26be6760be280f8e1b8bd4c">_badness_light_zero</a>;
+<a name="l00087"></a><a class="code" href="classIDP_1_1ClampControl.html#aa17b2cb9431db23053f27a0955d26548">00087</a>             <span class="keywordtype">short</span> <span class="keywordtype">int</span> <a class="code" href="classIDP_1_1ClampControl.html#aa17b2cb9431db23053f27a0955d26548">_badness_dark_zero</a>;
+<a name="l00088"></a><a class="code" href="classIDP_1_1ClampControl.html#aa8dfb019900ee99b77e3eeb227d4de18">00088</a>             <span class="keywordtype">short</span> <span class="keywordtype">int</span> <a class="code" href="classIDP_1_1ClampControl.html#aa8dfb019900ee99b77e3eeb227d4de18">_colour_light_zero</a>;
+<a name="l00089"></a><a class="code" href="classIDP_1_1ClampControl.html#a7639828ac6b5d83131718412b3dd5ca2">00089</a>             <span class="keywordtype">short</span> <span class="keywordtype">int</span> <a class="code" href="classIDP_1_1ClampControl.html#a7639828ac6b5d83131718412b3dd5ca2">_colour_light_closed_zero</a>;
+<a name="l00090"></a><a class="code" href="classIDP_1_1ClampControl.html#acca5d1d3e3e3fc8b148a4889c76b0dc2">00090</a>             <span class="keywordtype">short</span> <span class="keywordtype">int</span> <a class="code" href="classIDP_1_1ClampControl.html#acca5d1d3e3e3fc8b148a4889c76b0dc2">_colour_light_box_zero</a>;
+<a name="l00091"></a><a class="code" href="classIDP_1_1ClampControl.html#aa5103702b2e1a040a90bdb8199ff0e8b">00091</a>             <span class="keywordtype">bool</span> <a class="code" href="classIDP_1_1ClampControl.html#aa5103702b2e1a040a90bdb8199ff0e8b">_arm_up</a>;
+<a name="l00092"></a><a class="code" href="classIDP_1_1ClampControl.html#a07bfb23f284fb25dacd0d22e5f218375">00092</a>             <span class="keywordtype">bool</span> <a class="code" href="classIDP_1_1ClampControl.html#a07bfb23f284fb25dacd0d22e5f218375">_jaw_open</a>;
+<a name="l00093"></a>00093     };
+<a name="l00094"></a>00094 }
+<a name="l00095"></a>00095 
+<a name="l00096"></a>00096 <span class="preprocessor">#endif </span><span class="comment">/* LIBIDP_CLAMP_CONTROL_H */</span>
+<a name="l00097"></a>00097 
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -108,7 +146,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Tue Feb 15 2011 02:35:58 for IDPL108 by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sat Feb 19 2011 01:29:45 for IDPL108 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

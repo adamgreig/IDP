@@ -72,6 +72,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1HardwareAbstractionLayer.html#a424d40bbaed459f571b46dbb45bb8576">HardwareAbstractionLayer</a> (const int robot)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise the HAL class.  <a href="#a424d40bbaed459f571b46dbb45bb8576"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1HardwareAbstractionLayer.html#a0ddd51fb38c5fa8ecbfcd2004af2a468">~HardwareAbstractionLayer</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Destruct the robot link.  <a href="#a0ddd51fb38c5fa8ecbfcd2004af2a468"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1HardwareAbstractionLayer.html#a300956b0e2e9f67e7f10baf036bf8616">motors_forward</a> (const unsigned short int speed)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Drive both motors forwards at a given speed.  <a href="#a300956b0e2e9f67e7f10baf036bf8616"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1HardwareAbstractionLayer.html#ac81fbf6aa2bb93837ed276c47556a398">motors_backward</a> (const unsigned short int speed)</td></tr>
@@ -106,14 +108,16 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Get the analogue reading from the LDR used to detect the bad bobbin.  <a href="#af4a8cb5072cf89263b97a3e8e1727da8"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1HardwareAbstractionLayer.html#a0ffde4a54900074b646efd285d9d6807">indication_LEDs</a> (const bool led_0, const bool led_1, const bool led_2)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Set the bobbin colour indication LEDs.  <a href="#a0ffde4a54900074b646efd285d9d6807"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1HardwareAbstractionLayer.html#ad2fd680723fd2d919112cad122f5c790">colour_leds</a> (const bool red, const bool green)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Turn on and off the LEDs used to light up the bobbin for colour detection.  <a href="#ad2fd680723fd2d919112cad122f5c790"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1HardwareAbstractionLayer.html#a451695e9f26f367dc58952207dac187d">bad_bobbin_led</a> (const bool status)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Turn on and off the LED used to light up the top of the bobbin, for bad bobbin detection.  <a href="#a451695e9f26f367dc58952207dac187d"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1HardwareAbstractionLayer.html#a6574abe8852976bfa94c00e13d8c1686">colour_LED</a> (const bool status)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Turn on and off the LED used to light up the bobbin for colour detection.  <a href="#a6574abe8852976bfa94c00e13d8c1686"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1HardwareAbstractionLayer.html#ad2feaf269fbcda10fb1192b575a4963a">bad_bobbin_LED</a> (const bool status)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Turn on and off the LED used to light up the top of the bobbin, for bad bobbin detection.  <a href="#ad2feaf269fbcda10fb1192b575a4963a"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1HardwareAbstractionLayer.html#a44d5a4c942332ba9ffe027de3dba83f0">grabber_jaw</a> (const bool status)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Turn the grabber jaw actuator on or off.  <a href="#a44d5a4c942332ba9ffe027de3dba83f0"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1HardwareAbstractionLayer.html#a0f036b16f1f55a257c2b552035d2a1a9">grabber_lift</a> (const bool status)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Turn the grabber lift mechanism actuator on or off.  <a href="#a0f036b16f1f55a257c2b552035d2a1a9"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1HardwareAbstractionLayer.html#ad50b39b58566064c5bb5b0500f2d750e">enable_emergency_stop</a> (void)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Set the emergency stop registers so that the front microswitch will trigger a stop.  <a href="#ad50b39b58566064c5bb5b0500f2d750e"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1HardwareAbstractionLayer.html#a965df71af228cf82465e4e9ef6a6e1b0">check_max_speed</a> (const unsigned short int speed) const </td></tr>
@@ -121,6 +125,7 @@ Private Member Functions</h2></td></tr>
 <tr><td colspan="2"><h2><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">robot_link *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1HardwareAbstractionLayer.html#a1a363a3cab8fe7fa099b19395335c0ba">rlink</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">unsigned short int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1HardwareAbstractionLayer.html#a89e089becb312ef6ffe0fbc18f409b99">_port7</a></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>Provide a hardware agnostic interface to the required hardware functionality. </p>
@@ -150,6 +155,27 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a0ddd51fb38c5fa8ecbfcd2004af2a468"></a><!-- doxytag: member="IDP::HardwareAbstractionLayer::~HardwareAbstractionLayer" ref="a0ddd51fb38c5fa8ecbfcd2004af2a468" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IDP::HardwareAbstractionLayer::~HardwareAbstractionLayer </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Destruct the robot link. </p>
+
+<p>Definition at line <a class="el" href="hal_8cc_source.html#l00075">75</a> of file <a class="el" href="hal_8cc_source.html">hal.cc</a>.</p>
+
+</div>
+</div>
 <hr/><h2>Member Function Documentation</h2>
 <a class="anchor" id="af4a8cb5072cf89263b97a3e8e1727da8"></a><!-- doxytag: member="IDP::HardwareAbstractionLayer::bad_bobbin_ldr" ref="af4a8cb5072cf89263b97a3e8e1727da8" args="() const " -->
 <div class="memitem">
@@ -169,16 +195,16 @@ Private Attributes</h2></td></tr>
 <p>Get the analogue reading from the LDR used to detect the bad bobbin. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The analogue reading value </dd></dl>
 
-<p>Definition at line <a class="el" href="hal_8cc_source.html#l00303">303</a> of file <a class="el" href="hal_8cc_source.html">hal.cc</a>.</p>
+<p>Definition at line <a class="el" href="hal_8cc_source.html#l00345">345</a> of file <a class="el" href="hal_8cc_source.html">hal.cc</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a451695e9f26f367dc58952207dac187d"></a><!-- doxytag: member="IDP::HardwareAbstractionLayer::bad_bobbin_led" ref="a451695e9f26f367dc58952207dac187d" args="(const bool status)" -->
+<a class="anchor" id="ad2feaf269fbcda10fb1192b575a4963a"></a><!-- doxytag: member="IDP::HardwareAbstractionLayer::bad_bobbin_LED" ref="ad2feaf269fbcda10fb1192b575a4963a" args="(const bool status)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void IDP::HardwareAbstractionLayer::bad_bobbin_led </td>
+          <td class="memname">void IDP::HardwareAbstractionLayer::bad_bobbin_LED </td>
           <td>(</td>
           <td class="paramtype">const bool&nbsp;</td>
           <td class="paramname"> <em>status</em></td>
@@ -197,7 +223,7 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="hal_8cc_source.html#l00343">343</a> of file <a class="el" href="hal_8cc_source.html">hal.cc</a>.</p>
+<p>Definition at line <a class="el" href="hal_8cc_source.html#l00399">399</a> of file <a class="el" href="hal_8cc_source.html">hal.cc</a>.</p>
 
 </div>
 </div>
@@ -226,7 +252,7 @@ Private Attributes</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>true if the speed is too high, false if okay </dd></dl>
 
-<p>Definition at line <a class="el" href="hal_8cc_source.html#l00375">375</a> of file <a class="el" href="hal_8cc_source.html">hal.cc</a>.</p>
+<p>Definition at line <a class="el" href="hal_8cc_source.html#l00464">464</a> of file <a class="el" href="hal_8cc_source.html">hal.cc</a>.</p>
 
 </div>
 </div>
@@ -247,7 +273,7 @@ Private Attributes</h2></td></tr>
 
 <p>Read the status register, discarding its value. </p>
 
-<p>Definition at line <a class="el" href="hal_8cc_source.html#l00251">251</a> of file <a class="el" href="hal_8cc_source.html">hal.cc</a>.</p>
+<p>Definition at line <a class="el" href="hal_8cc_source.html#l00275">275</a> of file <a class="el" href="hal_8cc_source.html">hal.cc</a>.</p>
 
 </div>
 </div>
@@ -269,45 +295,57 @@ Private Attributes</h2></td></tr>
 <p>Get the analogue reading from the LDR used to detect colour. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The analogue reading value </dd></dl>
 
-<p>Definition at line <a class="el" href="hal_8cc_source.html#l00293">293</a> of file <a class="el" href="hal_8cc_source.html">hal.cc</a>.</p>
+<p>Definition at line <a class="el" href="hal_8cc_source.html#l00335">335</a> of file <a class="el" href="hal_8cc_source.html">hal.cc</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ad2fd680723fd2d919112cad122f5c790"></a><!-- doxytag: member="IDP::HardwareAbstractionLayer::colour_leds" ref="ad2fd680723fd2d919112cad122f5c790" args="(const bool red, const bool green)" -->
+<a class="anchor" id="a6574abe8852976bfa94c00e13d8c1686"></a><!-- doxytag: member="IDP::HardwareAbstractionLayer::colour_LED" ref="a6574abe8852976bfa94c00e13d8c1686" args="(const bool status)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void IDP::HardwareAbstractionLayer::colour_leds </td>
+          <td class="memname">void IDP::HardwareAbstractionLayer::colour_LED </td>
           <td>(</td>
           <td class="paramtype">const bool&nbsp;</td>
-          <td class="paramname"> <em>red</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname"> <em>status</em></td>
+          <td>&nbsp;)&nbsp;</td>
           <td></td>
-          <td class="paramtype">const bool&nbsp;</td>
-          <td class="paramname"> <em>green</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Turn on and off the LEDs used to light up the bobbin for colour detection. </p>
+<p>Turn on and off the LED used to light up the bobbin for colour detection. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>red</em>&nbsp;</td><td>Whether the red LED should be on or off (true=on) </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>green</em>&nbsp;</td><td>Whether the green LED should be on or off (true=on) </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>status</em>&nbsp;</td><td>Whether the LED should be on (true) or off (false). </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="hal_8cc_source.html#l00330">330</a> of file <a class="el" href="hal_8cc_source.html">hal.cc</a>.</p>
+<p>Definition at line <a class="el" href="hal_8cc_source.html#l00384">384</a> of file <a class="el" href="hal_8cc_source.html">hal.cc</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad50b39b58566064c5bb5b0500f2d750e"></a><!-- doxytag: member="IDP::HardwareAbstractionLayer::enable_emergency_stop" ref="ad50b39b58566064c5bb5b0500f2d750e" args="(void)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void IDP::HardwareAbstractionLayer::enable_emergency_stop </td>
+          <td>(</td>
+          <td class="paramtype">void&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Set the emergency stop registers so that the front microswitch will trigger a stop. </p>
+
+<p>Definition at line <a class="el" href="hal_8cc_source.html#l00450">450</a> of file <a class="el" href="hal_8cc_source.html">hal.cc</a>.</p>
 
 </div>
 </div>
@@ -335,7 +373,7 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="hal_8cc_source.html#l00353">353</a> of file <a class="el" href="hal_8cc_source.html">hal.cc</a>.</p>
+<p>Definition at line <a class="el" href="hal_8cc_source.html#l00414">414</a> of file <a class="el" href="hal_8cc_source.html">hal.cc</a>.</p>
 
 </div>
 </div>
@@ -363,7 +401,7 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="hal_8cc_source.html#l00363">363</a> of file <a class="el" href="hal_8cc_source.html">hal.cc</a>.</p>
+<p>Definition at line <a class="el" href="hal_8cc_source.html#l00432">432</a> of file <a class="el" href="hal_8cc_source.html">hal.cc</a>.</p>
 
 </div>
 </div>
@@ -385,7 +423,7 @@ Private Attributes</h2></td></tr>
 <p>Read the switch mounted on the grabber arm and return its status. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The current value of the switch, true if pressed </dd></dl>
 
-<p>Definition at line <a class="el" href="hal_8cc_source.html#l00283">283</a> of file <a class="el" href="hal_8cc_source.html">hal.cc</a>.</p>
+<p>Definition at line <a class="el" href="hal_8cc_source.html#l00316">316</a> of file <a class="el" href="hal_8cc_source.html">hal.cc</a>.</p>
 
 </div>
 </div>
@@ -430,7 +468,7 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="hal_8cc_source.html#l00315">315</a> of file <a class="el" href="hal_8cc_source.html">hal.cc</a>.</p>
+<p>Definition at line <a class="el" href="hal_8cc_source.html#l00357">357</a> of file <a class="el" href="hal_8cc_source.html">hal.cc</a>.</p>
 
 </div>
 </div>
@@ -452,7 +490,7 @@ Private Attributes</h2></td></tr>
 <p>Read the I/O port connected to the line following sensors, then return a struct with their current state. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A <a class="el" href="structIDP_1_1LineSensors.html" title="Contains the LINE or NO_LINE status of each of the four IR sensors used for line following.">LineSensors</a> struct containing the current state of the sensors </dd></dl>
 
-<p>Definition at line <a class="el" href="hal_8cc_source.html#l00214">214</a> of file <a class="el" href="hal_8cc_source.html">hal.cc</a>.</p>
+<p>Definition at line <a class="el" href="hal_8cc_source.html#l00238">238</a> of file <a class="el" href="hal_8cc_source.html">hal.cc</a>.</p>
 
 </div>
 </div>
@@ -480,7 +518,7 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="hal_8cc_source.html#l00132">132</a> of file <a class="el" href="hal_8cc_source.html">hal.cc</a>.</p>
+<p>Definition at line <a class="el" href="hal_8cc_source.html#l00155">155</a> of file <a class="el" href="hal_8cc_source.html">hal.cc</a>.</p>
 
 </div>
 </div>
@@ -508,7 +546,7 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="hal_8cc_source.html#l00098">98</a> of file <a class="el" href="hal_8cc_source.html">hal.cc</a>.</p>
+<p>Definition at line <a class="el" href="hal_8cc_source.html#l00121">121</a> of file <a class="el" href="hal_8cc_source.html">hal.cc</a>.</p>
 
 </div>
 </div>
@@ -536,7 +574,7 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="hal_8cc_source.html#l00149">149</a> of file <a class="el" href="hal_8cc_source.html">hal.cc</a>.</p>
+<p>Definition at line <a class="el" href="hal_8cc_source.html#l00172">172</a> of file <a class="el" href="hal_8cc_source.html">hal.cc</a>.</p>
 
 </div>
 </div>
@@ -564,7 +602,7 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="hal_8cc_source.html#l00115">115</a> of file <a class="el" href="hal_8cc_source.html">hal.cc</a>.</p>
+<p>Definition at line <a class="el" href="hal_8cc_source.html#l00138">138</a> of file <a class="el" href="hal_8cc_source.html">hal.cc</a>.</p>
 
 </div>
 </div>
@@ -592,7 +630,7 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="hal_8cc_source.html#l00081">81</a> of file <a class="el" href="hal_8cc_source.html">hal.cc</a>.</p>
+<p>Definition at line <a class="el" href="hal_8cc_source.html#l00104">104</a> of file <a class="el" href="hal_8cc_source.html">hal.cc</a>.</p>
 
 </div>
 </div>
@@ -620,7 +658,7 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="hal_8cc_source.html#l00064">64</a> of file <a class="el" href="hal_8cc_source.html">hal.cc</a>.</p>
+<p>Definition at line <a class="el" href="hal_8cc_source.html#l00087">87</a> of file <a class="el" href="hal_8cc_source.html">hal.cc</a>.</p>
 
 </div>
 </div>
@@ -641,7 +679,7 @@ Private Attributes</h2></td></tr>
 
 <p>Stop all motors. </p>
 
-<p>Definition at line <a class="el" href="hal_8cc_source.html#l00199">199</a> of file <a class="el" href="hal_8cc_source.html">hal.cc</a>.</p>
+<p>Definition at line <a class="el" href="hal_8cc_source.html#l00222">222</a> of file <a class="el" href="hal_8cc_source.html">hal.cc</a>.</p>
 
 </div>
 </div>
@@ -669,7 +707,7 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="hal_8cc_source.html#l00166">166</a> of file <a class="el" href="hal_8cc_source.html">hal.cc</a>.</p>
+<p>Definition at line <a class="el" href="hal_8cc_source.html#l00189">189</a> of file <a class="el" href="hal_8cc_source.html">hal.cc</a>.</p>
 
 </div>
 </div>
@@ -697,7 +735,7 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="hal_8cc_source.html#l00183">183</a> of file <a class="el" href="hal_8cc_source.html">hal.cc</a>.</p>
+<p>Definition at line <a class="el" href="hal_8cc_source.html#l00206">206</a> of file <a class="el" href="hal_8cc_source.html">hal.cc</a>.</p>
 
 </div>
 </div>
@@ -719,7 +757,7 @@ Private Attributes</h2></td></tr>
 <p>Read the reset switch and return its status. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The current value of the switch, true if pressed </dd></dl>
 
-<p>Definition at line <a class="el" href="hal_8cc_source.html#l00273">273</a> of file <a class="el" href="hal_8cc_source.html">hal.cc</a>.</p>
+<p>Definition at line <a class="el" href="hal_8cc_source.html#l00297">297</a> of file <a class="el" href="hal_8cc_source.html">hal.cc</a>.</p>
 
 </div>
 </div>
@@ -741,11 +779,26 @@ Private Attributes</h2></td></tr>
 <p>Read the status register and return it. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The STATUS register </dd></dl>
 
-<p>Definition at line <a class="el" href="hal_8cc_source.html#l00262">262</a> of file <a class="el" href="hal_8cc_source.html">hal.cc</a>.</p>
+<p>Definition at line <a class="el" href="hal_8cc_source.html#l00286">286</a> of file <a class="el" href="hal_8cc_source.html">hal.cc</a>.</p>
 
 </div>
 </div>
 <hr/><h2>Member Data Documentation</h2>
+<a class="anchor" id="a89e089becb312ef6ffe0fbc18f409b99"></a><!-- doxytag: member="IDP::HardwareAbstractionLayer::_port7" ref="a89e089becb312ef6ffe0fbc18f409b99" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned short int <a class="el" href="classIDP_1_1HardwareAbstractionLayer.html#a89e089becb312ef6ffe0fbc18f409b99">IDP::HardwareAbstractionLayer::_port7</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="hal_8h_source.html#l00084">84</a> of file <a class="el" href="hal_8h_source.html">hal.h</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a1a363a3cab8fe7fa099b19395335c0ba"></a><!-- doxytag: member="IDP::HardwareAbstractionLayer::rlink" ref="a1a363a3cab8fe7fa099b19395335c0ba" args="" -->
 <div class="memitem">
 <div class="memproto">
@@ -757,7 +810,7 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="hal_8h_source.html#l00081">81</a> of file <a class="el" href="hal_8h_source.html">hal.h</a>.</p>
+<p>Definition at line <a class="el" href="hal_8h_source.html#l00083">83</a> of file <a class="el" href="hal_8h_source.html">hal.h</a>.</p>
 
 </div>
 </div>
@@ -780,7 +833,7 @@ Private Attributes</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Tue Feb 15 2011 02:35:58 for IDPL108 by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sat Feb 19 2011 01:29:45 for IDPL108 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

@@ -83,7 +83,8 @@ Classes</h2></td></tr>
 Enumerations</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceIDP.html#a6efd2cca14c0dae1c6458714ce0218df">BobbinColour</a> { <a class="el" href="namespaceIDP.html#a6efd2cca14c0dae1c6458714ce0218dfa1bbb59488c1d089eefb9b54146bcdb26">BOBBIN_RED</a>, 
 <a class="el" href="namespaceIDP.html#a6efd2cca14c0dae1c6458714ce0218dfa047d7c5fcd5669f1a819d05fb5319f0b">BOBBIN_GREEN</a>, 
-<a class="el" href="namespaceIDP.html#a6efd2cca14c0dae1c6458714ce0218dfa8f427bfb1c335650a7ada595e1607d00">BOBBIN_WHITE</a>
+<a class="el" href="namespaceIDP.html#a6efd2cca14c0dae1c6458714ce0218dfa8f427bfb1c335650a7ada595e1607d00">BOBBIN_WHITE</a>, 
+<a class="el" href="namespaceIDP.html#a6efd2cca14c0dae1c6458714ce0218dfae984bae9f90d601380152191c3c1b460">BOBBIN_UNKNOWN_COLOUR</a>
  }</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><p>Bobbin colours. </p>
  <a href="namespaceIDP.html#a6efd2cca14c0dae1c6458714ce0218df">More...</a><br/></td></tr>
@@ -183,6 +184,12 @@ Enumerations</h2></td></tr>
  }</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><p>Possible turns at a node. </p>
  <a href="namespaceIDP.html#ab8b8e9ff9f7de27da30c1fffaeef4b72">More...</a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceIDP.html#ad90955841bc9492fb53b1f89cc667e18">Box</a> { <a class="el" href="namespaceIDP.html#ad90955841bc9492fb53b1f89cc667e18a41f638c88385a199ace07f9aab842408">BOX1</a>, 
+<a class="el" href="namespaceIDP.html#ad90955841bc9492fb53b1f89cc667e18a56ba93aa81e5743059bdc8de30517883">BOX2</a>, 
+<a class="el" href="namespaceIDP.html#ad90955841bc9492fb53b1f89cc667e18a097c15f1986d57076de6fbf8b02b22f3">MAX_BOX</a>
+ }</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><p>Box identifiers. </p>
+ <a href="namespaceIDP.html#ad90955841bc9492fb53b1f89cc667e18">More...</a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceIDP.html#a628dde0214c4c861deda405e77ad75a2">NavigationCachedJunction</a> { <br/>
 &nbsp;&nbsp;<a class="el" href="namespaceIDP.html#a628dde0214c4c861deda405e77ad75a2a35431162cfca423a194c5680b2f56b4e">NO_CACHE</a>, 
 <a class="el" href="namespaceIDP.html#a628dde0214c4c861deda405e77ad75a2a145fe4dd7949a83a0dec44b73c2ec852">LEFT_TURN</a>, 
@@ -211,16 +218,28 @@ Enumerations</h2></td></tr>
 <a class="el" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99a1a3e265ab5e1a2afda873da8c1cb7d9f">MENU_STOP</a>, 
 <br/>
 &nbsp;&nbsp;<a class="el" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99aa80af753125b39e64ca61a80af90a880">MENU_ANALYSE</a>, 
-<a class="el" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99ab11c40c94a75f45496a1898bc99516e4">MENU_PICK_UP</a>, 
-<a class="el" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99a85d840a85645d3a127b785df78387d6f">MENU_PUT_DOWN</a>, 
+<a class="el" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99aaa8e1942bc82d177052cd99e827dd601">MENU_CLAMP_TESTS</a>, 
 <a class="el" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99a1454106f5e7503695da693c6acc3157d">MENU_LINE_SENSORS</a>, 
+<a class="el" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99a88c747088c71c27488b3f6b7329c82d1">MENU_SWITCHES</a>, 
 <br/>
-&nbsp;&nbsp;<a class="el" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99a88c747088c71c27488b3f6b7329c82d1">MENU_SWITCHES</a>, 
-<a class="el" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99a23b85d38bad05a11ce6e04afa51e0739">MENU_LDRS</a>, 
+&nbsp;&nbsp;<a class="el" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99a23b85d38bad05a11ce6e04afa51e0739">MENU_LDRS</a>, 
 <a class="el" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99abab1528689e53a7505abeef47c6ca67e">MENU_NAVIGATION_TEST</a>, 
 <a class="el" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99afddaf453d9ae15169ca218fa9e0ab077">MENU_INDICATOR_LEDS</a>, 
+<a class="el" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99af06417b3ca00a4111eca5d60d0ac4c5a">MENU_ACTUATORS</a>, 
 <br/>
-&nbsp;&nbsp;<a class="el" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99af06417b3ca00a4111eca5d60d0ac4c5a">MENU_ACTUATORS</a>, 
+&nbsp;&nbsp;<a class="el" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99a8bb2f8096a6412f0d34e4d8eb1a4457c">MENU_COLOUR_SENSOR_LEDS</a>, 
+<a class="el" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99a8f1ae04cc067d7075792c69b7236267f">MENU_BAD_BOBBIN_LED</a>, 
+<a class="el" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99aed8778056e639b819d48ede426997a01">MENU_NAVIGATE_TO_BOBBIN</a>, 
+<a class="el" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99af9cbb35cc3ca99c19edbf7918287ff12">MENU_NAVIGATE_TO_BOX_FOR_PICKUP</a>, 
+<br/>
+&nbsp;&nbsp;<a class="el" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99ab4bf7000587f9abb5d369dccbd5ae73e">MENU_NAVIGATE_TO_BOX_FOR_DROP</a>, 
+<a class="el" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99a07b420112886818adfaa606881ecc79a">MENU_BOBBIN_PRESENT</a>, 
+<a class="el" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99a4eb6cc58b42d6752a2dd912e209b5beb">MENU_NAVIGATE_TO_DELIVERY</a>, 
+<a class="el" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99a214282dca7a3b28d826953353d51ead6">MENU_DELIVERY</a>, 
+<br/>
+&nbsp;&nbsp;<a class="el" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99aecf2d0dcd0e5b837249a59d55cd9bbde">MENU_BOX_PRESENT</a>, 
+<a class="el" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99a50d558d829ec96bbbc4188d19e49f2a9">MENU_BOX_COLOUR</a>, 
+<a class="el" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99a61501b095eedafec05618df7b904a7d8">MENU_CALIBRATE</a>, 
 <a class="el" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99a01973890c4a02e0650a9043c790228fd">MAX_MENU_CHOICE</a>
 <br/>
  }</td></tr>
@@ -236,14 +255,14 @@ Variables</h2></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Highest allowable motor speed in either direction.  <a href="#a4ead0b21ad2c507b542445695182d4cd"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceIDP.html#ab3a00a6cc8a6dba271e38d337daf4703">MOTOR_RAMP_TIME</a> = 16</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">How fast to ramp the motors towards the desired speed.  <a href="#ab3a00a6cc8a6dba271e38d337daf4703"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">const double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceIDP.html#a9107eef10d68ba30176633afd87f1ed4">INTEGRAL_GAIN</a> = 5.0</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constant for integral control in line following.  <a href="#a9107eef10d68ba30176633afd87f1ed4"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const short unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceIDP.html#a246919caaacabcb0399802d542d8330b">MAX_CORRECTION</a> = 127</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Maximum differential correction value before it gets capped.  <a href="#a246919caaacabcb0399802d542d8330b"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">const unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceIDP.html#ac845248570cca0705d43e2dbb085c3cb">LOST_TIMEOUT</a> = 50</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">The number of loop iterations before we count as lost when driving straight.  <a href="#ac845248570cca0705d43e2dbb085c3cb"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">const unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceIDP.html#a518ca50cb25167a9930b2099282bb938">LOST_TURNING_TIMEOUT</a> = 400</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">The number of loop iterations before we count as lost when turning around.  <a href="#a518ca50cb25167a9930b2099282bb938"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceIDP.html#a13d57d0e366139689356754d049ca38b">BASELINE_INTEGRAL_GAIN</a> = 5.0</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Baseline integral gain for full speed operation.  <a href="#a13d57d0e366139689356754d049ca38b"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const short unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceIDP.html#ad49ae86fe58241291415f56ea64c8ac8">BASELINE_STRAIGHT_TIMEOUT</a> = 50</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Baseline LOST timeout for full speed straight line navigation.  <a href="#ad49ae86fe58241291415f56ea64c8ac8"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const short unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceIDP.html#ad315440c84ff5573297a088ffafc1b92">BASELINE_TURN_TIMEOUT</a> = 200</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Baseline LOST timeout for full speed turning actions.  <a href="#ad315440c84ff5573297a088ffafc1b92"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceIDP.html#afa01378acc238f4bd41d8eb304f7afd7">EDGE_ERROR</a> = 2</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">How much an outer sensor seeing the edge of a line should add to the appropriate error.  <a href="#afa01378acc238f4bd41d8eb304f7afd7"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="namespaceIDP.html#ab8b8e9ff9f7de27da30c1fffaeef4b72">NavigationTurn</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceIDP.html#aa117cb76acf18e6af22830d5f2468ff4">NAVIGATION_NODE_TURNS</a> [MAX_DIRECTION][MAX_NODE]</td></tr>
@@ -279,7 +298,7 @@ Variables</h2></td></tr>
 </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="clamp__control_8h_source.html#l00030">30</a> of file <a class="el" href="clamp__control_8h_source.html">clamp_control.h</a>.</p>
+<p>Definition at line <a class="el" href="clamp__control_8h_source.html#l00031">31</a> of file <a class="el" href="clamp__control_8h_source.html">clamp_control.h</a>.</p>
 
 </div>
 </div>
@@ -302,11 +321,40 @@ Variables</h2></td></tr>
 </td></tr>
 <tr><td valign="top"><em><a class="anchor" id="a6efd2cca14c0dae1c6458714ce0218dfa8f427bfb1c335650a7ada595e1607d00"></a><!-- doxytag: member="BOBBIN_WHITE" ref="a6efd2cca14c0dae1c6458714ce0218dfa8f427bfb1c335650a7ada595e1607d00" args="" -->BOBBIN_WHITE</em>&nbsp;</td><td>
 </td></tr>
+<tr><td valign="top"><em><a class="anchor" id="a6efd2cca14c0dae1c6458714ce0218dfae984bae9f90d601380152191c3c1b460"></a><!-- doxytag: member="BOBBIN_UNKNOWN_COLOUR" ref="a6efd2cca14c0dae1c6458714ce0218dfae984bae9f90d601380152191c3c1b460" args="" -->BOBBIN_UNKNOWN_COLOUR</em>&nbsp;</td><td>
+</td></tr>
 </table>
 </dd>
 </dl>
 
 <p>Definition at line <a class="el" href="clamp__control_8h_source.html#l00021">21</a> of file <a class="el" href="clamp__control_8h_source.html">clamp_control.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad90955841bc9492fb53b1f89cc667e18"></a><!-- doxytag: member="IDP::Box" ref="ad90955841bc9492fb53b1f89cc667e18" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="namespaceIDP.html#ad90955841bc9492fb53b1f89cc667e18">IDP::Box</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Box identifiers. </p>
+<dl><dt><b>Enumerator: </b></dt><dd><table border="0" cellspacing="2" cellpadding="0">
+<tr><td valign="top"><em><a class="anchor" id="ad90955841bc9492fb53b1f89cc667e18a41f638c88385a199ace07f9aab842408"></a><!-- doxytag: member="BOX1" ref="ad90955841bc9492fb53b1f89cc667e18a41f638c88385a199ace07f9aab842408" args="" -->BOX1</em>&nbsp;</td><td>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="ad90955841bc9492fb53b1f89cc667e18a56ba93aa81e5743059bdc8de30517883"></a><!-- doxytag: member="BOX2" ref="ad90955841bc9492fb53b1f89cc667e18a56ba93aa81e5743059bdc8de30517883" args="" -->BOX2</em>&nbsp;</td><td>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="ad90955841bc9492fb53b1f89cc667e18a097c15f1986d57076de6fbf8b02b22f3"></a><!-- doxytag: member="MAX_BOX" ref="ad90955841bc9492fb53b1f89cc667e18a097c15f1986d57076de6fbf8b02b22f3" args="" -->MAX_BOX</em>&nbsp;</td><td>
+</td></tr>
+</table>
+</dd>
+</dl>
+
+<p>Definition at line <a class="el" href="navigation_8h_source.html#l00060">60</a> of file <a class="el" href="navigation_8h_source.html">navigation.h</a>.</p>
 
 </div>
 </div>
@@ -335,7 +383,7 @@ Variables</h2></td></tr>
 </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="line__following_8h_source.html#l00083">83</a> of file <a class="el" href="line__following_8h_source.html">line_following.h</a>.</p>
+<p>Definition at line <a class="el" href="line__following_8h_source.html#l00081">81</a> of file <a class="el" href="line__following_8h_source.html">line_following.h</a>.</p>
 
 </div>
 </div>
@@ -374,7 +422,7 @@ Variables</h2></td></tr>
 </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="line__following_8h_source.html#l00059">59</a> of file <a class="el" href="line__following_8h_source.html">line_following.h</a>.</p>
+<p>Definition at line <a class="el" href="line__following_8h_source.html#l00057">57</a> of file <a class="el" href="line__following_8h_source.html">line_following.h</a>.</p>
 
 </div>
 </div>
@@ -405,7 +453,7 @@ Variables</h2></td></tr>
 </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="line__following_8h_source.html#l00072">72</a> of file <a class="el" href="line__following_8h_source.html">line_following.h</a>.</p>
+<p>Definition at line <a class="el" href="line__following_8h_source.html#l00070">70</a> of file <a class="el" href="line__following_8h_source.html">line_following.h</a>.</p>
 
 </div>
 </div>
@@ -473,9 +521,7 @@ Variables</h2></td></tr>
 </td></tr>
 <tr><td valign="top"><em><a class="anchor" id="ac1d3c3b62448912be4da9f2728f2af99aa80af753125b39e64ca61a80af90a880"></a><!-- doxytag: member="MENU_ANALYSE" ref="ac1d3c3b62448912be4da9f2728f2af99aa80af753125b39e64ca61a80af90a880" args="" -->MENU_ANALYSE</em>&nbsp;</td><td>
 </td></tr>
-<tr><td valign="top"><em><a class="anchor" id="ac1d3c3b62448912be4da9f2728f2af99ab11c40c94a75f45496a1898bc99516e4"></a><!-- doxytag: member="MENU_PICK_UP" ref="ac1d3c3b62448912be4da9f2728f2af99ab11c40c94a75f45496a1898bc99516e4" args="" -->MENU_PICK_UP</em>&nbsp;</td><td>
-</td></tr>
-<tr><td valign="top"><em><a class="anchor" id="ac1d3c3b62448912be4da9f2728f2af99a85d840a85645d3a127b785df78387d6f"></a><!-- doxytag: member="MENU_PUT_DOWN" ref="ac1d3c3b62448912be4da9f2728f2af99a85d840a85645d3a127b785df78387d6f" args="" -->MENU_PUT_DOWN</em>&nbsp;</td><td>
+<tr><td valign="top"><em><a class="anchor" id="ac1d3c3b62448912be4da9f2728f2af99aaa8e1942bc82d177052cd99e827dd601"></a><!-- doxytag: member="MENU_CLAMP_TESTS" ref="ac1d3c3b62448912be4da9f2728f2af99aaa8e1942bc82d177052cd99e827dd601" args="" -->MENU_CLAMP_TESTS</em>&nbsp;</td><td>
 </td></tr>
 <tr><td valign="top"><em><a class="anchor" id="ac1d3c3b62448912be4da9f2728f2af99a1454106f5e7503695da693c6acc3157d"></a><!-- doxytag: member="MENU_LINE_SENSORS" ref="ac1d3c3b62448912be4da9f2728f2af99a1454106f5e7503695da693c6acc3157d" args="" -->MENU_LINE_SENSORS</em>&nbsp;</td><td>
 </td></tr>
@@ -488,6 +534,28 @@ Variables</h2></td></tr>
 <tr><td valign="top"><em><a class="anchor" id="ac1d3c3b62448912be4da9f2728f2af99afddaf453d9ae15169ca218fa9e0ab077"></a><!-- doxytag: member="MENU_INDICATOR_LEDS" ref="ac1d3c3b62448912be4da9f2728f2af99afddaf453d9ae15169ca218fa9e0ab077" args="" -->MENU_INDICATOR_LEDS</em>&nbsp;</td><td>
 </td></tr>
 <tr><td valign="top"><em><a class="anchor" id="ac1d3c3b62448912be4da9f2728f2af99af06417b3ca00a4111eca5d60d0ac4c5a"></a><!-- doxytag: member="MENU_ACTUATORS" ref="ac1d3c3b62448912be4da9f2728f2af99af06417b3ca00a4111eca5d60d0ac4c5a" args="" -->MENU_ACTUATORS</em>&nbsp;</td><td>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="ac1d3c3b62448912be4da9f2728f2af99a8bb2f8096a6412f0d34e4d8eb1a4457c"></a><!-- doxytag: member="MENU_COLOUR_SENSOR_LEDS" ref="ac1d3c3b62448912be4da9f2728f2af99a8bb2f8096a6412f0d34e4d8eb1a4457c" args="" -->MENU_COLOUR_SENSOR_LEDS</em>&nbsp;</td><td>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="ac1d3c3b62448912be4da9f2728f2af99a8f1ae04cc067d7075792c69b7236267f"></a><!-- doxytag: member="MENU_BAD_BOBBIN_LED" ref="ac1d3c3b62448912be4da9f2728f2af99a8f1ae04cc067d7075792c69b7236267f" args="" -->MENU_BAD_BOBBIN_LED</em>&nbsp;</td><td>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="ac1d3c3b62448912be4da9f2728f2af99aed8778056e639b819d48ede426997a01"></a><!-- doxytag: member="MENU_NAVIGATE_TO_BOBBIN" ref="ac1d3c3b62448912be4da9f2728f2af99aed8778056e639b819d48ede426997a01" args="" -->MENU_NAVIGATE_TO_BOBBIN</em>&nbsp;</td><td>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="ac1d3c3b62448912be4da9f2728f2af99af9cbb35cc3ca99c19edbf7918287ff12"></a><!-- doxytag: member="MENU_NAVIGATE_TO_BOX_FOR_PICKUP" ref="ac1d3c3b62448912be4da9f2728f2af99af9cbb35cc3ca99c19edbf7918287ff12" args="" -->MENU_NAVIGATE_TO_BOX_FOR_PICKUP</em>&nbsp;</td><td>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="ac1d3c3b62448912be4da9f2728f2af99ab4bf7000587f9abb5d369dccbd5ae73e"></a><!-- doxytag: member="MENU_NAVIGATE_TO_BOX_FOR_DROP" ref="ac1d3c3b62448912be4da9f2728f2af99ab4bf7000587f9abb5d369dccbd5ae73e" args="" -->MENU_NAVIGATE_TO_BOX_FOR_DROP</em>&nbsp;</td><td>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="ac1d3c3b62448912be4da9f2728f2af99a07b420112886818adfaa606881ecc79a"></a><!-- doxytag: member="MENU_BOBBIN_PRESENT" ref="ac1d3c3b62448912be4da9f2728f2af99a07b420112886818adfaa606881ecc79a" args="" -->MENU_BOBBIN_PRESENT</em>&nbsp;</td><td>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="ac1d3c3b62448912be4da9f2728f2af99a4eb6cc58b42d6752a2dd912e209b5beb"></a><!-- doxytag: member="MENU_NAVIGATE_TO_DELIVERY" ref="ac1d3c3b62448912be4da9f2728f2af99a4eb6cc58b42d6752a2dd912e209b5beb" args="" -->MENU_NAVIGATE_TO_DELIVERY</em>&nbsp;</td><td>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="ac1d3c3b62448912be4da9f2728f2af99a214282dca7a3b28d826953353d51ead6"></a><!-- doxytag: member="MENU_DELIVERY" ref="ac1d3c3b62448912be4da9f2728f2af99a214282dca7a3b28d826953353d51ead6" args="" -->MENU_DELIVERY</em>&nbsp;</td><td>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="ac1d3c3b62448912be4da9f2728f2af99aecf2d0dcd0e5b837249a59d55cd9bbde"></a><!-- doxytag: member="MENU_BOX_PRESENT" ref="ac1d3c3b62448912be4da9f2728f2af99aecf2d0dcd0e5b837249a59d55cd9bbde" args="" -->MENU_BOX_PRESENT</em>&nbsp;</td><td>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="ac1d3c3b62448912be4da9f2728f2af99a50d558d829ec96bbbc4188d19e49f2a9"></a><!-- doxytag: member="MENU_BOX_COLOUR" ref="ac1d3c3b62448912be4da9f2728f2af99a50d558d829ec96bbbc4188d19e49f2a9" args="" -->MENU_BOX_COLOUR</em>&nbsp;</td><td>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="ac1d3c3b62448912be4da9f2728f2af99a61501b095eedafec05618df7b904a7d8"></a><!-- doxytag: member="MENU_CALIBRATE" ref="ac1d3c3b62448912be4da9f2728f2af99a61501b095eedafec05618df7b904a7d8" args="" -->MENU_CALIBRATE</em>&nbsp;</td><td>
 </td></tr>
 <tr><td valign="top"><em><a class="anchor" id="ac1d3c3b62448912be4da9f2728f2af99a01973890c4a02e0650a9043c790228fd"></a><!-- doxytag: member="MAX_MENU_CHOICE" ref="ac1d3c3b62448912be4da9f2728f2af99a01973890c4a02e0650a9043c790228fd" args="" -->MAX_MENU_CHOICE</em>&nbsp;</td><td>
 </td></tr>
@@ -526,7 +594,7 @@ Variables</h2></td></tr>
 </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="navigation_8h_source.html#l00060">60</a> of file <a class="el" href="navigation_8h_source.html">navigation.h</a>.</p>
+<p>Definition at line <a class="el" href="navigation_8h_source.html#l00068">68</a> of file <a class="el" href="navigation_8h_source.html">navigation.h</a>.</p>
 
 </div>
 </div>
@@ -553,7 +621,7 @@ Variables</h2></td></tr>
 </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="navigation_8h_source.html#l00035">35</a> of file <a class="el" href="navigation_8h_source.html">navigation.h</a>.</p>
+<p>Definition at line <a class="el" href="navigation_8h_source.html#l00036">36</a> of file <a class="el" href="navigation_8h_source.html">navigation.h</a>.</p>
 
 </div>
 </div>
@@ -582,7 +650,7 @@ Variables</h2></td></tr>
 </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="navigation_8h_source.html#l00028">28</a> of file <a class="el" href="navigation_8h_source.html">navigation.h</a>.</p>
+<p>Definition at line <a class="el" href="navigation_8h_source.html#l00029">29</a> of file <a class="el" href="navigation_8h_source.html">navigation.h</a>.</p>
 
 </div>
 </div>
@@ -627,7 +695,7 @@ Variables</h2></td></tr>
 </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="navigation_8h_source.html#l00043">43</a> of file <a class="el" href="navigation_8h_source.html">navigation.h</a>.</p>
+<p>Definition at line <a class="el" href="navigation_8h_source.html#l00044">44</a> of file <a class="el" href="navigation_8h_source.html">navigation.h</a>.</p>
 
 </div>
 </div>
@@ -656,7 +724,7 @@ Variables</h2></td></tr>
 </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="navigation_8h_source.html#l00021">21</a> of file <a class="el" href="navigation_8h_source.html">navigation.h</a>.</p>
+<p>Definition at line <a class="el" href="navigation_8h_source.html#l00022">22</a> of file <a class="el" href="navigation_8h_source.html">navigation.h</a>.</p>
 
 </div>
 </div>
@@ -695,7 +763,7 @@ Variables</h2></td></tr>
 </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="navigation_8h_source.html#l00051">51</a> of file <a class="el" href="navigation_8h_source.html">navigation.h</a>.</p>
+<p>Definition at line <a class="el" href="navigation_8h_source.html#l00052">52</a> of file <a class="el" href="navigation_8h_source.html">navigation.h</a>.</p>
 
 </div>
 </div>
@@ -728,6 +796,57 @@ Variables</h2></td></tr>
 </div>
 </div>
 <hr/><h2>Variable Documentation</h2>
+<a class="anchor" id="a13d57d0e366139689356754d049ca38b"></a><!-- doxytag: member="IDP::BASELINE_INTEGRAL_GAIN" ref="a13d57d0e366139689356754d049ca38b" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const double <a class="el" href="namespaceIDP.html#a13d57d0e366139689356754d049ca38b">IDP::BASELINE_INTEGRAL_GAIN</a> = 5.0</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Baseline integral gain for full speed operation. </p>
+
+<p>Definition at line <a class="el" href="line__following_8h_source.html#l00025">25</a> of file <a class="el" href="line__following_8h_source.html">line_following.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad49ae86fe58241291415f56ea64c8ac8"></a><!-- doxytag: member="IDP::BASELINE_STRAIGHT_TIMEOUT" ref="ad49ae86fe58241291415f56ea64c8ac8" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const short unsigned int <a class="el" href="namespaceIDP.html#ad49ae86fe58241291415f56ea64c8ac8">IDP::BASELINE_STRAIGHT_TIMEOUT</a> = 50</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Baseline LOST timeout for full speed straight line navigation. </p>
+
+<p>Definition at line <a class="el" href="line__following_8h_source.html#l00030">30</a> of file <a class="el" href="line__following_8h_source.html">line_following.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad315440c84ff5573297a088ffafc1b92"></a><!-- doxytag: member="IDP::BASELINE_TURN_TIMEOUT" ref="ad315440c84ff5573297a088ffafc1b92" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const short unsigned int <a class="el" href="namespaceIDP.html#ad315440c84ff5573297a088ffafc1b92">IDP::BASELINE_TURN_TIMEOUT</a> = 200</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Baseline LOST timeout for full speed turning actions. </p>
+
+<p>Definition at line <a class="el" href="line__following_8h_source.html#l00035">35</a> of file <a class="el" href="line__following_8h_source.html">line_following.h</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="afa01378acc238f4bd41d8eb304f7afd7"></a><!-- doxytag: member="IDP::EDGE_ERROR" ref="afa01378acc238f4bd41d8eb304f7afd7" args="" -->
 <div class="memitem">
 <div class="memproto">
@@ -741,58 +860,7 @@ Variables</h2></td></tr>
 
 <p>How much an outer sensor seeing the edge of a line should add to the appropriate error. </p>
 
-<p>Definition at line <a class="el" href="line__following_8h_source.html#l00043">43</a> of file <a class="el" href="line__following_8h_source.html">line_following.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a9107eef10d68ba30176633afd87f1ed4"></a><!-- doxytag: member="IDP::INTEGRAL_GAIN" ref="a9107eef10d68ba30176633afd87f1ed4" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const double <a class="el" href="namespaceIDP.html#a9107eef10d68ba30176633afd87f1ed4">IDP::INTEGRAL_GAIN</a> = 5.0</td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Constant for integral control in line following. </p>
-
-<p>Definition at line <a class="el" href="line__following_8h_source.html#l00020">20</a> of file <a class="el" href="line__following_8h_source.html">line_following.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ac845248570cca0705d43e2dbb085c3cb"></a><!-- doxytag: member="IDP::LOST_TIMEOUT" ref="ac845248570cca0705d43e2dbb085c3cb" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const unsigned int <a class="el" href="namespaceIDP.html#ac845248570cca0705d43e2dbb085c3cb">IDP::LOST_TIMEOUT</a> = 50</td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>The number of loop iterations before we count as lost when driving straight. </p>
-
-<p>Definition at line <a class="el" href="line__following_8h_source.html#l00031">31</a> of file <a class="el" href="line__following_8h_source.html">line_following.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a518ca50cb25167a9930b2099282bb938"></a><!-- doxytag: member="IDP::LOST_TURNING_TIMEOUT" ref="a518ca50cb25167a9930b2099282bb938" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const unsigned int <a class="el" href="namespaceIDP.html#a518ca50cb25167a9930b2099282bb938">IDP::LOST_TURNING_TIMEOUT</a> = 400</td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>The number of loop iterations before we count as lost when turning around. </p>
-
-<p>Definition at line <a class="el" href="line__following_8h_source.html#l00037">37</a> of file <a class="el" href="line__following_8h_source.html">line_following.h</a>.</p>
+<p>Definition at line <a class="el" href="line__following_8h_source.html#l00041">41</a> of file <a class="el" href="line__following_8h_source.html">line_following.h</a>.</p>
 
 </div>
 </div>
@@ -809,7 +877,7 @@ Variables</h2></td></tr>
 
 <p>Maximum differential correction value before it gets capped. </p>
 
-<p>Definition at line <a class="el" href="line__following_8h_source.html#l00025">25</a> of file <a class="el" href="line__following_8h_source.html">line_following.h</a>.</p>
+<p>Definition at line <a class="el" href="line__following_8h_source.html#l00020">20</a> of file <a class="el" href="line__following_8h_source.html">line_following.h</a>.</p>
 
 </div>
 </div>
@@ -866,7 +934,7 @@ Variables</h2></td></tr>
 </pre></div>
 <p>The lookup table of NavigationLocations to a pair of NavigationNodes indicating the start and end node (with implied direction). </p>
 
-<p>Definition at line <a class="el" href="navigation_8cc_source.html#l00054">54</a> of file <a class="el" href="navigation_8cc_source.html">navigation.cc</a>.</p>
+<p>Definition at line <a class="el" href="navigation_8cc_source.html#l00055">55</a> of file <a class="el" href="navigation_8cc_source.html">navigation.cc</a>.</p>
 
 </div>
 </div>
@@ -892,7 +960,7 @@ Variables</h2></td></tr>
 <p>The turns at each node. </p>
 <p>Indexed by NavigationDirection and then by NavigationNode </p>
 
-<p>Definition at line <a class="el" href="navigation_8cc_source.html#l00029">29</a> of file <a class="el" href="navigation_8cc_source.html">navigation.cc</a>.</p>
+<p>Definition at line <a class="el" href="navigation_8cc_source.html#l00030">30</a> of file <a class="el" href="navigation_8cc_source.html">navigation.cc</a>.</p>
 
 </div>
 </div>
@@ -915,7 +983,7 @@ Variables</h2></td></tr>
 </pre></div>
 <p>The route to take, node by node. </p>
 
-<p>Definition at line <a class="el" href="navigation_8cc_source.html#l00063">63</a> of file <a class="el" href="navigation_8cc_source.html">navigation.cc</a>.</p>
+<p>Definition at line <a class="el" href="navigation_8cc_source.html#l00064">64</a> of file <a class="el" href="navigation_8cc_source.html">navigation.cc</a>.</p>
 
 </div>
 </div>
@@ -939,7 +1007,7 @@ Variables</h2></td></tr>
 <p>Turns that should be taken at each node in each direction. </p>
 <p>Indexed by NavigationDirection and then by NavigationNode </p>
 
-<p>Definition at line <a class="el" href="navigation_8cc_source.html#l00043">43</a> of file <a class="el" href="navigation_8cc_source.html">navigation.cc</a>.</p>
+<p>Definition at line <a class="el" href="navigation_8cc_source.html#l00044">44</a> of file <a class="el" href="navigation_8cc_source.html">navigation.cc</a>.</p>
 
 </div>
 </div>
@@ -958,7 +1026,7 @@ Variables</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Tue Feb 15 2011 02:35:58 for IDPL108 by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sat Feb 19 2011 01:29:45 for IDPL108 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

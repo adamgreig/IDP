@@ -77,18 +77,22 @@ Static Private Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">The Self-Tests submenu.  <a href="#aebca2af9fb1ec279145eaeb3fd324491"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99">MenuChoice</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1Menu.html#a06ddcaf58c80fbe0d58e1633a7251e21">motor_control</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">The motor control submenu.  <a href="#a06ddcaf58c80fbe0d58e1633a7251e21"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99">MenuChoice</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1Menu.html#a1ab505975b4b0984e32226adc62235f3">navigation</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">The navigation submenu.  <a href="#a1ab505975b4b0984e32226adc62235f3"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99">MenuChoice</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1Menu.html#a4fdf316988d3e78a39ded863001b92a9">clamp_control</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">The clamp control submenu.  <a href="#a4fdf316988d3e78a39ded863001b92a9"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99">MenuChoice</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1Menu.html#a1d459fa26899328e58cc13aae1e0c37e">sensor_tests</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">The sensor tests submenu.  <a href="#a1d459fa26899328e58cc13aae1e0c37e"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99">MenuChoice</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1Menu.html#a14dd286871d1f36f49fad1ef0fca720d">output_tests</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">The output tests submenu.  <a href="#a14dd286871d1f36f49fad1ef0fca720d"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99">MenuChoice</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1Menu.html#a84ee10a2e9ee841158cca8b242f425be">task_tests</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">The task tests submenu.  <a href="#a84ee10a2e9ee841158cca8b242f425be"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>A menu organisation class to allow easy implementation and later additions to a multi-level menu system. </p>
 <p>get_choice will eventually return a MenuChoice but does so by calling appropriate sublevel functions which in turn each pass back up a MenuChoice, allowing sublevels to be implemented somewhat independently of the higher level menus. </p>
 
-<p>Definition at line <a class="el" href="menu_8h_source.html#l00037">37</a> of file <a class="el" href="menu_8h_source.html">menu.h</a>.</p>
+<p>Definition at line <a class="el" href="menu_8h_source.html#l00041">41</a> of file <a class="el" href="menu_8h_source.html">menu.h</a>.</p>
 <hr/><h2>Member Function Documentation</h2>
 <a class="anchor" id="a4fdf316988d3e78a39ded863001b92a9"></a><!-- doxytag: member="IDP::Menu::clamp_control" ref="a4fdf316988d3e78a39ded863001b92a9" args="()" -->
 <div class="memitem">
@@ -109,7 +113,7 @@ Static Private Member Functions</h2></td></tr>
 <p>The clamp control submenu. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A MenuChoice to indicate the user's selection. </dd></dl>
 
-<p>Definition at line <a class="el" href="menu_8cc_source.html#l00171">171</a> of file <a class="el" href="menu_8cc_source.html">menu.cc</a>.</p>
+<p>Definition at line <a class="el" href="menu_8cc_source.html#l00222">222</a> of file <a class="el" href="menu_8cc_source.html">menu.cc</a>.</p>
 
 </div>
 </div>
@@ -154,7 +158,29 @@ Static Private Member Functions</h2></td></tr>
 <p>The motor control submenu. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A MenuChoice to indicate the user's selection. </dd></dl>
 
-<p>Definition at line <a class="el" href="menu_8cc_source.html#l00124">124</a> of file <a class="el" href="menu_8cc_source.html">menu.cc</a>.</p>
+<p>Definition at line <a class="el" href="menu_8cc_source.html#l00134">134</a> of file <a class="el" href="menu_8cc_source.html">menu.cc</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1ab505975b4b0984e32226adc62235f3"></a><!-- doxytag: member="IDP::Menu::navigation" ref="a1ab505975b4b0984e32226adc62235f3" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99">MenuChoice</a> IDP::Menu::navigation </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [static, private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>The navigation submenu. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A MenuChoice to indicate the user's selection. </dd></dl>
+
+<p>Definition at line <a class="el" href="menu_8cc_source.html#l00181">181</a> of file <a class="el" href="menu_8cc_source.html">menu.cc</a>.</p>
 
 </div>
 </div>
@@ -176,7 +202,7 @@ Static Private Member Functions</h2></td></tr>
 <p>The output tests submenu. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A MenuChoice to indicate the user's selection. </dd></dl>
 
-<p>Definition at line <a class="el" href="menu_8cc_source.html#l00241">241</a> of file <a class="el" href="menu_8cc_source.html">menu.cc</a>.</p>
+<p>Definition at line <a class="el" href="menu_8cc_source.html#l00298">298</a> of file <a class="el" href="menu_8cc_source.html">menu.cc</a>.</p>
 
 </div>
 </div>
@@ -198,7 +224,7 @@ Static Private Member Functions</h2></td></tr>
 <p>The Self-Tests submenu. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A MenuChoice to indicate the user's selection. </dd></dl>
 
-<p>Definition at line <a class="el" href="menu_8cc_source.html#l00069">69</a> of file <a class="el" href="menu_8cc_source.html">menu.cc</a>.</p>
+<p>Definition at line <a class="el" href="menu_8cc_source.html#l00072">72</a> of file <a class="el" href="menu_8cc_source.html">menu.cc</a>.</p>
 
 </div>
 </div>
@@ -220,7 +246,29 @@ Static Private Member Functions</h2></td></tr>
 <p>The sensor tests submenu. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A MenuChoice to indicate the user's selection. </dd></dl>
 
-<p>Definition at line <a class="el" href="menu_8cc_source.html#l00206">206</a> of file <a class="el" href="menu_8cc_source.html">menu.cc</a>.</p>
+<p>Definition at line <a class="el" href="menu_8cc_source.html#l00263">263</a> of file <a class="el" href="menu_8cc_source.html">menu.cc</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a84ee10a2e9ee841158cca8b242f425be"></a><!-- doxytag: member="IDP::Menu::task_tests" ref="a84ee10a2e9ee841158cca8b242f425be" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99">MenuChoice</a> IDP::Menu::task_tests </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [static, private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>The task tests submenu. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A MenuChoice to indicate the user's selection. </dd></dl>
+
+<p>Definition at line <a class="el" href="menu_8cc_source.html#l00336">336</a> of file <a class="el" href="menu_8cc_source.html">menu.cc</a>.</p>
 
 </div>
 </div>
@@ -243,7 +291,7 @@ Static Private Member Functions</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Tue Feb 15 2011 02:35:58 for IDPL108 by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sat Feb 19 2011 01:29:45 for IDPL108 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

@@ -70,21 +70,34 @@ Collaboration diagram for IDP::Navigation:</div>
 <div class="dyncontent">
 <div class="center"><img src="classIDP_1_1Navigation__coll__graph.png" border="0" usemap="#IDP_1_1Navigation_coll__map" alt="Collaboration graph"/></div>
 <map name="IDP_1_1Navigation_coll__map" id="IDP_1_1Navigation_coll__map">
-<area shape="rect" id="node2" href="classIDP_1_1HardwareAbstractionLayer.html" title="Provide a hardware agnostic interface to the required hardware functionality." alt="" coords="5,6,208,37"/><area shape="rect" id="node4" href="classIDP_1_1LineFollowing.html" title="Maintain the robot position correctly with respect to the white line markers, during driving and mano..." alt="" coords="117,105,248,135"/></map>
+<area shape="rect" id="node2" href="classIDP_1_1ClampControl.html" title="Manage the actuation of the clamp, as well as the detection and analysis of bobbins for their colour ..." alt="" coords="47,105,178,135"/><area shape="rect" id="node4" href="classIDP_1_1HardwareAbstractionLayer.html" title="Provide a hardware agnostic interface to the required hardware functionality." alt="" coords="11,6,214,37"/><area shape="rect" id="node7" href="classIDP_1_1LineFollowing.html" title="Maintain the robot position correctly with respect to the white line markers, during driving and mano..." alt="" coords="202,105,333,135"/></map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 
 <p><a href="classIDP_1_1Navigation-members.html">List of all members.</a></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1Navigation.html#afc2747e51acc44614f67cb0a785f76ac">Navigation</a> (<a class="el" href="classIDP_1_1HardwareAbstractionLayer.html">HardwareAbstractionLayer</a> *hal, const <a class="el" href="namespaceIDP.html#a286f26dda01010063dff761803b4cd16">NavigationNode</a> from, const <a class="el" href="namespaceIDP.html#a286f26dda01010063dff761803b4cd16">NavigationNode</a> to)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise the class, storing the const pointer to the HAL.  <a href="#afc2747e51acc44614f67cb0a785f76ac"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1Navigation.html#a64f24e5626793721a8223ba95e6458dd">Navigation</a> (<a class="el" href="classIDP_1_1HardwareAbstractionLayer.html">HardwareAbstractionLayer</a> *hal, const <a class="el" href="namespaceIDP.html#a286f26dda01010063dff761803b4cd16">NavigationNode</a> from=NODE8, const <a class="el" href="namespaceIDP.html#a286f26dda01010063dff761803b4cd16">NavigationNode</a> to=NODE7)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise the class, storing the pointer to the HAL.  <a href="#a64f24e5626793721a8223ba95e6458dd"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1Navigation.html#a2af5390d05f2058beb841030f9aea0c0">~Navigation</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Destruct <a class="el" href="classIDP_1_1Navigation.html" title="Find a route from one place to another on the board, and maintain an estimate of the current position...">Navigation</a>, deleting the <a class="el" href="classIDP_1_1LineFollowing.html" title="Maintain the robot position correctly with respect to the white line markers, during driving and mano...">LineFollowing</a> object.  <a href="#a2af5390d05f2058beb841030f9aea0c0"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceIDP.html#a1a96e566e4d675fdf20780cc96d92283">NavigationStatus</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1Navigation.html#aba1ab266d223b517fdc3cf6bc3d8e84c">go</a> (const <a class="el" href="namespaceIDP.html#ab9c412f0fd539b5d70385066c30465a0">NavigationLocation</a> location)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Go to a NavigationLocation.  <a href="#aba1ab266d223b517fdc3cf6bc3d8e84c"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceIDP.html#a1a96e566e4d675fdf20780cc96d92283">NavigationStatus</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1Navigation.html#af4d6ce82c7ca34bab80833d478b7b7c5">find_bobbin</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Navigate to the starting box and commence a run along the bobbin rack.  <a href="#af4d6ce82c7ca34bab80833d478b7b7c5"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceIDP.html#a1a96e566e4d675fdf20780cc96d92283">NavigationStatus</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1Navigation.html#a1fd41b4c4a734317f0277a25da7c6ad0">find_next_bobbin</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Drive forwards at a slow speed, and return only when a bobbin is present.  <a href="#a1fd41b4c4a734317f0277a25da7c6ad0"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceIDP.html#a1a96e566e4d675fdf20780cc96d92283">NavigationStatus</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1Navigation.html#ae8f0986676e2a2e11a121e7730a70070">find_box</a> (<a class="el" href="namespaceIDP.html#ad90955841bc9492fb53b1f89cc667e18">Box</a> box)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceIDP.html#a1a96e566e4d675fdf20780cc96d92283">NavigationStatus</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1Navigation.html#a901e7ea6434975fb6e69b7764ce61793">find_box_for_pickup</a> (<a class="el" href="namespaceIDP.html#ad90955841bc9492fb53b1f89cc667e18">Box</a> box)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Go and find a box and position the robot ready to pick the box up, or analyse its contents.  <a href="#a901e7ea6434975fb6e69b7764ce61793"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceIDP.html#a1a96e566e4d675fdf20780cc96d92283">NavigationStatus</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1Navigation.html#a3e660be6e13f87e3a354a2acc1b43e83">find_box_for_drop</a> (<a class="el" href="namespaceIDP.html#ad90955841bc9492fb53b1f89cc667e18">Box</a> box)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Go and find a box and position the robot such that dropping a bobbin will land it in the box.  <a href="#a3e660be6e13f87e3a354a2acc1b43e83"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceIDP.html#a1a96e566e4d675fdf20780cc96d92283">NavigationStatus</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1Navigation.html#a86127033cad467249583319cde79a18e">go_to_delivery</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Navigate to the delivery area and align for delivery.  <a href="#a86127033cad467249583319cde79a18e"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceIDP.html#a1a96e566e4d675fdf20780cc96d92283">NavigationStatus</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1Navigation.html#a3cbe6924710b95c911d41612e9c4d862">finished_delivery</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Navigate out of the delivery area and get back onto the path.  <a href="#a3cbe6924710b95c911d41612e9c4d862"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceIDP.html#a1a96e566e4d675fdf20780cc96d92283">NavigationStatus</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1Navigation.html#a24b977f20868a385251d4becf187b815">go_node</a> (const <a class="el" href="namespaceIDP.html#a286f26dda01010063dff761803b4cd16">NavigationNode</a> target)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Go to a particular NavigationNode.  <a href="#a24b977f20868a385251d4becf187b815"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceIDP.html#a1a96e566e4d675fdf20780cc96d92283">NavigationStatus</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1Navigation.html#ab387bedd6d9f052b935565ac05aec2c4">go_home</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Return to home, which is to say the starting box.  <a href="#ab387bedd6d9f052b935565ac05aec2c4"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1Navigation.html#aa7701df4743c75289360a32dfa56d4fc">update_cache</a> ()</td></tr>
@@ -101,15 +114,16 @@ Private Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceIDP.html#a286f26dda01010063dff761803b4cd16">NavigationNode</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1Navigation.html#a7ce2cbd9199af73b36d4e887282a38e6">_from</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceIDP.html#a286f26dda01010063dff761803b4cd16">NavigationNode</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1Navigation.html#a76df45b8316e55560e1adc9165700d0f">_to</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classIDP_1_1LineFollowing.html">LineFollowing</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1Navigation.html#a61d775069513302fa6b23c64da7a6ec4">_lf</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classIDP_1_1ClampControl.html">ClampControl</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1Navigation.html#a49b7088c125ef5c7a5227e2242b84947">_cc</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceIDP.html#a628dde0214c4c861deda405e77ad75a2">NavigationCachedJunction</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1Navigation.html#a5d511a56a6f3bdcfde2619ae4d75dcaa">_cached_junction</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1Navigation.html#aa0bdef936676bd9ba41ec24994c4adc8">_doing_second_turn</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDP_1_1Navigation.html#afedddd1408af4893658b8f49d4200af8">_reached_special_case_junction</a></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>Find a route from one place to another on the board, and maintain an estimate of the current position. </p>
 
-<p>Definition at line <a class="el" href="navigation_8h_source.html#l00114">114</a> of file <a class="el" href="navigation_8h_source.html">navigation.h</a>.</p>
+<p>Definition at line <a class="el" href="navigation_8h_source.html#l00129">129</a> of file <a class="el" href="navigation_8h_source.html">navigation.h</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="afc2747e51acc44614f67cb0a785f76ac"></a><!-- doxytag: member="IDP::Navigation::Navigation" ref="afc2747e51acc44614f67cb0a785f76ac" args="(HardwareAbstractionLayer *hal, const NavigationNode from, const NavigationNode to)" -->
+<a class="anchor" id="a64f24e5626793721a8223ba95e6458dd"></a><!-- doxytag: member="IDP::Navigation::Navigation" ref="a64f24e5626793721a8223ba95e6458dd" args="(HardwareAbstractionLayer *hal, const NavigationNode from=NODE8, const NavigationNode to=NODE7)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -123,13 +137,13 @@ Private Attributes</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const <a class="el" href="namespaceIDP.html#a286f26dda01010063dff761803b4cd16">NavigationNode</a>&nbsp;</td>
-          <td class="paramname"> <em>from</em> = <code>NODE7</code>, </td>
+          <td class="paramname"> <em>from</em> = <code>NODE8</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const <a class="el" href="namespaceIDP.html#a286f26dda01010063dff761803b4cd16">NavigationNode</a>&nbsp;</td>
-          <td class="paramname"> <em>to</em> = <code>NODE8</code></td><td>&nbsp;</td>
+          <td class="paramname"> <em>to</em> = <code>NODE7</code></td><td>&nbsp;</td>
         </tr>
         <tr>
           <td></td>
@@ -140,7 +154,7 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Initialise the class, storing the const pointer to the HAL. </p>
+<p>Initialise the class, storing the pointer to the HAL. </p>
 <p>The optional parameters from and to can be used to define the starting position, but default to the 'start box'.</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
@@ -151,7 +165,7 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="navigation_8cc_source.html#l00081">81</a> of file <a class="el" href="navigation_8cc_source.html">navigation.cc</a>.</p>
+<p>Definition at line <a class="el" href="navigation_8cc_source.html#l00082">82</a> of file <a class="el" href="navigation_8cc_source.html">navigation.cc</a>.</p>
 
 </div>
 </div>
@@ -172,20 +186,19 @@ Private Attributes</h2></td></tr>
 
 <p>Destruct <a class="el" href="classIDP_1_1Navigation.html" title="Find a route from one place to another on the board, and maintain an estimate of the current position...">Navigation</a>, deleting the <a class="el" href="classIDP_1_1LineFollowing.html" title="Maintain the robot position correctly with respect to the white line markers, during driving and mano...">LineFollowing</a> object. </p>
 
-<p>Definition at line <a class="el" href="navigation_8cc_source.html#l00098">98</a> of file <a class="el" href="navigation_8cc_source.html">navigation.cc</a>.</p>
+<p>Definition at line <a class="el" href="navigation_8cc_source.html#l00104">104</a> of file <a class="el" href="navigation_8cc_source.html">navigation.cc</a>.</p>
 
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="aba1ab266d223b517fdc3cf6bc3d8e84c"></a><!-- doxytag: member="IDP::Navigation::go" ref="aba1ab266d223b517fdc3cf6bc3d8e84c" args="(const NavigationLocation location)" -->
+<a class="anchor" id="af4d6ce82c7ca34bab80833d478b7b7c5"></a><!-- doxytag: member="IDP::Navigation::find_bobbin" ref="af4d6ce82c7ca34bab80833d478b7b7c5" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespaceIDP.html#a1a96e566e4d675fdf20780cc96d92283">NavigationStatus</a> IDP::Navigation::go </td>
+          <td class="memname"><a class="el" href="namespaceIDP.html#a1a96e566e4d675fdf20780cc96d92283">NavigationStatus</a> IDP::Navigation::find_bobbin </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespaceIDP.html#ab9c412f0fd539b5d70385066c30465a0">NavigationLocation</a>&nbsp;</td>
-          <td class="paramname"> <em>location</em></td>
+          <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
           <td></td>
         </tr>
@@ -193,10 +206,152 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Go to a NavigationLocation. </p>
+<p>Navigate to the starting box and commence a run along the bobbin rack. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A NavigationStatus code. </dd></dl>
+
+<p>Definition at line <a class="el" href="navigation_8cc_source.html#l00197">197</a> of file <a class="el" href="navigation_8cc_source.html">navigation.cc</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae8f0986676e2a2e11a121e7730a70070"></a><!-- doxytag: member="IDP::Navigation::find_box" ref="ae8f0986676e2a2e11a121e7730a70070" args="(Box box)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceIDP.html#a1a96e566e4d675fdf20780cc96d92283">NavigationStatus</a> IDP::Navigation::find_box </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespaceIDP.html#ad90955841bc9492fb53b1f89cc667e18">Box</a>&nbsp;</td>
+          <td class="paramname"> <em>box</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a3e660be6e13f87e3a354a2acc1b43e83"></a><!-- doxytag: member="IDP::Navigation::find_box_for_drop" ref="a3e660be6e13f87e3a354a2acc1b43e83" args="(Box box)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceIDP.html#a1a96e566e4d675fdf20780cc96d92283">NavigationStatus</a> IDP::Navigation::find_box_for_drop </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespaceIDP.html#ad90955841bc9492fb53b1f89cc667e18">Box</a>&nbsp;</td>
+          <td class="paramname"> <em>box</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Go and find a box and position the robot such that dropping a bobbin will land it in the box. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>box</em>&nbsp;</td><td>The Box to which to navigate for bobbin drop. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A NavigationStatus code. </dd></dl>
+
+<p>Definition at line <a class="el" href="navigation_8cc_source.html#l00120">120</a> of file <a class="el" href="navigation_8cc_source.html">navigation.cc</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a901e7ea6434975fb6e69b7764ce61793"></a><!-- doxytag: member="IDP::Navigation::find_box_for_pickup" ref="a901e7ea6434975fb6e69b7764ce61793" args="(Box box)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceIDP.html#a1a96e566e4d675fdf20780cc96d92283">NavigationStatus</a> IDP::Navigation::find_box_for_pickup </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespaceIDP.html#ad90955841bc9492fb53b1f89cc667e18">Box</a>&nbsp;</td>
+          <td class="paramname"> <em>box</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Go and find a box and position the robot ready to pick the box up, or analyse its contents. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>box</em>&nbsp;</td><td>The Box to which to navigate for pickup. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A NavigationStatus code. </dd></dl>
+
+<p>Definition at line <a class="el" href="navigation_8cc_source.html#l00154">154</a> of file <a class="el" href="navigation_8cc_source.html">navigation.cc</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1fd41b4c4a734317f0277a25da7c6ad0"></a><!-- doxytag: member="IDP::Navigation::find_next_bobbin" ref="a1fd41b4c4a734317f0277a25da7c6ad0" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceIDP.html#a1a96e566e4d675fdf20780cc96d92283">NavigationStatus</a> IDP::Navigation::find_next_bobbin </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Drive forwards at a slow speed, and return only when a bobbin is present. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A NavigationStatus code </dd></dl>
 
-<p>Definition at line <a class="el" href="navigation_8cc_source.html#l00110">110</a> of file <a class="el" href="navigation_8cc_source.html">navigation.cc</a>.</p>
+<p>Definition at line <a class="el" href="navigation_8cc_source.html#l00234">234</a> of file <a class="el" href="navigation_8cc_source.html">navigation.cc</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a3cbe6924710b95c911d41612e9c4d862"></a><!-- doxytag: member="IDP::Navigation::finished_delivery" ref="a3cbe6924710b95c911d41612e9c4d862" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceIDP.html#a1a96e566e4d675fdf20780cc96d92283">NavigationStatus</a> IDP::Navigation::finished_delivery </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Navigate out of the delivery area and get back onto the path. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A NavigationStatus code </dd></dl>
+
+<p>Definition at line <a class="el" href="navigation_8cc_source.html#l00303">303</a> of file <a class="el" href="navigation_8cc_source.html">navigation.cc</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab387bedd6d9f052b935565ac05aec2c4"></a><!-- doxytag: member="IDP::Navigation::go_home" ref="ab387bedd6d9f052b935565ac05aec2c4" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceIDP.html#a1a96e566e4d675fdf20780cc96d92283">NavigationStatus</a> IDP::Navigation::go_home </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Return to home, which is to say the starting box. </p>
+<p>In addition, ensure we are facing the right direction (clockwise) </p>
+
+<p>Definition at line <a class="el" href="navigation_8cc_source.html#l00369">369</a> of file <a class="el" href="navigation_8cc_source.html">navigation.cc</a>.</p>
 
 </div>
 </div>
@@ -219,7 +374,29 @@ Private Attributes</h2></td></tr>
 <p>Go to a particular NavigationNode. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A NavigationStatus code </dd></dl>
 
-<p>Definition at line <a class="el" href="navigation_8cc_source.html#l00121">121</a> of file <a class="el" href="navigation_8cc_source.html">navigation.cc</a>.</p>
+<p>Definition at line <a class="el" href="navigation_8cc_source.html#l00335">335</a> of file <a class="el" href="navigation_8cc_source.html">navigation.cc</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a86127033cad467249583319cde79a18e"></a><!-- doxytag: member="IDP::Navigation::go_to_delivery" ref="a86127033cad467249583319cde79a18e" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceIDP.html#a1a96e566e4d675fdf20780cc96d92283">NavigationStatus</a> IDP::Navigation::go_to_delivery </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Navigate to the delivery area and align for delivery. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A NavigationStatus code </dd></dl>
+
+<p>Definition at line <a class="el" href="navigation_8cc_source.html#l00270">270</a> of file <a class="el" href="navigation_8cc_source.html">navigation.cc</a>.</p>
 
 </div>
 </div>
@@ -243,7 +420,7 @@ Private Attributes</h2></td></tr>
 <p>If we are at the target junction, return with NAVIGATION_ARRIVED, or at an intermediate junction look up the required action and then tell <a class="el" href="classIDP_1_1LineFollowing.html" title="Maintain the robot position correctly with respect to the white line markers, during driving and mano...">LineFollowing</a> whether to go straight forward or turn, and keep calling Navigation::turn() as appropriate to execute the turn.</p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>NAVIGATION_ARRIVED if at the target junction, or NAVIGATION_ENROUTE otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="navigation_8cc_source.html#l00261">261</a> of file <a class="el" href="navigation_8cc_source.html">navigation.cc</a>.</p>
+<p>Definition at line <a class="el" href="navigation_8cc_source.html#l00562">562</a> of file <a class="el" href="navigation_8cc_source.html">navigation.cc</a>.</p>
 
 </div>
 </div>
@@ -265,7 +442,7 @@ Private Attributes</h2></td></tr>
 <p>Determine the current direction of travel and then execute an about turn. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A NavigationStatus of NAVIGATION_ENROUTE if currently turning, or NAVIGATION_LOST if line following got lost during the turn. </dd></dl>
 
-<p>Definition at line <a class="el" href="navigation_8cc_source.html#l00187">187</a> of file <a class="el" href="navigation_8cc_source.html">navigation.cc</a>.</p>
+<p>Definition at line <a class="el" href="navigation_8cc_source.html#l00412">412</a> of file <a class="el" href="navigation_8cc_source.html">navigation.cc</a>.</p>
 
 </div>
 </div>
@@ -294,7 +471,7 @@ Private Attributes</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A bool, true if we need to turn around </dd></dl>
 
-<p>Definition at line <a class="el" href="navigation_8cc_source.html#l00156">156</a> of file <a class="el" href="navigation_8cc_source.html">navigation.cc</a>.</p>
+<p>Definition at line <a class="el" href="navigation_8cc_source.html#l00381">381</a> of file <a class="el" href="navigation_8cc_source.html">navigation.cc</a>.</p>
 
 </div>
 </div>
@@ -315,7 +492,7 @@ Private Attributes</h2></td></tr>
 
 <p>Check if we should update the cached junction status and request a new one from <a class="el" href="classIDP_1_1LineFollowing.html" title="Maintain the robot position correctly with respect to the white line markers, during driving and mano...">LineFollowing</a> if required. </p>
 
-<p>Definition at line <a class="el" href="navigation_8cc_source.html#l00228">228</a> of file <a class="el" href="navigation_8cc_source.html">navigation.cc</a>.</p>
+<p>Definition at line <a class="el" href="navigation_8cc_source.html#l00529">529</a> of file <a class="el" href="navigation_8cc_source.html">navigation.cc</a>.</p>
 
 </div>
 </div>
@@ -331,22 +508,22 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="navigation_8h_source.html#l00131">131</a> of file <a class="el" href="navigation_8h_source.html">navigation.h</a>.</p>
+<p>Definition at line <a class="el" href="navigation_8h_source.html#l00154">154</a> of file <a class="el" href="navigation_8h_source.html">navigation.h</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="aa0bdef936676bd9ba41ec24994c4adc8"></a><!-- doxytag: member="IDP::Navigation::_doing_second_turn" ref="aa0bdef936676bd9ba41ec24994c4adc8" args="" -->
+<a class="anchor" id="a49b7088c125ef5c7a5227e2242b84947"></a><!-- doxytag: member="IDP::Navigation::_cc" ref="a49b7088c125ef5c7a5227e2242b84947" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool <a class="el" href="classIDP_1_1Navigation.html#aa0bdef936676bd9ba41ec24994c4adc8">IDP::Navigation::_doing_second_turn</a><code> [private]</code></td>
+          <td class="memname"><a class="el" href="classIDP_1_1ClampControl.html">ClampControl</a>* <a class="el" href="classIDP_1_1Navigation.html#a49b7088c125ef5c7a5227e2242b84947">IDP::Navigation::_cc</a><code> [private]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="navigation_8h_source.html#l00132">132</a> of file <a class="el" href="navigation_8h_source.html">navigation.h</a>.</p>
+<p>Definition at line <a class="el" href="navigation_8h_source.html#l00153">153</a> of file <a class="el" href="navigation_8h_source.html">navigation.h</a>.</p>
 
 </div>
 </div>
@@ -361,7 +538,7 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="navigation_8h_source.html#l00128">128</a> of file <a class="el" href="navigation_8h_source.html">navigation.h</a>.</p>
+<p>Definition at line <a class="el" href="navigation_8h_source.html#l00150">150</a> of file <a class="el" href="navigation_8h_source.html">navigation.h</a>.</p>
 
 </div>
 </div>
@@ -376,7 +553,7 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="navigation_8h_source.html#l00127">127</a> of file <a class="el" href="navigation_8h_source.html">navigation.h</a>.</p>
+<p>Definition at line <a class="el" href="navigation_8h_source.html#l00149">149</a> of file <a class="el" href="navigation_8h_source.html">navigation.h</a>.</p>
 
 </div>
 </div>
@@ -391,7 +568,22 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="navigation_8h_source.html#l00130">130</a> of file <a class="el" href="navigation_8h_source.html">navigation.h</a>.</p>
+<p>Definition at line <a class="el" href="navigation_8h_source.html#l00152">152</a> of file <a class="el" href="navigation_8h_source.html">navigation.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="afedddd1408af4893658b8f49d4200af8"></a><!-- doxytag: member="IDP::Navigation::_reached_special_case_junction" ref="afedddd1408af4893658b8f49d4200af8" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="classIDP_1_1Navigation.html#afedddd1408af4893658b8f49d4200af8">IDP::Navigation::_reached_special_case_junction</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="navigation_8h_source.html#l00155">155</a> of file <a class="el" href="navigation_8h_source.html">navigation.h</a>.</p>
 
 </div>
 </div>
@@ -406,7 +598,7 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="navigation_8h_source.html#l00129">129</a> of file <a class="el" href="navigation_8h_source.html">navigation.h</a>.</p>
+<p>Definition at line <a class="el" href="navigation_8h_source.html#l00151">151</a> of file <a class="el" href="navigation_8h_source.html">navigation.h</a>.</p>
 
 </div>
 </div>
@@ -429,7 +621,7 @@ Private Attributes</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Tue Feb 15 2011 02:35:58 for IDPL108 by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sat Feb 19 2011 01:29:45 for IDPL108 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

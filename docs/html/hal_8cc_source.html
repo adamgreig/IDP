@@ -102,242 +102,325 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00055"></a>00055         DEBUG(<span class="stringliteral">&quot;Setting motor ramp speed to &quot;</span> &lt;&lt; <a class="code" href="namespaceIDP.html#ab3a00a6cc8a6dba271e38d337daf4703" title="How fast to ramp the motors towards the desired speed.">MOTOR_RAMP_TIME</a>);
 <a name="l00056"></a>00056         this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a1a363a3cab8fe7fa099b19395335c0ba">rlink</a>-&gt;command(RAMP_TIME, <a class="code" href="namespaceIDP.html#ab3a00a6cc8a6dba271e38d337daf4703" title="How fast to ramp the motors towards the desired speed.">MOTOR_RAMP_TIME</a>);
 <a name="l00057"></a>00057 
-<a name="l00058"></a>00058     }
-<a name="l00059"></a>00059 
-<a name="l00064"></a><a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a300956b0e2e9f67e7f10baf036bf8616">00064</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a300956b0e2e9f67e7f10baf036bf8616" title="Drive both motors forwards at a given speed.">HardwareAbstractionLayer::motors_forward</a>(
-<a name="l00065"></a>00065         <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> speed)
-<a name="l00066"></a>00066     {
-<a name="l00067"></a>00067         TRACE(<span class="stringliteral">&quot;motors_forward(&quot;</span> &lt;&lt; speed &lt;&lt; <span class="stringliteral">&quot;)&quot;</span>);
-<a name="l00068"></a>00068         DEBUG(<span class="stringliteral">&quot;Driving motors forward, speed &quot;</span> &lt;&lt; speed);
-<a name="l00069"></a>00069 
-<a name="l00070"></a>00070         <span class="keywordflow">if</span>(this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a965df71af228cf82465e4e9ef6a6e1b0" title="Check the motor speed against the set maximum, printing an error and returning true if the speed exce...">check_max_speed</a>(speed)) {
-<a name="l00071"></a>00071             <span class="keywordflow">return</span>;
-<a name="l00072"></a>00072         }
-<a name="l00073"></a>00073 
-<a name="l00074"></a>00074         this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a1a363a3cab8fe7fa099b19395335c0ba">rlink</a>-&gt;command(BOTH_MOTORS_GO_OPPOSITE, (1&lt;&lt;7) | speed);
-<a name="l00075"></a>00075     }
-<a name="l00076"></a>00076 
-<a name="l00081"></a><a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#ac81fbf6aa2bb93837ed276c47556a398">00081</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#ac81fbf6aa2bb93837ed276c47556a398" title="Drive both motors backwards at a given speed.">HardwareAbstractionLayer::motors_backward</a>(
-<a name="l00082"></a>00082         <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> speed)
-<a name="l00083"></a>00083     {
-<a name="l00084"></a>00084         TRACE(<span class="stringliteral">&quot;motors_backward(&quot;</span> &lt;&lt; speed &lt;&lt; <span class="stringliteral">&quot;)&quot;</span>);
-<a name="l00085"></a>00085         DEBUG(<span class="stringliteral">&quot;Driving motors backward, speed &quot;</span> &lt;&lt; speed);
-<a name="l00086"></a>00086 
-<a name="l00087"></a>00087         <span class="keywordflow">if</span>(this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a965df71af228cf82465e4e9ef6a6e1b0" title="Check the motor speed against the set maximum, printing an error and returning true if the speed exce...">check_max_speed</a>(speed)) {
-<a name="l00088"></a>00088             <span class="keywordflow">return</span>;
-<a name="l00089"></a>00089         }
-<a name="l00090"></a>00090 
-<a name="l00091"></a>00091         this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a1a363a3cab8fe7fa099b19395335c0ba">rlink</a>-&gt;command(BOTH_MOTORS_GO_OPPOSITE, (0&lt;&lt;7) | speed);
-<a name="l00092"></a>00092     }
-<a name="l00093"></a>00093 
-<a name="l00098"></a><a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#acf3d3dd4e05c4b50cb31b4d35f21abbf">00098</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#acf3d3dd4e05c4b50cb31b4d35f21abbf" title="Drive the left motor forward at the given speed.">HardwareAbstractionLayer::motor_left_forward</a>(
-<a name="l00099"></a>00099         <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> speed)
-<a name="l00100"></a>00100     {
-<a name="l00101"></a>00101         TRACE(<span class="stringliteral">&quot;motors_turn_right(&quot;</span> &lt;&lt; speed &lt;&lt; <span class="stringliteral">&quot;)&quot;</span>);
-<a name="l00102"></a>00102         DEBUG(<span class="stringliteral">&quot;Setting left motor forward at speed &quot;</span> &lt;&lt; speed);
-<a name="l00103"></a>00103 
-<a name="l00104"></a>00104         <span class="keywordflow">if</span> (this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a965df71af228cf82465e4e9ef6a6e1b0" title="Check the motor speed against the set maximum, printing an error and returning true if the speed exce...">check_max_speed</a>(speed)) {
-<a name="l00105"></a>00105             <span class="keywordflow">return</span>;
-<a name="l00106"></a>00106         }
-<a name="l00107"></a>00107 
-<a name="l00108"></a>00108         this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a1a363a3cab8fe7fa099b19395335c0ba">rlink</a>-&gt;command(MOTOR_1_GO, (1&lt;&lt;7) | speed);
-<a name="l00109"></a>00109     }
-<a name="l00110"></a>00110 
-<a name="l00115"></a><a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#aa2e2e226f2313d769e3ce226dd24d22c">00115</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#aa2e2e226f2313d769e3ce226dd24d22c" title="Drive the right motor forward at the given speed.">HardwareAbstractionLayer::motor_right_forward</a>(
-<a name="l00116"></a>00116         <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> speed)
-<a name="l00117"></a>00117     {
-<a name="l00118"></a>00118         TRACE(<span class="stringliteral">&quot;motor_right_forward(&quot;</span> &lt;&lt; speed &lt;&lt; <span class="stringliteral">&quot;)&quot;</span>);
-<a name="l00119"></a>00119         DEBUG(<span class="stringliteral">&quot;Setting right motor forward at speed &quot;</span> &lt;&lt; speed);
-<a name="l00120"></a>00120 
-<a name="l00121"></a>00121         <span class="keywordflow">if</span> (this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a965df71af228cf82465e4e9ef6a6e1b0" title="Check the motor speed against the set maximum, printing an error and returning true if the speed exce...">check_max_speed</a>(speed)) {
-<a name="l00122"></a>00122             <span class="keywordflow">return</span>;
-<a name="l00123"></a>00123         }
-<a name="l00124"></a>00124 
-<a name="l00125"></a>00125         this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a1a363a3cab8fe7fa099b19395335c0ba">rlink</a>-&gt;command(MOTOR_2_GO, speed);
-<a name="l00126"></a>00126     }
-<a name="l00127"></a>00127 
-<a name="l00132"></a><a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a61b80e2bad5cc6a56a17350b015bfbcc">00132</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a61b80e2bad5cc6a56a17350b015bfbcc" title="Drive the left motor backward at the given speed.">HardwareAbstractionLayer::motor_left_backward</a>(
-<a name="l00133"></a>00133         <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> speed)
-<a name="l00134"></a>00134     {
-<a name="l00135"></a>00135         TRACE(<span class="stringliteral">&quot;motor_left_backward(&quot;</span> &lt;&lt; speed &lt;&lt; <span class="stringliteral">&quot;)&quot;</span>);
-<a name="l00136"></a>00136         DEBUG(<span class="stringliteral">&quot;Setting left motor backward at speed &quot;</span> &lt;&lt; speed);
-<a name="l00137"></a>00137 
-<a name="l00138"></a>00138         <span class="keywordflow">if</span> (this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a965df71af228cf82465e4e9ef6a6e1b0" title="Check the motor speed against the set maximum, printing an error and returning true if the speed exce...">check_max_speed</a>(speed)) {
-<a name="l00139"></a>00139             <span class="keywordflow">return</span>;
-<a name="l00140"></a>00140         }
-<a name="l00141"></a>00141 
-<a name="l00142"></a>00142         this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a1a363a3cab8fe7fa099b19395335c0ba">rlink</a>-&gt;command(MOTOR_1_GO, speed);
-<a name="l00143"></a>00143     }
-<a name="l00144"></a>00144 
-<a name="l00149"></a><a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#aac42c10ca431120a060f9b2c394492ae">00149</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#aac42c10ca431120a060f9b2c394492ae" title="Drive the right motor backward at the given speed.">HardwareAbstractionLayer::motor_right_backward</a>(
-<a name="l00150"></a>00150         <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> speed)
-<a name="l00151"></a>00151     {
-<a name="l00152"></a>00152         TRACE(<span class="stringliteral">&quot;motor_right_backward(&quot;</span> &lt;&lt; speed &lt;&lt; <span class="stringliteral">&quot;)&quot;</span>);
-<a name="l00153"></a>00153         DEBUG(<span class="stringliteral">&quot;Setting right motor backward at speed &quot;</span> &lt;&lt; speed);
-<a name="l00154"></a>00154 
-<a name="l00155"></a>00155         <span class="keywordflow">if</span> (this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a965df71af228cf82465e4e9ef6a6e1b0" title="Check the motor speed against the set maximum, printing an error and returning true if the speed exce...">check_max_speed</a>(speed)) {
-<a name="l00156"></a>00156             <span class="keywordflow">return</span>;
-<a name="l00157"></a>00157         }
-<a name="l00158"></a>00158 
-<a name="l00159"></a>00159         this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a1a363a3cab8fe7fa099b19395335c0ba">rlink</a>-&gt;command(MOTOR_2_GO, (1&lt;&lt;7) | speed);
-<a name="l00160"></a>00160     }
-<a name="l00161"></a>00161 
-<a name="l00166"></a><a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#ae38aaced2f082b6b04ebdd662349b1d2">00166</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#ae38aaced2f082b6b04ebdd662349b1d2" title="Drive the motors to steer the robot to the left.">HardwareAbstractionLayer::motors_turn_left</a>(
-<a name="l00167"></a>00167         <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> speed)
-<a name="l00168"></a>00168     {
-<a name="l00169"></a>00169         TRACE(<span class="stringliteral">&quot;motors_turn_left(&quot;</span> &lt;&lt; speed &lt;&lt; <span class="stringliteral">&quot;)&quot;</span>);
-<a name="l00170"></a>00170         DEBUG(<span class="stringliteral">&quot;Turning motors left, speed &quot;</span> &lt;&lt; speed);
-<a name="l00171"></a>00171 
-<a name="l00172"></a>00172         <span class="keywordflow">if</span>(this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a965df71af228cf82465e4e9ef6a6e1b0" title="Check the motor speed against the set maximum, printing an error and returning true if the speed exce...">check_max_speed</a>(speed)) {
-<a name="l00173"></a>00173             <span class="keywordflow">return</span>;
-<a name="l00174"></a>00174         }
-<a name="l00175"></a>00175 
-<a name="l00176"></a>00176         this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a1a363a3cab8fe7fa099b19395335c0ba">rlink</a>-&gt;command(BOTH_MOTORS_GO_SAME, (1&lt;&lt;7) | speed);
-<a name="l00177"></a>00177     }
-<a name="l00178"></a>00178 
-<a name="l00183"></a><a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#ad1fba0e8cb2c9ad902c8e4ec34e5e622">00183</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#ad1fba0e8cb2c9ad902c8e4ec34e5e622" title="Drive the motors to steer the robot to the right.">HardwareAbstractionLayer::motors_turn_right</a>(
-<a name="l00184"></a>00184         <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> speed)
-<a name="l00185"></a>00185     {
-<a name="l00186"></a>00186         TRACE(<span class="stringliteral">&quot;motors_turn_right(&quot;</span> &lt;&lt; speed &lt;&lt; <span class="stringliteral">&quot;)&quot;</span>);
-<a name="l00187"></a>00187         DEBUG(<span class="stringliteral">&quot;Turning motors right, speed &quot;</span> &lt;&lt; speed);
-<a name="l00188"></a>00188 
-<a name="l00189"></a>00189         <span class="keywordflow">if</span>(this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a965df71af228cf82465e4e9ef6a6e1b0" title="Check the motor speed against the set maximum, printing an error and returning true if the speed exce...">check_max_speed</a>(speed)) {
-<a name="l00190"></a>00190             <span class="keywordflow">return</span>;
-<a name="l00191"></a>00191         }
-<a name="l00192"></a>00192 
-<a name="l00193"></a>00193         this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a1a363a3cab8fe7fa099b19395335c0ba">rlink</a>-&gt;command(BOTH_MOTORS_GO_SAME, (0&lt;&lt;7) | speed);
-<a name="l00194"></a>00194     }
-<a name="l00195"></a>00195 
-<a name="l00199"></a><a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a4f8f0340f3ac64c3f676b700b7e36229">00199</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a4f8f0340f3ac64c3f676b700b7e36229" title="Stop all motors.">HardwareAbstractionLayer::motors_stop</a>()
-<a name="l00200"></a>00200     {
-<a name="l00201"></a>00201         TRACE(<span class="stringliteral">&quot;motors_stop()&quot;</span>);
-<a name="l00202"></a>00202         INFO(<span class="stringliteral">&quot;Stopping all motors&quot;</span>);
-<a name="l00203"></a>00203         this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a1a363a3cab8fe7fa099b19395335c0ba">rlink</a>-&gt;command(MOTOR_1_GO, 0);
-<a name="l00204"></a>00204         this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a1a363a3cab8fe7fa099b19395335c0ba">rlink</a>-&gt;command(MOTOR_2_GO, 0);
-<a name="l00205"></a>00205         this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a1a363a3cab8fe7fa099b19395335c0ba">rlink</a>-&gt;command(MOTOR_3_GO, 0);
-<a name="l00206"></a>00206         this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a1a363a3cab8fe7fa099b19395335c0ba">rlink</a>-&gt;command(MOTOR_4_GO, 0);
-<a name="l00207"></a>00207     }
-<a name="l00208"></a>00208 
-<a name="l00214"></a><a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#aca143d627de2ff9942069ad922d17ee5">00214</a>     <span class="keyword">const</span> <a class="code" href="structIDP_1_1LineSensors.html" title="Contains the LINE or NO_LINE status of each of the four IR sensors used for line following.">LineSensors</a> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#aca143d627de2ff9942069ad922d17ee5" title="Read the I/O port connected to the line following sensors, then return a struct with their current st...">HardwareAbstractionLayer::line_following_sensors</a>()<span class="keyword"> const</span>
-<a name="l00215"></a>00215 <span class="keyword">    </span>{
-<a name="l00216"></a>00216         TRACE(<span class="stringliteral">&quot;line_following_sensors()&quot;</span>);
-<a name="l00217"></a>00217         DEBUG(<span class="stringliteral">&quot;Reading line following sensors&quot;</span>);
+<a name="l00058"></a>00058         <span class="comment">// Initialise the value of the sensor port</span>
+<a name="l00059"></a>00059         DEBUG(<span class="stringliteral">&quot;Reading the value of the hardware port&quot;</span>);
+<a name="l00060"></a>00060         this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a89e089becb312ef6ffe0fbc18f409b99">_port7</a> = this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a1a363a3cab8fe7fa099b19395335c0ba">rlink</a>-&gt;request(READ_PORT_7);
+<a name="l00061"></a>00061 
+<a name="l00062"></a>00062         <span class="comment">// Setting PORT0 to all inputs</span>
+<a name="l00063"></a>00063         this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a1a363a3cab8fe7fa099b19395335c0ba">rlink</a>-&gt;command(WRITE_PORT_0, 0xFF);
+<a name="l00064"></a>00064 
+<a name="l00065"></a>00065         <span class="comment">// Set emergency stop to the appropriate pin (front microswitch)</span>
+<a name="l00066"></a>00066         this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#ad50b39b58566064c5bb5b0500f2d750e" title="Set the emergency stop registers so that the front microswitch will trigger a stop.">enable_emergency_stop</a>();
+<a name="l00067"></a>00067 
+<a name="l00068"></a>00068         <span class="comment">// Turn on the indication LEDs</span>
+<a name="l00069"></a>00069         this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a0ffde4a54900074b646efd285d9d6807" title="Set the bobbin colour indication LEDs.">indication_LEDs</a>(<span class="keyword">true</span>, <span class="keyword">true</span>, <span class="keyword">true</span>);
+<a name="l00070"></a>00070     }
+<a name="l00071"></a>00071 
+<a name="l00075"></a><a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a0ddd51fb38c5fa8ecbfcd2004af2a468">00075</a>     <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a0ddd51fb38c5fa8ecbfcd2004af2a468" title="Destruct the robot link.">HardwareAbstractionLayer::~HardwareAbstractionLayer</a>()
+<a name="l00076"></a>00076     {
+<a name="l00077"></a>00077         TRACE(<span class="stringliteral">&quot;~HardwareAbstractionLayer()&quot;</span>);
+<a name="l00078"></a>00078 
+<a name="l00079"></a>00079         <span class="keywordflow">if</span>(this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a1a363a3cab8fe7fa099b19395335c0ba">rlink</a>)
+<a name="l00080"></a>00080             <span class="keyword">delete</span> this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a1a363a3cab8fe7fa099b19395335c0ba">rlink</a>;
+<a name="l00081"></a>00081     }
+<a name="l00082"></a>00082 
+<a name="l00087"></a><a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a300956b0e2e9f67e7f10baf036bf8616">00087</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a300956b0e2e9f67e7f10baf036bf8616" title="Drive both motors forwards at a given speed.">HardwareAbstractionLayer::motors_forward</a>(
+<a name="l00088"></a>00088         <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> speed)
+<a name="l00089"></a>00089     {
+<a name="l00090"></a>00090         TRACE(<span class="stringliteral">&quot;motors_forward(&quot;</span> &lt;&lt; speed &lt;&lt; <span class="stringliteral">&quot;)&quot;</span>);
+<a name="l00091"></a>00091         DEBUG(<span class="stringliteral">&quot;Driving motors forward, speed &quot;</span> &lt;&lt; speed);
+<a name="l00092"></a>00092 
+<a name="l00093"></a>00093         <span class="keywordflow">if</span>(this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a965df71af228cf82465e4e9ef6a6e1b0" title="Check the motor speed against the set maximum, printing an error and returning true if the speed exce...">check_max_speed</a>(speed)) {
+<a name="l00094"></a>00094             <span class="keywordflow">return</span>;
+<a name="l00095"></a>00095         }
+<a name="l00096"></a>00096 
+<a name="l00097"></a>00097         this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a1a363a3cab8fe7fa099b19395335c0ba">rlink</a>-&gt;command(BOTH_MOTORS_GO_OPPOSITE, (1&lt;&lt;7) | speed);
+<a name="l00098"></a>00098     }
+<a name="l00099"></a>00099 
+<a name="l00104"></a><a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#ac81fbf6aa2bb93837ed276c47556a398">00104</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#ac81fbf6aa2bb93837ed276c47556a398" title="Drive both motors backwards at a given speed.">HardwareAbstractionLayer::motors_backward</a>(
+<a name="l00105"></a>00105         <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> speed)
+<a name="l00106"></a>00106     {
+<a name="l00107"></a>00107         TRACE(<span class="stringliteral">&quot;motors_backward(&quot;</span> &lt;&lt; speed &lt;&lt; <span class="stringliteral">&quot;)&quot;</span>);
+<a name="l00108"></a>00108         DEBUG(<span class="stringliteral">&quot;Driving motors backward, speed &quot;</span> &lt;&lt; speed);
+<a name="l00109"></a>00109 
+<a name="l00110"></a>00110         <span class="keywordflow">if</span>(this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a965df71af228cf82465e4e9ef6a6e1b0" title="Check the motor speed against the set maximum, printing an error and returning true if the speed exce...">check_max_speed</a>(speed)) {
+<a name="l00111"></a>00111             <span class="keywordflow">return</span>;
+<a name="l00112"></a>00112         }
+<a name="l00113"></a>00113 
+<a name="l00114"></a>00114         this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a1a363a3cab8fe7fa099b19395335c0ba">rlink</a>-&gt;command(BOTH_MOTORS_GO_OPPOSITE, (0&lt;&lt;7) | speed);
+<a name="l00115"></a>00115     }
+<a name="l00116"></a>00116 
+<a name="l00121"></a><a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#acf3d3dd4e05c4b50cb31b4d35f21abbf">00121</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#acf3d3dd4e05c4b50cb31b4d35f21abbf" title="Drive the left motor forward at the given speed.">HardwareAbstractionLayer::motor_left_forward</a>(
+<a name="l00122"></a>00122         <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> speed)
+<a name="l00123"></a>00123     {
+<a name="l00124"></a>00124         TRACE(<span class="stringliteral">&quot;motor_left_forward(&quot;</span> &lt;&lt; speed &lt;&lt; <span class="stringliteral">&quot;)&quot;</span>);
+<a name="l00125"></a>00125         DEBUG(<span class="stringliteral">&quot;Setting left motor forward at speed &quot;</span> &lt;&lt; speed);
+<a name="l00126"></a>00126 
+<a name="l00127"></a>00127         <span class="keywordflow">if</span> (this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a965df71af228cf82465e4e9ef6a6e1b0" title="Check the motor speed against the set maximum, printing an error and returning true if the speed exce...">check_max_speed</a>(speed)) {
+<a name="l00128"></a>00128             <span class="keywordflow">return</span>;
+<a name="l00129"></a>00129         }
+<a name="l00130"></a>00130 
+<a name="l00131"></a>00131         this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a1a363a3cab8fe7fa099b19395335c0ba">rlink</a>-&gt;command(MOTOR_1_GO, (1&lt;&lt;7) | speed);
+<a name="l00132"></a>00132     }
+<a name="l00133"></a>00133 
+<a name="l00138"></a><a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#aa2e2e226f2313d769e3ce226dd24d22c">00138</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#aa2e2e226f2313d769e3ce226dd24d22c" title="Drive the right motor forward at the given speed.">HardwareAbstractionLayer::motor_right_forward</a>(
+<a name="l00139"></a>00139         <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> speed)
+<a name="l00140"></a>00140     {
+<a name="l00141"></a>00141         TRACE(<span class="stringliteral">&quot;motor_right_forward(&quot;</span> &lt;&lt; speed &lt;&lt; <span class="stringliteral">&quot;)&quot;</span>);
+<a name="l00142"></a>00142         DEBUG(<span class="stringliteral">&quot;Setting right motor forward at speed &quot;</span> &lt;&lt; speed);
+<a name="l00143"></a>00143 
+<a name="l00144"></a>00144         <span class="keywordflow">if</span> (this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a965df71af228cf82465e4e9ef6a6e1b0" title="Check the motor speed against the set maximum, printing an error and returning true if the speed exce...">check_max_speed</a>(speed)) {
+<a name="l00145"></a>00145             <span class="keywordflow">return</span>;
+<a name="l00146"></a>00146         }
+<a name="l00147"></a>00147 
+<a name="l00148"></a>00148         this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a1a363a3cab8fe7fa099b19395335c0ba">rlink</a>-&gt;command(MOTOR_2_GO, speed);
+<a name="l00149"></a>00149     }
+<a name="l00150"></a>00150 
+<a name="l00155"></a><a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a61b80e2bad5cc6a56a17350b015bfbcc">00155</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a61b80e2bad5cc6a56a17350b015bfbcc" title="Drive the left motor backward at the given speed.">HardwareAbstractionLayer::motor_left_backward</a>(
+<a name="l00156"></a>00156         <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> speed)
+<a name="l00157"></a>00157     {
+<a name="l00158"></a>00158         TRACE(<span class="stringliteral">&quot;motor_left_backward(&quot;</span> &lt;&lt; speed &lt;&lt; <span class="stringliteral">&quot;)&quot;</span>);
+<a name="l00159"></a>00159         DEBUG(<span class="stringliteral">&quot;Setting left motor backward at speed &quot;</span> &lt;&lt; speed);
+<a name="l00160"></a>00160 
+<a name="l00161"></a>00161         <span class="keywordflow">if</span> (this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a965df71af228cf82465e4e9ef6a6e1b0" title="Check the motor speed against the set maximum, printing an error and returning true if the speed exce...">check_max_speed</a>(speed)) {
+<a name="l00162"></a>00162             <span class="keywordflow">return</span>;
+<a name="l00163"></a>00163         }
+<a name="l00164"></a>00164 
+<a name="l00165"></a>00165         this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a1a363a3cab8fe7fa099b19395335c0ba">rlink</a>-&gt;command(MOTOR_1_GO, speed);
+<a name="l00166"></a>00166     }
+<a name="l00167"></a>00167 
+<a name="l00172"></a><a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#aac42c10ca431120a060f9b2c394492ae">00172</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#aac42c10ca431120a060f9b2c394492ae" title="Drive the right motor backward at the given speed.">HardwareAbstractionLayer::motor_right_backward</a>(
+<a name="l00173"></a>00173         <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> speed)
+<a name="l00174"></a>00174     {
+<a name="l00175"></a>00175         TRACE(<span class="stringliteral">&quot;motor_right_backward(&quot;</span> &lt;&lt; speed &lt;&lt; <span class="stringliteral">&quot;)&quot;</span>);
+<a name="l00176"></a>00176         DEBUG(<span class="stringliteral">&quot;Setting right motor backward at speed &quot;</span> &lt;&lt; speed);
+<a name="l00177"></a>00177 
+<a name="l00178"></a>00178         <span class="keywordflow">if</span> (this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a965df71af228cf82465e4e9ef6a6e1b0" title="Check the motor speed against the set maximum, printing an error and returning true if the speed exce...">check_max_speed</a>(speed)) {
+<a name="l00179"></a>00179             <span class="keywordflow">return</span>;
+<a name="l00180"></a>00180         }
+<a name="l00181"></a>00181 
+<a name="l00182"></a>00182         this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a1a363a3cab8fe7fa099b19395335c0ba">rlink</a>-&gt;command(MOTOR_2_GO, (1&lt;&lt;7) | speed);
+<a name="l00183"></a>00183     }
+<a name="l00184"></a>00184 
+<a name="l00189"></a><a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#ae38aaced2f082b6b04ebdd662349b1d2">00189</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#ae38aaced2f082b6b04ebdd662349b1d2" title="Drive the motors to steer the robot to the left.">HardwareAbstractionLayer::motors_turn_left</a>(
+<a name="l00190"></a>00190         <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> speed)
+<a name="l00191"></a>00191     {
+<a name="l00192"></a>00192         TRACE(<span class="stringliteral">&quot;motors_turn_left(&quot;</span> &lt;&lt; speed &lt;&lt; <span class="stringliteral">&quot;)&quot;</span>);
+<a name="l00193"></a>00193         DEBUG(<span class="stringliteral">&quot;Turning motors left, speed &quot;</span> &lt;&lt; speed);
+<a name="l00194"></a>00194 
+<a name="l00195"></a>00195         <span class="keywordflow">if</span>(this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a965df71af228cf82465e4e9ef6a6e1b0" title="Check the motor speed against the set maximum, printing an error and returning true if the speed exce...">check_max_speed</a>(speed)) {
+<a name="l00196"></a>00196             <span class="keywordflow">return</span>;
+<a name="l00197"></a>00197         }
+<a name="l00198"></a>00198 
+<a name="l00199"></a>00199         this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a1a363a3cab8fe7fa099b19395335c0ba">rlink</a>-&gt;command(BOTH_MOTORS_GO_SAME, (1&lt;&lt;7) | speed);
+<a name="l00200"></a>00200     }
+<a name="l00201"></a>00201 
+<a name="l00206"></a><a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#ad1fba0e8cb2c9ad902c8e4ec34e5e622">00206</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#ad1fba0e8cb2c9ad902c8e4ec34e5e622" title="Drive the motors to steer the robot to the right.">HardwareAbstractionLayer::motors_turn_right</a>(
+<a name="l00207"></a>00207         <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> speed)
+<a name="l00208"></a>00208     {
+<a name="l00209"></a>00209         TRACE(<span class="stringliteral">&quot;motors_turn_right(&quot;</span> &lt;&lt; speed &lt;&lt; <span class="stringliteral">&quot;)&quot;</span>);
+<a name="l00210"></a>00210         DEBUG(<span class="stringliteral">&quot;Turning motors right, speed &quot;</span> &lt;&lt; speed);
+<a name="l00211"></a>00211 
+<a name="l00212"></a>00212         <span class="keywordflow">if</span>(this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a965df71af228cf82465e4e9ef6a6e1b0" title="Check the motor speed against the set maximum, printing an error and returning true if the speed exce...">check_max_speed</a>(speed)) {
+<a name="l00213"></a>00213             <span class="keywordflow">return</span>;
+<a name="l00214"></a>00214         }
+<a name="l00215"></a>00215 
+<a name="l00216"></a>00216         this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a1a363a3cab8fe7fa099b19395335c0ba">rlink</a>-&gt;command(BOTH_MOTORS_GO_SAME, (0&lt;&lt;7) | speed);
+<a name="l00217"></a>00217     }
 <a name="l00218"></a>00218 
-<a name="l00219"></a>00219         <span class="comment">// Get the port values</span>
-<a name="l00220"></a>00220         <span class="keywordtype">int</span> port_values = this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a1a363a3cab8fe7fa099b19395335c0ba">rlink</a>-&gt;request(READ_PORT_0);
-<a name="l00221"></a>00221         <a class="code" href="structIDP_1_1LineSensors.html" title="Contains the LINE or NO_LINE status of each of the four IR sensors used for line following.">LineSensors</a> sensor_values;
-<a name="l00222"></a>00222         
-<a name="l00223"></a>00223         <span class="comment">// Set the struct members appropriately</span>
-<a name="l00224"></a>00224         <span class="keywordflow">if</span>(port_values &amp; (1&lt;&lt;0))
-<a name="l00225"></a>00225             sensor_values.<a class="code" href="structIDP_1_1LineSensors.html#a009bf6abf88cf3c732545da20148ba5e">outer_left</a> = LINE;
-<a name="l00226"></a>00226         <span class="keywordflow">else</span>
-<a name="l00227"></a>00227             sensor_values.<a class="code" href="structIDP_1_1LineSensors.html#a009bf6abf88cf3c732545da20148ba5e">outer_left</a> = NO_LINE;
-<a name="l00228"></a>00228 
-<a name="l00229"></a>00229         <span class="keywordflow">if</span>(port_values &amp; (1&lt;&lt;1))
-<a name="l00230"></a>00230             sensor_values.<a class="code" href="structIDP_1_1LineSensors.html#ab986b625016c2f99536299b6d0af3f29">line_left</a> = LINE;
-<a name="l00231"></a>00231         <span class="keywordflow">else</span>
-<a name="l00232"></a>00232             sensor_values.<a class="code" href="structIDP_1_1LineSensors.html#ab986b625016c2f99536299b6d0af3f29">line_left</a> = NO_LINE;
-<a name="l00233"></a>00233 
-<a name="l00234"></a>00234         <span class="keywordflow">if</span>(port_values &amp; (1&lt;&lt;2))
-<a name="l00235"></a>00235             sensor_values.<a class="code" href="structIDP_1_1LineSensors.html#a03e1692ac462e2e6744c9d5a7656c6f1">line_right</a> = LINE;
-<a name="l00236"></a>00236         <span class="keywordflow">else</span>
-<a name="l00237"></a>00237             sensor_values.<a class="code" href="structIDP_1_1LineSensors.html#a03e1692ac462e2e6744c9d5a7656c6f1">line_right</a> = NO_LINE;
-<a name="l00238"></a>00238 
-<a name="l00239"></a>00239         <span class="keywordflow">if</span>(port_values &amp; (1&lt;&lt;3))
-<a name="l00240"></a>00240             sensor_values.<a class="code" href="structIDP_1_1LineSensors.html#afa87dc008f415429d15e35a49d52083c">outer_right</a> = LINE;
-<a name="l00241"></a>00241         <span class="keywordflow">else</span>
-<a name="l00242"></a>00242             sensor_values.<a class="code" href="structIDP_1_1LineSensors.html#afa87dc008f415429d15e35a49d52083c">outer_right</a> = NO_LINE;
-<a name="l00243"></a>00243 
-<a name="l00244"></a>00244         <span class="keywordflow">return</span> sensor_values;
-<a name="l00245"></a>00245 
-<a name="l00246"></a>00246     }
-<a name="l00247"></a>00247 
-<a name="l00251"></a><a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a1902d9260758777966ab362e21f3be42">00251</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a1902d9260758777966ab362e21f3be42" title="Read the status register, discarding its value.">HardwareAbstractionLayer::clear_status_register</a>()<span class="keyword"> const</span>
-<a name="l00252"></a>00252 <span class="keyword">    </span>{
-<a name="l00253"></a>00253         TRACE(<span class="stringliteral">&quot;clear_status_register()&quot;</span>);
-<a name="l00254"></a>00254         DEBUG(<span class="stringliteral">&quot;Reading and discarding status register&quot;</span>);
-<a name="l00255"></a>00255         this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a1a363a3cab8fe7fa099b19395335c0ba">rlink</a>-&gt;request(STATUS);
-<a name="l00256"></a>00256     }
+<a name="l00222"></a><a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a4f8f0340f3ac64c3f676b700b7e36229">00222</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a4f8f0340f3ac64c3f676b700b7e36229" title="Stop all motors.">HardwareAbstractionLayer::motors_stop</a>()
+<a name="l00223"></a>00223     {
+<a name="l00224"></a>00224         TRACE(<span class="stringliteral">&quot;motors_stop()&quot;</span>);
+<a name="l00225"></a>00225         INFO(<span class="stringliteral">&quot;Stopping all motors&quot;</span>);
+<a name="l00226"></a>00226         this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a1a363a3cab8fe7fa099b19395335c0ba">rlink</a>-&gt;command(BOTH_MOTORS_GO_SAME, 0);
+<a name="l00227"></a>00227         this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a1a363a3cab8fe7fa099b19395335c0ba">rlink</a>-&gt;command(MOTOR_1_GO, 0);
+<a name="l00228"></a>00228         this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a1a363a3cab8fe7fa099b19395335c0ba">rlink</a>-&gt;command(MOTOR_2_GO, 0);
+<a name="l00229"></a>00229         this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a1a363a3cab8fe7fa099b19395335c0ba">rlink</a>-&gt;command(MOTOR_3_GO, 0);
+<a name="l00230"></a>00230         this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a1a363a3cab8fe7fa099b19395335c0ba">rlink</a>-&gt;command(MOTOR_4_GO, 0);
+<a name="l00231"></a>00231     }
+<a name="l00232"></a>00232 
+<a name="l00238"></a><a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#aca143d627de2ff9942069ad922d17ee5">00238</a>     <span class="keyword">const</span> <a class="code" href="structIDP_1_1LineSensors.html" title="Contains the LINE or NO_LINE status of each of the four IR sensors used for line following.">LineSensors</a> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#aca143d627de2ff9942069ad922d17ee5" title="Read the I/O port connected to the line following sensors, then return a struct with their current st...">HardwareAbstractionLayer::line_following_sensors</a>()<span class="keyword"> const</span>
+<a name="l00239"></a>00239 <span class="keyword">    </span>{
+<a name="l00240"></a>00240         TRACE(<span class="stringliteral">&quot;line_following_sensors()&quot;</span>);
+<a name="l00241"></a>00241         DEBUG(<span class="stringliteral">&quot;Reading line following sensors&quot;</span>);
+<a name="l00242"></a>00242 
+<a name="l00243"></a>00243         <span class="comment">// Get the port values</span>
+<a name="l00244"></a>00244         <span class="keywordtype">int</span> port_values = this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a1a363a3cab8fe7fa099b19395335c0ba">rlink</a>-&gt;request(READ_PORT_0);
+<a name="l00245"></a>00245         <a class="code" href="structIDP_1_1LineSensors.html" title="Contains the LINE or NO_LINE status of each of the four IR sensors used for line following.">LineSensors</a> sensor_values;
+<a name="l00246"></a>00246         
+<a name="l00247"></a>00247         <span class="comment">// Set the struct members appropriately</span>
+<a name="l00248"></a>00248         <span class="keywordflow">if</span>(port_values &amp; (1&lt;&lt;0))
+<a name="l00249"></a>00249             sensor_values.<a class="code" href="structIDP_1_1LineSensors.html#a009bf6abf88cf3c732545da20148ba5e">outer_left</a> = LINE;
+<a name="l00250"></a>00250         <span class="keywordflow">else</span>
+<a name="l00251"></a>00251             sensor_values.<a class="code" href="structIDP_1_1LineSensors.html#a009bf6abf88cf3c732545da20148ba5e">outer_left</a> = NO_LINE;
+<a name="l00252"></a>00252 
+<a name="l00253"></a>00253         <span class="keywordflow">if</span>(port_values &amp; (1&lt;&lt;1))
+<a name="l00254"></a>00254             sensor_values.<a class="code" href="structIDP_1_1LineSensors.html#ab986b625016c2f99536299b6d0af3f29">line_left</a> = LINE;
+<a name="l00255"></a>00255         <span class="keywordflow">else</span>
+<a name="l00256"></a>00256             sensor_values.<a class="code" href="structIDP_1_1LineSensors.html#ab986b625016c2f99536299b6d0af3f29">line_left</a> = NO_LINE;
 <a name="l00257"></a>00257 
-<a name="l00262"></a><a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a4867c291e34794d1bb9c0929d5514c5b">00262</a>     <span class="keywordtype">char</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a4867c291e34794d1bb9c0929d5514c5b" title="Read the status register and return it.">HardwareAbstractionLayer::status_register</a>()<span class="keyword"> const</span>
-<a name="l00263"></a>00263 <span class="keyword">    </span>{
-<a name="l00264"></a>00264         TRACE(<span class="stringliteral">&quot;status_register()&quot;</span>);
-<a name="l00265"></a>00265         DEBUG(<span class="stringliteral">&quot;Reading status register&quot;</span>);
-<a name="l00266"></a>00266         <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span><span class="keywordtype">char</span><span class="keyword">&gt;</span>(this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a1a363a3cab8fe7fa099b19395335c0ba">rlink</a>-&gt;request(STATUS));
-<a name="l00267"></a>00267     }
-<a name="l00268"></a>00268 
-<a name="l00273"></a><a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a4ce4bec948d6449e7cab3cfcd0de513f">00273</a>     <span class="keywordtype">bool</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a4ce4bec948d6449e7cab3cfcd0de513f" title="Read the reset switch and return its status.">HardwareAbstractionLayer::reset_switch</a>()<span class="keyword"> const</span>
-<a name="l00274"></a>00274 <span class="keyword">    </span>{
-<a name="l00275"></a>00275         TRACE(<span class="stringliteral">&quot;reset_switch()&quot;</span>);
-<a name="l00276"></a>00276         <span class="keywordflow">return</span> <span class="keyword">false</span>;
-<a name="l00277"></a>00277     }
-<a name="l00278"></a>00278 
-<a name="l00283"></a><a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a82ef6744041c174edb7f8982f44685b7">00283</a>     <span class="keywordtype">bool</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a82ef6744041c174edb7f8982f44685b7" title="Read the switch mounted on the grabber arm and return its status.">HardwareAbstractionLayer::grabber_switch</a>()<span class="keyword"> const</span>
-<a name="l00284"></a>00284 <span class="keyword">    </span>{
-<a name="l00285"></a>00285         TRACE(<span class="stringliteral">&quot;grabber_switch()&quot;</span>);
-<a name="l00286"></a>00286         <span class="keywordflow">return</span> <span class="keyword">false</span>;
-<a name="l00287"></a>00287     }
-<a name="l00288"></a>00288 
-<a name="l00293"></a><a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#ae4f163981d213ff3dea4b21e8aa92063">00293</a>     <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#ae4f163981d213ff3dea4b21e8aa92063" title="Get the analogue reading from the LDR used to detect colour.">HardwareAbstractionLayer::colour_ldr</a>()<span class="keyword"> const</span>
-<a name="l00294"></a>00294 <span class="keyword">    </span>{
-<a name="l00295"></a>00295         TRACE(<span class="stringliteral">&quot;colour_ldr()&quot;</span>);
-<a name="l00296"></a>00296         <span class="keywordflow">return</span> 0;
-<a name="l00297"></a>00297     }
-<a name="l00298"></a>00298 
-<a name="l00303"></a><a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#af4a8cb5072cf89263b97a3e8e1727da8">00303</a>     <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#af4a8cb5072cf89263b97a3e8e1727da8" title="Get the analogue reading from the LDR used to detect the bad bobbin.">HardwareAbstractionLayer::bad_bobbin_ldr</a>()<span class="keyword"> const</span>
-<a name="l00304"></a>00304 <span class="keyword">    </span>{
-<a name="l00305"></a>00305         TRACE(<span class="stringliteral">&quot;bad_bobbin_ldr()&quot;</span>);
-<a name="l00306"></a>00306         <span class="keywordflow">return</span> 0;
-<a name="l00307"></a>00307     }
-<a name="l00308"></a>00308 
-<a name="l00315"></a><a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a0ffde4a54900074b646efd285d9d6807">00315</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a0ffde4a54900074b646efd285d9d6807" title="Set the bobbin colour indication LEDs.">HardwareAbstractionLayer::indication_LEDs</a>(<span class="keyword">const</span> <span class="keywordtype">bool</span> led_0,
-<a name="l00316"></a>00316         <span class="keyword">const</span> <span class="keywordtype">bool</span> led_1, <span class="keyword">const</span> <span class="keywordtype">bool</span> led_2)
-<a name="l00317"></a>00317     {
-<a name="l00318"></a>00318         TRACE(<span class="stringliteral">&quot;indication_LEDs(&quot;</span>&lt;&lt;led_0&lt;&lt;<span class="stringliteral">&quot;, &quot;</span>&lt;&lt;led_1&lt;&lt;<span class="stringliteral">&quot;, &quot;</span>&lt;&lt;led_2&lt;&lt;<span class="stringliteral">&quot;)&quot;</span>);
-<a name="l00319"></a>00319         <a class="code" href="hal_8cc.html#a86d500a34c624c2cae56bc25a31b12f3">UNUSED</a>(led_0);
-<a name="l00320"></a>00320         <a class="code" href="hal_8cc.html#a86d500a34c624c2cae56bc25a31b12f3">UNUSED</a>(led_1);
-<a name="l00321"></a>00321         <a class="code" href="hal_8cc.html#a86d500a34c624c2cae56bc25a31b12f3">UNUSED</a>(led_2);
-<a name="l00322"></a>00322     }
-<a name="l00323"></a>00323 
-<a name="l00330"></a><a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#ad2fd680723fd2d919112cad122f5c790">00330</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#ad2fd680723fd2d919112cad122f5c790" title="Turn on and off the LEDs used to light up the bobbin for colour detection.">HardwareAbstractionLayer::colour_leds</a>(<span class="keyword">const</span> <span class="keywordtype">bool</span> red,
-<a name="l00331"></a>00331         <span class="keyword">const</span> <span class="keywordtype">bool</span> green)
-<a name="l00332"></a>00332     {
-<a name="l00333"></a>00333         TRACE(<span class="stringliteral">&quot;colour_leds(&quot;</span>&lt;&lt;red&lt;&lt;<span class="stringliteral">&quot;, &quot;</span>&lt;&lt;green&lt;&lt;<span class="stringliteral">&quot;)&quot;</span>);
-<a name="l00334"></a>00334         <a class="code" href="hal_8cc.html#a86d500a34c624c2cae56bc25a31b12f3">UNUSED</a>(red);
-<a name="l00335"></a>00335         <a class="code" href="hal_8cc.html#a86d500a34c624c2cae56bc25a31b12f3">UNUSED</a>(green);
-<a name="l00336"></a>00336     }
-<a name="l00337"></a>00337 
-<a name="l00343"></a><a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a451695e9f26f367dc58952207dac187d">00343</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a451695e9f26f367dc58952207dac187d" title="Turn on and off the LED used to light up the top of the bobbin, for bad bobbin detection.">HardwareAbstractionLayer::bad_bobbin_led</a>(<span class="keyword">const</span> <span class="keywordtype">bool</span> status)
-<a name="l00344"></a>00344     {
-<a name="l00345"></a>00345         TRACE(<span class="stringliteral">&quot;bad_bobbin_led(&quot;</span>&lt;&lt;status&lt;&lt;<span class="stringliteral">&quot;)&quot;</span>);
-<a name="l00346"></a>00346         <a class="code" href="hal_8cc.html#a86d500a34c624c2cae56bc25a31b12f3">UNUSED</a>(status);
-<a name="l00347"></a>00347     }
-<a name="l00348"></a>00348 
-<a name="l00353"></a><a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a44d5a4c942332ba9ffe027de3dba83f0">00353</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a44d5a4c942332ba9ffe027de3dba83f0" title="Turn the grabber jaw actuator on or off.">HardwareAbstractionLayer::grabber_jaw</a>(<span class="keyword">const</span> <span class="keywordtype">bool</span> status)
-<a name="l00354"></a>00354     {
-<a name="l00355"></a>00355         TRACE(<span class="stringliteral">&quot;grabber_jaw(&quot;</span>&lt;&lt;status&lt;&lt;<span class="stringliteral">&quot;)&quot;</span>);
-<a name="l00356"></a>00356         <a class="code" href="hal_8cc.html#a86d500a34c624c2cae56bc25a31b12f3">UNUSED</a>(status);
-<a name="l00357"></a>00357     }
-<a name="l00358"></a>00358 
-<a name="l00363"></a><a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a0f036b16f1f55a257c2b552035d2a1a9">00363</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a0f036b16f1f55a257c2b552035d2a1a9" title="Turn the grabber lift mechanism actuator on or off.">HardwareAbstractionLayer::grabber_lift</a>(<span class="keyword">const</span> <span class="keywordtype">bool</span> status)
-<a name="l00364"></a>00364     {
-<a name="l00365"></a>00365         TRACE(<span class="stringliteral">&quot;grabber_lift(&quot;</span>&lt;&lt;status&lt;&lt;<span class="stringliteral">&quot;)&quot;</span>);
-<a name="l00366"></a>00366         <a class="code" href="hal_8cc.html#a86d500a34c624c2cae56bc25a31b12f3">UNUSED</a>(status);
-<a name="l00367"></a>00367     }
-<a name="l00368"></a>00368 
-<a name="l00375"></a><a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a965df71af228cf82465e4e9ef6a6e1b0">00375</a>     <span class="keywordtype">bool</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a965df71af228cf82465e4e9ef6a6e1b0" title="Check the motor speed against the set maximum, printing an error and returning true if the speed exce...">HardwareAbstractionLayer::check_max_speed</a>(
-<a name="l00376"></a>00376         <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> speed)<span class="keyword"> const</span>
-<a name="l00377"></a>00377 <span class="keyword">    </span>{
-<a name="l00378"></a>00378         TRACE(<span class="stringliteral">&quot;check_max_speed(&quot;</span>&lt;&lt;speed&lt;&lt;<span class="stringliteral">&quot;)&quot;</span>);
-<a name="l00379"></a>00379         <span class="keywordflow">if</span>(speed &gt; <a class="code" href="namespaceIDP.html#a4ead0b21ad2c507b542445695182d4cd" title="Highest allowable motor speed in either direction.">MOTOR_MAX_SPEED</a>) {
-<a name="l00380"></a>00380             DEBUG(<span class="stringliteral">&quot;ERROR: Motor speed too high, not setting&quot;</span>);
-<a name="l00381"></a>00381             <span class="keywordflow">return</span> <span class="keyword">true</span>;
-<a name="l00382"></a>00382         } <span class="keywordflow">else</span> {
-<a name="l00383"></a>00383             <span class="keywordflow">return</span> <span class="keyword">false</span>;
-<a name="l00384"></a>00384         }
-<a name="l00385"></a>00385     }
-<a name="l00386"></a>00386 }
-<a name="l00387"></a>00387 
+<a name="l00258"></a>00258         <span class="keywordflow">if</span>(port_values &amp; (1&lt;&lt;2))
+<a name="l00259"></a>00259             sensor_values.<a class="code" href="structIDP_1_1LineSensors.html#a03e1692ac462e2e6744c9d5a7656c6f1">line_right</a> = LINE;
+<a name="l00260"></a>00260         <span class="keywordflow">else</span>
+<a name="l00261"></a>00261             sensor_values.<a class="code" href="structIDP_1_1LineSensors.html#a03e1692ac462e2e6744c9d5a7656c6f1">line_right</a> = NO_LINE;
+<a name="l00262"></a>00262 
+<a name="l00263"></a>00263         <span class="keywordflow">if</span>(port_values &amp; (1&lt;&lt;3))
+<a name="l00264"></a>00264             sensor_values.<a class="code" href="structIDP_1_1LineSensors.html#afa87dc008f415429d15e35a49d52083c">outer_right</a> = LINE;
+<a name="l00265"></a>00265         <span class="keywordflow">else</span>
+<a name="l00266"></a>00266             sensor_values.<a class="code" href="structIDP_1_1LineSensors.html#afa87dc008f415429d15e35a49d52083c">outer_right</a> = NO_LINE;
+<a name="l00267"></a>00267 
+<a name="l00268"></a>00268         <span class="keywordflow">return</span> sensor_values;
+<a name="l00269"></a>00269 
+<a name="l00270"></a>00270     }
+<a name="l00271"></a>00271 
+<a name="l00275"></a><a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a1902d9260758777966ab362e21f3be42">00275</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a1902d9260758777966ab362e21f3be42" title="Read the status register, discarding its value.">HardwareAbstractionLayer::clear_status_register</a>()<span class="keyword"> const</span>
+<a name="l00276"></a>00276 <span class="keyword">    </span>{
+<a name="l00277"></a>00277         TRACE(<span class="stringliteral">&quot;clear_status_register()&quot;</span>);
+<a name="l00278"></a>00278         DEBUG(<span class="stringliteral">&quot;Reading and discarding status register&quot;</span>);
+<a name="l00279"></a>00279         this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a1a363a3cab8fe7fa099b19395335c0ba">rlink</a>-&gt;request(STATUS);
+<a name="l00280"></a>00280     }
+<a name="l00281"></a>00281 
+<a name="l00286"></a><a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a4867c291e34794d1bb9c0929d5514c5b">00286</a>     <span class="keywordtype">char</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a4867c291e34794d1bb9c0929d5514c5b" title="Read the status register and return it.">HardwareAbstractionLayer::status_register</a>()<span class="keyword"> const</span>
+<a name="l00287"></a>00287 <span class="keyword">    </span>{
+<a name="l00288"></a>00288         TRACE(<span class="stringliteral">&quot;status_register()&quot;</span>);
+<a name="l00289"></a>00289         DEBUG(<span class="stringliteral">&quot;Reading status register&quot;</span>);
+<a name="l00290"></a>00290         <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span><span class="keywordtype">char</span><span class="keyword">&gt;</span>(this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a1a363a3cab8fe7fa099b19395335c0ba">rlink</a>-&gt;request(STATUS));
+<a name="l00291"></a>00291     }
+<a name="l00292"></a>00292 
+<a name="l00297"></a><a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a4ce4bec948d6449e7cab3cfcd0de513f">00297</a>     <span class="keywordtype">bool</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a4ce4bec948d6449e7cab3cfcd0de513f" title="Read the reset switch and return its status.">HardwareAbstractionLayer::reset_switch</a>()<span class="keyword"> const</span>
+<a name="l00298"></a>00298 <span class="keyword">    </span>{
+<a name="l00299"></a>00299         TRACE(<span class="stringliteral">&quot;reset_switch()&quot;</span>);
+<a name="l00300"></a>00300         DEBUG(<span class="stringliteral">&quot;Reading reset switch&quot;</span>);
+<a name="l00301"></a>00301 
+<a name="l00302"></a>00302         <span class="comment">// Get the port values</span>
+<a name="l00303"></a>00303         <span class="keywordtype">int</span> port_values = this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a1a363a3cab8fe7fa099b19395335c0ba">rlink</a>-&gt;request(READ_PORT_0);
+<a name="l00304"></a>00304         
+<a name="l00305"></a>00305         <span class="comment">// Return true or false as appropriate</span>
+<a name="l00306"></a>00306         <span class="keywordflow">if</span>(port_values &amp; (1&lt;&lt;5))
+<a name="l00307"></a>00307             <span class="keywordflow">return</span> <span class="keyword">false</span>;
+<a name="l00308"></a>00308         <span class="keywordflow">else</span>
+<a name="l00309"></a>00309             <span class="keywordflow">return</span> <span class="keyword">true</span>;
+<a name="l00310"></a>00310     }
+<a name="l00311"></a>00311 
+<a name="l00316"></a><a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a82ef6744041c174edb7f8982f44685b7">00316</a>     <span class="keywordtype">bool</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a82ef6744041c174edb7f8982f44685b7" title="Read the switch mounted on the grabber arm and return its status.">HardwareAbstractionLayer::grabber_switch</a>()<span class="keyword"> const</span>
+<a name="l00317"></a>00317 <span class="keyword">    </span>{
+<a name="l00318"></a>00318         TRACE(<span class="stringliteral">&quot;grabber_switch()&quot;</span>);
+<a name="l00319"></a>00319         DEBUG(<span class="stringliteral">&quot;Reading grabber switch&quot;</span>);
+<a name="l00320"></a>00320 
+<a name="l00321"></a>00321         <span class="comment">// Get the port values</span>
+<a name="l00322"></a>00322         <span class="keywordtype">int</span> port_values = this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a1a363a3cab8fe7fa099b19395335c0ba">rlink</a>-&gt;request(READ_PORT_0);
+<a name="l00323"></a>00323         
+<a name="l00324"></a>00324         <span class="comment">// Return true or false as appropriate</span>
+<a name="l00325"></a>00325         <span class="keywordflow">if</span>(port_values &amp; (1&lt;&lt;4))
+<a name="l00326"></a>00326             <span class="keywordflow">return</span> <span class="keyword">false</span>;
+<a name="l00327"></a>00327         <span class="keywordflow">else</span>
+<a name="l00328"></a>00328             <span class="keywordflow">return</span> <span class="keyword">true</span>;
+<a name="l00329"></a>00329     }
+<a name="l00330"></a>00330 
+<a name="l00335"></a><a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#ae4f163981d213ff3dea4b21e8aa92063">00335</a>     <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#ae4f163981d213ff3dea4b21e8aa92063" title="Get the analogue reading from the LDR used to detect colour.">HardwareAbstractionLayer::colour_ldr</a>()<span class="keyword"> const</span>
+<a name="l00336"></a>00336 <span class="keyword">    </span>{
+<a name="l00337"></a>00337         TRACE(<span class="stringliteral">&quot;colour_ldr()&quot;</span>);
+<a name="l00338"></a>00338         <span class="keywordflow">return</span> this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a1a363a3cab8fe7fa099b19395335c0ba">rlink</a>-&gt;request(ADC0);
+<a name="l00339"></a>00339     }
+<a name="l00340"></a>00340 
+<a name="l00345"></a><a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#af4a8cb5072cf89263b97a3e8e1727da8">00345</a>     <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#af4a8cb5072cf89263b97a3e8e1727da8" title="Get the analogue reading from the LDR used to detect the bad bobbin.">HardwareAbstractionLayer::bad_bobbin_ldr</a>()<span class="keyword"> const</span>
+<a name="l00346"></a>00346 <span class="keyword">    </span>{
+<a name="l00347"></a>00347         TRACE(<span class="stringliteral">&quot;bad_bobbin_ldr()&quot;</span>);
+<a name="l00348"></a>00348         <span class="keywordflow">return</span> this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a1a363a3cab8fe7fa099b19395335c0ba">rlink</a>-&gt;request(ADC1);
+<a name="l00349"></a>00349     }
+<a name="l00350"></a>00350 
+<a name="l00357"></a><a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a0ffde4a54900074b646efd285d9d6807">00357</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a0ffde4a54900074b646efd285d9d6807" title="Set the bobbin colour indication LEDs.">HardwareAbstractionLayer::indication_LEDs</a>(<span class="keyword">const</span> <span class="keywordtype">bool</span> led_0,
+<a name="l00358"></a>00358         <span class="keyword">const</span> <span class="keywordtype">bool</span> led_1, <span class="keyword">const</span> <span class="keywordtype">bool</span> led_2)
+<a name="l00359"></a>00359     {
+<a name="l00360"></a>00360         TRACE(<span class="stringliteral">&quot;indication_LEDs(&quot;</span>&lt;&lt;led_0&lt;&lt;<span class="stringliteral">&quot;, &quot;</span>&lt;&lt;led_1&lt;&lt;<span class="stringliteral">&quot;, &quot;</span>&lt;&lt;led_2&lt;&lt;<span class="stringliteral">&quot;)&quot;</span>);
+<a name="l00361"></a>00361         <span class="keywordflow">if</span> (led_0)
+<a name="l00362"></a>00362             this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a89e089becb312ef6ffe0fbc18f409b99">_port7</a> = ~(1&lt;&lt;1) &amp; this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a89e089becb312ef6ffe0fbc18f409b99">_port7</a>;
+<a name="l00363"></a>00363         <span class="keywordflow">else</span>
+<a name="l00364"></a>00364             this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a89e089becb312ef6ffe0fbc18f409b99">_port7</a> = 1&lt;&lt;1 | this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a89e089becb312ef6ffe0fbc18f409b99">_port7</a>;
+<a name="l00365"></a>00365         
+<a name="l00366"></a>00366         <span class="keywordflow">if</span> (led_1)
+<a name="l00367"></a>00367             this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a89e089becb312ef6ffe0fbc18f409b99">_port7</a> = ~(1&lt;&lt;3) &amp; this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a89e089becb312ef6ffe0fbc18f409b99">_port7</a>;
+<a name="l00368"></a>00368         <span class="keywordflow">else</span>
+<a name="l00369"></a>00369             this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a89e089becb312ef6ffe0fbc18f409b99">_port7</a> = 1&lt;&lt;3 | this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a89e089becb312ef6ffe0fbc18f409b99">_port7</a>;
+<a name="l00370"></a>00370         
+<a name="l00371"></a>00371         <span class="keywordflow">if</span> (led_2)
+<a name="l00372"></a>00372             this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a89e089becb312ef6ffe0fbc18f409b99">_port7</a> = ~(1&lt;&lt;5) &amp; this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a89e089becb312ef6ffe0fbc18f409b99">_port7</a>;
+<a name="l00373"></a>00373         <span class="keywordflow">else</span>
+<a name="l00374"></a>00374             this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a89e089becb312ef6ffe0fbc18f409b99">_port7</a> = 1&lt;&lt;5 | this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a89e089becb312ef6ffe0fbc18f409b99">_port7</a>;
+<a name="l00375"></a>00375         
+<a name="l00376"></a>00376         this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a1a363a3cab8fe7fa099b19395335c0ba">rlink</a>-&gt;command(WRITE_PORT_7, this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a89e089becb312ef6ffe0fbc18f409b99">_port7</a>);
+<a name="l00377"></a>00377     }
+<a name="l00378"></a>00378 
+<a name="l00384"></a><a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a6574abe8852976bfa94c00e13d8c1686">00384</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a6574abe8852976bfa94c00e13d8c1686" title="Turn on and off the LED used to light up the bobbin for colour detection.">HardwareAbstractionLayer::colour_LED</a>(<span class="keyword">const</span> <span class="keywordtype">bool</span> status)
+<a name="l00385"></a>00385     {
+<a name="l00386"></a>00386         TRACE(<span class="stringliteral">&quot;colour_LED(&quot;</span>&lt;&lt;status&lt;&lt;<span class="stringliteral">&quot;)&quot;</span>);
+<a name="l00387"></a>00387         <span class="keywordflow">if</span> (status)
+<a name="l00388"></a>00388             this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a89e089becb312ef6ffe0fbc18f409b99">_port7</a> = ~(1&lt;&lt;0) &amp; this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a89e089becb312ef6ffe0fbc18f409b99">_port7</a>;
+<a name="l00389"></a>00389         <span class="keywordflow">else</span>
+<a name="l00390"></a>00390             this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a89e089becb312ef6ffe0fbc18f409b99">_port7</a> = 1&lt;&lt;0 | this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a89e089becb312ef6ffe0fbc18f409b99">_port7</a>;
+<a name="l00391"></a>00391         this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a1a363a3cab8fe7fa099b19395335c0ba">rlink</a>-&gt;command(WRITE_PORT_7, this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a89e089becb312ef6ffe0fbc18f409b99">_port7</a>);
+<a name="l00392"></a>00392     }
+<a name="l00393"></a>00393 
+<a name="l00399"></a><a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#ad2feaf269fbcda10fb1192b575a4963a">00399</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#ad2feaf269fbcda10fb1192b575a4963a" title="Turn on and off the LED used to light up the top of the bobbin, for bad bobbin detection.">HardwareAbstractionLayer::bad_bobbin_LED</a>(<span class="keyword">const</span> <span class="keywordtype">bool</span> status)
+<a name="l00400"></a>00400     {
+<a name="l00401"></a>00401         TRACE(<span class="stringliteral">&quot;bad_bobbin_led(&quot;</span>&lt;&lt;status&lt;&lt;<span class="stringliteral">&quot;)&quot;</span>);
+<a name="l00402"></a>00402         <span class="keywordflow">if</span> (status)
+<a name="l00403"></a>00403             this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a89e089becb312ef6ffe0fbc18f409b99">_port7</a> = ~(1&lt;&lt;4) &amp; this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a89e089becb312ef6ffe0fbc18f409b99">_port7</a>; 
+<a name="l00404"></a>00404         <span class="keywordflow">else</span>
+<a name="l00405"></a>00405             this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a89e089becb312ef6ffe0fbc18f409b99">_port7</a> = 1&lt;&lt;4 | this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a89e089becb312ef6ffe0fbc18f409b99">_port7</a>; 
+<a name="l00406"></a>00406 
+<a name="l00407"></a>00407         this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a1a363a3cab8fe7fa099b19395335c0ba">rlink</a>-&gt;command(WRITE_PORT_7, this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a89e089becb312ef6ffe0fbc18f409b99">_port7</a>);
+<a name="l00408"></a>00408     }
+<a name="l00409"></a>00409 
+<a name="l00414"></a><a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a44d5a4c942332ba9ffe027de3dba83f0">00414</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a44d5a4c942332ba9ffe027de3dba83f0" title="Turn the grabber jaw actuator on or off.">HardwareAbstractionLayer::grabber_jaw</a>(<span class="keyword">const</span> <span class="keywordtype">bool</span> status)
+<a name="l00415"></a>00415     {
+<a name="l00416"></a>00416         TRACE(<span class="stringliteral">&quot;grabber_jaw(&quot;</span>&lt;&lt;status&lt;&lt;<span class="stringliteral">&quot;)&quot;</span>);
+<a name="l00417"></a>00417         <span class="keywordflow">if</span> (status) {
+<a name="l00418"></a>00418             DEBUG(<span class="stringliteral">&quot;Clamping&quot;</span>);
+<a name="l00419"></a>00419             this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a89e089becb312ef6ffe0fbc18f409b99">_port7</a> = ~(1&lt;&lt;6) &amp; this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a89e089becb312ef6ffe0fbc18f409b99">_port7</a>;
+<a name="l00420"></a>00420         } <span class="keywordflow">else</span> {
+<a name="l00421"></a>00421             DEBUG(<span class="stringliteral">&quot;Releasing clamp&quot;</span>);
+<a name="l00422"></a>00422             this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a89e089becb312ef6ffe0fbc18f409b99">_port7</a> = 1&lt;&lt;6 | this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a89e089becb312ef6ffe0fbc18f409b99">_port7</a>;
+<a name="l00423"></a>00423         }
+<a name="l00424"></a>00424 
+<a name="l00425"></a>00425         this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a1a363a3cab8fe7fa099b19395335c0ba">rlink</a>-&gt;command(WRITE_PORT_7, this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a89e089becb312ef6ffe0fbc18f409b99">_port7</a>);
+<a name="l00426"></a>00426     }
+<a name="l00427"></a>00427 
+<a name="l00432"></a><a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a0f036b16f1f55a257c2b552035d2a1a9">00432</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a0f036b16f1f55a257c2b552035d2a1a9" title="Turn the grabber lift mechanism actuator on or off.">HardwareAbstractionLayer::grabber_lift</a>(<span class="keyword">const</span> <span class="keywordtype">bool</span> status)
+<a name="l00433"></a>00433     {
+<a name="l00434"></a>00434         TRACE(<span class="stringliteral">&quot;grabber_lift(&quot;</span>&lt;&lt;status&lt;&lt;<span class="stringliteral">&quot;)&quot;</span>);
+<a name="l00435"></a>00435         <span class="keywordflow">if</span> (status) {
+<a name="l00436"></a>00436             DEBUG(<span class="stringliteral">&quot;Lifting grabber&quot;</span>);
+<a name="l00437"></a>00437             this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a89e089becb312ef6ffe0fbc18f409b99">_port7</a> = 1&lt;&lt;7 | this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a89e089becb312ef6ffe0fbc18f409b99">_port7</a>;
+<a name="l00438"></a>00438         } <span class="keywordflow">else</span> {
+<a name="l00439"></a>00439             DEBUG(<span class="stringliteral">&quot;Lowering grabber&quot;</span>);
+<a name="l00440"></a>00440             this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a89e089becb312ef6ffe0fbc18f409b99">_port7</a> = ~(1&lt;&lt;7) &amp; this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a89e089becb312ef6ffe0fbc18f409b99">_port7</a>;
+<a name="l00441"></a>00441         }
+<a name="l00442"></a>00442 
+<a name="l00443"></a>00443         this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a1a363a3cab8fe7fa099b19395335c0ba">rlink</a>-&gt;command(WRITE_PORT_7, this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a89e089becb312ef6ffe0fbc18f409b99">_port7</a>);
+<a name="l00444"></a>00444     }
+<a name="l00445"></a>00445 
+<a name="l00450"></a><a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#ad50b39b58566064c5bb5b0500f2d750e">00450</a>     <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#ad50b39b58566064c5bb5b0500f2d750e" title="Set the emergency stop registers so that the front microswitch will trigger a stop.">HardwareAbstractionLayer::enable_emergency_stop</a>()
+<a name="l00451"></a>00451     {
+<a name="l00452"></a>00452         TRACE(<span class="stringliteral">&quot;enable_emergency_stop()&quot;</span>);
+<a name="l00453"></a>00453         INFO(<span class="stringliteral">&quot;Enabling emergency stop.&quot;</span>);
+<a name="l00454"></a>00454         this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a1a363a3cab8fe7fa099b19395335c0ba">rlink</a>-&gt;command(STOP_SELECT, 0x00);
+<a name="l00455"></a>00455         this-&gt;<a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a1a363a3cab8fe7fa099b19395335c0ba">rlink</a>-&gt;command(STOP_IF_LOW, (1&lt;&lt;5));
+<a name="l00456"></a>00456     }
+<a name="l00457"></a>00457 
+<a name="l00464"></a><a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a965df71af228cf82465e4e9ef6a6e1b0">00464</a>     <span class="keywordtype">bool</span> <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html#a965df71af228cf82465e4e9ef6a6e1b0" title="Check the motor speed against the set maximum, printing an error and returning true if the speed exce...">HardwareAbstractionLayer::check_max_speed</a>(
+<a name="l00465"></a>00465         <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> speed)<span class="keyword"> const</span>
+<a name="l00466"></a>00466 <span class="keyword">    </span>{
+<a name="l00467"></a>00467         TRACE(<span class="stringliteral">&quot;check_max_speed(&quot;</span>&lt;&lt;speed&lt;&lt;<span class="stringliteral">&quot;)&quot;</span>);
+<a name="l00468"></a>00468         <span class="keywordflow">if</span>(speed &gt; <a class="code" href="namespaceIDP.html#a4ead0b21ad2c507b542445695182d4cd" title="Highest allowable motor speed in either direction.">MOTOR_MAX_SPEED</a>) {
+<a name="l00469"></a>00469             DEBUG(<span class="stringliteral">&quot;ERROR: Motor speed too high, not setting&quot;</span>);
+<a name="l00470"></a>00470             <span class="keywordflow">return</span> <span class="keyword">true</span>;
+<a name="l00471"></a>00471         } <span class="keywordflow">else</span> {
+<a name="l00472"></a>00472             <span class="keywordflow">return</span> <span class="keyword">false</span>;
+<a name="l00473"></a>00473         }
+<a name="l00474"></a>00474     }
+<a name="l00475"></a>00475 }
+<a name="l00476"></a>00476 
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -354,7 +437,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Tue Feb 15 2011 02:35:58 for IDPL108 by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sat Feb 19 2011 01:29:45 for IDPL108 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

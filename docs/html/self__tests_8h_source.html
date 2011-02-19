@@ -87,19 +87,28 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00039"></a>00039             <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1SelfTests.html#a0a1a40b56fee5249def567bebdb05dc1" title="Follow a line until a junction.">line_following</a>(<span class="keywordtype">void</span>);
 <a name="l00040"></a>00040             <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1SelfTests.html#a896204355ca039660a12e8131578b6c3" title="Use the actuators to pick up an object before placing it back down again.">clamp_control</a>(<span class="keywordtype">void</span>);
 <a name="l00041"></a>00041             <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1SelfTests.html#a66f0a3bad277e36b963b2bf3cd5df9dd" title="Analyse the colour of the bobbin that is currently being held in the clamp.">bobbin_analyse</a>(<span class="keywordtype">void</span>);
-<a name="l00042"></a>00042             <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1SelfTests.html#a710347081427c05706f92bdd12f62fbe" title="Select a source and destination and then navigate to the destination assuming we are starting at the ...">navigate</a>(<span class="keywordtype">void</span>);
-<a name="l00043"></a>00043             <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1SelfTests.html#ada3dfe991573fc6b0922cace927fc4e0" title="Drive slowly looking for an object in range for pickup, then position self ready to clamp said object...">position</a>(<span class="keywordtype">void</span>);
-<a name="l00044"></a>00044             <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1SelfTests.html#abbe6e3e29b00f760e0b65f2aeb772fb5" title="Turn on each of the status LEDs (used for indicating bobbin colour) in turn.">status_LEDs</a>(<span class="keywordtype">void</span>);
-<a name="l00045"></a>00045             <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1SelfTests.html#a1380b0222eef47f6d50e7cf334e4c9e7" title="Turn on each of the coloured LEDs used for colour detection in turn.">colour_sensor_LEDs</a>(<span class="keywordtype">void</span>);
-<a name="l00046"></a>00046             <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1SelfTests.html#aee90c71e9e93398f06dc1ad67002d7bf" title="Turn on the LED used for detecting bad bobbins.">badness_LED</a>(<span class="keywordtype">void</span>);
-<a name="l00047"></a>00047         <span class="keyword">private</span>:
-<a name="l00048"></a><a class="code" href="classIDP_1_1SelfTests.html#a90c60ce647f723e9a37339aadba4770c">00048</a>             <span class="keywordtype">int</span> <a class="code" href="classIDP_1_1SelfTests.html#a90c60ce647f723e9a37339aadba4770c">_robot</a>;
-<a name="l00049"></a><a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">00049</a>             <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html" title="Provide a hardware agnostic interface to the required hardware functionality.">HardwareAbstractionLayer</a>* <a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>;
-<a name="l00050"></a>00050     };
-<a name="l00051"></a>00051 }
-<a name="l00052"></a>00052 
-<a name="l00053"></a>00053 <span class="preprocessor">#endif </span><span class="comment">/* LIBIDP_SELF_TESTS_H */</span>
-<a name="l00054"></a>00054 
+<a name="l00042"></a>00042             <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1SelfTests.html#ad112f0e0a9ef078b394585742d23fbbf" title="Analyse the colour of the bobbin in a box.">box_analyse</a>(<span class="keywordtype">void</span>);
+<a name="l00043"></a>00043             <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1SelfTests.html#a9914eb4c83e3613311d1b4656631db01" title="See if a bobbin is under the clamp.">bobbin_present</a>(<span class="keywordtype">void</span>);
+<a name="l00044"></a>00044             <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1SelfTests.html#a04ec400b90a5fa3203db667aa97ec99d" title="See if a box is under the clamp.">box_present</a>(<span class="keywordtype">void</span>);
+<a name="l00045"></a>00045             <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1SelfTests.html#a710347081427c05706f92bdd12f62fbe" title="Select a source and destination and then navigate to the destination assuming we are starting at the ...">navigate</a>(<span class="keywordtype">void</span>);
+<a name="l00046"></a>00046             <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1SelfTests.html#a74774d0867234315043af155d7d6ab2e" title="Drive to a bobbin and stop.">navigate_to_bobbin</a>(<span class="keywordtype">void</span>);
+<a name="l00047"></a>00047             <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1SelfTests.html#a0bc87b4b87714b787db2b9f0b185c7c0" title="Locate a box and stop.">navigate_to_box_for_pickup</a>(<span class="keywordtype">void</span>);
+<a name="l00048"></a>00048             <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1SelfTests.html#a6633d682d0126698d66392e1c750eeed" title="Locate a box and stop.">navigate_to_box_for_drop</a>(<span class="keywordtype">void</span>);
+<a name="l00049"></a>00049             <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1SelfTests.html#a7b656185650ea6c34563e3cb4795d47a" title="Drive to the delivery zone and stop.">navigate_to_delivery</a>(<span class="keywordtype">void</span>);
+<a name="l00050"></a>00050             <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1SelfTests.html#a1fa6c28ff5e8aa554d3e1bea81018204" title="Drive to the delivery zone and drop something off then return.">delivery</a>(<span class="keywordtype">void</span>);
+<a name="l00051"></a>00051             <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1SelfTests.html#ada3dfe991573fc6b0922cace927fc4e0" title="Drive slowly looking for an object in range for pickup, then position self ready to clamp said object...">position</a>(<span class="keywordtype">void</span>);
+<a name="l00052"></a>00052             <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1SelfTests.html#acd6d4a493850445419843cefc4d25bc3" title="Turn on each of the status LEDs (used for indicating bobbin colour) in turn.">indicator_LEDs</a>(<span class="keywordtype">void</span>);
+<a name="l00053"></a>00053             <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1SelfTests.html#a1380b0222eef47f6d50e7cf334e4c9e7" title="Turn on each of the coloured LEDs used for colour detection in turn.">colour_sensor_LEDs</a>(<span class="keywordtype">void</span>);
+<a name="l00054"></a>00054             <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1SelfTests.html#aa32598325a69ed2b02e1540704d8bc06" title="Turn on the LED used for detecting bad bobbins.">bad_bobbin_LED</a>(<span class="keywordtype">void</span>);
+<a name="l00055"></a>00055             <span class="keywordtype">void</span> <a class="code" href="classIDP_1_1SelfTests.html#a1f59c76873f58a7100cd1a4b7ac3e044" title="Read a lot of levels from the LDRs to store in a calibration file.">calibrate</a>(<span class="keywordtype">void</span>);
+<a name="l00056"></a>00056         <span class="keyword">private</span>:
+<a name="l00057"></a><a class="code" href="classIDP_1_1SelfTests.html#a90c60ce647f723e9a37339aadba4770c">00057</a>             <span class="keywordtype">int</span> <a class="code" href="classIDP_1_1SelfTests.html#a90c60ce647f723e9a37339aadba4770c">_robot</a>;
+<a name="l00058"></a><a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">00058</a>             <a class="code" href="classIDP_1_1HardwareAbstractionLayer.html" title="Provide a hardware agnostic interface to the required hardware functionality.">HardwareAbstractionLayer</a>* <a class="code" href="classIDP_1_1SelfTests.html#a1f8a6f6c2ff26182311c8a7766db6f5a">_hal</a>;
+<a name="l00059"></a>00059     };
+<a name="l00060"></a>00060 }
+<a name="l00061"></a>00061 
+<a name="l00062"></a>00062 <span class="preprocessor">#endif </span><span class="comment">/* LIBIDP_SELF_TESTS_H */</span>
+<a name="l00063"></a>00063 
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -116,7 +125,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Tue Feb 15 2011 02:35:58 for IDPL108 by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sat Feb 19 2011 01:29:45 for IDPL108 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

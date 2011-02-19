@@ -56,137 +56,172 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00005"></a>00005 <span class="comment">// Program entry point</span>
 <a name="l00006"></a>00006 
 <a name="l00007"></a>00007 <span class="preprocessor">#include &lt;iostream&gt;</span>
-<a name="l00008"></a>00008 <span class="preprocessor">#include &lt;string&gt;</span>
-<a name="l00009"></a>00009 <span class="preprocessor">#include &lt;signal.h&gt;</span>
-<a name="l00010"></a>00010 <span class="preprocessor">#include &lt;cstdlib&gt;</span>
-<a name="l00011"></a>00011 <span class="preprocessor">#include &lt;<a class="code" href="libidp_8h.html">libidp/libidp.h</a>&gt;</span>
-<a name="l00012"></a>00012 
-<a name="l00013"></a>00013 <span class="preprocessor">#include &quot;<a class="code" href="menu_8h.html">menu.h</a>&quot;</span>
-<a name="l00014"></a>00014 
-<a name="l00018"></a><a class="code" href="main_8cc.html#a94c3385db89ae04c38bc37cc0fbff092">00018</a> <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="main_8cc.html#a94c3385db89ae04c38bc37cc0fbff092" title="The robot number, or 0 if running embedded.">ROBOT</a> = 39;
-<a name="l00019"></a>00019 
-<a name="l00024"></a><a class="code" href="main_8cc.html#a971eeb7a32200889b2d0007fb09b9957">00024</a> <span class="keyword">static</span> <a class="code" href="classIDP_1_1MissionSupervisor.html" title="Control the overall robot behaviour and objective fulfillment.">IDP::MissionSupervisor</a>* <a class="code" href="main_8cc.html#a971eeb7a32200889b2d0007fb09b9957" title="Global reference to our Mission Supervisor so we can use it inside terminate().">missup</a> = 0;
-<a name="l00025"></a>00025 
-<a name="l00026"></a>00026 <span class="comment">/*</span>
-<a name="l00027"></a>00027 <span class="comment"> * Global reference to SelfTests so they can be stopped inside terminate()</span>
-<a name="l00028"></a>00028 <span class="comment"> */</span>
-<a name="l00029"></a><a class="code" href="main_8cc.html#a4c87dbb1fa925ffb0cc1f3b5fc911b05">00029</a> <span class="keyword">static</span> <a class="code" href="classIDP_1_1SelfTests.html" title="Execute a variety of functionality self tests.">IDP::SelfTests</a>* <a class="code" href="main_8cc.html#a4c87dbb1fa925ffb0cc1f3b5fc911b05">tests</a> = 0;
+<a name="l00008"></a>00008 <span class="preprocessor">#include &lt;fstream&gt;</span>
+<a name="l00009"></a>00009 <span class="preprocessor">#include &lt;string&gt;</span>
+<a name="l00010"></a>00010 <span class="preprocessor">#include &lt;signal.h&gt;</span>
+<a name="l00011"></a>00011 <span class="preprocessor">#include &lt;cstdlib&gt;</span>
+<a name="l00012"></a>00012 <span class="preprocessor">#include &lt;<a class="code" href="libidp_8h.html">libidp/libidp.h</a>&gt;</span>
+<a name="l00013"></a>00013 
+<a name="l00014"></a>00014 <span class="preprocessor">#include &quot;<a class="code" href="menu_8h.html">menu.h</a>&quot;</span>
+<a name="l00015"></a>00015 
+<a name="l00019"></a>00019 <span class="preprocessor">#ifdef RUNNING_EMBEDDED</span>
+<a name="l00020"></a>00020 <span class="preprocessor"></span><span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="main_8cc.html#a94c3385db89ae04c38bc37cc0fbff092" title="The robot number, or 0 if running embedded.">ROBOT</a> = 0;
+<a name="l00021"></a>00021 <span class="preprocessor">#else</span>
+<a name="l00022"></a><a class="code" href="main_8cc.html#a94c3385db89ae04c38bc37cc0fbff092">00022</a> <span class="preprocessor"></span><span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="main_8cc.html#a94c3385db89ae04c38bc37cc0fbff092" title="The robot number, or 0 if running embedded.">ROBOT</a> = 39;
+<a name="l00023"></a>00023 <span class="preprocessor">#endif</span>
+<a name="l00024"></a>00024 <span class="preprocessor"></span>
+<a name="l00029"></a><a class="code" href="main_8cc.html#a971eeb7a32200889b2d0007fb09b9957">00029</a> <span class="keyword">static</span> <a class="code" href="classIDP_1_1MissionSupervisor.html" title="Control the overall robot behaviour and objective fulfillment.">IDP::MissionSupervisor</a>* <a class="code" href="main_8cc.html#a971eeb7a32200889b2d0007fb09b9957" title="Global reference to our Mission Supervisor so we can use it inside terminate().">missup</a> = 0;
 <a name="l00030"></a>00030 
-<a name="l00035"></a><a class="code" href="main_8cc.html#abc1eb5b73937c21f0c857b478dea17c0">00035</a> <span class="keywordtype">void</span> <a class="code" href="main_8cc.html#abc1eb5b73937c21f0c857b478dea17c0" title="Handle program termination cleanly.">terminate</a>(<span class="keywordtype">int</span> param)
-<a name="l00036"></a>00036 {
-<a name="l00037"></a>00037     <span class="comment">// Check we have a SIGINT</span>
-<a name="l00038"></a>00038     <span class="keywordflow">if</span>(param != SIGINT) {
-<a name="l00039"></a>00039         <span class="keywordflow">return</span>;
-<a name="l00040"></a>00040     }
-<a name="l00041"></a>00041 
-<a name="l00042"></a>00042     <span class="comment">// Stop the robot if either missup or tests was constructed</span>
-<a name="l00043"></a>00043     <span class="keywordflow">if</span>(missup) {
-<a name="l00044"></a>00044         missup-&gt;<a class="code" href="classIDP_1_1MissionSupervisor.html#ad11e444b6be1d51c3339bd6397d45fd4">stop</a>();
+<a name="l00031"></a>00031 <span class="comment">/*</span>
+<a name="l00032"></a>00032 <span class="comment"> * Global reference to SelfTests so they can be stopped inside terminate()</span>
+<a name="l00033"></a>00033 <span class="comment"> */</span>
+<a name="l00034"></a><a class="code" href="main_8cc.html#a4c87dbb1fa925ffb0cc1f3b5fc911b05">00034</a> <span class="keyword">static</span> <a class="code" href="classIDP_1_1SelfTests.html" title="Execute a variety of functionality self tests.">IDP::SelfTests</a>* <a class="code" href="main_8cc.html#a4c87dbb1fa925ffb0cc1f3b5fc911b05">tests</a> = 0;
+<a name="l00035"></a>00035 
+<a name="l00040"></a><a class="code" href="main_8cc.html#abc1eb5b73937c21f0c857b478dea17c0">00040</a> <span class="keywordtype">void</span> <a class="code" href="main_8cc.html#abc1eb5b73937c21f0c857b478dea17c0" title="Handle program termination cleanly.">terminate</a>(<span class="keywordtype">int</span> param)
+<a name="l00041"></a>00041 {
+<a name="l00042"></a>00042     <span class="comment">// Check we have a SIGINT</span>
+<a name="l00043"></a>00043     <span class="keywordflow">if</span>(param != SIGINT) {
+<a name="l00044"></a>00044         <span class="keywordflow">return</span>;
 <a name="l00045"></a>00045     }
 <a name="l00046"></a>00046 
-<a name="l00047"></a>00047     <span class="keywordflow">if</span>(tests) {
-<a name="l00048"></a>00048         tests-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a33adf462d8c408b1c7b4858e9a4ff000" title="Stop all of the robot&amp;#39;s motors.">stop</a>();
-<a name="l00049"></a>00049     }
-<a name="l00050"></a>00050 
-<a name="l00051"></a>00051     <span class="comment">// Exit OK</span>
-<a name="l00052"></a>00052     exit(1);
-<a name="l00053"></a>00053 }
-<a name="l00054"></a>00054 
-<a name="l00058"></a><a class="code" href="main_8cc.html#ae66f6b31b5ad750f1fe042a706a4e3d4">00058</a> <span class="keywordtype">int</span> <a class="code" href="main_8cc.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="Code entry point and main loop.">main</a>()
-<a name="l00059"></a>00059 {
-<a name="l00060"></a>00060     <span class="comment">// Set up ctrl-c catching</span>
-<a name="l00061"></a>00061     <span class="keyword">struct </span>sigaction sigint_handler;
-<a name="l00062"></a>00062     sigint_handler.sa_handler = terminate;
-<a name="l00063"></a>00063     sigemptyset(&amp;sigint_handler.sa_mask);
-<a name="l00064"></a>00064     sigint_handler.sa_flags = 0;
-<a name="l00065"></a>00065     sigaction(SIGINT, &amp;sigint_handler, NULL);
-<a name="l00066"></a>00066 
-<a name="l00067"></a>00067     <span class="comment">// Get user action choice</span>
-<a name="l00068"></a>00068     <a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99" title="The list of all possible menu choices.">IDP::MenuChoice</a> choice = <a class="code" href="classIDP_1_1Menu.html#a5a2affbb79c5c58bcf92fabe7875a07e" title="Top level menu entrance.">IDP::Menu::get_choice</a>();
-<a name="l00069"></a>00069     
-<a name="l00070"></a>00070     <span class="comment">// Act appropriately. Unfortunately no way besides a large if/else if</span>
-<a name="l00071"></a>00071     <span class="comment">// statement seems particularly appropriate (in particular a switch</span>
-<a name="l00072"></a>00072     <span class="comment">// will not work and in any case is hardly any neater).</span>
-<a name="l00073"></a>00073     <span class="keywordflow">if</span>(choice == <a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99a59187814038f8d9935b623e0d8b343d8">IDP::MENU_QUIT</a>) {
-<a name="l00074"></a>00074         <span class="keywordflow">return</span> 0;
-<a name="l00075"></a>00075     } <span class="keywordflow">else</span> <span class="keywordflow">if</span>(choice == <a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99ab6a8ae6d050d587d31cbe4d0bf960f14">IDP::MENU_RUN_MAIN_TASK</a>) {
-<a name="l00076"></a>00076         <span class="comment">// 1. check for existing state files</span>
-<a name="l00077"></a>00077         <span class="comment">// 2. see if we should load them</span>
-<a name="l00078"></a>00078         <span class="comment">// 3. initialise a missionsupervisor appropriately</span>
-<a name="l00079"></a>00079         <span class="comment">// 4. run it</span>
-<a name="l00080"></a>00080     } <span class="keywordflow">else</span> <span class="keywordflow">if</span>(choice == <a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99adda52b9f226e94ccf52c9adc477dab37">IDP::MENU_RUN_ALL_SELF_TESTS</a>) {
-<a name="l00081"></a>00081         <span class="comment">// this should be interesting, work out a good way to do this</span>
-<a name="l00082"></a>00082         <span class="comment">// interatively in a bit</span>
-<a name="l00083"></a>00083     } <span class="keywordflow">else</span> <span class="keywordflow">if</span>(choice == <a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99a1aa3dace9f087c1336551f4beda7492e">IDP::MENU_LINE_FOLLOWING_TEST</a>) {
-<a name="l00084"></a>00084         tests = <span class="keyword">new</span> <a class="code" href="classIDP_1_1SelfTests.html" title="Execute a variety of functionality self tests.">IDP::SelfTests</a>(<a class="code" href="main_8cc.html#a94c3385db89ae04c38bc37cc0fbff092" title="The robot number, or 0 if running embedded.">ROBOT</a>);
-<a name="l00085"></a>00085         tests-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a0a1a40b56fee5249def567bebdb05dc1" title="Follow a line until a junction.">line_following</a>();
-<a name="l00086"></a>00086     } <span class="keywordflow">else</span> <span class="keywordflow">if</span>(choice == <a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99abab1528689e53a7505abeef47c6ca67e">IDP::MENU_NAVIGATION_TEST</a>) {
-<a name="l00087"></a>00087         tests = <span class="keyword">new</span> <a class="code" href="classIDP_1_1SelfTests.html" title="Execute a variety of functionality self tests.">IDP::SelfTests</a>(<a class="code" href="main_8cc.html#a94c3385db89ae04c38bc37cc0fbff092" title="The robot number, or 0 if running embedded.">ROBOT</a>);
-<a name="l00088"></a>00088         tests-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a710347081427c05706f92bdd12f62fbe" title="Select a source and destination and then navigate to the destination assuming we are starting at the ...">navigate</a>();
-<a name="l00089"></a>00089     } <span class="keywordflow">else</span> <span class="keywordflow">if</span>(choice == <a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99a9df5e55c1ef501f357d859392c72e630">IDP::MENU_DRIVE_FORWARD</a>) {
-<a name="l00090"></a>00090         tests = <span class="keyword">new</span> <a class="code" href="classIDP_1_1SelfTests.html" title="Execute a variety of functionality self tests.">IDP::SelfTests</a>(<a class="code" href="main_8cc.html#a94c3385db89ae04c38bc37cc0fbff092" title="The robot number, or 0 if running embedded.">ROBOT</a>);
-<a name="l00091"></a>00091         tests-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a4ff456e74d55e13599cf64db76bd2ed4" title="Drive the robot forwards for a moment.">drive_forward</a>();
-<a name="l00092"></a>00092     } <span class="keywordflow">else</span> <span class="keywordflow">if</span>(choice == <a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99abc427a1c6b01c8735c08b7400ec27428">IDP::MENU_DRIVE_BACKWARD</a>) {
-<a name="l00093"></a>00093         tests = <span class="keyword">new</span> <a class="code" href="classIDP_1_1SelfTests.html" title="Execute a variety of functionality self tests.">IDP::SelfTests</a>(<a class="code" href="main_8cc.html#a94c3385db89ae04c38bc37cc0fbff092" title="The robot number, or 0 if running embedded.">ROBOT</a>);
-<a name="l00094"></a>00094         tests-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a38ddef7ecdf9b7dfa69d689c9c1ac8ca" title="Drive the robot backwards for a moment.">drive_backward</a>();
-<a name="l00095"></a>00095     } <span class="keywordflow">else</span> <span class="keywordflow">if</span>(choice == <a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99a0b9c5176d49d3809e80cd23d00c9a801">IDP::MENU_TURN_LEFT</a>) {
-<a name="l00096"></a>00096         tests = <span class="keyword">new</span> <a class="code" href="classIDP_1_1SelfTests.html" title="Execute a variety of functionality self tests.">IDP::SelfTests</a>(<a class="code" href="main_8cc.html#a94c3385db89ae04c38bc37cc0fbff092" title="The robot number, or 0 if running embedded.">ROBOT</a>);
-<a name="l00097"></a>00097         tests-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a3ba14e5a1ed52ff112bc742b94f06d61" title="Drive motors in opposite directions to turn the robot left on the spot.">turn_left</a>();
-<a name="l00098"></a>00098     } <span class="keywordflow">else</span> <span class="keywordflow">if</span>(choice == <a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99af972ee0a2346477962f78898dfe4523a">IDP::MENU_TURN_RIGHT</a>) {
-<a name="l00099"></a>00099         tests = <span class="keyword">new</span> <a class="code" href="classIDP_1_1SelfTests.html" title="Execute a variety of functionality self tests.">IDP::SelfTests</a>(<a class="code" href="main_8cc.html#a94c3385db89ae04c38bc37cc0fbff092" title="The robot number, or 0 if running embedded.">ROBOT</a>);
-<a name="l00100"></a>00100         tests-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a4e4b66ddff2de3444f1e9383dcf463a6" title="Drive motors in opposite directions to turn the robot right on the spot.">turn_right</a>();
-<a name="l00101"></a>00101     } <span class="keywordflow">else</span> <span class="keywordflow">if</span>(choice == <a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99a3eb3b6a326b6104a57b7b09f73afabf4">IDP::MENU_STEER_LEFT</a>) {
-<a name="l00102"></a>00102         tests = <span class="keyword">new</span> <a class="code" href="classIDP_1_1SelfTests.html" title="Execute a variety of functionality self tests.">IDP::SelfTests</a>(<a class="code" href="main_8cc.html#a94c3385db89ae04c38bc37cc0fbff092" title="The robot number, or 0 if running embedded.">ROBOT</a>);
+<a name="l00047"></a>00047     <span class="comment">// Stop the robot if either missup or tests was constructed</span>
+<a name="l00048"></a>00048     <span class="keywordflow">if</span>(missup) {
+<a name="l00049"></a>00049         missup-&gt;<a class="code" href="classIDP_1_1MissionSupervisor.html#ae0c5ee275ed6d1a40a47bea80ef59f6a" title="Stop.">stop</a>();
+<a name="l00050"></a>00050     }
+<a name="l00051"></a>00051 
+<a name="l00052"></a>00052     <span class="keywordflow">if</span>(tests) {
+<a name="l00053"></a>00053         tests-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a33adf462d8c408b1c7b4858e9a4ff000" title="Stop all of the robot&amp;#39;s motors.">stop</a>();
+<a name="l00054"></a>00054     }
+<a name="l00055"></a>00055 
+<a name="l00056"></a>00056     <span class="comment">// Save state from missup</span>
+<a name="l00057"></a>00057     <span class="keywordflow">if</span>(missup) {
+<a name="l00058"></a>00058         std::ofstream f(<span class="stringliteral">&quot;statefile&quot;</span>);
+<a name="l00059"></a>00059         <span class="keywordtype">bool</span> red, green, white, box1;
+<a name="l00060"></a>00060         missup-&gt;<a class="code" href="classIDP_1_1MissionSupervisor.html#a9de3aaeb91da90961de5938eda7c7d08" title="Export the internal state via pass-by-reference variables.">export_state</a>(red, green, white, box1);
+<a name="l00061"></a>00061         f &lt;&lt; red &lt;&lt; std::endl &lt;&lt; green &lt;&lt; std::endl &lt;&lt; white &lt;&lt; std::endl;
+<a name="l00062"></a>00062         f &lt;&lt; box1 &lt;&lt; std::endl;
+<a name="l00063"></a>00063         f.close();
+<a name="l00064"></a>00064     }
+<a name="l00065"></a>00065 
+<a name="l00066"></a>00066     <span class="comment">// Exit OK</span>
+<a name="l00067"></a>00067     exit(1);
+<a name="l00068"></a>00068 }
+<a name="l00069"></a>00069 
+<a name="l00074"></a><a class="code" href="main_8cc.html#af1118685ab62ba7b0e3981ff97b3e35b">00074</a> <span class="keywordtype">void</span> <a class="code" href="main_8cc.html#af1118685ab62ba7b0e3981ff97b3e35b" title="A big if statement to run the chosen test.">run_self_test</a>(<a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99" title="The list of all possible menu choices.">IDP::MenuChoice</a> choice)
+<a name="l00075"></a>00075 {
+<a name="l00076"></a>00076     <span class="comment">// One of the tests was selected, so initialise tests</span>
+<a name="l00077"></a>00077     tests = <span class="keyword">new</span> <a class="code" href="classIDP_1_1SelfTests.html" title="Execute a variety of functionality self tests.">IDP::SelfTests</a>(<a class="code" href="main_8cc.html#a94c3385db89ae04c38bc37cc0fbff092" title="The robot number, or 0 if running embedded.">ROBOT</a>);
+<a name="l00078"></a>00078     <span class="keywordflow">if</span>(choice == <a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99adda52b9f226e94ccf52c9adc477dab37">IDP::MENU_RUN_ALL_SELF_TESTS</a>) {
+<a name="l00079"></a>00079         <span class="comment">// TODO: this complete self test routine</span>
+<a name="l00080"></a>00080     } <span class="keywordflow">else</span> <span class="keywordflow">if</span>(choice == <a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99a1aa3dace9f087c1336551f4beda7492e">IDP::MENU_LINE_FOLLOWING_TEST</a>) {
+<a name="l00081"></a>00081         tests-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a0a1a40b56fee5249def567bebdb05dc1" title="Follow a line until a junction.">line_following</a>();
+<a name="l00082"></a>00082     } <span class="keywordflow">else</span> <span class="keywordflow">if</span>(choice == <a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99abab1528689e53a7505abeef47c6ca67e">IDP::MENU_NAVIGATION_TEST</a>) {
+<a name="l00083"></a>00083         tests-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a710347081427c05706f92bdd12f62fbe" title="Select a source and destination and then navigate to the destination assuming we are starting at the ...">navigate</a>();
+<a name="l00084"></a>00084     } <span class="keywordflow">else</span> <span class="keywordflow">if</span>(choice == <a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99ab4bf7000587f9abb5d369dccbd5ae73e">IDP::MENU_NAVIGATE_TO_BOX_FOR_DROP</a>) {
+<a name="l00085"></a>00085         tests-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a6633d682d0126698d66392e1c750eeed" title="Locate a box and stop.">navigate_to_box_for_drop</a>();
+<a name="l00086"></a>00086     } <span class="keywordflow">else</span> <span class="keywordflow">if</span>(choice == <a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99af9cbb35cc3ca99c19edbf7918287ff12">IDP::MENU_NAVIGATE_TO_BOX_FOR_PICKUP</a>) {
+<a name="l00087"></a>00087         tests-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a0bc87b4b87714b787db2b9f0b185c7c0" title="Locate a box and stop.">navigate_to_box_for_pickup</a>();
+<a name="l00088"></a>00088     } <span class="keywordflow">else</span> <span class="keywordflow">if</span>(choice == <a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99aed8778056e639b819d48ede426997a01">IDP::MENU_NAVIGATE_TO_BOBBIN</a>) {
+<a name="l00089"></a>00089         tests-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a74774d0867234315043af155d7d6ab2e" title="Drive to a bobbin and stop.">navigate_to_bobbin</a>();
+<a name="l00090"></a>00090     } <span class="keywordflow">else</span> <span class="keywordflow">if</span>(choice == <a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99a4eb6cc58b42d6752a2dd912e209b5beb">IDP::MENU_NAVIGATE_TO_DELIVERY</a>) {
+<a name="l00091"></a>00091         tests-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a7b656185650ea6c34563e3cb4795d47a" title="Drive to the delivery zone and stop.">navigate_to_delivery</a>();
+<a name="l00092"></a>00092     } <span class="keywordflow">else</span> <span class="keywordflow">if</span>(choice == <a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99a214282dca7a3b28d826953353d51ead6">IDP::MENU_DELIVERY</a>) {
+<a name="l00093"></a>00093         tests-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1fa6c28ff5e8aa554d3e1bea81018204" title="Drive to the delivery zone and drop something off then return.">delivery</a>();
+<a name="l00094"></a>00094     } <span class="keywordflow">else</span> <span class="keywordflow">if</span>(choice == <a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99a9df5e55c1ef501f357d859392c72e630">IDP::MENU_DRIVE_FORWARD</a>) {
+<a name="l00095"></a>00095         tests-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a4ff456e74d55e13599cf64db76bd2ed4" title="Drive the robot forwards for a moment.">drive_forward</a>();
+<a name="l00096"></a>00096     } <span class="keywordflow">else</span> <span class="keywordflow">if</span>(choice == <a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99abc427a1c6b01c8735c08b7400ec27428">IDP::MENU_DRIVE_BACKWARD</a>) {
+<a name="l00097"></a>00097         tests-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a38ddef7ecdf9b7dfa69d689c9c1ac8ca" title="Drive the robot backwards for a moment.">drive_backward</a>();
+<a name="l00098"></a>00098     } <span class="keywordflow">else</span> <span class="keywordflow">if</span>(choice == <a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99a0b9c5176d49d3809e80cd23d00c9a801">IDP::MENU_TURN_LEFT</a>) {
+<a name="l00099"></a>00099         tests-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a3ba14e5a1ed52ff112bc742b94f06d61" title="Drive motors in opposite directions to turn the robot left on the spot.">turn_left</a>();
+<a name="l00100"></a>00100     } <span class="keywordflow">else</span> <span class="keywordflow">if</span>(choice == <a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99af972ee0a2346477962f78898dfe4523a">IDP::MENU_TURN_RIGHT</a>) {
+<a name="l00101"></a>00101         tests-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a4e4b66ddff2de3444f1e9383dcf463a6" title="Drive motors in opposite directions to turn the robot right on the spot.">turn_right</a>();
+<a name="l00102"></a>00102     } <span class="keywordflow">else</span> <span class="keywordflow">if</span>(choice == <a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99a3eb3b6a326b6104a57b7b09f73afabf4">IDP::MENU_STEER_LEFT</a>) {
 <a name="l00103"></a>00103         tests-&gt;<a class="code" href="classIDP_1_1SelfTests.html#ae54bd0e6c01c5d1d794363cc676dbb92" title="Drive forwards for a moment whilst reducing the speed of the left motor relative to the right to stee...">steer_left</a>();
 <a name="l00104"></a>00104     } <span class="keywordflow">else</span> <span class="keywordflow">if</span>(choice == <a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99ae351c54a8e15c97cf27f0e017f495b31">IDP::MENU_STEER_RIGHT</a>) {
-<a name="l00105"></a>00105         tests = <span class="keyword">new</span> <a class="code" href="classIDP_1_1SelfTests.html" title="Execute a variety of functionality self tests.">IDP::SelfTests</a>(<a class="code" href="main_8cc.html#a94c3385db89ae04c38bc37cc0fbff092" title="The robot number, or 0 if running embedded.">ROBOT</a>);
-<a name="l00106"></a>00106         tests-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a7f9c5999de2e7c4f59c8c5a60965e876" title="Drive forwards for a moment whilst reducing the speed of the right motor relative to the left to stee...">steer_right</a>();
-<a name="l00107"></a>00107     } <span class="keywordflow">else</span> <span class="keywordflow">if</span>(choice == <a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99a1a3e265ab5e1a2afda873da8c1cb7d9f">IDP::MENU_STOP</a>) {
-<a name="l00108"></a>00108         tests = <span class="keyword">new</span> <a class="code" href="classIDP_1_1SelfTests.html" title="Execute a variety of functionality self tests.">IDP::SelfTests</a>(<a class="code" href="main_8cc.html#a94c3385db89ae04c38bc37cc0fbff092" title="The robot number, or 0 if running embedded.">ROBOT</a>);
-<a name="l00109"></a>00109         tests-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a33adf462d8c408b1c7b4858e9a4ff000" title="Stop all of the robot&amp;#39;s motors.">stop</a>();
-<a name="l00110"></a>00110     } <span class="keywordflow">else</span> <span class="keywordflow">if</span>(choice == <a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99aa80af753125b39e64ca61a80af90a880">IDP::MENU_ANALYSE</a>) {
-<a name="l00111"></a>00111         tests = <span class="keyword">new</span> <a class="code" href="classIDP_1_1SelfTests.html" title="Execute a variety of functionality self tests.">IDP::SelfTests</a>(<a class="code" href="main_8cc.html#a94c3385db89ae04c38bc37cc0fbff092" title="The robot number, or 0 if running embedded.">ROBOT</a>);
-<a name="l00112"></a>00112         tests-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a66f0a3bad277e36b963b2bf3cd5df9dd" title="Analyse the colour of the bobbin that is currently being held in the clamp.">bobbin_analyse</a>();
-<a name="l00113"></a>00113     } <span class="keywordflow">else</span> <span class="keywordflow">if</span>(choice == <a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99ab11c40c94a75f45496a1898bc99516e4">IDP::MENU_PICK_UP</a>) {
-<a name="l00114"></a>00114         <span class="comment">// TODO: this just calls clamp_control! it should really</span>
-<a name="l00115"></a>00115         <span class="comment">// call something to pick something up</span>
-<a name="l00116"></a>00116         tests = <span class="keyword">new</span> <a class="code" href="classIDP_1_1SelfTests.html" title="Execute a variety of functionality self tests.">IDP::SelfTests</a>(<a class="code" href="main_8cc.html#a94c3385db89ae04c38bc37cc0fbff092" title="The robot number, or 0 if running embedded.">ROBOT</a>);
-<a name="l00117"></a>00117         tests-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a896204355ca039660a12e8131578b6c3" title="Use the actuators to pick up an object before placing it back down again.">clamp_control</a>();
-<a name="l00118"></a>00118     } <span class="keywordflow">else</span> <span class="keywordflow">if</span>(choice == <a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99a85d840a85645d3a127b785df78387d6f">IDP::MENU_PUT_DOWN</a>) {
-<a name="l00119"></a>00119         <span class="comment">// TODO: see above!</span>
-<a name="l00120"></a>00120         tests = <span class="keyword">new</span> <a class="code" href="classIDP_1_1SelfTests.html" title="Execute a variety of functionality self tests.">IDP::SelfTests</a>(<a class="code" href="main_8cc.html#a94c3385db89ae04c38bc37cc0fbff092" title="The robot number, or 0 if running embedded.">ROBOT</a>);
-<a name="l00121"></a>00121         tests-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a896204355ca039660a12e8131578b6c3" title="Use the actuators to pick up an object before placing it back down again.">clamp_control</a>();
-<a name="l00122"></a>00122     } <span class="keywordflow">else</span> <span class="keywordflow">if</span>(choice == <a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99a1454106f5e7503695da693c6acc3157d">IDP::MENU_LINE_SENSORS</a>) {
-<a name="l00123"></a>00123         tests = <span class="keyword">new</span> <a class="code" href="classIDP_1_1SelfTests.html" title="Execute a variety of functionality self tests.">IDP::SelfTests</a>(<a class="code" href="main_8cc.html#a94c3385db89ae04c38bc37cc0fbff092" title="The robot number, or 0 if running embedded.">ROBOT</a>);
-<a name="l00124"></a>00124         tests-&gt;<a class="code" href="classIDP_1_1SelfTests.html#aa73ad4de6c1d2b725ed796c10f54ab7c" title="Display the status (LINE or NO_LINE) of each of the four IR line following sensors.">line_sensors</a>();
-<a name="l00125"></a>00125     } <span class="keywordflow">else</span> <span class="keywordflow">if</span>(choice == <a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99a88c747088c71c27488b3f6b7329c82d1">IDP::MENU_SWITCHES</a>) {
-<a name="l00126"></a>00126         tests = <span class="keyword">new</span> <a class="code" href="classIDP_1_1SelfTests.html" title="Execute a variety of functionality self tests.">IDP::SelfTests</a>(<a class="code" href="main_8cc.html#a94c3385db89ae04c38bc37cc0fbff092" title="The robot number, or 0 if running embedded.">ROBOT</a>);
-<a name="l00127"></a>00127         tests-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a6b2e4d0517de4b73c63f1b1a475b602f" title="Display the state of each of the two microswitches.">microswitches</a>();
-<a name="l00128"></a>00128     } <span class="keywordflow">else</span> <span class="keywordflow">if</span>(choice == <a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99a23b85d38bad05a11ce6e04afa51e0739">IDP::MENU_LDRS</a>) {
-<a name="l00129"></a>00129         tests = <span class="keyword">new</span> <a class="code" href="classIDP_1_1SelfTests.html" title="Execute a variety of functionality self tests.">IDP::SelfTests</a>(<a class="code" href="main_8cc.html#a94c3385db89ae04c38bc37cc0fbff092" title="The robot number, or 0 if running embedded.">ROBOT</a>);
-<a name="l00130"></a>00130         tests-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a56952650637691f869ef21f7d43f1226" title="Display the current ADC read from the light dependent resistor.">LDRs</a>();
-<a name="l00131"></a>00131     } <span class="keywordflow">else</span> <span class="keywordflow">if</span>(choice == <a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99afddaf453d9ae15169ca218fa9e0ab077">IDP::MENU_INDICATOR_LEDS</a>) {
-<a name="l00132"></a>00132         tests = <span class="keyword">new</span> <a class="code" href="classIDP_1_1SelfTests.html" title="Execute a variety of functionality self tests.">IDP::SelfTests</a>(<a class="code" href="main_8cc.html#a94c3385db89ae04c38bc37cc0fbff092" title="The robot number, or 0 if running embedded.">ROBOT</a>);
-<a name="l00133"></a>00133         tests-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1380b0222eef47f6d50e7cf334e4c9e7" title="Turn on each of the coloured LEDs used for colour detection in turn.">colour_sensor_LEDs</a>();
-<a name="l00134"></a>00134     } <span class="keywordflow">else</span> <span class="keywordflow">if</span>(choice == <a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99af06417b3ca00a4111eca5d60d0ac4c5a">IDP::MENU_ACTUATORS</a>) {
-<a name="l00135"></a>00135         tests = <span class="keyword">new</span> <a class="code" href="classIDP_1_1SelfTests.html" title="Execute a variety of functionality self tests.">IDP::SelfTests</a>(<a class="code" href="main_8cc.html#a94c3385db89ae04c38bc37cc0fbff092" title="The robot number, or 0 if running embedded.">ROBOT</a>);
-<a name="l00136"></a>00136         tests-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a0ca765ac144fafaab502f4326a480486" title="Fire each of the actuators in turn.">actuators</a>();
-<a name="l00137"></a>00137         <span class="comment">// TODO: badness_LED test, status_LED test (?), position test</span>
-<a name="l00138"></a>00138     } <span class="keywordflow">else</span> {
-<a name="l00139"></a>00139         std::cout &lt;&lt; <span class="stringliteral">&quot;Invalid selection received from menu, quitting.&quot;</span>;
-<a name="l00140"></a>00140         std::cout &lt;&lt; std::endl;
-<a name="l00141"></a>00141         <span class="keywordflow">return</span> 0;
-<a name="l00142"></a>00142     }
+<a name="l00105"></a>00105         tests-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a7f9c5999de2e7c4f59c8c5a60965e876" title="Drive forwards for a moment whilst reducing the speed of the right motor relative to the left to stee...">steer_right</a>();
+<a name="l00106"></a>00106     } <span class="keywordflow">else</span> <span class="keywordflow">if</span>(choice == <a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99a1a3e265ab5e1a2afda873da8c1cb7d9f">IDP::MENU_STOP</a>) {
+<a name="l00107"></a>00107         tests-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a33adf462d8c408b1c7b4858e9a4ff000" title="Stop all of the robot&amp;#39;s motors.">stop</a>();
+<a name="l00108"></a>00108     } <span class="keywordflow">else</span> <span class="keywordflow">if</span>(choice == <a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99aa80af753125b39e64ca61a80af90a880">IDP::MENU_ANALYSE</a>) {
+<a name="l00109"></a>00109         tests-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a66f0a3bad277e36b963b2bf3cd5df9dd" title="Analyse the colour of the bobbin that is currently being held in the clamp.">bobbin_analyse</a>();
+<a name="l00110"></a>00110     } <span class="keywordflow">else</span> <span class="keywordflow">if</span>(choice == <a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99a50d558d829ec96bbbc4188d19e49f2a9">IDP::MENU_BOX_COLOUR</a>) {
+<a name="l00111"></a>00111         tests-&gt;<a class="code" href="classIDP_1_1SelfTests.html#ad112f0e0a9ef078b394585742d23fbbf" title="Analyse the colour of the bobbin in a box.">box_analyse</a>();
+<a name="l00112"></a>00112     } <span class="keywordflow">else</span> <span class="keywordflow">if</span>(choice == <a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99aaa8e1942bc82d177052cd99e827dd601">IDP::MENU_CLAMP_TESTS</a>) {
+<a name="l00113"></a>00113         tests-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a896204355ca039660a12e8131578b6c3" title="Use the actuators to pick up an object before placing it back down again.">clamp_control</a>();
+<a name="l00114"></a>00114     } <span class="keywordflow">else</span> <span class="keywordflow">if</span>(choice == <a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99a07b420112886818adfaa606881ecc79a">IDP::MENU_BOBBIN_PRESENT</a>) {
+<a name="l00115"></a>00115         tests-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a9914eb4c83e3613311d1b4656631db01" title="See if a bobbin is under the clamp.">bobbin_present</a>();
+<a name="l00116"></a>00116     } <span class="keywordflow">else</span> <span class="keywordflow">if</span>(choice == <a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99aecf2d0dcd0e5b837249a59d55cd9bbde">IDP::MENU_BOX_PRESENT</a>) {
+<a name="l00117"></a>00117         tests-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a04ec400b90a5fa3203db667aa97ec99d" title="See if a box is under the clamp.">box_present</a>();
+<a name="l00118"></a>00118     } <span class="keywordflow">else</span> <span class="keywordflow">if</span>(choice == <a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99a1454106f5e7503695da693c6acc3157d">IDP::MENU_LINE_SENSORS</a>) {
+<a name="l00119"></a>00119         tests-&gt;<a class="code" href="classIDP_1_1SelfTests.html#aa73ad4de6c1d2b725ed796c10f54ab7c" title="Display the status (LINE or NO_LINE) of each of the four IR line following sensors.">line_sensors</a>();
+<a name="l00120"></a>00120     } <span class="keywordflow">else</span> <span class="keywordflow">if</span>(choice == <a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99a88c747088c71c27488b3f6b7329c82d1">IDP::MENU_SWITCHES</a>) {
+<a name="l00121"></a>00121         tests-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a6b2e4d0517de4b73c63f1b1a475b602f" title="Display the state of each of the two microswitches.">microswitches</a>();
+<a name="l00122"></a>00122     } <span class="keywordflow">else</span> <span class="keywordflow">if</span>(choice == <a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99a23b85d38bad05a11ce6e04afa51e0739">IDP::MENU_LDRS</a>) {
+<a name="l00123"></a>00123         tests-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a56952650637691f869ef21f7d43f1226" title="Display the current ADC read from the light dependent resistor.">LDRs</a>();
+<a name="l00124"></a>00124     } <span class="keywordflow">else</span> <span class="keywordflow">if</span>(choice == <a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99afddaf453d9ae15169ca218fa9e0ab077">IDP::MENU_INDICATOR_LEDS</a>) {
+<a name="l00125"></a>00125         tests-&gt;<a class="code" href="classIDP_1_1SelfTests.html#acd6d4a493850445419843cefc4d25bc3" title="Turn on each of the status LEDs (used for indicating bobbin colour) in turn.">indicator_LEDs</a>();
+<a name="l00126"></a>00126     } <span class="keywordflow">else</span> <span class="keywordflow">if</span>(choice == <a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99af06417b3ca00a4111eca5d60d0ac4c5a">IDP::MENU_ACTUATORS</a>) {
+<a name="l00127"></a>00127         tests-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a0ca765ac144fafaab502f4326a480486" title="Fire each of the actuators in turn.">actuators</a>();
+<a name="l00128"></a>00128     } <span class="keywordflow">else</span> <span class="keywordflow">if</span>(choice == <a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99a8bb2f8096a6412f0d34e4d8eb1a4457c">IDP::MENU_COLOUR_SENSOR_LEDS</a>) {
+<a name="l00129"></a>00129         tests-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1380b0222eef47f6d50e7cf334e4c9e7" title="Turn on each of the coloured LEDs used for colour detection in turn.">colour_sensor_LEDs</a>();
+<a name="l00130"></a>00130     } <span class="keywordflow">else</span> <span class="keywordflow">if</span>(choice == <a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99a8f1ae04cc067d7075792c69b7236267f">IDP::MENU_BAD_BOBBIN_LED</a>) {
+<a name="l00131"></a>00131         tests-&gt;<a class="code" href="classIDP_1_1SelfTests.html#aa32598325a69ed2b02e1540704d8bc06" title="Turn on the LED used for detecting bad bobbins.">bad_bobbin_LED</a>();
+<a name="l00132"></a>00132     } <span class="keywordflow">else</span> <span class="keywordflow">if</span>(choice == <a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99a61501b095eedafec05618df7b904a7d8">IDP::MENU_CALIBRATE</a>) {
+<a name="l00133"></a>00133         tests-&gt;<a class="code" href="classIDP_1_1SelfTests.html#a1f59c76873f58a7100cd1a4b7ac3e044" title="Read a lot of levels from the LDRs to store in a calibration file.">calibrate</a>();
+<a name="l00134"></a>00134     } <span class="keywordflow">else</span> {
+<a name="l00135"></a>00135         std::cout &lt;&lt; <span class="stringliteral">&quot;Invalid selection received from menu, quitting.&quot;</span>;
+<a name="l00136"></a>00136         std::cout &lt;&lt; std::endl;
+<a name="l00137"></a>00137         <span class="keywordflow">return</span>;
+<a name="l00138"></a>00138     }
+<a name="l00139"></a>00139 
+<a name="l00140"></a>00140     <span class="comment">// Clear up tests</span>
+<a name="l00141"></a>00141     <span class="keyword">delete</span> tests;
+<a name="l00142"></a>00142 }
 <a name="l00143"></a>00143 
-<a name="l00144"></a>00144     <span class="comment">// Wait forever (Tests/MissionSupervisor can loop or something)</span>
-<a name="l00145"></a>00145     <span class="comment">// TODO: this shouldn&#39;t really wait forever here, ideally</span>
-<a name="l00146"></a>00146     <span class="comment">// we should loop on calling MissionSupervisor as it is in the</span>
-<a name="l00147"></a>00147     <span class="comment">// library and all that.</span>
-<a name="l00148"></a>00148     <span class="keywordflow">for</span>(;;);
-<a name="l00149"></a>00149 
-<a name="l00150"></a>00150     <span class="keywordflow">return</span> 0;
-<a name="l00151"></a>00151 }
-<a name="l00152"></a>00152 
+<a name="l00147"></a><a class="code" href="main_8cc.html#ae66f6b31b5ad750f1fe042a706a4e3d4">00147</a> <span class="keywordtype">int</span> <a class="code" href="main_8cc.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="Code entry point and main loop.">main</a>()
+<a name="l00148"></a>00148 {
+<a name="l00149"></a>00149     <span class="comment">// Set up ctrl-c catching</span>
+<a name="l00150"></a>00150     <span class="keyword">struct </span>sigaction sigint_handler;
+<a name="l00151"></a>00151     sigint_handler.sa_handler = terminate;
+<a name="l00152"></a>00152     sigemptyset(&amp;sigint_handler.sa_mask);
+<a name="l00153"></a>00153     sigint_handler.sa_flags = 0;
+<a name="l00154"></a>00154     sigaction(SIGINT, &amp;sigint_handler, NULL);
+<a name="l00155"></a>00155 
+<a name="l00156"></a>00156     <span class="comment">// Menu loop</span>
+<a name="l00157"></a>00157     <span class="keywordflow">for</span>(;;)
+<a name="l00158"></a>00158     {
+<a name="l00159"></a>00159         <span class="comment">// Get user action choice</span>
+<a name="l00160"></a>00160         <a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99" title="The list of all possible menu choices.">IDP::MenuChoice</a> choice = <a class="code" href="classIDP_1_1Menu.html#a5a2affbb79c5c58bcf92fabe7875a07e" title="Top level menu entrance.">IDP::Menu::get_choice</a>();
+<a name="l00161"></a>00161         
+<a name="l00162"></a>00162         <span class="comment">// Act appropriately. Unfortunately no way besides a large if/else if</span>
+<a name="l00163"></a>00163         <span class="comment">// statement seems particularly appropriate (in particular a switch</span>
+<a name="l00164"></a>00164         <span class="comment">// will not work and in any case is hardly any neater).</span>
+<a name="l00165"></a>00165         <span class="keywordflow">if</span>(choice == <a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99a59187814038f8d9935b623e0d8b343d8">IDP::MENU_QUIT</a>) {
+<a name="l00166"></a>00166             <span class="keywordflow">return</span> 0;
+<a name="l00167"></a>00167         } <span class="keywordflow">else</span> <span class="keywordflow">if</span>(choice == <a class="code" href="namespaceIDP.html#ac1d3c3b62448912be4da9f2728f2af99ab6a8ae6d050d587d31cbe4d0bf960f14">IDP::MENU_RUN_MAIN_TASK</a>) {
+<a name="l00168"></a>00168             <span class="comment">// Make a MissionSupervisor</span>
+<a name="l00169"></a>00169             missup = <span class="keyword">new</span> <a class="code" href="classIDP_1_1MissionSupervisor.html" title="Control the overall robot behaviour and objective fulfillment.">IDP::MissionSupervisor</a>(<a class="code" href="main_8cc.html#a94c3385db89ae04c38bc37cc0fbff092" title="The robot number, or 0 if running embedded.">ROBOT</a>);
+<a name="l00170"></a>00170 
+<a name="l00171"></a>00171             <span class="comment">// Check if we should load a state file</span>
+<a name="l00172"></a>00172             std::cout &lt;&lt; <span class="stringliteral">&quot;Load state file? (y/N) &gt; &quot;</span>;
+<a name="l00173"></a>00173             std::string in;
+<a name="l00174"></a>00174             std::cin &gt;&gt; in;
+<a name="l00175"></a>00175             <span class="keywordflow">if</span>(in == <span class="stringliteral">&quot;y&quot;</span>) {
+<a name="l00176"></a>00176                 std::ifstream f(<span class="stringliteral">&quot;statefile&quot;</span>);
+<a name="l00177"></a>00177                 <span class="keywordtype">bool</span> red, green, white, box1;
+<a name="l00178"></a>00178                 f &gt;&gt; red &gt;&gt; green &gt;&gt; white &gt;&gt; box1;
+<a name="l00179"></a>00179                 missup-&gt;<a class="code" href="classIDP_1_1MissionSupervisor.html#aaacc8e7082596ecf603d05fdc01e5245" title="Load state from provided values.">load_state</a>(red, green, white, box1);
+<a name="l00180"></a>00180             }
+<a name="l00181"></a>00181 
+<a name="l00182"></a>00182             <span class="comment">// Run the task</span>
+<a name="l00183"></a>00183             missup-&gt;<a class="code" href="classIDP_1_1MissionSupervisor.html#a76ff7fad2edcb7f7181b43c3fc01b01e" title="Commence running the main task.">run_task</a>();
+<a name="l00184"></a>00184         } <span class="keywordflow">else</span> {
+<a name="l00185"></a>00185             <a class="code" href="main_8cc.html#af1118685ab62ba7b0e3981ff97b3e35b" title="A big if statement to run the chosen test.">run_self_test</a>(choice);
+<a name="l00186"></a>00186         }
+<a name="l00187"></a>00187     }
+<a name="l00188"></a>00188 
+<a name="l00189"></a>00189     <span class="keywordflow">return</span> 0;
+<a name="l00190"></a>00190 }
+<a name="l00191"></a>00191 
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -203,7 +238,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Tue Feb 15 2011 02:35:58 for IDPL108 by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sat Feb 19 2011 01:29:45 for IDPL108 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

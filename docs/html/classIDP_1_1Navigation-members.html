@@ -52,15 +52,23 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="contents">
 This is the complete list of members for <a class="el" href="classIDP_1_1Navigation.html">IDP::Navigation</a>, including all inherited members.<table>
   <tr class="memlist"><td><a class="el" href="classIDP_1_1Navigation.html#a5d511a56a6f3bdcfde2619ae4d75dcaa">_cached_junction</a></td><td><a class="el" href="classIDP_1_1Navigation.html">IDP::Navigation</a></td><td><code> [private]</code></td></tr>
-  <tr class="memlist"><td><a class="el" href="classIDP_1_1Navigation.html#aa0bdef936676bd9ba41ec24994c4adc8">_doing_second_turn</a></td><td><a class="el" href="classIDP_1_1Navigation.html">IDP::Navigation</a></td><td><code> [private]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="classIDP_1_1Navigation.html#a49b7088c125ef5c7a5227e2242b84947">_cc</a></td><td><a class="el" href="classIDP_1_1Navigation.html">IDP::Navigation</a></td><td><code> [private]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classIDP_1_1Navigation.html#a7ce2cbd9199af73b36d4e887282a38e6">_from</a></td><td><a class="el" href="classIDP_1_1Navigation.html">IDP::Navigation</a></td><td><code> [private]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classIDP_1_1Navigation.html#a640c36341bdf1e2d4ef194ad3aac9773">_hal</a></td><td><a class="el" href="classIDP_1_1Navigation.html">IDP::Navigation</a></td><td><code> [private]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classIDP_1_1Navigation.html#a61d775069513302fa6b23c64da7a6ec4">_lf</a></td><td><a class="el" href="classIDP_1_1Navigation.html">IDP::Navigation</a></td><td><code> [private]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="classIDP_1_1Navigation.html#afedddd1408af4893658b8f49d4200af8">_reached_special_case_junction</a></td><td><a class="el" href="classIDP_1_1Navigation.html">IDP::Navigation</a></td><td><code> [private]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classIDP_1_1Navigation.html#a76df45b8316e55560e1adc9165700d0f">_to</a></td><td><a class="el" href="classIDP_1_1Navigation.html">IDP::Navigation</a></td><td><code> [private]</code></td></tr>
-  <tr class="memlist"><td><a class="el" href="classIDP_1_1Navigation.html#aba1ab266d223b517fdc3cf6bc3d8e84c">go</a>(const NavigationLocation location)</td><td><a class="el" href="classIDP_1_1Navigation.html">IDP::Navigation</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="classIDP_1_1Navigation.html#af4d6ce82c7ca34bab80833d478b7b7c5">find_bobbin</a>()</td><td><a class="el" href="classIDP_1_1Navigation.html">IDP::Navigation</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="classIDP_1_1Navigation.html#ae8f0986676e2a2e11a121e7730a70070">find_box</a>(Box box)</td><td><a class="el" href="classIDP_1_1Navigation.html">IDP::Navigation</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="classIDP_1_1Navigation.html#a3e660be6e13f87e3a354a2acc1b43e83">find_box_for_drop</a>(Box box)</td><td><a class="el" href="classIDP_1_1Navigation.html">IDP::Navigation</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="classIDP_1_1Navigation.html#a901e7ea6434975fb6e69b7764ce61793">find_box_for_pickup</a>(Box box)</td><td><a class="el" href="classIDP_1_1Navigation.html">IDP::Navigation</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="classIDP_1_1Navigation.html#a1fd41b4c4a734317f0277a25da7c6ad0">find_next_bobbin</a>()</td><td><a class="el" href="classIDP_1_1Navigation.html">IDP::Navigation</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="classIDP_1_1Navigation.html#a3cbe6924710b95c911d41612e9c4d862">finished_delivery</a>()</td><td><a class="el" href="classIDP_1_1Navigation.html">IDP::Navigation</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="classIDP_1_1Navigation.html#ab387bedd6d9f052b935565ac05aec2c4">go_home</a>()</td><td><a class="el" href="classIDP_1_1Navigation.html">IDP::Navigation</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classIDP_1_1Navigation.html#a24b977f20868a385251d4becf187b815">go_node</a>(const NavigationNode target)</td><td><a class="el" href="classIDP_1_1Navigation.html">IDP::Navigation</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="classIDP_1_1Navigation.html#a86127033cad467249583319cde79a18e">go_to_delivery</a>()</td><td><a class="el" href="classIDP_1_1Navigation.html">IDP::Navigation</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classIDP_1_1Navigation.html#a96241d0be8e7442964c41c6e0e207aa8">handle_junction</a>(const NavigationNode target)</td><td><a class="el" href="classIDP_1_1Navigation.html">IDP::Navigation</a></td><td><code> [private]</code></td></tr>
-  <tr class="memlist"><td><a class="el" href="classIDP_1_1Navigation.html#afc2747e51acc44614f67cb0a785f76ac">Navigation</a>(HardwareAbstractionLayer *hal, const NavigationNode from, const NavigationNode to)</td><td><a class="el" href="classIDP_1_1Navigation.html">IDP::Navigation</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="classIDP_1_1Navigation.html#a64f24e5626793721a8223ba95e6458dd">Navigation</a>(HardwareAbstractionLayer *hal, const NavigationNode from=NODE8, const NavigationNode to=NODE7)</td><td><a class="el" href="classIDP_1_1Navigation.html">IDP::Navigation</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classIDP_1_1Navigation.html#a7da6a103a61fec763688e875920837a4">turn_around</a>()</td><td><a class="el" href="classIDP_1_1Navigation.html">IDP::Navigation</a></td><td><code> [private]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classIDP_1_1Navigation.html#adeb3d2223cc6278ccef5d30e4fbeae82">turn_around_required</a>(const NavigationNode target) const </td><td><a class="el" href="classIDP_1_1Navigation.html">IDP::Navigation</a></td><td><code> [private]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classIDP_1_1Navigation.html#aa7701df4743c75289360a32dfa56d4fc">update_cache</a>()</td><td><a class="el" href="classIDP_1_1Navigation.html">IDP::Navigation</a></td><td><code> [private]</code></td></tr>
@@ -80,7 +88,7 @@ This is the complete list of members for <a class="el" href="classIDP_1_1Navigat
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Tue Feb 15 2011 02:35:58 for IDPL108 by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sat Feb 19 2011 01:29:45 for IDPL108 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>
