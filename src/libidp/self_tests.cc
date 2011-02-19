@@ -8,6 +8,7 @@
 #include <unistd.h>
 #include <cstdio>
 #include <iostream>
+#include <fstream>
 
 #include "self_tests.h"
 #include "hal.h"
@@ -287,11 +288,6 @@ namespace IDP {
         TRACE("clamp_control()");
         INFO("Testing clamp control");
 
-        std::cout << "Position the lowered, opened clamp over a bobbin";
-        std::cout << " and press enter." << std::endl;
-
-        std::getchar();
-
         ClampControl cc(this->_hal);
         cc.pick_up();
 
@@ -313,12 +309,6 @@ namespace IDP {
 
         ClampControl cc(this->_hal);
         
-        std::cout << "Make sure the clamp is not over a bobbin and press";
-        std::cout << " enter." << std::endl;
-
-        std::getchar();
-
-        cc.store_zero();
 
         std::cout << "Position a bobbin inside the clamp and press enter.";
         std::cout << std::endl;
@@ -343,13 +333,6 @@ namespace IDP {
         TRACE("box_analyse()");
 
         ClampControl cc(this->_hal);
-        
-        std::cout << "Make sure the clamp is not over a bobbin and press";
-        std::cout << " enter." << std::endl;
-
-        std::getchar();
-
-        cc.store_zero();
 
         std::cout << "Position a box inside the clamp and press enter.";
         std::cout << std::endl;
@@ -377,7 +360,6 @@ namespace IDP {
 
         std::getchar();
 
-        cc.store_zero();
 
         std::cout << "Now press enter to test for a bobbin." << std::endl;
 
@@ -408,7 +390,6 @@ namespace IDP {
 
         std::getchar();
 
-        cc.store_zero();
 
         std::cout << "Now press enter to test for a box." << std::endl;
 
@@ -714,5 +695,168 @@ namespace IDP {
         usleep(500000);
         this->_hal->bad_bobbin_LED(false);
         usleep(500000);
+    }
+
+    /**
+     * Read a lot of levels from the LDRs to store in a calibration file
+     */
+    void SelfTests::calibrate()
+    {
+        TRACE("calibrate()");
+
+        INFO("Taking zero-level readings");
+        ClampControl cc(this->_hal);
+        
+        std::cout << "Please ensure the arm is down and press enter."
+            << std::endl;
+        cc.lower_arm();
+        std::getchar();
+
+        std::cout << "Please ensure the jaw is closed and press enter."
+            << std::endl;
+        cc.close_jaw();
+        std::getchar();
+        this->_hal->colour_LED(true);
+        this->_hal->bad_bobbin_LED(false);
+        short int colour_light_closed_zero = cc.average_colour_ldr(15);
+        
+        std::cout << "Please ensure the jaw is open and press enter."
+            << std::endl;
+        cc.open_jaw();
+        std::getchar();
+        short int colour_light_zero = cc.average_colour_ldr(15);
+        this->_hal->colour_LED(false);
+        short int badness_dark_zero = cc.average_bad_ldr(15);
+        this->_hal->bad_bobbin_LED(true);
+        short int badness_light_zero = cc.average_bad_ldr(15);
+        this->_hal->bad_bobbin_LED(false);
+
+        std::cout << "Place an empty box in front of the sensor and press"
+            << " enter." << std::endl;
+        std::getchar();
+
+        this->_hal->colour_LED(true);
+        short int colour_light_box_zero = cc.average_colour_ldr(15);
+        this->_hal->colour_LED(false);
+        
+        std::cout << "Base levels taken: "
+            << "colour_light_closed_zero " << colour_light_closed_zero
+            << "colour_light_zero " << colour_light_zero
+            << "badness_light_zero " << badness_light_zero
+            << "badness_dark_zero " << badness_dark_zero
+            << "colour_light_box_zero " << colour_light_box_zero << std::endl;
+
+        std::cout << "Place a red bobbin in the box in the jaw and press enter"
+            << std::endl;
+        std::getchar();
+        this->_hal->colour_LED(true);
+        short int red_box_level = cc.average_colour_ldr(15);
+        red_box_level -= colour_light_box_zero;
+        std::cout << "Read " << red_box_level << " for red box level, enter"
+            << " the value you want used: ";
+        std::cin >> red_box_level;
+        std::cout << "Using " << red_box_level << std::endl;
+
+        std::cout << "Place a green bobbin in the box in the jaw and press "
+            << "enter" << std::endl;
+        std::getchar();
+        short int green_box_level = cc.average_colour_ldr(15);
+        green_box_level -= colour_light_box_zero;
+        std::cout << "Read " << green_box_level << " for green box level, enter"
+            << " the value you want used: ";
+        std::cin >> green_box_level;
+        std::cout << "Using " << green_box_level << std::endl;
+
+        std::cout << "Please ensure the jaw is closed and press enter."
+            << std::endl;
+        cc.close_jaw();
+        std::getchar();
+
+        std::cout << "Please place a red bobbin in the jaw (on the rack) and"
+            << " press enter." << std::endl;
+        std::getchar();
+        this->_hal->colour_LED(true);
+        short int red_rack_level = cc.average_colour_ldr(15);
+        red_rack_level -= colour_light_closed_zero;
+        std::cout << "Read " << red_rack_level << " for red rack level, enter"
+            << " the value you want used: ";
+        std::cin >> red_rack_level;
+        std::cout << "Using " << red_rack_level << std::endl;
+
+        std::cout << "Place a green bobbin in the jaw (on the rack) and press"
+            << " enter." << std::endl;
+        std::getchar();
+        short int green_rack_level = cc.average_colour_ldr(15);
+        green_rack_level -= colour_light_closed_zero;
+        std::cout << "Read " << green_rack_level << " for green rack level, "
+            << "enter the value you want used: ";
+        std::cin >> green_rack_level;
+        std::cout << "Using " << green_rack_level << std::endl;
+        this->_hal->colour_LED(false);
+
+        std::cout << "Please ensure the jaw is open and press enter."
+            << std::endl;
+        cc.open_jaw();
+        std::getchar();
+
+        std::cout << "Place a box under the jaw and press enter."
+            << std::endl;
+        std::getchar();
+        this->_hal->bad_bobbin_LED(true);
+        short int box_present_level = cc.average_bad_ldr(15);
+        box_present_level -= badness_light_zero;
+        std::cout << "Read " << box_present_level << " for box present level, "
+            << "enter the value you want used: ";
+        std::cin >> box_present_level;
+        std::cout << "Using " << box_present_level << std::endl;
+        this->_hal->bad_bobbin_LED(false);
+
+        std::cout << "Please place a white bobbin under the open jaw on the"
+            << " rack and press enter." << std::endl;
+        std::getchar();
+        short int white_present_level = cc.average_bad_ldr(15);
+        white_present_level -= badness_dark_zero;
+        std::cout << "Read " << white_present_level << " for white present"
+            << " level, enter the value you want used: ";
+        std::cin >> white_present_level;
+        std::cout << "Using " << white_present_level << std::endl;
+        
+        std::cout << "Please place a green bobbin under the open jaw on the"
+            << " rack and press enter" << std::endl;
+        std::getchar();
+        this->_hal->colour_LED(true);
+        short int coloured_present_level = cc.average_colour_ldr(15);
+        coloured_present_level -= colour_light_zero;
+        std::cout << "Read " << coloured_present_level << " for green present,"
+            << " place a red bobbin under the sensor and press enter."
+            << std::endl;
+        std::getchar();
+        coloured_present_level = cc.average_colour_ldr(15);
+        coloured_present_level -= colour_light_zero;
+        std::cout << "Read " << coloured_present_level << " for red present, "
+            << "enter the value you want used: ";
+        std::cin >> coloured_present_level;
+        std::cout << "Using " << coloured_present_level;
+
+        std::cout << "Writing file" << std::endl;
+        
+        std::ofstream f("levelsfile");
+        f
+            << colour_light_closed_zero << std::endl
+            << colour_light_zero << std::endl
+            << badness_light_zero << std::endl
+            << badness_dark_zero << std::endl
+            << colour_light_box_zero << std::endl
+            << red_box_level << std::endl
+            << green_box_level << std::endl
+            << red_rack_level << std::endl
+            << green_rack_level << std::endl
+            << box_present_level << std::endl
+            << white_present_level << std::endl
+            << coloured_present_level << std::endl;
+        f.close();
+
+        std::cout << "Wrote file" << std::endl;
+
     }
 }

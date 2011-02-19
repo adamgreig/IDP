@@ -43,8 +43,6 @@ namespace IDP {
 
         // Construct a ClampControl
         this->_cc = new ClampControl(this->_hal);
-
-        this->_cc->store_zero();
     }
 
     /**
@@ -111,9 +109,16 @@ namespace IDP {
             INFO("Filling box one");
             this->fill_and_deliver(BOX1);
             this->_already_delivered_box_one = true;
+
+            // Drive forward a little to stop things breaking
             int counter;
             for(counter = 0; counter < 5; counter++)
                 this->_nav->go_node(NODE9);
+            
+            // Reset box contents
+            this->_box_has_red = false;
+            this->_box_has_white = false;
+            this->_box_has_green = false;
         }
 
         INFO("Filling box two");
@@ -134,28 +139,28 @@ namespace IDP {
     {
         NavigationStatus nav_status;
 
-        // We're at the start zone to begin with, so navigate to the box.
-        INFO("Navigating to the box (" << BoxStrings[box] << ")");
-        do {
-            nav_status = this->_nav->find_box_for_pickup(box);
-        } while(nav_status == NAVIGATION_ENROUTE);
+        // Skip finding box colour if we already know about the box due to
+        // state recovery
+        if(!(this->_box_has_red || this->_box_has_white || this->_box_has_green))
+        {
+            // We're at the start zone to begin with, so navigate to the box.
+            INFO("Navigating to the box (" << BoxStrings[box] << ")");
+            do {
+                nav_status = this->_nav->find_box_for_pickup(box);
+            } while(nav_status == NAVIGATION_ENROUTE);
 
-        // Ensure the grabber jaw is open, then lower the arm to the box
-        INFO("Lowering arm to box");
-        this->_cc->open_jaw();
-        this->_cc->lower_arm();
+            // Ensure the grabber jaw is open, then lower the arm to the box
+            INFO("Lowering arm to box");
+            this->_cc->open_jaw();
+            this->_cc->lower_arm();
 
-        // Check box colour
-        INFO("Checking box colour...");
-        BobbinColour box_colour = this->_cc->box_colour();
-        INFO("Detected box colour: " << BobbinColourStrings[box_colour]);
+            // Check box colour
+            INFO("Checking box colour...");
+            BobbinColour box_colour = this->_cc->box_colour();
+            INFO("Detected box colour: " << BobbinColourStrings[box_colour]);
 
-        // Store box contents status
-        this->_box_has_red = false;
-        this->_box_has_white = false;
-        this->_box_has_green = false;
-
-        this->update_box_contents(box_colour);
+            this->update_box_contents(box_colour);
+        }
 
         int bobbin_count;
         INFO("Going to find some bobbins!");

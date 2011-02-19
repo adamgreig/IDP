@@ -16,18 +16,6 @@ namespace IDP {
     class HardwareAbstractionLayer;
 
     /**
-     * The increase in light to the bad bobbin LDR that indicates
-     * a bobbin is present.
-     */
-    const unsigned short int BOBBIN_DETECTION_DELTA_THRESHOLD = 20;
-
-    /**
-     * The increase in light to the bad bobbin LDR that indicates
-     * a box is present.
-     */
-    const unsigned short int BOX_DETECTION_DELTA_THRESHOLD = 15;
-
-    /**
      * Bobbin colours
      */
     enum BobbinColour {
@@ -78,30 +66,28 @@ namespace IDP {
             BobbinBadness badness() const;
             bool bobbin_present();
             bool box_present();
-            void store_zero();
-            void calibrate(unsigned short int red, unsigned short int green,
-                    unsigned short int white);
             void open_jaw(void);
             void close_jaw(void);
             void raise_arm(void);
             void lower_arm(void);
-        private:
             unsigned short int average_bad_ldr(unsigned short int n = 3)
                 const;
             unsigned short int average_colour_ldr(unsigned short int n = 3)
                 const;
+        private:
             HardwareAbstractionLayer* _hal;
-            const unsigned short int _colour_tolerance;
-            const unsigned short int _badness_tolerance;
-            unsigned short int _red_level;
-            unsigned short int _green_level;
-            unsigned short int _white_level;
-            unsigned short int _bad_level;
-            unsigned short int _badness_light_zero;
-            unsigned short int _badness_dark_zero;
-            unsigned short int _colour_light_zero;
-            unsigned short int _colour_dark_zero;
-            unsigned short int _colour_light_closed_zero;
+            short int _red_box_level;
+            short int _green_box_level;
+            short int _red_rack_level;
+            short int _green_rack_level;
+            short int _box_present_level;
+            short int _white_present_level;
+            short int _coloured_present_level;
+            short int _badness_light_zero;
+            short int _badness_dark_zero;
+            short int _colour_light_zero;
+            short int _colour_light_closed_zero;
+            short int _colour_light_box_zero;
             bool _arm_up;
             bool _jaw_open;
     };

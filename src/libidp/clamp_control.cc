@@ -10,6 +10,8 @@
 // abs()
 #include <cstdlib>
 
+#include <fstream>
+
 #include "clamp_control.h"
 #include "hal.h"
 
@@ -28,13 +30,20 @@ namespace IDP {
      * \param hal A const pointer to an instance of the HAL
      */
     ClampControl::ClampControl(HardwareAbstractionLayer* hal): _hal(hal),
-    _colour_tolerance(5), _badness_tolerance(10), _red_level(165),
-    _green_level(144), _white_level(191), _bad_level(203),
-    _badness_light_zero(0), _badness_dark_zero(0), _colour_light_zero(0),
-    _colour_dark_zero(0), _arm_up(true), _jaw_open(true)
+    _arm_up(true), _jaw_open(true)
     {
         TRACE("ClampControl("<<hal<<")");
         INFO("Initialising a ClampControl");
+
+        INFO("Reading levels from file...");
+        std::ifstream f("levelsfile");
+        f >> _colour_light_closed_zero >> _colour_light_zero
+            >> _badness_light_zero >> _badness_dark_zero
+            >> _colour_light_box_zero
+            >> _red_box_level >> _green_box_level >> _red_rack_level
+            >> _green_rack_level >> _box_present_level >> _white_present_level
+            >> _coloured_present_level;
+        f.close();
     }
 
     /**
@@ -149,7 +158,7 @@ namespace IDP {
         short int delta = reading - this->_colour_light_closed_zero;
         DEBUG("Delta " << delta);
 
-        if(delta < -80)
+        if(delta < _red_rack_level)
         {
             DEBUG("Found a red bobbin");
             this->_hal->indication_LEDs(false, false, true);
@@ -157,7 +166,7 @@ namespace IDP {
             this->_hal->indication_LEDs(true, true, true);
             return BOBBIN_RED;
         }
-        else if(delta < -60)
+        else if(delta < _green_rack_level)
         {
             DEBUG("Found a green bobbin");
             this->_hal->indication_LEDs(false, true, false);
@@ -190,7 +199,7 @@ namespace IDP {
         short int delta = reading - this->_colour_light_zero;
         DEBUG("Delta " << delta);
 
-        if(delta < -10)
+        if(delta < _red_box_level)
         {
             DEBUG("Found a red bobbin in a box");
             this->_hal->indication_LEDs(false, false, true);
@@ -198,7 +207,7 @@ namespace IDP {
             this->_hal->indication_LEDs(true, true, true);
             return BOBBIN_RED;
         }
-        else if(delta < -3)
+        else if(delta < _green_box_level)
         {
             DEBUG("Found a green bobbin in a box");
             this->_hal->indication_LEDs(false, true, false);
@@ -227,7 +236,7 @@ namespace IDP {
         this->_hal->bad_bobbin_LED(true);
         short unsigned int reading = this->average_bad_ldr();
         DEBUG("Got a badness LDR value of " << reading);
-        unsigned int delta = reading - this->_badness_light_zero;
+        //unsigned int delta = reading - this->_badness_light_zero;
         //if(reading > _bad_level - _badness_tolerance
                 //&& reading < _bad_level + _badness_tolerance)
         return BOBBIN_GOOD;
@@ -262,13 +271,6 @@ namespace IDP {
         TRACE("bobbin_present()");
         DEBUG("Checking for bobbins..."); 
 
-        // If we haven't read this before, store the value. Next time
-        // we'll find a delta.
-        if(_colour_light_zero == 0 || _colour_dark_zero == 0) {
-            ERROR("No previous baseline was set, reading one now instead.");
-            this->store_zero();
-        }
-
         // Turn on the light
         this->_hal->colour_LED(true);
         this->_hal->bad_bobbin_LED(false);
@@ -283,7 +285,7 @@ namespace IDP {
         DEBUG("Light: Read " << reading << ", delta " << delta);
 
         // If the light reading indicates that we found a bobbin, we can return
-        if(delta < -7)
+        if(delta < _coloured_present_level)
             return true;
 
         // Discard readings while it settles
@@ -295,7 +297,7 @@ namespace IDP {
 
         DEBUG("Dark: Read " << reading << ", delta " << delta);
 
-        return (delta > 15);
+        return (delta > _white_present_level);
     }
 
     /**
@@ -309,13 +311,6 @@ namespace IDP {
         TRACE("box_present()");
         DEBUG("Checking for a box...");
         
-        // If we haven't read this before, store the value. Next time
-        // we'll find a delta.
-        if(_badness_light_zero == 0) {
-            ERROR("No previous baseline was set, reading one now instead.");
-            this->store_zero();
-        }
-
         // Turn on the light
         this->_hal->bad_bobbin_LED(true);
         this->_hal->colour_LED(false);
@@ -329,68 +324,7 @@ namespace IDP {
 
         DEBUG("Reading " << reading << ", delta " << delta);
 
-        return (std::abs(delta) > BOX_DETECTION_DELTA_THRESHOLD);
-    }
-
-
-    /**
-     * Take an LDR reading and use that as the no-bobbin baseline.
-     */
-    void ClampControl::store_zero()
-    {
-        TRACE("store_zero()");
-        DEBUG("Taking zero-level readings");
-
-        // Lower and open the arm
-        this->open_jaw();
-        this->lower_arm();
-
-        // Take the two dark readings
-        this->_hal->colour_LED(false);
-        this->_hal->bad_bobbin_LED(false);
-        this->_colour_dark_zero = this->average_colour_ldr(10);
-        this->_badness_dark_zero = this->average_bad_ldr(10);
-
-        // Turn on the colour light
-        this->_hal->colour_LED(true);
-        this->_colour_light_zero = this->average_colour_ldr(10);
-        this->_hal->colour_LED(false);
-
-        // Turn on the badness light
-        this->_hal->bad_bobbin_LED(true);
-        this->_badness_light_zero = this->average_bad_ldr(10);
-        this->_hal->bad_bobbin_LED(false);
-
-        // Close the jaw
-        this->close_jaw();
-        this->_hal->colour_LED(true);
-        this->_colour_light_closed_zero = this->average_colour_ldr(10);
-        this->_hal->colour_LED(false);
-        this->open_jaw();
-        this->raise_arm();
-
-        INFO("Colour LDR dark level: " << this->_colour_dark_zero);
-        INFO("Colour LDR light level: " << this->_colour_light_zero);
-        INFO("Badness LDR dark level: " << this->_badness_dark_zero);
-        INFO("Badness LDR light level: " << this->_badness_light_zero);
-    }
-
-    /**
-     * Set the three levels used for bobbin colour detection.
-     * \param red The red level (0 to 255)
-     * \param green The green level (0 to 255)
-     * \param white The white level (0 to 255)
-     */
-    void ClampControl::calibrate(unsigned short int red, 
-            unsigned short int green, unsigned short int white)
-    {
-        TRACE("calibrate(" << red << ", " << green << ", " << white << ")");
-        DEBUG("Setting bobbin colour levels to red:" << red << ", green:" <<
-            green << ", white:" << white << ".");
-
-        this->_red_level = red;
-        this->_green_level = green;
-        this->_white_level = white;
+        return (delta > _box_present_level);
     }
 
     /**

@@ -96,7 +96,6 @@ namespace IDP {
         this->_cc = new ClampControl(hal);
         this->_cc->open_jaw();
         this->_cc->lower_arm();
-        this->_cc->store_zero();
     }
 
     /**

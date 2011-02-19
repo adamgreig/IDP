@@ -129,7 +129,8 @@ void run_self_test(IDP::MenuChoice choice)
         tests->colour_sensor_LEDs();
     } else if(choice == IDP::MENU_BAD_BOBBIN_LED) {
         tests->bad_bobbin_LED();
-        // TODO: position test
+    } else if(choice == IDP::MENU_CALIBRATE) {
+        tests->calibrate();
     } else {
         std::cout << "Invalid selection received from menu, quitting.";
         std::cout << std::endl;

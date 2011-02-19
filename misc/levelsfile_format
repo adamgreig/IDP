@@ -1,0 +1,12 @@
+base reading, jaw closed, light on, colour LDR
+base reading, jaw open, light on, colour LDR
+base reading, jaw open, light on, badness LDR
+base reading, jaw open, light off, badness LDR
+base reading, jaw open, light on, colour LDR, box without bobbin
+red level in box
+green level in box
+red level on rack
+green level on rack
+box present
+white bobbin present
+coloured bobbin present

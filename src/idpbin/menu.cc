@@ -24,6 +24,7 @@ namespace IDP {
             std::cout << std::endl << std::endl;
             std::cout << "1) Run Main Task" << std::endl;
             std::cout << "2) Run Self Tests" << std::endl;
+            std::cout << "3) Calibrate levels" << std::endl;
             std::cout << "q) Quit" << std::endl;
             std::cout << std::endl << "> ";
 
@@ -54,6 +55,8 @@ namespace IDP {
                 MenuChoice option = Menu::self_tests();
                 if(option != MENU_BACK)
                     return option;
+            } else if(choice == "3") {
+                return MENU_CALIBRATE;
             } else if(choice == "q") {
                 return MENU_QUIT;
             } else {
