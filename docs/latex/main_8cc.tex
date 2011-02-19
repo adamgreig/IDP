@@ -31,7 +31,7 @@ int \hyperlink{main_8cc_ae66f6b31b5ad750f1fe042a706a4e3d4}{main} ()
 static const int \hyperlink{main_8cc_a94c3385db89ae04c38bc37cc0fbff092}{ROBOT} = 39
 \begin{DoxyCompactList}\small\item\em The robot number, or 0 if running embedded. \item\end{DoxyCompactList}\item 
 static \hyperlink{classIDP_1_1MissionSupervisor}{IDP::MissionSupervisor} $\ast$ \hyperlink{main_8cc_a971eeb7a32200889b2d0007fb09b9957}{missup} = 0
-\begin{DoxyCompactList}\small\item\em Global reference to our Mission Supervisor so we can use it inside \hyperlink{main_8cc_abc1eb5b73937c21f0c857b478dea17c0}{terminate()}. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Global reference to our Mission Supervisor so we can use it inside \hyperlink{main_8cc_abc1eb5b73937c21f0c857b478dea17c0}{terminate()} \item\end{DoxyCompactList}\item 
 static \hyperlink{classIDP_1_1SelfTests}{IDP::SelfTests} $\ast$ \hyperlink{main_8cc_a4c87dbb1fa925ffb0cc1f3b5fc911b05}{tests} = 0
 \end{DoxyCompactItemize}
 
@@ -69,7 +69,9 @@ A big if statement to run the chosen test.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em choice}]The user's menu selection \end{DoxyParams}
+{\em choice} & The user's menu selection \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 74 of file main.cc.
@@ -89,7 +91,9 @@ Handle program termination cleanly.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em param}]Signal number (typically SIGINT) \end{DoxyParams}
+{\em param} & Signal number (typically SIGINT) \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 40 of file main.cc.
@@ -104,7 +108,7 @@ Definition at line 40 of file main.cc.
 \label{main_8cc_a971eeb7a32200889b2d0007fb09b9957}
 
 
-Global reference to our Mission Supervisor so we can use it inside \hyperlink{main_8cc_abc1eb5b73937c21f0c857b478dea17c0}{terminate()}. 
+Global reference to our Mission Supervisor so we can use it inside \hyperlink{main_8cc_abc1eb5b73937c21f0c857b478dea17c0}{terminate()} 
 
 
 
