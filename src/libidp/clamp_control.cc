@@ -95,14 +95,14 @@ namespace IDP {
     void ClampControl::raise_arm()
     {
         TRACE("raise_arm()");
-        if(!this->_arm_up) {
+        //if(!this->_arm_up) {
             DEBUG("Lifting the grabber");
             this->_hal->grabber_lift(true);
             usleep(1500000);
             this->_arm_up = true;
-        } else {
-            DEBUG("Asked to raise the arm but it was already raised");
-        }
+        //} else {
+            //DEBUG("Asked to raise the arm but it was already raised");
+        //}
     }
 
     /**
@@ -111,14 +111,14 @@ namespace IDP {
     void ClampControl::lower_arm()
     {
         TRACE("lower_arm()");
-        if(this->_arm_up) {
+        //if(this->_arm_up) {
             DEBUG("Lowering the grabber");
             this->_hal->grabber_lift(false);
             usleep(2000000);
             this->_arm_up = false;
-        } else {
-            DEBUG("Asked to lower the grabber but it was already lowered");
-        }
+        //} else {
+            //DEBUG("Asked to lower the grabber but it was already lowered");
+        //}
     }
 
     /**
@@ -127,14 +127,14 @@ namespace IDP {
     void ClampControl::open_jaw()
     {
         TRACE("open_jaw()");
-        if(!this->_jaw_open) {
+        //if(!this->_jaw_open) {
             DEBUG("Releasing the grabber jaw");
             this->_hal->grabber_jaw(false);
             usleep(1000000);
             this->_jaw_open = true;
-        } else {
-            DEBUG("Asked to open the jaw but it was already open");
-        }
+        //} else {
+            //DEBUG("Asked to open the jaw but it was already open");
+        //}
     }
 
     /**
@@ -143,14 +143,14 @@ namespace IDP {
     void ClampControl::close_jaw()
     {
         TRACE("open_jaw()");
-        if(this->_jaw_open) {
+        //if(this->_jaw_open) {
             DEBUG("Clamping the grabber jaw");
             this->_hal->grabber_jaw(true);
             usleep(1000000);
             this->_jaw_open = false;
-        } else {
-            DEBUG("Asked to close the jaw but it was already closed");
-        }
+        //} else {
+            //DEBUG("Asked to close the jaw but it was already closed");
+        //}
     }
 
     /**
