@@ -67,6 +67,9 @@ namespace IDP {
 
         // Turn on the indication LEDs
         this->indication_LEDs(true, true, true);
+
+        this->grabber_lift(true);
+        this->grabber_jaw(false);
     }
 
     /**

@@ -239,20 +239,32 @@ namespace IDP {
         DEBUG("Reducing speed to 20 for bobbin detection");
         this->_lf->set_speed(20);
 
+        LineFollowingStatus lf_status;
+
         // Lose the current bobbin
         bool presence;
         DEBUG("Losing current bobbin");
         do {
             presence = this->_cc->bobbin_present();
-            this->_lf->follow_line();
+            lf_status = this->_lf->follow_line();
         } while(presence);
         DEBUG("Lost current bobbin");
+
+        if(lf_status == BOTH_TURNS_FOUND) {
+            this->_from = NODE9;
+            this->_to = NODE10;
+        }
 
         // Follow the line until ClampControl says we're at a bobbin
         presence = this->_cc->bobbin_present();
         if (!presence) {
-            this->_lf->follow_line();
+            lf_status = this->_lf->follow_line();
             return NAVIGATION_ENROUTE;
+        }
+
+        if(lf_status == BOTH_TURNS_FOUND) {
+            this->_from = NODE9;
+            this->_to = NODE10;
         }
 
         // Reset the speed back to full
@@ -429,6 +441,7 @@ namespace IDP {
         if((this->_from == NODE8 && this->_to == NODE7) ||
            (this->_from == NODE7 && this->_to == NODE6))
         {
+            //this->_lf->set_speed(30);
             NavigationStatus status;
             do {
                 status = this->go_node(NODE6);
@@ -478,6 +491,7 @@ namespace IDP {
             forwardstatus = this->_lf->follow_line();
             if(forwardstatus == ACTION_IN_PROGRESS) {
                 DEBUG("LF is in progress");
+                this->_cached_junction = NO_CACHE;
                 return NAVIGATION_ENROUTE;
             } else if(forwardstatus == LOST) {
                 DEBUG("Got lost");
@@ -487,6 +501,7 @@ namespace IDP {
                 // and then do the turn.
                 DEBUG("Found end junction on turn around special case");
                 this->_reached_special_case_junction = true;
+                this->_cached_junction = NO_CACHE;
             }
         }
 
@@ -514,6 +529,7 @@ namespace IDP {
             this->_to = this->_from;
             this->_from = placeholder;
             this->_reached_special_case_junction = false;
+            this->_cached_junction = NO_CACHE;
         } else if(turnstatus == LOST) {
             // If lost, bubble that up
             return NAVIGATION_LOST;

@@ -44,6 +44,9 @@ namespace IDP {
             >> _green_rack_level >> _box_present_level >> _white_present_level
             >> _coloured_present_level;
         f.close();
+
+        this->open_jaw();
+        this->raise_arm();
     }
 
     /**
@@ -97,6 +100,8 @@ namespace IDP {
             this->_hal->grabber_lift(true);
             usleep(1500000);
             this->_arm_up = true;
+        } else {
+            DEBUG("Asked to raise the arm but it was already raised");
         }
     }
 
@@ -111,6 +116,8 @@ namespace IDP {
             this->_hal->grabber_lift(false);
             usleep(2000000);
             this->_arm_up = false;
+        } else {
+            DEBUG("Asked to lower the grabber but it was already lowered");
         }
     }
 
@@ -125,6 +132,8 @@ namespace IDP {
             this->_hal->grabber_jaw(false);
             usleep(1000000);
             this->_jaw_open = true;
+        } else {
+            DEBUG("Asked to open the jaw but it was already open");
         }
     }
 
@@ -139,6 +148,8 @@ namespace IDP {
             this->_hal->grabber_jaw(true);
             usleep(1000000);
             this->_jaw_open = false;
+        } else {
+            DEBUG("Asked to close the jaw but it was already closed");
         }
     }
 
@@ -151,6 +162,7 @@ namespace IDP {
         TRACE("colour()");
         INFO("Checking bobbin colour");
         this->_hal->colour_LED(true);
+        this->_hal->bad_bobbin_LED(false);
         unsigned short int reading = this->average_colour_ldr();
         DEBUG("Read " << reading);
         this->_hal->colour_LED(false);
@@ -192,11 +204,12 @@ namespace IDP {
         TRACE("box_colour()");
         INFO("Checking box colour");
         this->_hal->colour_LED(true);
+        this->_hal->bad_bobbin_LED(false);
         unsigned short int reading = this->average_colour_ldr();
         DEBUG("Read " << reading);
         this->_hal->colour_LED(false);
 
-        short int delta = reading - this->_colour_light_zero;
+        short int delta = reading - this->_colour_light_box_zero;
         DEBUG("Delta " << delta);
 
         if(delta < _red_box_level)
@@ -233,7 +246,7 @@ namespace IDP {
     {
         TRACE("badness()");
         INFO("Checking for bobbin badness");
-        this->_hal->bad_bobbin_LED(true);
+        this->_hal->bad_bobbin_LED(false);
         short unsigned int reading = this->average_bad_ldr();
         DEBUG("Got a badness LDR value of " << reading);
         //unsigned int delta = reading - this->_badness_light_zero;

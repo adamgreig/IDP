@@ -359,7 +359,8 @@ namespace IDP {
         std::cout << " enter." << std::endl;
 
         std::getchar();
-
+        cc.open_jaw();
+        cc.lower_arm();
 
         std::cout << "Now press enter to test for a bobbin." << std::endl;
 
@@ -389,7 +390,8 @@ namespace IDP {
         std::cout << " enter." << std::endl;
 
         std::getchar();
-
+        cc.open_jaw();
+        cc.lower_arm();
 
         std::cout << "Now press enter to test for a box." << std::endl;
 
@@ -760,6 +762,7 @@ namespace IDP {
         std::cout << "Place a green bobbin in the box in the jaw and press "
             << "enter" << std::endl;
         std::getchar();
+        std::getchar();
         short int green_box_level = cc.average_colour_ldr(15);
         green_box_level -= colour_light_box_zero;
         std::cout << "Read " << green_box_level << " for green box level, enter"
@@ -786,6 +789,7 @@ namespace IDP {
         std::cout << "Place a green bobbin in the jaw (on the rack) and press"
             << " enter." << std::endl;
         std::getchar();
+        std::getchar();
         short int green_rack_level = cc.average_colour_ldr(15);
         green_rack_level -= colour_light_closed_zero;
         std::cout << "Read " << green_rack_level << " for green rack level, "
@@ -802,6 +806,7 @@ namespace IDP {
         std::cout << "Place a box under the jaw and press enter."
             << std::endl;
         std::getchar();
+        std::getchar();
         this->_hal->bad_bobbin_LED(true);
         short int box_present_level = cc.average_bad_ldr(15);
         box_present_level -= badness_light_zero;
@@ -814,6 +819,7 @@ namespace IDP {
         std::cout << "Please place a white bobbin under the open jaw on the"
             << " rack and press enter." << std::endl;
         std::getchar();
+        std::getchar();
         short int white_present_level = cc.average_bad_ldr(15);
         white_present_level -= badness_dark_zero;
         std::cout << "Read " << white_present_level << " for white present"
@@ -824,12 +830,14 @@ namespace IDP {
         std::cout << "Please place a green bobbin under the open jaw on the"
             << " rack and press enter" << std::endl;
         std::getchar();
+        std::getchar();
         this->_hal->colour_LED(true);
         short int coloured_present_level = cc.average_colour_ldr(15);
         coloured_present_level -= colour_light_zero;
         std::cout << "Read " << coloured_present_level << " for green present,"
             << " place a red bobbin under the sensor and press enter."
             << std::endl;
+        std::getchar();
         std::getchar();
         coloured_present_level = cc.average_colour_ldr(15);
         coloured_present_level -= colour_light_zero;
